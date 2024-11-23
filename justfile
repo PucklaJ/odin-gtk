@@ -11,3 +11,7 @@ glib-setup:
 
 glib:
     runic glib/rune.yml
+    sed glib/glib.odin -i -e 's/\^gchar/cstring/g' -e 's/data: cstring/data: ^byte/g' -e 's/buf: cstring/buf: ^byte/g' -e 's/buffer: cstring/buffer: ^byte/g' -e 's/inbuf: \^cstring/inbuf: \^^byte/g' -e 's/outbuf: \^cstring/outbuf: \^^byte/g'
+
+example NAME='hello-glib':
+    odin run {{ 'examples' / NAME }} -error-pos-style:unix -vet -out:/tmp/{{ NAME }}

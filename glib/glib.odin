@@ -40,7 +40,7 @@ GHashFunc :: #type proc "c" (key: gconstpointer) -> guint
 GHFunc :: #type proc "c" (key: gpointer, value: gpointer, user_data: gpointer)
 GCopyFunc :: #type proc "c" (src: gconstpointer, data: gpointer) -> gpointer
 GFreeFunc :: #type proc "c" (data: gpointer)
-GTranslateFunc :: #type proc "c" (str: ^gchar, data: gpointer) -> ^gchar
+GTranslateFunc :: #type proc "c" (str: cstring, data: gpointer) -> cstring
 _GDoubleIEEE754 :: gdouble
 GDoubleIEEE754 :: _GDoubleIEEE754
 _GFloatIEEE754 :: gfloat
@@ -55,7 +55,7 @@ gatomicrefcount :: gint
 _GBytes :: rawptr
 GBytes :: _GBytes
 _GArray :: struct {
-    data: ^gchar,
+    data: ^byte,
     len: guint,
 }
 GArray :: _GArray
@@ -74,7 +74,7 @@ GQuark :: guint32
 _GError :: struct {
     domain: GQuark,
     code: gint,
-    message: ^gchar,
+    message: cstring,
 }
 GError :: _GError
 GErrorInitFunc :: #type proc "c" (error: ^GError)
@@ -82,7 +82,7 @@ GErrorCopyFunc :: #type proc "c" (src_error: ^GError, dest_error: ^GError)
 GErrorClearFunc :: #type proc "c" (error: ^GError)
 GUserDirectory :: enum u32 {G_USER_DIRECTORY_DESKTOP = 0, G_USER_DIRECTORY_DOCUMENTS = 1, G_USER_DIRECTORY_DOWNLOAD = 2, G_USER_DIRECTORY_MUSIC = 3, G_USER_DIRECTORY_PICTURES = 4, G_USER_DIRECTORY_PUBLIC_SHARE = 5, G_USER_DIRECTORY_TEMPLATES = 6, G_USER_DIRECTORY_VIDEOS = 7, G_USER_N_DIRECTORIES = 8, }
 _GDebugKey :: struct {
-    key: ^gchar,
+    key: cstring,
     value: guint,
 }
 GDebugKey :: _GDebugKey
@@ -303,17 +303,17 @@ GUnicodeBreakType :: enum u32 {G_UNICODE_BREAK_MANDATORY = 0, G_UNICODE_BREAK_CA
 GUnicodeScript :: enum i32 {G_UNICODE_SCRIPT_INVALID_CODE = -1, G_UNICODE_SCRIPT_COMMON = 0, G_UNICODE_SCRIPT_INHERITED = 1, G_UNICODE_SCRIPT_ARABIC = 2, G_UNICODE_SCRIPT_ARMENIAN = 3, G_UNICODE_SCRIPT_BENGALI = 4, G_UNICODE_SCRIPT_BOPOMOFO = 5, G_UNICODE_SCRIPT_CHEROKEE = 6, G_UNICODE_SCRIPT_COPTIC = 7, G_UNICODE_SCRIPT_CYRILLIC = 8, G_UNICODE_SCRIPT_DESERET = 9, G_UNICODE_SCRIPT_DEVANAGARI = 10, G_UNICODE_SCRIPT_ETHIOPIC = 11, G_UNICODE_SCRIPT_GEORGIAN = 12, G_UNICODE_SCRIPT_GOTHIC = 13, G_UNICODE_SCRIPT_GREEK = 14, G_UNICODE_SCRIPT_GUJARATI = 15, G_UNICODE_SCRIPT_GURMUKHI = 16, G_UNICODE_SCRIPT_HAN = 17, G_UNICODE_SCRIPT_HANGUL = 18, G_UNICODE_SCRIPT_HEBREW = 19, G_UNICODE_SCRIPT_HIRAGANA = 20, G_UNICODE_SCRIPT_KANNADA = 21, G_UNICODE_SCRIPT_KATAKANA = 22, G_UNICODE_SCRIPT_KHMER = 23, G_UNICODE_SCRIPT_LAO = 24, G_UNICODE_SCRIPT_LATIN = 25, G_UNICODE_SCRIPT_MALAYALAM = 26, G_UNICODE_SCRIPT_MONGOLIAN = 27, G_UNICODE_SCRIPT_MYANMAR = 28, G_UNICODE_SCRIPT_OGHAM = 29, G_UNICODE_SCRIPT_OLD_ITALIC = 30, G_UNICODE_SCRIPT_ORIYA = 31, G_UNICODE_SCRIPT_RUNIC = 32, G_UNICODE_SCRIPT_SINHALA = 33, G_UNICODE_SCRIPT_SYRIAC = 34, G_UNICODE_SCRIPT_TAMIL = 35, G_UNICODE_SCRIPT_TELUGU = 36, G_UNICODE_SCRIPT_THAANA = 37, G_UNICODE_SCRIPT_THAI = 38, G_UNICODE_SCRIPT_TIBETAN = 39, G_UNICODE_SCRIPT_CANADIAN_ABORIGINAL = 40, G_UNICODE_SCRIPT_YI = 41, G_UNICODE_SCRIPT_TAGALOG = 42, G_UNICODE_SCRIPT_HANUNOO = 43, G_UNICODE_SCRIPT_BUHID = 44, G_UNICODE_SCRIPT_TAGBANWA = 45, G_UNICODE_SCRIPT_BRAILLE = 46, G_UNICODE_SCRIPT_CYPRIOT = 47, G_UNICODE_SCRIPT_LIMBU = 48, G_UNICODE_SCRIPT_OSMANYA = 49, G_UNICODE_SCRIPT_SHAVIAN = 50, G_UNICODE_SCRIPT_LINEAR_B = 51, G_UNICODE_SCRIPT_TAI_LE = 52, G_UNICODE_SCRIPT_UGARITIC = 53, G_UNICODE_SCRIPT_NEW_TAI_LUE = 54, G_UNICODE_SCRIPT_BUGINESE = 55, G_UNICODE_SCRIPT_GLAGOLITIC = 56, G_UNICODE_SCRIPT_TIFINAGH = 57, G_UNICODE_SCRIPT_SYLOTI_NAGRI = 58, G_UNICODE_SCRIPT_OLD_PERSIAN = 59, G_UNICODE_SCRIPT_KHAROSHTHI = 60, G_UNICODE_SCRIPT_UNKNOWN = 61, G_UNICODE_SCRIPT_BALINESE = 62, G_UNICODE_SCRIPT_CUNEIFORM = 63, G_UNICODE_SCRIPT_PHOENICIAN = 64, G_UNICODE_SCRIPT_PHAGS_PA = 65, G_UNICODE_SCRIPT_NKO = 66, G_UNICODE_SCRIPT_KAYAH_LI = 67, G_UNICODE_SCRIPT_LEPCHA = 68, G_UNICODE_SCRIPT_REJANG = 69, G_UNICODE_SCRIPT_SUNDANESE = 70, G_UNICODE_SCRIPT_SAURASHTRA = 71, G_UNICODE_SCRIPT_CHAM = 72, G_UNICODE_SCRIPT_OL_CHIKI = 73, G_UNICODE_SCRIPT_VAI = 74, G_UNICODE_SCRIPT_CARIAN = 75, G_UNICODE_SCRIPT_LYCIAN = 76, G_UNICODE_SCRIPT_LYDIAN = 77, G_UNICODE_SCRIPT_AVESTAN = 78, G_UNICODE_SCRIPT_BAMUM = 79, G_UNICODE_SCRIPT_EGYPTIAN_HIEROGLYPHS = 80, G_UNICODE_SCRIPT_IMPERIAL_ARAMAIC = 81, G_UNICODE_SCRIPT_INSCRIPTIONAL_PAHLAVI = 82, G_UNICODE_SCRIPT_INSCRIPTIONAL_PARTHIAN = 83, G_UNICODE_SCRIPT_JAVANESE = 84, G_UNICODE_SCRIPT_KAITHI = 85, G_UNICODE_SCRIPT_LISU = 86, G_UNICODE_SCRIPT_MEETEI_MAYEK = 87, G_UNICODE_SCRIPT_OLD_SOUTH_ARABIAN = 88, G_UNICODE_SCRIPT_OLD_TURKIC = 89, G_UNICODE_SCRIPT_SAMARITAN = 90, G_UNICODE_SCRIPT_TAI_THAM = 91, G_UNICODE_SCRIPT_TAI_VIET = 92, G_UNICODE_SCRIPT_BATAK = 93, G_UNICODE_SCRIPT_BRAHMI = 94, G_UNICODE_SCRIPT_MANDAIC = 95, G_UNICODE_SCRIPT_CHAKMA = 96, G_UNICODE_SCRIPT_MEROITIC_CURSIVE = 97, G_UNICODE_SCRIPT_MEROITIC_HIEROGLYPHS = 98, G_UNICODE_SCRIPT_MIAO = 99, G_UNICODE_SCRIPT_SHARADA = 100, G_UNICODE_SCRIPT_SORA_SOMPENG = 101, G_UNICODE_SCRIPT_TAKRI = 102, G_UNICODE_SCRIPT_BASSA_VAH = 103, G_UNICODE_SCRIPT_CAUCASIAN_ALBANIAN = 104, G_UNICODE_SCRIPT_DUPLOYAN = 105, G_UNICODE_SCRIPT_ELBASAN = 106, G_UNICODE_SCRIPT_GRANTHA = 107, G_UNICODE_SCRIPT_KHOJKI = 108, G_UNICODE_SCRIPT_KHUDAWADI = 109, G_UNICODE_SCRIPT_LINEAR_A = 110, G_UNICODE_SCRIPT_MAHAJANI = 111, G_UNICODE_SCRIPT_MANICHAEAN = 112, G_UNICODE_SCRIPT_MENDE_KIKAKUI = 113, G_UNICODE_SCRIPT_MODI = 114, G_UNICODE_SCRIPT_MRO = 115, G_UNICODE_SCRIPT_NABATAEAN = 116, G_UNICODE_SCRIPT_OLD_NORTH_ARABIAN = 117, G_UNICODE_SCRIPT_OLD_PERMIC = 118, G_UNICODE_SCRIPT_PAHAWH_HMONG = 119, G_UNICODE_SCRIPT_PALMYRENE = 120, G_UNICODE_SCRIPT_PAU_CIN_HAU = 121, G_UNICODE_SCRIPT_PSALTER_PAHLAVI = 122, G_UNICODE_SCRIPT_SIDDHAM = 123, G_UNICODE_SCRIPT_TIRHUTA = 124, G_UNICODE_SCRIPT_WARANG_CITI = 125, G_UNICODE_SCRIPT_AHOM = 126, G_UNICODE_SCRIPT_ANATOLIAN_HIEROGLYPHS = 127, G_UNICODE_SCRIPT_HATRAN = 128, G_UNICODE_SCRIPT_MULTANI = 129, G_UNICODE_SCRIPT_OLD_HUNGARIAN = 130, G_UNICODE_SCRIPT_SIGNWRITING = 131, G_UNICODE_SCRIPT_ADLAM = 132, G_UNICODE_SCRIPT_BHAIKSUKI = 133, G_UNICODE_SCRIPT_MARCHEN = 134, G_UNICODE_SCRIPT_NEWA = 135, G_UNICODE_SCRIPT_OSAGE = 136, G_UNICODE_SCRIPT_TANGUT = 137, G_UNICODE_SCRIPT_MASARAM_GONDI = 138, G_UNICODE_SCRIPT_NUSHU = 139, G_UNICODE_SCRIPT_SOYOMBO = 140, G_UNICODE_SCRIPT_ZANABAZAR_SQUARE = 141, G_UNICODE_SCRIPT_DOGRA = 142, G_UNICODE_SCRIPT_GUNJALA_GONDI = 143, G_UNICODE_SCRIPT_HANIFI_ROHINGYA = 144, G_UNICODE_SCRIPT_MAKASAR = 145, G_UNICODE_SCRIPT_MEDEFAIDRIN = 146, G_UNICODE_SCRIPT_OLD_SOGDIAN = 147, G_UNICODE_SCRIPT_SOGDIAN = 148, G_UNICODE_SCRIPT_ELYMAIC = 149, G_UNICODE_SCRIPT_NANDINAGARI = 150, G_UNICODE_SCRIPT_NYIAKENG_PUACHUE_HMONG = 151, G_UNICODE_SCRIPT_WANCHO = 152, G_UNICODE_SCRIPT_CHORASMIAN = 153, G_UNICODE_SCRIPT_DIVES_AKURU = 154, G_UNICODE_SCRIPT_KHITAN_SMALL_SCRIPT = 155, G_UNICODE_SCRIPT_YEZIDI = 156, G_UNICODE_SCRIPT_CYPRO_MINOAN = 157, G_UNICODE_SCRIPT_OLD_UYGHUR = 158, G_UNICODE_SCRIPT_TANGSA = 159, G_UNICODE_SCRIPT_TOTO = 160, G_UNICODE_SCRIPT_VITHKUQI = 161, G_UNICODE_SCRIPT_MATH = 162, G_UNICODE_SCRIPT_KAWI = 163, G_UNICODE_SCRIPT_NAG_MUNDARI = 164, G_UNICODE_SCRIPT_TODHRI = 165, G_UNICODE_SCRIPT_GARAY = 166, G_UNICODE_SCRIPT_TULU_TIGALARI = 167, G_UNICODE_SCRIPT_SUNUWAR = 168, G_UNICODE_SCRIPT_GURUNG_KHEMA = 169, G_UNICODE_SCRIPT_KIRAT_RAI = 170, G_UNICODE_SCRIPT_OL_ONAL = 171, }
 GNormalizeMode :: enum u32 {G_NORMALIZE_DEFAULT = 0, G_NORMALIZE_NFD = 0, G_NORMALIZE_DEFAULT_COMPOSE = 1, G_NORMALIZE_NFC = 1, G_NORMALIZE_ALL = 2, G_NORMALIZE_NFKD = 2, G_NORMALIZE_ALL_COMPOSE = 3, G_NORMALIZE_NFKC = 3, }
 GAsciiType :: enum u32 {G_ASCII_ALNUM = 1, G_ASCII_ALPHA = 2, G_ASCII_CNTRL = 4, G_ASCII_DIGIT = 8, G_ASCII_GRAPH = 16, G_ASCII_LOWER = 32, G_ASCII_PRINT = 64, G_ASCII_PUNCT = 128, G_ASCII_SPACE = 256, G_ASCII_UPPER = 512, G_ASCII_XDIGIT = 1024, }
-GStrv :: ^^gchar
+GStrv :: ^cstring
 GNumberParserError :: enum u32 {G_NUMBER_PARSER_ERROR_INVALID = 0, G_NUMBER_PARSER_ERROR_OUT_OF_BOUNDS = 1, }
 _GString :: struct {
-    str: ^gchar,
+    str: cstring,
     len: gsize,
     allocated_len: gsize,
 }
 GString :: _GString
 GIOStatus :: enum u32 {G_IO_STATUS_ERROR = 0, G_IO_STATUS_NORMAL = 1, G_IO_STATUS_EOF = 2, G_IO_STATUS_AGAIN = 3, }
-io_read_func_ptr_anon_9 :: #type proc "c" (channel: rawptr, buf: ^gchar, count: gsize, bytes_read: ^gsize, err: ^^GError) -> GIOStatus
-io_write_func_ptr_anon_10 :: #type proc "c" (channel: rawptr, buf: ^gchar, count: gsize, bytes_written: ^gsize, err: ^^GError) -> GIOStatus
+io_read_func_ptr_anon_9 :: #type proc "c" (channel: rawptr, buf: ^byte, count: gsize, bytes_read: ^gsize, err: ^^GError) -> GIOStatus
+io_write_func_ptr_anon_10 :: #type proc "c" (channel: rawptr, buf: ^byte, count: gsize, bytes_written: ^gsize, err: ^^GError) -> GIOStatus
 GSeekType :: enum u32 {G_SEEK_CUR = 0, G_SEEK_SET = 1, G_SEEK_END = 2, }
 io_seek_func_ptr_anon_11 :: #type proc "c" (channel: rawptr, offset: gint64, type: GSeekType, err: ^^GError) -> GIOStatus
 io_close_func_ptr_anon_12 :: #type proc "c" (channel: rawptr, err: ^^GError) -> GIOStatus
@@ -346,10 +346,10 @@ GMarkupError :: enum u32 {G_MARKUP_ERROR_BAD_UTF8 = 0, G_MARKUP_ERROR_EMPTY = 1,
 GMarkupParseFlags :: enum u32 {G_MARKUP_DEFAULT_FLAGS = 0, G_MARKUP_DO_NOT_USE_THIS_UNSUPPORTED_FLAG = 1, G_MARKUP_TREAT_CDATA_AS_TEXT = 2, G_MARKUP_PREFIX_ERROR_POSITION = 4, G_MARKUP_IGNORE_QUALIFIED = 8, }
 _GMarkupParseContext :: rawptr
 GMarkupParseContext :: _GMarkupParseContext
-start_element_func_ptr_anon_17 :: #type proc "c" (context_p: ^GMarkupParseContext, element_name: ^gchar, attribute_names: ^[^]gchar, attribute_values: ^[^]gchar, user_data: gpointer, error: ^^GError)
-end_element_func_ptr_anon_18 :: #type proc "c" (context_p: ^GMarkupParseContext, element_name: ^gchar, user_data: gpointer, error: ^^GError)
-text_func_ptr_anon_19 :: #type proc "c" (context_p: ^GMarkupParseContext, text: ^gchar, text_len: gsize, user_data: gpointer, error: ^^GError)
-passthrough_func_ptr_anon_20 :: #type proc "c" (context_p: ^GMarkupParseContext, passthrough_text: ^gchar, text_len: gsize, user_data: gpointer, error: ^^GError)
+start_element_func_ptr_anon_17 :: #type proc "c" (context_p: ^GMarkupParseContext, element_name: cstring, attribute_names: ^[^]gchar, attribute_values: ^[^]gchar, user_data: gpointer, error: ^^GError)
+end_element_func_ptr_anon_18 :: #type proc "c" (context_p: ^GMarkupParseContext, element_name: cstring, user_data: gpointer, error: ^^GError)
+text_func_ptr_anon_19 :: #type proc "c" (context_p: ^GMarkupParseContext, text: cstring, text_len: gsize, user_data: gpointer, error: ^^GError)
+passthrough_func_ptr_anon_20 :: #type proc "c" (context_p: ^GMarkupParseContext, passthrough_text: cstring, text_len: gsize, user_data: gpointer, error: ^^GError)
 error_func_ptr_anon_21 :: #type proc "c" (context_p: ^GMarkupParseContext, error: ^GError, user_data: gpointer)
 _GMarkupParser :: struct {
     start_element: start_element_func_ptr_anon_17,
@@ -391,33 +391,33 @@ _GVariantDict :: struct {
 }
 GVariantDict :: _GVariantDict
 GLogLevelFlags :: enum i32 {G_LOG_FLAG_RECURSION = 1, G_LOG_FLAG_FATAL = 2, G_LOG_LEVEL_ERROR = 4, G_LOG_LEVEL_CRITICAL = 8, G_LOG_LEVEL_WARNING = 16, G_LOG_LEVEL_MESSAGE = 32, G_LOG_LEVEL_INFO = 64, G_LOG_LEVEL_DEBUG = 128, G_LOG_LEVEL_MASK = -4, }
-GLogFunc :: #type proc "c" (log_domain: ^gchar, log_level: GLogLevelFlags, message: ^gchar, user_data: gpointer)
+GLogFunc :: #type proc "c" (log_domain: cstring, log_level: GLogLevelFlags, message: cstring, user_data: gpointer)
 GLogWriterOutput :: enum u32 {G_LOG_WRITER_HANDLED = 1, G_LOG_WRITER_UNHANDLED = 0, }
 _GLogField :: struct {
-    key: ^gchar,
+    key: cstring,
     value: gconstpointer,
     length: gssize,
 }
 GLogField :: _GLogField
 GLogWriterFunc :: #type proc "c" (log_level: GLogLevelFlags, fields: [^]GLogField, n_fields: gsize, user_data: gpointer) -> GLogWriterOutput
-GPrintFunc :: #type proc "c" (string_p: ^gchar)
+GPrintFunc :: #type proc "c" (string_p: cstring)
 _GOptionContext :: rawptr
 GOptionContext :: _GOptionContext
 _GOptionGroup :: rawptr
 GOptionGroup :: _GOptionGroup
 GOptionArg :: enum u32 {G_OPTION_ARG_NONE = 0, G_OPTION_ARG_STRING = 1, G_OPTION_ARG_INT = 2, G_OPTION_ARG_CALLBACK = 3, G_OPTION_ARG_FILENAME = 4, G_OPTION_ARG_STRING_ARRAY = 5, G_OPTION_ARG_FILENAME_ARRAY = 6, G_OPTION_ARG_DOUBLE = 7, G_OPTION_ARG_INT64 = 8, }
 _GOptionEntry :: struct {
-    long_name: ^gchar,
+    long_name: cstring,
     short_name: gchar,
     flags: gint,
     arg: GOptionArg,
     arg_data: gpointer,
-    description: ^gchar,
-    arg_description: ^gchar,
+    description: cstring,
+    arg_description: cstring,
 }
 GOptionEntry :: _GOptionEntry
 GOptionFlags :: enum u32 {G_OPTION_FLAG_NONE = 0, G_OPTION_FLAG_HIDDEN = 1, G_OPTION_FLAG_IN_MAIN = 2, G_OPTION_FLAG_REVERSE = 4, G_OPTION_FLAG_NO_ARG = 8, G_OPTION_FLAG_FILENAME = 16, G_OPTION_FLAG_OPTIONAL_ARG = 32, G_OPTION_FLAG_NOALIAS = 64, }
-GOptionArgFunc :: #type proc "c" (option_name: ^gchar, value: ^gchar, data: gpointer, error: ^^GError) -> gboolean
+GOptionArgFunc :: #type proc "c" (option_name: cstring, value: cstring, data: gpointer, error: ^^GError) -> gboolean
 GOptionParseFunc :: #type proc "c" (context_p: ^GOptionContext, group: ^GOptionGroup, data: gpointer, error: ^^GError) -> gboolean
 GOptionErrorFunc :: #type proc "c" (context_p: ^GOptionContext, group: ^GOptionGroup, data: gpointer, error: ^^GError)
 GOptionError :: enum u32 {G_OPTION_ERROR_UNKNOWN_OPTION = 0, G_OPTION_ERROR_BAD_VALUE = 1, G_OPTION_ERROR_FAILED = 2, }
@@ -445,13 +445,13 @@ _GMatchInfo :: rawptr
 GMatchInfo :: _GMatchInfo
 GRegexEvalCallback :: #type proc "c" (match_info: ^GMatchInfo, result: ^GString, user_data: gpointer) -> gboolean
 GTokenType :: enum u32 {G_TOKEN_EOF = 0, G_TOKEN_LEFT_PAREN = 40, G_TOKEN_RIGHT_PAREN = 41, G_TOKEN_LEFT_CURLY = 123, G_TOKEN_RIGHT_CURLY = 125, G_TOKEN_LEFT_BRACE = 91, G_TOKEN_RIGHT_BRACE = 93, G_TOKEN_EQUAL_SIGN = 61, G_TOKEN_COMMA = 44, G_TOKEN_NONE = 256, G_TOKEN_ERROR = 257, G_TOKEN_CHAR = 258, G_TOKEN_BINARY = 259, G_TOKEN_OCTAL = 260, G_TOKEN_INT = 261, G_TOKEN_HEX = 262, G_TOKEN_FLOAT = 263, G_TOKEN_STRING = 264, G_TOKEN_SYMBOL = 265, G_TOKEN_IDENTIFIER = 266, G_TOKEN_IDENTIFIER_NULL = 267, G_TOKEN_COMMENT_SINGLE = 268, G_TOKEN_COMMENT_MULTI = 269, G_TOKEN_LAST = 270, }
-_GTokenValue :: struct #raw_union {v_symbol: gpointer, v_identifier: ^gchar, v_binary: gulong, v_octal: gulong, v_int: gulong, v_int64: guint64, v_float: gdouble, v_hex: gulong, v_string: ^gchar, v_comment: ^gchar, v_char: guchar, v_error: guint, }
+_GTokenValue :: struct #raw_union {v_symbol: gpointer, v_identifier: cstring, v_binary: gulong, v_octal: gulong, v_int: gulong, v_int64: guint64, v_float: gdouble, v_hex: gulong, v_string: cstring, v_comment: cstring, v_char: guchar, v_error: guint, }
 GTokenValue :: _GTokenValue
 _GScanner :: struct {
     user_data: gpointer,
     max_parse_errors: guint,
     parse_errors: guint,
-    input_name: ^gchar,
+    input_name: cstring,
     qdata: ^GData,
     config: rawptr,
     token: GTokenType,
@@ -464,14 +464,14 @@ _GScanner :: struct {
     next_position: guint,
     symbol_table: ^GHashTable,
     input_fd: gint,
-    text: ^gchar,
-    text_end: ^gchar,
-    buffer: ^gchar,
+    text: cstring,
+    text_end: cstring,
+    buffer: ^byte,
     scope_id: guint,
     msg_handler: GScannerMsgFunc,
 }
 GScanner :: _GScanner
-GScannerMsgFunc :: #type proc "c" (scanner: ^GScanner, message: ^gchar, error: gboolean)
+GScannerMsgFunc :: #type proc "c" (scanner: ^GScanner, message: cstring, error: gboolean)
 GErrorType :: enum u32 {G_ERR_UNKNOWN = 0, G_ERR_UNEXP_EOF = 1, G_ERR_UNEXP_EOF_IN_STRING = 2, G_ERR_UNEXP_EOF_IN_COMMENT = 3, G_ERR_NON_DIGIT_IN_CONST = 4, G_ERR_DIGIT_RADIX = 5, G_ERR_FLOAT_RADIX = 6, G_ERR_FLOAT_MALFORMED = 7, }
 _GSequence :: rawptr
 GSequence :: _GSequence
@@ -515,7 +515,7 @@ GTestLogBuffer :: struct {
     data: ^GString,
     msgs: [^]GSList,
 }
-GTestLogFatalFunc :: #type proc "c" (log_domain: ^gchar, log_level: GLogLevelFlags, message: ^gchar, user_data: gpointer) -> gboolean
+GTestLogFatalFunc :: #type proc "c" (log_domain: cstring, log_level: GLogLevelFlags, message: cstring, user_data: gpointer) -> gboolean
 GTestFileType :: enum u32 {G_TEST_DIST = 0, G_TEST_BUILT = 1, }
 _GThreadPool :: struct {
     func: GFunc,
@@ -557,12 +557,12 @@ GCache :: _GCache
 GCacheNewFunc :: #type proc "c" (key: gpointer) -> gpointer
 GCacheDupFunc :: #type proc "c" (value: gpointer) -> gpointer
 GCacheDestroyFunc :: #type proc "c" (value: gpointer)
-GCompletionFunc :: #type proc "c" (item: gpointer) -> ^gchar
-GCompletionStrncmpFunc :: #type proc "c" (s1: ^gchar, s2: ^gchar, n: gsize) -> gint
+GCompletionFunc :: #type proc "c" (item: gpointer) -> cstring
+GCompletionStrncmpFunc :: #type proc "c" (s1: cstring, s2: cstring, n: gsize) -> gint
 _GCompletion :: struct {
     items: [^]GList,
     func: GCompletionFunc,
-    prefix: ^gchar,
+    prefix: cstring,
     cache: ^GList,
     strncmp_func: GCompletionStrncmpFunc,
 }
@@ -875,7 +875,7 @@ foreign glib_runic {
     g_array_copy :: proc(array: ^GArray) -> ^GArray ---
 
     @(link_name = "g_array_free")
-    g_array_free :: proc(array: ^GArray, free_segment: gboolean) -> ^gchar ---
+    g_array_free :: proc(array: ^GArray, free_segment: gboolean) -> cstring ---
 
     @(link_name = "g_array_ref")
     g_array_ref :: proc(array: ^GArray) -> ^GArray ---
@@ -1136,22 +1136,22 @@ foreign glib_runic {
     g_atomic_int_exchange_and_add :: proc(atomic: ^gint, val: gint) -> gint ---
 
     @(link_name = "g_quark_try_string")
-    g_quark_try_string :: proc(string_p: ^gchar) -> GQuark ---
+    g_quark_try_string :: proc(string_p: cstring) -> GQuark ---
 
     @(link_name = "g_quark_from_static_string")
-    g_quark_from_static_string :: proc(string_p: ^gchar) -> GQuark ---
+    g_quark_from_static_string :: proc(string_p: cstring) -> GQuark ---
 
     @(link_name = "g_quark_from_string")
-    g_quark_from_string :: proc(string_p: ^gchar) -> GQuark ---
+    g_quark_from_string :: proc(string_p: cstring) -> GQuark ---
 
     @(link_name = "g_quark_to_string")
-    g_quark_to_string :: proc(quark: GQuark) -> ^gchar ---
+    g_quark_to_string :: proc(quark: GQuark) -> cstring ---
 
     @(link_name = "g_intern_string")
-    g_intern_string :: proc(string_p: ^gchar) -> ^gchar ---
+    g_intern_string :: proc(string_p: cstring) -> cstring ---
 
     @(link_name = "g_intern_static_string")
-    g_intern_static_string :: proc(string_p: ^gchar) -> ^gchar ---
+    g_intern_static_string :: proc(string_p: cstring) -> cstring ---
 
     @(link_name = "g_error_domain_register_static")
     g_error_domain_register_static :: proc(error_type_name: cstring, error_type_private_size: gsize, error_type_init: GErrorInitFunc, error_type_copy: GErrorCopyFunc, error_type_clear: GErrorClearFunc) -> GQuark ---
@@ -1160,13 +1160,13 @@ foreign glib_runic {
     g_error_domain_register :: proc(error_type_name: cstring, error_type_private_size: gsize, error_type_init: GErrorInitFunc, error_type_copy: GErrorCopyFunc, error_type_clear: GErrorClearFunc) -> GQuark ---
 
     @(link_name = "g_error_new")
-    g_error_new :: proc(domain: GQuark, code: gint, format: ^gchar, #c_vararg var_args: ..any) -> ^GError ---
+    g_error_new :: proc(domain: GQuark, code: gint, format: cstring, #c_vararg var_args: ..any) -> ^GError ---
 
     @(link_name = "g_error_new_literal")
-    g_error_new_literal :: proc(domain: GQuark, code: gint, message: ^gchar) -> ^GError ---
+    g_error_new_literal :: proc(domain: GQuark, code: gint, message: cstring) -> ^GError ---
 
     @(link_name = "g_error_new_valist")
-    g_error_new_valist :: proc(domain: GQuark, code: gint, format: ^gchar, #c_vararg var_args: ..any) -> ^GError ---
+    g_error_new_valist :: proc(domain: GQuark, code: gint, format: cstring, #c_vararg var_args: ..any) -> ^GError ---
 
     @(link_name = "g_error_free")
     g_error_free :: proc(error: ^GError) ---
@@ -1178,10 +1178,10 @@ foreign glib_runic {
     g_error_matches :: proc(error: ^GError, domain: GQuark, code: gint) -> gboolean ---
 
     @(link_name = "g_set_error")
-    g_set_error :: proc(err: ^^GError, domain: GQuark, code: gint, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_set_error :: proc(err: ^^GError, domain: GQuark, code: gint, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_set_error_literal")
-    g_set_error_literal :: proc(err: ^^GError, domain: GQuark, code: gint, message: ^gchar) ---
+    g_set_error_literal :: proc(err: ^^GError, domain: GQuark, code: gint, message: cstring) ---
 
     @(link_name = "g_propagate_error")
     g_propagate_error :: proc(dest: ^^GError, src: ^GError) ---
@@ -1190,97 +1190,97 @@ foreign glib_runic {
     g_clear_error :: proc(err: ^^GError) ---
 
     @(link_name = "g_prefix_error")
-    g_prefix_error :: proc(err: ^^GError, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_prefix_error :: proc(err: ^^GError, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_prefix_error_literal")
-    g_prefix_error_literal :: proc(err: ^^GError, prefix: ^gchar) ---
+    g_prefix_error_literal :: proc(err: ^^GError, prefix: cstring) ---
 
     @(link_name = "g_propagate_prefixed_error")
-    g_propagate_prefixed_error :: proc(dest: ^^GError, src: ^GError, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_propagate_prefixed_error :: proc(dest: ^^GError, src: ^GError, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_get_user_name")
-    g_get_user_name :: proc() -> ^gchar ---
+    g_get_user_name :: proc() -> cstring ---
 
     @(link_name = "g_get_real_name")
-    g_get_real_name :: proc() -> ^gchar ---
+    g_get_real_name :: proc() -> cstring ---
 
     @(link_name = "g_get_home_dir")
-    g_get_home_dir :: proc() -> ^gchar ---
+    g_get_home_dir :: proc() -> cstring ---
 
     @(link_name = "g_get_tmp_dir")
-    g_get_tmp_dir :: proc() -> ^gchar ---
+    g_get_tmp_dir :: proc() -> cstring ---
 
     @(link_name = "g_get_host_name")
-    g_get_host_name :: proc() -> ^gchar ---
+    g_get_host_name :: proc() -> cstring ---
 
     @(link_name = "g_get_prgname")
-    g_get_prgname :: proc() -> ^gchar ---
+    g_get_prgname :: proc() -> cstring ---
 
     @(link_name = "g_set_prgname")
-    g_set_prgname :: proc(prgname: ^gchar) ---
+    g_set_prgname :: proc(prgname: cstring) ---
 
     @(link_name = "g_get_application_name")
-    g_get_application_name :: proc() -> ^gchar ---
+    g_get_application_name :: proc() -> cstring ---
 
     @(link_name = "g_set_application_name")
-    g_set_application_name :: proc(application_name: ^gchar) ---
+    g_set_application_name :: proc(application_name: cstring) ---
 
     @(link_name = "g_get_os_info")
-    g_get_os_info :: proc(key_name: ^gchar) -> ^gchar ---
+    g_get_os_info :: proc(key_name: cstring) -> cstring ---
 
     @(link_name = "g_reload_user_special_dirs_cache")
     g_reload_user_special_dirs_cache :: proc() ---
 
     @(link_name = "g_get_user_data_dir")
-    g_get_user_data_dir :: proc() -> ^gchar ---
+    g_get_user_data_dir :: proc() -> cstring ---
 
     @(link_name = "g_get_user_config_dir")
-    g_get_user_config_dir :: proc() -> ^gchar ---
+    g_get_user_config_dir :: proc() -> cstring ---
 
     @(link_name = "g_get_user_cache_dir")
-    g_get_user_cache_dir :: proc() -> ^gchar ---
+    g_get_user_cache_dir :: proc() -> cstring ---
 
     @(link_name = "g_get_user_state_dir")
-    g_get_user_state_dir :: proc() -> ^gchar ---
+    g_get_user_state_dir :: proc() -> cstring ---
 
     @(link_name = "g_get_system_data_dirs")
-    g_get_system_data_dirs :: proc() -> ^^gchar ---
+    g_get_system_data_dirs :: proc() -> ^cstring ---
 
     @(link_name = "g_get_system_config_dirs")
-    g_get_system_config_dirs :: proc() -> ^^gchar ---
+    g_get_system_config_dirs :: proc() -> ^cstring ---
 
     @(link_name = "g_get_user_runtime_dir")
-    g_get_user_runtime_dir :: proc() -> ^gchar ---
+    g_get_user_runtime_dir :: proc() -> cstring ---
 
     @(link_name = "g_get_user_special_dir")
-    g_get_user_special_dir :: proc(directory: GUserDirectory) -> ^gchar ---
+    g_get_user_special_dir :: proc(directory: GUserDirectory) -> cstring ---
 
     @(link_name = "g_parse_debug_string")
-    g_parse_debug_string :: proc(string_p: ^gchar, keys: [^]GDebugKey, nkeys: guint) -> guint ---
+    g_parse_debug_string :: proc(string_p: cstring, keys: [^]GDebugKey, nkeys: guint) -> guint ---
 
     @(link_name = "g_snprintf")
-    g_snprintf :: proc(string_p: ^gchar, n: gulong, format: ^gchar, #c_vararg var_args: ..any) -> gint ---
+    g_snprintf :: proc(string_p: cstring, n: gulong, format: cstring, #c_vararg var_args: ..any) -> gint ---
 
     @(link_name = "g_vsnprintf")
-    g_vsnprintf :: proc(string_p: ^gchar, n: gulong, format: ^gchar, #c_vararg var_args: ..any) -> gint ---
+    g_vsnprintf :: proc(string_p: cstring, n: gulong, format: cstring, #c_vararg var_args: ..any) -> gint ---
 
     @(link_name = "g_nullify_pointer")
     g_nullify_pointer :: proc(nullify_location: ^gpointer) ---
 
     @(link_name = "g_format_size_full")
-    g_format_size_full :: proc(size: guint64, flags: GFormatSizeFlags) -> ^gchar ---
+    g_format_size_full :: proc(size: guint64, flags: GFormatSizeFlags) -> cstring ---
 
     @(link_name = "g_format_size")
-    g_format_size :: proc(size: guint64) -> ^gchar ---
+    g_format_size :: proc(size: guint64) -> cstring ---
 
     @(link_name = "g_format_size_for_display")
-    g_format_size_for_display :: proc(size: goffset) -> ^gchar ---
+    g_format_size_for_display :: proc(size: goffset) -> cstring ---
 
     @(link_name = "g_atexit")
     g_atexit :: proc(func: GVoidFunc) ---
 
     @(link_name = "g_find_program_in_path")
-    g_find_program_in_path :: proc(program: ^gchar) -> ^gchar ---
+    g_find_program_in_path :: proc(program: cstring) -> cstring ---
 
     @(link_name = "g_bit_nth_lsf")
     g_bit_nth_lsf :: proc(mask: gulong, nth_bit: gint) -> gint ---
@@ -1301,10 +1301,10 @@ foreign glib_runic {
     g_thread_unref :: proc(thread: ^GThread) ---
 
     @(link_name = "g_thread_new")
-    g_thread_new :: proc(name: ^gchar, func: GThreadFunc, data: gpointer) -> ^GThread ---
+    g_thread_new :: proc(name: cstring, func: GThreadFunc, data: gpointer) -> ^GThread ---
 
     @(link_name = "g_thread_try_new")
-    g_thread_try_new :: proc(name: ^gchar, func: GThreadFunc, data: gpointer, error: ^^GError) -> ^GThread ---
+    g_thread_try_new :: proc(name: cstring, func: GThreadFunc, data: gpointer, error: ^^GError) -> ^GThread ---
 
     @(link_name = "g_thread_self")
     g_thread_self :: proc() -> ^GThread ---
@@ -1502,28 +1502,28 @@ foreign glib_runic {
     g_async_queue_timed_pop_unlocked :: proc(queue: ^GAsyncQueue, end_time: ^GTimeVal) -> gpointer ---
 
     @(link_name = "g_on_error_query")
-    g_on_error_query :: proc(prg_name: ^gchar) ---
+    g_on_error_query :: proc(prg_name: cstring) ---
 
     @(link_name = "g_on_error_stack_trace")
-    g_on_error_stack_trace :: proc(prg_name: ^gchar) ---
+    g_on_error_stack_trace :: proc(prg_name: cstring) ---
 
     @(link_name = "g_base64_encode_step")
-    g_base64_encode_step :: proc(in_p: ^guchar, len: gsize, break_lines: gboolean, out: ^gchar, state: ^gint, save: ^gint) -> gsize ---
+    g_base64_encode_step :: proc(in_p: ^guchar, len: gsize, break_lines: gboolean, out: cstring, state: ^gint, save: ^gint) -> gsize ---
 
     @(link_name = "g_base64_encode_close")
-    g_base64_encode_close :: proc(break_lines: gboolean, out: ^gchar, state: ^gint, save: ^gint) -> gsize ---
+    g_base64_encode_close :: proc(break_lines: gboolean, out: cstring, state: ^gint, save: ^gint) -> gsize ---
 
     @(link_name = "g_base64_encode")
-    g_base64_encode :: proc(data: ^guchar, len: gsize) -> ^gchar ---
+    g_base64_encode :: proc(data: ^guchar, len: gsize) -> cstring ---
 
     @(link_name = "g_base64_decode_step")
-    g_base64_decode_step :: proc(in_p: ^gchar, len: gsize, out: ^guchar, state: ^gint, save: ^guint) -> gsize ---
+    g_base64_decode_step :: proc(in_p: cstring, len: gsize, out: ^guchar, state: ^gint, save: ^guint) -> gsize ---
 
     @(link_name = "g_base64_decode")
-    g_base64_decode :: proc(text: ^gchar, out_len: ^gsize) -> ^guchar ---
+    g_base64_decode :: proc(text: cstring, out_len: ^gsize) -> ^guchar ---
 
     @(link_name = "g_base64_decode_inplace")
-    g_base64_decode_inplace :: proc(text: ^gchar, out_len: ^gsize) -> ^guchar ---
+    g_base64_decode_inplace :: proc(text: cstring, out_len: ^gsize) -> ^guchar ---
 
     @(link_name = "g_bit_lock")
     g_bit_lock :: proc(address: [^]gint, lock_bit: gint) ---
@@ -1553,10 +1553,10 @@ foreign glib_runic {
     g_pointer_bit_unlock_and_set :: proc(address: rawptr, lock_bit: guint, ptr: gpointer, preserve_mask: guintptr) ---
 
     @(link_name = "g_time_zone_new")
-    g_time_zone_new :: proc(identifier: ^gchar) -> ^GTimeZone ---
+    g_time_zone_new :: proc(identifier: cstring) -> ^GTimeZone ---
 
     @(link_name = "g_time_zone_new_identifier")
-    g_time_zone_new_identifier :: proc(identifier: ^gchar) -> ^GTimeZone ---
+    g_time_zone_new_identifier :: proc(identifier: cstring) -> ^GTimeZone ---
 
     @(link_name = "g_time_zone_new_utc")
     g_time_zone_new_utc :: proc() -> ^GTimeZone ---
@@ -1580,7 +1580,7 @@ foreign glib_runic {
     g_time_zone_adjust_time :: proc(tz: ^GTimeZone, type: GTimeType, time_: ^gint64) -> gint ---
 
     @(link_name = "g_time_zone_get_abbreviation")
-    g_time_zone_get_abbreviation :: proc(tz: ^GTimeZone, interval: gint) -> ^gchar ---
+    g_time_zone_get_abbreviation :: proc(tz: ^GTimeZone, interval: gint) -> cstring ---
 
     @(link_name = "g_time_zone_get_offset")
     g_time_zone_get_offset :: proc(tz: ^GTimeZone, interval: gint) -> gint32 ---
@@ -1589,7 +1589,7 @@ foreign glib_runic {
     g_time_zone_is_dst :: proc(tz: ^GTimeZone, interval: gint) -> gboolean ---
 
     @(link_name = "g_time_zone_get_identifier")
-    g_time_zone_get_identifier :: proc(tz: ^GTimeZone) -> ^gchar ---
+    g_time_zone_get_identifier :: proc(tz: ^GTimeZone) -> cstring ---
 
     @(link_name = "g_date_time_unref")
     g_date_time_unref :: proc(datetime: ^GDateTime) ---
@@ -1625,7 +1625,7 @@ foreign glib_runic {
     g_date_time_new_from_timeval_utc :: proc(tv: ^GTimeVal) -> ^GDateTime ---
 
     @(link_name = "g_date_time_new_from_iso8601")
-    g_date_time_new_from_iso8601 :: proc(text: ^gchar, default_tz: ^GTimeZone) -> ^GDateTime ---
+    g_date_time_new_from_iso8601 :: proc(text: cstring, default_tz: ^GTimeZone) -> ^GDateTime ---
 
     @(link_name = "g_date_time_new")
     g_date_time_new :: proc(tz: ^GTimeZone, year: gint, month: gint, day: gint, hour: gint, minute: gint, seconds: gdouble) -> ^GDateTime ---
@@ -1730,7 +1730,7 @@ foreign glib_runic {
     g_date_time_get_timezone :: proc(datetime: ^GDateTime) -> ^GTimeZone ---
 
     @(link_name = "g_date_time_get_timezone_abbreviation")
-    g_date_time_get_timezone_abbreviation :: proc(datetime: ^GDateTime) -> ^gchar ---
+    g_date_time_get_timezone_abbreviation :: proc(datetime: ^GDateTime) -> cstring ---
 
     @(link_name = "g_date_time_is_daylight_savings")
     g_date_time_is_daylight_savings :: proc(datetime: ^GDateTime) -> gboolean ---
@@ -1745,10 +1745,10 @@ foreign glib_runic {
     g_date_time_to_utc :: proc(datetime: ^GDateTime) -> ^GDateTime ---
 
     @(link_name = "g_date_time_format")
-    g_date_time_format :: proc(datetime: ^GDateTime, format: ^gchar) -> ^gchar ---
+    g_date_time_format :: proc(datetime: ^GDateTime, format: cstring) -> cstring ---
 
     @(link_name = "g_date_time_format_iso8601")
-    g_date_time_format_iso8601 :: proc(datetime: ^GDateTime) -> ^gchar ---
+    g_date_time_format_iso8601 :: proc(datetime: ^GDateTime) -> cstring ---
 
     @(link_name = "g_bookmark_file_error_quark")
     g_bookmark_file_error_quark :: proc() -> GQuark ---
@@ -1763,139 +1763,139 @@ foreign glib_runic {
     g_bookmark_file_copy :: proc(bookmark: ^GBookmarkFile) -> ^GBookmarkFile ---
 
     @(link_name = "g_bookmark_file_load_from_file")
-    g_bookmark_file_load_from_file :: proc(bookmark: ^GBookmarkFile, filename: ^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_load_from_file :: proc(bookmark: ^GBookmarkFile, filename: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_load_from_data")
-    g_bookmark_file_load_from_data :: proc(bookmark: ^GBookmarkFile, data: ^gchar, length: gsize, error: ^^GError) -> gboolean ---
+    g_bookmark_file_load_from_data :: proc(bookmark: ^GBookmarkFile, data: ^byte, length: gsize, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_load_from_data_dirs")
-    g_bookmark_file_load_from_data_dirs :: proc(bookmark: ^GBookmarkFile, file: ^gchar, full_path: ^^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_load_from_data_dirs :: proc(bookmark: ^GBookmarkFile, file: cstring, full_path: ^cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_to_data")
-    g_bookmark_file_to_data :: proc(bookmark: ^GBookmarkFile, length: ^gsize, error: ^^GError) -> ^gchar ---
+    g_bookmark_file_to_data :: proc(bookmark: ^GBookmarkFile, length: ^gsize, error: ^^GError) -> cstring ---
 
     @(link_name = "g_bookmark_file_to_file")
-    g_bookmark_file_to_file :: proc(bookmark: ^GBookmarkFile, filename: ^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_to_file :: proc(bookmark: ^GBookmarkFile, filename: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_set_title")
-    g_bookmark_file_set_title :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, title: ^gchar) ---
+    g_bookmark_file_set_title :: proc(bookmark: ^GBookmarkFile, uri: cstring, title: cstring) ---
 
     @(link_name = "g_bookmark_file_get_title")
-    g_bookmark_file_get_title :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, error: ^^GError) -> ^gchar ---
+    g_bookmark_file_get_title :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_bookmark_file_set_description")
-    g_bookmark_file_set_description :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, description: ^gchar) ---
+    g_bookmark_file_set_description :: proc(bookmark: ^GBookmarkFile, uri: cstring, description: cstring) ---
 
     @(link_name = "g_bookmark_file_get_description")
-    g_bookmark_file_get_description :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, error: ^^GError) -> ^gchar ---
+    g_bookmark_file_get_description :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_bookmark_file_set_mime_type")
-    g_bookmark_file_set_mime_type :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, mime_type: ^gchar) ---
+    g_bookmark_file_set_mime_type :: proc(bookmark: ^GBookmarkFile, uri: cstring, mime_type: cstring) ---
 
     @(link_name = "g_bookmark_file_get_mime_type")
-    g_bookmark_file_get_mime_type :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, error: ^^GError) -> ^gchar ---
+    g_bookmark_file_get_mime_type :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_bookmark_file_set_groups")
-    g_bookmark_file_set_groups :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, groups: ^[^]gchar, length: gsize) ---
+    g_bookmark_file_set_groups :: proc(bookmark: ^GBookmarkFile, uri: cstring, groups: ^[^]gchar, length: gsize) ---
 
     @(link_name = "g_bookmark_file_add_group")
-    g_bookmark_file_add_group :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, group: ^gchar) ---
+    g_bookmark_file_add_group :: proc(bookmark: ^GBookmarkFile, uri: cstring, group: cstring) ---
 
     @(link_name = "g_bookmark_file_has_group")
-    g_bookmark_file_has_group :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, group: ^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_has_group :: proc(bookmark: ^GBookmarkFile, uri: cstring, group: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_get_groups")
-    g_bookmark_file_get_groups :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, length: ^gsize, error: ^^GError) -> ^^gchar ---
+    g_bookmark_file_get_groups :: proc(bookmark: ^GBookmarkFile, uri: cstring, length: ^gsize, error: ^^GError) -> ^cstring ---
 
     @(link_name = "g_bookmark_file_add_application")
-    g_bookmark_file_add_application :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, name: ^gchar, exec: ^gchar) ---
+    g_bookmark_file_add_application :: proc(bookmark: ^GBookmarkFile, uri: cstring, name: cstring, exec: cstring) ---
 
     @(link_name = "g_bookmark_file_has_application")
-    g_bookmark_file_has_application :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, name: ^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_has_application :: proc(bookmark: ^GBookmarkFile, uri: cstring, name: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_get_applications")
-    g_bookmark_file_get_applications :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, length: ^gsize, error: ^^GError) -> ^^gchar ---
+    g_bookmark_file_get_applications :: proc(bookmark: ^GBookmarkFile, uri: cstring, length: ^gsize, error: ^^GError) -> ^cstring ---
 
     @(link_name = "g_bookmark_file_set_app_info")
-    g_bookmark_file_set_app_info :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, name: ^gchar, exec: ^gchar, count: gint, stamp: libc.time_t, error: ^^GError) -> gboolean ---
+    g_bookmark_file_set_app_info :: proc(bookmark: ^GBookmarkFile, uri: cstring, name: cstring, exec: cstring, count: gint, stamp: libc.time_t, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_set_application_info")
     g_bookmark_file_set_application_info :: proc(bookmark: ^GBookmarkFile, uri: cstring, name: cstring, exec: cstring, count: i32, stamp: ^GDateTime, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_get_app_info")
-    g_bookmark_file_get_app_info :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, name: ^gchar, exec: ^^gchar, count: ^guint, stamp: ^libc.time_t, error: ^^GError) -> gboolean ---
+    g_bookmark_file_get_app_info :: proc(bookmark: ^GBookmarkFile, uri: cstring, name: cstring, exec: ^cstring, count: ^guint, stamp: ^libc.time_t, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_get_application_info")
     g_bookmark_file_get_application_info :: proc(bookmark: ^GBookmarkFile, uri: cstring, name: cstring, exec: ^cstring, count: ^u32, stamp: ^^GDateTime, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_set_is_private")
-    g_bookmark_file_set_is_private :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, is_private: gboolean) ---
+    g_bookmark_file_set_is_private :: proc(bookmark: ^GBookmarkFile, uri: cstring, is_private: gboolean) ---
 
     @(link_name = "g_bookmark_file_get_is_private")
-    g_bookmark_file_get_is_private :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_get_is_private :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_set_icon")
-    g_bookmark_file_set_icon :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, href: ^gchar, mime_type: ^gchar) ---
+    g_bookmark_file_set_icon :: proc(bookmark: ^GBookmarkFile, uri: cstring, href: cstring, mime_type: cstring) ---
 
     @(link_name = "g_bookmark_file_get_icon")
-    g_bookmark_file_get_icon :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, href: ^^gchar, mime_type: ^^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_get_icon :: proc(bookmark: ^GBookmarkFile, uri: cstring, href: ^cstring, mime_type: ^cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_set_added")
-    g_bookmark_file_set_added :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, added: libc.time_t) ---
+    g_bookmark_file_set_added :: proc(bookmark: ^GBookmarkFile, uri: cstring, added: libc.time_t) ---
 
     @(link_name = "g_bookmark_file_set_added_date_time")
     g_bookmark_file_set_added_date_time :: proc(bookmark: ^GBookmarkFile, uri: cstring, added: ^GDateTime) ---
 
     @(link_name = "g_bookmark_file_get_added")
-    g_bookmark_file_get_added :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, error: ^^GError) -> libc.time_t ---
+    g_bookmark_file_get_added :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> libc.time_t ---
 
     @(link_name = "g_bookmark_file_get_added_date_time")
     g_bookmark_file_get_added_date_time :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> ^GDateTime ---
 
     @(link_name = "g_bookmark_file_set_modified")
-    g_bookmark_file_set_modified :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, modified: libc.time_t) ---
+    g_bookmark_file_set_modified :: proc(bookmark: ^GBookmarkFile, uri: cstring, modified: libc.time_t) ---
 
     @(link_name = "g_bookmark_file_set_modified_date_time")
     g_bookmark_file_set_modified_date_time :: proc(bookmark: ^GBookmarkFile, uri: cstring, modified: ^GDateTime) ---
 
     @(link_name = "g_bookmark_file_get_modified")
-    g_bookmark_file_get_modified :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, error: ^^GError) -> libc.time_t ---
+    g_bookmark_file_get_modified :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> libc.time_t ---
 
     @(link_name = "g_bookmark_file_get_modified_date_time")
     g_bookmark_file_get_modified_date_time :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> ^GDateTime ---
 
     @(link_name = "g_bookmark_file_set_visited")
-    g_bookmark_file_set_visited :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, visited: libc.time_t) ---
+    g_bookmark_file_set_visited :: proc(bookmark: ^GBookmarkFile, uri: cstring, visited: libc.time_t) ---
 
     @(link_name = "g_bookmark_file_set_visited_date_time")
     g_bookmark_file_set_visited_date_time :: proc(bookmark: ^GBookmarkFile, uri: cstring, visited: ^GDateTime) ---
 
     @(link_name = "g_bookmark_file_get_visited")
-    g_bookmark_file_get_visited :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, error: ^^GError) -> libc.time_t ---
+    g_bookmark_file_get_visited :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> libc.time_t ---
 
     @(link_name = "g_bookmark_file_get_visited_date_time")
     g_bookmark_file_get_visited_date_time :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> ^GDateTime ---
 
     @(link_name = "g_bookmark_file_has_item")
-    g_bookmark_file_has_item :: proc(bookmark: ^GBookmarkFile, uri: ^gchar) -> gboolean ---
+    g_bookmark_file_has_item :: proc(bookmark: ^GBookmarkFile, uri: cstring) -> gboolean ---
 
     @(link_name = "g_bookmark_file_get_size")
     g_bookmark_file_get_size :: proc(bookmark: ^GBookmarkFile) -> gint ---
 
     @(link_name = "g_bookmark_file_get_uris")
-    g_bookmark_file_get_uris :: proc(bookmark: ^GBookmarkFile, length: ^gsize) -> ^^gchar ---
+    g_bookmark_file_get_uris :: proc(bookmark: ^GBookmarkFile, length: ^gsize) -> ^cstring ---
 
     @(link_name = "g_bookmark_file_remove_group")
-    g_bookmark_file_remove_group :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, group: ^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_remove_group :: proc(bookmark: ^GBookmarkFile, uri: cstring, group: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_remove_application")
-    g_bookmark_file_remove_application :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, name: ^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_remove_application :: proc(bookmark: ^GBookmarkFile, uri: cstring, name: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_remove_item")
-    g_bookmark_file_remove_item :: proc(bookmark: ^GBookmarkFile, uri: ^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_remove_item :: proc(bookmark: ^GBookmarkFile, uri: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bookmark_file_move_item")
-    g_bookmark_file_move_item :: proc(bookmark: ^GBookmarkFile, old_uri: ^gchar, new_uri: ^gchar, error: ^^GError) -> gboolean ---
+    g_bookmark_file_move_item :: proc(bookmark: ^GBookmarkFile, old_uri: cstring, new_uri: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_bytes_new")
     g_bytes_new :: proc(data: gconstpointer, size: gsize) -> ^GBytes ---
@@ -1946,19 +1946,19 @@ foreign glib_runic {
     g_get_charset :: proc(charset: ^cstring) -> gboolean ---
 
     @(link_name = "g_get_codeset")
-    g_get_codeset :: proc() -> ^gchar ---
+    g_get_codeset :: proc() -> cstring ---
 
     @(link_name = "g_get_console_charset")
     g_get_console_charset :: proc(charset: ^cstring) -> gboolean ---
 
     @(link_name = "g_get_language_names")
-    g_get_language_names :: proc() -> ^^gchar ---
+    g_get_language_names :: proc() -> ^cstring ---
 
     @(link_name = "g_get_language_names_with_category")
-    g_get_language_names_with_category :: proc(category_name: ^gchar) -> ^^gchar ---
+    g_get_language_names_with_category :: proc(category_name: cstring) -> ^cstring ---
 
     @(link_name = "g_get_locale_variants")
-    g_get_locale_variants :: proc(locale: ^gchar) -> ^^gchar ---
+    g_get_locale_variants :: proc(locale: cstring) -> ^cstring ---
 
     @(link_name = "g_checksum_type_get_length")
     g_checksum_type_get_length :: proc(checksum_type: GChecksumType) -> gssize ---
@@ -1979,70 +1979,70 @@ foreign glib_runic {
     g_checksum_update :: proc(checksum: ^GChecksum, data: ^guchar, length: gssize) ---
 
     @(link_name = "g_checksum_get_string")
-    g_checksum_get_string :: proc(checksum: ^GChecksum) -> ^gchar ---
+    g_checksum_get_string :: proc(checksum: ^GChecksum) -> cstring ---
 
     @(link_name = "g_checksum_get_digest")
     g_checksum_get_digest :: proc(checksum: ^GChecksum, buffer: ^guint8, digest_len: ^gsize) ---
 
     @(link_name = "g_compute_checksum_for_data")
-    g_compute_checksum_for_data :: proc(checksum_type: GChecksumType, data: ^guchar, length: gsize) -> ^gchar ---
+    g_compute_checksum_for_data :: proc(checksum_type: GChecksumType, data: ^guchar, length: gsize) -> cstring ---
 
     @(link_name = "g_compute_checksum_for_string")
-    g_compute_checksum_for_string :: proc(checksum_type: GChecksumType, str: ^gchar, length: gssize) -> ^gchar ---
+    g_compute_checksum_for_string :: proc(checksum_type: GChecksumType, str: cstring, length: gssize) -> cstring ---
 
     @(link_name = "g_compute_checksum_for_bytes")
-    g_compute_checksum_for_bytes :: proc(checksum_type: GChecksumType, data: ^GBytes) -> ^gchar ---
+    g_compute_checksum_for_bytes :: proc(checksum_type: GChecksumType, data: ^GBytes) -> cstring ---
 
     @(link_name = "g_convert_error_quark")
     g_convert_error_quark :: proc() -> GQuark ---
 
     @(link_name = "g_iconv_open")
-    g_iconv_open :: proc(to_codeset: ^gchar, from_codeset: ^gchar) -> GIConv ---
+    g_iconv_open :: proc(to_codeset: cstring, from_codeset: cstring) -> GIConv ---
 
     @(link_name = "g_iconv")
-    g_iconv :: proc(converter: GIConv, inbuf: ^^gchar, inbytes_left: ^gsize, outbuf: ^^gchar, outbytes_left: ^gsize) -> gsize ---
+    g_iconv :: proc(converter: GIConv, inbuf: ^^byte, inbytes_left: ^gsize, outbuf: ^^byte, outbytes_left: ^gsize) -> gsize ---
 
     @(link_name = "g_iconv_close")
     g_iconv_close :: proc(converter: GIConv) -> gint ---
 
     @(link_name = "g_convert")
-    g_convert :: proc(str: ^gchar, len: gssize, to_codeset: ^gchar, from_codeset: ^gchar, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> ^gchar ---
+    g_convert :: proc(str: cstring, len: gssize, to_codeset: cstring, from_codeset: cstring, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> cstring ---
 
     @(link_name = "g_convert_with_iconv")
-    g_convert_with_iconv :: proc(str: ^gchar, len: gssize, converter: GIConv, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> ^gchar ---
+    g_convert_with_iconv :: proc(str: cstring, len: gssize, converter: GIConv, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> cstring ---
 
     @(link_name = "g_convert_with_fallback")
-    g_convert_with_fallback :: proc(str: ^gchar, len: gssize, to_codeset: ^gchar, from_codeset: ^gchar, fallback: ^gchar, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> ^gchar ---
+    g_convert_with_fallback :: proc(str: cstring, len: gssize, to_codeset: cstring, from_codeset: cstring, fallback: cstring, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> cstring ---
 
     @(link_name = "g_locale_to_utf8")
-    g_locale_to_utf8 :: proc(opsysstring: ^gchar, len: gssize, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> ^gchar ---
+    g_locale_to_utf8 :: proc(opsysstring: cstring, len: gssize, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> cstring ---
 
     @(link_name = "g_locale_from_utf8")
-    g_locale_from_utf8 :: proc(utf8string: ^gchar, len: gssize, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> ^gchar ---
+    g_locale_from_utf8 :: proc(utf8string: cstring, len: gssize, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> cstring ---
 
     @(link_name = "g_filename_to_utf8")
-    g_filename_to_utf8 :: proc(opsysstring: ^gchar, len: gssize, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> ^gchar ---
+    g_filename_to_utf8 :: proc(opsysstring: cstring, len: gssize, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> cstring ---
 
     @(link_name = "g_filename_from_utf8")
-    g_filename_from_utf8 :: proc(utf8string: ^gchar, len: gssize, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> ^gchar ---
+    g_filename_from_utf8 :: proc(utf8string: cstring, len: gssize, bytes_read: ^gsize, bytes_written: ^gsize, error: ^^GError) -> cstring ---
 
     @(link_name = "g_filename_from_uri")
-    g_filename_from_uri :: proc(uri: ^gchar, hostname: ^^gchar, error: ^^GError) -> ^gchar ---
+    g_filename_from_uri :: proc(uri: cstring, hostname: ^cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_filename_to_uri")
-    g_filename_to_uri :: proc(filename: ^gchar, hostname: ^gchar, error: ^^GError) -> ^gchar ---
+    g_filename_to_uri :: proc(filename: cstring, hostname: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_filename_display_name")
-    g_filename_display_name :: proc(filename: ^gchar) -> ^gchar ---
+    g_filename_display_name :: proc(filename: cstring) -> cstring ---
 
     @(link_name = "g_get_filename_charsets")
     g_get_filename_charsets :: proc(filename_charsets: ^^[^]gchar) -> gboolean ---
 
     @(link_name = "g_filename_display_basename")
-    g_filename_display_basename :: proc(filename: ^gchar) -> ^gchar ---
+    g_filename_display_basename :: proc(filename: cstring) -> cstring ---
 
     @(link_name = "g_uri_list_extract_uris")
-    g_uri_list_extract_uris :: proc(uri_list: ^gchar) -> ^^gchar ---
+    g_uri_list_extract_uris :: proc(uri_list: cstring) -> ^cstring ---
 
     @(link_name = "g_datalist_init")
     g_datalist_init :: proc(datalist: ^^GData) ---
@@ -2087,7 +2087,7 @@ foreign glib_runic {
     g_dataset_id_get_data :: proc(dataset_location: gconstpointer, key_id: GQuark) -> gpointer ---
 
     @(link_name = "g_datalist_get_data")
-    g_datalist_get_data :: proc(datalist: ^^GData, key: ^gchar) -> gpointer ---
+    g_datalist_get_data :: proc(datalist: ^^GData, key: cstring) -> gpointer ---
 
     @(link_name = "g_dataset_id_set_data_full")
     g_dataset_id_set_data_full :: proc(dataset_location: gconstpointer, key_id: GQuark, data: gpointer, destroy_func: GDestroyNotify) ---
@@ -2165,7 +2165,7 @@ foreign glib_runic {
     g_date_clear :: proc(date: ^GDate, n_dates: guint) ---
 
     @(link_name = "g_date_set_parse")
-    g_date_set_parse :: proc(date: ^GDate, str: ^gchar) ---
+    g_date_set_parse :: proc(date: ^GDate, str: cstring) ---
 
     @(link_name = "g_date_set_time_t")
     g_date_set_time_t :: proc(date: ^GDate, timet: libc.time_t) ---
@@ -2243,13 +2243,13 @@ foreign glib_runic {
     g_date_order :: proc(date1: ^GDate, date2: ^GDate) ---
 
     @(link_name = "g_date_strftime")
-    g_date_strftime :: proc(s: ^gchar, slen: gsize, format: ^gchar, date: ^GDate) -> gsize ---
+    g_date_strftime :: proc(s: cstring, slen: gsize, format: cstring, date: ^GDate) -> gsize ---
 
     @(link_name = "g_dir_open")
-    g_dir_open :: proc(path: ^gchar, flags: guint, error: ^^GError) -> ^GDir ---
+    g_dir_open :: proc(path: cstring, flags: guint, error: ^^GError) -> ^GDir ---
 
     @(link_name = "g_dir_read_name")
-    g_dir_read_name :: proc(dir: ^GDir) -> ^gchar ---
+    g_dir_read_name :: proc(dir: ^GDir) -> cstring ---
 
     @(link_name = "g_dir_rewind")
     g_dir_rewind :: proc(dir: ^GDir) ---
@@ -2264,28 +2264,28 @@ foreign glib_runic {
     g_dir_unref :: proc(dir: ^GDir) ---
 
     @(link_name = "g_getenv")
-    g_getenv :: proc(variable: ^gchar) -> ^gchar ---
+    g_getenv :: proc(variable: cstring) -> cstring ---
 
     @(link_name = "g_setenv")
-    g_setenv :: proc(variable: ^gchar, value: ^gchar, overwrite: gboolean) -> gboolean ---
+    g_setenv :: proc(variable: cstring, value: cstring, overwrite: gboolean) -> gboolean ---
 
     @(link_name = "g_unsetenv")
-    g_unsetenv :: proc(variable: ^gchar) ---
+    g_unsetenv :: proc(variable: cstring) ---
 
     @(link_name = "g_listenv")
-    g_listenv :: proc() -> ^^gchar ---
+    g_listenv :: proc() -> ^cstring ---
 
     @(link_name = "g_get_environ")
-    g_get_environ :: proc() -> ^^gchar ---
+    g_get_environ :: proc() -> ^cstring ---
 
     @(link_name = "g_environ_getenv")
-    g_environ_getenv :: proc(envp: ^^gchar, variable: ^gchar) -> ^gchar ---
+    g_environ_getenv :: proc(envp: ^cstring, variable: cstring) -> cstring ---
 
     @(link_name = "g_environ_setenv")
-    g_environ_setenv :: proc(envp: ^^gchar, variable: ^gchar, value: ^gchar, overwrite: gboolean) -> ^^gchar ---
+    g_environ_setenv :: proc(envp: ^cstring, variable: cstring, value: cstring, overwrite: gboolean) -> ^cstring ---
 
     @(link_name = "g_environ_unsetenv")
-    g_environ_unsetenv :: proc(envp: ^^gchar, variable: ^gchar) -> ^^gchar ---
+    g_environ_unsetenv :: proc(envp: ^cstring, variable: cstring) -> ^cstring ---
 
     @(link_name = "g_file_error_quark")
     g_file_error_quark :: proc() -> GQuark ---
@@ -2294,94 +2294,94 @@ foreign glib_runic {
     g_file_error_from_errno :: proc(err_no: gint) -> GFileError ---
 
     @(link_name = "g_file_test")
-    g_file_test :: proc(filename: ^gchar, test: GFileTest) -> gboolean ---
+    g_file_test :: proc(filename: cstring, test: GFileTest) -> gboolean ---
 
     @(link_name = "g_file_get_contents")
-    g_file_get_contents :: proc(filename: ^gchar, contents: ^[^]gchar, length: ^gsize, error: ^^GError) -> gboolean ---
+    g_file_get_contents :: proc(filename: cstring, contents: ^[^]gchar, length: ^gsize, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_file_set_contents")
-    g_file_set_contents :: proc(filename: ^gchar, contents: [^]gchar, length: gssize, error: ^^GError) -> gboolean ---
+    g_file_set_contents :: proc(filename: cstring, contents: [^]gchar, length: gssize, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_file_set_contents_full")
-    g_file_set_contents_full :: proc(filename: ^gchar, contents: [^]gchar, length: gssize, flags: GFileSetContentsFlags, mode: i32, error: ^^GError) -> gboolean ---
+    g_file_set_contents_full :: proc(filename: cstring, contents: [^]gchar, length: gssize, flags: GFileSetContentsFlags, mode: i32, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_file_read_link")
-    g_file_read_link :: proc(filename: ^gchar, error: ^^GError) -> ^gchar ---
+    g_file_read_link :: proc(filename: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_mkdtemp")
-    g_mkdtemp :: proc(tmpl: ^gchar) -> ^gchar ---
+    g_mkdtemp :: proc(tmpl: cstring) -> cstring ---
 
     @(link_name = "g_mkdtemp_full")
-    g_mkdtemp_full :: proc(tmpl: ^gchar, mode: gint) -> ^gchar ---
+    g_mkdtemp_full :: proc(tmpl: cstring, mode: gint) -> cstring ---
 
     @(link_name = "g_mkstemp")
-    g_mkstemp :: proc(tmpl: ^gchar) -> gint ---
+    g_mkstemp :: proc(tmpl: cstring) -> gint ---
 
     @(link_name = "g_mkstemp_full")
-    g_mkstemp_full :: proc(tmpl: ^gchar, flags: gint, mode: gint) -> gint ---
+    g_mkstemp_full :: proc(tmpl: cstring, flags: gint, mode: gint) -> gint ---
 
     @(link_name = "g_file_open_tmp")
-    g_file_open_tmp :: proc(tmpl: ^gchar, name_used: ^^gchar, error: ^^GError) -> gint ---
+    g_file_open_tmp :: proc(tmpl: cstring, name_used: ^cstring, error: ^^GError) -> gint ---
 
     @(link_name = "g_dir_make_tmp")
-    g_dir_make_tmp :: proc(tmpl: ^gchar, error: ^^GError) -> ^gchar ---
+    g_dir_make_tmp :: proc(tmpl: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_build_path")
-    g_build_path :: proc(separator: ^gchar, first_element: ^gchar, #c_vararg var_args: ..any) -> ^gchar ---
+    g_build_path :: proc(separator: cstring, first_element: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_build_pathv")
-    g_build_pathv :: proc(separator: ^gchar, args: ^[^]gchar) -> ^gchar ---
+    g_build_pathv :: proc(separator: cstring, args: ^[^]gchar) -> cstring ---
 
     @(link_name = "g_build_filename")
-    g_build_filename :: proc(first_element: ^gchar, #c_vararg var_args: ..any) -> ^gchar ---
+    g_build_filename :: proc(first_element: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_build_filenamev")
-    g_build_filenamev :: proc(args: ^[^]gchar) -> ^gchar ---
+    g_build_filenamev :: proc(args: ^[^]gchar) -> cstring ---
 
     @(link_name = "g_build_filename_valist")
-    g_build_filename_valist :: proc(first_element: ^gchar, #c_vararg var_args: ..any) -> ^gchar ---
+    g_build_filename_valist :: proc(first_element: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_mkdir_with_parents")
-    g_mkdir_with_parents :: proc(pathname: ^gchar, mode: gint) -> gint ---
+    g_mkdir_with_parents :: proc(pathname: cstring, mode: gint) -> gint ---
 
     @(link_name = "g_path_is_absolute")
-    g_path_is_absolute :: proc(file_name: ^gchar) -> gboolean ---
+    g_path_is_absolute :: proc(file_name: cstring) -> gboolean ---
 
     @(link_name = "g_path_skip_root")
-    g_path_skip_root :: proc(file_name: ^gchar) -> ^gchar ---
+    g_path_skip_root :: proc(file_name: cstring) -> cstring ---
 
     @(link_name = "g_basename")
-    g_basename :: proc(file_name: ^gchar) -> ^gchar ---
+    g_basename :: proc(file_name: cstring) -> cstring ---
 
     @(link_name = "g_get_current_dir")
-    g_get_current_dir :: proc() -> ^gchar ---
+    g_get_current_dir :: proc() -> cstring ---
 
     @(link_name = "g_path_get_basename")
-    g_path_get_basename :: proc(file_name: ^gchar) -> ^gchar ---
+    g_path_get_basename :: proc(file_name: cstring) -> cstring ---
 
     @(link_name = "g_path_get_dirname")
-    g_path_get_dirname :: proc(file_name: ^gchar) -> ^gchar ---
+    g_path_get_dirname :: proc(file_name: cstring) -> cstring ---
 
     @(link_name = "g_canonicalize_filename")
-    g_canonicalize_filename :: proc(filename: ^gchar, relative_to: ^gchar) -> ^gchar ---
+    g_canonicalize_filename :: proc(filename: cstring, relative_to: cstring) -> cstring ---
 
     @(link_name = "g_strip_context")
-    g_strip_context :: proc(msgid: ^gchar, msgval: ^gchar) -> ^gchar ---
+    g_strip_context :: proc(msgid: cstring, msgval: cstring) -> cstring ---
 
     @(link_name = "g_dgettext")
-    g_dgettext :: proc(domain: ^gchar, msgid: ^gchar) -> ^gchar ---
+    g_dgettext :: proc(domain: cstring, msgid: cstring) -> cstring ---
 
     @(link_name = "g_dcgettext")
-    g_dcgettext :: proc(domain: ^gchar, msgid: ^gchar, category: gint) -> ^gchar ---
+    g_dcgettext :: proc(domain: cstring, msgid: cstring, category: gint) -> cstring ---
 
     @(link_name = "g_dngettext")
-    g_dngettext :: proc(domain: ^gchar, msgid: ^gchar, msgid_plural: ^gchar, n: gulong) -> ^gchar ---
+    g_dngettext :: proc(domain: cstring, msgid: cstring, msgid_plural: cstring, n: gulong) -> cstring ---
 
     @(link_name = "g_dpgettext")
-    g_dpgettext :: proc(domain: ^gchar, msgctxtid: ^gchar, msgidoffset: gsize) -> ^gchar ---
+    g_dpgettext :: proc(domain: cstring, msgctxtid: cstring, msgidoffset: gsize) -> cstring ---
 
     @(link_name = "g_dpgettext2")
-    g_dpgettext2 :: proc(domain: ^gchar, context_p: ^gchar, msgid: ^gchar) -> ^gchar ---
+    g_dpgettext2 :: proc(domain: cstring, context_p: cstring, msgid: cstring) -> cstring ---
 
     @(link_name = "g_free")
     g_free :: proc(mem: gpointer) ---
@@ -2783,19 +2783,19 @@ foreign glib_runic {
     g_hmac_update :: proc(hmac: ^GHmac, data: ^guchar, length: gssize) ---
 
     @(link_name = "g_hmac_get_string")
-    g_hmac_get_string :: proc(hmac: ^GHmac) -> ^gchar ---
+    g_hmac_get_string :: proc(hmac: ^GHmac) -> cstring ---
 
     @(link_name = "g_hmac_get_digest")
     g_hmac_get_digest :: proc(hmac: ^GHmac, buffer: ^guint8, digest_len: ^gsize) ---
 
     @(link_name = "g_compute_hmac_for_data")
-    g_compute_hmac_for_data :: proc(digest_type: GChecksumType, key: ^guchar, key_len: gsize, data: ^guchar, length: gsize) -> ^gchar ---
+    g_compute_hmac_for_data :: proc(digest_type: GChecksumType, key: ^guchar, key_len: gsize, data: ^guchar, length: gsize) -> cstring ---
 
     @(link_name = "g_compute_hmac_for_string")
-    g_compute_hmac_for_string :: proc(digest_type: GChecksumType, key: ^guchar, key_len: gsize, str: ^gchar, length: gssize) -> ^gchar ---
+    g_compute_hmac_for_string :: proc(digest_type: GChecksumType, key: ^guchar, key_len: gsize, str: cstring, length: gssize) -> cstring ---
 
     @(link_name = "g_compute_hmac_for_bytes")
-    g_compute_hmac_for_bytes :: proc(digest_type: GChecksumType, key: ^GBytes, data: ^GBytes) -> ^gchar ---
+    g_compute_hmac_for_bytes :: proc(digest_type: GChecksumType, key: ^GBytes, data: ^GBytes) -> cstring ---
 
     @(link_name = "g_hook_list_init")
     g_hook_list_init :: proc(hook_list: rawptr, hook_size: guint) ---
@@ -2867,19 +2867,19 @@ foreign glib_runic {
     g_hook_list_marshal_check :: proc(hook_list: rawptr, may_recurse: gboolean, marshaller: GHookCheckMarshaller, marshal_data: gpointer) ---
 
     @(link_name = "g_hostname_is_non_ascii")
-    g_hostname_is_non_ascii :: proc(hostname: ^gchar) -> gboolean ---
+    g_hostname_is_non_ascii :: proc(hostname: cstring) -> gboolean ---
 
     @(link_name = "g_hostname_is_ascii_encoded")
-    g_hostname_is_ascii_encoded :: proc(hostname: ^gchar) -> gboolean ---
+    g_hostname_is_ascii_encoded :: proc(hostname: cstring) -> gboolean ---
 
     @(link_name = "g_hostname_is_ip_address")
-    g_hostname_is_ip_address :: proc(hostname: ^gchar) -> gboolean ---
+    g_hostname_is_ip_address :: proc(hostname: cstring) -> gboolean ---
 
     @(link_name = "g_hostname_to_ascii")
-    g_hostname_to_ascii :: proc(hostname: ^gchar) -> ^gchar ---
+    g_hostname_to_ascii :: proc(hostname: cstring) -> cstring ---
 
     @(link_name = "g_hostname_to_unicode")
-    g_hostname_to_unicode :: proc(hostname: ^gchar) -> ^gchar ---
+    g_hostname_to_unicode :: proc(hostname: cstring) -> cstring ---
 
     @(link_name = "g_poll")
     g_poll :: proc(fds: [^]GPollFD, nfds: guint, timeout: gint) -> gint ---
@@ -3374,103 +3374,103 @@ foreign glib_runic {
     g_unicode_canonical_decomposition :: proc(ch: gunichar, result_len: ^gsize) -> ^gunichar ---
 
     @(link_name = "g_utf8_skip")
-    g_utf8_skip: ^gchar
+    g_utf8_skip: cstring
 
     @(link_name = "g_utf8_get_char")
-    g_utf8_get_char :: proc(p: ^gchar) -> gunichar ---
+    g_utf8_get_char :: proc(p: cstring) -> gunichar ---
 
     @(link_name = "g_utf8_get_char_validated")
-    g_utf8_get_char_validated :: proc(p: ^gchar, max_len: gssize) -> gunichar ---
+    g_utf8_get_char_validated :: proc(p: cstring, max_len: gssize) -> gunichar ---
 
     @(link_name = "g_utf8_offset_to_pointer")
-    g_utf8_offset_to_pointer :: proc(str: ^gchar, offset: glong) -> ^gchar ---
+    g_utf8_offset_to_pointer :: proc(str: cstring, offset: glong) -> cstring ---
 
     @(link_name = "g_utf8_pointer_to_offset")
-    g_utf8_pointer_to_offset :: proc(str: ^gchar, pos: [^]gchar) -> glong ---
+    g_utf8_pointer_to_offset :: proc(str: cstring, pos: [^]gchar) -> glong ---
 
     @(link_name = "g_utf8_prev_char")
-    g_utf8_prev_char :: proc(p: ^gchar) -> ^gchar ---
+    g_utf8_prev_char :: proc(p: cstring) -> cstring ---
 
     @(link_name = "g_utf8_find_next_char")
-    g_utf8_find_next_char :: proc(p: ^gchar, end: ^gchar) -> ^gchar ---
+    g_utf8_find_next_char :: proc(p: cstring, end: cstring) -> cstring ---
 
     @(link_name = "g_utf8_find_prev_char")
-    g_utf8_find_prev_char :: proc(str: ^gchar, p: ^gchar) -> ^gchar ---
+    g_utf8_find_prev_char :: proc(str: cstring, p: cstring) -> cstring ---
 
     @(link_name = "g_utf8_strlen")
-    g_utf8_strlen :: proc(p: ^gchar, max: gssize) -> glong ---
+    g_utf8_strlen :: proc(p: cstring, max: gssize) -> glong ---
 
     @(link_name = "g_utf8_substring")
-    g_utf8_substring :: proc(str: ^gchar, start_pos: glong, end_pos: glong) -> ^gchar ---
+    g_utf8_substring :: proc(str: cstring, start_pos: glong, end_pos: glong) -> cstring ---
 
     @(link_name = "g_utf8_strncpy")
-    g_utf8_strncpy :: proc(dest: ^gchar, src: ^gchar, n: gsize) -> ^gchar ---
+    g_utf8_strncpy :: proc(dest: cstring, src: cstring, n: gsize) -> cstring ---
 
     @(link_name = "g_utf8_truncate_middle")
-    g_utf8_truncate_middle :: proc(string_p: ^gchar, truncate_length: gsize) -> ^gchar ---
+    g_utf8_truncate_middle :: proc(string_p: cstring, truncate_length: gsize) -> cstring ---
 
     @(link_name = "g_utf8_strchr")
-    g_utf8_strchr :: proc(p: ^gchar, len: gssize, c: gunichar) -> ^gchar ---
+    g_utf8_strchr :: proc(p: cstring, len: gssize, c: gunichar) -> cstring ---
 
     @(link_name = "g_utf8_strrchr")
-    g_utf8_strrchr :: proc(p: ^gchar, len: gssize, c: gunichar) -> ^gchar ---
+    g_utf8_strrchr :: proc(p: cstring, len: gssize, c: gunichar) -> cstring ---
 
     @(link_name = "g_utf8_strreverse")
-    g_utf8_strreverse :: proc(str: ^gchar, len: gssize) -> ^gchar ---
+    g_utf8_strreverse :: proc(str: cstring, len: gssize) -> cstring ---
 
     @(link_name = "g_utf8_to_utf16")
-    g_utf8_to_utf16 :: proc(str: ^gchar, len: glong, items_read: ^glong, items_written: ^glong, error: ^^GError) -> ^gunichar2 ---
+    g_utf8_to_utf16 :: proc(str: cstring, len: glong, items_read: ^glong, items_written: ^glong, error: ^^GError) -> ^gunichar2 ---
 
     @(link_name = "g_utf8_to_ucs4")
-    g_utf8_to_ucs4 :: proc(str: ^gchar, len: glong, items_read: ^glong, items_written: ^glong, error: ^^GError) -> ^gunichar ---
+    g_utf8_to_ucs4 :: proc(str: cstring, len: glong, items_read: ^glong, items_written: ^glong, error: ^^GError) -> ^gunichar ---
 
     @(link_name = "g_utf8_to_ucs4_fast")
-    g_utf8_to_ucs4_fast :: proc(str: ^gchar, len: glong, items_written: ^glong) -> ^gunichar ---
+    g_utf8_to_ucs4_fast :: proc(str: cstring, len: glong, items_written: ^glong) -> ^gunichar ---
 
     @(link_name = "g_utf16_to_ucs4")
     g_utf16_to_ucs4 :: proc(str: ^gunichar2, len: glong, items_read: ^glong, items_written: ^glong, error: ^^GError) -> ^gunichar ---
 
     @(link_name = "g_utf16_to_utf8")
-    g_utf16_to_utf8 :: proc(str: ^gunichar2, len: glong, items_read: ^glong, items_written: ^glong, error: ^^GError) -> ^gchar ---
+    g_utf16_to_utf8 :: proc(str: ^gunichar2, len: glong, items_read: ^glong, items_written: ^glong, error: ^^GError) -> cstring ---
 
     @(link_name = "g_ucs4_to_utf16")
     g_ucs4_to_utf16 :: proc(str: ^gunichar, len: glong, items_read: ^glong, items_written: ^glong, error: ^^GError) -> ^gunichar2 ---
 
     @(link_name = "g_ucs4_to_utf8")
-    g_ucs4_to_utf8 :: proc(str: ^gunichar, len: glong, items_read: ^glong, items_written: ^glong, error: ^^GError) -> ^gchar ---
+    g_ucs4_to_utf8 :: proc(str: ^gunichar, len: glong, items_read: ^glong, items_written: ^glong, error: ^^GError) -> cstring ---
 
     @(link_name = "g_unichar_to_utf8")
-    g_unichar_to_utf8 :: proc(c: gunichar, outbuf: ^gchar) -> gint ---
+    g_unichar_to_utf8 :: proc(c: gunichar, outbuf: ^byte) -> gint ---
 
     @(link_name = "g_utf8_validate")
-    g_utf8_validate :: proc(str: ^gchar, max_len: gssize, end: ^^gchar) -> gboolean ---
+    g_utf8_validate :: proc(str: cstring, max_len: gssize, end: ^cstring) -> gboolean ---
 
     @(link_name = "g_utf8_validate_len")
-    g_utf8_validate_len :: proc(str: ^gchar, max_len: gsize, end: ^^gchar) -> gboolean ---
+    g_utf8_validate_len :: proc(str: cstring, max_len: gsize, end: ^cstring) -> gboolean ---
 
     @(link_name = "g_utf8_strup")
-    g_utf8_strup :: proc(str: ^gchar, len: gssize) -> ^gchar ---
+    g_utf8_strup :: proc(str: cstring, len: gssize) -> cstring ---
 
     @(link_name = "g_utf8_strdown")
-    g_utf8_strdown :: proc(str: ^gchar, len: gssize) -> ^gchar ---
+    g_utf8_strdown :: proc(str: cstring, len: gssize) -> cstring ---
 
     @(link_name = "g_utf8_casefold")
-    g_utf8_casefold :: proc(str: ^gchar, len: gssize) -> ^gchar ---
+    g_utf8_casefold :: proc(str: cstring, len: gssize) -> cstring ---
 
     @(link_name = "g_utf8_normalize")
-    g_utf8_normalize :: proc(str: ^gchar, len: gssize, mode: GNormalizeMode) -> ^gchar ---
+    g_utf8_normalize :: proc(str: cstring, len: gssize, mode: GNormalizeMode) -> cstring ---
 
     @(link_name = "g_utf8_collate")
-    g_utf8_collate :: proc(str1: ^gchar, str2: ^gchar) -> gint ---
+    g_utf8_collate :: proc(str1: cstring, str2: cstring) -> gint ---
 
     @(link_name = "g_utf8_collate_key")
-    g_utf8_collate_key :: proc(str: ^gchar, len: gssize) -> ^gchar ---
+    g_utf8_collate_key :: proc(str: cstring, len: gssize) -> cstring ---
 
     @(link_name = "g_utf8_collate_key_for_filename")
-    g_utf8_collate_key_for_filename :: proc(str: ^gchar, len: gssize) -> ^gchar ---
+    g_utf8_collate_key_for_filename :: proc(str: cstring, len: gssize) -> cstring ---
 
     @(link_name = "g_utf8_make_valid")
-    g_utf8_make_valid :: proc(str: ^gchar, len: gssize) -> ^gchar ---
+    g_utf8_make_valid :: proc(str: cstring, len: gssize) -> cstring ---
 
     @(link_name = "g_ascii_table")
     g_ascii_table: ^guint16
@@ -3488,118 +3488,118 @@ foreign glib_runic {
     g_ascii_xdigit_value :: proc(c: gchar) -> gint ---
 
     @(link_name = "g_strdelimit")
-    g_strdelimit :: proc(string_p: ^gchar, delimiters: [^]gchar, new_delimiter: gchar) -> ^gchar ---
+    g_strdelimit :: proc(string_p: cstring, delimiters: [^]gchar, new_delimiter: gchar) -> cstring ---
 
     @(link_name = "g_strcanon")
-    g_strcanon :: proc(string_p: ^gchar, valid_chars: [^]gchar, substitutor: gchar) -> ^gchar ---
+    g_strcanon :: proc(string_p: cstring, valid_chars: [^]gchar, substitutor: gchar) -> cstring ---
 
     @(link_name = "g_strerror")
-    g_strerror :: proc(errnum: gint) -> ^gchar ---
+    g_strerror :: proc(errnum: gint) -> cstring ---
 
     @(link_name = "g_strsignal")
-    g_strsignal :: proc(signum: gint) -> ^gchar ---
+    g_strsignal :: proc(signum: gint) -> cstring ---
 
     @(link_name = "g_strreverse")
-    g_strreverse :: proc(string_p: ^gchar) -> ^gchar ---
+    g_strreverse :: proc(string_p: cstring) -> cstring ---
 
     @(link_name = "g_strlcpy")
-    g_strlcpy :: proc(dest: ^gchar, src: ^gchar, dest_size: gsize) -> gsize ---
+    g_strlcpy :: proc(dest: cstring, src: cstring, dest_size: gsize) -> gsize ---
 
     @(link_name = "g_strlcat")
-    g_strlcat :: proc(dest: ^gchar, src: ^gchar, dest_size: gsize) -> gsize ---
+    g_strlcat :: proc(dest: cstring, src: cstring, dest_size: gsize) -> gsize ---
 
     @(link_name = "g_strstr_len")
-    g_strstr_len :: proc(haystack: ^gchar, haystack_len: gssize, needle: ^gchar) -> ^gchar ---
+    g_strstr_len :: proc(haystack: cstring, haystack_len: gssize, needle: cstring) -> cstring ---
 
     @(link_name = "g_strrstr")
-    g_strrstr :: proc(haystack: ^gchar, needle: ^gchar) -> ^gchar ---
+    g_strrstr :: proc(haystack: cstring, needle: cstring) -> cstring ---
 
     @(link_name = "g_strrstr_len")
-    g_strrstr_len :: proc(haystack: ^gchar, haystack_len: gssize, needle: ^gchar) -> ^gchar ---
+    g_strrstr_len :: proc(haystack: cstring, haystack_len: gssize, needle: cstring) -> cstring ---
 
     @(link_name = "g_str_has_suffix")
-    g_str_has_suffix :: proc(str: ^gchar, suffix: ^gchar) -> gboolean ---
+    g_str_has_suffix :: proc(str: cstring, suffix: cstring) -> gboolean ---
 
     @(link_name = "g_str_has_prefix")
-    g_str_has_prefix :: proc(str: ^gchar, prefix: ^gchar) -> gboolean ---
+    g_str_has_prefix :: proc(str: cstring, prefix: cstring) -> gboolean ---
 
     @(link_name = "g_strtod")
-    g_strtod :: proc(nptr: ^gchar, endptr: ^^gchar) -> gdouble ---
+    g_strtod :: proc(nptr: cstring, endptr: ^cstring) -> gdouble ---
 
     @(link_name = "g_ascii_strtod")
-    g_ascii_strtod :: proc(nptr: ^gchar, endptr: ^^gchar) -> gdouble ---
+    g_ascii_strtod :: proc(nptr: cstring, endptr: ^cstring) -> gdouble ---
 
     @(link_name = "g_ascii_strtoull")
-    g_ascii_strtoull :: proc(nptr: ^gchar, endptr: ^^gchar, base: guint) -> guint64 ---
+    g_ascii_strtoull :: proc(nptr: cstring, endptr: ^cstring, base: guint) -> guint64 ---
 
     @(link_name = "g_ascii_strtoll")
-    g_ascii_strtoll :: proc(nptr: ^gchar, endptr: ^^gchar, base: guint) -> gint64 ---
+    g_ascii_strtoll :: proc(nptr: cstring, endptr: ^cstring, base: guint) -> gint64 ---
 
     @(link_name = "g_ascii_dtostr")
-    g_ascii_dtostr :: proc(buffer: ^gchar, buf_len: gint, d: gdouble) -> ^gchar ---
+    g_ascii_dtostr :: proc(buffer: ^byte, buf_len: gint, d: gdouble) -> cstring ---
 
     @(link_name = "g_ascii_formatd")
-    g_ascii_formatd :: proc(buffer: ^gchar, buf_len: gint, format: ^gchar, d: gdouble) -> ^gchar ---
+    g_ascii_formatd :: proc(buffer: ^byte, buf_len: gint, format: cstring, d: gdouble) -> cstring ---
 
     @(link_name = "g_strchug")
-    g_strchug :: proc(string_p: ^gchar) -> ^gchar ---
+    g_strchug :: proc(string_p: cstring) -> cstring ---
 
     @(link_name = "g_strchomp")
-    g_strchomp :: proc(string_p: ^gchar) -> ^gchar ---
+    g_strchomp :: proc(string_p: cstring) -> cstring ---
 
     @(link_name = "g_ascii_strcasecmp")
-    g_ascii_strcasecmp :: proc(s1: ^gchar, s2: ^gchar) -> gint ---
+    g_ascii_strcasecmp :: proc(s1: cstring, s2: cstring) -> gint ---
 
     @(link_name = "g_ascii_strncasecmp")
-    g_ascii_strncasecmp :: proc(s1: ^gchar, s2: ^gchar, n: gsize) -> gint ---
+    g_ascii_strncasecmp :: proc(s1: cstring, s2: cstring, n: gsize) -> gint ---
 
     @(link_name = "g_ascii_strdown")
-    g_ascii_strdown :: proc(str: ^gchar, len: gssize) -> ^gchar ---
+    g_ascii_strdown :: proc(str: cstring, len: gssize) -> cstring ---
 
     @(link_name = "g_ascii_strup")
-    g_ascii_strup :: proc(str: ^gchar, len: gssize) -> ^gchar ---
+    g_ascii_strup :: proc(str: cstring, len: gssize) -> cstring ---
 
     @(link_name = "g_str_is_ascii")
-    g_str_is_ascii :: proc(str: ^gchar) -> gboolean ---
+    g_str_is_ascii :: proc(str: cstring) -> gboolean ---
 
     @(link_name = "g_strcasecmp")
-    g_strcasecmp :: proc(s1: ^gchar, s2: ^gchar) -> gint ---
+    g_strcasecmp :: proc(s1: cstring, s2: cstring) -> gint ---
 
     @(link_name = "g_strncasecmp")
-    g_strncasecmp :: proc(s1: ^gchar, s2: ^gchar, n: guint) -> gint ---
+    g_strncasecmp :: proc(s1: cstring, s2: cstring, n: guint) -> gint ---
 
     @(link_name = "g_strdown")
-    g_strdown :: proc(string_p: ^gchar) -> ^gchar ---
+    g_strdown :: proc(string_p: cstring) -> cstring ---
 
     @(link_name = "g_strup")
-    g_strup :: proc(string_p: ^gchar) -> ^gchar ---
+    g_strup :: proc(string_p: cstring) -> cstring ---
 
     @(link_name = "g_strdup")
-    g_strdup :: proc(str: ^gchar) -> ^gchar ---
+    g_strdup :: proc(str: cstring) -> cstring ---
 
     @(link_name = "g_strdup_printf")
-    g_strdup_printf :: proc(format: ^gchar, #c_vararg var_args: ..any) -> ^gchar ---
+    g_strdup_printf :: proc(format: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_strdup_vprintf")
-    g_strdup_vprintf :: proc(format: ^gchar, #c_vararg var_args: ..any) -> ^gchar ---
+    g_strdup_vprintf :: proc(format: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_strndup")
-    g_strndup :: proc(str: ^gchar, n: gsize) -> ^gchar ---
+    g_strndup :: proc(str: cstring, n: gsize) -> cstring ---
 
     @(link_name = "g_strnfill")
-    g_strnfill :: proc(length: gsize, fill_char: gchar) -> ^gchar ---
+    g_strnfill :: proc(length: gsize, fill_char: gchar) -> cstring ---
 
     @(link_name = "g_strconcat")
-    g_strconcat :: proc(string1: ^gchar, #c_vararg var_args: ..any) -> ^gchar ---
+    g_strconcat :: proc(string1: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_strjoin")
-    g_strjoin :: proc(separator: ^gchar, #c_vararg var_args: ..any) -> ^gchar ---
+    g_strjoin :: proc(separator: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_strcompress")
-    g_strcompress :: proc(source: ^gchar) -> ^gchar ---
+    g_strcompress :: proc(source: cstring) -> cstring ---
 
     @(link_name = "g_strescape")
-    g_strescape :: proc(source: ^gchar, exceptions: [^]gchar) -> ^gchar ---
+    g_strescape :: proc(source: cstring, exceptions: [^]gchar) -> cstring ---
 
     @(link_name = "g_memdup")
     g_memdup :: proc(mem: gconstpointer, byte_size: guint) -> gpointer ---
@@ -3608,67 +3608,67 @@ foreign glib_runic {
     g_memdup2 :: proc(mem: gconstpointer, byte_size: gsize) -> gpointer ---
 
     @(link_name = "g_strsplit")
-    g_strsplit :: proc(string_p: ^gchar, delimiter: ^gchar, max_tokens: gint) -> ^^gchar ---
+    g_strsplit :: proc(string_p: cstring, delimiter: cstring, max_tokens: gint) -> ^cstring ---
 
     @(link_name = "g_strsplit_set")
-    g_strsplit_set :: proc(string_p: ^gchar, delimiters: [^]gchar, max_tokens: gint) -> ^^gchar ---
+    g_strsplit_set :: proc(string_p: cstring, delimiters: [^]gchar, max_tokens: gint) -> ^cstring ---
 
     @(link_name = "g_strjoinv")
-    g_strjoinv :: proc(separator: ^gchar, str_array: ^^gchar) -> ^gchar ---
+    g_strjoinv :: proc(separator: cstring, str_array: ^cstring) -> cstring ---
 
     @(link_name = "g_strfreev")
-    g_strfreev :: proc(str_array: ^^gchar) ---
+    g_strfreev :: proc(str_array: ^cstring) ---
 
     @(link_name = "g_strdupv")
-    g_strdupv :: proc(str_array: ^^gchar) -> ^^gchar ---
+    g_strdupv :: proc(str_array: ^cstring) -> ^cstring ---
 
     @(link_name = "g_strv_length")
-    g_strv_length :: proc(str_array: ^^gchar) -> guint ---
+    g_strv_length :: proc(str_array: ^cstring) -> guint ---
 
     @(link_name = "g_stpcpy")
-    g_stpcpy :: proc(dest: ^gchar, src: cstring) -> ^gchar ---
+    g_stpcpy :: proc(dest: cstring, src: cstring) -> cstring ---
 
     @(link_name = "g_str_to_ascii")
-    g_str_to_ascii :: proc(str: ^gchar, from_locale: ^gchar) -> ^gchar ---
+    g_str_to_ascii :: proc(str: cstring, from_locale: cstring) -> cstring ---
 
     @(link_name = "g_str_tokenize_and_fold")
-    g_str_tokenize_and_fold :: proc(string_p: ^gchar, translit_locale: ^gchar, ascii_alternates: ^^[^]gchar) -> ^^gchar ---
+    g_str_tokenize_and_fold :: proc(string_p: cstring, translit_locale: cstring, ascii_alternates: ^^[^]gchar) -> ^cstring ---
 
     @(link_name = "g_str_match_string")
-    g_str_match_string :: proc(search_term: ^gchar, potential_hit: ^gchar, accept_alternates: gboolean) -> gboolean ---
+    g_str_match_string :: proc(search_term: cstring, potential_hit: cstring, accept_alternates: gboolean) -> gboolean ---
 
     @(link_name = "g_strv_contains")
-    g_strv_contains :: proc(strv: ^^gchar, str: ^gchar) -> gboolean ---
+    g_strv_contains :: proc(strv: ^cstring, str: cstring) -> gboolean ---
 
     @(link_name = "g_strv_equal")
-    g_strv_equal :: proc(strv1: ^^gchar, strv2: ^^gchar) -> gboolean ---
+    g_strv_equal :: proc(strv1: ^cstring, strv2: ^cstring) -> gboolean ---
 
     @(link_name = "g_number_parser_error_quark")
     g_number_parser_error_quark :: proc() -> GQuark ---
 
     @(link_name = "g_ascii_string_to_signed")
-    g_ascii_string_to_signed :: proc(str: ^gchar, base: guint, min: gint64, max: gint64, out_num: ^gint64, error: ^^GError) -> gboolean ---
+    g_ascii_string_to_signed :: proc(str: cstring, base: guint, min: gint64, max: gint64, out_num: ^gint64, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_ascii_string_to_unsigned")
-    g_ascii_string_to_unsigned :: proc(str: ^gchar, base: guint, min: guint64, max: guint64, out_num: ^guint64, error: ^^GError) -> gboolean ---
+    g_ascii_string_to_unsigned :: proc(str: cstring, base: guint, min: guint64, max: guint64, out_num: ^guint64, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_string_new")
-    g_string_new :: proc(init: ^gchar) -> ^GString ---
+    g_string_new :: proc(init: cstring) -> ^GString ---
 
     @(link_name = "g_string_new_take")
-    g_string_new_take :: proc(init: ^gchar) -> ^GString ---
+    g_string_new_take :: proc(init: cstring) -> ^GString ---
 
     @(link_name = "g_string_new_len")
-    g_string_new_len :: proc(init: ^gchar, len: gssize) -> ^GString ---
+    g_string_new_len :: proc(init: cstring, len: gssize) -> ^GString ---
 
     @(link_name = "g_string_sized_new")
     g_string_sized_new :: proc(dfl_size: gsize) -> ^GString ---
 
     @(link_name = "g_string_free")
-    g_string_free :: proc(string_p: ^GString, free_segment: gboolean) -> ^gchar ---
+    g_string_free :: proc(string_p: ^GString, free_segment: gboolean) -> cstring ---
 
     @(link_name = "g_string_free_and_steal")
-    g_string_free_and_steal :: proc(string_p: ^GString) -> ^gchar ---
+    g_string_free_and_steal :: proc(string_p: ^GString) -> cstring ---
 
     @(link_name = "g_string_free_to_bytes")
     g_string_free_to_bytes :: proc(string_p: ^GString) -> ^GBytes ---
@@ -3680,7 +3680,7 @@ foreign glib_runic {
     g_string_hash :: proc(str: ^GString) -> guint ---
 
     @(link_name = "g_string_assign")
-    g_string_assign :: proc(string_p: ^GString, rval: ^gchar) -> ^GString ---
+    g_string_assign :: proc(string_p: ^GString, rval: cstring) -> ^GString ---
 
     @(link_name = "g_string_truncate")
     g_string_truncate :: proc(string_p: ^GString, len: gsize) -> ^GString ---
@@ -3689,13 +3689,13 @@ foreign glib_runic {
     g_string_set_size :: proc(string_p: ^GString, len: gsize) -> ^GString ---
 
     @(link_name = "g_string_insert_len")
-    g_string_insert_len :: proc(string_p: ^GString, pos: gssize, val: ^gchar, len: gssize) -> ^GString ---
+    g_string_insert_len :: proc(string_p: ^GString, pos: gssize, val: cstring, len: gssize) -> ^GString ---
 
     @(link_name = "g_string_append")
-    g_string_append :: proc(string_p: ^GString, val: ^gchar) -> ^GString ---
+    g_string_append :: proc(string_p: ^GString, val: cstring) -> ^GString ---
 
     @(link_name = "g_string_append_len")
-    g_string_append_len :: proc(string_p: ^GString, val: ^gchar, len: gssize) -> ^GString ---
+    g_string_append_len :: proc(string_p: ^GString, val: cstring, len: gssize) -> ^GString ---
 
     @(link_name = "g_string_append_c")
     g_string_append_c :: proc(string_p: ^GString, c: gchar) -> ^GString ---
@@ -3704,7 +3704,7 @@ foreign glib_runic {
     g_string_append_unichar :: proc(string_p: ^GString, wc: gunichar) -> ^GString ---
 
     @(link_name = "g_string_prepend")
-    g_string_prepend :: proc(string_p: ^GString, val: ^gchar) -> ^GString ---
+    g_string_prepend :: proc(string_p: ^GString, val: cstring) -> ^GString ---
 
     @(link_name = "g_string_prepend_c")
     g_string_prepend_c :: proc(string_p: ^GString, c: gchar) -> ^GString ---
@@ -3713,10 +3713,10 @@ foreign glib_runic {
     g_string_prepend_unichar :: proc(string_p: ^GString, wc: gunichar) -> ^GString ---
 
     @(link_name = "g_string_prepend_len")
-    g_string_prepend_len :: proc(string_p: ^GString, val: ^gchar, len: gssize) -> ^GString ---
+    g_string_prepend_len :: proc(string_p: ^GString, val: cstring, len: gssize) -> ^GString ---
 
     @(link_name = "g_string_insert")
-    g_string_insert :: proc(string_p: ^GString, pos: gssize, val: ^gchar) -> ^GString ---
+    g_string_insert :: proc(string_p: ^GString, pos: gssize, val: cstring) -> ^GString ---
 
     @(link_name = "g_string_insert_c")
     g_string_insert_c :: proc(string_p: ^GString, pos: gssize, c: gchar) -> ^GString ---
@@ -3725,16 +3725,16 @@ foreign glib_runic {
     g_string_insert_unichar :: proc(string_p: ^GString, pos: gssize, wc: gunichar) -> ^GString ---
 
     @(link_name = "g_string_overwrite")
-    g_string_overwrite :: proc(string_p: ^GString, pos: gsize, val: ^gchar) -> ^GString ---
+    g_string_overwrite :: proc(string_p: ^GString, pos: gsize, val: cstring) -> ^GString ---
 
     @(link_name = "g_string_overwrite_len")
-    g_string_overwrite_len :: proc(string_p: ^GString, pos: gsize, val: ^gchar, len: gssize) -> ^GString ---
+    g_string_overwrite_len :: proc(string_p: ^GString, pos: gsize, val: cstring, len: gssize) -> ^GString ---
 
     @(link_name = "g_string_erase")
     g_string_erase :: proc(string_p: ^GString, pos: gssize, len: gssize) -> ^GString ---
 
     @(link_name = "g_string_replace")
-    g_string_replace :: proc(string_p: ^GString, find: ^gchar, replace: ^gchar, limit: guint) -> guint ---
+    g_string_replace :: proc(string_p: ^GString, find: cstring, replace: cstring, limit: guint) -> guint ---
 
     @(link_name = "g_string_ascii_down")
     g_string_ascii_down :: proc(string_p: ^GString) -> ^GString ---
@@ -3743,19 +3743,19 @@ foreign glib_runic {
     g_string_ascii_up :: proc(string_p: ^GString) -> ^GString ---
 
     @(link_name = "g_string_vprintf")
-    g_string_vprintf :: proc(string_p: ^GString, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_string_vprintf :: proc(string_p: ^GString, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_string_printf")
-    g_string_printf :: proc(string_p: ^GString, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_string_printf :: proc(string_p: ^GString, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_string_append_vprintf")
-    g_string_append_vprintf :: proc(string_p: ^GString, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_string_append_vprintf :: proc(string_p: ^GString, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_string_append_printf")
-    g_string_append_printf :: proc(string_p: ^GString, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_string_append_printf :: proc(string_p: ^GString, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_string_append_uri_escaped")
-    g_string_append_uri_escaped :: proc(string_p: ^GString, unescaped: ^gchar, reserved_chars_allowed: ^gchar, allow_utf8: gboolean) -> ^GString ---
+    g_string_append_uri_escaped :: proc(string_p: ^GString, unescaped: cstring, reserved_chars_allowed: cstring, allow_utf8: gboolean) -> ^GString ---
 
     @(link_name = "g_string_down")
     g_string_down :: proc(string_p: ^GString) -> ^GString ---
@@ -3773,10 +3773,10 @@ foreign glib_runic {
     g_io_channel_unref :: proc(channel: rawptr) ---
 
     @(link_name = "g_io_channel_read")
-    g_io_channel_read :: proc(channel: rawptr, buf: ^gchar, count: gsize, bytes_read: ^gsize) -> GIOError ---
+    g_io_channel_read :: proc(channel: rawptr, buf: ^byte, count: gsize, bytes_read: ^gsize) -> GIOError ---
 
     @(link_name = "g_io_channel_write")
-    g_io_channel_write :: proc(channel: rawptr, buf: ^gchar, count: gsize, bytes_written: ^gsize) -> GIOError ---
+    g_io_channel_write :: proc(channel: rawptr, buf: ^byte, count: gsize, bytes_written: ^gsize) -> GIOError ---
 
     @(link_name = "g_io_channel_seek")
     g_io_channel_seek :: proc(channel: rawptr, offset: gint64, type: GSeekType) -> GIOError ---
@@ -3812,10 +3812,10 @@ foreign glib_runic {
     g_io_channel_get_flags :: proc(channel: rawptr) -> GIOFlags ---
 
     @(link_name = "g_io_channel_set_line_term")
-    g_io_channel_set_line_term :: proc(channel: rawptr, line_term: ^gchar, length: gint) ---
+    g_io_channel_set_line_term :: proc(channel: rawptr, line_term: cstring, length: gint) ---
 
     @(link_name = "g_io_channel_get_line_term")
-    g_io_channel_get_line_term :: proc(channel: rawptr, length: ^gint) -> ^gchar ---
+    g_io_channel_get_line_term :: proc(channel: rawptr, length: ^gint) -> cstring ---
 
     @(link_name = "g_io_channel_set_buffered")
     g_io_channel_set_buffered :: proc(channel: rawptr, buffered: gboolean) ---
@@ -3824,10 +3824,10 @@ foreign glib_runic {
     g_io_channel_get_buffered :: proc(channel: rawptr) -> gboolean ---
 
     @(link_name = "g_io_channel_set_encoding")
-    g_io_channel_set_encoding :: proc(channel: rawptr, encoding: ^gchar, error: ^^GError) -> GIOStatus ---
+    g_io_channel_set_encoding :: proc(channel: rawptr, encoding: cstring, error: ^^GError) -> GIOStatus ---
 
     @(link_name = "g_io_channel_get_encoding")
-    g_io_channel_get_encoding :: proc(channel: rawptr) -> ^gchar ---
+    g_io_channel_get_encoding :: proc(channel: rawptr) -> cstring ---
 
     @(link_name = "g_io_channel_set_close_on_unref")
     g_io_channel_set_close_on_unref :: proc(channel: rawptr, do_close: gboolean) ---
@@ -3839,22 +3839,22 @@ foreign glib_runic {
     g_io_channel_flush :: proc(channel: rawptr, error: ^^GError) -> GIOStatus ---
 
     @(link_name = "g_io_channel_read_line")
-    g_io_channel_read_line :: proc(channel: rawptr, str_return: ^^gchar, length: ^gsize, terminator_pos: [^]gsize, error: ^^GError) -> GIOStatus ---
+    g_io_channel_read_line :: proc(channel: rawptr, str_return: ^cstring, length: ^gsize, terminator_pos: [^]gsize, error: ^^GError) -> GIOStatus ---
 
     @(link_name = "g_io_channel_read_line_string")
     g_io_channel_read_line_string :: proc(channel: rawptr, buffer: ^GString, terminator_pos: [^]gsize, error: ^^GError) -> GIOStatus ---
 
     @(link_name = "g_io_channel_read_to_end")
-    g_io_channel_read_to_end :: proc(channel: rawptr, str_return: ^^gchar, length: ^gsize, error: ^^GError) -> GIOStatus ---
+    g_io_channel_read_to_end :: proc(channel: rawptr, str_return: ^cstring, length: ^gsize, error: ^^GError) -> GIOStatus ---
 
     @(link_name = "g_io_channel_read_chars")
-    g_io_channel_read_chars :: proc(channel: rawptr, buf: ^gchar, count: gsize, bytes_read: ^gsize, error: ^^GError) -> GIOStatus ---
+    g_io_channel_read_chars :: proc(channel: rawptr, buf: ^byte, count: gsize, bytes_read: ^gsize, error: ^^GError) -> GIOStatus ---
 
     @(link_name = "g_io_channel_read_unichar")
     g_io_channel_read_unichar :: proc(channel: rawptr, thechar: ^gunichar, error: ^^GError) -> GIOStatus ---
 
     @(link_name = "g_io_channel_write_chars")
-    g_io_channel_write_chars :: proc(channel: rawptr, buf: ^gchar, count: gssize, bytes_written: ^gsize, error: ^^GError) -> GIOStatus ---
+    g_io_channel_write_chars :: proc(channel: rawptr, buf: ^byte, count: gssize, bytes_written: ^gsize, error: ^^GError) -> GIOStatus ---
 
     @(link_name = "g_io_channel_write_unichar")
     g_io_channel_write_unichar :: proc(channel: rawptr, thechar: gunichar, error: ^^GError) -> GIOStatus ---
@@ -3863,7 +3863,7 @@ foreign glib_runic {
     g_io_channel_seek_position :: proc(channel: rawptr, offset: gint64, type: GSeekType, error: ^^GError) -> GIOStatus ---
 
     @(link_name = "g_io_channel_new_file")
-    g_io_channel_new_file :: proc(filename: ^gchar, mode: ^gchar, error: ^^GError) -> rawptr ---
+    g_io_channel_new_file :: proc(filename: cstring, mode: cstring, error: ^^GError) -> rawptr ---
 
     @(link_name = "g_io_channel_error_quark")
     g_io_channel_error_quark :: proc() -> GQuark ---
@@ -3899,139 +3899,139 @@ foreign glib_runic {
     g_key_file_set_list_separator :: proc(key_file: ^GKeyFile, separator: gchar) ---
 
     @(link_name = "g_key_file_load_from_file")
-    g_key_file_load_from_file :: proc(key_file: ^GKeyFile, file: ^gchar, flags: GKeyFileFlags, error: ^^GError) -> gboolean ---
+    g_key_file_load_from_file :: proc(key_file: ^GKeyFile, file: cstring, flags: GKeyFileFlags, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_load_from_data")
-    g_key_file_load_from_data :: proc(key_file: ^GKeyFile, data: ^gchar, length: gsize, flags: GKeyFileFlags, error: ^^GError) -> gboolean ---
+    g_key_file_load_from_data :: proc(key_file: ^GKeyFile, data: ^byte, length: gsize, flags: GKeyFileFlags, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_load_from_bytes")
     g_key_file_load_from_bytes :: proc(key_file: ^GKeyFile, bytes: [^]GBytes, flags: GKeyFileFlags, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_load_from_dirs")
-    g_key_file_load_from_dirs :: proc(key_file: ^GKeyFile, file: ^gchar, search_dirs: ^[^]gchar, full_path: ^^gchar, flags: GKeyFileFlags, error: ^^GError) -> gboolean ---
+    g_key_file_load_from_dirs :: proc(key_file: ^GKeyFile, file: cstring, search_dirs: ^[^]gchar, full_path: ^cstring, flags: GKeyFileFlags, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_load_from_data_dirs")
-    g_key_file_load_from_data_dirs :: proc(key_file: ^GKeyFile, file: ^gchar, full_path: ^^gchar, flags: GKeyFileFlags, error: ^^GError) -> gboolean ---
+    g_key_file_load_from_data_dirs :: proc(key_file: ^GKeyFile, file: cstring, full_path: ^cstring, flags: GKeyFileFlags, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_to_data")
-    g_key_file_to_data :: proc(key_file: ^GKeyFile, length: ^gsize, error: ^^GError) -> ^gchar ---
+    g_key_file_to_data :: proc(key_file: ^GKeyFile, length: ^gsize, error: ^^GError) -> cstring ---
 
     @(link_name = "g_key_file_save_to_file")
-    g_key_file_save_to_file :: proc(key_file: ^GKeyFile, filename: ^gchar, error: ^^GError) -> gboolean ---
+    g_key_file_save_to_file :: proc(key_file: ^GKeyFile, filename: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_get_start_group")
-    g_key_file_get_start_group :: proc(key_file: ^GKeyFile) -> ^gchar ---
+    g_key_file_get_start_group :: proc(key_file: ^GKeyFile) -> cstring ---
 
     @(link_name = "g_key_file_get_groups")
-    g_key_file_get_groups :: proc(key_file: ^GKeyFile, length: ^gsize) -> ^^gchar ---
+    g_key_file_get_groups :: proc(key_file: ^GKeyFile, length: ^gsize) -> ^cstring ---
 
     @(link_name = "g_key_file_get_keys")
-    g_key_file_get_keys :: proc(key_file: ^GKeyFile, group_name: ^gchar, length: ^gsize, error: ^^GError) -> ^^gchar ---
+    g_key_file_get_keys :: proc(key_file: ^GKeyFile, group_name: cstring, length: ^gsize, error: ^^GError) -> ^cstring ---
 
     @(link_name = "g_key_file_has_group")
-    g_key_file_has_group :: proc(key_file: ^GKeyFile, group_name: ^gchar) -> gboolean ---
+    g_key_file_has_group :: proc(key_file: ^GKeyFile, group_name: cstring) -> gboolean ---
 
     @(link_name = "g_key_file_has_key")
-    g_key_file_has_key :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> gboolean ---
+    g_key_file_has_key :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_get_value")
-    g_key_file_get_value :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> ^gchar ---
+    g_key_file_get_value :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_key_file_set_value")
-    g_key_file_set_value :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, value: ^gchar) ---
+    g_key_file_set_value :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, value: cstring) ---
 
     @(link_name = "g_key_file_get_string")
-    g_key_file_get_string :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> ^gchar ---
+    g_key_file_get_string :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_key_file_set_string")
-    g_key_file_set_string :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, string_p: ^gchar) ---
+    g_key_file_set_string :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, string_p: cstring) ---
 
     @(link_name = "g_key_file_get_locale_string")
-    g_key_file_get_locale_string :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, locale: ^gchar, error: ^^GError) -> ^gchar ---
+    g_key_file_get_locale_string :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, locale: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_key_file_get_locale_for_key")
-    g_key_file_get_locale_for_key :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, locale: ^gchar) -> ^gchar ---
+    g_key_file_get_locale_for_key :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, locale: cstring) -> cstring ---
 
     @(link_name = "g_key_file_set_locale_string")
-    g_key_file_set_locale_string :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, locale: ^gchar, string_p: ^gchar) ---
+    g_key_file_set_locale_string :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, locale: cstring, string_p: cstring) ---
 
     @(link_name = "g_key_file_get_boolean")
-    g_key_file_get_boolean :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> gboolean ---
+    g_key_file_get_boolean :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_set_boolean")
-    g_key_file_set_boolean :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, value: gboolean) ---
+    g_key_file_set_boolean :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, value: gboolean) ---
 
     @(link_name = "g_key_file_get_integer")
-    g_key_file_get_integer :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> gint ---
+    g_key_file_get_integer :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> gint ---
 
     @(link_name = "g_key_file_set_integer")
-    g_key_file_set_integer :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, value: gint) ---
+    g_key_file_set_integer :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, value: gint) ---
 
     @(link_name = "g_key_file_get_int64")
-    g_key_file_get_int64 :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> gint64 ---
+    g_key_file_get_int64 :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> gint64 ---
 
     @(link_name = "g_key_file_set_int64")
-    g_key_file_set_int64 :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, value: gint64) ---
+    g_key_file_set_int64 :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, value: gint64) ---
 
     @(link_name = "g_key_file_get_uint64")
-    g_key_file_get_uint64 :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> guint64 ---
+    g_key_file_get_uint64 :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> guint64 ---
 
     @(link_name = "g_key_file_set_uint64")
-    g_key_file_set_uint64 :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, value: guint64) ---
+    g_key_file_set_uint64 :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, value: guint64) ---
 
     @(link_name = "g_key_file_get_double")
-    g_key_file_get_double :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> gdouble ---
+    g_key_file_get_double :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> gdouble ---
 
     @(link_name = "g_key_file_set_double")
-    g_key_file_set_double :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, value: gdouble) ---
+    g_key_file_set_double :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, value: gdouble) ---
 
     @(link_name = "g_key_file_get_string_list")
-    g_key_file_get_string_list :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, length: ^gsize, error: ^^GError) -> ^^gchar ---
+    g_key_file_get_string_list :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, length: ^gsize, error: ^^GError) -> ^cstring ---
 
     @(link_name = "g_key_file_set_string_list")
-    g_key_file_set_string_list :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, list: ^[^]^gchar, length: gsize) ---
+    g_key_file_set_string_list :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, list: ^[^]cstring, length: gsize) ---
 
     @(link_name = "g_key_file_get_locale_string_list")
-    g_key_file_get_locale_string_list :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, locale: ^gchar, length: ^gsize, error: ^^GError) -> ^^gchar ---
+    g_key_file_get_locale_string_list :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, locale: cstring, length: ^gsize, error: ^^GError) -> ^cstring ---
 
     @(link_name = "g_key_file_set_locale_string_list")
-    g_key_file_set_locale_string_list :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, locale: ^gchar, list: ^[^]^gchar, length: gsize) ---
+    g_key_file_set_locale_string_list :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, locale: cstring, list: ^[^]cstring, length: gsize) ---
 
     @(link_name = "g_key_file_get_boolean_list")
-    g_key_file_get_boolean_list :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, length: ^gsize, error: ^^GError) -> ^gboolean ---
+    g_key_file_get_boolean_list :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, length: ^gsize, error: ^^GError) -> ^gboolean ---
 
     @(link_name = "g_key_file_set_boolean_list")
-    g_key_file_set_boolean_list :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, list: [^]gboolean, length: gsize) ---
+    g_key_file_set_boolean_list :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, list: [^]gboolean, length: gsize) ---
 
     @(link_name = "g_key_file_get_integer_list")
-    g_key_file_get_integer_list :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, length: ^gsize, error: ^^GError) -> ^gint ---
+    g_key_file_get_integer_list :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, length: ^gsize, error: ^^GError) -> ^gint ---
 
     @(link_name = "g_key_file_set_double_list")
-    g_key_file_set_double_list :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, list: [^]gdouble, length: gsize) ---
+    g_key_file_set_double_list :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, list: [^]gdouble, length: gsize) ---
 
     @(link_name = "g_key_file_get_double_list")
-    g_key_file_get_double_list :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, length: ^gsize, error: ^^GError) -> ^gdouble ---
+    g_key_file_get_double_list :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, length: ^gsize, error: ^^GError) -> ^gdouble ---
 
     @(link_name = "g_key_file_set_integer_list")
-    g_key_file_set_integer_list :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, list: [^]gint, length: gsize) ---
+    g_key_file_set_integer_list :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, list: [^]gint, length: gsize) ---
 
     @(link_name = "g_key_file_set_comment")
-    g_key_file_set_comment :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, comment: ^gchar, error: ^^GError) -> gboolean ---
+    g_key_file_set_comment :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, comment: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_get_comment")
-    g_key_file_get_comment :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> ^gchar ---
+    g_key_file_get_comment :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_key_file_remove_comment")
-    g_key_file_remove_comment :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> gboolean ---
+    g_key_file_remove_comment :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_remove_key")
-    g_key_file_remove_key :: proc(key_file: ^GKeyFile, group_name: ^gchar, key: ^gchar, error: ^^GError) -> gboolean ---
+    g_key_file_remove_key :: proc(key_file: ^GKeyFile, group_name: cstring, key: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_key_file_remove_group")
-    g_key_file_remove_group :: proc(key_file: ^GKeyFile, group_name: ^gchar, error: ^^GError) -> gboolean ---
+    g_key_file_remove_group :: proc(key_file: ^GKeyFile, group_name: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_mapped_file_new")
-    g_mapped_file_new :: proc(filename: ^gchar, writable: gboolean, error: ^^GError) -> ^GMappedFile ---
+    g_mapped_file_new :: proc(filename: cstring, writable: gboolean, error: ^^GError) -> ^GMappedFile ---
 
     @(link_name = "g_mapped_file_new_from_fd")
     g_mapped_file_new_from_fd :: proc(fd: gint, writable: gboolean, error: ^^GError) -> ^GMappedFile ---
@@ -4040,7 +4040,7 @@ foreign glib_runic {
     g_mapped_file_get_length :: proc(file: ^GMappedFile) -> gsize ---
 
     @(link_name = "g_mapped_file_get_contents")
-    g_mapped_file_get_contents :: proc(file: ^GMappedFile) -> ^gchar ---
+    g_mapped_file_get_contents :: proc(file: ^GMappedFile) -> cstring ---
 
     @(link_name = "g_mapped_file_get_bytes")
     g_mapped_file_get_bytes :: proc(file: ^GMappedFile) -> ^GBytes ---
@@ -4070,7 +4070,7 @@ foreign glib_runic {
     g_markup_parse_context_free :: proc(context_p: ^GMarkupParseContext) ---
 
     @(link_name = "g_markup_parse_context_parse")
-    g_markup_parse_context_parse :: proc(context_p: ^GMarkupParseContext, text: ^gchar, text_len: gssize, error: ^^GError) -> gboolean ---
+    g_markup_parse_context_parse :: proc(context_p: ^GMarkupParseContext, text: cstring, text_len: gssize, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_markup_parse_context_push")
     g_markup_parse_context_push :: proc(context_p: ^GMarkupParseContext, parser: ^GMarkupParser, user_data: gpointer) ---
@@ -4082,7 +4082,7 @@ foreign glib_runic {
     g_markup_parse_context_end_parse :: proc(context_p: ^GMarkupParseContext, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_markup_parse_context_get_element")
-    g_markup_parse_context_get_element :: proc(context_p: ^GMarkupParseContext) -> ^gchar ---
+    g_markup_parse_context_get_element :: proc(context_p: ^GMarkupParseContext) -> cstring ---
 
     @(link_name = "g_markup_parse_context_get_element_stack")
     g_markup_parse_context_get_element_stack :: proc(context_p: ^GMarkupParseContext) -> ^GSList ---
@@ -4094,22 +4094,22 @@ foreign glib_runic {
     g_markup_parse_context_get_user_data :: proc(context_p: ^GMarkupParseContext) -> gpointer ---
 
     @(link_name = "g_markup_escape_text")
-    g_markup_escape_text :: proc(text: ^gchar, length: gssize) -> ^gchar ---
+    g_markup_escape_text :: proc(text: cstring, length: gssize) -> cstring ---
 
     @(link_name = "g_markup_printf_escaped")
-    g_markup_printf_escaped :: proc(format: cstring, #c_vararg var_args: ..any) -> ^gchar ---
+    g_markup_printf_escaped :: proc(format: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_markup_vprintf_escaped")
-    g_markup_vprintf_escaped :: proc(format: cstring, #c_vararg var_args: ..any) -> ^gchar ---
+    g_markup_vprintf_escaped :: proc(format: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_markup_collect_attributes")
-    g_markup_collect_attributes :: proc(element_name: ^gchar, attribute_names: ^[^]gchar, attribute_values: ^[^]gchar, error: ^^GError, first_type: GMarkupCollectType, first_attr: ^gchar, #c_vararg var_args: ..any) -> gboolean ---
+    g_markup_collect_attributes :: proc(element_name: cstring, attribute_names: ^[^]gchar, attribute_values: ^[^]gchar, error: ^^GError, first_type: GMarkupCollectType, first_attr: cstring, #c_vararg var_args: ..any) -> gboolean ---
 
     @(link_name = "g_variant_type_string_is_valid")
-    g_variant_type_string_is_valid :: proc(type_string: ^gchar) -> gboolean ---
+    g_variant_type_string_is_valid :: proc(type_string: cstring) -> gboolean ---
 
     @(link_name = "g_variant_type_string_scan")
-    g_variant_type_string_scan :: proc(string_p: ^gchar, limit: ^gchar, endptr: ^^gchar) -> gboolean ---
+    g_variant_type_string_scan :: proc(string_p: cstring, limit: cstring, endptr: ^cstring) -> gboolean ---
 
     @(link_name = "g_variant_type_free")
     g_variant_type_free :: proc(type: ^GVariantType) ---
@@ -4118,16 +4118,16 @@ foreign glib_runic {
     g_variant_type_copy :: proc(type: ^GVariantType) -> ^GVariantType ---
 
     @(link_name = "g_variant_type_new")
-    g_variant_type_new :: proc(type_string: ^gchar) -> ^GVariantType ---
+    g_variant_type_new :: proc(type_string: cstring) -> ^GVariantType ---
 
     @(link_name = "g_variant_type_get_string_length")
     g_variant_type_get_string_length :: proc(type: ^GVariantType) -> gsize ---
 
     @(link_name = "g_variant_type_peek_string")
-    g_variant_type_peek_string :: proc(type: ^GVariantType) -> ^gchar ---
+    g_variant_type_peek_string :: proc(type: ^GVariantType) -> cstring ---
 
     @(link_name = "g_variant_type_dup_string")
-    g_variant_type_dup_string :: proc(type: ^GVariantType) -> ^gchar ---
+    g_variant_type_dup_string :: proc(type: ^GVariantType) -> cstring ---
 
     @(link_name = "g_variant_type_is_definite")
     g_variant_type_is_definite :: proc(type: ^GVariantType) -> gboolean ---
@@ -4193,10 +4193,10 @@ foreign glib_runic {
     g_variant_type_new_dict_entry :: proc(key: ^GVariantType, value: ^GVariantType) -> ^GVariantType ---
 
     @(link_name = "g_variant_type_checked_")
-    g_variant_type_checked_ :: proc(type_string: ^gchar) -> ^GVariantType ---
+    g_variant_type_checked_ :: proc(type_string: cstring) -> ^GVariantType ---
 
     @(link_name = "g_variant_type_string_get_depth_")
-    g_variant_type_string_get_depth_ :: proc(type_string: ^gchar) -> gsize ---
+    g_variant_type_string_get_depth_ :: proc(type_string: cstring) -> gsize ---
 
     @(link_name = "g_variant_unref")
     g_variant_unref :: proc(value: ^GVariant) ---
@@ -4217,7 +4217,7 @@ foreign glib_runic {
     g_variant_get_type :: proc(value: ^GVariant) -> ^GVariantType ---
 
     @(link_name = "g_variant_get_type_string")
-    g_variant_get_type_string :: proc(value: ^GVariant) -> ^gchar ---
+    g_variant_get_type_string :: proc(value: ^GVariant) -> cstring ---
 
     @(link_name = "g_variant_is_of_type")
     g_variant_is_of_type :: proc(value: ^GVariant, type: ^GVariantType) -> gboolean ---
@@ -4259,40 +4259,40 @@ foreign glib_runic {
     g_variant_new_double :: proc(value: gdouble) -> ^GVariant ---
 
     @(link_name = "g_variant_new_string")
-    g_variant_new_string :: proc(string_p: ^gchar) -> ^GVariant ---
+    g_variant_new_string :: proc(string_p: cstring) -> ^GVariant ---
 
     @(link_name = "g_variant_new_take_string")
-    g_variant_new_take_string :: proc(string_p: ^gchar) -> ^GVariant ---
+    g_variant_new_take_string :: proc(string_p: cstring) -> ^GVariant ---
 
     @(link_name = "g_variant_new_printf")
-    g_variant_new_printf :: proc(format_string: ^gchar, #c_vararg var_args: ..any) -> ^GVariant ---
+    g_variant_new_printf :: proc(format_string: cstring, #c_vararg var_args: ..any) -> ^GVariant ---
 
     @(link_name = "g_variant_new_object_path")
-    g_variant_new_object_path :: proc(object_path: ^gchar) -> ^GVariant ---
+    g_variant_new_object_path :: proc(object_path: cstring) -> ^GVariant ---
 
     @(link_name = "g_variant_is_object_path")
-    g_variant_is_object_path :: proc(string_p: ^gchar) -> gboolean ---
+    g_variant_is_object_path :: proc(string_p: cstring) -> gboolean ---
 
     @(link_name = "g_variant_new_signature")
-    g_variant_new_signature :: proc(signature: ^gchar) -> ^GVariant ---
+    g_variant_new_signature :: proc(signature: cstring) -> ^GVariant ---
 
     @(link_name = "g_variant_is_signature")
-    g_variant_is_signature :: proc(string_p: ^gchar) -> gboolean ---
+    g_variant_is_signature :: proc(string_p: cstring) -> gboolean ---
 
     @(link_name = "g_variant_new_variant")
     g_variant_new_variant :: proc(value: ^GVariant) -> ^GVariant ---
 
     @(link_name = "g_variant_new_strv")
-    g_variant_new_strv :: proc(strv: ^^gchar, length: gssize) -> ^GVariant ---
+    g_variant_new_strv :: proc(strv: ^cstring, length: gssize) -> ^GVariant ---
 
     @(link_name = "g_variant_new_objv")
-    g_variant_new_objv :: proc(strv: ^^gchar, length: gssize) -> ^GVariant ---
+    g_variant_new_objv :: proc(strv: ^cstring, length: gssize) -> ^GVariant ---
 
     @(link_name = "g_variant_new_bytestring")
-    g_variant_new_bytestring :: proc(string_p: ^gchar) -> ^GVariant ---
+    g_variant_new_bytestring :: proc(string_p: cstring) -> ^GVariant ---
 
     @(link_name = "g_variant_new_bytestring_array")
-    g_variant_new_bytestring_array :: proc(strv: ^^gchar, length: gssize) -> ^GVariant ---
+    g_variant_new_bytestring_array :: proc(strv: ^cstring, length: gssize) -> ^GVariant ---
 
     @(link_name = "g_variant_new_fixed_array")
     g_variant_new_fixed_array :: proc(element_type: ^GVariantType, elements: gconstpointer, n_elements: gsize, element_size: gsize) -> ^GVariant ---
@@ -4331,34 +4331,34 @@ foreign glib_runic {
     g_variant_get_variant :: proc(value: ^GVariant) -> ^GVariant ---
 
     @(link_name = "g_variant_get_string")
-    g_variant_get_string :: proc(value: ^GVariant, length: ^gsize) -> ^gchar ---
+    g_variant_get_string :: proc(value: ^GVariant, length: ^gsize) -> cstring ---
 
     @(link_name = "g_variant_dup_string")
-    g_variant_dup_string :: proc(value: ^GVariant, length: ^gsize) -> ^gchar ---
+    g_variant_dup_string :: proc(value: ^GVariant, length: ^gsize) -> cstring ---
 
     @(link_name = "g_variant_get_strv")
-    g_variant_get_strv :: proc(value: ^GVariant, length: ^gsize) -> ^^gchar ---
+    g_variant_get_strv :: proc(value: ^GVariant, length: ^gsize) -> ^cstring ---
 
     @(link_name = "g_variant_dup_strv")
-    g_variant_dup_strv :: proc(value: ^GVariant, length: ^gsize) -> ^^gchar ---
+    g_variant_dup_strv :: proc(value: ^GVariant, length: ^gsize) -> ^cstring ---
 
     @(link_name = "g_variant_get_objv")
-    g_variant_get_objv :: proc(value: ^GVariant, length: ^gsize) -> ^^gchar ---
+    g_variant_get_objv :: proc(value: ^GVariant, length: ^gsize) -> ^cstring ---
 
     @(link_name = "g_variant_dup_objv")
-    g_variant_dup_objv :: proc(value: ^GVariant, length: ^gsize) -> ^^gchar ---
+    g_variant_dup_objv :: proc(value: ^GVariant, length: ^gsize) -> ^cstring ---
 
     @(link_name = "g_variant_get_bytestring")
-    g_variant_get_bytestring :: proc(value: ^GVariant) -> ^gchar ---
+    g_variant_get_bytestring :: proc(value: ^GVariant) -> cstring ---
 
     @(link_name = "g_variant_dup_bytestring")
-    g_variant_dup_bytestring :: proc(value: ^GVariant, length: ^gsize) -> ^gchar ---
+    g_variant_dup_bytestring :: proc(value: ^GVariant, length: ^gsize) -> cstring ---
 
     @(link_name = "g_variant_get_bytestring_array")
-    g_variant_get_bytestring_array :: proc(value: ^GVariant, length: ^gsize) -> ^^gchar ---
+    g_variant_get_bytestring_array :: proc(value: ^GVariant, length: ^gsize) -> ^cstring ---
 
     @(link_name = "g_variant_dup_bytestring_array")
-    g_variant_dup_bytestring_array :: proc(value: ^GVariant, length: ^gsize) -> ^^gchar ---
+    g_variant_dup_bytestring_array :: proc(value: ^GVariant, length: ^gsize) -> ^cstring ---
 
     @(link_name = "g_variant_new_maybe")
     g_variant_new_maybe :: proc(child_type: ^GVariantType, child: ^GVariant) -> ^GVariant ---
@@ -4379,16 +4379,16 @@ foreign glib_runic {
     g_variant_n_children :: proc(value: ^GVariant) -> gsize ---
 
     @(link_name = "g_variant_get_child")
-    g_variant_get_child :: proc(value: ^GVariant, index_: gsize, format_string: ^gchar, #c_vararg var_args: ..any) ---
+    g_variant_get_child :: proc(value: ^GVariant, index_: gsize, format_string: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_variant_get_child_value")
     g_variant_get_child_value :: proc(value: ^GVariant, index_: gsize) -> ^GVariant ---
 
     @(link_name = "g_variant_lookup")
-    g_variant_lookup :: proc(dictionary: ^GVariant, key: ^gchar, format_string: ^gchar, #c_vararg var_args: ..any) -> gboolean ---
+    g_variant_lookup :: proc(dictionary: ^GVariant, key: cstring, format_string: cstring, #c_vararg var_args: ..any) -> gboolean ---
 
     @(link_name = "g_variant_lookup_value")
-    g_variant_lookup_value :: proc(dictionary: ^GVariant, key: ^gchar, expected_type: ^GVariantType) -> ^GVariant ---
+    g_variant_lookup_value :: proc(dictionary: ^GVariant, key: cstring, expected_type: ^GVariantType) -> ^GVariant ---
 
     @(link_name = "g_variant_get_fixed_array")
     g_variant_get_fixed_array :: proc(value: ^GVariant, n_elements: [^]gsize, element_size: gsize) -> gconstpointer ---
@@ -4406,7 +4406,7 @@ foreign glib_runic {
     g_variant_store :: proc(value: ^GVariant, data: gpointer) ---
 
     @(link_name = "g_variant_print")
-    g_variant_print :: proc(value: ^GVariant, type_annotate: gboolean) -> ^gchar ---
+    g_variant_print :: proc(value: ^GVariant, type_annotate: gboolean) -> cstring ---
 
     @(link_name = "g_variant_print_string")
     g_variant_print_string :: proc(value: ^GVariant, string_p: ^GString, type_annotate: gboolean) -> ^GString ---
@@ -4451,10 +4451,10 @@ foreign glib_runic {
     g_variant_iter_next_value :: proc(iter: ^GVariantIter) -> ^GVariant ---
 
     @(link_name = "g_variant_iter_next")
-    g_variant_iter_next :: proc(iter: ^GVariantIter, format_string: ^gchar, #c_vararg var_args: ..any) -> gboolean ---
+    g_variant_iter_next :: proc(iter: ^GVariantIter, format_string: cstring, #c_vararg var_args: ..any) -> gboolean ---
 
     @(link_name = "g_variant_iter_loop")
-    g_variant_iter_loop :: proc(iter: ^GVariantIter, format_string: ^gchar, #c_vararg var_args: ..any) -> gboolean ---
+    g_variant_iter_loop :: proc(iter: ^GVariantIter, format_string: cstring, #c_vararg var_args: ..any) -> gboolean ---
 
     @(link_name = "g_variant_parser_get_error_quark")
     g_variant_parser_get_error_quark :: proc() -> GQuark ---
@@ -4493,37 +4493,37 @@ foreign glib_runic {
     g_variant_builder_add_value :: proc(builder: ^GVariantBuilder, value: ^GVariant) ---
 
     @(link_name = "g_variant_builder_add")
-    g_variant_builder_add :: proc(builder: ^GVariantBuilder, format_string: ^gchar, #c_vararg var_args: ..any) ---
+    g_variant_builder_add :: proc(builder: ^GVariantBuilder, format_string: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_variant_builder_add_parsed")
-    g_variant_builder_add_parsed :: proc(builder: ^GVariantBuilder, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_variant_builder_add_parsed :: proc(builder: ^GVariantBuilder, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_variant_new")
-    g_variant_new :: proc(format_string: ^gchar, #c_vararg var_args: ..any) -> ^GVariant ---
+    g_variant_new :: proc(format_string: cstring, #c_vararg var_args: ..any) -> ^GVariant ---
 
     @(link_name = "g_variant_get")
-    g_variant_get :: proc(value: ^GVariant, format_string: ^gchar, #c_vararg var_args: ..any) ---
+    g_variant_get :: proc(value: ^GVariant, format_string: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_variant_new_va")
-    g_variant_new_va :: proc(format_string: ^gchar, endptr: ^^gchar, #c_vararg var_args: ..any) -> ^GVariant ---
+    g_variant_new_va :: proc(format_string: cstring, endptr: ^cstring, #c_vararg var_args: ..any) -> ^GVariant ---
 
     @(link_name = "g_variant_get_va")
-    g_variant_get_va :: proc(value: ^GVariant, format_string: ^gchar, endptr: ^^gchar, #c_vararg var_args: ..any) ---
+    g_variant_get_va :: proc(value: ^GVariant, format_string: cstring, endptr: ^cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_variant_check_format_string")
-    g_variant_check_format_string :: proc(value: ^GVariant, format_string: ^gchar, copy_only: gboolean) -> gboolean ---
+    g_variant_check_format_string :: proc(value: ^GVariant, format_string: cstring, copy_only: gboolean) -> gboolean ---
 
     @(link_name = "g_variant_parse")
-    g_variant_parse :: proc(type: ^GVariantType, text: ^gchar, limit: ^gchar, endptr: ^^gchar, error: ^^GError) -> ^GVariant ---
+    g_variant_parse :: proc(type: ^GVariantType, text: cstring, limit: cstring, endptr: ^cstring, error: ^^GError) -> ^GVariant ---
 
     @(link_name = "g_variant_new_parsed")
-    g_variant_new_parsed :: proc(format: ^gchar, #c_vararg var_args: ..any) -> ^GVariant ---
+    g_variant_new_parsed :: proc(format: cstring, #c_vararg var_args: ..any) -> ^GVariant ---
 
     @(link_name = "g_variant_new_parsed_va")
-    g_variant_new_parsed_va :: proc(format: ^gchar, #c_vararg var_args: ..any) -> ^GVariant ---
+    g_variant_new_parsed_va :: proc(format: cstring, #c_vararg var_args: ..any) -> ^GVariant ---
 
     @(link_name = "g_variant_parse_error_print_context")
-    g_variant_parse_error_print_context :: proc(error: ^GError, source_str: ^gchar) -> ^gchar ---
+    g_variant_parse_error_print_context :: proc(error: ^GError, source_str: cstring) -> cstring ---
 
     @(link_name = "g_variant_compare")
     g_variant_compare :: proc(one: gconstpointer, two: gconstpointer) -> gint ---
@@ -4535,22 +4535,22 @@ foreign glib_runic {
     g_variant_dict_init :: proc(dict: ^GVariantDict, from_asv: ^GVariant) ---
 
     @(link_name = "g_variant_dict_lookup")
-    g_variant_dict_lookup :: proc(dict: ^GVariantDict, key: ^gchar, format_string: ^gchar, #c_vararg var_args: ..any) -> gboolean ---
+    g_variant_dict_lookup :: proc(dict: ^GVariantDict, key: cstring, format_string: cstring, #c_vararg var_args: ..any) -> gboolean ---
 
     @(link_name = "g_variant_dict_lookup_value")
-    g_variant_dict_lookup_value :: proc(dict: ^GVariantDict, key: ^gchar, expected_type: ^GVariantType) -> ^GVariant ---
+    g_variant_dict_lookup_value :: proc(dict: ^GVariantDict, key: cstring, expected_type: ^GVariantType) -> ^GVariant ---
 
     @(link_name = "g_variant_dict_contains")
-    g_variant_dict_contains :: proc(dict: ^GVariantDict, key: ^gchar) -> gboolean ---
+    g_variant_dict_contains :: proc(dict: ^GVariantDict, key: cstring) -> gboolean ---
 
     @(link_name = "g_variant_dict_insert")
-    g_variant_dict_insert :: proc(dict: ^GVariantDict, key: ^gchar, format_string: ^gchar, #c_vararg var_args: ..any) ---
+    g_variant_dict_insert :: proc(dict: ^GVariantDict, key: cstring, format_string: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_variant_dict_insert_value")
-    g_variant_dict_insert_value :: proc(dict: ^GVariantDict, key: ^gchar, value: ^GVariant) ---
+    g_variant_dict_insert_value :: proc(dict: ^GVariantDict, key: cstring, value: ^GVariant) ---
 
     @(link_name = "g_variant_dict_remove")
-    g_variant_dict_remove :: proc(dict: ^GVariantDict, key: ^gchar) -> gboolean ---
+    g_variant_dict_remove :: proc(dict: ^GVariantDict, key: cstring) -> gboolean ---
 
     @(link_name = "g_variant_dict_clear")
     g_variant_dict_clear :: proc(dict: ^GVariantDict) ---
@@ -4565,43 +4565,43 @@ foreign glib_runic {
     g_variant_dict_unref :: proc(dict: ^GVariantDict) ---
 
     @(link_name = "g_printf_string_upper_bound")
-    g_printf_string_upper_bound :: proc(format: ^gchar, #c_vararg var_args: ..any) -> gsize ---
+    g_printf_string_upper_bound :: proc(format: cstring, #c_vararg var_args: ..any) -> gsize ---
 
     @(link_name = "g_log_set_handler")
-    g_log_set_handler :: proc(log_domain: ^gchar, log_levels: GLogLevelFlags, log_func: GLogFunc, user_data: gpointer) -> guint ---
+    g_log_set_handler :: proc(log_domain: cstring, log_levels: GLogLevelFlags, log_func: GLogFunc, user_data: gpointer) -> guint ---
 
     @(link_name = "g_log_set_handler_full")
-    g_log_set_handler_full :: proc(log_domain: ^gchar, log_levels: GLogLevelFlags, log_func: GLogFunc, user_data: gpointer, destroy: GDestroyNotify) -> guint ---
+    g_log_set_handler_full :: proc(log_domain: cstring, log_levels: GLogLevelFlags, log_func: GLogFunc, user_data: gpointer, destroy: GDestroyNotify) -> guint ---
 
     @(link_name = "g_log_remove_handler")
-    g_log_remove_handler :: proc(log_domain: ^gchar, handler_id: guint) ---
+    g_log_remove_handler :: proc(log_domain: cstring, handler_id: guint) ---
 
     @(link_name = "g_log_default_handler")
-    g_log_default_handler :: proc(log_domain: ^gchar, log_level: GLogLevelFlags, message: ^gchar, unused_data: gpointer) ---
+    g_log_default_handler :: proc(log_domain: cstring, log_level: GLogLevelFlags, message: cstring, unused_data: gpointer) ---
 
     @(link_name = "g_log_set_default_handler")
     g_log_set_default_handler :: proc(log_func: GLogFunc, user_data: gpointer) -> GLogFunc ---
 
     @(link_name = "g_log")
-    g_log :: proc(log_domain: ^gchar, log_level: GLogLevelFlags, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_log :: proc(log_domain: cstring, log_level: GLogLevelFlags, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_logv")
-    g_logv :: proc(log_domain: ^gchar, log_level: GLogLevelFlags, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_logv :: proc(log_domain: cstring, log_level: GLogLevelFlags, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_log_set_fatal_mask")
-    g_log_set_fatal_mask :: proc(log_domain: ^gchar, fatal_mask: GLogLevelFlags) -> GLogLevelFlags ---
+    g_log_set_fatal_mask :: proc(log_domain: cstring, fatal_mask: GLogLevelFlags) -> GLogLevelFlags ---
 
     @(link_name = "g_log_set_always_fatal")
     g_log_set_always_fatal :: proc(fatal_mask: GLogLevelFlags) -> GLogLevelFlags ---
 
     @(link_name = "g_log_structured")
-    g_log_structured :: proc(log_domain: ^gchar, log_level: GLogLevelFlags, #c_vararg var_args: ..any) ---
+    g_log_structured :: proc(log_domain: cstring, log_level: GLogLevelFlags, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_log_structured_array")
     g_log_structured_array :: proc(log_level: GLogLevelFlags, fields: [^]GLogField, n_fields: gsize) ---
 
     @(link_name = "g_log_variant")
-    g_log_variant :: proc(log_domain: ^gchar, log_level: GLogLevelFlags, fields: [^]GVariant) ---
+    g_log_variant :: proc(log_domain: cstring, log_level: GLogLevelFlags, fields: [^]GVariant) ---
 
     @(link_name = "g_log_set_writer_func")
     g_log_set_writer_func :: proc(func: GLogWriterFunc, user_data: gpointer, user_data_free: GDestroyNotify) ---
@@ -4613,7 +4613,7 @@ foreign glib_runic {
     g_log_writer_is_journald :: proc(output_fd: gint) -> gboolean ---
 
     @(link_name = "g_log_writer_format_fields")
-    g_log_writer_format_fields :: proc(log_level: GLogLevelFlags, fields: [^]GLogField, n_fields: gsize, use_color: gboolean) -> ^gchar ---
+    g_log_writer_format_fields :: proc(log_level: GLogLevelFlags, fields: [^]GLogField, n_fields: gsize, use_color: gboolean) -> cstring ---
 
     @(link_name = "g_log_writer_syslog")
     g_log_writer_syslog :: proc(log_level: GLogLevelFlags, fields: [^]GLogField, n_fields: gsize, user_data: gpointer) -> GLogWriterOutput ---
@@ -4643,7 +4643,7 @@ foreign glib_runic {
     g_log_set_debug_enabled :: proc(enabled: gboolean) ---
 
     @(link_name = "_g_log_fallback_handler")
-    _g_log_fallback_handler :: proc(log_domain: ^gchar, log_level: GLogLevelFlags, message: ^gchar, unused_data: gpointer) ---
+    _g_log_fallback_handler :: proc(log_domain: cstring, log_level: GLogLevelFlags, message: cstring, unused_data: gpointer) ---
 
     @(link_name = "g_return_if_fail_warning")
     g_return_if_fail_warning :: proc(log_domain: cstring, pretty_function: cstring, expression: cstring) ---
@@ -4655,16 +4655,16 @@ foreign glib_runic {
     g_assert_warning :: proc(log_domain: cstring, file: cstring, line: i32, pretty_function: cstring, expression: cstring) ---
 
     @(link_name = "g_log_structured_standard")
-    g_log_structured_standard :: proc(log_domain: ^gchar, log_level: GLogLevelFlags, file: ^gchar, line: ^gchar, func: ^gchar, message_format: ^gchar, #c_vararg var_args: ..any) ---
+    g_log_structured_standard :: proc(log_domain: cstring, log_level: GLogLevelFlags, file: cstring, line: cstring, func: cstring, message_format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_print")
-    g_print :: proc(format: ^gchar, #c_vararg var_args: ..any) ---
+    g_print :: proc(format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_set_print_handler")
     g_set_print_handler :: proc(func: GPrintFunc) -> GPrintFunc ---
 
     @(link_name = "g_printerr")
-    g_printerr :: proc(format: ^gchar, #c_vararg var_args: ..any) ---
+    g_printerr :: proc(format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_set_printerr_handler")
     g_set_printerr_handler :: proc(func: GPrintFunc) -> GPrintFunc ---
@@ -4673,19 +4673,19 @@ foreign glib_runic {
     g_option_error_quark :: proc() -> GQuark ---
 
     @(link_name = "g_option_context_new")
-    g_option_context_new :: proc(parameter_string: ^gchar) -> ^GOptionContext ---
+    g_option_context_new :: proc(parameter_string: cstring) -> ^GOptionContext ---
 
     @(link_name = "g_option_context_set_summary")
-    g_option_context_set_summary :: proc(context_p: ^GOptionContext, summary: ^gchar) ---
+    g_option_context_set_summary :: proc(context_p: ^GOptionContext, summary: cstring) ---
 
     @(link_name = "g_option_context_get_summary")
-    g_option_context_get_summary :: proc(context_p: ^GOptionContext) -> ^gchar ---
+    g_option_context_get_summary :: proc(context_p: ^GOptionContext) -> cstring ---
 
     @(link_name = "g_option_context_set_description")
-    g_option_context_set_description :: proc(context_p: ^GOptionContext, description: ^gchar) ---
+    g_option_context_set_description :: proc(context_p: ^GOptionContext, description: cstring) ---
 
     @(link_name = "g_option_context_get_description")
-    g_option_context_get_description :: proc(context_p: ^GOptionContext) -> ^gchar ---
+    g_option_context_get_description :: proc(context_p: ^GOptionContext) -> cstring ---
 
     @(link_name = "g_option_context_free")
     g_option_context_free :: proc(context_p: ^GOptionContext) ---
@@ -4709,10 +4709,10 @@ foreign glib_runic {
     g_option_context_get_strict_posix :: proc(context_p: ^GOptionContext) -> gboolean ---
 
     @(link_name = "g_option_context_add_main_entries")
-    g_option_context_add_main_entries :: proc(context_p: ^GOptionContext, entries: [^]GOptionEntry, translation_domain: ^gchar) ---
+    g_option_context_add_main_entries :: proc(context_p: ^GOptionContext, entries: [^]GOptionEntry, translation_domain: cstring) ---
 
     @(link_name = "g_option_context_parse")
-    g_option_context_parse :: proc(context_p: ^GOptionContext, argc: ^gint, argv: ^^^gchar, error: ^^GError) -> gboolean ---
+    g_option_context_parse :: proc(context_p: ^GOptionContext, argc: ^gint, argv: ^^cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_option_context_parse_strv")
     g_option_context_parse_strv :: proc(context_p: ^GOptionContext, arguments: ^^[^]gchar, error: ^^GError) -> gboolean ---
@@ -4721,7 +4721,7 @@ foreign glib_runic {
     g_option_context_set_translate_func :: proc(context_p: ^GOptionContext, func: GTranslateFunc, data: gpointer, destroy_notify: GDestroyNotify) ---
 
     @(link_name = "g_option_context_set_translation_domain")
-    g_option_context_set_translation_domain :: proc(context_p: ^GOptionContext, domain: ^gchar) ---
+    g_option_context_set_translation_domain :: proc(context_p: ^GOptionContext, domain: cstring) ---
 
     @(link_name = "g_option_context_add_group")
     g_option_context_add_group :: proc(context_p: ^GOptionContext, group: ^GOptionGroup) ---
@@ -4733,10 +4733,10 @@ foreign glib_runic {
     g_option_context_get_main_group :: proc(context_p: ^GOptionContext) -> ^GOptionGroup ---
 
     @(link_name = "g_option_context_get_help")
-    g_option_context_get_help :: proc(context_p: ^GOptionContext, main_help: gboolean, group: ^GOptionGroup) -> ^gchar ---
+    g_option_context_get_help :: proc(context_p: ^GOptionContext, main_help: gboolean, group: ^GOptionGroup) -> cstring ---
 
     @(link_name = "g_option_group_new")
-    g_option_group_new :: proc(name: ^gchar, description: ^gchar, help_description: ^gchar, user_data: gpointer, destroy: GDestroyNotify) -> ^GOptionGroup ---
+    g_option_group_new :: proc(name: cstring, description: cstring, help_description: cstring, user_data: gpointer, destroy: GDestroyNotify) -> ^GOptionGroup ---
 
     @(link_name = "g_option_group_set_parse_hooks")
     g_option_group_set_parse_hooks :: proc(group: ^GOptionGroup, pre_parse_func: GOptionParseFunc, post_parse_func: GOptionParseFunc) ---
@@ -4760,7 +4760,7 @@ foreign glib_runic {
     g_option_group_set_translate_func :: proc(group: ^GOptionGroup, func: GTranslateFunc, data: gpointer, destroy_notify: GDestroyNotify) ---
 
     @(link_name = "g_option_group_set_translation_domain")
-    g_option_group_set_translation_domain :: proc(group: ^GOptionGroup, domain: ^gchar) ---
+    g_option_group_set_translation_domain :: proc(group: ^GOptionGroup, domain: cstring) ---
 
     @(link_name = "g_path_buf_new")
     g_path_buf_new :: proc() -> ^GPathBuf ---
@@ -4808,7 +4808,7 @@ foreign glib_runic {
     g_path_buf_equal :: proc(v1: gconstpointer, v2: gconstpointer) -> gboolean ---
 
     @(link_name = "g_pattern_spec_new")
-    g_pattern_spec_new :: proc(pattern: ^gchar) -> ^GPatternSpec ---
+    g_pattern_spec_new :: proc(pattern: cstring) -> ^GPatternSpec ---
 
     @(link_name = "g_pattern_spec_free")
     g_pattern_spec_free :: proc(pspec: ^GPatternSpec) ---
@@ -4820,19 +4820,19 @@ foreign glib_runic {
     g_pattern_spec_equal :: proc(pspec1: ^GPatternSpec, pspec2: ^GPatternSpec) -> gboolean ---
 
     @(link_name = "g_pattern_spec_match")
-    g_pattern_spec_match :: proc(pspec: ^GPatternSpec, string_length: gsize, string_p: ^gchar, string_reversed: ^gchar) -> gboolean ---
+    g_pattern_spec_match :: proc(pspec: ^GPatternSpec, string_length: gsize, string_p: cstring, string_reversed: cstring) -> gboolean ---
 
     @(link_name = "g_pattern_spec_match_string")
-    g_pattern_spec_match_string :: proc(pspec: ^GPatternSpec, string_p: ^gchar) -> gboolean ---
+    g_pattern_spec_match_string :: proc(pspec: ^GPatternSpec, string_p: cstring) -> gboolean ---
 
     @(link_name = "g_pattern_match")
-    g_pattern_match :: proc(pspec: ^GPatternSpec, string_length: guint, string_p: ^gchar, string_reversed: ^gchar) -> gboolean ---
+    g_pattern_match :: proc(pspec: ^GPatternSpec, string_length: guint, string_p: cstring, string_reversed: cstring) -> gboolean ---
 
     @(link_name = "g_pattern_match_string")
-    g_pattern_match_string :: proc(pspec: ^GPatternSpec, string_p: ^gchar) -> gboolean ---
+    g_pattern_match_string :: proc(pspec: ^GPatternSpec, string_p: cstring) -> gboolean ---
 
     @(link_name = "g_pattern_match_simple")
-    g_pattern_match_simple :: proc(pattern: ^gchar, string_p: ^gchar) -> gboolean ---
+    g_pattern_match_simple :: proc(pattern: cstring, string_p: cstring) -> gboolean ---
 
     @(link_name = "g_spaced_primes_closest")
     g_spaced_primes_closest :: proc(num: guint) -> guint ---
@@ -5111,7 +5111,7 @@ foreign glib_runic {
     g_regex_error_quark :: proc() -> GQuark ---
 
     @(link_name = "g_regex_new")
-    g_regex_new :: proc(pattern: ^gchar, compile_options: GRegexCompileFlags, match_options: GRegexMatchFlags, error: ^^GError) -> ^GRegex ---
+    g_regex_new :: proc(pattern: cstring, compile_options: GRegexCompileFlags, match_options: GRegexMatchFlags, error: ^^GError) -> ^GRegex ---
 
     @(link_name = "g_regex_ref")
     g_regex_ref :: proc(regex: ^GRegex) -> ^GRegex ---
@@ -5120,7 +5120,7 @@ foreign glib_runic {
     g_regex_unref :: proc(regex: ^GRegex) ---
 
     @(link_name = "g_regex_get_pattern")
-    g_regex_get_pattern :: proc(regex: ^GRegex) -> ^gchar ---
+    g_regex_get_pattern :: proc(regex: ^GRegex) -> cstring ---
 
     @(link_name = "g_regex_get_max_backref")
     g_regex_get_max_backref :: proc(regex: ^GRegex) -> gint ---
@@ -5135,13 +5135,13 @@ foreign glib_runic {
     g_regex_get_max_lookbehind :: proc(regex: ^GRegex) -> gint ---
 
     @(link_name = "g_regex_get_string_number")
-    g_regex_get_string_number :: proc(regex: ^GRegex, name: ^gchar) -> gint ---
+    g_regex_get_string_number :: proc(regex: ^GRegex, name: cstring) -> gint ---
 
     @(link_name = "g_regex_escape_string")
-    g_regex_escape_string :: proc(string_p: ^gchar, length: gint) -> ^gchar ---
+    g_regex_escape_string :: proc(string_p: cstring, length: gint) -> cstring ---
 
     @(link_name = "g_regex_escape_nul")
-    g_regex_escape_nul :: proc(string_p: ^gchar, length: gint) -> ^gchar ---
+    g_regex_escape_nul :: proc(string_p: cstring, length: gint) -> cstring ---
 
     @(link_name = "g_regex_get_compile_flags")
     g_regex_get_compile_flags :: proc(regex: ^GRegex) -> GRegexCompileFlags ---
@@ -5150,46 +5150,46 @@ foreign glib_runic {
     g_regex_get_match_flags :: proc(regex: ^GRegex) -> GRegexMatchFlags ---
 
     @(link_name = "g_regex_match_simple")
-    g_regex_match_simple :: proc(pattern: ^gchar, string_p: ^gchar, compile_options: GRegexCompileFlags, match_options: GRegexMatchFlags) -> gboolean ---
+    g_regex_match_simple :: proc(pattern: cstring, string_p: cstring, compile_options: GRegexCompileFlags, match_options: GRegexMatchFlags) -> gboolean ---
 
     @(link_name = "g_regex_match")
-    g_regex_match :: proc(regex: ^GRegex, string_p: ^gchar, match_options: GRegexMatchFlags, match_info: ^^GMatchInfo) -> gboolean ---
+    g_regex_match :: proc(regex: ^GRegex, string_p: cstring, match_options: GRegexMatchFlags, match_info: ^^GMatchInfo) -> gboolean ---
 
     @(link_name = "g_regex_match_full")
-    g_regex_match_full :: proc(regex: ^GRegex, string_p: ^gchar, string_len: gssize, start_position: gint, match_options: GRegexMatchFlags, match_info: ^^GMatchInfo, error: ^^GError) -> gboolean ---
+    g_regex_match_full :: proc(regex: ^GRegex, string_p: cstring, string_len: gssize, start_position: gint, match_options: GRegexMatchFlags, match_info: ^^GMatchInfo, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_regex_match_all")
-    g_regex_match_all :: proc(regex: ^GRegex, string_p: ^gchar, match_options: GRegexMatchFlags, match_info: ^^GMatchInfo) -> gboolean ---
+    g_regex_match_all :: proc(regex: ^GRegex, string_p: cstring, match_options: GRegexMatchFlags, match_info: ^^GMatchInfo) -> gboolean ---
 
     @(link_name = "g_regex_match_all_full")
-    g_regex_match_all_full :: proc(regex: ^GRegex, string_p: ^gchar, string_len: gssize, start_position: gint, match_options: GRegexMatchFlags, match_info: ^^GMatchInfo, error: ^^GError) -> gboolean ---
+    g_regex_match_all_full :: proc(regex: ^GRegex, string_p: cstring, string_len: gssize, start_position: gint, match_options: GRegexMatchFlags, match_info: ^^GMatchInfo, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_regex_split_simple")
-    g_regex_split_simple :: proc(pattern: ^gchar, string_p: ^gchar, compile_options: GRegexCompileFlags, match_options: GRegexMatchFlags) -> ^^gchar ---
+    g_regex_split_simple :: proc(pattern: cstring, string_p: cstring, compile_options: GRegexCompileFlags, match_options: GRegexMatchFlags) -> ^cstring ---
 
     @(link_name = "g_regex_split")
-    g_regex_split :: proc(regex: ^GRegex, string_p: ^gchar, match_options: GRegexMatchFlags) -> ^^gchar ---
+    g_regex_split :: proc(regex: ^GRegex, string_p: cstring, match_options: GRegexMatchFlags) -> ^cstring ---
 
     @(link_name = "g_regex_split_full")
-    g_regex_split_full :: proc(regex: ^GRegex, string_p: ^gchar, string_len: gssize, start_position: gint, match_options: GRegexMatchFlags, max_tokens: gint, error: ^^GError) -> ^^gchar ---
+    g_regex_split_full :: proc(regex: ^GRegex, string_p: cstring, string_len: gssize, start_position: gint, match_options: GRegexMatchFlags, max_tokens: gint, error: ^^GError) -> ^cstring ---
 
     @(link_name = "g_regex_replace")
-    g_regex_replace :: proc(regex: ^GRegex, string_p: ^gchar, string_len: gssize, start_position: gint, replacement: ^gchar, match_options: GRegexMatchFlags, error: ^^GError) -> ^gchar ---
+    g_regex_replace :: proc(regex: ^GRegex, string_p: cstring, string_len: gssize, start_position: gint, replacement: cstring, match_options: GRegexMatchFlags, error: ^^GError) -> cstring ---
 
     @(link_name = "g_regex_replace_literal")
-    g_regex_replace_literal :: proc(regex: ^GRegex, string_p: ^gchar, string_len: gssize, start_position: gint, replacement: ^gchar, match_options: GRegexMatchFlags, error: ^^GError) -> ^gchar ---
+    g_regex_replace_literal :: proc(regex: ^GRegex, string_p: cstring, string_len: gssize, start_position: gint, replacement: cstring, match_options: GRegexMatchFlags, error: ^^GError) -> cstring ---
 
     @(link_name = "g_regex_replace_eval")
-    g_regex_replace_eval :: proc(regex: ^GRegex, string_p: ^gchar, string_len: gssize, start_position: gint, match_options: GRegexMatchFlags, eval: GRegexEvalCallback, user_data: gpointer, error: ^^GError) -> ^gchar ---
+    g_regex_replace_eval :: proc(regex: ^GRegex, string_p: cstring, string_len: gssize, start_position: gint, match_options: GRegexMatchFlags, eval: GRegexEvalCallback, user_data: gpointer, error: ^^GError) -> cstring ---
 
     @(link_name = "g_regex_check_replacement")
-    g_regex_check_replacement :: proc(replacement: ^gchar, has_references: [^]gboolean, error: ^^GError) -> gboolean ---
+    g_regex_check_replacement :: proc(replacement: cstring, has_references: [^]gboolean, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_match_info_get_regex")
     g_match_info_get_regex :: proc(match_info: ^GMatchInfo) -> ^GRegex ---
 
     @(link_name = "g_match_info_get_string")
-    g_match_info_get_string :: proc(match_info: ^GMatchInfo) -> ^gchar ---
+    g_match_info_get_string :: proc(match_info: ^GMatchInfo) -> cstring ---
 
     @(link_name = "g_match_info_ref")
     g_match_info_ref :: proc(match_info: ^GMatchInfo) -> ^GMatchInfo ---
@@ -5213,22 +5213,22 @@ foreign glib_runic {
     g_match_info_is_partial_match :: proc(match_info: ^GMatchInfo) -> gboolean ---
 
     @(link_name = "g_match_info_expand_references")
-    g_match_info_expand_references :: proc(match_info: ^GMatchInfo, string_to_expand: ^gchar, error: ^^GError) -> ^gchar ---
+    g_match_info_expand_references :: proc(match_info: ^GMatchInfo, string_to_expand: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_match_info_fetch")
-    g_match_info_fetch :: proc(match_info: ^GMatchInfo, match_num: gint) -> ^gchar ---
+    g_match_info_fetch :: proc(match_info: ^GMatchInfo, match_num: gint) -> cstring ---
 
     @(link_name = "g_match_info_fetch_pos")
     g_match_info_fetch_pos :: proc(match_info: ^GMatchInfo, match_num: gint, start_pos: [^]gint, end_pos: [^]gint) -> gboolean ---
 
     @(link_name = "g_match_info_fetch_named")
-    g_match_info_fetch_named :: proc(match_info: ^GMatchInfo, name: ^gchar) -> ^gchar ---
+    g_match_info_fetch_named :: proc(match_info: ^GMatchInfo, name: cstring) -> cstring ---
 
     @(link_name = "g_match_info_fetch_named_pos")
-    g_match_info_fetch_named_pos :: proc(match_info: ^GMatchInfo, name: ^gchar, start_pos: [^]gint, end_pos: [^]gint) -> gboolean ---
+    g_match_info_fetch_named_pos :: proc(match_info: ^GMatchInfo, name: cstring, start_pos: [^]gint, end_pos: [^]gint) -> gboolean ---
 
     @(link_name = "g_match_info_fetch_all")
-    g_match_info_fetch_all :: proc(match_info: ^GMatchInfo) -> ^^gchar ---
+    g_match_info_fetch_all :: proc(match_info: ^GMatchInfo) -> ^cstring ---
 
     @(link_name = "g_scanner_new")
     g_scanner_new :: proc(config_templ: rawptr) -> ^GScanner ---
@@ -5243,7 +5243,7 @@ foreign glib_runic {
     g_scanner_sync_file_offset :: proc(scanner: ^GScanner) ---
 
     @(link_name = "g_scanner_input_text")
-    g_scanner_input_text :: proc(scanner: ^GScanner, text: ^gchar, text_len: guint) ---
+    g_scanner_input_text :: proc(scanner: ^GScanner, text: cstring, text_len: guint) ---
 
     @(link_name = "g_scanner_get_next_token")
     g_scanner_get_next_token :: proc(scanner: ^GScanner) -> GTokenType ---
@@ -5270,28 +5270,28 @@ foreign glib_runic {
     g_scanner_set_scope :: proc(scanner: ^GScanner, scope_id: guint) -> guint ---
 
     @(link_name = "g_scanner_scope_add_symbol")
-    g_scanner_scope_add_symbol :: proc(scanner: ^GScanner, scope_id: guint, symbol: ^gchar, value: gpointer) ---
+    g_scanner_scope_add_symbol :: proc(scanner: ^GScanner, scope_id: guint, symbol: cstring, value: gpointer) ---
 
     @(link_name = "g_scanner_scope_remove_symbol")
-    g_scanner_scope_remove_symbol :: proc(scanner: ^GScanner, scope_id: guint, symbol: ^gchar) ---
+    g_scanner_scope_remove_symbol :: proc(scanner: ^GScanner, scope_id: guint, symbol: cstring) ---
 
     @(link_name = "g_scanner_scope_lookup_symbol")
-    g_scanner_scope_lookup_symbol :: proc(scanner: ^GScanner, scope_id: guint, symbol: ^gchar) -> gpointer ---
+    g_scanner_scope_lookup_symbol :: proc(scanner: ^GScanner, scope_id: guint, symbol: cstring) -> gpointer ---
 
     @(link_name = "g_scanner_scope_foreach_symbol")
     g_scanner_scope_foreach_symbol :: proc(scanner: ^GScanner, scope_id: guint, func: GHFunc, user_data: gpointer) ---
 
     @(link_name = "g_scanner_lookup_symbol")
-    g_scanner_lookup_symbol :: proc(scanner: ^GScanner, symbol: ^gchar) -> gpointer ---
+    g_scanner_lookup_symbol :: proc(scanner: ^GScanner, symbol: cstring) -> gpointer ---
 
     @(link_name = "g_scanner_unexp_token")
-    g_scanner_unexp_token :: proc(scanner: ^GScanner, expected_token: GTokenType, identifier_spec: ^gchar, symbol_spec: ^gchar, symbol_name: ^gchar, message: ^gchar, is_error: gint) ---
+    g_scanner_unexp_token :: proc(scanner: ^GScanner, expected_token: GTokenType, identifier_spec: cstring, symbol_spec: cstring, symbol_name: cstring, message: cstring, is_error: gint) ---
 
     @(link_name = "g_scanner_error")
-    g_scanner_error :: proc(scanner: ^GScanner, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_scanner_error :: proc(scanner: ^GScanner, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_scanner_warn")
-    g_scanner_warn :: proc(scanner: ^GScanner, format: ^gchar, #c_vararg var_args: ..any) ---
+    g_scanner_warn :: proc(scanner: ^GScanner, format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_sequence_new")
     g_sequence_new :: proc(data_destroy: GDestroyNotify) -> ^GSequence ---
@@ -5411,13 +5411,13 @@ foreign glib_runic {
     g_shell_error_quark :: proc() -> GQuark ---
 
     @(link_name = "g_shell_quote")
-    g_shell_quote :: proc(unquoted_string: ^gchar) -> ^gchar ---
+    g_shell_quote :: proc(unquoted_string: cstring) -> cstring ---
 
     @(link_name = "g_shell_unquote")
-    g_shell_unquote :: proc(quoted_string: ^gchar, error: ^^GError) -> ^gchar ---
+    g_shell_unquote :: proc(quoted_string: cstring, error: ^^GError) -> cstring ---
 
     @(link_name = "g_shell_parse_argv")
-    g_shell_parse_argv :: proc(command_line: ^gchar, argcp: ^gint, argvp: ^^^gchar, error: ^^GError) -> gboolean ---
+    g_shell_parse_argv :: proc(command_line: cstring, argcp: ^gint, argvp: ^^cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_slice_alloc")
     g_slice_alloc :: proc(block_size: gsize) -> gpointer ---
@@ -5450,25 +5450,25 @@ foreign glib_runic {
     g_spawn_exit_error_quark :: proc() -> GQuark ---
 
     @(link_name = "g_spawn_async")
-    g_spawn_async :: proc(working_directory: ^gchar, argv: ^^gchar, envp: ^^gchar, flags: GSpawnFlags, child_setup: GSpawnChildSetupFunc, user_data: gpointer, child_pid: ^GPid, error: ^^GError) -> gboolean ---
+    g_spawn_async :: proc(working_directory: cstring, argv: ^cstring, envp: ^cstring, flags: GSpawnFlags, child_setup: GSpawnChildSetupFunc, user_data: gpointer, child_pid: ^GPid, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_spawn_async_with_pipes")
-    g_spawn_async_with_pipes :: proc(working_directory: ^gchar, argv: ^^gchar, envp: ^^gchar, flags: GSpawnFlags, child_setup: GSpawnChildSetupFunc, user_data: gpointer, child_pid: ^GPid, standard_input: ^gint, standard_output: ^gint, standard_error: ^gint, error: ^^GError) -> gboolean ---
+    g_spawn_async_with_pipes :: proc(working_directory: cstring, argv: ^cstring, envp: ^cstring, flags: GSpawnFlags, child_setup: GSpawnChildSetupFunc, user_data: gpointer, child_pid: ^GPid, standard_input: ^gint, standard_output: ^gint, standard_error: ^gint, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_spawn_async_with_pipes_and_fds")
-    g_spawn_async_with_pipes_and_fds :: proc(working_directory: ^gchar, argv: ^^gchar, envp: ^^gchar, flags: GSpawnFlags, child_setup: GSpawnChildSetupFunc, user_data: gpointer, stdin_fd: gint, stdout_fd: gint, stderr_fd: gint, source_fds: [^]gint, target_fds: [^]gint, n_fds: gsize, child_pid_out: ^GPid, stdin_pipe_out: ^gint, stdout_pipe_out: ^gint, stderr_pipe_out: ^gint, error: ^^GError) -> gboolean ---
+    g_spawn_async_with_pipes_and_fds :: proc(working_directory: cstring, argv: ^cstring, envp: ^cstring, flags: GSpawnFlags, child_setup: GSpawnChildSetupFunc, user_data: gpointer, stdin_fd: gint, stdout_fd: gint, stderr_fd: gint, source_fds: [^]gint, target_fds: [^]gint, n_fds: gsize, child_pid_out: ^GPid, stdin_pipe_out: ^gint, stdout_pipe_out: ^gint, stderr_pipe_out: ^gint, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_spawn_async_with_fds")
-    g_spawn_async_with_fds :: proc(working_directory: ^gchar, argv: ^^gchar, envp: ^^gchar, flags: GSpawnFlags, child_setup: GSpawnChildSetupFunc, user_data: gpointer, child_pid: ^GPid, stdin_fd: gint, stdout_fd: gint, stderr_fd: gint, error: ^^GError) -> gboolean ---
+    g_spawn_async_with_fds :: proc(working_directory: cstring, argv: ^cstring, envp: ^cstring, flags: GSpawnFlags, child_setup: GSpawnChildSetupFunc, user_data: gpointer, child_pid: ^GPid, stdin_fd: gint, stdout_fd: gint, stderr_fd: gint, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_spawn_sync")
-    g_spawn_sync :: proc(working_directory: ^gchar, argv: ^^gchar, envp: ^^gchar, flags: GSpawnFlags, child_setup: GSpawnChildSetupFunc, user_data: gpointer, standard_output: ^^gchar, standard_error: ^^gchar, wait_status: [^]gint, error: ^^GError) -> gboolean ---
+    g_spawn_sync :: proc(working_directory: cstring, argv: ^cstring, envp: ^cstring, flags: GSpawnFlags, child_setup: GSpawnChildSetupFunc, user_data: gpointer, standard_output: ^cstring, standard_error: ^cstring, wait_status: [^]gint, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_spawn_command_line_sync")
-    g_spawn_command_line_sync :: proc(command_line: ^gchar, standard_output: ^^gchar, standard_error: ^^gchar, wait_status: [^]gint, error: ^^GError) -> gboolean ---
+    g_spawn_command_line_sync :: proc(command_line: cstring, standard_output: ^cstring, standard_error: ^cstring, wait_status: [^]gint, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_spawn_command_line_async")
-    g_spawn_command_line_async :: proc(command_line: ^gchar, error: ^^GError) -> gboolean ---
+    g_spawn_command_line_async :: proc(command_line: cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_spawn_check_wait_status")
     g_spawn_check_wait_status :: proc(wait_status: gint, error: ^^GError) -> gboolean ---
@@ -5489,13 +5489,13 @@ foreign glib_runic {
     g_string_chunk_clear :: proc(chunk: ^GStringChunk) ---
 
     @(link_name = "g_string_chunk_insert")
-    g_string_chunk_insert :: proc(chunk: ^GStringChunk, string_p: ^gchar) -> ^gchar ---
+    g_string_chunk_insert :: proc(chunk: ^GStringChunk, string_p: cstring) -> cstring ---
 
     @(link_name = "g_string_chunk_insert_len")
-    g_string_chunk_insert_len :: proc(chunk: ^GStringChunk, string_p: ^gchar, len: gssize) -> ^gchar ---
+    g_string_chunk_insert_len :: proc(chunk: ^GStringChunk, string_p: cstring, len: gssize) -> cstring ---
 
     @(link_name = "g_string_chunk_insert_const")
-    g_string_chunk_insert_const :: proc(chunk: ^GStringChunk, string_p: ^gchar) -> ^gchar ---
+    g_string_chunk_insert_const :: proc(chunk: ^GStringChunk, string_p: cstring) -> cstring ---
 
     @(link_name = "g_strv_builder_new")
     g_strv_builder_new :: proc() -> ^GStrvBuilder ---
@@ -5561,13 +5561,13 @@ foreign glib_runic {
     g_test_fail_printf :: proc(format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_test_incomplete")
-    g_test_incomplete :: proc(msg: ^gchar) ---
+    g_test_incomplete :: proc(msg: cstring) ---
 
     @(link_name = "g_test_incomplete_printf")
     g_test_incomplete_printf :: proc(format: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_test_skip")
-    g_test_skip :: proc(msg: ^gchar) ---
+    g_test_skip :: proc(msg: cstring) ---
 
     @(link_name = "g_test_skip_printf")
     g_test_skip_printf :: proc(format: cstring, #c_vararg var_args: ..any) ---
@@ -5711,19 +5711,19 @@ foreign glib_runic {
     g_test_log_set_fatal_handler :: proc(log_func: GTestLogFatalFunc, user_data: gpointer) ---
 
     @(link_name = "g_test_expect_message")
-    g_test_expect_message :: proc(log_domain: ^gchar, log_level: GLogLevelFlags, pattern: ^gchar) ---
+    g_test_expect_message :: proc(log_domain: cstring, log_level: GLogLevelFlags, pattern: cstring) ---
 
     @(link_name = "g_test_assert_expected_messages_internal")
     g_test_assert_expected_messages_internal :: proc(domain: cstring, file: cstring, line: i32, func: cstring) ---
 
     @(link_name = "g_test_build_filename")
-    g_test_build_filename :: proc(file_type: GTestFileType, first_path: ^gchar, #c_vararg var_args: ..any) -> ^gchar ---
+    g_test_build_filename :: proc(file_type: GTestFileType, first_path: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_test_get_dir")
-    g_test_get_dir :: proc(file_type: GTestFileType) -> ^gchar ---
+    g_test_get_dir :: proc(file_type: GTestFileType) -> cstring ---
 
     @(link_name = "g_test_get_filename")
-    g_test_get_filename :: proc(file_type: GTestFileType, first_path: ^gchar, #c_vararg var_args: ..any) -> ^gchar ---
+    g_test_get_filename :: proc(file_type: GTestFileType, first_path: cstring, #c_vararg var_args: ..any) -> cstring ---
 
     @(link_name = "g_thread_pool_new")
     g_thread_pool_new :: proc(func: GFunc, user_data: gpointer, max_threads: gint, exclusive: gboolean, error: ^^GError) -> ^GThreadPool ---
@@ -5804,10 +5804,10 @@ foreign glib_runic {
     g_time_val_add :: proc(time_: ^GTimeVal, microseconds: glong) ---
 
     @(link_name = "g_time_val_from_iso8601")
-    g_time_val_from_iso8601 :: proc(iso_date: ^gchar, time_: ^GTimeVal) -> gboolean ---
+    g_time_val_from_iso8601 :: proc(iso_date: cstring, time_: ^GTimeVal) -> gboolean ---
 
     @(link_name = "g_time_val_to_iso8601")
-    g_time_val_to_iso8601 :: proc(time_: ^GTimeVal) -> ^gchar ---
+    g_time_val_to_iso8601 :: proc(time_: ^GTimeVal) -> cstring ---
 
     @(link_name = "g_trash_stack_push")
     g_trash_stack_push :: proc(stack_p: ^^GTrashStack, data_p: gpointer) ---
@@ -5921,37 +5921,37 @@ foreign glib_runic {
     g_uri_unref :: proc(uri: ^GUri) ---
 
     @(link_name = "g_uri_split")
-    g_uri_split :: proc(uri_ref: ^gchar, flags: GUriFlags, scheme: ^^gchar, userinfo: ^^gchar, host: ^^gchar, port: ^gint, path: ^^gchar, query: ^^gchar, fragment: ^^gchar, error: ^^GError) -> gboolean ---
+    g_uri_split :: proc(uri_ref: cstring, flags: GUriFlags, scheme: ^cstring, userinfo: ^cstring, host: ^cstring, port: ^gint, path: ^cstring, query: ^cstring, fragment: ^cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_uri_split_with_user")
-    g_uri_split_with_user :: proc(uri_ref: ^gchar, flags: GUriFlags, scheme: ^^gchar, user: ^^gchar, password: ^^gchar, auth_params: ^[^]gchar, host: ^^gchar, port: ^gint, path: ^^gchar, query: ^^gchar, fragment: ^^gchar, error: ^^GError) -> gboolean ---
+    g_uri_split_with_user :: proc(uri_ref: cstring, flags: GUriFlags, scheme: ^cstring, user: ^cstring, password: ^cstring, auth_params: ^[^]gchar, host: ^cstring, port: ^gint, path: ^cstring, query: ^cstring, fragment: ^cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_uri_split_network")
-    g_uri_split_network :: proc(uri_string: ^gchar, flags: GUriFlags, scheme: ^^gchar, host: ^^gchar, port: ^gint, error: ^^GError) -> gboolean ---
+    g_uri_split_network :: proc(uri_string: cstring, flags: GUriFlags, scheme: ^cstring, host: ^cstring, port: ^gint, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_uri_is_valid")
-    g_uri_is_valid :: proc(uri_string: ^gchar, flags: GUriFlags, error: ^^GError) -> gboolean ---
+    g_uri_is_valid :: proc(uri_string: cstring, flags: GUriFlags, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_uri_join")
-    g_uri_join :: proc(flags: GUriFlags, scheme: ^gchar, userinfo: ^gchar, host: ^gchar, port: gint, path: ^gchar, query: ^gchar, fragment: ^gchar) -> ^gchar ---
+    g_uri_join :: proc(flags: GUriFlags, scheme: cstring, userinfo: cstring, host: cstring, port: gint, path: cstring, query: cstring, fragment: cstring) -> cstring ---
 
     @(link_name = "g_uri_join_with_user")
-    g_uri_join_with_user :: proc(flags: GUriFlags, scheme: ^gchar, user: ^gchar, password: ^gchar, auth_params: [^]gchar, host: ^gchar, port: gint, path: ^gchar, query: ^gchar, fragment: ^gchar) -> ^gchar ---
+    g_uri_join_with_user :: proc(flags: GUriFlags, scheme: cstring, user: cstring, password: cstring, auth_params: [^]gchar, host: cstring, port: gint, path: cstring, query: cstring, fragment: cstring) -> cstring ---
 
     @(link_name = "g_uri_parse")
-    g_uri_parse :: proc(uri_string: ^gchar, flags: GUriFlags, error: ^^GError) -> ^GUri ---
+    g_uri_parse :: proc(uri_string: cstring, flags: GUriFlags, error: ^^GError) -> ^GUri ---
 
     @(link_name = "g_uri_parse_relative")
-    g_uri_parse_relative :: proc(base_uri: ^GUri, uri_ref: ^gchar, flags: GUriFlags, error: ^^GError) -> ^GUri ---
+    g_uri_parse_relative :: proc(base_uri: ^GUri, uri_ref: cstring, flags: GUriFlags, error: ^^GError) -> ^GUri ---
 
     @(link_name = "g_uri_resolve_relative")
-    g_uri_resolve_relative :: proc(base_uri_string: ^gchar, uri_ref: ^gchar, flags: GUriFlags, error: ^^GError) -> ^gchar ---
+    g_uri_resolve_relative :: proc(base_uri_string: cstring, uri_ref: cstring, flags: GUriFlags, error: ^^GError) -> cstring ---
 
     @(link_name = "g_uri_build")
-    g_uri_build :: proc(flags: GUriFlags, scheme: ^gchar, userinfo: ^gchar, host: ^gchar, port: gint, path: ^gchar, query: ^gchar, fragment: ^gchar) -> ^GUri ---
+    g_uri_build :: proc(flags: GUriFlags, scheme: cstring, userinfo: cstring, host: cstring, port: gint, path: cstring, query: cstring, fragment: cstring) -> ^GUri ---
 
     @(link_name = "g_uri_build_with_user")
-    g_uri_build_with_user :: proc(flags: GUriFlags, scheme: ^gchar, user: ^gchar, password: ^gchar, auth_params: [^]gchar, host: ^gchar, port: gint, path: ^gchar, query: ^gchar, fragment: ^gchar) -> ^GUri ---
+    g_uri_build_with_user :: proc(flags: GUriFlags, scheme: cstring, user: cstring, password: cstring, auth_params: [^]gchar, host: cstring, port: gint, path: cstring, query: cstring, fragment: cstring) -> ^GUri ---
 
     @(link_name = "g_uri_to_string")
     g_uri_to_string :: proc(uri: ^GUri) -> cstring ---
@@ -5960,34 +5960,34 @@ foreign glib_runic {
     g_uri_to_string_partial :: proc(uri: ^GUri, flags: GUriHideFlags) -> cstring ---
 
     @(link_name = "g_uri_get_scheme")
-    g_uri_get_scheme :: proc(uri: ^GUri) -> ^gchar ---
+    g_uri_get_scheme :: proc(uri: ^GUri) -> cstring ---
 
     @(link_name = "g_uri_get_userinfo")
-    g_uri_get_userinfo :: proc(uri: ^GUri) -> ^gchar ---
+    g_uri_get_userinfo :: proc(uri: ^GUri) -> cstring ---
 
     @(link_name = "g_uri_get_user")
-    g_uri_get_user :: proc(uri: ^GUri) -> ^gchar ---
+    g_uri_get_user :: proc(uri: ^GUri) -> cstring ---
 
     @(link_name = "g_uri_get_password")
-    g_uri_get_password :: proc(uri: ^GUri) -> ^gchar ---
+    g_uri_get_password :: proc(uri: ^GUri) -> cstring ---
 
     @(link_name = "g_uri_get_auth_params")
-    g_uri_get_auth_params :: proc(uri: ^GUri) -> ^gchar ---
+    g_uri_get_auth_params :: proc(uri: ^GUri) -> cstring ---
 
     @(link_name = "g_uri_get_host")
-    g_uri_get_host :: proc(uri: ^GUri) -> ^gchar ---
+    g_uri_get_host :: proc(uri: ^GUri) -> cstring ---
 
     @(link_name = "g_uri_get_port")
     g_uri_get_port :: proc(uri: ^GUri) -> gint ---
 
     @(link_name = "g_uri_get_path")
-    g_uri_get_path :: proc(uri: ^GUri) -> ^gchar ---
+    g_uri_get_path :: proc(uri: ^GUri) -> cstring ---
 
     @(link_name = "g_uri_get_query")
-    g_uri_get_query :: proc(uri: ^GUri) -> ^gchar ---
+    g_uri_get_query :: proc(uri: ^GUri) -> cstring ---
 
     @(link_name = "g_uri_get_fragment")
-    g_uri_get_fragment :: proc(uri: ^GUri) -> ^gchar ---
+    g_uri_get_fragment :: proc(uri: ^GUri) -> cstring ---
 
     @(link_name = "g_uri_get_flags")
     g_uri_get_flags :: proc(uri: ^GUri) -> GUriFlags ---
@@ -5999,7 +5999,7 @@ foreign glib_runic {
     g_uri_params_iter_init :: proc(iter: ^GUriParamsIter, params: [^]gchar, length: gssize, separators: [^]gchar, flags: GUriParamsFlags) ---
 
     @(link_name = "g_uri_params_iter_next")
-    g_uri_params_iter_next :: proc(iter: ^GUriParamsIter, attribute: ^^gchar, value: ^^gchar, error: ^^GError) -> gboolean ---
+    g_uri_params_iter_next :: proc(iter: ^GUriParamsIter, attribute: ^cstring, value: ^cstring, error: ^^GError) -> gboolean ---
 
     @(link_name = "g_uri_error_quark")
     g_uri_error_quark :: proc() -> GQuark ---
@@ -6026,10 +6026,10 @@ foreign glib_runic {
     g_uri_escape_bytes :: proc(unescaped: ^guint8, length: gsize, reserved_chars_allowed: cstring) -> cstring ---
 
     @(link_name = "g_uuid_string_is_valid")
-    g_uuid_string_is_valid :: proc(str: ^gchar) -> gboolean ---
+    g_uuid_string_is_valid :: proc(str: cstring) -> gboolean ---
 
     @(link_name = "g_uuid_string_random")
-    g_uuid_string_random :: proc() -> ^gchar ---
+    g_uuid_string_random :: proc() -> cstring ---
 
     @(link_name = "glib_major_version")
     glib_major_version: guint
@@ -6047,10 +6047,10 @@ foreign glib_runic {
     glib_binary_age: guint
 
     @(link_name = "glib_check_version")
-    glib_check_version :: proc(required_major: guint, required_minor: guint, required_micro: guint) -> ^gchar ---
+    glib_check_version :: proc(required_major: guint, required_minor: guint, required_micro: guint) -> cstring ---
 
     @(link_name = "g_mem_chunk_new")
-    g_mem_chunk_new :: proc(name: ^gchar, atom_size: gint, area_size: gsize, type: gint) -> ^GMemChunk ---
+    g_mem_chunk_new :: proc(name: cstring, atom_size: gint, area_size: gsize, type: gint) -> ^GMemChunk ---
 
     @(link_name = "g_mem_chunk_destroy")
     g_mem_chunk_destroy :: proc(mem_chunk: ^GMemChunk) ---
@@ -6080,7 +6080,7 @@ foreign glib_runic {
     g_blow_chunks :: proc() ---
 
     @(link_name = "g_allocator_new")
-    g_allocator_new :: proc(name: ^gchar, n_preallocs: guint) -> ^GAllocator ---
+    g_allocator_new :: proc(name: cstring, n_preallocs: guint) -> ^GAllocator ---
 
     @(link_name = "g_allocator_free")
     g_allocator_free :: proc(allocator: ^GAllocator) ---
@@ -6134,10 +6134,10 @@ foreign glib_runic {
     g_completion_clear_items :: proc(cmp: ^GCompletion) ---
 
     @(link_name = "g_completion_complete")
-    g_completion_complete :: proc(cmp: ^GCompletion, prefix: ^gchar, new_prefix: ^^gchar) -> ^GList ---
+    g_completion_complete :: proc(cmp: ^GCompletion, prefix: cstring, new_prefix: ^cstring) -> ^GList ---
 
     @(link_name = "g_completion_complete_utf8")
-    g_completion_complete_utf8 :: proc(cmp: ^GCompletion, prefix: ^gchar, new_prefix: ^^gchar) -> ^GList ---
+    g_completion_complete_utf8 :: proc(cmp: ^GCompletion, prefix: cstring, new_prefix: ^cstring) -> ^GList ---
 
     @(link_name = "g_completion_set_compare")
     g_completion_set_compare :: proc(cmp: ^GCompletion, strncmp_func: GCompletionStrncmpFunc) ---
