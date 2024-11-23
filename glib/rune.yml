@@ -1,0 +1,125 @@
+version: 0
+platforms:
+  - Linux x86_64
+from:
+  language: c
+  shared: 'libglib-2.0.so'
+  headers:
+    - ../shared/glib/glib/glib.h
+  includedirs:
+    - ../stdinc/
+    - ../shared/glib/
+    - ../shared/glib/_build/glib
+    - ../shared/glib/_build/
+  defines:
+    GLIB_COMPILATION: 1
+    GLIB_DISABLE_DEPRECATION_WARNINGS: 1
+  load_all_includes: true
+  extern:
+    - "../stdinc/*"
+  overwrite:
+    types: &any_type_overwrites
+      gint8: '#SInt8'
+      guint8: '#UInt8'
+      gint16: '#SInt16'
+      guint16: '#UInt16'
+      gint32: '#SInt32'
+      guint32: '#UInt32'
+      gint64: '#SInt64'
+      guint64: '#UInt64'
+
+      _GDoubleIEEE754: 'gdouble'
+      _GFloatIEEE754: 'gfloat'
+      _GBytes: '#RawPtr'
+      _GAsyncQueue: '#RawPtr'
+      _GTimeZone: '#RawPtr'
+      _GDateTime: '#RawPtr'
+      _GBookmarkFile: '#RawPtr'
+      _GChecksum: '#RawPtr'
+      _GIConv: '#RawPtr'
+      _GData: '#RawPtr'
+      _GDir: '#RawPtr'
+      _GHashTable: '#RawPtr'
+      _GHmac: '#RawPtr'
+      _GDate: '#UInt8 #Attr Arr 8 #AttrEnd'
+      _GMainContext: '#RawPtr'
+      _GMainLoop: '#RawPtr'
+      _GSourcePrivate: '#RawPtr'
+      _GKeyFile: '#RawPtr'
+      _GMappedFile: '#RawPtr'
+      _GMarkupParseContext: '#RawPtr'
+      _GVariantType: '#RawPtr'
+      _GVariant: '#RawPtr'
+      _GOptionContext: '#RawPtr'
+      _GOptionGroup: '#RawPtr'
+      _GPatternSpec: '#RawPtr'
+      _GRand: '#RawPtr'
+      _GRegex: '#RawPtr'
+      _GMatchInfo: '#RawPtr'
+      _GSequence: '#RawPtr'
+      _GSequenceNode: '#RawPtr'
+      _GStringChunk: '#RawPtr'
+      _GStrvBuilder: '#RawPtr'
+      GTestCase: '#RawPtr'
+      GTestSuite: '#RawPtr'
+      _GTimer: '#RawPtr'
+      _GTree: '#RawPtr'
+      _GTreeNode: '#RawPtr'
+      _GUri: '#RawPtr'
+      _GAllocator: '#RawPtr'
+      _GMemChunk: '#RawPtr'
+      _GCache: '#RawPtr'
+      _GRelation: '#RawPtr'
+      GMutexLocker: '#RawPtr'
+      GRecMutexLocker: '#RawPtr'
+      GRWLockWriterLocker: '#RawPtr'
+      GRWLockReaderLocker: '#RawPtr'
+      GMainContextPusher: '#RawPtr'
+  overwrite.linux.x86_64: &overwrites_64
+    types:
+      gssize: '#SInt64'
+      gsize: '#UInt64'
+      goffset: 'gint64'
+      gintptr: '#SInt64'
+      guintptr: '#UInt64'
+      <<: *any_type_overwrites
+  overwrite.linux.arm64:
+    <<: *overwrites_64
+  overwrite.windows.x86_64:
+    <<: *overwrites_64
+  overwrite.windows.arm64:
+    <<: *overwrites_64
+  overwrite.linux.x86: &overwrites_32
+    types:
+      gssize: '#SInt32'
+      gsize: '#UInt32'
+      goffset: 'gint32'
+      gintptr: '#SInt32'
+      guintptr: '#UInt32'
+      <<: *any_type_overwrites
+  overwrite.linux.arm32:
+    <<: *overwrites_32
+  overwrite.windows.x86:
+    <<: *overwrites_32
+  overwrite.windows.arm32:
+    <<: *overwrites_32
+  ignore:
+    types:
+      - _GHookList
+      - GHookList
+      - _GIOChannel
+      - GIOChannel
+      - _GScannerConfig
+      - GScannerConfig
+    macros:
+      - 'G_*'
+      - 'g_*'
+to:
+  language: odin
+  package: glib
+  out: glib.odin
+  no_build_tag: true
+  extern:
+    sources:
+      "../stdinc/time.h": "core:c/libc"
+      "../stdinc/pthread.h": "core:sys/posix"
