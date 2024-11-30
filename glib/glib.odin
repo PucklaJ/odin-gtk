@@ -180,6 +180,11 @@ _GMemVTable :: struct {
     try_realloc: try_realloc_func_ptr_anon_5,
 }
 GMemVTable :: _GMemVTable
+GNode :: _GNode
+GTraverseFlags :: enum u32 {G_TRAVERSE_LEAVES = 1, G_TRAVERSE_NON_LEAVES = 2, G_TRAVERSE_ALL = 3, G_TRAVERSE_MASK = 3, G_TRAVERSE_LEAFS = 1, G_TRAVERSE_NON_LEAFS = 2, }
+GTraverseType :: enum u32 {G_IN_ORDER = 0, G_PRE_ORDER = 1, G_POST_ORDER = 2, G_LEVEL_ORDER = 3, }
+GNodeTraverseFunc :: #type proc "c" (node: ^GNode, data: gpointer) -> gboolean
+GNodeForeachFunc :: #type proc "c" (node: ^GNode, data: gpointer)
 _GNode :: struct {
     data: gpointer,
     next: ^GNode,
@@ -187,17 +192,12 @@ _GNode :: struct {
     parent: ^GNode,
     children: ^GNode,
 }
-GNode :: _GNode
-GTraverseFlags :: enum u32 {G_TRAVERSE_LEAVES = 1, G_TRAVERSE_NON_LEAVES = 2, G_TRAVERSE_ALL = 3, G_TRAVERSE_MASK = 3, G_TRAVERSE_LEAFS = 1, G_TRAVERSE_NON_LEAFS = 2, }
-GTraverseType :: enum u32 {G_IN_ORDER = 0, G_PRE_ORDER = 1, G_POST_ORDER = 2, G_LEVEL_ORDER = 3, }
-GNodeTraverseFunc :: #type proc "c" (node: ^GNode, data: gpointer) -> gboolean
-GNodeForeachFunc :: #type proc "c" (node: ^GNode, data: gpointer)
+GList :: _GList
 _GList :: struct {
     data: gpointer,
     next: ^GList,
     prev: ^GList,
 }
-GList :: _GList
 _GHashTable :: rawptr
 GHashTable :: _GHashTable
 GHRFunc :: #type proc "c" (key: gpointer, value: gpointer, user_data: gpointer) -> gboolean
@@ -212,6 +212,15 @@ _GHashTableIter :: struct {
 GHashTableIter :: _GHashTableIter
 _GHmac :: rawptr
 GHmac :: _GHmac
+GHook :: _GHook
+GHookCompareFunc :: #type proc "c" (new_hook: ^GHook, sibling: ^GHook) -> gint
+GHookFindFunc :: #type proc "c" (hook: ^GHook, data: gpointer) -> gboolean
+GHookMarshaller :: #type proc "c" (hook: ^GHook, marshal_data: gpointer)
+GHookCheckMarshaller :: #type proc "c" (hook: ^GHook, marshal_data: gpointer) -> gboolean
+GHookFunc :: #type proc "c" (data: gpointer)
+GHookCheckFunc :: #type proc "c" (data: gpointer) -> gboolean
+GHookFinalizeFunc :: #type proc "c" (hook_list: rawptr, hook: ^GHook)
+GHookFlagMask :: enum u32 {G_HOOK_FLAG_ACTIVE = 1, G_HOOK_FLAG_IN_CALL = 2, G_HOOK_FLAG_MASK = 15, }
 _GHook :: struct {
     data: gpointer,
     next: ^GHook,
@@ -222,15 +231,6 @@ _GHook :: struct {
     func: gpointer,
     destroy: GDestroyNotify,
 }
-GHook :: _GHook
-GHookCompareFunc :: #type proc "c" (new_hook: ^GHook, sibling: ^GHook) -> gint
-GHookFindFunc :: #type proc "c" (hook: ^GHook, data: gpointer) -> gboolean
-GHookMarshaller :: #type proc "c" (hook: ^GHook, marshal_data: gpointer)
-GHookCheckMarshaller :: #type proc "c" (hook: ^GHook, marshal_data: gpointer) -> gboolean
-GHookFunc :: #type proc "c" (data: gpointer)
-GHookCheckFunc :: #type proc "c" (data: gpointer) -> gboolean
-GHookFinalizeFunc :: #type proc "c" (hook_list: rawptr, hook: ^GHook)
-GHookFlagMask :: enum u32 {G_HOOK_FLAG_ACTIVE = 1, G_HOOK_FLAG_IN_CALL = 2, G_HOOK_FLAG_MASK = 15, }
 _GPollFD :: struct {
     fd: gint,
     events: gushort,
@@ -238,19 +238,26 @@ _GPollFD :: struct {
 }
 GPollFD :: _GPollFD
 GPollFunc :: #type proc "c" (ufds: [^]GPollFD, nfsd: guint, timeout_: gint) -> gint
+GSList :: _GSList
 _GSList :: struct {
     data: gpointer,
     next: ^GSList,
 }
-GSList :: _GSList
 GIOCondition :: enum u32 {G_IO_IN = 1, G_IO_OUT = 4, G_IO_PRI = 2, G_IO_ERR = 8, G_IO_HUP = 16, G_IO_NVAL = 32, }
 GMainContextFlags :: enum u32 {G_MAIN_CONTEXT_FLAGS_NONE = 0, G_MAIN_CONTEXT_FLAGS_OWNERLESS_POLLING = 1, }
 _GMainContext :: rawptr
 GMainContext :: _GMainContext
 _GMainLoop :: rawptr
 GMainLoop :: _GMainLoop
+GSource :: _GSource
 _GSourcePrivate :: rawptr
 GSourcePrivate :: _GSourcePrivate
+GSourceCallbackFuncs :: _GSourceCallbackFuncs
+GSourceFuncs :: _GSourceFuncs
+GSourceFunc :: #type proc "c" (user_data: gpointer) -> gboolean
+GSourceOnceFunc :: #type proc "c" (user_data: gpointer)
+GChildWatchFunc :: #type proc "c" (pid: GPid, wait_status: gint, user_data: gpointer)
+GSourceDisposeFunc :: #type proc "c" (source: ^GSource)
 _GSource :: struct {
     callback_data: gpointer,
     callback_funcs: [^]GSourceCallbackFuncs,
@@ -266,17 +273,19 @@ _GSource :: struct {
     name: cstring,
     priv: ^GSourcePrivate,
 }
-GSource :: _GSource
 ref_func_ptr_anon_6 :: #type proc "c" (cb_data: gpointer)
 unref_func_ptr_anon_7 :: #type proc "c" (cb_data: gpointer)
+get_func_ptr_anon_8 :: #type proc "c" (cb_data: gpointer, source: ^GSource, func: ^GSourceFunc, data: ^gpointer)
 _GSourceCallbackFuncs :: struct {
     ref: ref_func_ptr_anon_6,
     unref: unref_func_ptr_anon_7,
     get: get_func_ptr_anon_8,
 }
-GSourceCallbackFuncs :: _GSourceCallbackFuncs
-GSourceFunc :: #type proc "c" (user_data: gpointer) -> gboolean
 GSourceDummyMarshal :: #type proc "c" ()
+GSourceFuncsPrepareFunc :: #type proc "c" (source: ^GSource, timeout_: ^gint) -> gboolean
+GSourceFuncsCheckFunc :: #type proc "c" (source: ^GSource) -> gboolean
+GSourceFuncsDispatchFunc :: #type proc "c" (source: ^GSource, callback: GSourceFunc, user_data: gpointer) -> gboolean
+GSourceFuncsFinalizeFunc :: #type proc "c" (source: ^GSource)
 _GSourceFuncs :: struct {
     prepare: GSourceFuncsPrepareFunc,
     check: GSourceFuncsCheckFunc,
@@ -285,15 +294,6 @@ _GSourceFuncs :: struct {
     closure_callback: GSourceFunc,
     closure_marshal: GSourceDummyMarshal,
 }
-GSourceFuncs :: _GSourceFuncs
-GSourceOnceFunc :: #type proc "c" (user_data: gpointer)
-GChildWatchFunc :: #type proc "c" (pid: GPid, wait_status: gint, user_data: gpointer)
-GSourceDisposeFunc :: #type proc "c" (source: ^GSource)
-get_func_ptr_anon_8 :: #type proc "c" (cb_data: gpointer, source: ^GSource, func: ^GSourceFunc, data: ^gpointer)
-GSourceFuncsPrepareFunc :: #type proc "c" (source: ^GSource, timeout_: ^gint) -> gboolean
-GSourceFuncsCheckFunc :: #type proc "c" (source: ^GSource) -> gboolean
-GSourceFuncsDispatchFunc :: #type proc "c" (source: ^GSource, callback: GSourceFunc, user_data: gpointer) -> gboolean
-GSourceFuncsFinalizeFunc :: #type proc "c" (source: ^GSource)
 GMainContextPusher :: rawptr
 GClearHandleFunc :: #type proc "c" (handle_id: guint)
 gunichar :: guint32
@@ -444,9 +444,12 @@ GRegex :: _GRegex
 _GMatchInfo :: rawptr
 GMatchInfo :: _GMatchInfo
 GRegexEvalCallback :: #type proc "c" (match_info: ^GMatchInfo, result: ^GString, user_data: gpointer) -> gboolean
-GTokenType :: enum u32 {G_TOKEN_EOF = 0, G_TOKEN_LEFT_PAREN = 40, G_TOKEN_RIGHT_PAREN = 41, G_TOKEN_LEFT_CURLY = 123, G_TOKEN_RIGHT_CURLY = 125, G_TOKEN_LEFT_BRACE = 91, G_TOKEN_RIGHT_BRACE = 93, G_TOKEN_EQUAL_SIGN = 61, G_TOKEN_COMMA = 44, G_TOKEN_NONE = 256, G_TOKEN_ERROR = 257, G_TOKEN_CHAR = 258, G_TOKEN_BINARY = 259, G_TOKEN_OCTAL = 260, G_TOKEN_INT = 261, G_TOKEN_HEX = 262, G_TOKEN_FLOAT = 263, G_TOKEN_STRING = 264, G_TOKEN_SYMBOL = 265, G_TOKEN_IDENTIFIER = 266, G_TOKEN_IDENTIFIER_NULL = 267, G_TOKEN_COMMENT_SINGLE = 268, G_TOKEN_COMMENT_MULTI = 269, G_TOKEN_LAST = 270, }
+GScanner :: _GScanner
 _GTokenValue :: struct #raw_union {v_symbol: gpointer, v_identifier: cstring, v_binary: gulong, v_octal: gulong, v_int: gulong, v_int64: guint64, v_float: gdouble, v_hex: gulong, v_string: cstring, v_comment: cstring, v_char: guchar, v_error: guint, }
 GTokenValue :: _GTokenValue
+GScannerMsgFunc :: #type proc "c" (scanner: ^GScanner, message: cstring, error: gboolean)
+GErrorType :: enum u32 {G_ERR_UNKNOWN = 0, G_ERR_UNEXP_EOF = 1, G_ERR_UNEXP_EOF_IN_STRING = 2, G_ERR_UNEXP_EOF_IN_COMMENT = 3, G_ERR_NON_DIGIT_IN_CONST = 4, G_ERR_DIGIT_RADIX = 5, G_ERR_FLOAT_RADIX = 6, G_ERR_FLOAT_MALFORMED = 7, }
+GTokenType :: enum u32 {G_TOKEN_EOF = 0, G_TOKEN_LEFT_PAREN = 40, G_TOKEN_RIGHT_PAREN = 41, G_TOKEN_LEFT_CURLY = 123, G_TOKEN_RIGHT_CURLY = 125, G_TOKEN_LEFT_BRACE = 91, G_TOKEN_RIGHT_BRACE = 93, G_TOKEN_EQUAL_SIGN = 61, G_TOKEN_COMMA = 44, G_TOKEN_NONE = 256, G_TOKEN_ERROR = 257, G_TOKEN_CHAR = 258, G_TOKEN_BINARY = 259, G_TOKEN_OCTAL = 260, G_TOKEN_INT = 261, G_TOKEN_HEX = 262, G_TOKEN_FLOAT = 263, G_TOKEN_STRING = 264, G_TOKEN_SYMBOL = 265, G_TOKEN_IDENTIFIER = 266, G_TOKEN_IDENTIFIER_NULL = 267, G_TOKEN_COMMENT_SINGLE = 268, G_TOKEN_COMMENT_MULTI = 269, G_TOKEN_LAST = 270, }
 _GScanner :: struct {
     user_data: gpointer,
     max_parse_errors: guint,
@@ -470,9 +473,6 @@ _GScanner :: struct {
     scope_id: guint,
     msg_handler: GScannerMsgFunc,
 }
-GScanner :: _GScanner
-GScannerMsgFunc :: #type proc "c" (scanner: ^GScanner, message: cstring, error: gboolean)
-GErrorType :: enum u32 {G_ERR_UNKNOWN = 0, G_ERR_UNEXP_EOF = 1, G_ERR_UNEXP_EOF_IN_STRING = 2, G_ERR_UNEXP_EOF_IN_COMMENT = 3, G_ERR_NON_DIGIT_IN_CONST = 4, G_ERR_DIGIT_RADIX = 5, G_ERR_FLOAT_RADIX = 6, G_ERR_FLOAT_MALFORMED = 7, }
 _GSequence :: rawptr
 GSequence :: _GSequence
 _GSequenceNode :: rawptr
@@ -487,8 +487,6 @@ _GStringChunk :: rawptr
 GStringChunk :: _GStringChunk
 _GStrvBuilder :: rawptr
 GStrvBuilder :: _GStrvBuilder
-GTestCase :: rawptr
-GTestSuite :: rawptr
 GTestFunc :: #type proc "c" ()
 GTestDataFunc :: #type proc "c" (user_data: gconstpointer)
 GTestFixtureFunc :: #type proc "c" (fixture: gpointer, user_data: gconstpointer)
@@ -525,10 +523,10 @@ _GThreadPool :: struct {
 GThreadPool :: _GThreadPool
 _GTimer :: rawptr
 GTimer :: _GTimer
+GTrashStack :: _GTrashStack
 _GTrashStack :: struct {
     next: ^GTrashStack,
 }
-GTrashStack :: _GTrashStack
 _GTree :: rawptr
 GTree :: _GTree
 _GTreeNode :: rawptr
@@ -851,6 +849,8 @@ GPathBuf_autoptr :: ^GPathBuf
 GPathBuf_listautoptr :: ^GList
 GPathBuf_slistautoptr :: ^GSList
 GPathBuf_queueautoptr :: ^GQueue
+GTestCase :: rawptr
+GTestSuite :: rawptr
 
 foreign import glib_runic "system:glib-2.0"
 
