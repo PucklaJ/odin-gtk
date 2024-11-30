@@ -82,6 +82,7 @@ from:
       - GIOChannel
       - _GScannerConfig
       - GScannerConfig
+      - va_list
     macros:
       - 'G_*'
       - 'g_*'
@@ -90,6 +91,14 @@ to:
   package: glib
   out: glib.odin
   no_build_tag: false
+  trim_prefix:
+    types:
+      - g
+      - G
+    functions:
+      - g_
+    constants:
+      - G_
   extern:
     sources:
       "../stdinc/time.h": "core:c/libc"

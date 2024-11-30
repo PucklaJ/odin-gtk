@@ -6,33 +6,33 @@ import "core:fmt"
 import "core:time"
 
 main :: proc() {
-	g.g_set_print_handler(proc "c" (msg: cstring) {
+	g.set_print_handler(proc "c" (msg: cstring) {
 		context = runtime.default_context()
 		fmt.printfln("[GLIB PRINT]: {}", msg)
 	})
-	g.g_print("Hello g_print!\n")
-	g.g_printerr("Hello g_print_err!\n")
+	g.print("Hello g_print!\n")
+	g.printerr("Hello g_print_err!\n")
 
-	environ := cast([^]cstring)g.g_get_environ()
-	defer g.g_strfreev(environ)
+	environ := cast([^]cstring)g.get_environ()
+	defer g.strfreev(environ)
 	for i := 0; environ[i] != nil; i += 1 {
-		g.g_print("%d: %s", i, environ[i])
+		g.print("%d: %s", i, environ[i])
 	}
 
-	hello_thread := g.g_thread_new("hello thread", proc "c" (data: g.gpointer) -> g.gpointer {
+	hello_thread := g.thread_new("hello thread", proc "c" (data: g.pointer) -> g.pointer {
 			context = runtime.default_context()
 			for i in 0 ..< 10 {
 				time.sleep(100 * time.Millisecond)
-				g.g_print("Hello from thread %d", i)
+				g.print("Hello from thread %d", i)
 			}
 
-			g.g_thread_exit(nil)
+			g.thread_exit(nil)
 			return nil
 		}, nil)
 
 	time.sleep(500 * time.Millisecond)
-	g.g_print("Hello from main")
+	g.print("Hello from main")
 
-	g.g_thread_join(hello_thread)
+	g.thread_join(hello_thread)
 }
 
