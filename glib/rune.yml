@@ -2,11 +2,18 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+wrapper:
+  language: c
+  in_headers: ../shared/glib/glib/glib.h
+  out_header: glib-wrapper.h
+  out_source: glib-wrapper.c
+  load_all_includes: true
 from:
   language: c
   shared: 'libglib-2.0.so'
   headers:
     - ../shared/glib/glib/glib.h
+    - glib-wrapper.h
   includedirs:
     - ../stdinc/
     - ../shared/glib/
@@ -97,9 +104,13 @@ to:
       - G
     functions:
       - g_
+      - glib_
     constants:
       - G_
+  trim_suffix:
+    functions: _wrapper
   extern:
     sources:
       "../stdinc/time.h": "core:c/libc"
       "../stdinc/pthread.h": "core:sys/posix"
+  add_libs: ../lib/linux/libglib-wrapper.a

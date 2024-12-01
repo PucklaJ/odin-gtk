@@ -851,7 +851,7 @@ PathBuf_queueautoptr :: ^Queue
 TestCase :: rawptr
 TestSuite :: rawptr
 
-foreign import glib_runic "system:glib-2.0"
+foreign import glib_runic { "system:glib-2.0", "../lib/linux/libglib-wrapper.a" }
 
 @(default_calling_convention = "c")
 foreign glib_runic {
@@ -6046,7 +6046,7 @@ foreign glib_runic {
     glib_binary_age: uint_
 
     @(link_name = "glib_check_version")
-    glib_check_version :: proc(required_major: uint_, required_minor: uint_, required_micro: uint_) -> cstring ---
+    check_version :: proc(required_major: uint_, required_minor: uint_, required_micro: uint_) -> cstring ---
 
     @(link_name = "g_mem_chunk_new")
     mem_chunk_new :: proc(name: cstring, atom_size: int_, area_size: size, type: int_) -> ^MemChunk ---
@@ -6296,6 +6296,1032 @@ foreign glib_runic {
 
     @(link_name = "g_cond_timed_wait")
     cond_timed_wait :: proc(cond: ^Cond, mutex: ^Mutex, abs_time: ^TimeVal) -> boolean ---
+
+    @(link_name = "g_bit_nth_lsf_impl_wrapper")
+    bit_nth_lsf_impl :: proc(mask: ulong, nth_bit: int_) -> int_ ---
+
+    @(link_name = "g_bit_nth_msf_impl_wrapper")
+    bit_nth_msf_impl :: proc(mask: ulong, nth_bit: int_) -> int_ ---
+
+    @(link_name = "g_bit_storage_impl_wrapper")
+    bit_storage_impl :: proc(number: ulong) -> uint_ ---
+
+    @(link_name = "g_mutex_locker_new_wrapper")
+    mutex_locker_new :: proc(mutex: ^Mutex) -> ^MutexLocker ---
+
+    @(link_name = "g_mutex_locker_free_wrapper")
+    mutex_locker_free :: proc(locker: ^MutexLocker) ---
+
+    @(link_name = "g_rec_mutex_locker_new_wrapper")
+    rec_mutex_locker_new :: proc(rec_mutex: ^RecMutex) -> ^RecMutexLocker ---
+
+    @(link_name = "g_rec_mutex_locker_free_wrapper")
+    rec_mutex_locker_free :: proc(locker: ^RecMutexLocker) ---
+
+    @(link_name = "g_rw_lock_writer_locker_new_wrapper")
+    rw_lock_writer_locker_new :: proc(rw_lock: ^RWLock) -> ^RWLockWriterLocker ---
+
+    @(link_name = "g_rw_lock_writer_locker_free_wrapper")
+    rw_lock_writer_locker_free :: proc(locker: ^RWLockWriterLocker) ---
+
+    @(link_name = "g_rw_lock_reader_locker_new_wrapper")
+    rw_lock_reader_locker_new :: proc(rw_lock: ^RWLock) -> ^RWLockReaderLocker ---
+
+    @(link_name = "g_rw_lock_reader_locker_free_wrapper")
+    rw_lock_reader_locker_free :: proc(locker: ^RWLockReaderLocker) ---
+
+    @(link_name = "g_steal_pointer_wrapper")
+    steal_pointer :: proc(pp: pointer) -> pointer ---
+
+    @(link_name = "g_main_context_pusher_new_wrapper")
+    main_context_pusher_new :: proc(main_context: ^MainContext) -> ^MainContextPusher ---
+
+    @(link_name = "g_main_context_pusher_free_wrapper")
+    main_context_pusher_free :: proc(pusher: ^MainContextPusher) ---
+
+    @(link_name = "g_steal_handle_id_wrapper")
+    steal_handle_id :: proc(handle_pointer: ^u32) -> u32 ---
+
+    @(link_name = "g_steal_fd_wrapper")
+    steal_fd :: proc(fd_ptr: ^i32) -> i32 ---
+
+    @(link_name = "g_strdup_inline_wrapper")
+    strdup_inline :: proc(str: cstring) -> cstring ---
+
+    @(link_name = "g_set_str_wrapper")
+    set_str :: proc(str_pointer: ^cstring, new_str: cstring) -> boolean ---
+
+    @(link_name = "g_string_append_c_inline_wrapper")
+    string_append_c_inline :: proc(gstring: ^String, c: char) -> ^String ---
+
+    @(link_name = "g_string_append_len_inline_wrapper")
+    string_append_len_inline :: proc(gstring: ^String, val: cstring, len: ssize) -> ^String ---
+
+    @(link_name = "g_string_truncate_inline_wrapper")
+    string_truncate_inline :: proc(gstring: ^String, len: size) -> ^String ---
+
+    @(link_name = "g_autoptr_cleanup_generic_gfree_wrapper")
+    autoptr_cleanup_generic_gfree :: proc(p: rawptr) ---
+
+    @(link_name = "g_autoptr_cleanup_gstring_free_wrapper")
+    autoptr_cleanup_gstring_free :: proc(string_p: ^String) ---
+
+    @(link_name = "glib_autoptr_clear_GAsyncQueue_wrapper")
+    autoptr_clear_GAsyncQueue :: proc(_ptr: ^AsyncQueue) ---
+
+    @(link_name = "glib_autoptr_cleanup_GAsyncQueue_wrapper")
+    autoptr_cleanup_GAsyncQueue :: proc(_ptr: ^^AsyncQueue) ---
+
+    @(link_name = "glib_autoptr_destroy_GAsyncQueue_wrapper")
+    autoptr_destroy_GAsyncQueue :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GAsyncQueue_wrapper")
+    listautoptr_cleanup_GAsyncQueue :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GAsyncQueue_wrapper")
+    slistautoptr_cleanup_GAsyncQueue :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GAsyncQueue_wrapper")
+    queueautoptr_cleanup_GAsyncQueue :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GBookmarkFile_wrapper")
+    autoptr_clear_GBookmarkFile :: proc(_ptr: ^BookmarkFile) ---
+
+    @(link_name = "glib_autoptr_cleanup_GBookmarkFile_wrapper")
+    autoptr_cleanup_GBookmarkFile :: proc(_ptr: ^^BookmarkFile) ---
+
+    @(link_name = "glib_autoptr_destroy_GBookmarkFile_wrapper")
+    autoptr_destroy_GBookmarkFile :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GBookmarkFile_wrapper")
+    listautoptr_cleanup_GBookmarkFile :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GBookmarkFile_wrapper")
+    slistautoptr_cleanup_GBookmarkFile :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GBookmarkFile_wrapper")
+    queueautoptr_cleanup_GBookmarkFile :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GBytes_wrapper")
+    autoptr_clear_GBytes :: proc(_ptr: ^Bytes) ---
+
+    @(link_name = "glib_autoptr_cleanup_GBytes_wrapper")
+    autoptr_cleanup_GBytes :: proc(_ptr: ^^Bytes) ---
+
+    @(link_name = "glib_autoptr_destroy_GBytes_wrapper")
+    autoptr_destroy_GBytes :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GBytes_wrapper")
+    listautoptr_cleanup_GBytes :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GBytes_wrapper")
+    slistautoptr_cleanup_GBytes :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GBytes_wrapper")
+    queueautoptr_cleanup_GBytes :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GChecksum_wrapper")
+    autoptr_clear_GChecksum :: proc(_ptr: ^Checksum) ---
+
+    @(link_name = "glib_autoptr_cleanup_GChecksum_wrapper")
+    autoptr_cleanup_GChecksum :: proc(_ptr: ^^Checksum) ---
+
+    @(link_name = "glib_autoptr_destroy_GChecksum_wrapper")
+    autoptr_destroy_GChecksum :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GChecksum_wrapper")
+    listautoptr_cleanup_GChecksum :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GChecksum_wrapper")
+    slistautoptr_cleanup_GChecksum :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GChecksum_wrapper")
+    queueautoptr_cleanup_GChecksum :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GDateTime_wrapper")
+    autoptr_clear_GDateTime :: proc(_ptr: ^DateTime) ---
+
+    @(link_name = "glib_autoptr_cleanup_GDateTime_wrapper")
+    autoptr_cleanup_GDateTime :: proc(_ptr: ^^DateTime) ---
+
+    @(link_name = "glib_autoptr_destroy_GDateTime_wrapper")
+    autoptr_destroy_GDateTime :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GDateTime_wrapper")
+    listautoptr_cleanup_GDateTime :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GDateTime_wrapper")
+    slistautoptr_cleanup_GDateTime :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GDateTime_wrapper")
+    queueautoptr_cleanup_GDateTime :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GDate_wrapper")
+    autoptr_clear_GDate :: proc(_ptr: ^Date) ---
+
+    @(link_name = "glib_autoptr_cleanup_GDate_wrapper")
+    autoptr_cleanup_GDate :: proc(_ptr: ^^Date) ---
+
+    @(link_name = "glib_autoptr_destroy_GDate_wrapper")
+    autoptr_destroy_GDate :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GDate_wrapper")
+    listautoptr_cleanup_GDate :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GDate_wrapper")
+    slistautoptr_cleanup_GDate :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GDate_wrapper")
+    queueautoptr_cleanup_GDate :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GDir_wrapper")
+    autoptr_clear_GDir :: proc(_ptr: ^Dir) ---
+
+    @(link_name = "glib_autoptr_cleanup_GDir_wrapper")
+    autoptr_cleanup_GDir :: proc(_ptr: ^^Dir) ---
+
+    @(link_name = "glib_autoptr_destroy_GDir_wrapper")
+    autoptr_destroy_GDir :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GDir_wrapper")
+    listautoptr_cleanup_GDir :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GDir_wrapper")
+    slistautoptr_cleanup_GDir :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GDir_wrapper")
+    queueautoptr_cleanup_GDir :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GError_wrapper")
+    autoptr_clear_GError :: proc(_ptr: ^Error) ---
+
+    @(link_name = "glib_autoptr_cleanup_GError_wrapper")
+    autoptr_cleanup_GError :: proc(_ptr: ^^Error) ---
+
+    @(link_name = "glib_autoptr_destroy_GError_wrapper")
+    autoptr_destroy_GError :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GError_wrapper")
+    listautoptr_cleanup_GError :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GError_wrapper")
+    slistautoptr_cleanup_GError :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GError_wrapper")
+    queueautoptr_cleanup_GError :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GHashTable_wrapper")
+    autoptr_clear_GHashTable :: proc(_ptr: ^HashTable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GHashTable_wrapper")
+    autoptr_cleanup_GHashTable :: proc(_ptr: ^^HashTable) ---
+
+    @(link_name = "glib_autoptr_destroy_GHashTable_wrapper")
+    autoptr_destroy_GHashTable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GHashTable_wrapper")
+    listautoptr_cleanup_GHashTable :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GHashTable_wrapper")
+    slistautoptr_cleanup_GHashTable :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GHashTable_wrapper")
+    queueautoptr_cleanup_GHashTable :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GHmac_wrapper")
+    autoptr_clear_GHmac :: proc(_ptr: ^Hmac) ---
+
+    @(link_name = "glib_autoptr_cleanup_GHmac_wrapper")
+    autoptr_cleanup_GHmac :: proc(_ptr: ^^Hmac) ---
+
+    @(link_name = "glib_autoptr_destroy_GHmac_wrapper")
+    autoptr_destroy_GHmac :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GHmac_wrapper")
+    listautoptr_cleanup_GHmac :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GHmac_wrapper")
+    slistautoptr_cleanup_GHmac :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GHmac_wrapper")
+    queueautoptr_cleanup_GHmac :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GIOChannel_wrapper")
+    autoptr_clear_GIOChannel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_autoptr_cleanup_GIOChannel_wrapper")
+    autoptr_cleanup_GIOChannel :: proc(_ptr: ^rawptr) ---
+
+    @(link_name = "glib_autoptr_destroy_GIOChannel_wrapper")
+    autoptr_destroy_GIOChannel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GIOChannel_wrapper")
+    listautoptr_cleanup_GIOChannel :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GIOChannel_wrapper")
+    slistautoptr_cleanup_GIOChannel :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GIOChannel_wrapper")
+    queueautoptr_cleanup_GIOChannel :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GKeyFile_wrapper")
+    autoptr_clear_GKeyFile :: proc(_ptr: ^KeyFile) ---
+
+    @(link_name = "glib_autoptr_cleanup_GKeyFile_wrapper")
+    autoptr_cleanup_GKeyFile :: proc(_ptr: ^^KeyFile) ---
+
+    @(link_name = "glib_autoptr_destroy_GKeyFile_wrapper")
+    autoptr_destroy_GKeyFile :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GKeyFile_wrapper")
+    listautoptr_cleanup_GKeyFile :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GKeyFile_wrapper")
+    slistautoptr_cleanup_GKeyFile :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GKeyFile_wrapper")
+    queueautoptr_cleanup_GKeyFile :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GList_wrapper")
+    autoptr_clear_GList :: proc(_ptr: ^List) ---
+
+    @(link_name = "glib_autoptr_cleanup_GList_wrapper")
+    autoptr_cleanup_GList :: proc(_ptr: ^^List) ---
+
+    @(link_name = "glib_autoptr_destroy_GList_wrapper")
+    autoptr_destroy_GList :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GList_wrapper")
+    listautoptr_cleanup_GList :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GList_wrapper")
+    slistautoptr_cleanup_GList :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GList_wrapper")
+    queueautoptr_cleanup_GList :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GArray_wrapper")
+    autoptr_clear_GArray :: proc(_ptr: ^Array) ---
+
+    @(link_name = "glib_autoptr_cleanup_GArray_wrapper")
+    autoptr_cleanup_GArray :: proc(_ptr: ^^Array) ---
+
+    @(link_name = "glib_autoptr_destroy_GArray_wrapper")
+    autoptr_destroy_GArray :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GArray_wrapper")
+    listautoptr_cleanup_GArray :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GArray_wrapper")
+    slistautoptr_cleanup_GArray :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GArray_wrapper")
+    queueautoptr_cleanup_GArray :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GPtrArray_wrapper")
+    autoptr_clear_GPtrArray :: proc(_ptr: ^PtrArray) ---
+
+    @(link_name = "glib_autoptr_cleanup_GPtrArray_wrapper")
+    autoptr_cleanup_GPtrArray :: proc(_ptr: ^^PtrArray) ---
+
+    @(link_name = "glib_autoptr_destroy_GPtrArray_wrapper")
+    autoptr_destroy_GPtrArray :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GPtrArray_wrapper")
+    listautoptr_cleanup_GPtrArray :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GPtrArray_wrapper")
+    slistautoptr_cleanup_GPtrArray :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GPtrArray_wrapper")
+    queueautoptr_cleanup_GPtrArray :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GByteArray_wrapper")
+    autoptr_clear_GByteArray :: proc(_ptr: ^ByteArray) ---
+
+    @(link_name = "glib_autoptr_cleanup_GByteArray_wrapper")
+    autoptr_cleanup_GByteArray :: proc(_ptr: ^^ByteArray) ---
+
+    @(link_name = "glib_autoptr_destroy_GByteArray_wrapper")
+    autoptr_destroy_GByteArray :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GByteArray_wrapper")
+    listautoptr_cleanup_GByteArray :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GByteArray_wrapper")
+    slistautoptr_cleanup_GByteArray :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GByteArray_wrapper")
+    queueautoptr_cleanup_GByteArray :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GMainContext_wrapper")
+    autoptr_clear_GMainContext :: proc(_ptr: ^MainContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GMainContext_wrapper")
+    autoptr_cleanup_GMainContext :: proc(_ptr: ^^MainContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GMainContext_wrapper")
+    autoptr_destroy_GMainContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GMainContext_wrapper")
+    listautoptr_cleanup_GMainContext :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GMainContext_wrapper")
+    slistautoptr_cleanup_GMainContext :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GMainContext_wrapper")
+    queueautoptr_cleanup_GMainContext :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GMainContextPusher_wrapper")
+    autoptr_clear_GMainContextPusher :: proc(_ptr: ^MainContextPusher) ---
+
+    @(link_name = "glib_autoptr_cleanup_GMainContextPusher_wrapper")
+    autoptr_cleanup_GMainContextPusher :: proc(_ptr: ^^MainContextPusher) ---
+
+    @(link_name = "glib_autoptr_destroy_GMainContextPusher_wrapper")
+    autoptr_destroy_GMainContextPusher :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GMainContextPusher_wrapper")
+    listautoptr_cleanup_GMainContextPusher :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GMainContextPusher_wrapper")
+    slistautoptr_cleanup_GMainContextPusher :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GMainContextPusher_wrapper")
+    queueautoptr_cleanup_GMainContextPusher :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GMainLoop_wrapper")
+    autoptr_clear_GMainLoop :: proc(_ptr: ^MainLoop) ---
+
+    @(link_name = "glib_autoptr_cleanup_GMainLoop_wrapper")
+    autoptr_cleanup_GMainLoop :: proc(_ptr: ^^MainLoop) ---
+
+    @(link_name = "glib_autoptr_destroy_GMainLoop_wrapper")
+    autoptr_destroy_GMainLoop :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GMainLoop_wrapper")
+    listautoptr_cleanup_GMainLoop :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GMainLoop_wrapper")
+    slistautoptr_cleanup_GMainLoop :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GMainLoop_wrapper")
+    queueautoptr_cleanup_GMainLoop :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GSource_wrapper")
+    autoptr_clear_GSource :: proc(_ptr: ^Source) ---
+
+    @(link_name = "glib_autoptr_cleanup_GSource_wrapper")
+    autoptr_cleanup_GSource :: proc(_ptr: ^^Source) ---
+
+    @(link_name = "glib_autoptr_destroy_GSource_wrapper")
+    autoptr_destroy_GSource :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GSource_wrapper")
+    listautoptr_cleanup_GSource :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GSource_wrapper")
+    slistautoptr_cleanup_GSource :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GSource_wrapper")
+    queueautoptr_cleanup_GSource :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GMappedFile_wrapper")
+    autoptr_clear_GMappedFile :: proc(_ptr: ^MappedFile) ---
+
+    @(link_name = "glib_autoptr_cleanup_GMappedFile_wrapper")
+    autoptr_cleanup_GMappedFile :: proc(_ptr: ^^MappedFile) ---
+
+    @(link_name = "glib_autoptr_destroy_GMappedFile_wrapper")
+    autoptr_destroy_GMappedFile :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GMappedFile_wrapper")
+    listautoptr_cleanup_GMappedFile :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GMappedFile_wrapper")
+    slistautoptr_cleanup_GMappedFile :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GMappedFile_wrapper")
+    queueautoptr_cleanup_GMappedFile :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GMarkupParseContext_wrapper")
+    autoptr_clear_GMarkupParseContext :: proc(_ptr: ^MarkupParseContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GMarkupParseContext_wrapper")
+    autoptr_cleanup_GMarkupParseContext :: proc(_ptr: ^^MarkupParseContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GMarkupParseContext_wrapper")
+    autoptr_destroy_GMarkupParseContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GMarkupParseContext_wrapper")
+    listautoptr_cleanup_GMarkupParseContext :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GMarkupParseContext_wrapper")
+    slistautoptr_cleanup_GMarkupParseContext :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GMarkupParseContext_wrapper")
+    queueautoptr_cleanup_GMarkupParseContext :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GNode_wrapper")
+    autoptr_clear_GNode :: proc(_ptr: ^Node) ---
+
+    @(link_name = "glib_autoptr_cleanup_GNode_wrapper")
+    autoptr_cleanup_GNode :: proc(_ptr: ^^Node) ---
+
+    @(link_name = "glib_autoptr_destroy_GNode_wrapper")
+    autoptr_destroy_GNode :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GNode_wrapper")
+    listautoptr_cleanup_GNode :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GNode_wrapper")
+    slistautoptr_cleanup_GNode :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GNode_wrapper")
+    queueautoptr_cleanup_GNode :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GOptionContext_wrapper")
+    autoptr_clear_GOptionContext :: proc(_ptr: ^OptionContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GOptionContext_wrapper")
+    autoptr_cleanup_GOptionContext :: proc(_ptr: ^^OptionContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GOptionContext_wrapper")
+    autoptr_destroy_GOptionContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GOptionContext_wrapper")
+    listautoptr_cleanup_GOptionContext :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GOptionContext_wrapper")
+    slistautoptr_cleanup_GOptionContext :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GOptionContext_wrapper")
+    queueautoptr_cleanup_GOptionContext :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GOptionGroup_wrapper")
+    autoptr_clear_GOptionGroup :: proc(_ptr: ^OptionGroup) ---
+
+    @(link_name = "glib_autoptr_cleanup_GOptionGroup_wrapper")
+    autoptr_cleanup_GOptionGroup :: proc(_ptr: ^^OptionGroup) ---
+
+    @(link_name = "glib_autoptr_destroy_GOptionGroup_wrapper")
+    autoptr_destroy_GOptionGroup :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GOptionGroup_wrapper")
+    listautoptr_cleanup_GOptionGroup :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GOptionGroup_wrapper")
+    slistautoptr_cleanup_GOptionGroup :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GOptionGroup_wrapper")
+    queueautoptr_cleanup_GOptionGroup :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GPatternSpec_wrapper")
+    autoptr_clear_GPatternSpec :: proc(_ptr: ^PatternSpec) ---
+
+    @(link_name = "glib_autoptr_cleanup_GPatternSpec_wrapper")
+    autoptr_cleanup_GPatternSpec :: proc(_ptr: ^^PatternSpec) ---
+
+    @(link_name = "glib_autoptr_destroy_GPatternSpec_wrapper")
+    autoptr_destroy_GPatternSpec :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GPatternSpec_wrapper")
+    listautoptr_cleanup_GPatternSpec :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GPatternSpec_wrapper")
+    slistautoptr_cleanup_GPatternSpec :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GPatternSpec_wrapper")
+    queueautoptr_cleanup_GPatternSpec :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GQueue_wrapper")
+    autoptr_clear_GQueue :: proc(_ptr: ^Queue) ---
+
+    @(link_name = "glib_autoptr_cleanup_GQueue_wrapper")
+    autoptr_cleanup_GQueue :: proc(_ptr: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_destroy_GQueue_wrapper")
+    autoptr_destroy_GQueue :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GQueue_wrapper")
+    listautoptr_cleanup_GQueue :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GQueue_wrapper")
+    slistautoptr_cleanup_GQueue :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GQueue_wrapper")
+    queueautoptr_cleanup_GQueue :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_auto_cleanup_GQueue_wrapper")
+    auto_cleanup_GQueue :: proc(_ptr: ^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GRand_wrapper")
+    autoptr_clear_GRand :: proc(_ptr: ^Rand) ---
+
+    @(link_name = "glib_autoptr_cleanup_GRand_wrapper")
+    autoptr_cleanup_GRand :: proc(_ptr: ^^Rand) ---
+
+    @(link_name = "glib_autoptr_destroy_GRand_wrapper")
+    autoptr_destroy_GRand :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GRand_wrapper")
+    listautoptr_cleanup_GRand :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GRand_wrapper")
+    slistautoptr_cleanup_GRand :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GRand_wrapper")
+    queueautoptr_cleanup_GRand :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GRegex_wrapper")
+    autoptr_clear_GRegex :: proc(_ptr: ^Regex) ---
+
+    @(link_name = "glib_autoptr_cleanup_GRegex_wrapper")
+    autoptr_cleanup_GRegex :: proc(_ptr: ^^Regex) ---
+
+    @(link_name = "glib_autoptr_destroy_GRegex_wrapper")
+    autoptr_destroy_GRegex :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GRegex_wrapper")
+    listautoptr_cleanup_GRegex :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GRegex_wrapper")
+    slistautoptr_cleanup_GRegex :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GRegex_wrapper")
+    queueautoptr_cleanup_GRegex :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GMatchInfo_wrapper")
+    autoptr_clear_GMatchInfo :: proc(_ptr: ^MatchInfo) ---
+
+    @(link_name = "glib_autoptr_cleanup_GMatchInfo_wrapper")
+    autoptr_cleanup_GMatchInfo :: proc(_ptr: ^^MatchInfo) ---
+
+    @(link_name = "glib_autoptr_destroy_GMatchInfo_wrapper")
+    autoptr_destroy_GMatchInfo :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GMatchInfo_wrapper")
+    listautoptr_cleanup_GMatchInfo :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GMatchInfo_wrapper")
+    slistautoptr_cleanup_GMatchInfo :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GMatchInfo_wrapper")
+    queueautoptr_cleanup_GMatchInfo :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GScanner_wrapper")
+    autoptr_clear_GScanner :: proc(_ptr: ^Scanner) ---
+
+    @(link_name = "glib_autoptr_cleanup_GScanner_wrapper")
+    autoptr_cleanup_GScanner :: proc(_ptr: ^^Scanner) ---
+
+    @(link_name = "glib_autoptr_destroy_GScanner_wrapper")
+    autoptr_destroy_GScanner :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GScanner_wrapper")
+    listautoptr_cleanup_GScanner :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GScanner_wrapper")
+    slistautoptr_cleanup_GScanner :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GScanner_wrapper")
+    queueautoptr_cleanup_GScanner :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GSequence_wrapper")
+    autoptr_clear_GSequence :: proc(_ptr: ^Sequence) ---
+
+    @(link_name = "glib_autoptr_cleanup_GSequence_wrapper")
+    autoptr_cleanup_GSequence :: proc(_ptr: ^^Sequence) ---
+
+    @(link_name = "glib_autoptr_destroy_GSequence_wrapper")
+    autoptr_destroy_GSequence :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GSequence_wrapper")
+    listautoptr_cleanup_GSequence :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GSequence_wrapper")
+    slistautoptr_cleanup_GSequence :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GSequence_wrapper")
+    queueautoptr_cleanup_GSequence :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GSList_wrapper")
+    autoptr_clear_GSList :: proc(_ptr: ^SList) ---
+
+    @(link_name = "glib_autoptr_cleanup_GSList_wrapper")
+    autoptr_cleanup_GSList :: proc(_ptr: ^^SList) ---
+
+    @(link_name = "glib_autoptr_destroy_GSList_wrapper")
+    autoptr_destroy_GSList :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GSList_wrapper")
+    listautoptr_cleanup_GSList :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GSList_wrapper")
+    slistautoptr_cleanup_GSList :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GSList_wrapper")
+    queueautoptr_cleanup_GSList :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GString_wrapper")
+    autoptr_clear_GString :: proc(_ptr: ^String) ---
+
+    @(link_name = "glib_autoptr_cleanup_GString_wrapper")
+    autoptr_cleanup_GString :: proc(_ptr: ^^String) ---
+
+    @(link_name = "glib_autoptr_destroy_GString_wrapper")
+    autoptr_destroy_GString :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GString_wrapper")
+    listautoptr_cleanup_GString :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GString_wrapper")
+    slistautoptr_cleanup_GString :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GString_wrapper")
+    queueautoptr_cleanup_GString :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GStringChunk_wrapper")
+    autoptr_clear_GStringChunk :: proc(_ptr: ^StringChunk) ---
+
+    @(link_name = "glib_autoptr_cleanup_GStringChunk_wrapper")
+    autoptr_cleanup_GStringChunk :: proc(_ptr: ^^StringChunk) ---
+
+    @(link_name = "glib_autoptr_destroy_GStringChunk_wrapper")
+    autoptr_destroy_GStringChunk :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GStringChunk_wrapper")
+    listautoptr_cleanup_GStringChunk :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GStringChunk_wrapper")
+    slistautoptr_cleanup_GStringChunk :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GStringChunk_wrapper")
+    queueautoptr_cleanup_GStringChunk :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GStrvBuilder_wrapper")
+    autoptr_clear_GStrvBuilder :: proc(_ptr: ^StrvBuilder) ---
+
+    @(link_name = "glib_autoptr_cleanup_GStrvBuilder_wrapper")
+    autoptr_cleanup_GStrvBuilder :: proc(_ptr: ^^StrvBuilder) ---
+
+    @(link_name = "glib_autoptr_destroy_GStrvBuilder_wrapper")
+    autoptr_destroy_GStrvBuilder :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GStrvBuilder_wrapper")
+    listautoptr_cleanup_GStrvBuilder :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GStrvBuilder_wrapper")
+    slistautoptr_cleanup_GStrvBuilder :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GStrvBuilder_wrapper")
+    queueautoptr_cleanup_GStrvBuilder :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GThread_wrapper")
+    autoptr_clear_GThread :: proc(_ptr: ^Thread) ---
+
+    @(link_name = "glib_autoptr_cleanup_GThread_wrapper")
+    autoptr_cleanup_GThread :: proc(_ptr: ^^Thread) ---
+
+    @(link_name = "glib_autoptr_destroy_GThread_wrapper")
+    autoptr_destroy_GThread :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GThread_wrapper")
+    listautoptr_cleanup_GThread :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GThread_wrapper")
+    slistautoptr_cleanup_GThread :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GThread_wrapper")
+    queueautoptr_cleanup_GThread :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_auto_cleanup_GMutex_wrapper")
+    auto_cleanup_GMutex :: proc(_ptr: ^Mutex) ---
+
+    @(link_name = "glib_autoptr_clear_GMutexLocker_wrapper")
+    autoptr_clear_GMutexLocker :: proc(_ptr: ^MutexLocker) ---
+
+    @(link_name = "glib_autoptr_cleanup_GMutexLocker_wrapper")
+    autoptr_cleanup_GMutexLocker :: proc(_ptr: ^^MutexLocker) ---
+
+    @(link_name = "glib_autoptr_destroy_GMutexLocker_wrapper")
+    autoptr_destroy_GMutexLocker :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GMutexLocker_wrapper")
+    listautoptr_cleanup_GMutexLocker :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GMutexLocker_wrapper")
+    slistautoptr_cleanup_GMutexLocker :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GMutexLocker_wrapper")
+    queueautoptr_cleanup_GMutexLocker :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GRecMutexLocker_wrapper")
+    autoptr_clear_GRecMutexLocker :: proc(_ptr: ^RecMutexLocker) ---
+
+    @(link_name = "glib_autoptr_cleanup_GRecMutexLocker_wrapper")
+    autoptr_cleanup_GRecMutexLocker :: proc(_ptr: ^^RecMutexLocker) ---
+
+    @(link_name = "glib_autoptr_destroy_GRecMutexLocker_wrapper")
+    autoptr_destroy_GRecMutexLocker :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GRecMutexLocker_wrapper")
+    listautoptr_cleanup_GRecMutexLocker :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GRecMutexLocker_wrapper")
+    slistautoptr_cleanup_GRecMutexLocker :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GRecMutexLocker_wrapper")
+    queueautoptr_cleanup_GRecMutexLocker :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GRWLockWriterLocker_wrapper")
+    autoptr_clear_GRWLockWriterLocker :: proc(_ptr: ^RWLockWriterLocker) ---
+
+    @(link_name = "glib_autoptr_cleanup_GRWLockWriterLocker_wrapper")
+    autoptr_cleanup_GRWLockWriterLocker :: proc(_ptr: ^^RWLockWriterLocker) ---
+
+    @(link_name = "glib_autoptr_destroy_GRWLockWriterLocker_wrapper")
+    autoptr_destroy_GRWLockWriterLocker :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GRWLockWriterLocker_wrapper")
+    listautoptr_cleanup_GRWLockWriterLocker :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GRWLockWriterLocker_wrapper")
+    slistautoptr_cleanup_GRWLockWriterLocker :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GRWLockWriterLocker_wrapper")
+    queueautoptr_cleanup_GRWLockWriterLocker :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GRWLockReaderLocker_wrapper")
+    autoptr_clear_GRWLockReaderLocker :: proc(_ptr: ^RWLockReaderLocker) ---
+
+    @(link_name = "glib_autoptr_cleanup_GRWLockReaderLocker_wrapper")
+    autoptr_cleanup_GRWLockReaderLocker :: proc(_ptr: ^^RWLockReaderLocker) ---
+
+    @(link_name = "glib_autoptr_destroy_GRWLockReaderLocker_wrapper")
+    autoptr_destroy_GRWLockReaderLocker :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GRWLockReaderLocker_wrapper")
+    listautoptr_cleanup_GRWLockReaderLocker :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GRWLockReaderLocker_wrapper")
+    slistautoptr_cleanup_GRWLockReaderLocker :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GRWLockReaderLocker_wrapper")
+    queueautoptr_cleanup_GRWLockReaderLocker :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_auto_cleanup_GCond_wrapper")
+    auto_cleanup_GCond :: proc(_ptr: ^Cond) ---
+
+    @(link_name = "glib_autoptr_clear_GTimer_wrapper")
+    autoptr_clear_GTimer :: proc(_ptr: ^Timer) ---
+
+    @(link_name = "glib_autoptr_cleanup_GTimer_wrapper")
+    autoptr_cleanup_GTimer :: proc(_ptr: ^^Timer) ---
+
+    @(link_name = "glib_autoptr_destroy_GTimer_wrapper")
+    autoptr_destroy_GTimer :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GTimer_wrapper")
+    listautoptr_cleanup_GTimer :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GTimer_wrapper")
+    slistautoptr_cleanup_GTimer :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GTimer_wrapper")
+    queueautoptr_cleanup_GTimer :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GTimeZone_wrapper")
+    autoptr_clear_GTimeZone :: proc(_ptr: ^TimeZone) ---
+
+    @(link_name = "glib_autoptr_cleanup_GTimeZone_wrapper")
+    autoptr_cleanup_GTimeZone :: proc(_ptr: ^^TimeZone) ---
+
+    @(link_name = "glib_autoptr_destroy_GTimeZone_wrapper")
+    autoptr_destroy_GTimeZone :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GTimeZone_wrapper")
+    listautoptr_cleanup_GTimeZone :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GTimeZone_wrapper")
+    slistautoptr_cleanup_GTimeZone :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GTimeZone_wrapper")
+    queueautoptr_cleanup_GTimeZone :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GTree_wrapper")
+    autoptr_clear_GTree :: proc(_ptr: ^Tree) ---
+
+    @(link_name = "glib_autoptr_cleanup_GTree_wrapper")
+    autoptr_cleanup_GTree :: proc(_ptr: ^^Tree) ---
+
+    @(link_name = "glib_autoptr_destroy_GTree_wrapper")
+    autoptr_destroy_GTree :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GTree_wrapper")
+    listautoptr_cleanup_GTree :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GTree_wrapper")
+    slistautoptr_cleanup_GTree :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GTree_wrapper")
+    queueautoptr_cleanup_GTree :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GVariant_wrapper")
+    autoptr_clear_GVariant :: proc(_ptr: ^Variant) ---
+
+    @(link_name = "glib_autoptr_cleanup_GVariant_wrapper")
+    autoptr_cleanup_GVariant :: proc(_ptr: ^^Variant) ---
+
+    @(link_name = "glib_autoptr_destroy_GVariant_wrapper")
+    autoptr_destroy_GVariant :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GVariant_wrapper")
+    listautoptr_cleanup_GVariant :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GVariant_wrapper")
+    slistautoptr_cleanup_GVariant :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GVariant_wrapper")
+    queueautoptr_cleanup_GVariant :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GVariantBuilder_wrapper")
+    autoptr_clear_GVariantBuilder :: proc(_ptr: ^VariantBuilder) ---
+
+    @(link_name = "glib_autoptr_cleanup_GVariantBuilder_wrapper")
+    autoptr_cleanup_GVariantBuilder :: proc(_ptr: ^^VariantBuilder) ---
+
+    @(link_name = "glib_autoptr_destroy_GVariantBuilder_wrapper")
+    autoptr_destroy_GVariantBuilder :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GVariantBuilder_wrapper")
+    listautoptr_cleanup_GVariantBuilder :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GVariantBuilder_wrapper")
+    slistautoptr_cleanup_GVariantBuilder :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GVariantBuilder_wrapper")
+    queueautoptr_cleanup_GVariantBuilder :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_auto_cleanup_GVariantBuilder_wrapper")
+    auto_cleanup_GVariantBuilder :: proc(_ptr: ^VariantBuilder) ---
+
+    @(link_name = "glib_autoptr_clear_GVariantIter_wrapper")
+    autoptr_clear_GVariantIter :: proc(_ptr: ^VariantIter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GVariantIter_wrapper")
+    autoptr_cleanup_GVariantIter :: proc(_ptr: ^^VariantIter) ---
+
+    @(link_name = "glib_autoptr_destroy_GVariantIter_wrapper")
+    autoptr_destroy_GVariantIter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GVariantIter_wrapper")
+    listautoptr_cleanup_GVariantIter :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GVariantIter_wrapper")
+    slistautoptr_cleanup_GVariantIter :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GVariantIter_wrapper")
+    queueautoptr_cleanup_GVariantIter :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GVariantDict_wrapper")
+    autoptr_clear_GVariantDict :: proc(_ptr: ^VariantDict) ---
+
+    @(link_name = "glib_autoptr_cleanup_GVariantDict_wrapper")
+    autoptr_cleanup_GVariantDict :: proc(_ptr: ^^VariantDict) ---
+
+    @(link_name = "glib_autoptr_destroy_GVariantDict_wrapper")
+    autoptr_destroy_GVariantDict :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GVariantDict_wrapper")
+    listautoptr_cleanup_GVariantDict :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GVariantDict_wrapper")
+    slistautoptr_cleanup_GVariantDict :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GVariantDict_wrapper")
+    queueautoptr_cleanup_GVariantDict :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_auto_cleanup_GVariantDict_wrapper")
+    auto_cleanup_GVariantDict :: proc(_ptr: ^VariantDict) ---
+
+    @(link_name = "glib_autoptr_clear_GVariantType_wrapper")
+    autoptr_clear_GVariantType :: proc(_ptr: ^VariantType) ---
+
+    @(link_name = "glib_autoptr_cleanup_GVariantType_wrapper")
+    autoptr_cleanup_GVariantType :: proc(_ptr: ^^VariantType) ---
+
+    @(link_name = "glib_autoptr_destroy_GVariantType_wrapper")
+    autoptr_destroy_GVariantType :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GVariantType_wrapper")
+    listautoptr_cleanup_GVariantType :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GVariantType_wrapper")
+    slistautoptr_cleanup_GVariantType :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GVariantType_wrapper")
+    queueautoptr_cleanup_GVariantType :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_auto_cleanup_GStrv_wrapper")
+    auto_cleanup_GStrv :: proc(_ptr: ^Strv) ---
+
+    @(link_name = "glib_autoptr_clear_GRefString_wrapper")
+    autoptr_clear_GRefString :: proc(_ptr: ^RefString) ---
+
+    @(link_name = "glib_autoptr_cleanup_GRefString_wrapper")
+    autoptr_cleanup_GRefString :: proc(_ptr: ^^RefString) ---
+
+    @(link_name = "glib_autoptr_destroy_GRefString_wrapper")
+    autoptr_destroy_GRefString :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GRefString_wrapper")
+    listautoptr_cleanup_GRefString :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GRefString_wrapper")
+    slistautoptr_cleanup_GRefString :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GRefString_wrapper")
+    queueautoptr_cleanup_GRefString :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GUri_wrapper")
+    autoptr_clear_GUri :: proc(_ptr: ^Uri) ---
+
+    @(link_name = "glib_autoptr_cleanup_GUri_wrapper")
+    autoptr_cleanup_GUri :: proc(_ptr: ^^Uri) ---
+
+    @(link_name = "glib_autoptr_destroy_GUri_wrapper")
+    autoptr_destroy_GUri :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GUri_wrapper")
+    listautoptr_cleanup_GUri :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GUri_wrapper")
+    slistautoptr_cleanup_GUri :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GUri_wrapper")
+    queueautoptr_cleanup_GUri :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GPathBuf_wrapper")
+    autoptr_clear_GPathBuf :: proc(_ptr: ^PathBuf) ---
+
+    @(link_name = "glib_autoptr_cleanup_GPathBuf_wrapper")
+    autoptr_cleanup_GPathBuf :: proc(_ptr: ^^PathBuf) ---
+
+    @(link_name = "glib_autoptr_destroy_GPathBuf_wrapper")
+    autoptr_destroy_GPathBuf :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GPathBuf_wrapper")
+    listautoptr_cleanup_GPathBuf :: proc(_l: ^^List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GPathBuf_wrapper")
+    slistautoptr_cleanup_GPathBuf :: proc(_l: ^^SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GPathBuf_wrapper")
+    queueautoptr_cleanup_GPathBuf :: proc(_q: ^^Queue) ---
+
+    @(link_name = "glib_auto_cleanup_GPathBuf_wrapper")
+    auto_cleanup_GPathBuf :: proc(_ptr: ^PathBuf) ---
 
 }
 
