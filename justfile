@@ -4,6 +4,8 @@ setup: glib-setup
 bindings: glib gobject
 wrapper: glib-wrapper gobject-wrapper
 
+RUNIC := 'runic'
+
 glib-setup:
     cd shared/glib && meson setup _build
     ninja -C shared/glib/_build \
@@ -13,7 +15,7 @@ glib-setup:
         'gobject/glib-enumtypes.h'
 
 glib:
-    runic glib/rune.yml
+    {{ RUNIC }} glib/rune.yml
     sed glib/glib.odin -i -e 's/\^char/cstring/g' -e 's/data: cstring/data: ^byte/g' -e 's/buf: cstring/buf: ^byte/g' -e 's/buffer: cstring/buffer: ^byte/g' -e 's/inbuf: \^cstring/inbuf: \^^byte/g' -e 's/outbuf: \^cstring/outbuf: \^^byte/g'
 
 [linux]
@@ -25,7 +27,7 @@ glib-wrapper:
     rm lib/linux/glib-wrapper.o
 
 gobject:
-    runic glib/gobject/rune.yml
+    {{ RUNIC }} glib/gobject/rune.yml
     sed glib/gobject/gobject.odin -i -e 's/\^glib.char/cstring/g'
 
 [linux]
@@ -36,4 +38,4 @@ gobject-wrapper:
     rm lib/linux/gobject-wrapper.o
 
 example NAME='hello-glib':
-    odin run {{ 'examples' / NAME }} -error-pos-style:unix -vet -out:/tmp/{{ NAME }}
+    odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}
