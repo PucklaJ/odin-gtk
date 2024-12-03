@@ -112,5 +112,6 @@ to:
   extern:
     sources:
       "../stdinc/time.h": "core:c/libc"
+      "../stdinc/stdarg.h": "core:c/libc"
       "../stdinc/pthread.h": "core:sys/posix"
   add_libs: ../lib/linux/libglib-wrapper.a

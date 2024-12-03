@@ -1,0 +1,70 @@
+version: 0
+platforms:
+  - Linux x86_64
+  - Linux arm64
+wrapper:
+  language: c
+  in_headers: ../../shared/glib/glib/glib-object.h
+  out_header: gobject-wrapper.h
+  out_source: gobject-wrapper.c
+  load_all_includes: true
+from:
+  language: c
+  shared: 'libgobject-2.0.so'
+  headers:
+    - ../../shared/glib/glib/glib-object.h
+    - gobject-wrapper.h
+  includedirs:
+    - ../../stdinc/
+    - ../../shared/glib/
+    - ../../shared/glib/glib/
+    - ../../shared/glib/_build/glib
+    - ../../shared/glib/_build/
+  defines:
+    GLIB_COMPILATION: 1
+    GLIB_DISABLE_DEPRECATION_WARNINGS: 1
+    GOBJECT_STATIC_COMPILATION: 1
+  load_all_includes: true
+  extern:
+    - "../../stdinc/*"
+    - "../../shared/glib/glib/*"
+    - "../../shared/glib/glib/deprecated/*"
+    - "../../shared/glib/_build/glib/*"
+  ignore:
+    macros:
+      - 'G_STATIC_*'
+      - '_GOBJECT_*'
+      - 'GOBJECT_DEPRECATED_*'
+      - 'GOBJECT_DEPRECATED'
+      - 'GOBJECT_AVAILABLE_*'
+      - 'GOBJECT_VAR'
+      - 'G_TYPE_FUNDAMENTAL_SHIFT'
+  overwrite:
+    types:
+      # !!!!This is 64-Bit only!!!!!
+      _GClosure: '#SInt8 #Attr Arr 32 #AttrEnd'
+      _GParamSpecString: '#SInt8 #Attr Arr 104 #AttrEnd'
+  aliases:
+    g_static_mutex_get_mutex_impl: g_static_mutex_get_mutex
+to:
+  language: odin
+  package: gobject
+  out: gobject.odin
+  no_build_tag: false
+  trim_prefix:
+    types:
+      - g
+      - G
+    functions:
+      - g_
+    constants:
+      - G_
+  trim_suffix:
+    functions: _wrapper
+  extern:
+    sources:
+      "../../stdinc/stdarg.h": "core:c/libc"
+      "../../shared/glib/glib/*": "glib .."
+      "../../shared/glib/_build/glib/*": "glib .."
+    trim_prefix: true
+  add_libs: '../../lib/linux/libgobject-wrapper.a'

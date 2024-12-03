@@ -1,0 +1,57 @@
+#pragma once
+
+#include "../../shared/glib/glib/glib-object.h"
+
+extern gboolean g_set_object_wrapper(GObject ** object_ptr, GObject * new_object);
+extern void g_assert_finalize_object_wrapper(GObject * object);
+extern void g_clear_weak_pointer_wrapper(gpointer * weak_pointer_location);
+extern gboolean g_set_weak_pointer_wrapper(gpointer * weak_pointer_location, GObject * new_object);
+extern void glib_autoptr_clear_GTypeModule_wrapper(GTypeModule * _ptr);
+extern void glib_autoptr_cleanup_GTypeModule_wrapper(GTypeModule ** _ptr);
+extern void glib_autoptr_destroy_GTypeModule_wrapper(void * _ptr);
+extern void glib_listautoptr_cleanup_GTypeModule_wrapper(GList ** _l);
+extern void glib_slistautoptr_cleanup_GTypeModule_wrapper(GSList ** _l);
+extern void glib_queueautoptr_cleanup_GTypeModule_wrapper(GQueue ** _q);
+extern void glib_autoptr_clear_GClosure_wrapper(GClosure * _ptr);
+extern void glib_autoptr_cleanup_GClosure_wrapper(GClosure ** _ptr);
+extern void glib_autoptr_destroy_GClosure_wrapper(void * _ptr);
+extern void glib_listautoptr_cleanup_GClosure_wrapper(GList ** _l);
+extern void glib_slistautoptr_cleanup_GClosure_wrapper(GSList ** _l);
+extern void glib_queueautoptr_cleanup_GClosure_wrapper(GQueue ** _q);
+extern void glib_autoptr_clear_GEnumClass_wrapper(GEnumClass * _ptr);
+extern void glib_autoptr_cleanup_GEnumClass_wrapper(GEnumClass ** _ptr);
+extern void glib_autoptr_destroy_GEnumClass_wrapper(void * _ptr);
+extern void glib_listautoptr_cleanup_GEnumClass_wrapper(GList ** _l);
+extern void glib_slistautoptr_cleanup_GEnumClass_wrapper(GSList ** _l);
+extern void glib_queueautoptr_cleanup_GEnumClass_wrapper(GQueue ** _q);
+extern void glib_autoptr_clear_GFlagsClass_wrapper(GFlagsClass * _ptr);
+extern void glib_autoptr_cleanup_GFlagsClass_wrapper(GFlagsClass ** _ptr);
+extern void glib_autoptr_destroy_GFlagsClass_wrapper(void * _ptr);
+extern void glib_listautoptr_cleanup_GFlagsClass_wrapper(GList ** _l);
+extern void glib_slistautoptr_cleanup_GFlagsClass_wrapper(GSList ** _l);
+extern void glib_queueautoptr_cleanup_GFlagsClass_wrapper(GQueue ** _q);
+extern void glib_autoptr_clear_GObject_wrapper(GObject * _ptr);
+extern void glib_autoptr_cleanup_GObject_wrapper(GObject ** _ptr);
+extern void glib_autoptr_destroy_GObject_wrapper(void * _ptr);
+extern void glib_listautoptr_cleanup_GObject_wrapper(GList ** _l);
+extern void glib_slistautoptr_cleanup_GObject_wrapper(GSList ** _l);
+extern void glib_queueautoptr_cleanup_GObject_wrapper(GQueue ** _q);
+extern void glib_autoptr_clear_GInitiallyUnowned_wrapper(GInitiallyUnowned * _ptr);
+extern void glib_autoptr_cleanup_GInitiallyUnowned_wrapper(GInitiallyUnowned ** _ptr);
+extern void glib_autoptr_destroy_GInitiallyUnowned_wrapper(void * _ptr);
+extern void glib_listautoptr_cleanup_GInitiallyUnowned_wrapper(GList ** _l);
+extern void glib_slistautoptr_cleanup_GInitiallyUnowned_wrapper(GSList ** _l);
+extern void glib_queueautoptr_cleanup_GInitiallyUnowned_wrapper(GQueue ** _q);
+extern void glib_autoptr_clear_GParamSpec_wrapper(GParamSpec * _ptr);
+extern void glib_autoptr_cleanup_GParamSpec_wrapper(GParamSpec ** _ptr);
+extern void glib_autoptr_destroy_GParamSpec_wrapper(void * _ptr);
+extern void glib_listautoptr_cleanup_GParamSpec_wrapper(GList ** _l);
+extern void glib_slistautoptr_cleanup_GParamSpec_wrapper(GSList ** _l);
+extern void glib_queueautoptr_cleanup_GParamSpec_wrapper(GQueue ** _q);
+extern void glib_autoptr_clear_GTypeClass_wrapper(GTypeClass * _ptr);
+extern void glib_autoptr_cleanup_GTypeClass_wrapper(GTypeClass ** _ptr);
+extern void glib_autoptr_destroy_GTypeClass_wrapper(void * _ptr);
+extern void glib_listautoptr_cleanup_GTypeClass_wrapper(GList ** _l);
+extern void glib_slistautoptr_cleanup_GTypeClass_wrapper(GSList ** _l);
+extern void glib_queueautoptr_cleanup_GTypeClass_wrapper(GQueue ** _q);
+extern void glib_auto_cleanup_GValue_wrapper(GValue * _ptr);
