@@ -2,7 +2,7 @@ default: setup bindings
 
 setup: glib-setup
 
-bindings: glib gobject
+bindings: glib gobject gmodule
 
 wrapper: glib-wrapper gobject-wrapper
 
@@ -14,7 +14,8 @@ glib-setup:
         'glib/gversionmacros.h' \
         'glib/glib-visibility.h' \
         'gobject/gobject-visibility.h' \
-        'gobject/glib-enumtypes.h'
+        'gobject/glib-enumtypes.h' \
+        'gmodule/gmodule-visibility.h' \
 
 glib:
     {{ RUNIC }} glib/rune.yml
@@ -90,5 +91,13 @@ gobject-wrapper:
     ar rs lib/linux/libgobject-wrapper.a lib/linux/gobject-wrapper.o
     rm lib/linux/gobject-wrapper.o
 
+gmodule:
+    {{ RUNIC }} glib/gmodule/rune.yml
+    sed glib/gmodule/gmodule.odin -i \
+        -e 's/\^glib.char/cstring/g'\
+
 example NAME='hello-glib':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}
+
+check PACKAGE:
+    odin check {{ PACKAGE }} -error-pos-style:unix -vet -no-entry-point

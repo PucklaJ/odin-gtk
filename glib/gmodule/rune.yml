@@ -1,0 +1,40 @@
+version: 0
+platforms:
+  - Linux x86_64
+  - Linux arm64
+from:
+  language: c
+  shared: 'libgmodule-2.0.so'
+  headers:
+    - ../../shared/glib/gmodule/gmodule.h
+  includedirs:
+    - ../../stdinc/
+    - ../../shared/glib/glib/
+    - ../../shared/glib/
+    - ../../shared/glib/_build/glib
+    - ../../shared/glib/_build/
+  extern:
+    - '../../stdinc/*'
+    - '../../shared/glib/glib/*'
+    - '../../shared/glib/_build/glib/*'
+  ignore:
+    macros:
+      - 'G_MODULE_*'
+to:
+  language: odin
+  package: gmodule
+  out: gmodule.odin
+  trim_prefix:
+    types:
+      - g
+      - G
+    functions:
+      - g_module_
+    constants:
+      - G_MODULE_
+      - ERROR_
+  extern:
+    sources:
+      '../../shared/glib/glib/*': 'glib ..'
+      '../../shared/glib/_build/glib/*': 'glib ..'
+    trim_prefix: true
