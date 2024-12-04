@@ -2,9 +2,9 @@ default: setup bindings
 
 setup: glib-setup
 
-bindings: glib gobject gmodule
+bindings: glib gobject gmodule gio
 
-wrapper: glib-wrapper gobject-wrapper
+wrapper: glib-wrapper gobject-wrapper gio-wrapper
 
 RUNIC := 'runic'
 
@@ -16,6 +16,8 @@ glib-setup:
         'gobject/gobject-visibility.h' \
         'gobject/glib-enumtypes.h' \
         'gmodule/gmodule-visibility.h' \
+        'gio/gio-visibility.h' \
+        'gio/gioenumtypes.h' \
 
 glib:
     {{ RUNIC }} glib/rune.yml
@@ -64,10 +66,10 @@ glib:
 [linux]
 glib-wrapper:
     echo '#undef g_steal_pointer' >> glib/glib-wrapper.h
-    mkdir -p lib/linux
+    @mkdir -p lib/linux
     gcc -c -o lib/linux/glib-wrapper.o -Ishared/glib/ -Ishared/glib/_build -Ishared/glib/_build/glib glib/glib-wrapper.c
     ar rs lib/linux/libglib-wrapper.a lib/linux/glib-wrapper.o
-    rm lib/linux/glib-wrapper.o
+    @rm lib/linux/glib-wrapper.o
 
 gobject:
     {{ RUNIC }} glib/gobject/rune.yml
@@ -86,15 +88,33 @@ gobject:
 
 [linux]
 gobject-wrapper:
-    mkdir -p lib/linux
+    @mkdir -p lib/linux
     gcc -c -o lib/linux/gobject-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build glib/gobject/gobject-wrapper.c
     ar rs lib/linux/libgobject-wrapper.a lib/linux/gobject-wrapper.o
-    rm lib/linux/gobject-wrapper.o
+    @rm lib/linux/gobject-wrapper.o
 
 gmodule:
     {{ RUNIC }} glib/gmodule/rune.yml
     sed glib/gmodule/gmodule.odin -i \
         -e 's/\^glib.char/cstring/g'\
+
+gio:
+    {{ RUNIC }} glib/gio/rune.yml
+    sed glib/gio/gio.odin -i \
+        -e 's/\^glib.char/cstring/g' \
+        -e '/^\(FILE_ATTRIBUTE_\|DEBUG_CONTROLLER_\|DRIVE_IDENTIFIER_\|MEMORY_MONITOR_\|MENU_ATTRIBUTE_\|MENU_LINK_\|VOLUME_MONITOR_\|NATIVE_VOLUME_MONITOR_\|NETWORK_MONITOR_\|POWER_PROFILE_MONITOR_\|PROXY_\|TLS_BACKEND_\|TLS_DATABASE_\|VFS_EXTENSION_\|VOLUME_IDENTIFIER_\)/ {s/`//g; s/\\//g}' \
+        -e '/^\(TYPE_\|IO_TYPE_MODULE\)/ {s/`//g; s/(g_//g; s/())//g}' \
+        -e '/^\(DBUS_ERROR\|IO_ERROR\|TYPE_LIST_MODEL\|RESOLVER_ERROR\|RESOURCE_ERROR\|TLS_ERROR\|TLS_CHANNEL_BINDING_ERROR\)/ {s/`//g; s/g_//g; s/()//g}' \
+        -e 's/`TRUE`/glib.TRUE/g' \
+        -e 's/`FALSE`/glib.FALSE/g' \
+        -e '/^VOLUME_IDENTIFIER_KIND_HAL_UDI/s/GLIB_DEPRECATED_MACRO//g' \
+        -e '/^TLS_CHANNEL_BINDING_ERROR/s/bindinerror/binding_error/g' \
+[linux]
+gio-wrapper:
+    @mkdir -p lib/linux
+    gcc -c -o lib/linux/gio-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule glib/gio/gio-wrapper.c
+    ar rs lib/linux/libgio-wrapper.a lib/linux/gio-wrapper.o
+    @rm lib/linux/gio-wrapper.o
 
 example NAME='hello-glib':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}
