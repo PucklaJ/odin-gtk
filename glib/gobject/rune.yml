@@ -47,30 +47,6 @@ from:
       # !!!!This is 64-Bit only!!!!!
       _GClosure: '#SInt8 #Attr Arr 32 #AttrEnd'
       _GParamSpecString: '#SInt8 #Attr Arr 104 #AttrEnd'
-    constants:
-      G_TYPE_FUNDAMENTAL_MAX: '1020 #Untyped'
-      G_TYPE_INVALID: '0 #Untyped'
-      G_TYPE_NONE: '4 #Untyped'
-      G_TYPE_INTERFACE: '8 #Untyped'
-      G_TYPE_CHAR: '12 #Untyped'
-      G_TYPE_UCHAR: '16 #Untyped'
-      G_TYPE_BOOLEAN: '20 #Untyped'
-      G_TYPE_INT: '24 #Untyped'
-      G_TYPE_UINT: '28 #Untyped'
-      G_TYPE_LONG: '32 #Untyped'
-      G_TYPE_ULONG: '36 #Untyped'
-      G_TYPE_INT64: '40 #Untyped'
-      G_TYPE_UINT64: '44 #Untyped'
-      G_TYPE_ENUM: '48 #Untyped'
-      G_TYPE_FLAGS: '52 #Untyped'
-      G_TYPE_FLOAT: '56 #Untyped'
-      G_TYPE_DOUBLE: '60 #Untyped'
-      G_TYPE_STRING: '64 #Untyped'
-      G_TYPE_POINTER: '68 #Untyped'
-      G_TYPE_BOXED: '72 #Untyped'
-      G_TYPE_PARAM: '76 #Untyped'
-      G_TYPE_OBJECT: '80 #Untyped'
-      G_TYPE_VARIANT: '84 #Untyped'
   aliases:
     g_static_mutex_get_mutex_impl: g_static_mutex_get_mutex
 to:
@@ -83,6 +59,8 @@ to:
       - g
       - G
     functions:
+      - g_
+    variables:
       - g_
     constants:
       - G_

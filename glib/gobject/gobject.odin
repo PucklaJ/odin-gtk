@@ -3,111 +3,111 @@ package gobject
 import "core:c/libc"
 import glib ".."
 
-TYPE_FUNDAMENTAL_MAX :: 1020
-TYPE_INVALID :: 0
-TYPE_NONE :: 4
-TYPE_INTERFACE :: 8
-TYPE_CHAR :: 12
-TYPE_UCHAR :: 16
-TYPE_BOOLEAN :: 20
-TYPE_INT :: 24
-TYPE_UINT :: 28
-TYPE_LONG :: 32
-TYPE_ULONG :: 36
-TYPE_INT64 :: 40
-TYPE_UINT64 :: 44
-TYPE_ENUM :: 48
-TYPE_FLAGS :: 52
-TYPE_FLOAT :: 56
-TYPE_DOUBLE :: 60
-TYPE_STRING :: 64
-TYPE_POINTER :: 68
-TYPE_BOXED :: 72
-TYPE_PARAM :: 76
-TYPE_OBJECT :: 80
-TYPE_VARIANT :: 84
-VALUE_NOCOPY_CONTENTS :: `(1 << 27)`
-VALUE_INTERNED_STRING :: `(1 << 28)`
-PARAM_STATIC_STRINGS :: `(G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB)`
-PARAM_MASK :: `(0x000000ff)`
-PARAM_USER_SHIFT :: `(8)`
+TYPE_FUNDAMENTAL_MAX :: (255 << (2))
+TYPE_INVALID :: ( ((0) << (2)))
+TYPE_NONE :: ( ((1) << (2)))
+TYPE_INTERFACE :: ( ((2) << (2)))
+TYPE_CHAR :: ( ((3) << (2)))
+TYPE_UCHAR :: ( ((4) << (2)))
+TYPE_BOOLEAN :: ( ((5) << (2)))
+TYPE_INT :: ( ((6) << (2)))
+TYPE_UINT :: ( ((7) << (2)))
+TYPE_LONG :: ( ((8) << (2)))
+TYPE_ULONG :: ( ((9) << (2)))
+TYPE_INT64 :: ( ((10) << (2)))
+TYPE_UINT64 :: ( ((11) << (2)))
+TYPE_ENUM :: ( ((12) << (2)))
+TYPE_FLAGS :: ( ((13) << (2)))
+TYPE_FLOAT :: ( ((14) << (2)))
+TYPE_DOUBLE :: ( ((15) << (2)))
+TYPE_STRING :: ( ((16) << (2)))
+TYPE_POINTER :: ( ((17) << (2)))
+TYPE_BOXED :: ( ((18) << (2)))
+TYPE_PARAM :: ( ((19) << (2)))
+TYPE_OBJECT :: ( ((20) << (2)))
+TYPE_VARIANT :: ( ((21) << (2)))
+VALUE_NOCOPY_CONTENTS :: (1 << 27)
+VALUE_INTERNED_STRING :: (1 << 28)
+PARAM_STATIC_STRINGS :: (ParamFlags.PARAM_STATIC_NAME | ParamFlags.PARAM_STATIC_NICK | ParamFlags.PARAM_STATIC_BLURB)
+PARAM_MASK :: (0x000000ff)
+PARAM_USER_SHIFT :: (8)
 SIGNAL_FLAGS_MASK :: 511
 SIGNAL_MATCH_MASK :: 63
-SIGNAL_TYPE_STATIC_SCOPE :: `(((GType) (1 << 0)))`
-TYPE_DATE :: `(g_date_get_type ())`
-TYPE_STRV :: `(g_strv_get_type ())`
-TYPE_GSTRING :: `(g_gstring_get_type ())`
-TYPE_HASH_TABLE :: `(g_hash_table_get_type ())`
-TYPE_REGEX :: `(g_regex_get_type ())`
-TYPE_MATCH_INFO :: `(g_match_info_get_type ())`
-TYPE_ARRAY :: `(g_array_get_type ())`
-TYPE_BYTE_ARRAY :: `(g_byte_array_get_type ())`
-TYPE_PTR_ARRAY :: `(g_ptr_array_get_type ())`
-TYPE_BYTES :: `(g_bytes_get_type ())`
-TYPE_VARIANT_TYPE :: `(g_variant_type_get_gtype ())`
-TYPE_ERROR :: `(g_error_get_type ())`
-TYPE_DATE_TIME :: `(g_date_time_get_type ())`
-TYPE_TIME_ZONE :: `(g_time_zone_get_type ())`
-TYPE_IO_CHANNEL :: `(g_io_channel_get_type ())`
-TYPE_IO_CONDITION :: `(g_io_condition_get_type ())`
-TYPE_VARIANT_BUILDER :: `(g_variant_builder_get_type ())`
-TYPE_VARIANT_DICT :: `(g_variant_dict_get_type ())`
-TYPE_MAIN_LOOP :: `(g_main_loop_get_type ())`
-TYPE_MAIN_CONTEXT :: `(g_main_context_get_type ())`
-TYPE_SOURCE :: `(g_source_get_type ())`
-TYPE_POLLFD :: `(g_pollfd_get_type ())`
-TYPE_MARKUP_PARSE_CONTEXT :: `(g_markup_parse_context_get_type ())`
-TYPE_KEY_FILE :: `(g_key_file_get_type ())`
-TYPE_MAPPED_FILE :: `(g_mapped_file_get_type ())`
-TYPE_THREAD :: `(g_thread_get_type ())`
-TYPE_CHECKSUM :: `(g_checksum_get_type ())`
-TYPE_OPTION_GROUP :: `(g_option_group_get_type ())`
-TYPE_URI :: `(g_uri_get_type ())`
-TYPE_TREE :: `(g_tree_get_type ())`
-TYPE_PATTERN_SPEC :: `(g_pattern_spec_get_type ())`
-TYPE_BOOKMARK_FILE :: `(g_bookmark_file_get_type ())`
-TYPE_HMAC :: `(g_hmac_get_type ())`
-TYPE_DIR :: `(g_dir_get_type ())`
-TYPE_RAND :: `(g_rand_get_type ())`
-TYPE_STRV_BUILDER :: `(g_strv_builder_get_type ())`
-TYPE_CLOSURE :: `(g_closure_get_type ())`
-TYPE_VALUE :: `(g_value_get_type ())`
-TYPE_INITIALLY_UNOWNED :: `(g_initially_unowned_get_type())`
-TYPE_BINDING_FLAGS :: `(g_binding_flags_get_type ())`
-TYPE_BINDING :: `(g_binding_get_type ())`
-TYPE_BINDING_GROUP :: `(g_binding_group_get_type())`
-TYPE_UNICODE_TYPE :: `(g_unicode_type_get_type ())`
-TYPE_UNICODE_BREAK_TYPE :: `(g_unicode_break_type_get_type ())`
-TYPE_UNICODE_SCRIPT :: `(g_unicode_script_get_type ())`
-TYPE_NORMALIZE_MODE :: `(g_normalize_mode_get_type ())`
-TYPE_PARAM_CHAR :: `(g_param_spec_types[0])`
-TYPE_PARAM_UCHAR :: `(g_param_spec_types[1])`
-TYPE_PARAM_BOOLEAN :: `(g_param_spec_types[2])`
-TYPE_PARAM_INT :: `(g_param_spec_types[3])`
-TYPE_PARAM_UINT :: `(g_param_spec_types[4])`
-TYPE_PARAM_LONG :: `(g_param_spec_types[5])`
-TYPE_PARAM_ULONG :: `(g_param_spec_types[6])`
-TYPE_PARAM_INT64 :: `(g_param_spec_types[7])`
-TYPE_PARAM_UINT64 :: `(g_param_spec_types[8])`
-TYPE_PARAM_UNICHAR :: `(g_param_spec_types[9])`
-TYPE_PARAM_ENUM :: `(g_param_spec_types[10])`
-TYPE_PARAM_FLAGS :: `(g_param_spec_types[11])`
-TYPE_PARAM_FLOAT :: `(g_param_spec_types[12])`
-TYPE_PARAM_DOUBLE :: `(g_param_spec_types[13])`
-TYPE_PARAM_STRING :: `(g_param_spec_types[14])`
-TYPE_PARAM_PARAM :: `(g_param_spec_types[15])`
-TYPE_PARAM_BOXED :: `(g_param_spec_types[16])`
-TYPE_PARAM_POINTER :: `(g_param_spec_types[17])`
-TYPE_PARAM_VALUE_ARRAY :: `(g_param_spec_types[18]) GLIB_DEPRECATED_MACRO`
-TYPE_PARAM_OBJECT :: `(g_param_spec_types[19])`
-TYPE_PARAM_OVERRIDE :: `(g_param_spec_types[20])`
-TYPE_PARAM_GTYPE :: `(g_param_spec_types[21])`
-TYPE_PARAM_VARIANT :: `(g_param_spec_types[22])`
-TYPE_SIGNAL_GROUP :: `(g_signal_group_get_type())`
-TYPE_TYPE_MODULE :: `(g_type_module_get_type ())`
-TYPE_TYPE_PLUGIN :: `(g_type_plugin_get_type ())`
-TYPE_VALUE_ARRAY :: `(g_value_array_get_type ()) GLIB_DEPRECATED_MACRO_FOR ((g_array_get_type ()))`
-TYPE_GTYPE :: `(g_gtype_get_type())`
+SIGNAL_TYPE_STATIC_SCOPE :: (( (1 << 0)))
+TYPE_DATE :: date_get_type 
+TYPE_STRV :: strv_get_type 
+TYPE_GSTRING :: gstring_get_type 
+TYPE_HASH_TABLE :: hash_table_get_type 
+TYPE_REGEX :: regex_get_type 
+TYPE_MATCH_INFO :: match_info_get_type 
+TYPE_ARRAY :: array_get_type 
+TYPE_BYTE_ARRAY :: byte_array_get_type 
+TYPE_PTR_ARRAY :: ptr_array_get_type 
+TYPE_BYTES :: bytes_get_type 
+TYPE_VARIANT_TYPE :: variant_type_get_gtype 
+TYPE_ERROR :: error_get_type 
+TYPE_DATE_TIME :: date_time_get_type 
+TYPE_TIME_ZONE :: time_zone_get_type 
+TYPE_IO_CHANNEL :: io_channel_get_type 
+TYPE_IO_CONDITION :: io_condition_get_type 
+TYPE_VARIANT_BUILDER :: variant_builder_get_type 
+TYPE_VARIANT_DICT :: variant_dict_get_type 
+TYPE_MAIN_LOOP :: main_loop_get_type 
+TYPE_MAIN_CONTEXT :: main_context_get_type 
+TYPE_SOURCE :: source_get_type 
+TYPE_POLLFD :: pollfd_get_type 
+TYPE_MARKUP_PARSE_CONTEXT :: markup_parse_context_get_type 
+TYPE_KEY_FILE :: key_file_get_type 
+TYPE_MAPPED_FILE :: mapped_file_get_type 
+TYPE_THREAD :: thread_get_type 
+TYPE_CHECKSUM :: checksum_get_type 
+TYPE_OPTION_GROUP :: option_group_get_type 
+TYPE_URI :: uri_get_type 
+TYPE_TREE :: tree_get_type 
+TYPE_PATTERN_SPEC :: pattern_spec_get_type 
+TYPE_BOOKMARK_FILE :: bookmark_file_get_type 
+TYPE_HMAC :: hmac_get_type 
+TYPE_DIR :: dir_get_type 
+TYPE_RAND :: rand_get_type 
+TYPE_STRV_BUILDER :: strv_builder_get_type 
+TYPE_CLOSURE :: closure_get_type 
+TYPE_VALUE :: value_get_type 
+TYPE_INITIALLY_UNOWNED :: initially_unowned_get_type
+TYPE_BINDING_FLAGS :: binding_flags_get_type 
+TYPE_BINDING :: binding_get_type 
+TYPE_BINDING_GROUP :: binding_group_get_type
+TYPE_UNICODE_TYPE :: unicode_type_get_type 
+TYPE_UNICODE_BREAK_TYPE :: unicode_break_type_get_type 
+TYPE_UNICODE_SCRIPT :: unicode_script_get_type 
+TYPE_NORMALIZE_MODE :: normalize_mode_get_type 
+TYPE_PARAM_CHAR :: #force_inline proc "c" () -> Type { return param_spec_types[0] }
+TYPE_PARAM_UCHAR :: #force_inline proc "c" () -> Type { return param_spec_types[1] }
+TYPE_PARAM_BOOLEAN :: #force_inline proc "c" () -> Type { return param_spec_types[2] }
+TYPE_PARAM_INT :: #force_inline proc "c" () -> Type { return param_spec_types[3] }
+TYPE_PARAM_UINT :: #force_inline proc "c" () -> Type { return param_spec_types[4] }
+TYPE_PARAM_LONG :: #force_inline proc "c" () -> Type { return param_spec_types[5] }
+TYPE_PARAM_ULONG :: #force_inline proc "c" () -> Type { return param_spec_types[6] }
+TYPE_PARAM_INT64 :: #force_inline proc "c" () -> Type { return param_spec_types[7] }
+TYPE_PARAM_UINT64 :: #force_inline proc "c" () -> Type { return param_spec_types[8] }
+TYPE_PARAM_UNICHAR :: #force_inline proc "c" () -> Type { return param_spec_types[9] }
+TYPE_PARAM_ENUM :: #force_inline proc "c" () -> Type { return param_spec_types[10] }
+TYPE_PARAM_FLAGS :: #force_inline proc "c" () -> Type { return param_spec_types[11] }
+TYPE_PARAM_FLOAT :: #force_inline proc "c" () -> Type { return param_spec_types[12] }
+TYPE_PARAM_DOUBLE :: #force_inline proc "c" () -> Type { return param_spec_types[13] }
+TYPE_PARAM_STRING :: #force_inline proc "c" () -> Type { return param_spec_types[14] }
+TYPE_PARAM_PARAM :: #force_inline proc "c" () -> Type { return param_spec_types[15] }
+TYPE_PARAM_BOXED :: #force_inline proc "c" () -> Type { return param_spec_types[16] }
+TYPE_PARAM_POINTER :: #force_inline proc "c" () -> Type { return param_spec_types[17] }
+TYPE_PARAM_VALUE_ARRAY :: #force_inline proc "c" () -> Type { return param_spec_types[18] } 
+TYPE_PARAM_OBJECT :: #force_inline proc "c" () -> Type { return param_spec_types[19] }
+TYPE_PARAM_OVERRIDE :: #force_inline proc "c" () -> Type { return param_spec_types[20] }
+TYPE_PARAM_GTYPE :: #force_inline proc "c" () -> Type { return param_spec_types[21] }
+TYPE_PARAM_VARIANT :: #force_inline proc "c" () -> Type { return param_spec_types[22] }
+TYPE_SIGNAL_GROUP :: signal_group_get_type
+TYPE_TYPE_MODULE :: type_module_get_type 
+TYPE_TYPE_PLUGIN :: type_plugin_get_type 
+TYPE_VALUE_ARRAY :: value_array_get_type  
+TYPE_GTYPE :: gtype_get_type
 
 Type :: glib.size
 array_union_anon_0 :: struct #raw_union {v_int: glib.int_, v_uint: glib.uint_, v_long: glib.long, v_ulong: glib.ulong, v_int64: glib.int64, v_uint64: glib.uint64, v_float: glib.float, v_double: glib.double, v_pointer: glib.pointer, }
@@ -1781,7 +1781,7 @@ foreign gobject_runic {
     param_spec_variant :: proc(name: cstring, nick: cstring, blurb: cstring, type: ^glib.VariantType, default_value: ^glib.Variant, flags: ParamFlags) -> ^ParamSpec ---
 
     @(link_name = "g_param_spec_types")
-    g_param_spec_types: [^]Type
+    param_spec_types: [^]Type
 
     @(link_name = "g_signal_group_get_type")
     signal_group_get_type :: proc() -> Type ---

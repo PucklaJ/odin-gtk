@@ -1,7 +1,9 @@
 default: setup bindings
 
 setup: glib-setup
+
 bindings: glib gobject
+
 wrapper: glib-wrapper gobject-wrapper
 
 RUNIC := 'runic'
@@ -28,7 +30,18 @@ glib-wrapper:
 
 gobject:
     {{ RUNIC }} glib/gobject/rune.yml
-    sed glib/gobject/gobject.odin -i -e 's/\^glib.char/cstring/g'
+    sed glib/gobject/gobject.odin -i \
+        -e 's/\^glib.char/cstring/g' \
+        -e '/^\(TYPE_\|VALUE_\|SIGNAL_\|PARAM_\)/s/`//g' \
+        -e '/^\(TYPE_\|SIGNAL_\)/s/(GType)//g' \
+        -e '/^PARAM_STATIC_STRINGS/s/G_/ParamFlags./g' \
+        -e 's/GLIB_DEPRECATED_MACRO//g' \
+        -e 's/_FOR ((g_array_get_type ()))//g' \
+        -e '/^TYPE_/s/(g_//g' \
+        -e '/^TYPE_/s/())//g' \
+        -e '/^TYPE_/s/])/]/g' \
+        -e '/^TYPE_/s/param/#force_inline proc "c" () -> Type { return param/g' \
+        -e '/^TYPE_/s/\]/\] }/g'
 
 [linux]
 gobject-wrapper:
