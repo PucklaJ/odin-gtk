@@ -208,7 +208,7 @@ Pid :: i32
 short :: i16
 long :: i64
 int_ :: i32
-boolean :: int_
+boolean :: b32
 uchar :: u8
 ushort :: u16
 ulong :: u64

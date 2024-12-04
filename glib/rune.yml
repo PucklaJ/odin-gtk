@@ -38,6 +38,7 @@ from:
       guint32: '#UInt32'
       gint64: '#SInt64'
       guint64: '#UInt64'
+      gboolean: '#Bool32'
 
       _GDoubleIEEE754: 'gdouble'
       _GFloatIEEE754: 'gfloat'
