@@ -49,6 +49,14 @@ from:
       GRWLockReaderLocker: '#RawPtr'
 
       GRefString: 'gchar'
+    constants: &any_constant_overwrites
+      'FALSE': '0 #Untyped'
+      'TRUE': '1 #Untyped'
+      'SOURCE_REMOVE': '0 #Untyped'
+      'SOURCE_CONTINUE': '1 #Untyped'
+      'G_MAXSIZE': '"USIZE_MAX" #Untyped'
+      'G_MINSSIZE': '"SSIZE_MIN" #Untyped'
+      'G_MAXSSIZE': '"SSIZE_MAX" #Untyped'
   overwrite.linux.x86_64: &overwrites_64
     functions:
       <<: *any_function_overwrites
@@ -59,6 +67,8 @@ from:
       gintptr: '#SInt64'
       guintptr: '#UInt64'
       <<: *any_type_overwrites
+    constants:
+      <<: *any_constant_overwrites
   overwrite.linux.arm64:
     <<: *overwrites_64
   overwrite.windows.x86_64:
@@ -75,6 +85,8 @@ from:
       gintptr: '#SInt32'
       guintptr: '#UInt32'
       <<: *any_type_overwrites
+    constants:
+      <<: *any_constant_overwrites
   overwrite.linux.arm32:
     <<: *overwrites_32
   overwrite.windows.x86:
@@ -91,8 +103,28 @@ from:
       - GScannerConfig
       - va_list
     macros:
-      - 'G_*'
+      - '*GNUC*'
+      - 'G_C_STD_VERSION'
+      - 'G_*INLINE*'
+      - 'GLIB_*'
+      - '_GLIB_*'
       - 'g_*'
+      - 'G_STRLOC'
+      - 'G_STRFUNC'
+      - 'NULL'
+      - 'G_*_INIT'
+      - 'G_OPTION_ENTRY_NULL'
+      - 'G_STMT_*'
+      - 'G_*RETURN*'
+      - 'G_DEPRECATED'
+      - 'G_VA_COPY'
+      - 'G_MODULE_SUFFIX'
+      - 'G_DIR_SEP*'
+      - 'G_SEARCHPATH_SEP*'
+      - 'G_UNICODE_COMBINING_MARK'
+      - 'G_OPTION_REMAINING'
+      - 'G_CSET_LATIN*'
+      - 'G_URI_ERROR'
 to:
   language: odin
   package: glib

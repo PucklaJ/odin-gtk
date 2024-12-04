@@ -4,6 +4,193 @@ package glib
 import "core:c/libc"
 import "core:sys/posix"
 
+ANALYZER_ANALYZING :: 0
+FALSE :: 0
+TRUE :: 1
+MINFLOAT :: min(float)
+MAXFLOAT :: max(float)
+MINDOUBLE :: min(double)
+MAXDOUBLE :: max(double)
+MINSHORT :: min(short)
+MAXSHORT :: max(short)
+MAXUSHORT :: max(ushort)
+MININT :: min(int_)
+MAXINT :: max(int_)
+MAXUINT :: max(uint_)
+MINLONG :: min(long)
+MAXLONG :: max(long)
+MAXULONG :: max(ulong)
+GINT16_MODIFIER :: "h"
+GINT16_FORMAT :: "hi"
+GUINT16_FORMAT :: "hu"
+GINT32_MODIFIER :: ""
+GINT32_FORMAT :: "i"
+GUINT32_FORMAT :: "u"
+HAVE_GINT64 :: 1
+GINT64_MODIFIER :: "l"
+GINT64_FORMAT :: "li"
+GUINT64_FORMAT :: "lu"
+GSIZE_MODIFIER :: "l"
+GSSIZE_MODIFIER :: "l"
+GSIZE_FORMAT :: "lu"
+GSSIZE_FORMAT :: "li"
+MAXSIZE :: max(size)
+MINSSIZE :: min(ssize)
+MAXSSIZE :: max(ssize)
+MINOFFSET :: ( (-(0x7fffffffffffffff) - (1)))
+MAXOFFSET :: (0x7fffffffffffffff)
+GOFFSET_MODIFIER :: "l"
+GOFFSET_FORMAT :: "li"
+POLLFD_FORMAT :: "%d"
+GINTPTR_MODIFIER :: "l"
+GINTPTR_FORMAT :: "li"
+GUINTPTR_FORMAT :: "lu"
+HAVE_ISO_VARARGS :: 1
+HAVE_GROWING_STACK :: 0
+BYTE_ORDER :: 1234
+PID_FORMAT :: "i"
+MININT8 :: min(int8)
+MAXINT8 :: max(int8)
+MAXUINT8 :: max(uint8)
+MININT16 :: min(int16)
+MAXINT16 :: max(int16)
+MAXUINT16 :: max(uint16)
+MININT32 :: min(int32)
+MAXINT32 :: max(int32)
+MAXUINT32 :: max(uint32)
+MININT64 :: min(int64)
+MAXINT64 :: max(int64)
+MAXUINT64 :: max(uint64)
+E :: 2.7182818284590451
+LN2 :: 0.6931471805599453
+LN10 :: 2.3025850929940459
+PI :: 3.1415926535897931
+PI_2 :: 1.5707963267948966
+PI_4 :: 0.7853981633974483
+SQRT2 :: 1.4142135623730951
+LITTLE_ENDIAN :: 1234
+BIG_ENDIAN :: 4321
+PDP_ENDIAN :: 3412
+IEEE754_FLOAT_BIAS :: (127)
+IEEE754_DOUBLE_BIAS :: (1023)
+LOG_2_BASE_10 :: (0.30102999566398119521)
+OS_INFO_KEY_NAME :: "NAME"
+OS_INFO_KEY_PRETTY_NAME :: "PRETTY_NAME"
+OS_INFO_KEY_VERSION :: "VERSION"
+OS_INFO_KEY_VERSION_CODENAME :: "VERSION_CODENAME"
+OS_INFO_KEY_VERSION_ID :: "VERSION_ID"
+OS_INFO_KEY_ID :: "ID"
+OS_INFO_KEY_HOME_URL :: "HOME_URL"
+OS_INFO_KEY_DOCUMENTATION_URL :: "DOCUMENTATION_URL"
+OS_INFO_KEY_SUPPORT_URL :: "SUPPORT_URL"
+OS_INFO_KEY_BUG_REPORT_URL :: "BUG_REPORT_URL"
+OS_INFO_KEY_PRIVACY_POLICY_URL :: "PRIVACY_POLICY_URL"
+THREAD_ERROR :: `g_thread_error_quark ()`
+TIME_SPAN_DAY :: ((86400000000))
+TIME_SPAN_HOR :: ((3600000000))
+TIME_SPAN_MINTE :: ((60000000))
+TIME_SPAN_SECOND :: ((1000000))
+TIME_SPAN_MIISECOND :: ((1000))
+BOOKMARK_FILE_ERROR :: `(g_bookmark_file_error_quark ())`
+CONVERT_ERROR :: `g_convert_error_quark()`
+DATALIST_FLAGS_MASK :: 3
+DATE_BAD_JIAN :: 0
+DATE_BAD_DAY :: 0
+DATE_BAD_YEAR :: 0
+FILE_ERROR :: `g_file_error_quark ()`
+MEM_ALIGN :: 8
+HOOK_FLAG_USER_SHIFT :: `(4)`
+PRIORITY_HIGH :: -100
+PRIORITY_DEFAULT :: 0
+PRIORITY_HIGH_IDLE :: 100
+PRIORITY_DEFAULT_IDLE :: 200
+PRIORITY_LOW :: 300
+SOURCE_REMOVE :: `(0)`
+SOURCE_CONTINUE :: `(!(0))`
+UNICHAR_MAX_DECOMPOSITION_LENGTH :: 18
+STR_DELIMITERS :: "_-|> <."
+ASCII_DTOSTR_BUF_SIZE :: (29 + 10)
+NUMBER_PARSER_ERROR :: `(g_number_parser_error_quark ())`
+IO_CHANNEL_ERROR :: `g_io_channel_error_quark()`
+KEY_FILE_ERROR :: `g_key_file_error_quark()`
+KEY_FILE_DESKTOP_GROUP :: "Desktop Entry"
+KEY_FILE_DESKTOP_KEY_TYPE :: "Type"
+KEY_FILE_DESKTOP_KEY_VERSION :: "Version"
+KEY_FILE_DESKTOP_KEY_NAME :: "Name"
+KEY_FILE_DESKTOP_KEY_GENERIC_NAME :: "GenericName"
+KEY_FILE_DESKTOP_KEY_NO_DISPLAY :: "NoDisplay"
+KEY_FILE_DESKTOP_KEY_COMMENT :: "Comment"
+KEY_FILE_DESKTOP_KEY_ICON :: "Icon"
+KEY_FILE_DESKTOP_KEY_HIDDEN :: "Hidden"
+KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN :: "OnlyShowIn"
+KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN :: "NotShowIn"
+KEY_FILE_DESKTOP_KEY_TRY_EXEC :: "TryExec"
+KEY_FILE_DESKTOP_KEY_EXEC :: "Exec"
+KEY_FILE_DESKTOP_KEY_PATH :: "Path"
+KEY_FILE_DESKTOP_KEY_TERMINAL :: "Terminal"
+KEY_FILE_DESKTOP_KEY_MIME_TYPE :: "MimeType"
+KEY_FILE_DESKTOP_KEY_CATEGORIES :: "Categories"
+KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY :: "StartupNotify"
+KEY_FILE_DESKTOP_KEY_STARTUP_WM_CLASS :: "StartupWMClass"
+KEY_FILE_DESKTOP_KEY_URL :: "URL"
+KEY_FILE_DESKTOP_KEY_DBUS_ACTIVATABLE :: "DBusActivatable"
+KEY_FILE_DESKTOP_KEY_ACTIONS :: "Actions"
+KEY_FILE_DESKTOP_TYPE_APPLICATION :: "Application"
+KEY_FILE_DESKTOP_TYPE_LINK :: "Link"
+KEY_FILE_DESKTOP_TYPE_DIRECTORY :: "Directory"
+MARKUP_ERROR :: `g_markup_error_quark ()`
+VARIANT_TYPE_BOOLEAN :: ( "b")
+VARIANT_TYPE_BYTE :: ( "y")
+VARIANT_TYPE_INT16 :: ( "n")
+VARIANT_TYPE_UINT16 :: ( "q")
+VARIANT_TYPE_INT32 :: ( "i")
+VARIANT_TYPE_UINT32 :: ( "u")
+VARIANT_TYPE_INT64 :: ( "x")
+VARIANT_TYPE_UINT64 :: ( "t")
+VARIANT_TYPE_DOUBLE :: ( "d")
+VARIANT_TYPE_STRING :: ( "s")
+VARIANT_TYPE_OBJECT_PATH :: ( "o")
+VARIANT_TYPE_SIGNATURE :: ( "g")
+VARIANT_TYPE_VARIANT :: ( "v")
+VARIANT_TYPE_HANDLE :: ( "h")
+VARIANT_TYPE_UNIT :: ( "()")
+VARIANT_TYPE_ANY :: ( "*")
+VARIANT_TYPE_BASIC :: ( "?")
+VARIANT_TYPE_MAYBE :: ( "m*")
+VARIANT_TYPE_ARRAY :: ( "a*")
+VARIANT_TYPE_TUPLE :: ( "r")
+VARIANT_TYPE_DICT_ENTRY :: ( "{?*}")
+VARIANT_TYPE_DICTIONARY :: ( "a{?*}")
+VARIANT_TYPE_STRING_ARRAY :: ( "as")
+VARIANT_TYPE_OBJECT_PATH_ARRAY :: ( "ao")
+VARIANT_TYPE_BYTESTRING :: ( "ay")
+VARIANT_TYPE_BYTESTRING_ARRAY :: ( "aay")
+VARIANT_TYPE_VARDICT :: ( "a{sv}")
+VARIANT_PARSE_ERROR :: `(g_variant_parse_error_quark ())`
+LOG_LEVEL_USER_SHIFT :: (8)
+LOG_FATAL_MASK :: (LogLevelFlags.LOG_FLAG_RECURSION | LogLevelFlags.LOG_LEVEL_ERROR)
+LOG_DOMAIN :: ( 0)
+OPTION_ERROR :: `(g_option_error_quark ())`
+REGEX_ERROR :: `g_regex_error_quark ()`
+CSET_A_2_Z :: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+CSET_a_2_z :: "abcdefghijklmnopqrstuvwxyz"
+CSET_DIGITS :: "0123456789"
+SHELL_ERROR :: `g_shell_error_quark ()`
+SPAWN_ERROR :: `g_spawn_error_quark ()`
+SPAWN_EXIT_ERROR :: `g_spawn_exit_error_quark ()`
+TEST_OPTION_ISOLATE_DIRS :: "isolate_dirs"
+USEC_PER_SEC :: 1000000
+URI_RESERVED_CHARS_GENERIC_DELIMITERS :: ":/?#[]@"
+URI_RESERVED_CHARS_SUBCOMPONENT_DELIMITERS :: "!$&'()*+,;="
+URI_RESERVED_CHARS_ALLOWED_IN_PATH_ELEMENT :: "!$&'()*+,;=:@"
+URI_RESERVED_CHARS_ALLOWED_IN_PATH :: "!$&'()*+,;=:@/"
+URI_RESERVED_CHARS_ALLOWED_IN_USERINFO :: "!$&'()*+,;=:"
+ALLOC_ONLY :: 1
+ALLOC_AND_FREE :: 2
+ALLOCATOR_LIST :: 1
+ALLOCATOR_SLIST :: 2
+ALLOCATOR_NODE :: 3
+
 int8 :: i8
 uint8 :: u8
 int16 :: i16
@@ -7324,6 +7511,40 @@ foreign glib_runic {
     auto_cleanup_GPathBuf :: proc(_ptr: ^PathBuf) ---
 
 }
+
+date_weekday :: date_get_weekday
+
+date_month :: date_get_month
+
+date_year :: date_get_year
+
+date_day :: date_get_day
+
+date_julian :: date_get_julian
+
+date_day_of_year :: date_get_day_of_year
+
+date_monday_week_of_year :: date_get_monday_week_of_year
+
+date_sunday_week_of_year :: date_get_sunday_week_of_year
+
+date_days_in_month :: date_get_days_in_month
+
+date_monday_weeks_in_year :: date_get_monday_weeks_in_year
+
+date_sunday_weeks_in_year :: date_get_sunday_weeks_in_year
+
+dirname :: path_get_dirname
+
+list_free1 :: list_free_1
+
+slist_free1 :: slist_free_1
+
+string_sprintf :: string_printf
+
+string_sprintfa :: string_append_printf
+
+static_mutex_get_mutex :: static_mutex_get_mutex_impl
 
 when (ODIN_ARCH == .amd64) {
 
