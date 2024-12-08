@@ -1,10 +1,12 @@
-default: setup bindings
+default: setup wrapper
 
 setup: glib-setup
 
-bindings: glib gobject gmodule gio
+bindings: glib-all
+glib-all: glib gobject gmodule gio girepository
 
-wrapper: glib-wrapper gobject-wrapper gio-wrapper
+wrapper:  glib-wrapper-all
+glib-wrapper-all: glib-wrapper gobject-wrapper gio-wrapper girepository-wrapper
 
 RUNIC := 'runic'
 
@@ -18,6 +20,7 @@ glib-setup:
         'gmodule/gmodule-visibility.h' \
         'gio/gio-visibility.h' \
         'gio/gioenumtypes.h' \
+        'girepository/gi-visibility.h' \
 
 glib:
     {{ RUNIC }} glib/rune.yml
@@ -115,6 +118,18 @@ gio-wrapper:
     gcc -c -o lib/linux/gio-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule glib/gio/gio-wrapper.c
     ar rs lib/linux/libgio-wrapper.a lib/linux/gio-wrapper.o
     @rm lib/linux/gio-wrapper.o
+
+girepository:
+    {{ RUNIC }} glib/girepository/rune.yml
+    sed glib/girepository/girepository.odin -i \
+        -e '/^\(TYPE_\|[A-Z]\+_ERROR\|\)/ {s/`//g; s/(gi_//g; s/())//g}' \
+        -e 's/\(TYPE_TAG_N_TYPES :: \).*/\1int(TypeTag.TYPE_TAG_UNICHAR) + 1/g' \
+[linux]
+girepository-wrapper:
+    @mkdir -p lib/linux
+    gcc -c -o lib/linux/girepository-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/glib/_build/girepository glib/girepository/girepository-wrapper.c
+    ar rs lib/linux/libgirepository-wrapper.a lib/linux/girepository-wrapper.o
+    @rm lib/linux/girepository-wrapper.o
 
 example NAME='hello-glib':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}
