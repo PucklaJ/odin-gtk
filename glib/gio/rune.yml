@@ -55,10 +55,14 @@ to:
       - G
     functions:
       - g_
+      - glib_
     variables:
       - g_
     constants:
       - G_
+  trim_suffix:
+    functions:
+      - _wrapper
   extern:
     sources:
       '../../stdinc/stdarg.h': 'core:c/libc'
