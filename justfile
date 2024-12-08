@@ -2,7 +2,7 @@ default: setup wrapper
 
 setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup graphene-setup
 
-bindings: glib-all gdk-pixbuf cairo pango-all graphene
+bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk
 glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
@@ -208,6 +208,24 @@ graphene-wrapper:
     gcc -c -o lib/linux/graphene-wrapper.o -Ishared/graphene/_build/include graphene/graphene-wrapper.c
     ar rs lib/linux/libgraphene-wrapper.a lib/linux/graphene-wrapper.o
     @rm lib/linux/graphene-wrapper.o
+
+gtk-setup:
+  cd shared/gtk && meson setup _build
+  ninja -C shared/gtk/_build \
+      'gdk/version/gdkversionmacros.h' \
+      'gdk/version/gdk-visibility.h' \
+      'gtk/css/gtkcssenumtypes.h' \
+      'gdk/gdkenumtypes.h' \
+      'gsk/gskenumtypes.h' \
+      'gtk/gtktypebuiltins.h' \
+
+gtk:
+    {{ RUNIC }} gtk/rune.yml
+    sed gtk/gtk.odin -i \
+        -e 's/cairo.t/cairo.context_t/g' \
+        -e 's/^Snapshot :: Snapshot//g' \
+        -e 's/^SnapshotClass :: _GtkSnapshotClass//g' \
+        -e '0,/Snapshot_queueautoptr/{s/Snapshot_.*//g}' \
 
 example NAME='hello-glib':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}

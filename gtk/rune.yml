@@ -1,0 +1,87 @@
+version: 0
+platforms:
+  - Linux x86_64
+from:
+  language: c
+  shared: 'libgtk-4.so'
+  headers:
+    - ../shared/gtk/gtk/gtk.h
+  includedirs:
+    - ../stdinc/
+    - ../shared/gtk/
+    - ../shared/glib/
+    - ../shared/glib/glib/
+    - ../shared/glib/gmodule/
+    - ../shared/glib/_build/
+    - ../shared/glib/_build/glib/
+    - ../shared/gtk/_build/
+    - ../shared/cairo/src/
+    - ../shared/cairo/_build/src/
+    - ../shared/pango/
+    - ../shared/pango/_build/
+    - ../shared/gdk-pixbuf/
+    - ../shared/gdk-pixbuf/_build/
+    - ../shared/graphene/include/
+    - ../shared/graphene/_build/include/
+  defines:
+    GTK_COMPILATION: 1
+    GLIB_COMPILATION: 1
+  load_all_includes: true
+  extern:
+    - '../stdinc/*'
+    - '../stdinc/sys/*'
+    - '../shared/glib/glib/*'
+    - '../shared/glib/glib/deprecated/*'
+    - '../shared/glib/_build/glib/*'
+    - '../shared/glib/gobject/*'
+    - '../shared/glib/gmodule/*'
+    - '../shared/glib/gio/*'
+    - '../shared/cairo/src/*'
+    - '../shared/cairo/_build/src/*'
+    - '../shared/pango/pango/*'
+    - '../shared/pango/_build/pango/*'
+    - '../shared/gdk-pixbuf/gdk-pixbuf/*'
+    - '../shared/gdk-pixbuf/_build/gdk-pixbuf/*'
+    - '../shared/graphene/include/*'
+    - '../shared/graphene/_build/include/*'
+  ignore:
+    macros:
+      - 'GDK_DEPRECATED*'
+to:
+  language: odin
+  package: gtk
+  out: gtk.odin
+  trim_prefix:
+    types:
+      - 'g'
+      - 'G'
+      - 'tk'
+      - 'raphene_'
+      - 'dk'
+      - 'cairo_'
+      - 'Pango'
+      - 'sk'
+    functions:
+      - 'gtk_'
+    variables:
+      - 'gtk_'
+    constants:
+      - 'GTK_'
+      - 'GDK_'
+      - 'GSK_'
+  extern:
+    sources:
+      '../shared/glib/glib/*': '../glib'
+      '../shared/glib/_build/glib/*': '../glib'
+      '../shared/glib/glib/deprecated/*': '../glib'
+      '../shared/glib/gobject/*': 'gobj ../glib/gobject'
+      '../shared/glib/gio/*': '../glib/gio'
+      '../shared/cairo/src/*': '../cairo'
+      '../shared/cairo/_build/src/*': '../cairo'
+      '../shared/pango/pango/*': '../pango'
+      '../shared/pango/_build/pango/*': '../pango'
+      '../shared/gdk-pixbuf/gdk-pixbuf/*': 'gdk ../gdk-pixbuf'
+      '../shared/gdk-pixbuf/_build/gdk-pixbuf/*': 'gdk ../gdk-pixbuf'
+      '../shared/graphene/include/*': '../graphene'
+      '../shared/graphene/_build/include/*': '../graphene'
+    trim_prefix: true
