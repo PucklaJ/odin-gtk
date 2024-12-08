@@ -1,0 +1,38 @@
+version: 0
+platforms:
+  - Linux x86_64
+wrapper:
+  language: c
+  in_headers: ../shared/graphene/include/graphene.h
+  out_header: graphene-wrapper.h
+  out_source: graphene-wrapper.c
+  load_all_includes: true
+from:
+  language: c
+  shared: 'libgraphene-1.0.so'
+  headers:
+    - ../shared/graphene/include/graphene.h
+    - graphene-wrapper.h
+  includedirs:
+    - ../shared/graphene/_build/include/
+  load_all_includes: true
+  ignore:
+    macros:
+      - 'GRAPHENE_HAS_*'
+      - 'GRAPHENE*_VERSION*'
+      - '*GRAPHENE_DEPRECATED*'
+      - 'GRAPHENE_AVAILABLE*'
+      - '_GRAPHENE*'
+      - 'GRAPHENE_ALIGN16'
+      - '*_INIT_ZERO'
+to:
+  language: odin
+  package: graphene
+  out: graphene.odin
+  trim_prefix:
+    - 'GRAPHENE_'
+    - 'graphene_'
+  trim_suffix:
+    functions:
+      - '_wrapper'
+  add_libs: ../lib/linux/libgraphene-wrapper.a

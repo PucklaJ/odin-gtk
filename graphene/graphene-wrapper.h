@@ -1,0 +1,51 @@
+#pragma once
+
+#include "../shared/graphene/include/graphene.h"
+
+extern graphene_simd4f_t graphene_simd4f_madd_wrapper(const graphene_simd4f_t m1, const graphene_simd4f_t m2, const graphene_simd4f_t a);
+extern graphene_simd4f_t graphene_simd4f_sum_wrapper(const graphene_simd4f_t v);
+extern float graphene_simd4f_sum_scalar_wrapper(const graphene_simd4f_t v);
+extern graphene_simd4f_t graphene_simd4f_dot4_wrapper(const graphene_simd4f_t a, const graphene_simd4f_t b);
+extern graphene_simd4f_t graphene_simd4f_dot2_wrapper(const graphene_simd4f_t a, const graphene_simd4f_t b);
+extern graphene_simd4f_t graphene_simd4f_length4_wrapper(const graphene_simd4f_t v);
+extern graphene_simd4f_t graphene_simd4f_length3_wrapper(const graphene_simd4f_t v);
+extern graphene_simd4f_t graphene_simd4f_length2_wrapper(const graphene_simd4f_t v);
+extern graphene_simd4f_t graphene_simd4f_normalize4_wrapper(const graphene_simd4f_t v);
+extern graphene_simd4f_t graphene_simd4f_normalize3_wrapper(const graphene_simd4f_t v);
+extern graphene_simd4f_t graphene_simd4f_normalize2_wrapper(const graphene_simd4f_t v);
+extern _Bool graphene_simd4f_is_zero4_wrapper(const graphene_simd4f_t v);
+extern _Bool graphene_simd4f_is_zero3_wrapper(const graphene_simd4f_t v);
+extern _Bool graphene_simd4f_is_zero2_wrapper(const graphene_simd4f_t v);
+extern graphene_simd4f_t graphene_simd4f_interpolate_wrapper(const graphene_simd4f_t a, const graphene_simd4f_t b, float f);
+extern graphene_simd4f_t graphene_simd4f_clamp_wrapper(const graphene_simd4f_t v, const graphene_simd4f_t min, const graphene_simd4f_t max);
+extern graphene_simd4f_t graphene_simd4f_clamp_scalar_wrapper(const graphene_simd4f_t v, float min, float max);
+extern graphene_simd4f_t graphene_simd4f_min_val_wrapper(const graphene_simd4f_t v);
+extern graphene_simd4f_t graphene_simd4f_max_val_wrapper(const graphene_simd4f_t v);
+extern graphene_simd4x4f_t graphene_simd4x4f_init_wrapper(graphene_simd4f_t x, graphene_simd4f_t y, graphene_simd4f_t z, graphene_simd4f_t w);
+extern void graphene_simd4x4f_init_identity_wrapper(graphene_simd4x4f_t * m);
+extern void graphene_simd4x4f_init_from_float_wrapper(graphene_simd4x4f_t * m, const float * f);
+extern void graphene_simd4x4f_to_float_wrapper(const graphene_simd4x4f_t * m, float * v);
+extern void graphene_simd4x4f_sum_wrapper(const graphene_simd4x4f_t * a, graphene_simd4f_t * res);
+extern void graphene_simd4x4f_vec4_mul_wrapper(const graphene_simd4x4f_t * a, const graphene_simd4f_t * b, graphene_simd4f_t * res);
+extern void graphene_simd4x4f_vec3_mul_wrapper(const graphene_simd4x4f_t * m, const graphene_simd4f_t * v, graphene_simd4f_t * res);
+extern void graphene_simd4x4f_point3_mul_wrapper(const graphene_simd4x4f_t * m, const graphene_simd4f_t * p, graphene_simd4f_t * res);
+extern void graphene_simd4x4f_transpose_wrapper(const graphene_simd4x4f_t * s, graphene_simd4x4f_t * res);
+extern void graphene_simd4x4f_inv_ortho_vec3_mul_wrapper(const graphene_simd4x4f_t * a, const graphene_simd4f_t * b, graphene_simd4f_t * res);
+extern void graphene_simd4x4f_inv_ortho_point3_mul_wrapper(const graphene_simd4x4f_t * a, const graphene_simd4f_t * b, graphene_simd4f_t * res);
+extern void graphene_simd4x4f_matrix_mul_wrapper(const graphene_simd4x4f_t * a, const graphene_simd4x4f_t * b, graphene_simd4x4f_t * res);
+extern void graphene_simd4x4f_init_perspective_wrapper(graphene_simd4x4f_t * m, float fovy_rad, float aspect, float z_near, float z_far);
+extern void graphene_simd4x4f_init_ortho_wrapper(graphene_simd4x4f_t * m, float left, float right, float bottom, float top, float z_near, float z_far);
+extern void graphene_simd4x4f_init_look_at_wrapper(graphene_simd4x4f_t * m, graphene_simd4f_t eye, graphene_simd4f_t center, graphene_simd4f_t up);
+extern void graphene_simd4x4f_init_frustum_wrapper(graphene_simd4x4f_t * m, float left, float right, float bottom, float top, float z_near, float z_far);
+extern void graphene_simd4x4f_perspective_wrapper(graphene_simd4x4f_t * m, float depth);
+extern void graphene_simd4x4f_translation_wrapper(graphene_simd4x4f_t * m, float x, float y, float z);
+extern void graphene_simd4x4f_scale_wrapper(graphene_simd4x4f_t * m, float x, float y, float z);
+extern void graphene_simd4x4f_rotation_wrapper(graphene_simd4x4f_t * m, float rad, graphene_simd4f_t axis);
+extern void graphene_simd4x4f_add_wrapper(const graphene_simd4x4f_t * a, const graphene_simd4x4f_t * b, graphene_simd4x4f_t * res);
+extern void graphene_simd4x4f_sub_wrapper(const graphene_simd4x4f_t * a, const graphene_simd4x4f_t * b, graphene_simd4x4f_t * res);
+extern void graphene_simd4x4f_mul_wrapper(const graphene_simd4x4f_t * a, const graphene_simd4x4f_t * b, graphene_simd4x4f_t * res);
+extern void graphene_simd4x4f_div_wrapper(const graphene_simd4x4f_t * a, const graphene_simd4x4f_t * b, graphene_simd4x4f_t * res);
+extern _Bool graphene_simd4x4f_inverse_wrapper(const graphene_simd4x4f_t * m, graphene_simd4x4f_t * res);
+extern void graphene_simd4x4f_determinant_wrapper(const graphene_simd4x4f_t * m, graphene_simd4f_t * det_r, graphene_simd4f_t * invdet_r);
+extern _Bool graphene_simd4x4f_is_identity_wrapper(const graphene_simd4x4f_t * m);
+extern _Bool graphene_simd4x4f_is_2d_wrapper(const graphene_simd4x4f_t * m);

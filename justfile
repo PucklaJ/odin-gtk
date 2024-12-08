@@ -1,12 +1,12 @@
 default: setup wrapper
 
-setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup
+setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup graphene-setup
 
-bindings: glib-all gdk-pixbuf cairo pango-all
+bindings: glib-all gdk-pixbuf cairo pango-all graphene
 glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
-wrapper:  glib-wrapper-all gdk-pixbuf-wrapper pango-wrapper
+wrapper:  glib-wrapper-all gdk-pixbuf-wrapper pango-wrapper graphene-wrapper
 glib-wrapper-all: glib-wrapper gobject-wrapper gio-wrapper girepository-wrapper
 
 RUNIC := 'runic'
@@ -193,6 +193,21 @@ pangocairo:
     {{ RUNIC }} pango/pangocairo/rune.yml
     sed pango/pangocairo/pangocairo.odin -i \
         -e '/^TYPE_/ {s/`//g; s/(//g; s/)//g; s/pango_cairo_//g}' \
+
+graphene-setup:
+    cd shared/graphene && meson setup _build
+
+graphene:
+    {{ RUNIC }} graphene/rune.yml
+    sed graphene/graphene.odin -i \
+        -e '/^SIMD_S/ {s/`//g; s/\\//g}' \
+        -e '/^PI/ {s/`//g; s/f//g}' \
+[linux]
+graphene-wrapper:
+    @mkdir -p lib/linux
+    gcc -c -o lib/linux/graphene-wrapper.o -Ishared/graphene/_build/include graphene/graphene-wrapper.c
+    ar rs lib/linux/libgraphene-wrapper.a lib/linux/graphene-wrapper.o
+    @rm lib/linux/graphene-wrapper.o
 
 example NAME='hello-glib':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}
