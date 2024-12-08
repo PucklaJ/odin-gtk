@@ -1,8 +1,8 @@
 default: setup wrapper
 
-setup: glib-setup gdk-pixbuf-setup
+setup: glib-setup gdk-pixbuf-setup cairo-setup
 
-bindings: glib-all gdk-pixbuf
+bindings: glib-all gdk-pixbuf cairo
 glib-all: glib gobject gmodule gio girepository
 
 wrapper:  glib-wrapper-all gdk-pixbuf-wrapper
@@ -155,6 +155,16 @@ gdk-pixbuf-wrapper:
     gcc -c -o lib/linux/gdk-pixbuf-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build gdk-pixbuf/gdk-pixbuf-wrapper.c
     ar rs lib/linux/libgdk-pixbuf-wrapper.a lib/linux/gdk-pixbuf-wrapper.o
     @rm lib/linux/gdk-pixbuf-wrapper.o
+
+cairo-setup:
+    cd shared/cairo && meson setup _build
+
+cairo:
+    {{ RUNIC }} cairo/rune.yml
+    sed cairo/cairo.odin -i \
+        -e '/^[A-Z_1-9]\+ :: / {s/`//g; s/\\//g}' \
+        -e 's/^t ::/context_t ::/g' \
+        -e '/\^text/! s/\^t/\^context_t/g' \
 
 example NAME='hello-glib':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}

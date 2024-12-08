@@ -1,0 +1,34 @@
+version: 0
+platforms:
+  - Linux x86_64
+  - Linux arm64
+from:
+  language: c
+  shared: 'libcairo.so'
+  headers:
+    - ../shared/cairo/src/cairo.h
+  includedirs:
+    - ../shared/cairo/_build/src
+  defines:
+    CAIRO_COMPILATION: 1
+    CAIRO_HAS_PNG_FUNCTIONS: 1
+  ignore:
+    macros:
+      - '*cairo*'
+      - 'CAIRO_VERSION*'
+  overwrite:
+    types:
+      cairo_bool_t: '#Bool32'
+to:
+  language: odin
+  package: cairo
+  out: cairo.odin
+  trim_prefix:
+    types:
+      - cairo_
+    constants:
+      - CAIRO_
+    functions:
+      - cairo_
+    variables:
+      - cairo_
