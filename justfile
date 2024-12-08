@@ -1,11 +1,11 @@
 default: setup wrapper
 
-setup: glib-setup
+setup: glib-setup gdk-pixbuf-setup
 
-bindings: glib-all
+bindings: glib-all gdk-pixbuf
 glib-all: glib gobject gmodule gio girepository
 
-wrapper:  glib-wrapper-all
+wrapper:  glib-wrapper-all gdk-pixbuf-wrapper
 glib-wrapper-all: glib-wrapper gobject-wrapper gio-wrapper girepository-wrapper
 
 RUNIC := 'runic'
@@ -130,6 +130,31 @@ girepository-wrapper:
     gcc -c -o lib/linux/girepository-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/glib/_build/girepository glib/girepository/girepository-wrapper.c
     ar rs lib/linux/libgirepository-wrapper.a lib/linux/girepository-wrapper.o
     @rm lib/linux/girepository-wrapper.o
+
+gdk-pixbuf-setup:
+    cd shared/gdk-pixbuf && meson setup \
+        -Dgtk_doc=false \
+        -Ddocs=false \
+        -Dintrospection=disabled \
+        -Dman=false \
+        -Dtests=false \
+        -Dinstalled_tests=false \
+        _build
+    ninja -C shared/gdk-pixbuf/_build \
+        'gdk-pixbuf/gdk-pixbuf-enum-types.h' \
+
+gdk-pixbuf:
+    {{ RUNIC }} gdk-pixbuf/rune.yml
+    sed gdk-pixbuf/gdk-pixbuf.odin -i \
+        -e '{s/\^glib.char/cstring/g; s/buf: cstring/buf: ^glib.char/g; s/data: ^cstring/data: ^^glib.char/g; s/buffer: ^cstring/buffer: ^^glib.char/g}' \
+        -e '/^TYPE_/ {s/`//g; s/(gdk_//g; s/())//g}' \
+        -e '/^ERROR/ {s/`//g; s/gdk_//g; s/()//g}' \
+[linux]
+gdk-pixbuf-wrapper:
+    @mkdir -p lib/linux
+    gcc -c -o lib/linux/gdk-pixbuf-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build gdk-pixbuf/gdk-pixbuf-wrapper.c
+    ar rs lib/linux/libgdk-pixbuf-wrapper.a lib/linux/gdk-pixbuf-wrapper.o
+    @rm lib/linux/gdk-pixbuf-wrapper.o
 
 example NAME='hello-glib':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}

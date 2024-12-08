@@ -1,0 +1,83 @@
+version: 0
+platforms:
+  - Linux x86_64
+  - Linux arm64
+wrapper:
+  language: c
+  in_headers: ../shared/gdk-pixbuf/gdk-pixbuf/gdk-pixbuf.h
+  out_header: gdk-pixbuf-wrapper.h
+  out_source: gdk-pixbuf-wrapper.c
+  load_all_includes: true
+from:
+  language: c
+  shared: 'libgdk_pixbuf-2.0.so'
+  headers:
+    - ../shared/gdk-pixbuf/gdk-pixbuf/gdk-pixbuf.h
+    - gdk-pixbuf-wrapper.h
+  includedirs:
+    - ../stdinc/
+    - ../shared/glib/
+    - ../shared/glib/glib/
+    - ../shared/glib/gmodule/
+    - ../shared/glib/_build/
+    - ../shared/glib/_build/glib/
+    - ../shared/gdk-pixbuf/
+    - ../shared/gdk-pixbuf/_build/
+  defines:
+    GLIB_COMPILATION: 1
+    GLIB_DISABLE_DEPRECATION_WARNINGS: 1
+  load_all_includes: true
+  extern:
+    - '../stdinc/*'
+    - '../stdinc/sys/*'
+    - '../shared/glib/glib/*'
+    - '../shared/glib/gobject/*'
+    - '../shared/glib/gio/*'
+    - '../shared/glib/gmodule/*'
+    - '../shared/glib/_build/glib/*'
+    - '../shared/glib/_build/gobject/*'
+    - '../shared/glib/_build/gio/*'
+    - '../shared/glib/_build/gmodule/*'
+    - '../shared/glib/glib/deprecated/*'
+  ignore:
+    macros:
+      - 'GDK_PIXBUF_MAJOR'
+      - 'GDK_PIXBUF_MINOR'
+      - 'GDK_PIXBUF_MICRO'
+      - 'GDK_PIXBUF_VERSION*'
+      - 'GDK_PIXBUF_VAR'
+      - 'GDK_PIXBUF_DEPRECATED*'
+      - 'GDK_PIXBUF_AVAILABLE*'
+      - '_GDK*'
+to:
+  language: odin
+  package: gdkpixbuf
+  out: gdk-pixbuf.odin
+  trim_prefix:
+    types:
+      - Gdk
+      - g
+      - G
+    constants:
+      - GDK_PIXBUF_
+      - GDK_
+    functions:
+      - gdk_
+      - glib_
+    variables:
+      - gdk_
+  trim_suffix:
+    functions:
+      - _wrapper
+  extern:
+    sources:
+      '../shared/glib/glib/*': "../glib"
+      '../shared/glib/gobject/*': "gobj ../glib/gobject"
+      '../shared/glib/_build/gobject/*': "gobj ../glib/gobject"
+      '../shared/glib/_build/glib/*': "../glib"
+      '../shared/glib/glib/deprecated/*': "../glib"
+      '../shared/glib/gio/*': "../glib/gio"
+      '../shared/glib/_build/gio/*': "../glib/gio"
+    trim_prefix: true
+  add_libs: ../lib/linux/libgdk-pixbuf-wrapper.a
+
