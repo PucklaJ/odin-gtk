@@ -1,0 +1,75 @@
+version: 0
+platforms:
+  - Linux x86_64
+  - Linux arm64
+wrapper:
+  language: c
+  in_headers: ../shared/pango/pango/pango.h
+  out_header: pango-wrapper.h
+  out_source: pango-wrapper.c
+  load_all_includes: true
+from:
+  language: c
+  shared: 'libpango-1.0.so'
+  headers:
+    - ../shared/pango/pango/pango.h
+    - pango-wrapper.h
+  includedirs:
+    - ../stdinc/
+    - ../shared/pango/
+    - ../shared/pango/_build/
+    - ../shared/glib/
+    - ../shared/glib/glib/
+    - ../shared/glib/_build/
+    - ../shared/glib/_build/glib/
+  load_all_includes: true
+  extern:
+    - '../stdinc/*'
+    - '../stdinc/sys/*'
+    - '../shared/glib/glib/*'
+    - '../shared/glib/glib/deprecated/*'
+    - '../shared/glib/_build/glib/*'
+    - '../shared/glib/_build/gobject/*'
+    - '../shared/glib/gobject/*'
+  ignore:
+    macros:
+      - '*_INIT'
+      - '_PANGO*'
+      - 'PANGO_VERSION*'
+      - 'PANGO_DEPRECATED*'
+      - 'PANGO_AVAILABLE*'
+  overwrite:
+    # !! This only works on 64-Bit !!
+    types:
+      _PangoLogAttr: '#SInt8 #Attr Arr 4 #AttrEnd'
+      _PangoAttrSize: '#SInt8 #Attr Arr 24 #AttrEnd'
+      _PangoGlyphVisAttr: '#SInt8 #Attr Arr 4 #AttrEnd'
+      _PangoLayoutLine: '#SInt8 #Attr Arr 32 #AttrEnd'
+
+to:
+  language: odin
+  package: pango
+  out: pango.odin
+  trim_prefix:
+    types:
+      - 'g'
+      - 'G'
+      - 'Pango'
+    functions:
+      - 'pango_'
+      - 'glib_'
+    variables:
+      - 'pango_'
+    constants:
+      - 'PANGO_'
+  trim_suffix:
+    functions:
+      - '_wrapper'
+  extern:
+    sources:
+      '../stdinc/stdio.h': 'core:c/libc'
+      '../shared/glib/glib/*': '../glib'
+      '../shared/glib/_build/glib/*': '../glib'
+      '../shared/glib/gobject/*': 'gobj ../glib/gobject'
+    trim_prefix: true
+  add_libs: ../lib/linux/libpango-wrapper.a

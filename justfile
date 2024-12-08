@@ -1,11 +1,12 @@
 default: setup wrapper
 
-setup: glib-setup gdk-pixbuf-setup cairo-setup
+setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup
 
-bindings: glib-all gdk-pixbuf cairo
+bindings: glib-all gdk-pixbuf cairo pango-all
 glib-all: glib gobject gmodule gio girepository
+pango-all: pango pangocairo
 
-wrapper:  glib-wrapper-all gdk-pixbuf-wrapper
+wrapper:  glib-wrapper-all gdk-pixbuf-wrapper pango-wrapper
 glib-wrapper-all: glib-wrapper gobject-wrapper gio-wrapper girepository-wrapper
 
 RUNIC := 'runic'
@@ -165,6 +166,33 @@ cairo:
         -e '/^[A-Z_1-9]\+ :: / {s/`//g; s/\\//g}' \
         -e 's/^t ::/context_t ::/g' \
         -e '/\^text/! s/\^t/\^context_t/g' \
+
+pango-setup:
+    cd shared/pango && meson setup _build
+    ninja -C shared/pango/_build \
+      'pango/pango-enum-types.h' \
+
+pango:
+    {{ RUNIC }} pango/rune.yml
+    sed pango/pango.odin -i \
+        -e '{s/\^glib\.char/cstring/g; s/\[\^\]glib.char/cstring/g}' \
+        -e '/^\(TYPE_\|LAYOUT_\)/ {s/`//g; s/(//g; s/)//g; s/pango_//g}' \
+        -e '/^SCALE_/ {s/`//g; s/(double)//g}' \
+        -e '/^GLYPH_/ {s/`//g; s/(PangoGlyph)//g}' \
+        -e '/^ATTR_/ {s/`//g; s/(guint)//g; s/G_MAXUINT/glib.MAXUINT/g}' \
+        -e '/^ANALYSIS_/ {s/`//g}' \
+        -e '/^\(RENDER_TYPE\|ENGINE_TYPE\)/ {s/`//g; s/\\//g}' \
+[linux]
+pango-wrapper:
+    @mkdir -p lib/linux
+    gcc -c -o lib/linux/pango-wrapper.o -Ishared/pango -Ishared/pango/_build -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build -Ishared/glib/_build/glib -I/usr/include/harfbuzz pango/pango-wrapper.c
+    ar rs lib/linux/libpango-wrapper.a lib/linux/pango-wrapper.o
+    @rm lib/linux/pango-wrapper.o
+
+pangocairo:
+    {{ RUNIC }} pango/pangocairo/rune.yml
+    sed pango/pangocairo/pangocairo.odin -i \
+        -e '/^TYPE_/ {s/`//g; s/(//g; s/)//g; s/pango_cairo_//g}' \
 
 example NAME='hello-glib':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}
