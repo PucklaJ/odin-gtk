@@ -19,3 +19,6 @@
 [submodule "shared/gtk"]
 	path = shared/gtk
 	url = https://gitlab.gnome.org/GNOME/gtk.git
+[submodule "shared/graphene"]
+	path = shared/graphene
+	url = https://github.com/ebassi/graphene.git
