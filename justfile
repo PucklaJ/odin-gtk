@@ -6,7 +6,7 @@ bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk
 glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
-wrapper:  glib-wrapper-all gdk-pixbuf-wrapper pango-wrapper graphene-wrapper
+wrapper:  glib-wrapper-all gdk-pixbuf-wrapper pango-wrapper graphene-wrapper gtk-wrapper
 glib-wrapper-all: glib-wrapper gobject-wrapper gio-wrapper girepository-wrapper
 
 RUNIC := 'runic'
@@ -226,6 +226,12 @@ gtk:
         -e 's/^Snapshot :: Snapshot//g' \
         -e 's/^SnapshotClass :: _GtkSnapshotClass//g' \
         -e '0,/Snapshot_queueautoptr/{s/Snapshot_.*//g}' \
+[linux]
+gtk-wrapper:
+    @mkdir -p lib/linux
+    gcc -c -o lib/linux/gtk-wrapper.o -Ishared/gtk -Ishared/glib -Ishared/glib/glib -Ishared/glib/gmodule -Ishared/glib/_build -Ishared/glib/_build/glib -Ishared/gtk/_build -Ishared/cairo/src -Ishared/cairo/_build/src -Ishared/pango -Ishared/pango/_build -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build -Ishared/graphene/include -Ishared/graphene/_build/include -I/usr/include/harfbuzz gtk/gtk-wrapper.c
+    ar rs lib/linux/libgtk-wrapper.a lib/linux/gtk-wrapper.o
+    @rm lib/linux/gtk-wrapper.o
 
 example NAME='hello-glib':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}

@@ -1,11 +1,19 @@
 version: 0
 platforms:
   - Linux x86_64
+  - Linux arm64
+wrapper:
+  language: c
+  in_headers: ../shared/gtk/gtk/gtk.h
+  out_header: gtk-wrapper.h
+  out_source: gtk-wrapper.c
+  load_all_includes: true
 from:
   language: c
   shared: 'libgtk-4.so'
   headers:
     - ../shared/gtk/gtk/gtk.h
+    - gtk-wrapper.h
   includedirs:
     - ../stdinc/
     - ../shared/gtk/
@@ -47,6 +55,10 @@ from:
   ignore:
     macros:
       - 'GDK_DEPRECATED*'
+  overwrite:
+    types:
+      'GtkSnapshot': '_GdkSnapshot'
+      'GtkSnapshotClass': '_GdkSnapshotClass'
 to:
   language: odin
   package: gtk
@@ -63,12 +75,17 @@ to:
       - 'sk'
     functions:
       - 'gtk_'
+      - 'glib_'
+      - 'GTK_'
     variables:
       - 'gtk_'
     constants:
       - 'GTK_'
       - 'GDK_'
       - 'GSK_'
+  trim_suffix:
+    functions:
+      - '_wrapper'
   extern:
     sources:
       '../shared/glib/glib/*': '../glib'
@@ -85,3 +102,4 @@ to:
       '../shared/graphene/include/*': '../graphene'
       '../shared/graphene/_build/include/*': '../graphene'
     trim_prefix: true
+  add_libs: ../lib/linux/libgtk-wrapper.a

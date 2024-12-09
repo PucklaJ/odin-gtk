@@ -623,7 +623,6 @@ _GtkShortcutAction :: rawptr
 ShortcutAction :: _GtkShortcutAction
 _GtkShortcutTrigger :: rawptr
 ShortcutTrigger :: _GtkShortcutTrigger
-
 _GtkStyleContext :: struct {
     parent_object: gobj.Object,
 }
@@ -3571,12 +3570,6 @@ RecentInfo_autoptr :: ^RecentInfo
 RecentInfo_listautoptr :: ^glib.List
 RecentInfo_slistautoptr :: ^glib.SList
 RecentInfo_queueautoptr :: ^glib.Queue
-_GtkSnapshotClass :: rawptr
-
-Snapshot_autoptr :: ^Snapshot
-Snapshot_listautoptr :: ^glib.List
-Snapshot_slistautoptr :: ^glib.SList
-Snapshot_queueautoptr :: ^glib.Queue
 _GtkRevealer :: rawptr
 Revealer :: _GtkRevealer
 RevealerTransitionType :: enum u32 {REVEALER_TRANSITION_TYPE_NONE = 0, REVEALER_TRANSITION_TYPE_CROSSFADE = 1, REVEALER_TRANSITION_TYPE_SLIDE_RIGHT = 2, REVEALER_TRANSITION_TYPE_SLIDE_LEFT = 3, REVEALER_TRANSITION_TYPE_SLIDE_UP = 4, REVEALER_TRANSITION_TYPE_SLIDE_DOWN = 5, REVEALER_TRANSITION_TYPE_SWING_RIGHT = 6, REVEALER_TRANSITION_TYPE_SWING_LEFT = 7, REVEALER_TRANSITION_TYPE_SWING_UP = 8, REVEALER_TRANSITION_TYPE_SWING_DOWN = 9, }
@@ -4342,8 +4335,9 @@ WindowHandleClass_autoptr :: ^WindowHandleClass
 WindowHandleClass_listautoptr :: ^glib.List
 WindowHandleClass_slistautoptr :: ^glib.SList
 WindowHandleClass_queueautoptr :: ^glib.Queue
+_GtkSnapshotClass :: rawptr
 
-foreign import gtk_runic "system:gtk-4"
+foreign import gtk_runic { "system:gtk-4", "../lib/linux/libgtk-wrapper.a" }
 
 @(default_calling_convention = "c")
 foreign gtk_runic {
@@ -18968,6 +18962,7920 @@ foreign gtk_runic {
 
     @(link_name = "gtk_window_handle_set_child")
     window_handle_set_child :: proc(self: ^WindowHandle, child: ^Widget) ---
+
+    @(link_name = "glib_autoptr_clear_GdkAppLaunchContext_wrapper")
+    autoptr_clear_GdkAppLaunchContext :: proc(_ptr: ^AppLaunchContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkAppLaunchContext_wrapper")
+    autoptr_cleanup_GdkAppLaunchContext :: proc(_ptr: ^^AppLaunchContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkAppLaunchContext_wrapper")
+    autoptr_destroy_GdkAppLaunchContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkAppLaunchContext_wrapper")
+    listautoptr_cleanup_GdkAppLaunchContext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkAppLaunchContext_wrapper")
+    slistautoptr_cleanup_GdkAppLaunchContext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkAppLaunchContext_wrapper")
+    queueautoptr_cleanup_GdkAppLaunchContext :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkClipboard_wrapper")
+    autoptr_clear_GdkClipboard :: proc(_ptr: ^Clipboard) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkClipboard_wrapper")
+    autoptr_cleanup_GdkClipboard :: proc(_ptr: ^^Clipboard) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkClipboard_wrapper")
+    autoptr_destroy_GdkClipboard :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkClipboard_wrapper")
+    listautoptr_cleanup_GdkClipboard :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkClipboard_wrapper")
+    slistautoptr_cleanup_GdkClipboard :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkClipboard_wrapper")
+    queueautoptr_cleanup_GdkClipboard :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkContentFormats_wrapper")
+    autoptr_clear_GdkContentFormats :: proc(_ptr: ^ContentFormats) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkContentFormats_wrapper")
+    autoptr_cleanup_GdkContentFormats :: proc(_ptr: ^^ContentFormats) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkContentFormats_wrapper")
+    autoptr_destroy_GdkContentFormats :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkContentFormats_wrapper")
+    listautoptr_cleanup_GdkContentFormats :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkContentFormats_wrapper")
+    slistautoptr_cleanup_GdkContentFormats :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkContentFormats_wrapper")
+    queueautoptr_cleanup_GdkContentFormats :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkContentProvider_wrapper")
+    autoptr_clear_GdkContentProvider :: proc(_ptr: ^ContentProvider) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkContentProvider_wrapper")
+    autoptr_cleanup_GdkContentProvider :: proc(_ptr: ^^ContentProvider) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkContentProvider_wrapper")
+    autoptr_destroy_GdkContentProvider :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkContentProvider_wrapper")
+    listautoptr_cleanup_GdkContentProvider :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkContentProvider_wrapper")
+    slistautoptr_cleanup_GdkContentProvider :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkContentProvider_wrapper")
+    queueautoptr_cleanup_GdkContentProvider :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkCursor_wrapper")
+    autoptr_clear_GdkCursor :: proc(_ptr: ^Cursor) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkCursor_wrapper")
+    autoptr_cleanup_GdkCursor :: proc(_ptr: ^^Cursor) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkCursor_wrapper")
+    autoptr_destroy_GdkCursor :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkCursor_wrapper")
+    listautoptr_cleanup_GdkCursor :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkCursor_wrapper")
+    slistautoptr_cleanup_GdkCursor :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkCursor_wrapper")
+    queueautoptr_cleanup_GdkCursor :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkDevice_wrapper")
+    autoptr_clear_GdkDevice :: proc(_ptr: ^Device) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDevice_wrapper")
+    autoptr_cleanup_GdkDevice :: proc(_ptr: ^^Device) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDevice_wrapper")
+    autoptr_destroy_GdkDevice :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDevice_wrapper")
+    listautoptr_cleanup_GdkDevice :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDevice_wrapper")
+    slistautoptr_cleanup_GdkDevice :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDevice_wrapper")
+    queueautoptr_cleanup_GdkDevice :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkDrag_wrapper")
+    autoptr_clear_GdkDrag :: proc(_ptr: ^Drag) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDrag_wrapper")
+    autoptr_cleanup_GdkDrag :: proc(_ptr: ^^Drag) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDrag_wrapper")
+    autoptr_destroy_GdkDrag :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDrag_wrapper")
+    listautoptr_cleanup_GdkDrag :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDrag_wrapper")
+    slistautoptr_cleanup_GdkDrag :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDrag_wrapper")
+    queueautoptr_cleanup_GdkDrag :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkEvent_wrapper")
+    autoptr_clear_GdkEvent :: proc(_ptr: ^Event) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkEvent_wrapper")
+    autoptr_cleanup_GdkEvent :: proc(_ptr: ^^Event) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkEvent_wrapper")
+    autoptr_destroy_GdkEvent :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkEvent_wrapper")
+    listautoptr_cleanup_GdkEvent :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkEvent_wrapper")
+    slistautoptr_cleanup_GdkEvent :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkEvent_wrapper")
+    queueautoptr_cleanup_GdkEvent :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkFrameTimings_wrapper")
+    autoptr_clear_GdkFrameTimings :: proc(_ptr: ^FrameTimings) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkFrameTimings_wrapper")
+    autoptr_cleanup_GdkFrameTimings :: proc(_ptr: ^^FrameTimings) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkFrameTimings_wrapper")
+    autoptr_destroy_GdkFrameTimings :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkFrameTimings_wrapper")
+    listautoptr_cleanup_GdkFrameTimings :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkFrameTimings_wrapper")
+    slistautoptr_cleanup_GdkFrameTimings :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkFrameTimings_wrapper")
+    queueautoptr_cleanup_GdkFrameTimings :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkFrameClock_wrapper")
+    autoptr_clear_GdkFrameClock :: proc(_ptr: ^FrameClock) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkFrameClock_wrapper")
+    autoptr_cleanup_GdkFrameClock :: proc(_ptr: ^^FrameClock) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkFrameClock_wrapper")
+    autoptr_destroy_GdkFrameClock :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkFrameClock_wrapper")
+    listautoptr_cleanup_GdkFrameClock :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkFrameClock_wrapper")
+    slistautoptr_cleanup_GdkFrameClock :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkFrameClock_wrapper")
+    queueautoptr_cleanup_GdkFrameClock :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkMonitor_wrapper")
+    autoptr_clear_GdkMonitor :: proc(_ptr: ^Monitor) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkMonitor_wrapper")
+    autoptr_cleanup_GdkMonitor :: proc(_ptr: ^^Monitor) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkMonitor_wrapper")
+    autoptr_destroy_GdkMonitor :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkMonitor_wrapper")
+    listautoptr_cleanup_GdkMonitor :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkMonitor_wrapper")
+    slistautoptr_cleanup_GdkMonitor :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkMonitor_wrapper")
+    queueautoptr_cleanup_GdkMonitor :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkPopupLayout_wrapper")
+    autoptr_clear_GdkPopupLayout :: proc(_ptr: ^PopupLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkPopupLayout_wrapper")
+    autoptr_cleanup_GdkPopupLayout :: proc(_ptr: ^^PopupLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkPopupLayout_wrapper")
+    autoptr_destroy_GdkPopupLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkPopupLayout_wrapper")
+    listautoptr_cleanup_GdkPopupLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkPopupLayout_wrapper")
+    slistautoptr_cleanup_GdkPopupLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkPopupLayout_wrapper")
+    queueautoptr_cleanup_GdkPopupLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkSurface_wrapper")
+    autoptr_clear_GdkSurface :: proc(_ptr: ^Surface) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkSurface_wrapper")
+    autoptr_cleanup_GdkSurface :: proc(_ptr: ^^Surface) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkSurface_wrapper")
+    autoptr_destroy_GdkSurface :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkSurface_wrapper")
+    listautoptr_cleanup_GdkSurface :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkSurface_wrapper")
+    slistautoptr_cleanup_GdkSurface :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkSurface_wrapper")
+    queueautoptr_cleanup_GdkSurface :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkSeat_wrapper")
+    autoptr_clear_GdkSeat :: proc(_ptr: ^Seat) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkSeat_wrapper")
+    autoptr_cleanup_GdkSeat :: proc(_ptr: ^^Seat) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkSeat_wrapper")
+    autoptr_destroy_GdkSeat :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkSeat_wrapper")
+    listautoptr_cleanup_GdkSeat :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkSeat_wrapper")
+    slistautoptr_cleanup_GdkSeat :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkSeat_wrapper")
+    queueautoptr_cleanup_GdkSeat :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkDisplay_wrapper")
+    autoptr_clear_GdkDisplay :: proc(_ptr: ^Display) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDisplay_wrapper")
+    autoptr_cleanup_GdkDisplay :: proc(_ptr: ^^Display) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDisplay_wrapper")
+    autoptr_destroy_GdkDisplay :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDisplay_wrapper")
+    listautoptr_cleanup_GdkDisplay :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDisplay_wrapper")
+    slistautoptr_cleanup_GdkDisplay :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDisplay_wrapper")
+    queueautoptr_cleanup_GdkDisplay :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkDisplayManager_wrapper")
+    autoptr_clear_GdkDisplayManager :: proc(_ptr: ^DisplayManager) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDisplayManager_wrapper")
+    autoptr_cleanup_GdkDisplayManager :: proc(_ptr: ^^DisplayManager) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDisplayManager_wrapper")
+    autoptr_destroy_GdkDisplayManager :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDisplayManager_wrapper")
+    listautoptr_cleanup_GdkDisplayManager :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDisplayManager_wrapper")
+    slistautoptr_cleanup_GdkDisplayManager :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDisplayManager_wrapper")
+    queueautoptr_cleanup_GdkDisplayManager :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkDragSurface_wrapper")
+    autoptr_clear_GdkDragSurface :: proc(_ptr: ^DragSurface) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDragSurface_wrapper")
+    autoptr_cleanup_GdkDragSurface :: proc(_ptr: ^^DragSurface) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDragSurface_wrapper")
+    autoptr_destroy_GdkDragSurface :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDragSurface_wrapper")
+    listautoptr_cleanup_GdkDragSurface :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDragSurface_wrapper")
+    slistautoptr_cleanup_GdkDragSurface :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDragSurface_wrapper")
+    queueautoptr_cleanup_GdkDragSurface :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GDK_DRAG_SURFACE_wrapper")
+    GDK_DRAG_SURFACE :: proc(ptr: glib.pointer) -> ^DragSurface ---
+
+    @(link_name = "GDK_IS_DRAG_SURFACE_wrapper")
+    GDK_IS_DRAG_SURFACE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_DRAG_SURFACE_GET_IFACE_wrapper")
+    GDK_DRAG_SURFACE_GET_IFACE :: proc(ptr: glib.pointer) -> ^DragSurfaceInterface ---
+
+    @(link_name = "glib_autoptr_clear_GdkDrawContext_wrapper")
+    autoptr_clear_GdkDrawContext :: proc(_ptr: ^DrawContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDrawContext_wrapper")
+    autoptr_cleanup_GdkDrawContext :: proc(_ptr: ^^DrawContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDrawContext_wrapper")
+    autoptr_destroy_GdkDrawContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDrawContext_wrapper")
+    listautoptr_cleanup_GdkDrawContext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDrawContext_wrapper")
+    slistautoptr_cleanup_GdkDrawContext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDrawContext_wrapper")
+    queueautoptr_cleanup_GdkDrawContext :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkDrop_wrapper")
+    autoptr_clear_GdkDrop :: proc(_ptr: ^Drop) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDrop_wrapper")
+    autoptr_cleanup_GdkDrop :: proc(_ptr: ^^Drop) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDrop_wrapper")
+    autoptr_destroy_GdkDrop :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDrop_wrapper")
+    listautoptr_cleanup_GdkDrop :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDrop_wrapper")
+    slistautoptr_cleanup_GdkDrop :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDrop_wrapper")
+    queueautoptr_cleanup_GdkDrop :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkGLContext_wrapper")
+    autoptr_clear_GdkGLContext :: proc(_ptr: ^GLContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkGLContext_wrapper")
+    autoptr_cleanup_GdkGLContext :: proc(_ptr: ^^GLContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkGLContext_wrapper")
+    autoptr_destroy_GdkGLContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkGLContext_wrapper")
+    listautoptr_cleanup_GdkGLContext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkGLContext_wrapper")
+    slistautoptr_cleanup_GdkGLContext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkGLContext_wrapper")
+    queueautoptr_cleanup_GdkGLContext :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkTexture_wrapper")
+    autoptr_clear_GdkTexture :: proc(_ptr: ^Texture) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkTexture_wrapper")
+    autoptr_cleanup_GdkTexture :: proc(_ptr: ^^Texture) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkTexture_wrapper")
+    autoptr_destroy_GdkTexture :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkTexture_wrapper")
+    listautoptr_cleanup_GdkTexture :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkTexture_wrapper")
+    slistautoptr_cleanup_GdkTexture :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkTexture_wrapper")
+    queueautoptr_cleanup_GdkTexture :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkGLTexture_wrapper")
+    autoptr_clear_GdkGLTexture :: proc(_ptr: ^GLTexture) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkGLTexture_wrapper")
+    autoptr_cleanup_GdkGLTexture :: proc(_ptr: ^^GLTexture) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkGLTexture_wrapper")
+    autoptr_destroy_GdkGLTexture :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkGLTexture_wrapper")
+    listautoptr_cleanup_GdkGLTexture :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkGLTexture_wrapper")
+    slistautoptr_cleanup_GdkGLTexture :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkGLTexture_wrapper")
+    queueautoptr_cleanup_GdkGLTexture :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkGLTextureBuilder_wrapper")
+    autoptr_clear_GdkGLTextureBuilder :: proc(_ptr: ^GLTextureBuilder) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkGLTextureBuilder_wrapper")
+    autoptr_cleanup_GdkGLTextureBuilder :: proc(_ptr: ^^GLTextureBuilder) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkGLTextureBuilder_wrapper")
+    autoptr_destroy_GdkGLTextureBuilder :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkGLTextureBuilder_wrapper")
+    listautoptr_cleanup_GdkGLTextureBuilder :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkGLTextureBuilder_wrapper")
+    slistautoptr_cleanup_GdkGLTextureBuilder :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkGLTextureBuilder_wrapper")
+    queueautoptr_cleanup_GdkGLTextureBuilder :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkGLTextureBuilderClass_wrapper")
+    autoptr_clear_GdkGLTextureBuilderClass :: proc(_ptr: ^GLTextureBuilderClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkGLTextureBuilderClass_wrapper")
+    autoptr_cleanup_GdkGLTextureBuilderClass :: proc(_ptr: ^^GLTextureBuilderClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkGLTextureBuilderClass_wrapper")
+    autoptr_destroy_GdkGLTextureBuilderClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkGLTextureBuilderClass_wrapper")
+    listautoptr_cleanup_GdkGLTextureBuilderClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkGLTextureBuilderClass_wrapper")
+    slistautoptr_cleanup_GdkGLTextureBuilderClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkGLTextureBuilderClass_wrapper")
+    queueautoptr_cleanup_GdkGLTextureBuilderClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GDK_GL_TEXTURE_BUILDER_wrapper")
+    GDK_GL_TEXTURE_BUILDER :: proc(ptr: glib.pointer) -> ^GLTextureBuilder ---
+
+    @(link_name = "GDK_GL_TEXTURE_BUILDER_CLASS_wrapper")
+    GDK_GL_TEXTURE_BUILDER_CLASS :: proc(ptr: glib.pointer) -> ^GLTextureBuilderClass ---
+
+    @(link_name = "GDK_IS_GL_TEXTURE_BUILDER_wrapper")
+    GDK_IS_GL_TEXTURE_BUILDER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_IS_GL_TEXTURE_BUILDER_CLASS_wrapper")
+    GDK_IS_GL_TEXTURE_BUILDER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_GL_TEXTURE_BUILDER_GET_CLASS_wrapper")
+    GDK_GL_TEXTURE_BUILDER_GET_CLASS :: proc(ptr: glib.pointer) -> ^GLTextureBuilderClass ---
+
+    @(link_name = "glib_autoptr_clear_GdkMemoryTexture_wrapper")
+    autoptr_clear_GdkMemoryTexture :: proc(_ptr: ^MemoryTexture) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkMemoryTexture_wrapper")
+    autoptr_cleanup_GdkMemoryTexture :: proc(_ptr: ^^MemoryTexture) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkMemoryTexture_wrapper")
+    autoptr_destroy_GdkMemoryTexture :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkMemoryTexture_wrapper")
+    listautoptr_cleanup_GdkMemoryTexture :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkMemoryTexture_wrapper")
+    slistautoptr_cleanup_GdkMemoryTexture :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkMemoryTexture_wrapper")
+    queueautoptr_cleanup_GdkMemoryTexture :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkPaintable_wrapper")
+    autoptr_clear_GdkPaintable :: proc(_ptr: ^Paintable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkPaintable_wrapper")
+    autoptr_cleanup_GdkPaintable :: proc(_ptr: ^^Paintable) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkPaintable_wrapper")
+    autoptr_destroy_GdkPaintable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkPaintable_wrapper")
+    listautoptr_cleanup_GdkPaintable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkPaintable_wrapper")
+    slistautoptr_cleanup_GdkPaintable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkPaintable_wrapper")
+    queueautoptr_cleanup_GdkPaintable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GDK_PAINTABLE_wrapper")
+    GDK_PAINTABLE :: proc(ptr: glib.pointer) -> ^Paintable ---
+
+    @(link_name = "GDK_IS_PAINTABLE_wrapper")
+    GDK_IS_PAINTABLE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_PAINTABLE_GET_IFACE_wrapper")
+    GDK_PAINTABLE_GET_IFACE :: proc(ptr: glib.pointer) -> ^PaintableInterface ---
+
+    @(link_name = "glib_autoptr_clear_GdkPopup_wrapper")
+    autoptr_clear_GdkPopup :: proc(_ptr: ^Popup) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkPopup_wrapper")
+    autoptr_cleanup_GdkPopup :: proc(_ptr: ^^Popup) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkPopup_wrapper")
+    autoptr_destroy_GdkPopup :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkPopup_wrapper")
+    listautoptr_cleanup_GdkPopup :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkPopup_wrapper")
+    slistautoptr_cleanup_GdkPopup :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkPopup_wrapper")
+    queueautoptr_cleanup_GdkPopup :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GDK_POPUP_wrapper")
+    GDK_POPUP :: proc(ptr: glib.pointer) -> ^Popup ---
+
+    @(link_name = "GDK_IS_POPUP_wrapper")
+    GDK_IS_POPUP :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_POPUP_GET_IFACE_wrapper")
+    GDK_POPUP_GET_IFACE :: proc(ptr: glib.pointer) -> ^PopupInterface ---
+
+    @(link_name = "glib_autoptr_clear_GdkRGBA_wrapper")
+    autoptr_clear_GdkRGBA :: proc(_ptr: ^RGBA) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkRGBA_wrapper")
+    autoptr_cleanup_GdkRGBA :: proc(_ptr: ^^RGBA) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkRGBA_wrapper")
+    autoptr_destroy_GdkRGBA :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkRGBA_wrapper")
+    listautoptr_cleanup_GdkRGBA :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkRGBA_wrapper")
+    slistautoptr_cleanup_GdkRGBA :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkRGBA_wrapper")
+    queueautoptr_cleanup_GdkRGBA :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkSnapshot_wrapper")
+    autoptr_clear_GdkSnapshot :: proc(_ptr: ^Snapshot) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkSnapshot_wrapper")
+    autoptr_cleanup_GdkSnapshot :: proc(_ptr: ^^Snapshot) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkSnapshot_wrapper")
+    autoptr_destroy_GdkSnapshot :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkSnapshot_wrapper")
+    listautoptr_cleanup_GdkSnapshot :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkSnapshot_wrapper")
+    slistautoptr_cleanup_GdkSnapshot :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkSnapshot_wrapper")
+    queueautoptr_cleanup_GdkSnapshot :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkTextureDownloader_wrapper")
+    autoptr_clear_GdkTextureDownloader :: proc(_ptr: ^TextureDownloader) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkTextureDownloader_wrapper")
+    autoptr_cleanup_GdkTextureDownloader :: proc(_ptr: ^^TextureDownloader) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkTextureDownloader_wrapper")
+    autoptr_destroy_GdkTextureDownloader :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkTextureDownloader_wrapper")
+    listautoptr_cleanup_GdkTextureDownloader :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkTextureDownloader_wrapper")
+    slistautoptr_cleanup_GdkTextureDownloader :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkTextureDownloader_wrapper")
+    queueautoptr_cleanup_GdkTextureDownloader :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkToplevelLayout_wrapper")
+    autoptr_clear_GdkToplevelLayout :: proc(_ptr: ^ToplevelLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkToplevelLayout_wrapper")
+    autoptr_cleanup_GdkToplevelLayout :: proc(_ptr: ^^ToplevelLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkToplevelLayout_wrapper")
+    autoptr_destroy_GdkToplevelLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkToplevelLayout_wrapper")
+    listautoptr_cleanup_GdkToplevelLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkToplevelLayout_wrapper")
+    slistautoptr_cleanup_GdkToplevelLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkToplevelLayout_wrapper")
+    queueautoptr_cleanup_GdkToplevelLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkToplevel_wrapper")
+    autoptr_clear_GdkToplevel :: proc(_ptr: ^Toplevel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkToplevel_wrapper")
+    autoptr_cleanup_GdkToplevel :: proc(_ptr: ^^Toplevel) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkToplevel_wrapper")
+    autoptr_destroy_GdkToplevel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkToplevel_wrapper")
+    listautoptr_cleanup_GdkToplevel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkToplevel_wrapper")
+    slistautoptr_cleanup_GdkToplevel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkToplevel_wrapper")
+    queueautoptr_cleanup_GdkToplevel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GDK_TOPLEVEL_wrapper")
+    GDK_TOPLEVEL :: proc(ptr: glib.pointer) -> ^Toplevel ---
+
+    @(link_name = "GDK_IS_TOPLEVEL_wrapper")
+    GDK_IS_TOPLEVEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_TOPLEVEL_GET_IFACE_wrapper")
+    GDK_TOPLEVEL_GET_IFACE :: proc(ptr: glib.pointer) -> ^ToplevelInterface ---
+
+    @(link_name = "glib_autoptr_clear_GdkVulkanContext_wrapper")
+    autoptr_clear_GdkVulkanContext :: proc(_ptr: ^VulkanContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkVulkanContext_wrapper")
+    autoptr_cleanup_GdkVulkanContext :: proc(_ptr: ^^VulkanContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkVulkanContext_wrapper")
+    autoptr_destroy_GdkVulkanContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkVulkanContext_wrapper")
+    listautoptr_cleanup_GdkVulkanContext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkVulkanContext_wrapper")
+    slistautoptr_cleanup_GdkVulkanContext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkVulkanContext_wrapper")
+    queueautoptr_cleanup_GdkVulkanContext :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GskGLShader_wrapper")
+    autoptr_clear_GskGLShader :: proc(_ptr: ^GLShader) ---
+
+    @(link_name = "glib_autoptr_cleanup_GskGLShader_wrapper")
+    autoptr_cleanup_GskGLShader :: proc(_ptr: ^^GLShader) ---
+
+    @(link_name = "glib_autoptr_destroy_GskGLShader_wrapper")
+    autoptr_destroy_GskGLShader :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GskGLShader_wrapper")
+    listautoptr_cleanup_GskGLShader :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GskGLShader_wrapper")
+    slistautoptr_cleanup_GskGLShader :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GskGLShader_wrapper")
+    queueautoptr_cleanup_GskGLShader :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GskGLShaderClass_wrapper")
+    autoptr_clear_GskGLShaderClass :: proc(_ptr: ^GLShaderClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GskGLShaderClass_wrapper")
+    autoptr_cleanup_GskGLShaderClass :: proc(_ptr: ^^GLShaderClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GskGLShaderClass_wrapper")
+    autoptr_destroy_GskGLShaderClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GskGLShaderClass_wrapper")
+    listautoptr_cleanup_GskGLShaderClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GskGLShaderClass_wrapper")
+    slistautoptr_cleanup_GskGLShaderClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GskGLShaderClass_wrapper")
+    queueautoptr_cleanup_GskGLShaderClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GSK_GL_SHADER_wrapper")
+    GSK_GL_SHADER :: proc(ptr: glib.pointer) -> ^GLShader ---
+
+    @(link_name = "GSK_IS_GL_SHADER_wrapper")
+    GSK_IS_GL_SHADER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GskRenderNode_wrapper")
+    autoptr_clear_GskRenderNode :: proc(_ptr: ^RenderNode) ---
+
+    @(link_name = "glib_autoptr_cleanup_GskRenderNode_wrapper")
+    autoptr_cleanup_GskRenderNode :: proc(_ptr: ^^RenderNode) ---
+
+    @(link_name = "glib_autoptr_destroy_GskRenderNode_wrapper")
+    autoptr_destroy_GskRenderNode :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GskRenderNode_wrapper")
+    listautoptr_cleanup_GskRenderNode :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GskRenderNode_wrapper")
+    slistautoptr_cleanup_GskRenderNode :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GskRenderNode_wrapper")
+    queueautoptr_cleanup_GskRenderNode :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GskRenderer_wrapper")
+    autoptr_clear_GskRenderer :: proc(_ptr: ^Renderer) ---
+
+    @(link_name = "glib_autoptr_cleanup_GskRenderer_wrapper")
+    autoptr_cleanup_GskRenderer :: proc(_ptr: ^^Renderer) ---
+
+    @(link_name = "glib_autoptr_destroy_GskRenderer_wrapper")
+    autoptr_destroy_GskRenderer :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GskRenderer_wrapper")
+    listautoptr_cleanup_GskRenderer :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GskRenderer_wrapper")
+    slistautoptr_cleanup_GskRenderer :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GskRenderer_wrapper")
+    queueautoptr_cleanup_GskRenderer :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GskTransform_wrapper")
+    autoptr_clear_GskTransform :: proc(_ptr: ^Transform) ---
+
+    @(link_name = "glib_autoptr_cleanup_GskTransform_wrapper")
+    autoptr_cleanup_GskTransform :: proc(_ptr: ^^Transform) ---
+
+    @(link_name = "glib_autoptr_destroy_GskTransform_wrapper")
+    autoptr_destroy_GskTransform :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GskTransform_wrapper")
+    listautoptr_cleanup_GskTransform :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GskTransform_wrapper")
+    slistautoptr_cleanup_GskTransform :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GskTransform_wrapper")
+    queueautoptr_cleanup_GskTransform :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "gtk_ordering_from_cmpfunc_wrapper")
+    ordering_from_cmpfunc :: proc(cmpfunc_result: i32) -> Ordering ---
+
+    @(link_name = "glib_autoptr_clear_GtkBorder_wrapper")
+    autoptr_clear_GtkBorder :: proc(_ptr: ^Border) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBorder_wrapper")
+    autoptr_cleanup_GtkBorder :: proc(_ptr: ^^Border) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBorder_wrapper")
+    autoptr_destroy_GtkBorder :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBorder_wrapper")
+    listautoptr_cleanup_GtkBorder :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBorder_wrapper")
+    slistautoptr_cleanup_GtkBorder :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBorder_wrapper")
+    queueautoptr_cleanup_GtkBorder :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkShortcut_wrapper")
+    autoptr_clear_GtkShortcut :: proc(_ptr: ^Shortcut) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkShortcut_wrapper")
+    autoptr_cleanup_GtkShortcut :: proc(_ptr: ^^Shortcut) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkShortcut_wrapper")
+    autoptr_destroy_GtkShortcut :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkShortcut_wrapper")
+    listautoptr_cleanup_GtkShortcut :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkShortcut_wrapper")
+    slistautoptr_cleanup_GtkShortcut :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkShortcut_wrapper")
+    queueautoptr_cleanup_GtkShortcut :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkShortcutClass_wrapper")
+    autoptr_clear_GtkShortcutClass :: proc(_ptr: ^ShortcutClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkShortcutClass_wrapper")
+    autoptr_cleanup_GtkShortcutClass :: proc(_ptr: ^^ShortcutClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkShortcutClass_wrapper")
+    autoptr_destroy_GtkShortcutClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkShortcutClass_wrapper")
+    listautoptr_cleanup_GtkShortcutClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkShortcutClass_wrapper")
+    slistautoptr_cleanup_GtkShortcutClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkShortcutClass_wrapper")
+    queueautoptr_cleanup_GtkShortcutClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SHORTCUT_wrapper")
+    SHORTCUT :: proc(ptr: glib.pointer) -> ^Shortcut ---
+
+    @(link_name = "GTK_IS_SHORTCUT_wrapper")
+    IS_SHORTCUT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkShortcutAction_wrapper")
+    autoptr_clear_GtkShortcutAction :: proc(_ptr: ^ShortcutAction) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkShortcutAction_wrapper")
+    autoptr_cleanup_GtkShortcutAction :: proc(_ptr: ^^ShortcutAction) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkShortcutAction_wrapper")
+    autoptr_destroy_GtkShortcutAction :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkShortcutAction_wrapper")
+    listautoptr_cleanup_GtkShortcutAction :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkShortcutAction_wrapper")
+    slistautoptr_cleanup_GtkShortcutAction :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkShortcutAction_wrapper")
+    queueautoptr_cleanup_GtkShortcutAction :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkShortcutActionClass_wrapper")
+    autoptr_clear_GtkShortcutActionClass :: proc(_ptr: ^ShortcutActionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkShortcutActionClass_wrapper")
+    autoptr_cleanup_GtkShortcutActionClass :: proc(_ptr: ^^ShortcutActionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkShortcutActionClass_wrapper")
+    autoptr_destroy_GtkShortcutActionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkShortcutActionClass_wrapper")
+    listautoptr_cleanup_GtkShortcutActionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkShortcutActionClass_wrapper")
+    slistautoptr_cleanup_GtkShortcutActionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkShortcutActionClass_wrapper")
+    queueautoptr_cleanup_GtkShortcutActionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SHORTCUT_ACTION_wrapper")
+    SHORTCUT_ACTION :: proc(ptr: glib.pointer) -> ^ShortcutAction ---
+
+    @(link_name = "GTK_SHORTCUT_ACTION_CLASS_wrapper")
+    SHORTCUT_ACTION_CLASS :: proc(ptr: glib.pointer) -> ^ShortcutActionClass ---
+
+    @(link_name = "GTK_IS_SHORTCUT_ACTION_wrapper")
+    IS_SHORTCUT_ACTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_SHORTCUT_ACTION_CLASS_wrapper")
+    IS_SHORTCUT_ACTION_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_SHORTCUT_ACTION_GET_CLASS_wrapper")
+    SHORTCUT_ACTION_GET_CLASS :: proc(ptr: glib.pointer) -> ^ShortcutActionClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkNothingAction_wrapper")
+    autoptr_clear_GtkNothingAction :: proc(_ptr: ^NothingAction) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNothingAction_wrapper")
+    autoptr_cleanup_GtkNothingAction :: proc(_ptr: ^^NothingAction) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNothingAction_wrapper")
+    autoptr_destroy_GtkNothingAction :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNothingAction_wrapper")
+    listautoptr_cleanup_GtkNothingAction :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNothingAction_wrapper")
+    slistautoptr_cleanup_GtkNothingAction :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNothingAction_wrapper")
+    queueautoptr_cleanup_GtkNothingAction :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkNothingActionClass_wrapper")
+    autoptr_clear_GtkNothingActionClass :: proc(_ptr: ^NothingActionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNothingActionClass_wrapper")
+    autoptr_cleanup_GtkNothingActionClass :: proc(_ptr: ^^NothingActionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNothingActionClass_wrapper")
+    autoptr_destroy_GtkNothingActionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNothingActionClass_wrapper")
+    listautoptr_cleanup_GtkNothingActionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNothingActionClass_wrapper")
+    slistautoptr_cleanup_GtkNothingActionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNothingActionClass_wrapper")
+    queueautoptr_cleanup_GtkNothingActionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_NOTHING_ACTION_wrapper")
+    NOTHING_ACTION :: proc(ptr: glib.pointer) -> ^NothingAction ---
+
+    @(link_name = "GTK_NOTHING_ACTION_CLASS_wrapper")
+    NOTHING_ACTION_CLASS :: proc(ptr: glib.pointer) -> ^NothingActionClass ---
+
+    @(link_name = "GTK_IS_NOTHING_ACTION_wrapper")
+    IS_NOTHING_ACTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_NOTHING_ACTION_CLASS_wrapper")
+    IS_NOTHING_ACTION_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_NOTHING_ACTION_GET_CLASS_wrapper")
+    NOTHING_ACTION_GET_CLASS :: proc(ptr: glib.pointer) -> ^NothingActionClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkCallbackAction_wrapper")
+    autoptr_clear_GtkCallbackAction :: proc(_ptr: ^CallbackAction) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCallbackAction_wrapper")
+    autoptr_cleanup_GtkCallbackAction :: proc(_ptr: ^^CallbackAction) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCallbackAction_wrapper")
+    autoptr_destroy_GtkCallbackAction :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCallbackAction_wrapper")
+    listautoptr_cleanup_GtkCallbackAction :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCallbackAction_wrapper")
+    slistautoptr_cleanup_GtkCallbackAction :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCallbackAction_wrapper")
+    queueautoptr_cleanup_GtkCallbackAction :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCallbackActionClass_wrapper")
+    autoptr_clear_GtkCallbackActionClass :: proc(_ptr: ^CallbackActionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCallbackActionClass_wrapper")
+    autoptr_cleanup_GtkCallbackActionClass :: proc(_ptr: ^^CallbackActionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCallbackActionClass_wrapper")
+    autoptr_destroy_GtkCallbackActionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCallbackActionClass_wrapper")
+    listautoptr_cleanup_GtkCallbackActionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCallbackActionClass_wrapper")
+    slistautoptr_cleanup_GtkCallbackActionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCallbackActionClass_wrapper")
+    queueautoptr_cleanup_GtkCallbackActionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_CALLBACK_ACTION_wrapper")
+    CALLBACK_ACTION :: proc(ptr: glib.pointer) -> ^CallbackAction ---
+
+    @(link_name = "GTK_CALLBACK_ACTION_CLASS_wrapper")
+    CALLBACK_ACTION_CLASS :: proc(ptr: glib.pointer) -> ^CallbackActionClass ---
+
+    @(link_name = "GTK_IS_CALLBACK_ACTION_wrapper")
+    IS_CALLBACK_ACTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_CALLBACK_ACTION_CLASS_wrapper")
+    IS_CALLBACK_ACTION_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_CALLBACK_ACTION_GET_CLASS_wrapper")
+    CALLBACK_ACTION_GET_CLASS :: proc(ptr: glib.pointer) -> ^CallbackActionClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkMnemonicAction_wrapper")
+    autoptr_clear_GtkMnemonicAction :: proc(_ptr: ^MnemonicAction) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMnemonicAction_wrapper")
+    autoptr_cleanup_GtkMnemonicAction :: proc(_ptr: ^^MnemonicAction) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMnemonicAction_wrapper")
+    autoptr_destroy_GtkMnemonicAction :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMnemonicAction_wrapper")
+    listautoptr_cleanup_GtkMnemonicAction :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMnemonicAction_wrapper")
+    slistautoptr_cleanup_GtkMnemonicAction :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMnemonicAction_wrapper")
+    queueautoptr_cleanup_GtkMnemonicAction :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMnemonicActionClass_wrapper")
+    autoptr_clear_GtkMnemonicActionClass :: proc(_ptr: ^MnemonicActionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMnemonicActionClass_wrapper")
+    autoptr_cleanup_GtkMnemonicActionClass :: proc(_ptr: ^^MnemonicActionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMnemonicActionClass_wrapper")
+    autoptr_destroy_GtkMnemonicActionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMnemonicActionClass_wrapper")
+    listautoptr_cleanup_GtkMnemonicActionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMnemonicActionClass_wrapper")
+    slistautoptr_cleanup_GtkMnemonicActionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMnemonicActionClass_wrapper")
+    queueautoptr_cleanup_GtkMnemonicActionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_MNEMONIC_ACTION_wrapper")
+    MNEMONIC_ACTION :: proc(ptr: glib.pointer) -> ^MnemonicAction ---
+
+    @(link_name = "GTK_MNEMONIC_ACTION_CLASS_wrapper")
+    MNEMONIC_ACTION_CLASS :: proc(ptr: glib.pointer) -> ^MnemonicActionClass ---
+
+    @(link_name = "GTK_IS_MNEMONIC_ACTION_wrapper")
+    IS_MNEMONIC_ACTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_MNEMONIC_ACTION_CLASS_wrapper")
+    IS_MNEMONIC_ACTION_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_MNEMONIC_ACTION_GET_CLASS_wrapper")
+    MNEMONIC_ACTION_GET_CLASS :: proc(ptr: glib.pointer) -> ^MnemonicActionClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkActivateAction_wrapper")
+    autoptr_clear_GtkActivateAction :: proc(_ptr: ^ActivateAction) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkActivateAction_wrapper")
+    autoptr_cleanup_GtkActivateAction :: proc(_ptr: ^^ActivateAction) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkActivateAction_wrapper")
+    autoptr_destroy_GtkActivateAction :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkActivateAction_wrapper")
+    listautoptr_cleanup_GtkActivateAction :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkActivateAction_wrapper")
+    slistautoptr_cleanup_GtkActivateAction :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkActivateAction_wrapper")
+    queueautoptr_cleanup_GtkActivateAction :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkActivateActionClass_wrapper")
+    autoptr_clear_GtkActivateActionClass :: proc(_ptr: ^ActivateActionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkActivateActionClass_wrapper")
+    autoptr_cleanup_GtkActivateActionClass :: proc(_ptr: ^^ActivateActionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkActivateActionClass_wrapper")
+    autoptr_destroy_GtkActivateActionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkActivateActionClass_wrapper")
+    listautoptr_cleanup_GtkActivateActionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkActivateActionClass_wrapper")
+    slistautoptr_cleanup_GtkActivateActionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkActivateActionClass_wrapper")
+    queueautoptr_cleanup_GtkActivateActionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_ACTIVATE_ACTION_wrapper")
+    ACTIVATE_ACTION :: proc(ptr: glib.pointer) -> ^ActivateAction ---
+
+    @(link_name = "GTK_ACTIVATE_ACTION_CLASS_wrapper")
+    ACTIVATE_ACTION_CLASS :: proc(ptr: glib.pointer) -> ^ActivateActionClass ---
+
+    @(link_name = "GTK_IS_ACTIVATE_ACTION_wrapper")
+    IS_ACTIVATE_ACTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_ACTIVATE_ACTION_CLASS_wrapper")
+    IS_ACTIVATE_ACTION_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_ACTIVATE_ACTION_GET_CLASS_wrapper")
+    ACTIVATE_ACTION_GET_CLASS :: proc(ptr: glib.pointer) -> ^ActivateActionClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkSignalAction_wrapper")
+    autoptr_clear_GtkSignalAction :: proc(_ptr: ^SignalAction) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSignalAction_wrapper")
+    autoptr_cleanup_GtkSignalAction :: proc(_ptr: ^^SignalAction) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSignalAction_wrapper")
+    autoptr_destroy_GtkSignalAction :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSignalAction_wrapper")
+    listautoptr_cleanup_GtkSignalAction :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSignalAction_wrapper")
+    slistautoptr_cleanup_GtkSignalAction :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSignalAction_wrapper")
+    queueautoptr_cleanup_GtkSignalAction :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSignalActionClass_wrapper")
+    autoptr_clear_GtkSignalActionClass :: proc(_ptr: ^SignalActionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSignalActionClass_wrapper")
+    autoptr_cleanup_GtkSignalActionClass :: proc(_ptr: ^^SignalActionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSignalActionClass_wrapper")
+    autoptr_destroy_GtkSignalActionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSignalActionClass_wrapper")
+    listautoptr_cleanup_GtkSignalActionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSignalActionClass_wrapper")
+    slistautoptr_cleanup_GtkSignalActionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSignalActionClass_wrapper")
+    queueautoptr_cleanup_GtkSignalActionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SIGNAL_ACTION_wrapper")
+    SIGNAL_ACTION :: proc(ptr: glib.pointer) -> ^SignalAction ---
+
+    @(link_name = "GTK_SIGNAL_ACTION_CLASS_wrapper")
+    SIGNAL_ACTION_CLASS :: proc(ptr: glib.pointer) -> ^SignalActionClass ---
+
+    @(link_name = "GTK_IS_SIGNAL_ACTION_wrapper")
+    IS_SIGNAL_ACTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_SIGNAL_ACTION_CLASS_wrapper")
+    IS_SIGNAL_ACTION_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_SIGNAL_ACTION_GET_CLASS_wrapper")
+    SIGNAL_ACTION_GET_CLASS :: proc(ptr: glib.pointer) -> ^SignalActionClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkNamedAction_wrapper")
+    autoptr_clear_GtkNamedAction :: proc(_ptr: ^NamedAction) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNamedAction_wrapper")
+    autoptr_cleanup_GtkNamedAction :: proc(_ptr: ^^NamedAction) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNamedAction_wrapper")
+    autoptr_destroy_GtkNamedAction :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNamedAction_wrapper")
+    listautoptr_cleanup_GtkNamedAction :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNamedAction_wrapper")
+    slistautoptr_cleanup_GtkNamedAction :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNamedAction_wrapper")
+    queueautoptr_cleanup_GtkNamedAction :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkNamedActionClass_wrapper")
+    autoptr_clear_GtkNamedActionClass :: proc(_ptr: ^NamedActionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNamedActionClass_wrapper")
+    autoptr_cleanup_GtkNamedActionClass :: proc(_ptr: ^^NamedActionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNamedActionClass_wrapper")
+    autoptr_destroy_GtkNamedActionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNamedActionClass_wrapper")
+    listautoptr_cleanup_GtkNamedActionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNamedActionClass_wrapper")
+    slistautoptr_cleanup_GtkNamedActionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNamedActionClass_wrapper")
+    queueautoptr_cleanup_GtkNamedActionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_NAMED_ACTION_wrapper")
+    NAMED_ACTION :: proc(ptr: glib.pointer) -> ^NamedAction ---
+
+    @(link_name = "GTK_NAMED_ACTION_CLASS_wrapper")
+    NAMED_ACTION_CLASS :: proc(ptr: glib.pointer) -> ^NamedActionClass ---
+
+    @(link_name = "GTK_IS_NAMED_ACTION_wrapper")
+    IS_NAMED_ACTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_NAMED_ACTION_CLASS_wrapper")
+    IS_NAMED_ACTION_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_NAMED_ACTION_GET_CLASS_wrapper")
+    NAMED_ACTION_GET_CLASS :: proc(ptr: glib.pointer) -> ^NamedActionClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkWidget_wrapper")
+    autoptr_clear_GtkWidget :: proc(_ptr: ^Widget) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkWidget_wrapper")
+    autoptr_cleanup_GtkWidget :: proc(_ptr: ^^Widget) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkWidget_wrapper")
+    autoptr_destroy_GtkWidget :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkWidget_wrapper")
+    listautoptr_cleanup_GtkWidget :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkWidget_wrapper")
+    slistautoptr_cleanup_GtkWidget :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkWidget_wrapper")
+    queueautoptr_cleanup_GtkWidget :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkRequisition_wrapper")
+    autoptr_clear_GtkRequisition :: proc(_ptr: ^Requisition) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkRequisition_wrapper")
+    autoptr_cleanup_GtkRequisition :: proc(_ptr: ^^Requisition) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkRequisition_wrapper")
+    autoptr_destroy_GtkRequisition :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkRequisition_wrapper")
+    listautoptr_cleanup_GtkRequisition :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkRequisition_wrapper")
+    slistautoptr_cleanup_GtkRequisition :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkRequisition_wrapper")
+    queueautoptr_cleanup_GtkRequisition :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkApplication_wrapper")
+    autoptr_clear_GtkApplication :: proc(_ptr: ^Application) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkApplication_wrapper")
+    autoptr_cleanup_GtkApplication :: proc(_ptr: ^^Application) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkApplication_wrapper")
+    autoptr_destroy_GtkApplication :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkApplication_wrapper")
+    listautoptr_cleanup_GtkApplication :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkApplication_wrapper")
+    slistautoptr_cleanup_GtkApplication :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkApplication_wrapper")
+    queueautoptr_cleanup_GtkApplication :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkWindow_wrapper")
+    autoptr_clear_GtkWindow :: proc(_ptr: ^Window) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkWindow_wrapper")
+    autoptr_cleanup_GtkWindow :: proc(_ptr: ^^Window) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkWindow_wrapper")
+    autoptr_destroy_GtkWindow :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkWindow_wrapper")
+    listautoptr_cleanup_GtkWindow :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkWindow_wrapper")
+    slistautoptr_cleanup_GtkWindow :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkWindow_wrapper")
+    queueautoptr_cleanup_GtkWindow :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkWindowGroup_wrapper")
+    autoptr_clear_GtkWindowGroup :: proc(_ptr: ^WindowGroup) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkWindowGroup_wrapper")
+    autoptr_cleanup_GtkWindowGroup :: proc(_ptr: ^^WindowGroup) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkWindowGroup_wrapper")
+    autoptr_destroy_GtkWindowGroup :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkWindowGroup_wrapper")
+    listautoptr_cleanup_GtkWindowGroup :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkWindowGroup_wrapper")
+    slistautoptr_cleanup_GtkWindowGroup :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkWindowGroup_wrapper")
+    queueautoptr_cleanup_GtkWindowGroup :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAboutDialog_wrapper")
+    autoptr_clear_GtkAboutDialog :: proc(_ptr: ^AboutDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAboutDialog_wrapper")
+    autoptr_cleanup_GtkAboutDialog :: proc(_ptr: ^^AboutDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAboutDialog_wrapper")
+    autoptr_destroy_GtkAboutDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAboutDialog_wrapper")
+    listautoptr_cleanup_GtkAboutDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAboutDialog_wrapper")
+    slistautoptr_cleanup_GtkAboutDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAboutDialog_wrapper")
+    queueautoptr_cleanup_GtkAboutDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAccessible_wrapper")
+    autoptr_clear_GtkAccessible :: proc(_ptr: ^Accessible) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAccessible_wrapper")
+    autoptr_cleanup_GtkAccessible :: proc(_ptr: ^^Accessible) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAccessible_wrapper")
+    autoptr_destroy_GtkAccessible :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAccessible_wrapper")
+    listautoptr_cleanup_GtkAccessible :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAccessible_wrapper")
+    slistautoptr_cleanup_GtkAccessible :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAccessible_wrapper")
+    queueautoptr_cleanup_GtkAccessible :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_ACCESSIBLE_wrapper")
+    ACCESSIBLE :: proc(ptr: glib.pointer) -> ^Accessible ---
+
+    @(link_name = "GTK_IS_ACCESSIBLE_wrapper")
+    IS_ACCESSIBLE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_ACCESSIBLE_GET_IFACE_wrapper")
+    ACCESSIBLE_GET_IFACE :: proc(ptr: glib.pointer) -> ^AccessibleInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkAccessibleRange_wrapper")
+    autoptr_clear_GtkAccessibleRange :: proc(_ptr: ^AccessibleRange) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAccessibleRange_wrapper")
+    autoptr_cleanup_GtkAccessibleRange :: proc(_ptr: ^^AccessibleRange) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAccessibleRange_wrapper")
+    autoptr_destroy_GtkAccessibleRange :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAccessibleRange_wrapper")
+    listautoptr_cleanup_GtkAccessibleRange :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAccessibleRange_wrapper")
+    slistautoptr_cleanup_GtkAccessibleRange :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAccessibleRange_wrapper")
+    queueautoptr_cleanup_GtkAccessibleRange :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_ACCESSIBLE_RANGE_wrapper")
+    ACCESSIBLE_RANGE :: proc(ptr: glib.pointer) -> ^AccessibleRange ---
+
+    @(link_name = "GTK_IS_ACCESSIBLE_RANGE_wrapper")
+    IS_ACCESSIBLE_RANGE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_ACCESSIBLE_RANGE_GET_IFACE_wrapper")
+    ACCESSIBLE_RANGE_GET_IFACE :: proc(ptr: glib.pointer) -> ^AccessibleRangeInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkActionable_wrapper")
+    autoptr_clear_GtkActionable :: proc(_ptr: ^Actionable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkActionable_wrapper")
+    autoptr_cleanup_GtkActionable :: proc(_ptr: ^^Actionable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkActionable_wrapper")
+    autoptr_destroy_GtkActionable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkActionable_wrapper")
+    listautoptr_cleanup_GtkActionable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkActionable_wrapper")
+    slistautoptr_cleanup_GtkActionable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkActionable_wrapper")
+    queueautoptr_cleanup_GtkActionable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkActionBar_wrapper")
+    autoptr_clear_GtkActionBar :: proc(_ptr: ^ActionBar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkActionBar_wrapper")
+    autoptr_cleanup_GtkActionBar :: proc(_ptr: ^^ActionBar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkActionBar_wrapper")
+    autoptr_destroy_GtkActionBar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkActionBar_wrapper")
+    listautoptr_cleanup_GtkActionBar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkActionBar_wrapper")
+    slistautoptr_cleanup_GtkActionBar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkActionBar_wrapper")
+    queueautoptr_cleanup_GtkActionBar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAdjustment_wrapper")
+    autoptr_clear_GtkAdjustment :: proc(_ptr: ^Adjustment) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAdjustment_wrapper")
+    autoptr_cleanup_GtkAdjustment :: proc(_ptr: ^^Adjustment) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAdjustment_wrapper")
+    autoptr_destroy_GtkAdjustment :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAdjustment_wrapper")
+    listautoptr_cleanup_GtkAdjustment :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAdjustment_wrapper")
+    slistautoptr_cleanup_GtkAdjustment :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAdjustment_wrapper")
+    queueautoptr_cleanup_GtkAdjustment :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAlertDialog_wrapper")
+    autoptr_clear_GtkAlertDialog :: proc(_ptr: ^AlertDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAlertDialog_wrapper")
+    autoptr_cleanup_GtkAlertDialog :: proc(_ptr: ^^AlertDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAlertDialog_wrapper")
+    autoptr_destroy_GtkAlertDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAlertDialog_wrapper")
+    listautoptr_cleanup_GtkAlertDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAlertDialog_wrapper")
+    slistautoptr_cleanup_GtkAlertDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAlertDialog_wrapper")
+    queueautoptr_cleanup_GtkAlertDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAlertDialogClass_wrapper")
+    autoptr_clear_GtkAlertDialogClass :: proc(_ptr: ^AlertDialogClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAlertDialogClass_wrapper")
+    autoptr_cleanup_GtkAlertDialogClass :: proc(_ptr: ^^AlertDialogClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAlertDialogClass_wrapper")
+    autoptr_destroy_GtkAlertDialogClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAlertDialogClass_wrapper")
+    listautoptr_cleanup_GtkAlertDialogClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAlertDialogClass_wrapper")
+    slistautoptr_cleanup_GtkAlertDialogClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAlertDialogClass_wrapper")
+    queueautoptr_cleanup_GtkAlertDialogClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_ALERT_DIALOG_wrapper")
+    ALERT_DIALOG :: proc(ptr: glib.pointer) -> ^AlertDialog ---
+
+    @(link_name = "GTK_IS_ALERT_DIALOG_wrapper")
+    IS_ALERT_DIALOG :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkAppChooser_wrapper")
+    autoptr_clear_GtkAppChooser :: proc(_ptr: ^AppChooser) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAppChooser_wrapper")
+    autoptr_cleanup_GtkAppChooser :: proc(_ptr: ^^AppChooser) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAppChooser_wrapper")
+    autoptr_destroy_GtkAppChooser :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAppChooser_wrapper")
+    listautoptr_cleanup_GtkAppChooser :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAppChooser_wrapper")
+    slistautoptr_cleanup_GtkAppChooser :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAppChooser_wrapper")
+    queueautoptr_cleanup_GtkAppChooser :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkDialog_wrapper")
+    autoptr_clear_GtkDialog :: proc(_ptr: ^Dialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkDialog_wrapper")
+    autoptr_cleanup_GtkDialog :: proc(_ptr: ^^Dialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkDialog_wrapper")
+    autoptr_destroy_GtkDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkDialog_wrapper")
+    listautoptr_cleanup_GtkDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkDialog_wrapper")
+    slistautoptr_cleanup_GtkDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkDialog_wrapper")
+    queueautoptr_cleanup_GtkDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAppChooserDialog_wrapper")
+    autoptr_clear_GtkAppChooserDialog :: proc(_ptr: ^AppChooserDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAppChooserDialog_wrapper")
+    autoptr_cleanup_GtkAppChooserDialog :: proc(_ptr: ^^AppChooserDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAppChooserDialog_wrapper")
+    autoptr_destroy_GtkAppChooserDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAppChooserDialog_wrapper")
+    listautoptr_cleanup_GtkAppChooserDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAppChooserDialog_wrapper")
+    slistautoptr_cleanup_GtkAppChooserDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAppChooserDialog_wrapper")
+    queueautoptr_cleanup_GtkAppChooserDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAppChooserWidget_wrapper")
+    autoptr_clear_GtkAppChooserWidget :: proc(_ptr: ^AppChooserWidget) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAppChooserWidget_wrapper")
+    autoptr_cleanup_GtkAppChooserWidget :: proc(_ptr: ^^AppChooserWidget) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAppChooserWidget_wrapper")
+    autoptr_destroy_GtkAppChooserWidget :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAppChooserWidget_wrapper")
+    listautoptr_cleanup_GtkAppChooserWidget :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAppChooserWidget_wrapper")
+    slistautoptr_cleanup_GtkAppChooserWidget :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAppChooserWidget_wrapper")
+    queueautoptr_cleanup_GtkAppChooserWidget :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAppChooserButton_wrapper")
+    autoptr_clear_GtkAppChooserButton :: proc(_ptr: ^AppChooserButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAppChooserButton_wrapper")
+    autoptr_cleanup_GtkAppChooserButton :: proc(_ptr: ^^AppChooserButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAppChooserButton_wrapper")
+    autoptr_destroy_GtkAppChooserButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAppChooserButton_wrapper")
+    listautoptr_cleanup_GtkAppChooserButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAppChooserButton_wrapper")
+    slistautoptr_cleanup_GtkAppChooserButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAppChooserButton_wrapper")
+    queueautoptr_cleanup_GtkAppChooserButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkShortcutsWindow_wrapper")
+    autoptr_clear_GtkShortcutsWindow :: proc(_ptr: ^ShortcutsWindow) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkShortcutsWindow_wrapper")
+    autoptr_cleanup_GtkShortcutsWindow :: proc(_ptr: ^^ShortcutsWindow) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkShortcutsWindow_wrapper")
+    autoptr_destroy_GtkShortcutsWindow :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkShortcutsWindow_wrapper")
+    listautoptr_cleanup_GtkShortcutsWindow :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkShortcutsWindow_wrapper")
+    slistautoptr_cleanup_GtkShortcutsWindow :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkShortcutsWindow_wrapper")
+    queueautoptr_cleanup_GtkShortcutsWindow :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkApplicationWindow_wrapper")
+    autoptr_clear_GtkApplicationWindow :: proc(_ptr: ^ApplicationWindow) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkApplicationWindow_wrapper")
+    autoptr_cleanup_GtkApplicationWindow :: proc(_ptr: ^^ApplicationWindow) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkApplicationWindow_wrapper")
+    autoptr_destroy_GtkApplicationWindow :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkApplicationWindow_wrapper")
+    listautoptr_cleanup_GtkApplicationWindow :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkApplicationWindow_wrapper")
+    slistautoptr_cleanup_GtkApplicationWindow :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkApplicationWindow_wrapper")
+    queueautoptr_cleanup_GtkApplicationWindow :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAspectFrame_wrapper")
+    autoptr_clear_GtkAspectFrame :: proc(_ptr: ^AspectFrame) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAspectFrame_wrapper")
+    autoptr_cleanup_GtkAspectFrame :: proc(_ptr: ^^AspectFrame) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAspectFrame_wrapper")
+    autoptr_destroy_GtkAspectFrame :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAspectFrame_wrapper")
+    listautoptr_cleanup_GtkAspectFrame :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAspectFrame_wrapper")
+    slistautoptr_cleanup_GtkAspectFrame :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAspectFrame_wrapper")
+    queueautoptr_cleanup_GtkAspectFrame :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAssistant_wrapper")
+    autoptr_clear_GtkAssistant :: proc(_ptr: ^Assistant) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAssistant_wrapper")
+    autoptr_cleanup_GtkAssistant :: proc(_ptr: ^^Assistant) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAssistant_wrapper")
+    autoptr_destroy_GtkAssistant :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAssistant_wrapper")
+    listautoptr_cleanup_GtkAssistant :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAssistant_wrapper")
+    slistautoptr_cleanup_GtkAssistant :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAssistant_wrapper")
+    queueautoptr_cleanup_GtkAssistant :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkATContext_wrapper")
+    autoptr_clear_GtkATContext :: proc(_ptr: ^ATContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkATContext_wrapper")
+    autoptr_cleanup_GtkATContext :: proc(_ptr: ^^ATContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkATContext_wrapper")
+    autoptr_destroy_GtkATContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkATContext_wrapper")
+    listautoptr_cleanup_GtkATContext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkATContext_wrapper")
+    slistautoptr_cleanup_GtkATContext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkATContext_wrapper")
+    queueautoptr_cleanup_GtkATContext :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkATContextClass_wrapper")
+    autoptr_clear_GtkATContextClass :: proc(_ptr: ^ATContextClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkATContextClass_wrapper")
+    autoptr_cleanup_GtkATContextClass :: proc(_ptr: ^^ATContextClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkATContextClass_wrapper")
+    autoptr_destroy_GtkATContextClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkATContextClass_wrapper")
+    listautoptr_cleanup_GtkATContextClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkATContextClass_wrapper")
+    slistautoptr_cleanup_GtkATContextClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkATContextClass_wrapper")
+    queueautoptr_cleanup_GtkATContextClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_AT_CONTEXT_wrapper")
+    AT_CONTEXT :: proc(ptr: glib.pointer) -> ^ATContext ---
+
+    @(link_name = "GTK_AT_CONTEXT_CLASS_wrapper")
+    AT_CONTEXT_CLASS :: proc(ptr: glib.pointer) -> ^ATContextClass ---
+
+    @(link_name = "GTK_IS_AT_CONTEXT_wrapper")
+    IS_AT_CONTEXT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_AT_CONTEXT_CLASS_wrapper")
+    IS_AT_CONTEXT_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_AT_CONTEXT_GET_CLASS_wrapper")
+    AT_CONTEXT_GET_CLASS :: proc(ptr: glib.pointer) -> ^ATContextClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkLayoutChild_wrapper")
+    autoptr_clear_GtkLayoutChild :: proc(_ptr: ^LayoutChild) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkLayoutChild_wrapper")
+    autoptr_cleanup_GtkLayoutChild :: proc(_ptr: ^^LayoutChild) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkLayoutChild_wrapper")
+    autoptr_destroy_GtkLayoutChild :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkLayoutChild_wrapper")
+    listautoptr_cleanup_GtkLayoutChild :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkLayoutChild_wrapper")
+    slistautoptr_cleanup_GtkLayoutChild :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkLayoutChild_wrapper")
+    queueautoptr_cleanup_GtkLayoutChild :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkLayoutChildClass_wrapper")
+    autoptr_clear_GtkLayoutChildClass :: proc(_ptr: ^LayoutChildClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkLayoutChildClass_wrapper")
+    autoptr_cleanup_GtkLayoutChildClass :: proc(_ptr: ^^LayoutChildClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkLayoutChildClass_wrapper")
+    autoptr_destroy_GtkLayoutChildClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkLayoutChildClass_wrapper")
+    listautoptr_cleanup_GtkLayoutChildClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkLayoutChildClass_wrapper")
+    slistautoptr_cleanup_GtkLayoutChildClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkLayoutChildClass_wrapper")
+    queueautoptr_cleanup_GtkLayoutChildClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_LAYOUT_CHILD_wrapper")
+    LAYOUT_CHILD :: proc(ptr: glib.pointer) -> ^LayoutChild ---
+
+    @(link_name = "GTK_LAYOUT_CHILD_CLASS_wrapper")
+    LAYOUT_CHILD_CLASS :: proc(ptr: glib.pointer) -> ^LayoutChildClass ---
+
+    @(link_name = "GTK_IS_LAYOUT_CHILD_wrapper")
+    IS_LAYOUT_CHILD :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_LAYOUT_CHILD_CLASS_wrapper")
+    IS_LAYOUT_CHILD_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_LAYOUT_CHILD_GET_CLASS_wrapper")
+    LAYOUT_CHILD_GET_CLASS :: proc(ptr: glib.pointer) -> ^LayoutChildClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkLayoutManager_wrapper")
+    autoptr_clear_GtkLayoutManager :: proc(_ptr: ^LayoutManager) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkLayoutManager_wrapper")
+    autoptr_cleanup_GtkLayoutManager :: proc(_ptr: ^^LayoutManager) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkLayoutManager_wrapper")
+    autoptr_destroy_GtkLayoutManager :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkLayoutManager_wrapper")
+    listautoptr_cleanup_GtkLayoutManager :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkLayoutManager_wrapper")
+    slistautoptr_cleanup_GtkLayoutManager :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkLayoutManager_wrapper")
+    queueautoptr_cleanup_GtkLayoutManager :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkLayoutManagerClass_wrapper")
+    autoptr_clear_GtkLayoutManagerClass :: proc(_ptr: ^LayoutManagerClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkLayoutManagerClass_wrapper")
+    autoptr_cleanup_GtkLayoutManagerClass :: proc(_ptr: ^^LayoutManagerClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkLayoutManagerClass_wrapper")
+    autoptr_destroy_GtkLayoutManagerClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkLayoutManagerClass_wrapper")
+    listautoptr_cleanup_GtkLayoutManagerClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkLayoutManagerClass_wrapper")
+    slistautoptr_cleanup_GtkLayoutManagerClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkLayoutManagerClass_wrapper")
+    queueautoptr_cleanup_GtkLayoutManagerClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_LAYOUT_MANAGER_wrapper")
+    LAYOUT_MANAGER :: proc(ptr: glib.pointer) -> ^LayoutManager ---
+
+    @(link_name = "GTK_LAYOUT_MANAGER_CLASS_wrapper")
+    LAYOUT_MANAGER_CLASS :: proc(ptr: glib.pointer) -> ^LayoutManagerClass ---
+
+    @(link_name = "GTK_IS_LAYOUT_MANAGER_wrapper")
+    IS_LAYOUT_MANAGER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_LAYOUT_MANAGER_CLASS_wrapper")
+    IS_LAYOUT_MANAGER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_LAYOUT_MANAGER_GET_CLASS_wrapper")
+    LAYOUT_MANAGER_GET_CLASS :: proc(ptr: glib.pointer) -> ^LayoutManagerClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkBinLayout_wrapper")
+    autoptr_clear_GtkBinLayout :: proc(_ptr: ^BinLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBinLayout_wrapper")
+    autoptr_cleanup_GtkBinLayout :: proc(_ptr: ^^BinLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBinLayout_wrapper")
+    autoptr_destroy_GtkBinLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBinLayout_wrapper")
+    listautoptr_cleanup_GtkBinLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBinLayout_wrapper")
+    slistautoptr_cleanup_GtkBinLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBinLayout_wrapper")
+    queueautoptr_cleanup_GtkBinLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkBinLayoutClass_wrapper")
+    autoptr_clear_GtkBinLayoutClass :: proc(_ptr: ^BinLayoutClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBinLayoutClass_wrapper")
+    autoptr_cleanup_GtkBinLayoutClass :: proc(_ptr: ^^BinLayoutClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBinLayoutClass_wrapper")
+    autoptr_destroy_GtkBinLayoutClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBinLayoutClass_wrapper")
+    listautoptr_cleanup_GtkBinLayoutClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBinLayoutClass_wrapper")
+    slistautoptr_cleanup_GtkBinLayoutClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBinLayoutClass_wrapper")
+    queueautoptr_cleanup_GtkBinLayoutClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_BIN_LAYOUT_wrapper")
+    BIN_LAYOUT :: proc(ptr: glib.pointer) -> ^BinLayout ---
+
+    @(link_name = "GTK_IS_BIN_LAYOUT_wrapper")
+    IS_BIN_LAYOUT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkBitset_wrapper")
+    autoptr_clear_GtkBitset :: proc(_ptr: ^Bitset) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBitset_wrapper")
+    autoptr_cleanup_GtkBitset :: proc(_ptr: ^^Bitset) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBitset_wrapper")
+    autoptr_destroy_GtkBitset :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBitset_wrapper")
+    listautoptr_cleanup_GtkBitset :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBitset_wrapper")
+    slistautoptr_cleanup_GtkBitset :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBitset_wrapper")
+    queueautoptr_cleanup_GtkBitset :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkBookmarkList_wrapper")
+    autoptr_clear_GtkBookmarkList :: proc(_ptr: ^BookmarkList) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBookmarkList_wrapper")
+    autoptr_cleanup_GtkBookmarkList :: proc(_ptr: ^^BookmarkList) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBookmarkList_wrapper")
+    autoptr_destroy_GtkBookmarkList :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBookmarkList_wrapper")
+    listautoptr_cleanup_GtkBookmarkList :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBookmarkList_wrapper")
+    slistautoptr_cleanup_GtkBookmarkList :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBookmarkList_wrapper")
+    queueautoptr_cleanup_GtkBookmarkList :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkBookmarkListClass_wrapper")
+    autoptr_clear_GtkBookmarkListClass :: proc(_ptr: ^BookmarkListClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBookmarkListClass_wrapper")
+    autoptr_cleanup_GtkBookmarkListClass :: proc(_ptr: ^^BookmarkListClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBookmarkListClass_wrapper")
+    autoptr_destroy_GtkBookmarkListClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBookmarkListClass_wrapper")
+    listautoptr_cleanup_GtkBookmarkListClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBookmarkListClass_wrapper")
+    slistautoptr_cleanup_GtkBookmarkListClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBookmarkListClass_wrapper")
+    queueautoptr_cleanup_GtkBookmarkListClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_BOOKMARK_LIST_wrapper")
+    BOOKMARK_LIST :: proc(ptr: glib.pointer) -> ^BookmarkList ---
+
+    @(link_name = "GTK_IS_BOOKMARK_LIST_wrapper")
+    IS_BOOKMARK_LIST :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkExpression_wrapper")
+    autoptr_clear_GtkExpression :: proc(_ptr: ^Expression) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkExpression_wrapper")
+    autoptr_cleanup_GtkExpression :: proc(_ptr: ^^Expression) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkExpression_wrapper")
+    autoptr_destroy_GtkExpression :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkExpression_wrapper")
+    listautoptr_cleanup_GtkExpression :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkExpression_wrapper")
+    slistautoptr_cleanup_GtkExpression :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkExpression_wrapper")
+    queueautoptr_cleanup_GtkExpression :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFilter_wrapper")
+    autoptr_clear_GtkFilter :: proc(_ptr: ^Filter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFilter_wrapper")
+    autoptr_cleanup_GtkFilter :: proc(_ptr: ^^Filter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFilter_wrapper")
+    autoptr_destroy_GtkFilter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFilter_wrapper")
+    listautoptr_cleanup_GtkFilter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFilter_wrapper")
+    slistautoptr_cleanup_GtkFilter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFilter_wrapper")
+    queueautoptr_cleanup_GtkFilter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFilterClass_wrapper")
+    autoptr_clear_GtkFilterClass :: proc(_ptr: ^FilterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFilterClass_wrapper")
+    autoptr_cleanup_GtkFilterClass :: proc(_ptr: ^^FilterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFilterClass_wrapper")
+    autoptr_destroy_GtkFilterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFilterClass_wrapper")
+    listautoptr_cleanup_GtkFilterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFilterClass_wrapper")
+    slistautoptr_cleanup_GtkFilterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFilterClass_wrapper")
+    queueautoptr_cleanup_GtkFilterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_FILTER_wrapper")
+    FILTER :: proc(ptr: glib.pointer) -> ^Filter ---
+
+    @(link_name = "GTK_FILTER_CLASS_wrapper")
+    FILTER_CLASS :: proc(ptr: glib.pointer) -> ^FilterClass ---
+
+    @(link_name = "GTK_IS_FILTER_wrapper")
+    IS_FILTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_FILTER_CLASS_wrapper")
+    IS_FILTER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_FILTER_GET_CLASS_wrapper")
+    FILTER_GET_CLASS :: proc(ptr: glib.pointer) -> ^FilterClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkBoolFilter_wrapper")
+    autoptr_clear_GtkBoolFilter :: proc(_ptr: ^BoolFilter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBoolFilter_wrapper")
+    autoptr_cleanup_GtkBoolFilter :: proc(_ptr: ^^BoolFilter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBoolFilter_wrapper")
+    autoptr_destroy_GtkBoolFilter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBoolFilter_wrapper")
+    listautoptr_cleanup_GtkBoolFilter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBoolFilter_wrapper")
+    slistautoptr_cleanup_GtkBoolFilter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBoolFilter_wrapper")
+    queueautoptr_cleanup_GtkBoolFilter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkBoolFilterClass_wrapper")
+    autoptr_clear_GtkBoolFilterClass :: proc(_ptr: ^BoolFilterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBoolFilterClass_wrapper")
+    autoptr_cleanup_GtkBoolFilterClass :: proc(_ptr: ^^BoolFilterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBoolFilterClass_wrapper")
+    autoptr_destroy_GtkBoolFilterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBoolFilterClass_wrapper")
+    listautoptr_cleanup_GtkBoolFilterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBoolFilterClass_wrapper")
+    slistautoptr_cleanup_GtkBoolFilterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBoolFilterClass_wrapper")
+    queueautoptr_cleanup_GtkBoolFilterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_BOOL_FILTER_wrapper")
+    BOOL_FILTER :: proc(ptr: glib.pointer) -> ^BoolFilter ---
+
+    @(link_name = "GTK_IS_BOOL_FILTER_wrapper")
+    IS_BOOL_FILTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkBoxLayout_wrapper")
+    autoptr_clear_GtkBoxLayout :: proc(_ptr: ^BoxLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBoxLayout_wrapper")
+    autoptr_cleanup_GtkBoxLayout :: proc(_ptr: ^^BoxLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBoxLayout_wrapper")
+    autoptr_destroy_GtkBoxLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBoxLayout_wrapper")
+    listautoptr_cleanup_GtkBoxLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBoxLayout_wrapper")
+    slistautoptr_cleanup_GtkBoxLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBoxLayout_wrapper")
+    queueautoptr_cleanup_GtkBoxLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkBoxLayoutClass_wrapper")
+    autoptr_clear_GtkBoxLayoutClass :: proc(_ptr: ^BoxLayoutClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBoxLayoutClass_wrapper")
+    autoptr_cleanup_GtkBoxLayoutClass :: proc(_ptr: ^^BoxLayoutClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBoxLayoutClass_wrapper")
+    autoptr_destroy_GtkBoxLayoutClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBoxLayoutClass_wrapper")
+    listautoptr_cleanup_GtkBoxLayoutClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBoxLayoutClass_wrapper")
+    slistautoptr_cleanup_GtkBoxLayoutClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBoxLayoutClass_wrapper")
+    queueautoptr_cleanup_GtkBoxLayoutClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_BOX_LAYOUT_wrapper")
+    BOX_LAYOUT :: proc(ptr: glib.pointer) -> ^BoxLayout ---
+
+    @(link_name = "GTK_IS_BOX_LAYOUT_wrapper")
+    IS_BOX_LAYOUT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkBox_wrapper")
+    autoptr_clear_GtkBox :: proc(_ptr: ^Box) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBox_wrapper")
+    autoptr_cleanup_GtkBox :: proc(_ptr: ^^Box) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBox_wrapper")
+    autoptr_destroy_GtkBox :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBox_wrapper")
+    listautoptr_cleanup_GtkBox :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBox_wrapper")
+    slistautoptr_cleanup_GtkBox :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBox_wrapper")
+    queueautoptr_cleanup_GtkBox :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkBuilderScope_wrapper")
+    autoptr_clear_GtkBuilderScope :: proc(_ptr: ^BuilderScope) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBuilderScope_wrapper")
+    autoptr_cleanup_GtkBuilderScope :: proc(_ptr: ^^BuilderScope) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBuilderScope_wrapper")
+    autoptr_destroy_GtkBuilderScope :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBuilderScope_wrapper")
+    listautoptr_cleanup_GtkBuilderScope :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBuilderScope_wrapper")
+    slistautoptr_cleanup_GtkBuilderScope :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBuilderScope_wrapper")
+    queueautoptr_cleanup_GtkBuilderScope :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_BUILDER_SCOPE_wrapper")
+    BUILDER_SCOPE :: proc(ptr: glib.pointer) -> ^BuilderScope ---
+
+    @(link_name = "GTK_IS_BUILDER_SCOPE_wrapper")
+    IS_BUILDER_SCOPE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_BUILDER_SCOPE_GET_IFACE_wrapper")
+    BUILDER_SCOPE_GET_IFACE :: proc(ptr: glib.pointer) -> ^BuilderScopeInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkBuilderCScope_wrapper")
+    autoptr_clear_GtkBuilderCScope :: proc(_ptr: ^BuilderCScope) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBuilderCScope_wrapper")
+    autoptr_cleanup_GtkBuilderCScope :: proc(_ptr: ^^BuilderCScope) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBuilderCScope_wrapper")
+    autoptr_destroy_GtkBuilderCScope :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBuilderCScope_wrapper")
+    listautoptr_cleanup_GtkBuilderCScope :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBuilderCScope_wrapper")
+    slistautoptr_cleanup_GtkBuilderCScope :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBuilderCScope_wrapper")
+    queueautoptr_cleanup_GtkBuilderCScope :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkBuilderCScopeClass_wrapper")
+    autoptr_clear_GtkBuilderCScopeClass :: proc(_ptr: ^BuilderCScopeClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBuilderCScopeClass_wrapper")
+    autoptr_cleanup_GtkBuilderCScopeClass :: proc(_ptr: ^^BuilderCScopeClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBuilderCScopeClass_wrapper")
+    autoptr_destroy_GtkBuilderCScopeClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBuilderCScopeClass_wrapper")
+    listautoptr_cleanup_GtkBuilderCScopeClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBuilderCScopeClass_wrapper")
+    slistautoptr_cleanup_GtkBuilderCScopeClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBuilderCScopeClass_wrapper")
+    queueautoptr_cleanup_GtkBuilderCScopeClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_BUILDER_CSCOPE_wrapper")
+    BUILDER_CSCOPE :: proc(ptr: glib.pointer) -> ^BuilderCScope ---
+
+    @(link_name = "GTK_BUILDER_CSCOPE_CLASS_wrapper")
+    BUILDER_CSCOPE_CLASS :: proc(ptr: glib.pointer) -> ^BuilderCScopeClass ---
+
+    @(link_name = "GTK_IS_BUILDER_CSCOPE_wrapper")
+    IS_BUILDER_CSCOPE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_BUILDER_CSCOPE_CLASS_wrapper")
+    IS_BUILDER_CSCOPE_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_BUILDER_CSCOPE_GET_CLASS_wrapper")
+    BUILDER_CSCOPE_GET_CLASS :: proc(ptr: glib.pointer) -> ^BuilderCScopeClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkBuilder_wrapper")
+    autoptr_clear_GtkBuilder :: proc(_ptr: ^Builder) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBuilder_wrapper")
+    autoptr_cleanup_GtkBuilder :: proc(_ptr: ^^Builder) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBuilder_wrapper")
+    autoptr_destroy_GtkBuilder :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBuilder_wrapper")
+    listautoptr_cleanup_GtkBuilder :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBuilder_wrapper")
+    slistautoptr_cleanup_GtkBuilder :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBuilder_wrapper")
+    queueautoptr_cleanup_GtkBuilder :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkBuildable_wrapper")
+    autoptr_clear_GtkBuildable :: proc(_ptr: ^Buildable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBuildable_wrapper")
+    autoptr_cleanup_GtkBuildable :: proc(_ptr: ^^Buildable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBuildable_wrapper")
+    autoptr_destroy_GtkBuildable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBuildable_wrapper")
+    listautoptr_cleanup_GtkBuildable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBuildable_wrapper")
+    slistautoptr_cleanup_GtkBuildable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBuildable_wrapper")
+    queueautoptr_cleanup_GtkBuildable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkListItemFactory_wrapper")
+    autoptr_clear_GtkListItemFactory :: proc(_ptr: ^ListItemFactory) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkListItemFactory_wrapper")
+    autoptr_cleanup_GtkListItemFactory :: proc(_ptr: ^^ListItemFactory) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkListItemFactory_wrapper")
+    autoptr_destroy_GtkListItemFactory :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkListItemFactory_wrapper")
+    listautoptr_cleanup_GtkListItemFactory :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkListItemFactory_wrapper")
+    slistautoptr_cleanup_GtkListItemFactory :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkListItemFactory_wrapper")
+    queueautoptr_cleanup_GtkListItemFactory :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkButton_wrapper")
+    autoptr_clear_GtkButton :: proc(_ptr: ^Button) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkButton_wrapper")
+    autoptr_cleanup_GtkButton :: proc(_ptr: ^^Button) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkButton_wrapper")
+    autoptr_destroy_GtkButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkButton_wrapper")
+    listautoptr_cleanup_GtkButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkButton_wrapper")
+    slistautoptr_cleanup_GtkButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkButton_wrapper")
+    queueautoptr_cleanup_GtkButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCalendar_wrapper")
+    autoptr_clear_GtkCalendar :: proc(_ptr: ^Calendar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCalendar_wrapper")
+    autoptr_cleanup_GtkCalendar :: proc(_ptr: ^^Calendar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCalendar_wrapper")
+    autoptr_destroy_GtkCalendar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCalendar_wrapper")
+    listautoptr_cleanup_GtkCalendar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCalendar_wrapper")
+    slistautoptr_cleanup_GtkCalendar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCalendar_wrapper")
+    queueautoptr_cleanup_GtkCalendar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellEditable_wrapper")
+    autoptr_clear_GtkCellEditable :: proc(_ptr: ^CellEditable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellEditable_wrapper")
+    autoptr_cleanup_GtkCellEditable :: proc(_ptr: ^^CellEditable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellEditable_wrapper")
+    autoptr_destroy_GtkCellEditable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellEditable_wrapper")
+    listautoptr_cleanup_GtkCellEditable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellEditable_wrapper")
+    slistautoptr_cleanup_GtkCellEditable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellEditable_wrapper")
+    queueautoptr_cleanup_GtkCellEditable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellRenderer_wrapper")
+    autoptr_clear_GtkCellRenderer :: proc(_ptr: ^CellRenderer) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellRenderer_wrapper")
+    autoptr_cleanup_GtkCellRenderer :: proc(_ptr: ^^CellRenderer) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellRenderer_wrapper")
+    autoptr_destroy_GtkCellRenderer :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellRenderer_wrapper")
+    listautoptr_cleanup_GtkCellRenderer :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellRenderer_wrapper")
+    slistautoptr_cleanup_GtkCellRenderer :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellRenderer_wrapper")
+    queueautoptr_cleanup_GtkCellRenderer :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeModel_wrapper")
+    autoptr_clear_GtkTreeModel :: proc(_ptr: ^TreeModel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeModel_wrapper")
+    autoptr_cleanup_GtkTreeModel :: proc(_ptr: ^^TreeModel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeModel_wrapper")
+    autoptr_destroy_GtkTreeModel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeModel_wrapper")
+    listautoptr_cleanup_GtkTreeModel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeModel_wrapper")
+    slistautoptr_cleanup_GtkTreeModel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeModel_wrapper")
+    queueautoptr_cleanup_GtkTreeModel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeIter_wrapper")
+    autoptr_clear_GtkTreeIter :: proc(_ptr: ^TreeIter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeIter_wrapper")
+    autoptr_cleanup_GtkTreeIter :: proc(_ptr: ^^TreeIter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeIter_wrapper")
+    autoptr_destroy_GtkTreeIter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeIter_wrapper")
+    listautoptr_cleanup_GtkTreeIter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeIter_wrapper")
+    slistautoptr_cleanup_GtkTreeIter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeIter_wrapper")
+    queueautoptr_cleanup_GtkTreeIter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreePath_wrapper")
+    autoptr_clear_GtkTreePath :: proc(_ptr: ^TreePath) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreePath_wrapper")
+    autoptr_cleanup_GtkTreePath :: proc(_ptr: ^^TreePath) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreePath_wrapper")
+    autoptr_destroy_GtkTreePath :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreePath_wrapper")
+    listautoptr_cleanup_GtkTreePath :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreePath_wrapper")
+    slistautoptr_cleanup_GtkTreePath :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreePath_wrapper")
+    queueautoptr_cleanup_GtkTreePath :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeRowReference_wrapper")
+    autoptr_clear_GtkTreeRowReference :: proc(_ptr: ^TreeRowReference) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeRowReference_wrapper")
+    autoptr_cleanup_GtkTreeRowReference :: proc(_ptr: ^^TreeRowReference) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeRowReference_wrapper")
+    autoptr_destroy_GtkTreeRowReference :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeRowReference_wrapper")
+    listautoptr_cleanup_GtkTreeRowReference :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeRowReference_wrapper")
+    slistautoptr_cleanup_GtkTreeRowReference :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeRowReference_wrapper")
+    queueautoptr_cleanup_GtkTreeRowReference :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellArea_wrapper")
+    autoptr_clear_GtkCellArea :: proc(_ptr: ^CellArea) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellArea_wrapper")
+    autoptr_cleanup_GtkCellArea :: proc(_ptr: ^^CellArea) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellArea_wrapper")
+    autoptr_destroy_GtkCellArea :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellArea_wrapper")
+    listautoptr_cleanup_GtkCellArea :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellArea_wrapper")
+    slistautoptr_cleanup_GtkCellArea :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellArea_wrapper")
+    queueautoptr_cleanup_GtkCellArea :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellAreaBox_wrapper")
+    autoptr_clear_GtkCellAreaBox :: proc(_ptr: ^CellAreaBox) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellAreaBox_wrapper")
+    autoptr_cleanup_GtkCellAreaBox :: proc(_ptr: ^^CellAreaBox) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellAreaBox_wrapper")
+    autoptr_destroy_GtkCellAreaBox :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellAreaBox_wrapper")
+    listautoptr_cleanup_GtkCellAreaBox :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellAreaBox_wrapper")
+    slistautoptr_cleanup_GtkCellAreaBox :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellAreaBox_wrapper")
+    queueautoptr_cleanup_GtkCellAreaBox :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellAreaContext_wrapper")
+    autoptr_clear_GtkCellAreaContext :: proc(_ptr: ^CellAreaContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellAreaContext_wrapper")
+    autoptr_cleanup_GtkCellAreaContext :: proc(_ptr: ^^CellAreaContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellAreaContext_wrapper")
+    autoptr_destroy_GtkCellAreaContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellAreaContext_wrapper")
+    listautoptr_cleanup_GtkCellAreaContext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellAreaContext_wrapper")
+    slistautoptr_cleanup_GtkCellAreaContext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellAreaContext_wrapper")
+    queueautoptr_cleanup_GtkCellAreaContext :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellLayout_wrapper")
+    autoptr_clear_GtkCellLayout :: proc(_ptr: ^CellLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellLayout_wrapper")
+    autoptr_cleanup_GtkCellLayout :: proc(_ptr: ^^CellLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellLayout_wrapper")
+    autoptr_destroy_GtkCellLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellLayout_wrapper")
+    listautoptr_cleanup_GtkCellLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellLayout_wrapper")
+    slistautoptr_cleanup_GtkCellLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellLayout_wrapper")
+    queueautoptr_cleanup_GtkCellLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellRendererText_wrapper")
+    autoptr_clear_GtkCellRendererText :: proc(_ptr: ^CellRendererText) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellRendererText_wrapper")
+    autoptr_cleanup_GtkCellRendererText :: proc(_ptr: ^^CellRendererText) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellRendererText_wrapper")
+    autoptr_destroy_GtkCellRendererText :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellRendererText_wrapper")
+    listautoptr_cleanup_GtkCellRendererText :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellRendererText_wrapper")
+    slistautoptr_cleanup_GtkCellRendererText :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellRendererText_wrapper")
+    queueautoptr_cleanup_GtkCellRendererText :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellRendererAccel_wrapper")
+    autoptr_clear_GtkCellRendererAccel :: proc(_ptr: ^CellRendererAccel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellRendererAccel_wrapper")
+    autoptr_cleanup_GtkCellRendererAccel :: proc(_ptr: ^^CellRendererAccel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellRendererAccel_wrapper")
+    autoptr_destroy_GtkCellRendererAccel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellRendererAccel_wrapper")
+    listautoptr_cleanup_GtkCellRendererAccel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellRendererAccel_wrapper")
+    slistautoptr_cleanup_GtkCellRendererAccel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellRendererAccel_wrapper")
+    queueautoptr_cleanup_GtkCellRendererAccel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellRendererCombo_wrapper")
+    autoptr_clear_GtkCellRendererCombo :: proc(_ptr: ^CellRendererCombo) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellRendererCombo_wrapper")
+    autoptr_cleanup_GtkCellRendererCombo :: proc(_ptr: ^^CellRendererCombo) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellRendererCombo_wrapper")
+    autoptr_destroy_GtkCellRendererCombo :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellRendererCombo_wrapper")
+    listautoptr_cleanup_GtkCellRendererCombo :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellRendererCombo_wrapper")
+    slistautoptr_cleanup_GtkCellRendererCombo :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellRendererCombo_wrapper")
+    queueautoptr_cleanup_GtkCellRendererCombo :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellRendererPixbuf_wrapper")
+    autoptr_clear_GtkCellRendererPixbuf :: proc(_ptr: ^CellRendererPixbuf) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellRendererPixbuf_wrapper")
+    autoptr_cleanup_GtkCellRendererPixbuf :: proc(_ptr: ^^CellRendererPixbuf) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellRendererPixbuf_wrapper")
+    autoptr_destroy_GtkCellRendererPixbuf :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellRendererPixbuf_wrapper")
+    listautoptr_cleanup_GtkCellRendererPixbuf :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellRendererPixbuf_wrapper")
+    slistautoptr_cleanup_GtkCellRendererPixbuf :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellRendererPixbuf_wrapper")
+    queueautoptr_cleanup_GtkCellRendererPixbuf :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellRendererProgress_wrapper")
+    autoptr_clear_GtkCellRendererProgress :: proc(_ptr: ^CellRendererProgress) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellRendererProgress_wrapper")
+    autoptr_cleanup_GtkCellRendererProgress :: proc(_ptr: ^^CellRendererProgress) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellRendererProgress_wrapper")
+    autoptr_destroy_GtkCellRendererProgress :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellRendererProgress_wrapper")
+    listautoptr_cleanup_GtkCellRendererProgress :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellRendererProgress_wrapper")
+    slistautoptr_cleanup_GtkCellRendererProgress :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellRendererProgress_wrapper")
+    queueautoptr_cleanup_GtkCellRendererProgress :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellRendererSpin_wrapper")
+    autoptr_clear_GtkCellRendererSpin :: proc(_ptr: ^CellRendererSpin) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellRendererSpin_wrapper")
+    autoptr_cleanup_GtkCellRendererSpin :: proc(_ptr: ^^CellRendererSpin) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellRendererSpin_wrapper")
+    autoptr_destroy_GtkCellRendererSpin :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellRendererSpin_wrapper")
+    listautoptr_cleanup_GtkCellRendererSpin :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellRendererSpin_wrapper")
+    slistautoptr_cleanup_GtkCellRendererSpin :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellRendererSpin_wrapper")
+    queueautoptr_cleanup_GtkCellRendererSpin :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellRendererSpinner_wrapper")
+    autoptr_clear_GtkCellRendererSpinner :: proc(_ptr: ^CellRendererSpinner) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellRendererSpinner_wrapper")
+    autoptr_cleanup_GtkCellRendererSpinner :: proc(_ptr: ^^CellRendererSpinner) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellRendererSpinner_wrapper")
+    autoptr_destroy_GtkCellRendererSpinner :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellRendererSpinner_wrapper")
+    listautoptr_cleanup_GtkCellRendererSpinner :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellRendererSpinner_wrapper")
+    slistautoptr_cleanup_GtkCellRendererSpinner :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellRendererSpinner_wrapper")
+    queueautoptr_cleanup_GtkCellRendererSpinner :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellRendererToggle_wrapper")
+    autoptr_clear_GtkCellRendererToggle :: proc(_ptr: ^CellRendererToggle) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellRendererToggle_wrapper")
+    autoptr_cleanup_GtkCellRendererToggle :: proc(_ptr: ^^CellRendererToggle) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellRendererToggle_wrapper")
+    autoptr_destroy_GtkCellRendererToggle :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellRendererToggle_wrapper")
+    listautoptr_cleanup_GtkCellRendererToggle :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellRendererToggle_wrapper")
+    slistautoptr_cleanup_GtkCellRendererToggle :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellRendererToggle_wrapper")
+    queueautoptr_cleanup_GtkCellRendererToggle :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCellView_wrapper")
+    autoptr_clear_GtkCellView :: proc(_ptr: ^CellView) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCellView_wrapper")
+    autoptr_cleanup_GtkCellView :: proc(_ptr: ^^CellView) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCellView_wrapper")
+    autoptr_destroy_GtkCellView :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCellView_wrapper")
+    listautoptr_cleanup_GtkCellView :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCellView_wrapper")
+    slistautoptr_cleanup_GtkCellView :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCellView_wrapper")
+    queueautoptr_cleanup_GtkCellView :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCenterLayout_wrapper")
+    autoptr_clear_GtkCenterLayout :: proc(_ptr: ^CenterLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCenterLayout_wrapper")
+    autoptr_cleanup_GtkCenterLayout :: proc(_ptr: ^^CenterLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCenterLayout_wrapper")
+    autoptr_destroy_GtkCenterLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCenterLayout_wrapper")
+    listautoptr_cleanup_GtkCenterLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCenterLayout_wrapper")
+    slistautoptr_cleanup_GtkCenterLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCenterLayout_wrapper")
+    queueautoptr_cleanup_GtkCenterLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCenterLayoutClass_wrapper")
+    autoptr_clear_GtkCenterLayoutClass :: proc(_ptr: ^CenterLayoutClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCenterLayoutClass_wrapper")
+    autoptr_cleanup_GtkCenterLayoutClass :: proc(_ptr: ^^CenterLayoutClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCenterLayoutClass_wrapper")
+    autoptr_destroy_GtkCenterLayoutClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCenterLayoutClass_wrapper")
+    listautoptr_cleanup_GtkCenterLayoutClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCenterLayoutClass_wrapper")
+    slistautoptr_cleanup_GtkCenterLayoutClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCenterLayoutClass_wrapper")
+    queueautoptr_cleanup_GtkCenterLayoutClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_CENTER_LAYOUT_wrapper")
+    CENTER_LAYOUT :: proc(ptr: glib.pointer) -> ^CenterLayout ---
+
+    @(link_name = "GTK_IS_CENTER_LAYOUT_wrapper")
+    IS_CENTER_LAYOUT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkToggleButton_wrapper")
+    autoptr_clear_GtkToggleButton :: proc(_ptr: ^ToggleButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkToggleButton_wrapper")
+    autoptr_cleanup_GtkToggleButton :: proc(_ptr: ^^ToggleButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkToggleButton_wrapper")
+    autoptr_destroy_GtkToggleButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkToggleButton_wrapper")
+    listautoptr_cleanup_GtkToggleButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkToggleButton_wrapper")
+    slistautoptr_cleanup_GtkToggleButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkToggleButton_wrapper")
+    queueautoptr_cleanup_GtkToggleButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCheckButton_wrapper")
+    autoptr_clear_GtkCheckButton :: proc(_ptr: ^CheckButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCheckButton_wrapper")
+    autoptr_cleanup_GtkCheckButton :: proc(_ptr: ^^CheckButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCheckButton_wrapper")
+    autoptr_destroy_GtkCheckButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCheckButton_wrapper")
+    listautoptr_cleanup_GtkCheckButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCheckButton_wrapper")
+    slistautoptr_cleanup_GtkCheckButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCheckButton_wrapper")
+    queueautoptr_cleanup_GtkCheckButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColorButton_wrapper")
+    autoptr_clear_GtkColorButton :: proc(_ptr: ^ColorButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColorButton_wrapper")
+    autoptr_cleanup_GtkColorButton :: proc(_ptr: ^^ColorButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColorButton_wrapper")
+    autoptr_destroy_GtkColorButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColorButton_wrapper")
+    listautoptr_cleanup_GtkColorButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColorButton_wrapper")
+    slistautoptr_cleanup_GtkColorButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColorButton_wrapper")
+    queueautoptr_cleanup_GtkColorButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColorChooser_wrapper")
+    autoptr_clear_GtkColorChooser :: proc(_ptr: ^ColorChooser) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColorChooser_wrapper")
+    autoptr_cleanup_GtkColorChooser :: proc(_ptr: ^^ColorChooser) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColorChooser_wrapper")
+    autoptr_destroy_GtkColorChooser :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColorChooser_wrapper")
+    listautoptr_cleanup_GtkColorChooser :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColorChooser_wrapper")
+    slistautoptr_cleanup_GtkColorChooser :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColorChooser_wrapper")
+    queueautoptr_cleanup_GtkColorChooser :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColorChooserDialog_wrapper")
+    autoptr_clear_GtkColorChooserDialog :: proc(_ptr: ^ColorChooserDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColorChooserDialog_wrapper")
+    autoptr_cleanup_GtkColorChooserDialog :: proc(_ptr: ^^ColorChooserDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColorChooserDialog_wrapper")
+    autoptr_destroy_GtkColorChooserDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColorChooserDialog_wrapper")
+    listautoptr_cleanup_GtkColorChooserDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColorChooserDialog_wrapper")
+    slistautoptr_cleanup_GtkColorChooserDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColorChooserDialog_wrapper")
+    queueautoptr_cleanup_GtkColorChooserDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColorChooserWidget_wrapper")
+    autoptr_clear_GtkColorChooserWidget :: proc(_ptr: ^ColorChooserWidget) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColorChooserWidget_wrapper")
+    autoptr_cleanup_GtkColorChooserWidget :: proc(_ptr: ^^ColorChooserWidget) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColorChooserWidget_wrapper")
+    autoptr_destroy_GtkColorChooserWidget :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColorChooserWidget_wrapper")
+    listautoptr_cleanup_GtkColorChooserWidget :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColorChooserWidget_wrapper")
+    slistautoptr_cleanup_GtkColorChooserWidget :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColorChooserWidget_wrapper")
+    queueautoptr_cleanup_GtkColorChooserWidget :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColorDialog_wrapper")
+    autoptr_clear_GtkColorDialog :: proc(_ptr: ^ColorDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColorDialog_wrapper")
+    autoptr_cleanup_GtkColorDialog :: proc(_ptr: ^^ColorDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColorDialog_wrapper")
+    autoptr_destroy_GtkColorDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColorDialog_wrapper")
+    listautoptr_cleanup_GtkColorDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColorDialog_wrapper")
+    slistautoptr_cleanup_GtkColorDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColorDialog_wrapper")
+    queueautoptr_cleanup_GtkColorDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColorDialogClass_wrapper")
+    autoptr_clear_GtkColorDialogClass :: proc(_ptr: ^ColorDialogClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColorDialogClass_wrapper")
+    autoptr_cleanup_GtkColorDialogClass :: proc(_ptr: ^^ColorDialogClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColorDialogClass_wrapper")
+    autoptr_destroy_GtkColorDialogClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColorDialogClass_wrapper")
+    listautoptr_cleanup_GtkColorDialogClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColorDialogClass_wrapper")
+    slistautoptr_cleanup_GtkColorDialogClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColorDialogClass_wrapper")
+    queueautoptr_cleanup_GtkColorDialogClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_COLOR_DIALOG_wrapper")
+    COLOR_DIALOG :: proc(ptr: glib.pointer) -> ^ColorDialog ---
+
+    @(link_name = "GTK_IS_COLOR_DIALOG_wrapper")
+    IS_COLOR_DIALOG :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkColorDialogButton_wrapper")
+    autoptr_clear_GtkColorDialogButton :: proc(_ptr: ^ColorDialogButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColorDialogButton_wrapper")
+    autoptr_cleanup_GtkColorDialogButton :: proc(_ptr: ^^ColorDialogButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColorDialogButton_wrapper")
+    autoptr_destroy_GtkColorDialogButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColorDialogButton_wrapper")
+    listautoptr_cleanup_GtkColorDialogButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColorDialogButton_wrapper")
+    slistautoptr_cleanup_GtkColorDialogButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColorDialogButton_wrapper")
+    queueautoptr_cleanup_GtkColorDialogButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColorDialogButtonClass_wrapper")
+    autoptr_clear_GtkColorDialogButtonClass :: proc(_ptr: ^ColorDialogButtonClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColorDialogButtonClass_wrapper")
+    autoptr_cleanup_GtkColorDialogButtonClass :: proc(_ptr: ^^ColorDialogButtonClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColorDialogButtonClass_wrapper")
+    autoptr_destroy_GtkColorDialogButtonClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColorDialogButtonClass_wrapper")
+    listautoptr_cleanup_GtkColorDialogButtonClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColorDialogButtonClass_wrapper")
+    slistautoptr_cleanup_GtkColorDialogButtonClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColorDialogButtonClass_wrapper")
+    queueautoptr_cleanup_GtkColorDialogButtonClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_COLOR_DIALOG_BUTTON_wrapper")
+    COLOR_DIALOG_BUTTON :: proc(ptr: glib.pointer) -> ^ColorDialogButton ---
+
+    @(link_name = "GTK_IS_COLOR_DIALOG_BUTTON_wrapper")
+    IS_COLOR_DIALOG_BUTTON :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkSorter_wrapper")
+    autoptr_clear_GtkSorter :: proc(_ptr: ^Sorter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSorter_wrapper")
+    autoptr_cleanup_GtkSorter :: proc(_ptr: ^^Sorter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSorter_wrapper")
+    autoptr_destroy_GtkSorter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSorter_wrapper")
+    listautoptr_cleanup_GtkSorter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSorter_wrapper")
+    slistautoptr_cleanup_GtkSorter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSorter_wrapper")
+    queueautoptr_cleanup_GtkSorter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSorterClass_wrapper")
+    autoptr_clear_GtkSorterClass :: proc(_ptr: ^SorterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSorterClass_wrapper")
+    autoptr_cleanup_GtkSorterClass :: proc(_ptr: ^^SorterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSorterClass_wrapper")
+    autoptr_destroy_GtkSorterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSorterClass_wrapper")
+    listautoptr_cleanup_GtkSorterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSorterClass_wrapper")
+    slistautoptr_cleanup_GtkSorterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSorterClass_wrapper")
+    queueautoptr_cleanup_GtkSorterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SORTER_wrapper")
+    SORTER :: proc(ptr: glib.pointer) -> ^Sorter ---
+
+    @(link_name = "GTK_SORTER_CLASS_wrapper")
+    SORTER_CLASS :: proc(ptr: glib.pointer) -> ^SorterClass ---
+
+    @(link_name = "GTK_IS_SORTER_wrapper")
+    IS_SORTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_SORTER_CLASS_wrapper")
+    IS_SORTER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_SORTER_GET_CLASS_wrapper")
+    SORTER_GET_CLASS :: proc(ptr: glib.pointer) -> ^SorterClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkSortListModel_wrapper")
+    autoptr_clear_GtkSortListModel :: proc(_ptr: ^SortListModel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSortListModel_wrapper")
+    autoptr_cleanup_GtkSortListModel :: proc(_ptr: ^^SortListModel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSortListModel_wrapper")
+    autoptr_destroy_GtkSortListModel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSortListModel_wrapper")
+    listautoptr_cleanup_GtkSortListModel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSortListModel_wrapper")
+    slistautoptr_cleanup_GtkSortListModel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSortListModel_wrapper")
+    queueautoptr_cleanup_GtkSortListModel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSortListModelClass_wrapper")
+    autoptr_clear_GtkSortListModelClass :: proc(_ptr: ^SortListModelClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSortListModelClass_wrapper")
+    autoptr_cleanup_GtkSortListModelClass :: proc(_ptr: ^^SortListModelClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSortListModelClass_wrapper")
+    autoptr_destroy_GtkSortListModelClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSortListModelClass_wrapper")
+    listautoptr_cleanup_GtkSortListModelClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSortListModelClass_wrapper")
+    slistautoptr_cleanup_GtkSortListModelClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSortListModelClass_wrapper")
+    queueautoptr_cleanup_GtkSortListModelClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SORT_LIST_MODEL_wrapper")
+    SORT_LIST_MODEL :: proc(ptr: glib.pointer) -> ^SortListModel ---
+
+    @(link_name = "GTK_IS_SORT_LIST_MODEL_wrapper")
+    IS_SORT_LIST_MODEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkSelectionModel_wrapper")
+    autoptr_clear_GtkSelectionModel :: proc(_ptr: ^SelectionModel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSelectionModel_wrapper")
+    autoptr_cleanup_GtkSelectionModel :: proc(_ptr: ^^SelectionModel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSelectionModel_wrapper")
+    autoptr_destroy_GtkSelectionModel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSelectionModel_wrapper")
+    listautoptr_cleanup_GtkSelectionModel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSelectionModel_wrapper")
+    slistautoptr_cleanup_GtkSelectionModel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSelectionModel_wrapper")
+    queueautoptr_cleanup_GtkSelectionModel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SELECTION_MODEL_wrapper")
+    SELECTION_MODEL :: proc(ptr: glib.pointer) -> ^SelectionModel ---
+
+    @(link_name = "GTK_IS_SELECTION_MODEL_wrapper")
+    IS_SELECTION_MODEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_SELECTION_MODEL_GET_IFACE_wrapper")
+    SELECTION_MODEL_GET_IFACE :: proc(ptr: glib.pointer) -> ^SelectionModelInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkListItem_wrapper")
+    autoptr_clear_GtkListItem :: proc(_ptr: ^ListItem) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkListItem_wrapper")
+    autoptr_cleanup_GtkListItem :: proc(_ptr: ^^ListItem) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkListItem_wrapper")
+    autoptr_destroy_GtkListItem :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkListItem_wrapper")
+    listautoptr_cleanup_GtkListItem :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkListItem_wrapper")
+    slistautoptr_cleanup_GtkListItem :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkListItem_wrapper")
+    queueautoptr_cleanup_GtkListItem :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkListItemClass_wrapper")
+    autoptr_clear_GtkListItemClass :: proc(_ptr: ^ListItemClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkListItemClass_wrapper")
+    autoptr_cleanup_GtkListItemClass :: proc(_ptr: ^^ListItemClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkListItemClass_wrapper")
+    autoptr_destroy_GtkListItemClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkListItemClass_wrapper")
+    listautoptr_cleanup_GtkListItemClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkListItemClass_wrapper")
+    slistautoptr_cleanup_GtkListItemClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkListItemClass_wrapper")
+    queueautoptr_cleanup_GtkListItemClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_LIST_ITEM_wrapper")
+    LIST_ITEM :: proc(ptr: glib.pointer) -> ^ListItem ---
+
+    @(link_name = "GTK_LIST_ITEM_CLASS_wrapper")
+    LIST_ITEM_CLASS :: proc(ptr: glib.pointer) -> ^ListItemClass ---
+
+    @(link_name = "GTK_IS_LIST_ITEM_wrapper")
+    IS_LIST_ITEM :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_LIST_ITEM_CLASS_wrapper")
+    IS_LIST_ITEM_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_LIST_ITEM_GET_CLASS_wrapper")
+    LIST_ITEM_GET_CLASS :: proc(ptr: glib.pointer) -> ^ListItemClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkColumnViewCell_wrapper")
+    autoptr_clear_GtkColumnViewCell :: proc(_ptr: ^ColumnViewCell) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColumnViewCell_wrapper")
+    autoptr_cleanup_GtkColumnViewCell :: proc(_ptr: ^^ColumnViewCell) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColumnViewCell_wrapper")
+    autoptr_destroy_GtkColumnViewCell :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColumnViewCell_wrapper")
+    listautoptr_cleanup_GtkColumnViewCell :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColumnViewCell_wrapper")
+    slistautoptr_cleanup_GtkColumnViewCell :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColumnViewCell_wrapper")
+    queueautoptr_cleanup_GtkColumnViewCell :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColumnViewCellClass_wrapper")
+    autoptr_clear_GtkColumnViewCellClass :: proc(_ptr: ^ColumnViewCellClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColumnViewCellClass_wrapper")
+    autoptr_cleanup_GtkColumnViewCellClass :: proc(_ptr: ^^ColumnViewCellClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColumnViewCellClass_wrapper")
+    autoptr_destroy_GtkColumnViewCellClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColumnViewCellClass_wrapper")
+    listautoptr_cleanup_GtkColumnViewCellClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColumnViewCellClass_wrapper")
+    slistautoptr_cleanup_GtkColumnViewCellClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColumnViewCellClass_wrapper")
+    queueautoptr_cleanup_GtkColumnViewCellClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_COLUMN_VIEW_CELL_wrapper")
+    COLUMN_VIEW_CELL :: proc(ptr: glib.pointer) -> ^ColumnViewCell ---
+
+    @(link_name = "GTK_COLUMN_VIEW_CELL_CLASS_wrapper")
+    COLUMN_VIEW_CELL_CLASS :: proc(ptr: glib.pointer) -> ^ColumnViewCellClass ---
+
+    @(link_name = "GTK_IS_COLUMN_VIEW_CELL_wrapper")
+    IS_COLUMN_VIEW_CELL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_COLUMN_VIEW_CELL_CLASS_wrapper")
+    IS_COLUMN_VIEW_CELL_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_COLUMN_VIEW_CELL_GET_CLASS_wrapper")
+    COLUMN_VIEW_CELL_GET_CLASS :: proc(ptr: glib.pointer) -> ^ColumnViewCellClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkColumnViewColumn_wrapper")
+    autoptr_clear_GtkColumnViewColumn :: proc(_ptr: ^ColumnViewColumn) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColumnViewColumn_wrapper")
+    autoptr_cleanup_GtkColumnViewColumn :: proc(_ptr: ^^ColumnViewColumn) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColumnViewColumn_wrapper")
+    autoptr_destroy_GtkColumnViewColumn :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColumnViewColumn_wrapper")
+    listautoptr_cleanup_GtkColumnViewColumn :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColumnViewColumn_wrapper")
+    slistautoptr_cleanup_GtkColumnViewColumn :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColumnViewColumn_wrapper")
+    queueautoptr_cleanup_GtkColumnViewColumn :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColumnViewRow_wrapper")
+    autoptr_clear_GtkColumnViewRow :: proc(_ptr: ^ColumnViewRow) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColumnViewRow_wrapper")
+    autoptr_cleanup_GtkColumnViewRow :: proc(_ptr: ^^ColumnViewRow) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColumnViewRow_wrapper")
+    autoptr_destroy_GtkColumnViewRow :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColumnViewRow_wrapper")
+    listautoptr_cleanup_GtkColumnViewRow :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColumnViewRow_wrapper")
+    slistautoptr_cleanup_GtkColumnViewRow :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColumnViewRow_wrapper")
+    queueautoptr_cleanup_GtkColumnViewRow :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColumnViewRowClass_wrapper")
+    autoptr_clear_GtkColumnViewRowClass :: proc(_ptr: ^ColumnViewRowClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColumnViewRowClass_wrapper")
+    autoptr_cleanup_GtkColumnViewRowClass :: proc(_ptr: ^^ColumnViewRowClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColumnViewRowClass_wrapper")
+    autoptr_destroy_GtkColumnViewRowClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColumnViewRowClass_wrapper")
+    listautoptr_cleanup_GtkColumnViewRowClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColumnViewRowClass_wrapper")
+    slistautoptr_cleanup_GtkColumnViewRowClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColumnViewRowClass_wrapper")
+    queueautoptr_cleanup_GtkColumnViewRowClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_COLUMN_VIEW_ROW_wrapper")
+    COLUMN_VIEW_ROW :: proc(ptr: glib.pointer) -> ^ColumnViewRow ---
+
+    @(link_name = "GTK_COLUMN_VIEW_ROW_CLASS_wrapper")
+    COLUMN_VIEW_ROW_CLASS :: proc(ptr: glib.pointer) -> ^ColumnViewRowClass ---
+
+    @(link_name = "GTK_IS_COLUMN_VIEW_ROW_wrapper")
+    IS_COLUMN_VIEW_ROW :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_COLUMN_VIEW_ROW_CLASS_wrapper")
+    IS_COLUMN_VIEW_ROW_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_COLUMN_VIEW_ROW_GET_CLASS_wrapper")
+    COLUMN_VIEW_ROW_GET_CLASS :: proc(ptr: glib.pointer) -> ^ColumnViewRowClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkColumnViewSorter_wrapper")
+    autoptr_clear_GtkColumnViewSorter :: proc(_ptr: ^ColumnViewSorter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColumnViewSorter_wrapper")
+    autoptr_cleanup_GtkColumnViewSorter :: proc(_ptr: ^^ColumnViewSorter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColumnViewSorter_wrapper")
+    autoptr_destroy_GtkColumnViewSorter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColumnViewSorter_wrapper")
+    listautoptr_cleanup_GtkColumnViewSorter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColumnViewSorter_wrapper")
+    slistautoptr_cleanup_GtkColumnViewSorter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColumnViewSorter_wrapper")
+    queueautoptr_cleanup_GtkColumnViewSorter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkColumnViewSorterClass_wrapper")
+    autoptr_clear_GtkColumnViewSorterClass :: proc(_ptr: ^ColumnViewSorterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkColumnViewSorterClass_wrapper")
+    autoptr_cleanup_GtkColumnViewSorterClass :: proc(_ptr: ^^ColumnViewSorterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkColumnViewSorterClass_wrapper")
+    autoptr_destroy_GtkColumnViewSorterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkColumnViewSorterClass_wrapper")
+    listautoptr_cleanup_GtkColumnViewSorterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkColumnViewSorterClass_wrapper")
+    slistautoptr_cleanup_GtkColumnViewSorterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkColumnViewSorterClass_wrapper")
+    queueautoptr_cleanup_GtkColumnViewSorterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_COLUMN_VIEW_SORTER_wrapper")
+    COLUMN_VIEW_SORTER :: proc(ptr: glib.pointer) -> ^ColumnViewSorter ---
+
+    @(link_name = "GTK_IS_COLUMN_VIEW_SORTER_wrapper")
+    IS_COLUMN_VIEW_SORTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeSortable_wrapper")
+    autoptr_clear_GtkTreeSortable :: proc(_ptr: ^TreeSortable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeSortable_wrapper")
+    autoptr_cleanup_GtkTreeSortable :: proc(_ptr: ^^TreeSortable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeSortable_wrapper")
+    autoptr_destroy_GtkTreeSortable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeSortable_wrapper")
+    listautoptr_cleanup_GtkTreeSortable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeSortable_wrapper")
+    slistautoptr_cleanup_GtkTreeSortable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeSortable_wrapper")
+    queueautoptr_cleanup_GtkTreeSortable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeViewColumn_wrapper")
+    autoptr_clear_GtkTreeViewColumn :: proc(_ptr: ^TreeViewColumn) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeViewColumn_wrapper")
+    autoptr_cleanup_GtkTreeViewColumn :: proc(_ptr: ^^TreeViewColumn) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeViewColumn_wrapper")
+    autoptr_destroy_GtkTreeViewColumn :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeViewColumn_wrapper")
+    listautoptr_cleanup_GtkTreeViewColumn :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeViewColumn_wrapper")
+    slistautoptr_cleanup_GtkTreeViewColumn :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeViewColumn_wrapper")
+    queueautoptr_cleanup_GtkTreeViewColumn :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkEditable_wrapper")
+    autoptr_clear_GtkEditable :: proc(_ptr: ^Editable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkEditable_wrapper")
+    autoptr_cleanup_GtkEditable :: proc(_ptr: ^^Editable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkEditable_wrapper")
+    autoptr_destroy_GtkEditable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkEditable_wrapper")
+    listautoptr_cleanup_GtkEditable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkEditable_wrapper")
+    slistautoptr_cleanup_GtkEditable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkEditable_wrapper")
+    queueautoptr_cleanup_GtkEditable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkIMContext_wrapper")
+    autoptr_clear_GtkIMContext :: proc(_ptr: ^IMContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkIMContext_wrapper")
+    autoptr_cleanup_GtkIMContext :: proc(_ptr: ^^IMContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkIMContext_wrapper")
+    autoptr_destroy_GtkIMContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkIMContext_wrapper")
+    listautoptr_cleanup_GtkIMContext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkIMContext_wrapper")
+    slistautoptr_cleanup_GtkIMContext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkIMContext_wrapper")
+    queueautoptr_cleanup_GtkIMContext :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkEntryBuffer_wrapper")
+    autoptr_clear_GtkEntryBuffer :: proc(_ptr: ^EntryBuffer) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkEntryBuffer_wrapper")
+    autoptr_cleanup_GtkEntryBuffer :: proc(_ptr: ^^EntryBuffer) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkEntryBuffer_wrapper")
+    autoptr_destroy_GtkEntryBuffer :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkEntryBuffer_wrapper")
+    listautoptr_cleanup_GtkEntryBuffer :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkEntryBuffer_wrapper")
+    slistautoptr_cleanup_GtkEntryBuffer :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkEntryBuffer_wrapper")
+    queueautoptr_cleanup_GtkEntryBuffer :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkListStore_wrapper")
+    autoptr_clear_GtkListStore :: proc(_ptr: ^ListStore) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkListStore_wrapper")
+    autoptr_cleanup_GtkListStore :: proc(_ptr: ^^ListStore) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkListStore_wrapper")
+    autoptr_destroy_GtkListStore :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkListStore_wrapper")
+    listautoptr_cleanup_GtkListStore :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkListStore_wrapper")
+    slistautoptr_cleanup_GtkListStore :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkListStore_wrapper")
+    queueautoptr_cleanup_GtkListStore :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeModelFilter_wrapper")
+    autoptr_clear_GtkTreeModelFilter :: proc(_ptr: ^TreeModelFilter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeModelFilter_wrapper")
+    autoptr_cleanup_GtkTreeModelFilter :: proc(_ptr: ^^TreeModelFilter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeModelFilter_wrapper")
+    autoptr_destroy_GtkTreeModelFilter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeModelFilter_wrapper")
+    listautoptr_cleanup_GtkTreeModelFilter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeModelFilter_wrapper")
+    slistautoptr_cleanup_GtkTreeModelFilter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeModelFilter_wrapper")
+    queueautoptr_cleanup_GtkTreeModelFilter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkEntryCompletion_wrapper")
+    autoptr_clear_GtkEntryCompletion :: proc(_ptr: ^EntryCompletion) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkEntryCompletion_wrapper")
+    autoptr_cleanup_GtkEntryCompletion :: proc(_ptr: ^^EntryCompletion) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkEntryCompletion_wrapper")
+    autoptr_destroy_GtkEntryCompletion :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkEntryCompletion_wrapper")
+    listautoptr_cleanup_GtkEntryCompletion :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkEntryCompletion_wrapper")
+    slistautoptr_cleanup_GtkEntryCompletion :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkEntryCompletion_wrapper")
+    queueautoptr_cleanup_GtkEntryCompletion :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkImage_wrapper")
+    autoptr_clear_GtkImage :: proc(_ptr: ^Image) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkImage_wrapper")
+    autoptr_cleanup_GtkImage :: proc(_ptr: ^^Image) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkImage_wrapper")
+    autoptr_destroy_GtkImage :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkImage_wrapper")
+    listautoptr_cleanup_GtkImage :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkImage_wrapper")
+    slistautoptr_cleanup_GtkImage :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkImage_wrapper")
+    queueautoptr_cleanup_GtkImage :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkEntry_wrapper")
+    autoptr_clear_GtkEntry :: proc(_ptr: ^Entry) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkEntry_wrapper")
+    autoptr_cleanup_GtkEntry :: proc(_ptr: ^^Entry) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkEntry_wrapper")
+    autoptr_destroy_GtkEntry :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkEntry_wrapper")
+    listautoptr_cleanup_GtkEntry :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkEntry_wrapper")
+    slistautoptr_cleanup_GtkEntry :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkEntry_wrapper")
+    queueautoptr_cleanup_GtkEntry :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeView_wrapper")
+    autoptr_clear_GtkTreeView :: proc(_ptr: ^TreeView) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeView_wrapper")
+    autoptr_cleanup_GtkTreeView :: proc(_ptr: ^^TreeView) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeView_wrapper")
+    autoptr_destroy_GtkTreeView :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeView_wrapper")
+    listautoptr_cleanup_GtkTreeView :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeView_wrapper")
+    slistautoptr_cleanup_GtkTreeView :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeView_wrapper")
+    queueautoptr_cleanup_GtkTreeView :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkComboBox_wrapper")
+    autoptr_clear_GtkComboBox :: proc(_ptr: ^ComboBox) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkComboBox_wrapper")
+    autoptr_cleanup_GtkComboBox :: proc(_ptr: ^^ComboBox) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkComboBox_wrapper")
+    autoptr_destroy_GtkComboBox :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkComboBox_wrapper")
+    listautoptr_cleanup_GtkComboBox :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkComboBox_wrapper")
+    slistautoptr_cleanup_GtkComboBox :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkComboBox_wrapper")
+    queueautoptr_cleanup_GtkComboBox :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkComboBoxText_wrapper")
+    autoptr_clear_GtkComboBoxText :: proc(_ptr: ^ComboBoxText) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkComboBoxText_wrapper")
+    autoptr_cleanup_GtkComboBoxText :: proc(_ptr: ^^ComboBoxText) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkComboBoxText_wrapper")
+    autoptr_destroy_GtkComboBoxText :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkComboBoxText_wrapper")
+    listautoptr_cleanup_GtkComboBoxText :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkComboBoxText_wrapper")
+    slistautoptr_cleanup_GtkComboBoxText :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkComboBoxText_wrapper")
+    queueautoptr_cleanup_GtkComboBoxText :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkConstraintTarget_wrapper")
+    autoptr_clear_GtkConstraintTarget :: proc(_ptr: ^ConstraintTarget) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkConstraintTarget_wrapper")
+    autoptr_cleanup_GtkConstraintTarget :: proc(_ptr: ^^ConstraintTarget) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkConstraintTarget_wrapper")
+    autoptr_destroy_GtkConstraintTarget :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkConstraintTarget_wrapper")
+    listautoptr_cleanup_GtkConstraintTarget :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkConstraintTarget_wrapper")
+    slistautoptr_cleanup_GtkConstraintTarget :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkConstraintTarget_wrapper")
+    queueautoptr_cleanup_GtkConstraintTarget :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_CONSTRAINT_TARGET_wrapper")
+    CONSTRAINT_TARGET :: proc(ptr: glib.pointer) -> ^ConstraintTarget ---
+
+    @(link_name = "GTK_IS_CONSTRAINT_TARGET_wrapper")
+    IS_CONSTRAINT_TARGET :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_CONSTRAINT_TARGET_GET_IFACE_wrapper")
+    CONSTRAINT_TARGET_GET_IFACE :: proc(ptr: glib.pointer) -> ^ConstraintTargetInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkConstraint_wrapper")
+    autoptr_clear_GtkConstraint :: proc(_ptr: ^Constraint) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkConstraint_wrapper")
+    autoptr_cleanup_GtkConstraint :: proc(_ptr: ^^Constraint) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkConstraint_wrapper")
+    autoptr_destroy_GtkConstraint :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkConstraint_wrapper")
+    listautoptr_cleanup_GtkConstraint :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkConstraint_wrapper")
+    slistautoptr_cleanup_GtkConstraint :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkConstraint_wrapper")
+    queueautoptr_cleanup_GtkConstraint :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkConstraintClass_wrapper")
+    autoptr_clear_GtkConstraintClass :: proc(_ptr: ^ConstraintClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkConstraintClass_wrapper")
+    autoptr_cleanup_GtkConstraintClass :: proc(_ptr: ^^ConstraintClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkConstraintClass_wrapper")
+    autoptr_destroy_GtkConstraintClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkConstraintClass_wrapper")
+    listautoptr_cleanup_GtkConstraintClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkConstraintClass_wrapper")
+    slistautoptr_cleanup_GtkConstraintClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkConstraintClass_wrapper")
+    queueautoptr_cleanup_GtkConstraintClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_CONSTRAINT_wrapper")
+    CONSTRAINT :: proc(ptr: glib.pointer) -> ^Constraint ---
+
+    @(link_name = "GTK_IS_CONSTRAINT_wrapper")
+    IS_CONSTRAINT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkConstraintGuide_wrapper")
+    autoptr_clear_GtkConstraintGuide :: proc(_ptr: ^ConstraintGuide) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkConstraintGuide_wrapper")
+    autoptr_cleanup_GtkConstraintGuide :: proc(_ptr: ^^ConstraintGuide) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkConstraintGuide_wrapper")
+    autoptr_destroy_GtkConstraintGuide :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkConstraintGuide_wrapper")
+    listautoptr_cleanup_GtkConstraintGuide :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkConstraintGuide_wrapper")
+    slistautoptr_cleanup_GtkConstraintGuide :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkConstraintGuide_wrapper")
+    queueautoptr_cleanup_GtkConstraintGuide :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkConstraintGuideClass_wrapper")
+    autoptr_clear_GtkConstraintGuideClass :: proc(_ptr: ^ConstraintGuideClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkConstraintGuideClass_wrapper")
+    autoptr_cleanup_GtkConstraintGuideClass :: proc(_ptr: ^^ConstraintGuideClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkConstraintGuideClass_wrapper")
+    autoptr_destroy_GtkConstraintGuideClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkConstraintGuideClass_wrapper")
+    listautoptr_cleanup_GtkConstraintGuideClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkConstraintGuideClass_wrapper")
+    slistautoptr_cleanup_GtkConstraintGuideClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkConstraintGuideClass_wrapper")
+    queueautoptr_cleanup_GtkConstraintGuideClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_CONSTRAINT_GUIDE_wrapper")
+    CONSTRAINT_GUIDE :: proc(ptr: glib.pointer) -> ^ConstraintGuide ---
+
+    @(link_name = "GTK_IS_CONSTRAINT_GUIDE_wrapper")
+    IS_CONSTRAINT_GUIDE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkConstraintLayoutChild_wrapper")
+    autoptr_clear_GtkConstraintLayoutChild :: proc(_ptr: ^ConstraintLayoutChild) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkConstraintLayoutChild_wrapper")
+    autoptr_cleanup_GtkConstraintLayoutChild :: proc(_ptr: ^^ConstraintLayoutChild) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkConstraintLayoutChild_wrapper")
+    autoptr_destroy_GtkConstraintLayoutChild :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkConstraintLayoutChild_wrapper")
+    listautoptr_cleanup_GtkConstraintLayoutChild :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkConstraintLayoutChild_wrapper")
+    slistautoptr_cleanup_GtkConstraintLayoutChild :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkConstraintLayoutChild_wrapper")
+    queueautoptr_cleanup_GtkConstraintLayoutChild :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkConstraintLayoutChildClass_wrapper")
+    autoptr_clear_GtkConstraintLayoutChildClass :: proc(_ptr: ^ConstraintLayoutChildClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkConstraintLayoutChildClass_wrapper")
+    autoptr_cleanup_GtkConstraintLayoutChildClass :: proc(_ptr: ^^ConstraintLayoutChildClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkConstraintLayoutChildClass_wrapper")
+    autoptr_destroy_GtkConstraintLayoutChildClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkConstraintLayoutChildClass_wrapper")
+    listautoptr_cleanup_GtkConstraintLayoutChildClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkConstraintLayoutChildClass_wrapper")
+    slistautoptr_cleanup_GtkConstraintLayoutChildClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkConstraintLayoutChildClass_wrapper")
+    queueautoptr_cleanup_GtkConstraintLayoutChildClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_CONSTRAINT_LAYOUT_CHILD_wrapper")
+    CONSTRAINT_LAYOUT_CHILD :: proc(ptr: glib.pointer) -> ^ConstraintLayoutChild ---
+
+    @(link_name = "GTK_IS_CONSTRAINT_LAYOUT_CHILD_wrapper")
+    IS_CONSTRAINT_LAYOUT_CHILD :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkConstraintLayout_wrapper")
+    autoptr_clear_GtkConstraintLayout :: proc(_ptr: ^ConstraintLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkConstraintLayout_wrapper")
+    autoptr_cleanup_GtkConstraintLayout :: proc(_ptr: ^^ConstraintLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkConstraintLayout_wrapper")
+    autoptr_destroy_GtkConstraintLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkConstraintLayout_wrapper")
+    listautoptr_cleanup_GtkConstraintLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkConstraintLayout_wrapper")
+    slistautoptr_cleanup_GtkConstraintLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkConstraintLayout_wrapper")
+    queueautoptr_cleanup_GtkConstraintLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkConstraintLayoutClass_wrapper")
+    autoptr_clear_GtkConstraintLayoutClass :: proc(_ptr: ^ConstraintLayoutClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkConstraintLayoutClass_wrapper")
+    autoptr_cleanup_GtkConstraintLayoutClass :: proc(_ptr: ^^ConstraintLayoutClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkConstraintLayoutClass_wrapper")
+    autoptr_destroy_GtkConstraintLayoutClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkConstraintLayoutClass_wrapper")
+    listautoptr_cleanup_GtkConstraintLayoutClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkConstraintLayoutClass_wrapper")
+    slistautoptr_cleanup_GtkConstraintLayoutClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkConstraintLayoutClass_wrapper")
+    queueautoptr_cleanup_GtkConstraintLayoutClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_CONSTRAINT_LAYOUT_wrapper")
+    CONSTRAINT_LAYOUT :: proc(ptr: glib.pointer) -> ^ConstraintLayout ---
+
+    @(link_name = "GTK_IS_CONSTRAINT_LAYOUT_wrapper")
+    IS_CONSTRAINT_LAYOUT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkCssProvider_wrapper")
+    autoptr_clear_GtkCssProvider :: proc(_ptr: ^CssProvider) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCssProvider_wrapper")
+    autoptr_cleanup_GtkCssProvider :: proc(_ptr: ^^CssProvider) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCssProvider_wrapper")
+    autoptr_destroy_GtkCssProvider :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCssProvider_wrapper")
+    listautoptr_cleanup_GtkCssProvider :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCssProvider_wrapper")
+    slistautoptr_cleanup_GtkCssProvider :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCssProvider_wrapper")
+    queueautoptr_cleanup_GtkCssProvider :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCustomLayout_wrapper")
+    autoptr_clear_GtkCustomLayout :: proc(_ptr: ^CustomLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCustomLayout_wrapper")
+    autoptr_cleanup_GtkCustomLayout :: proc(_ptr: ^^CustomLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCustomLayout_wrapper")
+    autoptr_destroy_GtkCustomLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCustomLayout_wrapper")
+    listautoptr_cleanup_GtkCustomLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCustomLayout_wrapper")
+    slistautoptr_cleanup_GtkCustomLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCustomLayout_wrapper")
+    queueautoptr_cleanup_GtkCustomLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCustomLayoutClass_wrapper")
+    autoptr_clear_GtkCustomLayoutClass :: proc(_ptr: ^CustomLayoutClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCustomLayoutClass_wrapper")
+    autoptr_cleanup_GtkCustomLayoutClass :: proc(_ptr: ^^CustomLayoutClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCustomLayoutClass_wrapper")
+    autoptr_destroy_GtkCustomLayoutClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCustomLayoutClass_wrapper")
+    listautoptr_cleanup_GtkCustomLayoutClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCustomLayoutClass_wrapper")
+    slistautoptr_cleanup_GtkCustomLayoutClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCustomLayoutClass_wrapper")
+    queueautoptr_cleanup_GtkCustomLayoutClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_CUSTOM_LAYOUT_wrapper")
+    CUSTOM_LAYOUT :: proc(ptr: glib.pointer) -> ^CustomLayout ---
+
+    @(link_name = "GTK_IS_CUSTOM_LAYOUT_wrapper")
+    IS_CUSTOM_LAYOUT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkCustomSorter_wrapper")
+    autoptr_clear_GtkCustomSorter :: proc(_ptr: ^CustomSorter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCustomSorter_wrapper")
+    autoptr_cleanup_GtkCustomSorter :: proc(_ptr: ^^CustomSorter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCustomSorter_wrapper")
+    autoptr_destroy_GtkCustomSorter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCustomSorter_wrapper")
+    listautoptr_cleanup_GtkCustomSorter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCustomSorter_wrapper")
+    slistautoptr_cleanup_GtkCustomSorter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCustomSorter_wrapper")
+    queueautoptr_cleanup_GtkCustomSorter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCustomSorterClass_wrapper")
+    autoptr_clear_GtkCustomSorterClass :: proc(_ptr: ^CustomSorterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCustomSorterClass_wrapper")
+    autoptr_cleanup_GtkCustomSorterClass :: proc(_ptr: ^^CustomSorterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCustomSorterClass_wrapper")
+    autoptr_destroy_GtkCustomSorterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCustomSorterClass_wrapper")
+    listautoptr_cleanup_GtkCustomSorterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCustomSorterClass_wrapper")
+    slistautoptr_cleanup_GtkCustomSorterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCustomSorterClass_wrapper")
+    queueautoptr_cleanup_GtkCustomSorterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_CUSTOM_SORTER_wrapper")
+    CUSTOM_SORTER :: proc(ptr: glib.pointer) -> ^CustomSorter ---
+
+    @(link_name = "GTK_IS_CUSTOM_SORTER_wrapper")
+    IS_CUSTOM_SORTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkDirectoryList_wrapper")
+    autoptr_clear_GtkDirectoryList :: proc(_ptr: ^DirectoryList) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkDirectoryList_wrapper")
+    autoptr_cleanup_GtkDirectoryList :: proc(_ptr: ^^DirectoryList) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkDirectoryList_wrapper")
+    autoptr_destroy_GtkDirectoryList :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkDirectoryList_wrapper")
+    listautoptr_cleanup_GtkDirectoryList :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkDirectoryList_wrapper")
+    slistautoptr_cleanup_GtkDirectoryList :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkDirectoryList_wrapper")
+    queueautoptr_cleanup_GtkDirectoryList :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkDirectoryListClass_wrapper")
+    autoptr_clear_GtkDirectoryListClass :: proc(_ptr: ^DirectoryListClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkDirectoryListClass_wrapper")
+    autoptr_cleanup_GtkDirectoryListClass :: proc(_ptr: ^^DirectoryListClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkDirectoryListClass_wrapper")
+    autoptr_destroy_GtkDirectoryListClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkDirectoryListClass_wrapper")
+    listautoptr_cleanup_GtkDirectoryListClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkDirectoryListClass_wrapper")
+    slistautoptr_cleanup_GtkDirectoryListClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkDirectoryListClass_wrapper")
+    queueautoptr_cleanup_GtkDirectoryListClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_DIRECTORY_LIST_wrapper")
+    DIRECTORY_LIST :: proc(ptr: glib.pointer) -> ^DirectoryList ---
+
+    @(link_name = "GTK_IS_DIRECTORY_LIST_wrapper")
+    IS_DIRECTORY_LIST :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkDragIcon_wrapper")
+    autoptr_clear_GtkDragIcon :: proc(_ptr: ^DragIcon) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkDragIcon_wrapper")
+    autoptr_cleanup_GtkDragIcon :: proc(_ptr: ^^DragIcon) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkDragIcon_wrapper")
+    autoptr_destroy_GtkDragIcon :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkDragIcon_wrapper")
+    listautoptr_cleanup_GtkDragIcon :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkDragIcon_wrapper")
+    slistautoptr_cleanup_GtkDragIcon :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkDragIcon_wrapper")
+    queueautoptr_cleanup_GtkDragIcon :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkDragIconClass_wrapper")
+    autoptr_clear_GtkDragIconClass :: proc(_ptr: ^DragIconClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkDragIconClass_wrapper")
+    autoptr_cleanup_GtkDragIconClass :: proc(_ptr: ^^DragIconClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkDragIconClass_wrapper")
+    autoptr_destroy_GtkDragIconClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkDragIconClass_wrapper")
+    listautoptr_cleanup_GtkDragIconClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkDragIconClass_wrapper")
+    slistautoptr_cleanup_GtkDragIconClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkDragIconClass_wrapper")
+    queueautoptr_cleanup_GtkDragIconClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_DRAG_ICON_wrapper")
+    DRAG_ICON :: proc(ptr: glib.pointer) -> ^DragIcon ---
+
+    @(link_name = "GTK_IS_DRAG_ICON_wrapper")
+    IS_DRAG_ICON :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkDrawingArea_wrapper")
+    autoptr_clear_GtkDrawingArea :: proc(_ptr: ^DrawingArea) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkDrawingArea_wrapper")
+    autoptr_cleanup_GtkDrawingArea :: proc(_ptr: ^^DrawingArea) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkDrawingArea_wrapper")
+    autoptr_destroy_GtkDrawingArea :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkDrawingArea_wrapper")
+    listautoptr_cleanup_GtkDrawingArea :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkDrawingArea_wrapper")
+    slistautoptr_cleanup_GtkDrawingArea :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkDrawingArea_wrapper")
+    queueautoptr_cleanup_GtkDrawingArea :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkEventController_wrapper")
+    autoptr_clear_GtkEventController :: proc(_ptr: ^EventController) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkEventController_wrapper")
+    autoptr_cleanup_GtkEventController :: proc(_ptr: ^^EventController) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkEventController_wrapper")
+    autoptr_destroy_GtkEventController :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkEventController_wrapper")
+    listautoptr_cleanup_GtkEventController :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkEventController_wrapper")
+    slistautoptr_cleanup_GtkEventController :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkEventController_wrapper")
+    queueautoptr_cleanup_GtkEventController :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStringFilter_wrapper")
+    autoptr_clear_GtkStringFilter :: proc(_ptr: ^StringFilter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStringFilter_wrapper")
+    autoptr_cleanup_GtkStringFilter :: proc(_ptr: ^^StringFilter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStringFilter_wrapper")
+    autoptr_destroy_GtkStringFilter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStringFilter_wrapper")
+    listautoptr_cleanup_GtkStringFilter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStringFilter_wrapper")
+    slistautoptr_cleanup_GtkStringFilter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStringFilter_wrapper")
+    queueautoptr_cleanup_GtkStringFilter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStringFilterClass_wrapper")
+    autoptr_clear_GtkStringFilterClass :: proc(_ptr: ^StringFilterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStringFilterClass_wrapper")
+    autoptr_cleanup_GtkStringFilterClass :: proc(_ptr: ^^StringFilterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStringFilterClass_wrapper")
+    autoptr_destroy_GtkStringFilterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStringFilterClass_wrapper")
+    listautoptr_cleanup_GtkStringFilterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStringFilterClass_wrapper")
+    slistautoptr_cleanup_GtkStringFilterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStringFilterClass_wrapper")
+    queueautoptr_cleanup_GtkStringFilterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_STRING_FILTER_wrapper")
+    STRING_FILTER :: proc(ptr: glib.pointer) -> ^StringFilter ---
+
+    @(link_name = "GTK_IS_STRING_FILTER_wrapper")
+    IS_STRING_FILTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkDropDown_wrapper")
+    autoptr_clear_GtkDropDown :: proc(_ptr: ^DropDown) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkDropDown_wrapper")
+    autoptr_cleanup_GtkDropDown :: proc(_ptr: ^^DropDown) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkDropDown_wrapper")
+    autoptr_destroy_GtkDropDown :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkDropDown_wrapper")
+    listautoptr_cleanup_GtkDropDown :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkDropDown_wrapper")
+    slistautoptr_cleanup_GtkDropDown :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkDropDown_wrapper")
+    queueautoptr_cleanup_GtkDropDown :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkDropDownClass_wrapper")
+    autoptr_clear_GtkDropDownClass :: proc(_ptr: ^DropDownClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkDropDownClass_wrapper")
+    autoptr_cleanup_GtkDropDownClass :: proc(_ptr: ^^DropDownClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkDropDownClass_wrapper")
+    autoptr_destroy_GtkDropDownClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkDropDownClass_wrapper")
+    listautoptr_cleanup_GtkDropDownClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkDropDownClass_wrapper")
+    slistautoptr_cleanup_GtkDropDownClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkDropDownClass_wrapper")
+    queueautoptr_cleanup_GtkDropDownClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_DROP_DOWN_wrapper")
+    DROP_DOWN :: proc(ptr: glib.pointer) -> ^DropDown ---
+
+    @(link_name = "GTK_IS_DROP_DOWN_wrapper")
+    IS_DROP_DOWN :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkEditableLabel_wrapper")
+    autoptr_clear_GtkEditableLabel :: proc(_ptr: ^EditableLabel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkEditableLabel_wrapper")
+    autoptr_cleanup_GtkEditableLabel :: proc(_ptr: ^^EditableLabel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkEditableLabel_wrapper")
+    autoptr_destroy_GtkEditableLabel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkEditableLabel_wrapper")
+    listautoptr_cleanup_GtkEditableLabel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkEditableLabel_wrapper")
+    slistautoptr_cleanup_GtkEditableLabel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkEditableLabel_wrapper")
+    queueautoptr_cleanup_GtkEditableLabel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkEditableLabelClass_wrapper")
+    autoptr_clear_GtkEditableLabelClass :: proc(_ptr: ^EditableLabelClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkEditableLabelClass_wrapper")
+    autoptr_cleanup_GtkEditableLabelClass :: proc(_ptr: ^^EditableLabelClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkEditableLabelClass_wrapper")
+    autoptr_destroy_GtkEditableLabelClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkEditableLabelClass_wrapper")
+    listautoptr_cleanup_GtkEditableLabelClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkEditableLabelClass_wrapper")
+    slistautoptr_cleanup_GtkEditableLabelClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkEditableLabelClass_wrapper")
+    queueautoptr_cleanup_GtkEditableLabelClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_EDITABLE_LABEL_wrapper")
+    EDITABLE_LABEL :: proc(ptr: glib.pointer) -> ^EditableLabel ---
+
+    @(link_name = "GTK_IS_EDITABLE_LABEL_wrapper")
+    IS_EDITABLE_LABEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkExpander_wrapper")
+    autoptr_clear_GtkExpander :: proc(_ptr: ^Expander) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkExpander_wrapper")
+    autoptr_cleanup_GtkExpander :: proc(_ptr: ^^Expander) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkExpander_wrapper")
+    autoptr_destroy_GtkExpander :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkExpander_wrapper")
+    listautoptr_cleanup_GtkExpander :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkExpander_wrapper")
+    slistautoptr_cleanup_GtkExpander :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkExpander_wrapper")
+    queueautoptr_cleanup_GtkExpander :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFixed_wrapper")
+    autoptr_clear_GtkFixed :: proc(_ptr: ^Fixed) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFixed_wrapper")
+    autoptr_cleanup_GtkFixed :: proc(_ptr: ^^Fixed) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFixed_wrapper")
+    autoptr_destroy_GtkFixed :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFixed_wrapper")
+    listautoptr_cleanup_GtkFixed :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFixed_wrapper")
+    slistautoptr_cleanup_GtkFixed :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFixed_wrapper")
+    queueautoptr_cleanup_GtkFixed :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFixedLayout_wrapper")
+    autoptr_clear_GtkFixedLayout :: proc(_ptr: ^FixedLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFixedLayout_wrapper")
+    autoptr_cleanup_GtkFixedLayout :: proc(_ptr: ^^FixedLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFixedLayout_wrapper")
+    autoptr_destroy_GtkFixedLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFixedLayout_wrapper")
+    listautoptr_cleanup_GtkFixedLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFixedLayout_wrapper")
+    slistautoptr_cleanup_GtkFixedLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFixedLayout_wrapper")
+    queueautoptr_cleanup_GtkFixedLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFixedLayoutClass_wrapper")
+    autoptr_clear_GtkFixedLayoutClass :: proc(_ptr: ^FixedLayoutClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFixedLayoutClass_wrapper")
+    autoptr_cleanup_GtkFixedLayoutClass :: proc(_ptr: ^^FixedLayoutClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFixedLayoutClass_wrapper")
+    autoptr_destroy_GtkFixedLayoutClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFixedLayoutClass_wrapper")
+    listautoptr_cleanup_GtkFixedLayoutClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFixedLayoutClass_wrapper")
+    slistautoptr_cleanup_GtkFixedLayoutClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFixedLayoutClass_wrapper")
+    queueautoptr_cleanup_GtkFixedLayoutClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_FIXED_LAYOUT_wrapper")
+    FIXED_LAYOUT :: proc(ptr: glib.pointer) -> ^FixedLayout ---
+
+    @(link_name = "GTK_IS_FIXED_LAYOUT_wrapper")
+    IS_FIXED_LAYOUT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkFixedLayoutChild_wrapper")
+    autoptr_clear_GtkFixedLayoutChild :: proc(_ptr: ^FixedLayoutChild) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFixedLayoutChild_wrapper")
+    autoptr_cleanup_GtkFixedLayoutChild :: proc(_ptr: ^^FixedLayoutChild) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFixedLayoutChild_wrapper")
+    autoptr_destroy_GtkFixedLayoutChild :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFixedLayoutChild_wrapper")
+    listautoptr_cleanup_GtkFixedLayoutChild :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFixedLayoutChild_wrapper")
+    slistautoptr_cleanup_GtkFixedLayoutChild :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFixedLayoutChild_wrapper")
+    queueautoptr_cleanup_GtkFixedLayoutChild :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFixedLayoutChildClass_wrapper")
+    autoptr_clear_GtkFixedLayoutChildClass :: proc(_ptr: ^FixedLayoutChildClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFixedLayoutChildClass_wrapper")
+    autoptr_cleanup_GtkFixedLayoutChildClass :: proc(_ptr: ^^FixedLayoutChildClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFixedLayoutChildClass_wrapper")
+    autoptr_destroy_GtkFixedLayoutChildClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFixedLayoutChildClass_wrapper")
+    listautoptr_cleanup_GtkFixedLayoutChildClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFixedLayoutChildClass_wrapper")
+    slistautoptr_cleanup_GtkFixedLayoutChildClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFixedLayoutChildClass_wrapper")
+    queueautoptr_cleanup_GtkFixedLayoutChildClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_FIXED_LAYOUT_CHILD_wrapper")
+    FIXED_LAYOUT_CHILD :: proc(ptr: glib.pointer) -> ^FixedLayoutChild ---
+
+    @(link_name = "GTK_IS_FIXED_LAYOUT_CHILD_wrapper")
+    IS_FIXED_LAYOUT_CHILD :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkFileFilter_wrapper")
+    autoptr_clear_GtkFileFilter :: proc(_ptr: ^FileFilter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFileFilter_wrapper")
+    autoptr_cleanup_GtkFileFilter :: proc(_ptr: ^^FileFilter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFileFilter_wrapper")
+    autoptr_destroy_GtkFileFilter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFileFilter_wrapper")
+    listautoptr_cleanup_GtkFileFilter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFileFilter_wrapper")
+    slistautoptr_cleanup_GtkFileFilter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFileFilter_wrapper")
+    queueautoptr_cleanup_GtkFileFilter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFileChooserDialog_wrapper")
+    autoptr_clear_GtkFileChooserDialog :: proc(_ptr: ^FileChooserDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFileChooserDialog_wrapper")
+    autoptr_cleanup_GtkFileChooserDialog :: proc(_ptr: ^^FileChooserDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFileChooserDialog_wrapper")
+    autoptr_destroy_GtkFileChooserDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFileChooserDialog_wrapper")
+    listautoptr_cleanup_GtkFileChooserDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFileChooserDialog_wrapper")
+    slistautoptr_cleanup_GtkFileChooserDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFileChooserDialog_wrapper")
+    queueautoptr_cleanup_GtkFileChooserDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkNativeDialog_wrapper")
+    autoptr_clear_GtkNativeDialog :: proc(_ptr: ^NativeDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNativeDialog_wrapper")
+    autoptr_cleanup_GtkNativeDialog :: proc(_ptr: ^^NativeDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNativeDialog_wrapper")
+    autoptr_destroy_GtkNativeDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNativeDialog_wrapper")
+    listautoptr_cleanup_GtkNativeDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNativeDialog_wrapper")
+    slistautoptr_cleanup_GtkNativeDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNativeDialog_wrapper")
+    queueautoptr_cleanup_GtkNativeDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkNativeDialogClass_wrapper")
+    autoptr_clear_GtkNativeDialogClass :: proc(_ptr: ^NativeDialogClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNativeDialogClass_wrapper")
+    autoptr_cleanup_GtkNativeDialogClass :: proc(_ptr: ^^NativeDialogClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNativeDialogClass_wrapper")
+    autoptr_destroy_GtkNativeDialogClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNativeDialogClass_wrapper")
+    listautoptr_cleanup_GtkNativeDialogClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNativeDialogClass_wrapper")
+    slistautoptr_cleanup_GtkNativeDialogClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNativeDialogClass_wrapper")
+    queueautoptr_cleanup_GtkNativeDialogClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_NATIVE_DIALOG_wrapper")
+    NATIVE_DIALOG :: proc(ptr: glib.pointer) -> ^NativeDialog ---
+
+    @(link_name = "GTK_NATIVE_DIALOG_CLASS_wrapper")
+    NATIVE_DIALOG_CLASS :: proc(ptr: glib.pointer) -> ^NativeDialogClass ---
+
+    @(link_name = "GTK_IS_NATIVE_DIALOG_wrapper")
+    IS_NATIVE_DIALOG :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_NATIVE_DIALOG_CLASS_wrapper")
+    IS_NATIVE_DIALOG_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_NATIVE_DIALOG_GET_CLASS_wrapper")
+    NATIVE_DIALOG_GET_CLASS :: proc(ptr: glib.pointer) -> ^NativeDialogClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkFileChooserNative_wrapper")
+    autoptr_clear_GtkFileChooserNative :: proc(_ptr: ^FileChooserNative) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFileChooserNative_wrapper")
+    autoptr_cleanup_GtkFileChooserNative :: proc(_ptr: ^^FileChooserNative) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFileChooserNative_wrapper")
+    autoptr_destroy_GtkFileChooserNative :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFileChooserNative_wrapper")
+    listautoptr_cleanup_GtkFileChooserNative :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFileChooserNative_wrapper")
+    slistautoptr_cleanup_GtkFileChooserNative :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFileChooserNative_wrapper")
+    queueautoptr_cleanup_GtkFileChooserNative :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFileChooserNativeClass_wrapper")
+    autoptr_clear_GtkFileChooserNativeClass :: proc(_ptr: ^FileChooserNativeClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFileChooserNativeClass_wrapper")
+    autoptr_cleanup_GtkFileChooserNativeClass :: proc(_ptr: ^^FileChooserNativeClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFileChooserNativeClass_wrapper")
+    autoptr_destroy_GtkFileChooserNativeClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFileChooserNativeClass_wrapper")
+    listautoptr_cleanup_GtkFileChooserNativeClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFileChooserNativeClass_wrapper")
+    slistautoptr_cleanup_GtkFileChooserNativeClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFileChooserNativeClass_wrapper")
+    queueautoptr_cleanup_GtkFileChooserNativeClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_FILE_CHOOSER_NATIVE_wrapper")
+    FILE_CHOOSER_NATIVE :: proc(ptr: glib.pointer) -> ^FileChooserNative ---
+
+    @(link_name = "GTK_IS_FILE_CHOOSER_NATIVE_wrapper")
+    IS_FILE_CHOOSER_NATIVE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkFileChooserWidget_wrapper")
+    autoptr_clear_GtkFileChooserWidget :: proc(_ptr: ^FileChooserWidget) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFileChooserWidget_wrapper")
+    autoptr_cleanup_GtkFileChooserWidget :: proc(_ptr: ^^FileChooserWidget) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFileChooserWidget_wrapper")
+    autoptr_destroy_GtkFileChooserWidget :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFileChooserWidget_wrapper")
+    listautoptr_cleanup_GtkFileChooserWidget :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFileChooserWidget_wrapper")
+    slistautoptr_cleanup_GtkFileChooserWidget :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFileChooserWidget_wrapper")
+    queueautoptr_cleanup_GtkFileChooserWidget :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFileDialog_wrapper")
+    autoptr_clear_GtkFileDialog :: proc(_ptr: ^FileDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFileDialog_wrapper")
+    autoptr_cleanup_GtkFileDialog :: proc(_ptr: ^^FileDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFileDialog_wrapper")
+    autoptr_destroy_GtkFileDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFileDialog_wrapper")
+    listautoptr_cleanup_GtkFileDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFileDialog_wrapper")
+    slistautoptr_cleanup_GtkFileDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFileDialog_wrapper")
+    queueautoptr_cleanup_GtkFileDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFileDialogClass_wrapper")
+    autoptr_clear_GtkFileDialogClass :: proc(_ptr: ^FileDialogClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFileDialogClass_wrapper")
+    autoptr_cleanup_GtkFileDialogClass :: proc(_ptr: ^^FileDialogClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFileDialogClass_wrapper")
+    autoptr_destroy_GtkFileDialogClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFileDialogClass_wrapper")
+    listautoptr_cleanup_GtkFileDialogClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFileDialogClass_wrapper")
+    slistautoptr_cleanup_GtkFileDialogClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFileDialogClass_wrapper")
+    queueautoptr_cleanup_GtkFileDialogClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_FILE_DIALOG_wrapper")
+    FILE_DIALOG :: proc(ptr: glib.pointer) -> ^FileDialog ---
+
+    @(link_name = "GTK_IS_FILE_DIALOG_wrapper")
+    IS_FILE_DIALOG :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkFileLauncher_wrapper")
+    autoptr_clear_GtkFileLauncher :: proc(_ptr: ^FileLauncher) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFileLauncher_wrapper")
+    autoptr_cleanup_GtkFileLauncher :: proc(_ptr: ^^FileLauncher) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFileLauncher_wrapper")
+    autoptr_destroy_GtkFileLauncher :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFileLauncher_wrapper")
+    listautoptr_cleanup_GtkFileLauncher :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFileLauncher_wrapper")
+    slistautoptr_cleanup_GtkFileLauncher :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFileLauncher_wrapper")
+    queueautoptr_cleanup_GtkFileLauncher :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFileLauncherClass_wrapper")
+    autoptr_clear_GtkFileLauncherClass :: proc(_ptr: ^FileLauncherClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFileLauncherClass_wrapper")
+    autoptr_cleanup_GtkFileLauncherClass :: proc(_ptr: ^^FileLauncherClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFileLauncherClass_wrapper")
+    autoptr_destroy_GtkFileLauncherClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFileLauncherClass_wrapper")
+    listautoptr_cleanup_GtkFileLauncherClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFileLauncherClass_wrapper")
+    slistautoptr_cleanup_GtkFileLauncherClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFileLauncherClass_wrapper")
+    queueautoptr_cleanup_GtkFileLauncherClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_FILE_LAUNCHER_wrapper")
+    FILE_LAUNCHER :: proc(ptr: glib.pointer) -> ^FileLauncher ---
+
+    @(link_name = "GTK_IS_FILE_LAUNCHER_wrapper")
+    IS_FILE_LAUNCHER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkFilterListModel_wrapper")
+    autoptr_clear_GtkFilterListModel :: proc(_ptr: ^FilterListModel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFilterListModel_wrapper")
+    autoptr_cleanup_GtkFilterListModel :: proc(_ptr: ^^FilterListModel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFilterListModel_wrapper")
+    autoptr_destroy_GtkFilterListModel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFilterListModel_wrapper")
+    listautoptr_cleanup_GtkFilterListModel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFilterListModel_wrapper")
+    slistautoptr_cleanup_GtkFilterListModel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFilterListModel_wrapper")
+    queueautoptr_cleanup_GtkFilterListModel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFilterListModelClass_wrapper")
+    autoptr_clear_GtkFilterListModelClass :: proc(_ptr: ^FilterListModelClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFilterListModelClass_wrapper")
+    autoptr_cleanup_GtkFilterListModelClass :: proc(_ptr: ^^FilterListModelClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFilterListModelClass_wrapper")
+    autoptr_destroy_GtkFilterListModelClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFilterListModelClass_wrapper")
+    listautoptr_cleanup_GtkFilterListModelClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFilterListModelClass_wrapper")
+    slistautoptr_cleanup_GtkFilterListModelClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFilterListModelClass_wrapper")
+    queueautoptr_cleanup_GtkFilterListModelClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_FILTER_LIST_MODEL_wrapper")
+    FILTER_LIST_MODEL :: proc(ptr: glib.pointer) -> ^FilterListModel ---
+
+    @(link_name = "GTK_IS_FILTER_LIST_MODEL_wrapper")
+    IS_FILTER_LIST_MODEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkCustomFilter_wrapper")
+    autoptr_clear_GtkCustomFilter :: proc(_ptr: ^CustomFilter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCustomFilter_wrapper")
+    autoptr_cleanup_GtkCustomFilter :: proc(_ptr: ^^CustomFilter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCustomFilter_wrapper")
+    autoptr_destroy_GtkCustomFilter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCustomFilter_wrapper")
+    listautoptr_cleanup_GtkCustomFilter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCustomFilter_wrapper")
+    slistautoptr_cleanup_GtkCustomFilter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCustomFilter_wrapper")
+    queueautoptr_cleanup_GtkCustomFilter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkCustomFilterClass_wrapper")
+    autoptr_clear_GtkCustomFilterClass :: proc(_ptr: ^CustomFilterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkCustomFilterClass_wrapper")
+    autoptr_cleanup_GtkCustomFilterClass :: proc(_ptr: ^^CustomFilterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkCustomFilterClass_wrapper")
+    autoptr_destroy_GtkCustomFilterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkCustomFilterClass_wrapper")
+    listautoptr_cleanup_GtkCustomFilterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkCustomFilterClass_wrapper")
+    slistautoptr_cleanup_GtkCustomFilterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkCustomFilterClass_wrapper")
+    queueautoptr_cleanup_GtkCustomFilterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_CUSTOM_FILTER_wrapper")
+    CUSTOM_FILTER :: proc(ptr: glib.pointer) -> ^CustomFilter ---
+
+    @(link_name = "GTK_IS_CUSTOM_FILTER_wrapper")
+    IS_CUSTOM_FILTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkFlattenListModel_wrapper")
+    autoptr_clear_GtkFlattenListModel :: proc(_ptr: ^FlattenListModel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFlattenListModel_wrapper")
+    autoptr_cleanup_GtkFlattenListModel :: proc(_ptr: ^^FlattenListModel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFlattenListModel_wrapper")
+    autoptr_destroy_GtkFlattenListModel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFlattenListModel_wrapper")
+    listautoptr_cleanup_GtkFlattenListModel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFlattenListModel_wrapper")
+    slistautoptr_cleanup_GtkFlattenListModel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFlattenListModel_wrapper")
+    queueautoptr_cleanup_GtkFlattenListModel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFlattenListModelClass_wrapper")
+    autoptr_clear_GtkFlattenListModelClass :: proc(_ptr: ^FlattenListModelClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFlattenListModelClass_wrapper")
+    autoptr_cleanup_GtkFlattenListModelClass :: proc(_ptr: ^^FlattenListModelClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFlattenListModelClass_wrapper")
+    autoptr_destroy_GtkFlattenListModelClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFlattenListModelClass_wrapper")
+    listautoptr_cleanup_GtkFlattenListModelClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFlattenListModelClass_wrapper")
+    slistautoptr_cleanup_GtkFlattenListModelClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFlattenListModelClass_wrapper")
+    queueautoptr_cleanup_GtkFlattenListModelClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_FLATTEN_LIST_MODEL_wrapper")
+    FLATTEN_LIST_MODEL :: proc(ptr: glib.pointer) -> ^FlattenListModel ---
+
+    @(link_name = "GTK_IS_FLATTEN_LIST_MODEL_wrapper")
+    IS_FLATTEN_LIST_MODEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkFlowBox_wrapper")
+    autoptr_clear_GtkFlowBox :: proc(_ptr: ^FlowBox) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFlowBox_wrapper")
+    autoptr_cleanup_GtkFlowBox :: proc(_ptr: ^^FlowBox) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFlowBox_wrapper")
+    autoptr_destroy_GtkFlowBox :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFlowBox_wrapper")
+    listautoptr_cleanup_GtkFlowBox :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFlowBox_wrapper")
+    slistautoptr_cleanup_GtkFlowBox :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFlowBox_wrapper")
+    queueautoptr_cleanup_GtkFlowBox :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFlowBoxChild_wrapper")
+    autoptr_clear_GtkFlowBoxChild :: proc(_ptr: ^FlowBoxChild) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFlowBoxChild_wrapper")
+    autoptr_cleanup_GtkFlowBoxChild :: proc(_ptr: ^^FlowBoxChild) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFlowBoxChild_wrapper")
+    autoptr_destroy_GtkFlowBoxChild :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFlowBoxChild_wrapper")
+    listautoptr_cleanup_GtkFlowBoxChild :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFlowBoxChild_wrapper")
+    slistautoptr_cleanup_GtkFlowBoxChild :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFlowBoxChild_wrapper")
+    queueautoptr_cleanup_GtkFlowBoxChild :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFontButton_wrapper")
+    autoptr_clear_GtkFontButton :: proc(_ptr: ^FontButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFontButton_wrapper")
+    autoptr_cleanup_GtkFontButton :: proc(_ptr: ^^FontButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFontButton_wrapper")
+    autoptr_destroy_GtkFontButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFontButton_wrapper")
+    listautoptr_cleanup_GtkFontButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFontButton_wrapper")
+    slistautoptr_cleanup_GtkFontButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFontButton_wrapper")
+    queueautoptr_cleanup_GtkFontButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFontChooser_wrapper")
+    autoptr_clear_GtkFontChooser :: proc(_ptr: ^FontChooser) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFontChooser_wrapper")
+    autoptr_cleanup_GtkFontChooser :: proc(_ptr: ^^FontChooser) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFontChooser_wrapper")
+    autoptr_destroy_GtkFontChooser :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFontChooser_wrapper")
+    listautoptr_cleanup_GtkFontChooser :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFontChooser_wrapper")
+    slistautoptr_cleanup_GtkFontChooser :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFontChooser_wrapper")
+    queueautoptr_cleanup_GtkFontChooser :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFontChooserDialog_wrapper")
+    autoptr_clear_GtkFontChooserDialog :: proc(_ptr: ^FontChooserDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFontChooserDialog_wrapper")
+    autoptr_cleanup_GtkFontChooserDialog :: proc(_ptr: ^^FontChooserDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFontChooserDialog_wrapper")
+    autoptr_destroy_GtkFontChooserDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFontChooserDialog_wrapper")
+    listautoptr_cleanup_GtkFontChooserDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFontChooserDialog_wrapper")
+    slistautoptr_cleanup_GtkFontChooserDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFontChooserDialog_wrapper")
+    queueautoptr_cleanup_GtkFontChooserDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFontChooserWidget_wrapper")
+    autoptr_clear_GtkFontChooserWidget :: proc(_ptr: ^FontChooserWidget) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFontChooserWidget_wrapper")
+    autoptr_cleanup_GtkFontChooserWidget :: proc(_ptr: ^^FontChooserWidget) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFontChooserWidget_wrapper")
+    autoptr_destroy_GtkFontChooserWidget :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFontChooserWidget_wrapper")
+    listautoptr_cleanup_GtkFontChooserWidget :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFontChooserWidget_wrapper")
+    slistautoptr_cleanup_GtkFontChooserWidget :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFontChooserWidget_wrapper")
+    queueautoptr_cleanup_GtkFontChooserWidget :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFontDialog_wrapper")
+    autoptr_clear_GtkFontDialog :: proc(_ptr: ^FontDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFontDialog_wrapper")
+    autoptr_cleanup_GtkFontDialog :: proc(_ptr: ^^FontDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFontDialog_wrapper")
+    autoptr_destroy_GtkFontDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFontDialog_wrapper")
+    listautoptr_cleanup_GtkFontDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFontDialog_wrapper")
+    slistautoptr_cleanup_GtkFontDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFontDialog_wrapper")
+    queueautoptr_cleanup_GtkFontDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFontDialogClass_wrapper")
+    autoptr_clear_GtkFontDialogClass :: proc(_ptr: ^FontDialogClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFontDialogClass_wrapper")
+    autoptr_cleanup_GtkFontDialogClass :: proc(_ptr: ^^FontDialogClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFontDialogClass_wrapper")
+    autoptr_destroy_GtkFontDialogClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFontDialogClass_wrapper")
+    listautoptr_cleanup_GtkFontDialogClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFontDialogClass_wrapper")
+    slistautoptr_cleanup_GtkFontDialogClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFontDialogClass_wrapper")
+    queueautoptr_cleanup_GtkFontDialogClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_FONT_DIALOG_wrapper")
+    FONT_DIALOG :: proc(ptr: glib.pointer) -> ^FontDialog ---
+
+    @(link_name = "GTK_IS_FONT_DIALOG_wrapper")
+    IS_FONT_DIALOG :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkFontDialogButton_wrapper")
+    autoptr_clear_GtkFontDialogButton :: proc(_ptr: ^FontDialogButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFontDialogButton_wrapper")
+    autoptr_cleanup_GtkFontDialogButton :: proc(_ptr: ^^FontDialogButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFontDialogButton_wrapper")
+    autoptr_destroy_GtkFontDialogButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFontDialogButton_wrapper")
+    listautoptr_cleanup_GtkFontDialogButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFontDialogButton_wrapper")
+    slistautoptr_cleanup_GtkFontDialogButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFontDialogButton_wrapper")
+    queueautoptr_cleanup_GtkFontDialogButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkFontDialogButtonClass_wrapper")
+    autoptr_clear_GtkFontDialogButtonClass :: proc(_ptr: ^FontDialogButtonClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFontDialogButtonClass_wrapper")
+    autoptr_cleanup_GtkFontDialogButtonClass :: proc(_ptr: ^^FontDialogButtonClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFontDialogButtonClass_wrapper")
+    autoptr_destroy_GtkFontDialogButtonClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFontDialogButtonClass_wrapper")
+    listautoptr_cleanup_GtkFontDialogButtonClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFontDialogButtonClass_wrapper")
+    slistautoptr_cleanup_GtkFontDialogButtonClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFontDialogButtonClass_wrapper")
+    queueautoptr_cleanup_GtkFontDialogButtonClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_FONT_DIALOG_BUTTON_wrapper")
+    FONT_DIALOG_BUTTON :: proc(ptr: glib.pointer) -> ^FontDialogButton ---
+
+    @(link_name = "GTK_IS_FONT_DIALOG_BUTTON_wrapper")
+    IS_FONT_DIALOG_BUTTON :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkFrame_wrapper")
+    autoptr_clear_GtkFrame :: proc(_ptr: ^Frame) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkFrame_wrapper")
+    autoptr_cleanup_GtkFrame :: proc(_ptr: ^^Frame) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkFrame_wrapper")
+    autoptr_destroy_GtkFrame :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkFrame_wrapper")
+    listautoptr_cleanup_GtkFrame :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkFrame_wrapper")
+    slistautoptr_cleanup_GtkFrame :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkFrame_wrapper")
+    queueautoptr_cleanup_GtkFrame :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGesture_wrapper")
+    autoptr_clear_GtkGesture :: proc(_ptr: ^Gesture) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGesture_wrapper")
+    autoptr_cleanup_GtkGesture :: proc(_ptr: ^^Gesture) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGesture_wrapper")
+    autoptr_destroy_GtkGesture :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGesture_wrapper")
+    listautoptr_cleanup_GtkGesture :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGesture_wrapper")
+    slistautoptr_cleanup_GtkGesture :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGesture_wrapper")
+    queueautoptr_cleanup_GtkGesture :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGestureSingle_wrapper")
+    autoptr_clear_GtkGestureSingle :: proc(_ptr: ^GestureSingle) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGestureSingle_wrapper")
+    autoptr_cleanup_GtkGestureSingle :: proc(_ptr: ^^GestureSingle) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGestureSingle_wrapper")
+    autoptr_destroy_GtkGestureSingle :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGestureSingle_wrapper")
+    listautoptr_cleanup_GtkGestureSingle :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGestureSingle_wrapper")
+    slistautoptr_cleanup_GtkGestureSingle :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGestureSingle_wrapper")
+    queueautoptr_cleanup_GtkGestureSingle :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGestureClick_wrapper")
+    autoptr_clear_GtkGestureClick :: proc(_ptr: ^GestureClick) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGestureClick_wrapper")
+    autoptr_cleanup_GtkGestureClick :: proc(_ptr: ^^GestureClick) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGestureClick_wrapper")
+    autoptr_destroy_GtkGestureClick :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGestureClick_wrapper")
+    listautoptr_cleanup_GtkGestureClick :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGestureClick_wrapper")
+    slistautoptr_cleanup_GtkGestureClick :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGestureClick_wrapper")
+    queueautoptr_cleanup_GtkGestureClick :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGestureDrag_wrapper")
+    autoptr_clear_GtkGestureDrag :: proc(_ptr: ^GestureDrag) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGestureDrag_wrapper")
+    autoptr_cleanup_GtkGestureDrag :: proc(_ptr: ^^GestureDrag) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGestureDrag_wrapper")
+    autoptr_destroy_GtkGestureDrag :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGestureDrag_wrapper")
+    listautoptr_cleanup_GtkGestureDrag :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGestureDrag_wrapper")
+    slistautoptr_cleanup_GtkGestureDrag :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGestureDrag_wrapper")
+    queueautoptr_cleanup_GtkGestureDrag :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGestureLongPress_wrapper")
+    autoptr_clear_GtkGestureLongPress :: proc(_ptr: ^GestureLongPress) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGestureLongPress_wrapper")
+    autoptr_cleanup_GtkGestureLongPress :: proc(_ptr: ^^GestureLongPress) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGestureLongPress_wrapper")
+    autoptr_destroy_GtkGestureLongPress :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGestureLongPress_wrapper")
+    listautoptr_cleanup_GtkGestureLongPress :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGestureLongPress_wrapper")
+    slistautoptr_cleanup_GtkGestureLongPress :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGestureLongPress_wrapper")
+    queueautoptr_cleanup_GtkGestureLongPress :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGesturePan_wrapper")
+    autoptr_clear_GtkGesturePan :: proc(_ptr: ^GesturePan) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGesturePan_wrapper")
+    autoptr_cleanup_GtkGesturePan :: proc(_ptr: ^^GesturePan) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGesturePan_wrapper")
+    autoptr_destroy_GtkGesturePan :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGesturePan_wrapper")
+    listautoptr_cleanup_GtkGesturePan :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGesturePan_wrapper")
+    slistautoptr_cleanup_GtkGesturePan :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGesturePan_wrapper")
+    queueautoptr_cleanup_GtkGesturePan :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGestureRotate_wrapper")
+    autoptr_clear_GtkGestureRotate :: proc(_ptr: ^GestureRotate) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGestureRotate_wrapper")
+    autoptr_cleanup_GtkGestureRotate :: proc(_ptr: ^^GestureRotate) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGestureRotate_wrapper")
+    autoptr_destroy_GtkGestureRotate :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGestureRotate_wrapper")
+    listautoptr_cleanup_GtkGestureRotate :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGestureRotate_wrapper")
+    slistautoptr_cleanup_GtkGestureRotate :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGestureRotate_wrapper")
+    queueautoptr_cleanup_GtkGestureRotate :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGestureSwipe_wrapper")
+    autoptr_clear_GtkGestureSwipe :: proc(_ptr: ^GestureSwipe) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGestureSwipe_wrapper")
+    autoptr_cleanup_GtkGestureSwipe :: proc(_ptr: ^^GestureSwipe) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGestureSwipe_wrapper")
+    autoptr_destroy_GtkGestureSwipe :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGestureSwipe_wrapper")
+    listautoptr_cleanup_GtkGestureSwipe :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGestureSwipe_wrapper")
+    slistautoptr_cleanup_GtkGestureSwipe :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGestureSwipe_wrapper")
+    queueautoptr_cleanup_GtkGestureSwipe :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGestureZoom_wrapper")
+    autoptr_clear_GtkGestureZoom :: proc(_ptr: ^GestureZoom) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGestureZoom_wrapper")
+    autoptr_cleanup_GtkGestureZoom :: proc(_ptr: ^^GestureZoom) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGestureZoom_wrapper")
+    autoptr_destroy_GtkGestureZoom :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGestureZoom_wrapper")
+    listautoptr_cleanup_GtkGestureZoom :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGestureZoom_wrapper")
+    slistautoptr_cleanup_GtkGestureZoom :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGestureZoom_wrapper")
+    queueautoptr_cleanup_GtkGestureZoom :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGLArea_wrapper")
+    autoptr_clear_GtkGLArea :: proc(_ptr: ^GLArea) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGLArea_wrapper")
+    autoptr_cleanup_GtkGLArea :: proc(_ptr: ^^GLArea) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGLArea_wrapper")
+    autoptr_destroy_GtkGLArea :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGLArea_wrapper")
+    listautoptr_cleanup_GtkGLArea :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGLArea_wrapper")
+    slistautoptr_cleanup_GtkGLArea :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGLArea_wrapper")
+    queueautoptr_cleanup_GtkGLArea :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGrid_wrapper")
+    autoptr_clear_GtkGrid :: proc(_ptr: ^Grid) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGrid_wrapper")
+    autoptr_cleanup_GtkGrid :: proc(_ptr: ^^Grid) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGrid_wrapper")
+    autoptr_destroy_GtkGrid :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGrid_wrapper")
+    listautoptr_cleanup_GtkGrid :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGrid_wrapper")
+    slistautoptr_cleanup_GtkGrid :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGrid_wrapper")
+    queueautoptr_cleanup_GtkGrid :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGridLayout_wrapper")
+    autoptr_clear_GtkGridLayout :: proc(_ptr: ^GridLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGridLayout_wrapper")
+    autoptr_cleanup_GtkGridLayout :: proc(_ptr: ^^GridLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGridLayout_wrapper")
+    autoptr_destroy_GtkGridLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGridLayout_wrapper")
+    listautoptr_cleanup_GtkGridLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGridLayout_wrapper")
+    slistautoptr_cleanup_GtkGridLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGridLayout_wrapper")
+    queueautoptr_cleanup_GtkGridLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGridLayoutClass_wrapper")
+    autoptr_clear_GtkGridLayoutClass :: proc(_ptr: ^GridLayoutClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGridLayoutClass_wrapper")
+    autoptr_cleanup_GtkGridLayoutClass :: proc(_ptr: ^^GridLayoutClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGridLayoutClass_wrapper")
+    autoptr_destroy_GtkGridLayoutClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGridLayoutClass_wrapper")
+    listautoptr_cleanup_GtkGridLayoutClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGridLayoutClass_wrapper")
+    slistautoptr_cleanup_GtkGridLayoutClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGridLayoutClass_wrapper")
+    queueautoptr_cleanup_GtkGridLayoutClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_GRID_LAYOUT_wrapper")
+    GRID_LAYOUT :: proc(ptr: glib.pointer) -> ^GridLayout ---
+
+    @(link_name = "GTK_IS_GRID_LAYOUT_wrapper")
+    IS_GRID_LAYOUT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkGridLayoutChild_wrapper")
+    autoptr_clear_GtkGridLayoutChild :: proc(_ptr: ^GridLayoutChild) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGridLayoutChild_wrapper")
+    autoptr_cleanup_GtkGridLayoutChild :: proc(_ptr: ^^GridLayoutChild) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGridLayoutChild_wrapper")
+    autoptr_destroy_GtkGridLayoutChild :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGridLayoutChild_wrapper")
+    listautoptr_cleanup_GtkGridLayoutChild :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGridLayoutChild_wrapper")
+    slistautoptr_cleanup_GtkGridLayoutChild :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGridLayoutChild_wrapper")
+    queueautoptr_cleanup_GtkGridLayoutChild :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGridLayoutChildClass_wrapper")
+    autoptr_clear_GtkGridLayoutChildClass :: proc(_ptr: ^GridLayoutChildClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGridLayoutChildClass_wrapper")
+    autoptr_cleanup_GtkGridLayoutChildClass :: proc(_ptr: ^^GridLayoutChildClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGridLayoutChildClass_wrapper")
+    autoptr_destroy_GtkGridLayoutChildClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGridLayoutChildClass_wrapper")
+    listautoptr_cleanup_GtkGridLayoutChildClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGridLayoutChildClass_wrapper")
+    slistautoptr_cleanup_GtkGridLayoutChildClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGridLayoutChildClass_wrapper")
+    queueautoptr_cleanup_GtkGridLayoutChildClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_GRID_LAYOUT_CHILD_wrapper")
+    GRID_LAYOUT_CHILD :: proc(ptr: glib.pointer) -> ^GridLayoutChild ---
+
+    @(link_name = "GTK_IS_GRID_LAYOUT_CHILD_wrapper")
+    IS_GRID_LAYOUT_CHILD :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkGridView_wrapper")
+    autoptr_clear_GtkGridView :: proc(_ptr: ^GridView) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGridView_wrapper")
+    autoptr_cleanup_GtkGridView :: proc(_ptr: ^^GridView) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGridView_wrapper")
+    autoptr_destroy_GtkGridView :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGridView_wrapper")
+    listautoptr_cleanup_GtkGridView :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGridView_wrapper")
+    slistautoptr_cleanup_GtkGridView :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGridView_wrapper")
+    queueautoptr_cleanup_GtkGridView :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkHeaderBar_wrapper")
+    autoptr_clear_GtkHeaderBar :: proc(_ptr: ^HeaderBar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkHeaderBar_wrapper")
+    autoptr_cleanup_GtkHeaderBar :: proc(_ptr: ^^HeaderBar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkHeaderBar_wrapper")
+    autoptr_destroy_GtkHeaderBar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkHeaderBar_wrapper")
+    listautoptr_cleanup_GtkHeaderBar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkHeaderBar_wrapper")
+    slistautoptr_cleanup_GtkHeaderBar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkHeaderBar_wrapper")
+    queueautoptr_cleanup_GtkHeaderBar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkIconPaintable_wrapper")
+    autoptr_clear_GtkIconPaintable :: proc(_ptr: ^IconPaintable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkIconPaintable_wrapper")
+    autoptr_cleanup_GtkIconPaintable :: proc(_ptr: ^^IconPaintable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkIconPaintable_wrapper")
+    autoptr_destroy_GtkIconPaintable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkIconPaintable_wrapper")
+    listautoptr_cleanup_GtkIconPaintable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkIconPaintable_wrapper")
+    slistautoptr_cleanup_GtkIconPaintable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkIconPaintable_wrapper")
+    queueautoptr_cleanup_GtkIconPaintable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkIconTheme_wrapper")
+    autoptr_clear_GtkIconTheme :: proc(_ptr: ^IconTheme) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkIconTheme_wrapper")
+    autoptr_cleanup_GtkIconTheme :: proc(_ptr: ^^IconTheme) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkIconTheme_wrapper")
+    autoptr_destroy_GtkIconTheme :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkIconTheme_wrapper")
+    listautoptr_cleanup_GtkIconTheme :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkIconTheme_wrapper")
+    slistautoptr_cleanup_GtkIconTheme :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkIconTheme_wrapper")
+    queueautoptr_cleanup_GtkIconTheme :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTooltip_wrapper")
+    autoptr_clear_GtkTooltip :: proc(_ptr: ^Tooltip) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTooltip_wrapper")
+    autoptr_cleanup_GtkTooltip :: proc(_ptr: ^^Tooltip) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTooltip_wrapper")
+    autoptr_destroy_GtkTooltip :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTooltip_wrapper")
+    listautoptr_cleanup_GtkTooltip :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTooltip_wrapper")
+    slistautoptr_cleanup_GtkTooltip :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTooltip_wrapper")
+    queueautoptr_cleanup_GtkTooltip :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkIconView_wrapper")
+    autoptr_clear_GtkIconView :: proc(_ptr: ^IconView) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkIconView_wrapper")
+    autoptr_cleanup_GtkIconView :: proc(_ptr: ^^IconView) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkIconView_wrapper")
+    autoptr_destroy_GtkIconView :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkIconView_wrapper")
+    listautoptr_cleanup_GtkIconView :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkIconView_wrapper")
+    slistautoptr_cleanup_GtkIconView :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkIconView_wrapper")
+    queueautoptr_cleanup_GtkIconView :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkIMContextSimple_wrapper")
+    autoptr_clear_GtkIMContextSimple :: proc(_ptr: ^IMContextSimple) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkIMContextSimple_wrapper")
+    autoptr_cleanup_GtkIMContextSimple :: proc(_ptr: ^^IMContextSimple) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkIMContextSimple_wrapper")
+    autoptr_destroy_GtkIMContextSimple :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkIMContextSimple_wrapper")
+    listautoptr_cleanup_GtkIMContextSimple :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkIMContextSimple_wrapper")
+    slistautoptr_cleanup_GtkIMContextSimple :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkIMContextSimple_wrapper")
+    queueautoptr_cleanup_GtkIMContextSimple :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkIMMulticontext_wrapper")
+    autoptr_clear_GtkIMMulticontext :: proc(_ptr: ^IMMulticontext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkIMMulticontext_wrapper")
+    autoptr_cleanup_GtkIMMulticontext :: proc(_ptr: ^^IMMulticontext) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkIMMulticontext_wrapper")
+    autoptr_destroy_GtkIMMulticontext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkIMMulticontext_wrapper")
+    listautoptr_cleanup_GtkIMMulticontext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkIMMulticontext_wrapper")
+    slistautoptr_cleanup_GtkIMMulticontext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkIMMulticontext_wrapper")
+    queueautoptr_cleanup_GtkIMMulticontext :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkInfoBar_wrapper")
+    autoptr_clear_GtkInfoBar :: proc(_ptr: ^InfoBar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkInfoBar_wrapper")
+    autoptr_cleanup_GtkInfoBar :: proc(_ptr: ^^InfoBar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkInfoBar_wrapper")
+    autoptr_destroy_GtkInfoBar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkInfoBar_wrapper")
+    listautoptr_cleanup_GtkInfoBar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkInfoBar_wrapper")
+    slistautoptr_cleanup_GtkInfoBar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkInfoBar_wrapper")
+    queueautoptr_cleanup_GtkInfoBar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkInscription_wrapper")
+    autoptr_clear_GtkInscription :: proc(_ptr: ^Inscription) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkInscription_wrapper")
+    autoptr_cleanup_GtkInscription :: proc(_ptr: ^^Inscription) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkInscription_wrapper")
+    autoptr_destroy_GtkInscription :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkInscription_wrapper")
+    listautoptr_cleanup_GtkInscription :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkInscription_wrapper")
+    slistautoptr_cleanup_GtkInscription :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkInscription_wrapper")
+    queueautoptr_cleanup_GtkInscription :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkInscriptionClass_wrapper")
+    autoptr_clear_GtkInscriptionClass :: proc(_ptr: ^InscriptionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkInscriptionClass_wrapper")
+    autoptr_cleanup_GtkInscriptionClass :: proc(_ptr: ^^InscriptionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkInscriptionClass_wrapper")
+    autoptr_destroy_GtkInscriptionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkInscriptionClass_wrapper")
+    listautoptr_cleanup_GtkInscriptionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkInscriptionClass_wrapper")
+    slistautoptr_cleanup_GtkInscriptionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkInscriptionClass_wrapper")
+    queueautoptr_cleanup_GtkInscriptionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_INSCRIPTION_wrapper")
+    INSCRIPTION :: proc(ptr: glib.pointer) -> ^Inscription ---
+
+    @(link_name = "GTK_IS_INSCRIPTION_wrapper")
+    IS_INSCRIPTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkLabel_wrapper")
+    autoptr_clear_GtkLabel :: proc(_ptr: ^Label) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkLabel_wrapper")
+    autoptr_cleanup_GtkLabel :: proc(_ptr: ^^Label) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkLabel_wrapper")
+    autoptr_destroy_GtkLabel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkLabel_wrapper")
+    listautoptr_cleanup_GtkLabel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkLabel_wrapper")
+    slistautoptr_cleanup_GtkLabel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkLabel_wrapper")
+    queueautoptr_cleanup_GtkLabel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkLevelBar_wrapper")
+    autoptr_clear_GtkLevelBar :: proc(_ptr: ^LevelBar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkLevelBar_wrapper")
+    autoptr_cleanup_GtkLevelBar :: proc(_ptr: ^^LevelBar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkLevelBar_wrapper")
+    autoptr_destroy_GtkLevelBar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkLevelBar_wrapper")
+    listautoptr_cleanup_GtkLevelBar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkLevelBar_wrapper")
+    slistautoptr_cleanup_GtkLevelBar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkLevelBar_wrapper")
+    queueautoptr_cleanup_GtkLevelBar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkLinkButton_wrapper")
+    autoptr_clear_GtkLinkButton :: proc(_ptr: ^LinkButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkLinkButton_wrapper")
+    autoptr_cleanup_GtkLinkButton :: proc(_ptr: ^^LinkButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkLinkButton_wrapper")
+    autoptr_destroy_GtkLinkButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkLinkButton_wrapper")
+    listautoptr_cleanup_GtkLinkButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkLinkButton_wrapper")
+    slistautoptr_cleanup_GtkLinkButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkLinkButton_wrapper")
+    queueautoptr_cleanup_GtkLinkButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkListBox_wrapper")
+    autoptr_clear_GtkListBox :: proc(_ptr: ^ListBox) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkListBox_wrapper")
+    autoptr_cleanup_GtkListBox :: proc(_ptr: ^^ListBox) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkListBox_wrapper")
+    autoptr_destroy_GtkListBox :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkListBox_wrapper")
+    listautoptr_cleanup_GtkListBox :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkListBox_wrapper")
+    slistautoptr_cleanup_GtkListBox :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkListBox_wrapper")
+    queueautoptr_cleanup_GtkListBox :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkListBoxRow_wrapper")
+    autoptr_clear_GtkListBoxRow :: proc(_ptr: ^ListBoxRow) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkListBoxRow_wrapper")
+    autoptr_cleanup_GtkListBoxRow :: proc(_ptr: ^^ListBoxRow) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkListBoxRow_wrapper")
+    autoptr_destroy_GtkListBoxRow :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkListBoxRow_wrapper")
+    listautoptr_cleanup_GtkListBoxRow :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkListBoxRow_wrapper")
+    slistautoptr_cleanup_GtkListBoxRow :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkListBoxRow_wrapper")
+    queueautoptr_cleanup_GtkListBoxRow :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkListHeader_wrapper")
+    autoptr_clear_GtkListHeader :: proc(_ptr: ^ListHeader) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkListHeader_wrapper")
+    autoptr_cleanup_GtkListHeader :: proc(_ptr: ^^ListHeader) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkListHeader_wrapper")
+    autoptr_destroy_GtkListHeader :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkListHeader_wrapper")
+    listautoptr_cleanup_GtkListHeader :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkListHeader_wrapper")
+    slistautoptr_cleanup_GtkListHeader :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkListHeader_wrapper")
+    queueautoptr_cleanup_GtkListHeader :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkListHeaderClass_wrapper")
+    autoptr_clear_GtkListHeaderClass :: proc(_ptr: ^ListHeaderClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkListHeaderClass_wrapper")
+    autoptr_cleanup_GtkListHeaderClass :: proc(_ptr: ^^ListHeaderClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkListHeaderClass_wrapper")
+    autoptr_destroy_GtkListHeaderClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkListHeaderClass_wrapper")
+    listautoptr_cleanup_GtkListHeaderClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkListHeaderClass_wrapper")
+    slistautoptr_cleanup_GtkListHeaderClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkListHeaderClass_wrapper")
+    queueautoptr_cleanup_GtkListHeaderClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_LIST_HEADER_wrapper")
+    LIST_HEADER :: proc(ptr: glib.pointer) -> ^ListHeader ---
+
+    @(link_name = "GTK_LIST_HEADER_CLASS_wrapper")
+    LIST_HEADER_CLASS :: proc(ptr: glib.pointer) -> ^ListHeaderClass ---
+
+    @(link_name = "GTK_IS_LIST_HEADER_wrapper")
+    IS_LIST_HEADER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_LIST_HEADER_CLASS_wrapper")
+    IS_LIST_HEADER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_LIST_HEADER_GET_CLASS_wrapper")
+    LIST_HEADER_GET_CLASS :: proc(ptr: glib.pointer) -> ^ListHeaderClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkListView_wrapper")
+    autoptr_clear_GtkListView :: proc(_ptr: ^ListView) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkListView_wrapper")
+    autoptr_cleanup_GtkListView :: proc(_ptr: ^^ListView) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkListView_wrapper")
+    autoptr_destroy_GtkListView :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkListView_wrapper")
+    listautoptr_cleanup_GtkListView :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkListView_wrapper")
+    slistautoptr_cleanup_GtkListView :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkListView_wrapper")
+    queueautoptr_cleanup_GtkListView :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkLockButton_wrapper")
+    autoptr_clear_GtkLockButton :: proc(_ptr: ^LockButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkLockButton_wrapper")
+    autoptr_cleanup_GtkLockButton :: proc(_ptr: ^^LockButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkLockButton_wrapper")
+    autoptr_destroy_GtkLockButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkLockButton_wrapper")
+    listautoptr_cleanup_GtkLockButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkLockButton_wrapper")
+    slistautoptr_cleanup_GtkLockButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkLockButton_wrapper")
+    queueautoptr_cleanup_GtkLockButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMapListModel_wrapper")
+    autoptr_clear_GtkMapListModel :: proc(_ptr: ^MapListModel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMapListModel_wrapper")
+    autoptr_cleanup_GtkMapListModel :: proc(_ptr: ^^MapListModel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMapListModel_wrapper")
+    autoptr_destroy_GtkMapListModel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMapListModel_wrapper")
+    listautoptr_cleanup_GtkMapListModel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMapListModel_wrapper")
+    slistautoptr_cleanup_GtkMapListModel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMapListModel_wrapper")
+    queueautoptr_cleanup_GtkMapListModel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMapListModelClass_wrapper")
+    autoptr_clear_GtkMapListModelClass :: proc(_ptr: ^MapListModelClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMapListModelClass_wrapper")
+    autoptr_cleanup_GtkMapListModelClass :: proc(_ptr: ^^MapListModelClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMapListModelClass_wrapper")
+    autoptr_destroy_GtkMapListModelClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMapListModelClass_wrapper")
+    listautoptr_cleanup_GtkMapListModelClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMapListModelClass_wrapper")
+    slistautoptr_cleanup_GtkMapListModelClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMapListModelClass_wrapper")
+    queueautoptr_cleanup_GtkMapListModelClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_MAP_LIST_MODEL_wrapper")
+    MAP_LIST_MODEL :: proc(ptr: glib.pointer) -> ^MapListModel ---
+
+    @(link_name = "GTK_IS_MAP_LIST_MODEL_wrapper")
+    IS_MAP_LIST_MODEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkMediaStream_wrapper")
+    autoptr_clear_GtkMediaStream :: proc(_ptr: ^MediaStream) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMediaStream_wrapper")
+    autoptr_cleanup_GtkMediaStream :: proc(_ptr: ^^MediaStream) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMediaStream_wrapper")
+    autoptr_destroy_GtkMediaStream :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMediaStream_wrapper")
+    listautoptr_cleanup_GtkMediaStream :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMediaStream_wrapper")
+    slistautoptr_cleanup_GtkMediaStream :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMediaStream_wrapper")
+    queueautoptr_cleanup_GtkMediaStream :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMediaStreamClass_wrapper")
+    autoptr_clear_GtkMediaStreamClass :: proc(_ptr: ^MediaStreamClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMediaStreamClass_wrapper")
+    autoptr_cleanup_GtkMediaStreamClass :: proc(_ptr: ^^MediaStreamClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMediaStreamClass_wrapper")
+    autoptr_destroy_GtkMediaStreamClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMediaStreamClass_wrapper")
+    listautoptr_cleanup_GtkMediaStreamClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMediaStreamClass_wrapper")
+    slistautoptr_cleanup_GtkMediaStreamClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMediaStreamClass_wrapper")
+    queueautoptr_cleanup_GtkMediaStreamClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_MEDIA_STREAM_wrapper")
+    MEDIA_STREAM :: proc(ptr: glib.pointer) -> ^MediaStream ---
+
+    @(link_name = "GTK_MEDIA_STREAM_CLASS_wrapper")
+    MEDIA_STREAM_CLASS :: proc(ptr: glib.pointer) -> ^MediaStreamClass ---
+
+    @(link_name = "GTK_IS_MEDIA_STREAM_wrapper")
+    IS_MEDIA_STREAM :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_MEDIA_STREAM_CLASS_wrapper")
+    IS_MEDIA_STREAM_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_MEDIA_STREAM_GET_CLASS_wrapper")
+    MEDIA_STREAM_GET_CLASS :: proc(ptr: glib.pointer) -> ^MediaStreamClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkMediaControls_wrapper")
+    autoptr_clear_GtkMediaControls :: proc(_ptr: ^MediaControls) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMediaControls_wrapper")
+    autoptr_cleanup_GtkMediaControls :: proc(_ptr: ^^MediaControls) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMediaControls_wrapper")
+    autoptr_destroy_GtkMediaControls :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMediaControls_wrapper")
+    listautoptr_cleanup_GtkMediaControls :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMediaControls_wrapper")
+    slistautoptr_cleanup_GtkMediaControls :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMediaControls_wrapper")
+    queueautoptr_cleanup_GtkMediaControls :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMediaControlsClass_wrapper")
+    autoptr_clear_GtkMediaControlsClass :: proc(_ptr: ^MediaControlsClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMediaControlsClass_wrapper")
+    autoptr_cleanup_GtkMediaControlsClass :: proc(_ptr: ^^MediaControlsClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMediaControlsClass_wrapper")
+    autoptr_destroy_GtkMediaControlsClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMediaControlsClass_wrapper")
+    listautoptr_cleanup_GtkMediaControlsClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMediaControlsClass_wrapper")
+    slistautoptr_cleanup_GtkMediaControlsClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMediaControlsClass_wrapper")
+    queueautoptr_cleanup_GtkMediaControlsClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_MEDIA_CONTROLS_wrapper")
+    MEDIA_CONTROLS :: proc(ptr: glib.pointer) -> ^MediaControls ---
+
+    @(link_name = "GTK_IS_MEDIA_CONTROLS_wrapper")
+    IS_MEDIA_CONTROLS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkMediaFile_wrapper")
+    autoptr_clear_GtkMediaFile :: proc(_ptr: ^MediaFile) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMediaFile_wrapper")
+    autoptr_cleanup_GtkMediaFile :: proc(_ptr: ^^MediaFile) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMediaFile_wrapper")
+    autoptr_destroy_GtkMediaFile :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMediaFile_wrapper")
+    listautoptr_cleanup_GtkMediaFile :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMediaFile_wrapper")
+    slistautoptr_cleanup_GtkMediaFile :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMediaFile_wrapper")
+    queueautoptr_cleanup_GtkMediaFile :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMediaFileClass_wrapper")
+    autoptr_clear_GtkMediaFileClass :: proc(_ptr: ^MediaFileClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMediaFileClass_wrapper")
+    autoptr_cleanup_GtkMediaFileClass :: proc(_ptr: ^^MediaFileClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMediaFileClass_wrapper")
+    autoptr_destroy_GtkMediaFileClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMediaFileClass_wrapper")
+    listautoptr_cleanup_GtkMediaFileClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMediaFileClass_wrapper")
+    slistautoptr_cleanup_GtkMediaFileClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMediaFileClass_wrapper")
+    queueautoptr_cleanup_GtkMediaFileClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_MEDIA_FILE_wrapper")
+    MEDIA_FILE :: proc(ptr: glib.pointer) -> ^MediaFile ---
+
+    @(link_name = "GTK_MEDIA_FILE_CLASS_wrapper")
+    MEDIA_FILE_CLASS :: proc(ptr: glib.pointer) -> ^MediaFileClass ---
+
+    @(link_name = "GTK_IS_MEDIA_FILE_wrapper")
+    IS_MEDIA_FILE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_MEDIA_FILE_CLASS_wrapper")
+    IS_MEDIA_FILE_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_MEDIA_FILE_GET_CLASS_wrapper")
+    MEDIA_FILE_GET_CLASS :: proc(ptr: glib.pointer) -> ^MediaFileClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkPopover_wrapper")
+    autoptr_clear_GtkPopover :: proc(_ptr: ^Popover) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPopover_wrapper")
+    autoptr_cleanup_GtkPopover :: proc(_ptr: ^^Popover) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPopover_wrapper")
+    autoptr_destroy_GtkPopover :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPopover_wrapper")
+    listautoptr_cleanup_GtkPopover :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPopover_wrapper")
+    slistautoptr_cleanup_GtkPopover :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPopover_wrapper")
+    queueautoptr_cleanup_GtkPopover :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMenuButton_wrapper")
+    autoptr_clear_GtkMenuButton :: proc(_ptr: ^MenuButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMenuButton_wrapper")
+    autoptr_cleanup_GtkMenuButton :: proc(_ptr: ^^MenuButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMenuButton_wrapper")
+    autoptr_destroy_GtkMenuButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMenuButton_wrapper")
+    listautoptr_cleanup_GtkMenuButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMenuButton_wrapper")
+    slistautoptr_cleanup_GtkMenuButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMenuButton_wrapper")
+    queueautoptr_cleanup_GtkMenuButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMessageDialog_wrapper")
+    autoptr_clear_GtkMessageDialog :: proc(_ptr: ^MessageDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMessageDialog_wrapper")
+    autoptr_cleanup_GtkMessageDialog :: proc(_ptr: ^^MessageDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMessageDialog_wrapper")
+    autoptr_destroy_GtkMessageDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMessageDialog_wrapper")
+    listautoptr_cleanup_GtkMessageDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMessageDialog_wrapper")
+    slistautoptr_cleanup_GtkMessageDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMessageDialog_wrapper")
+    queueautoptr_cleanup_GtkMessageDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMountOperation_wrapper")
+    autoptr_clear_GtkMountOperation :: proc(_ptr: ^MountOperation) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMountOperation_wrapper")
+    autoptr_cleanup_GtkMountOperation :: proc(_ptr: ^^MountOperation) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMountOperation_wrapper")
+    autoptr_destroy_GtkMountOperation :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMountOperation_wrapper")
+    listautoptr_cleanup_GtkMountOperation :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMountOperation_wrapper")
+    slistautoptr_cleanup_GtkMountOperation :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMountOperation_wrapper")
+    queueautoptr_cleanup_GtkMountOperation :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMultiFilter_wrapper")
+    autoptr_clear_GtkMultiFilter :: proc(_ptr: ^MultiFilter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMultiFilter_wrapper")
+    autoptr_cleanup_GtkMultiFilter :: proc(_ptr: ^^MultiFilter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMultiFilter_wrapper")
+    autoptr_destroy_GtkMultiFilter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMultiFilter_wrapper")
+    listautoptr_cleanup_GtkMultiFilter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMultiFilter_wrapper")
+    slistautoptr_cleanup_GtkMultiFilter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMultiFilter_wrapper")
+    queueautoptr_cleanup_GtkMultiFilter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMultiFilterClass_wrapper")
+    autoptr_clear_GtkMultiFilterClass :: proc(_ptr: ^MultiFilterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMultiFilterClass_wrapper")
+    autoptr_cleanup_GtkMultiFilterClass :: proc(_ptr: ^^MultiFilterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMultiFilterClass_wrapper")
+    autoptr_destroy_GtkMultiFilterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMultiFilterClass_wrapper")
+    listautoptr_cleanup_GtkMultiFilterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMultiFilterClass_wrapper")
+    slistautoptr_cleanup_GtkMultiFilterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMultiFilterClass_wrapper")
+    queueautoptr_cleanup_GtkMultiFilterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_MULTI_FILTER_wrapper")
+    MULTI_FILTER :: proc(ptr: glib.pointer) -> ^MultiFilter ---
+
+    @(link_name = "GTK_MULTI_FILTER_CLASS_wrapper")
+    MULTI_FILTER_CLASS :: proc(ptr: glib.pointer) -> ^MultiFilterClass ---
+
+    @(link_name = "GTK_IS_MULTI_FILTER_wrapper")
+    IS_MULTI_FILTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_MULTI_FILTER_CLASS_wrapper")
+    IS_MULTI_FILTER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_MULTI_FILTER_GET_CLASS_wrapper")
+    MULTI_FILTER_GET_CLASS :: proc(ptr: glib.pointer) -> ^MultiFilterClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkAnyFilter_wrapper")
+    autoptr_clear_GtkAnyFilter :: proc(_ptr: ^AnyFilter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAnyFilter_wrapper")
+    autoptr_cleanup_GtkAnyFilter :: proc(_ptr: ^^AnyFilter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAnyFilter_wrapper")
+    autoptr_destroy_GtkAnyFilter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAnyFilter_wrapper")
+    listautoptr_cleanup_GtkAnyFilter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAnyFilter_wrapper")
+    slistautoptr_cleanup_GtkAnyFilter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAnyFilter_wrapper")
+    queueautoptr_cleanup_GtkAnyFilter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAnyFilterClass_wrapper")
+    autoptr_clear_GtkAnyFilterClass :: proc(_ptr: ^AnyFilterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAnyFilterClass_wrapper")
+    autoptr_cleanup_GtkAnyFilterClass :: proc(_ptr: ^^AnyFilterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAnyFilterClass_wrapper")
+    autoptr_destroy_GtkAnyFilterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAnyFilterClass_wrapper")
+    listautoptr_cleanup_GtkAnyFilterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAnyFilterClass_wrapper")
+    slistautoptr_cleanup_GtkAnyFilterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAnyFilterClass_wrapper")
+    queueautoptr_cleanup_GtkAnyFilterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_ANY_FILTER_wrapper")
+    ANY_FILTER :: proc(ptr: glib.pointer) -> ^AnyFilter ---
+
+    @(link_name = "GTK_ANY_FILTER_CLASS_wrapper")
+    ANY_FILTER_CLASS :: proc(ptr: glib.pointer) -> ^AnyFilterClass ---
+
+    @(link_name = "GTK_IS_ANY_FILTER_wrapper")
+    IS_ANY_FILTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_ANY_FILTER_CLASS_wrapper")
+    IS_ANY_FILTER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_ANY_FILTER_GET_CLASS_wrapper")
+    ANY_FILTER_GET_CLASS :: proc(ptr: glib.pointer) -> ^AnyFilterClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkEveryFilter_wrapper")
+    autoptr_clear_GtkEveryFilter :: proc(_ptr: ^EveryFilter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkEveryFilter_wrapper")
+    autoptr_cleanup_GtkEveryFilter :: proc(_ptr: ^^EveryFilter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkEveryFilter_wrapper")
+    autoptr_destroy_GtkEveryFilter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkEveryFilter_wrapper")
+    listautoptr_cleanup_GtkEveryFilter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkEveryFilter_wrapper")
+    slistautoptr_cleanup_GtkEveryFilter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkEveryFilter_wrapper")
+    queueautoptr_cleanup_GtkEveryFilter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkEveryFilterClass_wrapper")
+    autoptr_clear_GtkEveryFilterClass :: proc(_ptr: ^EveryFilterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkEveryFilterClass_wrapper")
+    autoptr_cleanup_GtkEveryFilterClass :: proc(_ptr: ^^EveryFilterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkEveryFilterClass_wrapper")
+    autoptr_destroy_GtkEveryFilterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkEveryFilterClass_wrapper")
+    listautoptr_cleanup_GtkEveryFilterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkEveryFilterClass_wrapper")
+    slistautoptr_cleanup_GtkEveryFilterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkEveryFilterClass_wrapper")
+    queueautoptr_cleanup_GtkEveryFilterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_EVERY_FILTER_wrapper")
+    EVERY_FILTER :: proc(ptr: glib.pointer) -> ^EveryFilter ---
+
+    @(link_name = "GTK_EVERY_FILTER_CLASS_wrapper")
+    EVERY_FILTER_CLASS :: proc(ptr: glib.pointer) -> ^EveryFilterClass ---
+
+    @(link_name = "GTK_IS_EVERY_FILTER_wrapper")
+    IS_EVERY_FILTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_EVERY_FILTER_CLASS_wrapper")
+    IS_EVERY_FILTER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_EVERY_FILTER_GET_CLASS_wrapper")
+    EVERY_FILTER_GET_CLASS :: proc(ptr: glib.pointer) -> ^EveryFilterClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkMultiSelection_wrapper")
+    autoptr_clear_GtkMultiSelection :: proc(_ptr: ^MultiSelection) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMultiSelection_wrapper")
+    autoptr_cleanup_GtkMultiSelection :: proc(_ptr: ^^MultiSelection) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMultiSelection_wrapper")
+    autoptr_destroy_GtkMultiSelection :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMultiSelection_wrapper")
+    listautoptr_cleanup_GtkMultiSelection :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMultiSelection_wrapper")
+    slistautoptr_cleanup_GtkMultiSelection :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMultiSelection_wrapper")
+    queueautoptr_cleanup_GtkMultiSelection :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMultiSelectionClass_wrapper")
+    autoptr_clear_GtkMultiSelectionClass :: proc(_ptr: ^MultiSelectionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMultiSelectionClass_wrapper")
+    autoptr_cleanup_GtkMultiSelectionClass :: proc(_ptr: ^^MultiSelectionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMultiSelectionClass_wrapper")
+    autoptr_destroy_GtkMultiSelectionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMultiSelectionClass_wrapper")
+    listautoptr_cleanup_GtkMultiSelectionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMultiSelectionClass_wrapper")
+    slistautoptr_cleanup_GtkMultiSelectionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMultiSelectionClass_wrapper")
+    queueautoptr_cleanup_GtkMultiSelectionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_MULTI_SELECTION_wrapper")
+    MULTI_SELECTION :: proc(ptr: glib.pointer) -> ^MultiSelection ---
+
+    @(link_name = "GTK_IS_MULTI_SELECTION_wrapper")
+    IS_MULTI_SELECTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkMultiSorter_wrapper")
+    autoptr_clear_GtkMultiSorter :: proc(_ptr: ^MultiSorter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMultiSorter_wrapper")
+    autoptr_cleanup_GtkMultiSorter :: proc(_ptr: ^^MultiSorter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMultiSorter_wrapper")
+    autoptr_destroy_GtkMultiSorter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMultiSorter_wrapper")
+    listautoptr_cleanup_GtkMultiSorter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMultiSorter_wrapper")
+    slistautoptr_cleanup_GtkMultiSorter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMultiSorter_wrapper")
+    queueautoptr_cleanup_GtkMultiSorter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMultiSorterClass_wrapper")
+    autoptr_clear_GtkMultiSorterClass :: proc(_ptr: ^MultiSorterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMultiSorterClass_wrapper")
+    autoptr_cleanup_GtkMultiSorterClass :: proc(_ptr: ^^MultiSorterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMultiSorterClass_wrapper")
+    autoptr_destroy_GtkMultiSorterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMultiSorterClass_wrapper")
+    listautoptr_cleanup_GtkMultiSorterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMultiSorterClass_wrapper")
+    slistautoptr_cleanup_GtkMultiSorterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMultiSorterClass_wrapper")
+    queueautoptr_cleanup_GtkMultiSorterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_MULTI_SORTER_wrapper")
+    MULTI_SORTER :: proc(ptr: glib.pointer) -> ^MultiSorter ---
+
+    @(link_name = "GTK_IS_MULTI_SORTER_wrapper")
+    IS_MULTI_SORTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkNative_wrapper")
+    autoptr_clear_GtkNative :: proc(_ptr: ^Native) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNative_wrapper")
+    autoptr_cleanup_GtkNative :: proc(_ptr: ^^Native) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNative_wrapper")
+    autoptr_destroy_GtkNative :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNative_wrapper")
+    listautoptr_cleanup_GtkNative :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNative_wrapper")
+    slistautoptr_cleanup_GtkNative :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNative_wrapper")
+    queueautoptr_cleanup_GtkNative :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_NATIVE_wrapper")
+    NATIVE :: proc(ptr: glib.pointer) -> ^Native ---
+
+    @(link_name = "GTK_IS_NATIVE_wrapper")
+    IS_NATIVE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_NATIVE_GET_IFACE_wrapper")
+    NATIVE_GET_IFACE :: proc(ptr: glib.pointer) -> ^NativeInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkNoSelection_wrapper")
+    autoptr_clear_GtkNoSelection :: proc(_ptr: ^NoSelection) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNoSelection_wrapper")
+    autoptr_cleanup_GtkNoSelection :: proc(_ptr: ^^NoSelection) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNoSelection_wrapper")
+    autoptr_destroy_GtkNoSelection :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNoSelection_wrapper")
+    listautoptr_cleanup_GtkNoSelection :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNoSelection_wrapper")
+    slistautoptr_cleanup_GtkNoSelection :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNoSelection_wrapper")
+    queueautoptr_cleanup_GtkNoSelection :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkNoSelectionClass_wrapper")
+    autoptr_clear_GtkNoSelectionClass :: proc(_ptr: ^NoSelectionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNoSelectionClass_wrapper")
+    autoptr_cleanup_GtkNoSelectionClass :: proc(_ptr: ^^NoSelectionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNoSelectionClass_wrapper")
+    autoptr_destroy_GtkNoSelectionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNoSelectionClass_wrapper")
+    listautoptr_cleanup_GtkNoSelectionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNoSelectionClass_wrapper")
+    slistautoptr_cleanup_GtkNoSelectionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNoSelectionClass_wrapper")
+    queueautoptr_cleanup_GtkNoSelectionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_NO_SELECTION_wrapper")
+    NO_SELECTION :: proc(ptr: glib.pointer) -> ^NoSelection ---
+
+    @(link_name = "GTK_IS_NO_SELECTION_wrapper")
+    IS_NO_SELECTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkNotebook_wrapper")
+    autoptr_clear_GtkNotebook :: proc(_ptr: ^Notebook) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNotebook_wrapper")
+    autoptr_cleanup_GtkNotebook :: proc(_ptr: ^^Notebook) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNotebook_wrapper")
+    autoptr_destroy_GtkNotebook :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNotebook_wrapper")
+    listautoptr_cleanup_GtkNotebook :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNotebook_wrapper")
+    slistautoptr_cleanup_GtkNotebook :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNotebook_wrapper")
+    queueautoptr_cleanup_GtkNotebook :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkNumericSorter_wrapper")
+    autoptr_clear_GtkNumericSorter :: proc(_ptr: ^NumericSorter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNumericSorter_wrapper")
+    autoptr_cleanup_GtkNumericSorter :: proc(_ptr: ^^NumericSorter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNumericSorter_wrapper")
+    autoptr_destroy_GtkNumericSorter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNumericSorter_wrapper")
+    listautoptr_cleanup_GtkNumericSorter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNumericSorter_wrapper")
+    slistautoptr_cleanup_GtkNumericSorter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNumericSorter_wrapper")
+    queueautoptr_cleanup_GtkNumericSorter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkNumericSorterClass_wrapper")
+    autoptr_clear_GtkNumericSorterClass :: proc(_ptr: ^NumericSorterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNumericSorterClass_wrapper")
+    autoptr_cleanup_GtkNumericSorterClass :: proc(_ptr: ^^NumericSorterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNumericSorterClass_wrapper")
+    autoptr_destroy_GtkNumericSorterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNumericSorterClass_wrapper")
+    listautoptr_cleanup_GtkNumericSorterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNumericSorterClass_wrapper")
+    slistautoptr_cleanup_GtkNumericSorterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNumericSorterClass_wrapper")
+    queueautoptr_cleanup_GtkNumericSorterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_NUMERIC_SORTER_wrapper")
+    NUMERIC_SORTER :: proc(ptr: glib.pointer) -> ^NumericSorter ---
+
+    @(link_name = "GTK_IS_NUMERIC_SORTER_wrapper")
+    IS_NUMERIC_SORTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkOrientable_wrapper")
+    autoptr_clear_GtkOrientable :: proc(_ptr: ^Orientable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkOrientable_wrapper")
+    autoptr_cleanup_GtkOrientable :: proc(_ptr: ^^Orientable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkOrientable_wrapper")
+    autoptr_destroy_GtkOrientable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkOrientable_wrapper")
+    listautoptr_cleanup_GtkOrientable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkOrientable_wrapper")
+    slistautoptr_cleanup_GtkOrientable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkOrientable_wrapper")
+    queueautoptr_cleanup_GtkOrientable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkOverlay_wrapper")
+    autoptr_clear_GtkOverlay :: proc(_ptr: ^Overlay) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkOverlay_wrapper")
+    autoptr_cleanup_GtkOverlay :: proc(_ptr: ^^Overlay) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkOverlay_wrapper")
+    autoptr_destroy_GtkOverlay :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkOverlay_wrapper")
+    listautoptr_cleanup_GtkOverlay :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkOverlay_wrapper")
+    slistautoptr_cleanup_GtkOverlay :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkOverlay_wrapper")
+    queueautoptr_cleanup_GtkOverlay :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkOverlayLayout_wrapper")
+    autoptr_clear_GtkOverlayLayout :: proc(_ptr: ^OverlayLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkOverlayLayout_wrapper")
+    autoptr_cleanup_GtkOverlayLayout :: proc(_ptr: ^^OverlayLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkOverlayLayout_wrapper")
+    autoptr_destroy_GtkOverlayLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkOverlayLayout_wrapper")
+    listautoptr_cleanup_GtkOverlayLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkOverlayLayout_wrapper")
+    slistautoptr_cleanup_GtkOverlayLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkOverlayLayout_wrapper")
+    queueautoptr_cleanup_GtkOverlayLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkOverlayLayoutClass_wrapper")
+    autoptr_clear_GtkOverlayLayoutClass :: proc(_ptr: ^OverlayLayoutClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkOverlayLayoutClass_wrapper")
+    autoptr_cleanup_GtkOverlayLayoutClass :: proc(_ptr: ^^OverlayLayoutClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkOverlayLayoutClass_wrapper")
+    autoptr_destroy_GtkOverlayLayoutClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkOverlayLayoutClass_wrapper")
+    listautoptr_cleanup_GtkOverlayLayoutClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkOverlayLayoutClass_wrapper")
+    slistautoptr_cleanup_GtkOverlayLayoutClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkOverlayLayoutClass_wrapper")
+    queueautoptr_cleanup_GtkOverlayLayoutClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_OVERLAY_LAYOUT_wrapper")
+    OVERLAY_LAYOUT :: proc(ptr: glib.pointer) -> ^OverlayLayout ---
+
+    @(link_name = "GTK_IS_OVERLAY_LAYOUT_wrapper")
+    IS_OVERLAY_LAYOUT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkOverlayLayoutChild_wrapper")
+    autoptr_clear_GtkOverlayLayoutChild :: proc(_ptr: ^OverlayLayoutChild) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkOverlayLayoutChild_wrapper")
+    autoptr_cleanup_GtkOverlayLayoutChild :: proc(_ptr: ^^OverlayLayoutChild) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkOverlayLayoutChild_wrapper")
+    autoptr_destroy_GtkOverlayLayoutChild :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkOverlayLayoutChild_wrapper")
+    listautoptr_cleanup_GtkOverlayLayoutChild :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkOverlayLayoutChild_wrapper")
+    slistautoptr_cleanup_GtkOverlayLayoutChild :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkOverlayLayoutChild_wrapper")
+    queueautoptr_cleanup_GtkOverlayLayoutChild :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkOverlayLayoutChildClass_wrapper")
+    autoptr_clear_GtkOverlayLayoutChildClass :: proc(_ptr: ^OverlayLayoutChildClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkOverlayLayoutChildClass_wrapper")
+    autoptr_cleanup_GtkOverlayLayoutChildClass :: proc(_ptr: ^^OverlayLayoutChildClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkOverlayLayoutChildClass_wrapper")
+    autoptr_destroy_GtkOverlayLayoutChildClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkOverlayLayoutChildClass_wrapper")
+    listautoptr_cleanup_GtkOverlayLayoutChildClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkOverlayLayoutChildClass_wrapper")
+    slistautoptr_cleanup_GtkOverlayLayoutChildClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkOverlayLayoutChildClass_wrapper")
+    queueautoptr_cleanup_GtkOverlayLayoutChildClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_OVERLAY_LAYOUT_CHILD_wrapper")
+    OVERLAY_LAYOUT_CHILD :: proc(ptr: glib.pointer) -> ^OverlayLayoutChild ---
+
+    @(link_name = "GTK_IS_OVERLAY_LAYOUT_CHILD_wrapper")
+    IS_OVERLAY_LAYOUT_CHILD :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkPaperSize_wrapper")
+    autoptr_clear_GtkPaperSize :: proc(_ptr: ^PaperSize) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPaperSize_wrapper")
+    autoptr_cleanup_GtkPaperSize :: proc(_ptr: ^^PaperSize) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPaperSize_wrapper")
+    autoptr_destroy_GtkPaperSize :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPaperSize_wrapper")
+    listautoptr_cleanup_GtkPaperSize :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPaperSize_wrapper")
+    slistautoptr_cleanup_GtkPaperSize :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPaperSize_wrapper")
+    queueautoptr_cleanup_GtkPaperSize :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPageSetup_wrapper")
+    autoptr_clear_GtkPageSetup :: proc(_ptr: ^PageSetup) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPageSetup_wrapper")
+    autoptr_cleanup_GtkPageSetup :: proc(_ptr: ^^PageSetup) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPageSetup_wrapper")
+    autoptr_destroy_GtkPageSetup :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPageSetup_wrapper")
+    listautoptr_cleanup_GtkPageSetup :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPageSetup_wrapper")
+    slistautoptr_cleanup_GtkPageSetup :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPageSetup_wrapper")
+    queueautoptr_cleanup_GtkPageSetup :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPaned_wrapper")
+    autoptr_clear_GtkPaned :: proc(_ptr: ^Paned) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPaned_wrapper")
+    autoptr_cleanup_GtkPaned :: proc(_ptr: ^^Paned) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPaned_wrapper")
+    autoptr_destroy_GtkPaned :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPaned_wrapper")
+    listautoptr_cleanup_GtkPaned :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPaned_wrapper")
+    slistautoptr_cleanup_GtkPaned :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPaned_wrapper")
+    queueautoptr_cleanup_GtkPaned :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPasswordEntryBuffer_wrapper")
+    autoptr_clear_GtkPasswordEntryBuffer :: proc(_ptr: ^PasswordEntryBuffer) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPasswordEntryBuffer_wrapper")
+    autoptr_cleanup_GtkPasswordEntryBuffer :: proc(_ptr: ^^PasswordEntryBuffer) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPasswordEntryBuffer_wrapper")
+    autoptr_destroy_GtkPasswordEntryBuffer :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPasswordEntryBuffer_wrapper")
+    listautoptr_cleanup_GtkPasswordEntryBuffer :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPasswordEntryBuffer_wrapper")
+    slistautoptr_cleanup_GtkPasswordEntryBuffer :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPasswordEntryBuffer_wrapper")
+    queueautoptr_cleanup_GtkPasswordEntryBuffer :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPasswordEntryBufferClass_wrapper")
+    autoptr_clear_GtkPasswordEntryBufferClass :: proc(_ptr: ^PasswordEntryBufferClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPasswordEntryBufferClass_wrapper")
+    autoptr_cleanup_GtkPasswordEntryBufferClass :: proc(_ptr: ^^PasswordEntryBufferClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPasswordEntryBufferClass_wrapper")
+    autoptr_destroy_GtkPasswordEntryBufferClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPasswordEntryBufferClass_wrapper")
+    listautoptr_cleanup_GtkPasswordEntryBufferClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPasswordEntryBufferClass_wrapper")
+    slistautoptr_cleanup_GtkPasswordEntryBufferClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPasswordEntryBufferClass_wrapper")
+    queueautoptr_cleanup_GtkPasswordEntryBufferClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_PASSWORD_ENTRY_BUFFER_wrapper")
+    PASSWORD_ENTRY_BUFFER :: proc(ptr: glib.pointer) -> ^PasswordEntryBuffer ---
+
+    @(link_name = "GTK_IS_PASSWORD_ENTRY_BUFFER_wrapper")
+    IS_PASSWORD_ENTRY_BUFFER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkPicture_wrapper")
+    autoptr_clear_GtkPicture :: proc(_ptr: ^Picture) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPicture_wrapper")
+    autoptr_cleanup_GtkPicture :: proc(_ptr: ^^Picture) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPicture_wrapper")
+    autoptr_destroy_GtkPicture :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPicture_wrapper")
+    listautoptr_cleanup_GtkPicture :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPicture_wrapper")
+    slistautoptr_cleanup_GtkPicture :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPicture_wrapper")
+    queueautoptr_cleanup_GtkPicture :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPictureClass_wrapper")
+    autoptr_clear_GtkPictureClass :: proc(_ptr: ^PictureClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPictureClass_wrapper")
+    autoptr_cleanup_GtkPictureClass :: proc(_ptr: ^^PictureClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPictureClass_wrapper")
+    autoptr_destroy_GtkPictureClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPictureClass_wrapper")
+    listautoptr_cleanup_GtkPictureClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPictureClass_wrapper")
+    slistautoptr_cleanup_GtkPictureClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPictureClass_wrapper")
+    queueautoptr_cleanup_GtkPictureClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_PICTURE_wrapper")
+    PICTURE :: proc(ptr: glib.pointer) -> ^Picture ---
+
+    @(link_name = "GTK_IS_PICTURE_wrapper")
+    IS_PICTURE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkPopoverMenu_wrapper")
+    autoptr_clear_GtkPopoverMenu :: proc(_ptr: ^PopoverMenu) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPopoverMenu_wrapper")
+    autoptr_cleanup_GtkPopoverMenu :: proc(_ptr: ^^PopoverMenu) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPopoverMenu_wrapper")
+    autoptr_destroy_GtkPopoverMenu :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPopoverMenu_wrapper")
+    listautoptr_cleanup_GtkPopoverMenu :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPopoverMenu_wrapper")
+    slistautoptr_cleanup_GtkPopoverMenu :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPopoverMenu_wrapper")
+    queueautoptr_cleanup_GtkPopoverMenu :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPopoverMenuBar_wrapper")
+    autoptr_clear_GtkPopoverMenuBar :: proc(_ptr: ^PopoverMenuBar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPopoverMenuBar_wrapper")
+    autoptr_cleanup_GtkPopoverMenuBar :: proc(_ptr: ^^PopoverMenuBar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPopoverMenuBar_wrapper")
+    autoptr_destroy_GtkPopoverMenuBar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPopoverMenuBar_wrapper")
+    listautoptr_cleanup_GtkPopoverMenuBar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPopoverMenuBar_wrapper")
+    slistautoptr_cleanup_GtkPopoverMenuBar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPopoverMenuBar_wrapper")
+    queueautoptr_cleanup_GtkPopoverMenuBar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPrintContext_wrapper")
+    autoptr_clear_GtkPrintContext :: proc(_ptr: ^PrintContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPrintContext_wrapper")
+    autoptr_cleanup_GtkPrintContext :: proc(_ptr: ^^PrintContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPrintContext_wrapper")
+    autoptr_destroy_GtkPrintContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPrintContext_wrapper")
+    listautoptr_cleanup_GtkPrintContext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPrintContext_wrapper")
+    slistautoptr_cleanup_GtkPrintContext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPrintContext_wrapper")
+    queueautoptr_cleanup_GtkPrintContext :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPrintSettings_wrapper")
+    autoptr_clear_GtkPrintSettings :: proc(_ptr: ^PrintSettings) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPrintSettings_wrapper")
+    autoptr_cleanup_GtkPrintSettings :: proc(_ptr: ^^PrintSettings) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPrintSettings_wrapper")
+    autoptr_destroy_GtkPrintSettings :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPrintSettings_wrapper")
+    listautoptr_cleanup_GtkPrintSettings :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPrintSettings_wrapper")
+    slistautoptr_cleanup_GtkPrintSettings :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPrintSettings_wrapper")
+    queueautoptr_cleanup_GtkPrintSettings :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPrintOperationPreview_wrapper")
+    autoptr_clear_GtkPrintOperationPreview :: proc(_ptr: ^PrintOperationPreview) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPrintOperationPreview_wrapper")
+    autoptr_cleanup_GtkPrintOperationPreview :: proc(_ptr: ^^PrintOperationPreview) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPrintOperationPreview_wrapper")
+    autoptr_destroy_GtkPrintOperationPreview :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPrintOperationPreview_wrapper")
+    listautoptr_cleanup_GtkPrintOperationPreview :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPrintOperationPreview_wrapper")
+    slistautoptr_cleanup_GtkPrintOperationPreview :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPrintOperationPreview_wrapper")
+    queueautoptr_cleanup_GtkPrintOperationPreview :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPrintOperation_wrapper")
+    autoptr_clear_GtkPrintOperation :: proc(_ptr: ^PrintOperation) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPrintOperation_wrapper")
+    autoptr_cleanup_GtkPrintOperation :: proc(_ptr: ^^PrintOperation) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPrintOperation_wrapper")
+    autoptr_destroy_GtkPrintOperation :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPrintOperation_wrapper")
+    listautoptr_cleanup_GtkPrintOperation :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPrintOperation_wrapper")
+    slistautoptr_cleanup_GtkPrintOperation :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPrintOperation_wrapper")
+    queueautoptr_cleanup_GtkPrintOperation :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkProgressBar_wrapper")
+    autoptr_clear_GtkProgressBar :: proc(_ptr: ^ProgressBar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkProgressBar_wrapper")
+    autoptr_cleanup_GtkProgressBar :: proc(_ptr: ^^ProgressBar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkProgressBar_wrapper")
+    autoptr_destroy_GtkProgressBar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkProgressBar_wrapper")
+    listautoptr_cleanup_GtkProgressBar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkProgressBar_wrapper")
+    slistautoptr_cleanup_GtkProgressBar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkProgressBar_wrapper")
+    queueautoptr_cleanup_GtkProgressBar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkRange_wrapper")
+    autoptr_clear_GtkRange :: proc(_ptr: ^Range) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkRange_wrapper")
+    autoptr_cleanup_GtkRange :: proc(_ptr: ^^Range) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkRange_wrapper")
+    autoptr_destroy_GtkRange :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkRange_wrapper")
+    listautoptr_cleanup_GtkRange :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkRange_wrapper")
+    slistautoptr_cleanup_GtkRange :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkRange_wrapper")
+    queueautoptr_cleanup_GtkRange :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkRecentManager_wrapper")
+    autoptr_clear_GtkRecentManager :: proc(_ptr: ^RecentManager) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkRecentManager_wrapper")
+    autoptr_cleanup_GtkRecentManager :: proc(_ptr: ^^RecentManager) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkRecentManager_wrapper")
+    autoptr_destroy_GtkRecentManager :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkRecentManager_wrapper")
+    listautoptr_cleanup_GtkRecentManager :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkRecentManager_wrapper")
+    slistautoptr_cleanup_GtkRecentManager :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkRecentManager_wrapper")
+    queueautoptr_cleanup_GtkRecentManager :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkRecentInfo_wrapper")
+    autoptr_clear_GtkRecentInfo :: proc(_ptr: ^RecentInfo) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkRecentInfo_wrapper")
+    autoptr_cleanup_GtkRecentInfo :: proc(_ptr: ^^RecentInfo) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkRecentInfo_wrapper")
+    autoptr_destroy_GtkRecentInfo :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkRecentInfo_wrapper")
+    listautoptr_cleanup_GtkRecentInfo :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkRecentInfo_wrapper")
+    slistautoptr_cleanup_GtkRecentInfo :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkRecentInfo_wrapper")
+    queueautoptr_cleanup_GtkRecentInfo :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSnapshot_wrapper")
+    autoptr_clear_GtkSnapshot :: proc(_ptr: ^Snapshot) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSnapshot_wrapper")
+    autoptr_cleanup_GtkSnapshot :: proc(_ptr: ^^Snapshot) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSnapshot_wrapper")
+    autoptr_destroy_GtkSnapshot :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSnapshot_wrapper")
+    listautoptr_cleanup_GtkSnapshot :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSnapshot_wrapper")
+    slistautoptr_cleanup_GtkSnapshot :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSnapshot_wrapper")
+    queueautoptr_cleanup_GtkSnapshot :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkRevealer_wrapper")
+    autoptr_clear_GtkRevealer :: proc(_ptr: ^Revealer) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkRevealer_wrapper")
+    autoptr_cleanup_GtkRevealer :: proc(_ptr: ^^Revealer) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkRevealer_wrapper")
+    autoptr_destroy_GtkRevealer :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkRevealer_wrapper")
+    listautoptr_cleanup_GtkRevealer :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkRevealer_wrapper")
+    slistautoptr_cleanup_GtkRevealer :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkRevealer_wrapper")
+    queueautoptr_cleanup_GtkRevealer :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkRoot_wrapper")
+    autoptr_clear_GtkRoot :: proc(_ptr: ^Root) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkRoot_wrapper")
+    autoptr_cleanup_GtkRoot :: proc(_ptr: ^^Root) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkRoot_wrapper")
+    autoptr_destroy_GtkRoot :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkRoot_wrapper")
+    listautoptr_cleanup_GtkRoot :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkRoot_wrapper")
+    slistautoptr_cleanup_GtkRoot :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkRoot_wrapper")
+    queueautoptr_cleanup_GtkRoot :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_ROOT_wrapper")
+    ROOT :: proc(ptr: glib.pointer) -> ^Root ---
+
+    @(link_name = "GTK_IS_ROOT_wrapper")
+    IS_ROOT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_ROOT_GET_IFACE_wrapper")
+    ROOT_GET_IFACE :: proc(ptr: glib.pointer) -> ^RootInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkScale_wrapper")
+    autoptr_clear_GtkScale :: proc(_ptr: ^Scale) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkScale_wrapper")
+    autoptr_cleanup_GtkScale :: proc(_ptr: ^^Scale) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkScale_wrapper")
+    autoptr_destroy_GtkScale :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkScale_wrapper")
+    listautoptr_cleanup_GtkScale :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkScale_wrapper")
+    slistautoptr_cleanup_GtkScale :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkScale_wrapper")
+    queueautoptr_cleanup_GtkScale :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkScaleButton_wrapper")
+    autoptr_clear_GtkScaleButton :: proc(_ptr: ^ScaleButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkScaleButton_wrapper")
+    autoptr_cleanup_GtkScaleButton :: proc(_ptr: ^^ScaleButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkScaleButton_wrapper")
+    autoptr_destroy_GtkScaleButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkScaleButton_wrapper")
+    listautoptr_cleanup_GtkScaleButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkScaleButton_wrapper")
+    slistautoptr_cleanup_GtkScaleButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkScaleButton_wrapper")
+    queueautoptr_cleanup_GtkScaleButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkScrollable_wrapper")
+    autoptr_clear_GtkScrollable :: proc(_ptr: ^Scrollable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkScrollable_wrapper")
+    autoptr_cleanup_GtkScrollable :: proc(_ptr: ^^Scrollable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkScrollable_wrapper")
+    autoptr_destroy_GtkScrollable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkScrollable_wrapper")
+    listautoptr_cleanup_GtkScrollable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkScrollable_wrapper")
+    slistautoptr_cleanup_GtkScrollable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkScrollable_wrapper")
+    queueautoptr_cleanup_GtkScrollable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkScrollbar_wrapper")
+    autoptr_clear_GtkScrollbar :: proc(_ptr: ^Scrollbar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkScrollbar_wrapper")
+    autoptr_cleanup_GtkScrollbar :: proc(_ptr: ^^Scrollbar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkScrollbar_wrapper")
+    autoptr_destroy_GtkScrollbar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkScrollbar_wrapper")
+    listautoptr_cleanup_GtkScrollbar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkScrollbar_wrapper")
+    slistautoptr_cleanup_GtkScrollbar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkScrollbar_wrapper")
+    queueautoptr_cleanup_GtkScrollbar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkScrollInfo_wrapper")
+    autoptr_clear_GtkScrollInfo :: proc(_ptr: ^ScrollInfo) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkScrollInfo_wrapper")
+    autoptr_cleanup_GtkScrollInfo :: proc(_ptr: ^^ScrollInfo) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkScrollInfo_wrapper")
+    autoptr_destroy_GtkScrollInfo :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkScrollInfo_wrapper")
+    listautoptr_cleanup_GtkScrollInfo :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkScrollInfo_wrapper")
+    slistautoptr_cleanup_GtkScrollInfo :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkScrollInfo_wrapper")
+    queueautoptr_cleanup_GtkScrollInfo :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkScrolledWindow_wrapper")
+    autoptr_clear_GtkScrolledWindow :: proc(_ptr: ^ScrolledWindow) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkScrolledWindow_wrapper")
+    autoptr_cleanup_GtkScrolledWindow :: proc(_ptr: ^^ScrolledWindow) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkScrolledWindow_wrapper")
+    autoptr_destroy_GtkScrolledWindow :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkScrolledWindow_wrapper")
+    listautoptr_cleanup_GtkScrolledWindow :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkScrolledWindow_wrapper")
+    slistautoptr_cleanup_GtkScrolledWindow :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkScrolledWindow_wrapper")
+    queueautoptr_cleanup_GtkScrolledWindow :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSearchBar_wrapper")
+    autoptr_clear_GtkSearchBar :: proc(_ptr: ^SearchBar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSearchBar_wrapper")
+    autoptr_cleanup_GtkSearchBar :: proc(_ptr: ^^SearchBar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSearchBar_wrapper")
+    autoptr_destroy_GtkSearchBar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSearchBar_wrapper")
+    listautoptr_cleanup_GtkSearchBar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSearchBar_wrapper")
+    slistautoptr_cleanup_GtkSearchBar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSearchBar_wrapper")
+    queueautoptr_cleanup_GtkSearchBar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSearchEntry_wrapper")
+    autoptr_clear_GtkSearchEntry :: proc(_ptr: ^SearchEntry) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSearchEntry_wrapper")
+    autoptr_cleanup_GtkSearchEntry :: proc(_ptr: ^^SearchEntry) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSearchEntry_wrapper")
+    autoptr_destroy_GtkSearchEntry :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSearchEntry_wrapper")
+    listautoptr_cleanup_GtkSearchEntry :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSearchEntry_wrapper")
+    slistautoptr_cleanup_GtkSearchEntry :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSearchEntry_wrapper")
+    queueautoptr_cleanup_GtkSearchEntry :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSectionModel_wrapper")
+    autoptr_clear_GtkSectionModel :: proc(_ptr: ^SectionModel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSectionModel_wrapper")
+    autoptr_cleanup_GtkSectionModel :: proc(_ptr: ^^SectionModel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSectionModel_wrapper")
+    autoptr_destroy_GtkSectionModel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSectionModel_wrapper")
+    listautoptr_cleanup_GtkSectionModel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSectionModel_wrapper")
+    slistautoptr_cleanup_GtkSectionModel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSectionModel_wrapper")
+    queueautoptr_cleanup_GtkSectionModel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SECTION_MODEL_wrapper")
+    SECTION_MODEL :: proc(ptr: glib.pointer) -> ^SectionModel ---
+
+    @(link_name = "GTK_IS_SECTION_MODEL_wrapper")
+    IS_SECTION_MODEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_SECTION_MODEL_GET_IFACE_wrapper")
+    SECTION_MODEL_GET_IFACE :: proc(ptr: glib.pointer) -> ^SectionModelInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkSelectionFilterModel_wrapper")
+    autoptr_clear_GtkSelectionFilterModel :: proc(_ptr: ^SelectionFilterModel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSelectionFilterModel_wrapper")
+    autoptr_cleanup_GtkSelectionFilterModel :: proc(_ptr: ^^SelectionFilterModel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSelectionFilterModel_wrapper")
+    autoptr_destroy_GtkSelectionFilterModel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSelectionFilterModel_wrapper")
+    listautoptr_cleanup_GtkSelectionFilterModel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSelectionFilterModel_wrapper")
+    slistautoptr_cleanup_GtkSelectionFilterModel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSelectionFilterModel_wrapper")
+    queueautoptr_cleanup_GtkSelectionFilterModel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSelectionFilterModelClass_wrapper")
+    autoptr_clear_GtkSelectionFilterModelClass :: proc(_ptr: ^SelectionFilterModelClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSelectionFilterModelClass_wrapper")
+    autoptr_cleanup_GtkSelectionFilterModelClass :: proc(_ptr: ^^SelectionFilterModelClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSelectionFilterModelClass_wrapper")
+    autoptr_destroy_GtkSelectionFilterModelClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSelectionFilterModelClass_wrapper")
+    listautoptr_cleanup_GtkSelectionFilterModelClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSelectionFilterModelClass_wrapper")
+    slistautoptr_cleanup_GtkSelectionFilterModelClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSelectionFilterModelClass_wrapper")
+    queueautoptr_cleanup_GtkSelectionFilterModelClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SELECTION_FILTER_MODEL_wrapper")
+    SELECTION_FILTER_MODEL :: proc(ptr: glib.pointer) -> ^SelectionFilterModel ---
+
+    @(link_name = "GTK_IS_SELECTION_FILTER_MODEL_wrapper")
+    IS_SELECTION_FILTER_MODEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkSeparator_wrapper")
+    autoptr_clear_GtkSeparator :: proc(_ptr: ^Separator) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSeparator_wrapper")
+    autoptr_cleanup_GtkSeparator :: proc(_ptr: ^^Separator) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSeparator_wrapper")
+    autoptr_destroy_GtkSeparator :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSeparator_wrapper")
+    listautoptr_cleanup_GtkSeparator :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSeparator_wrapper")
+    slistautoptr_cleanup_GtkSeparator :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSeparator_wrapper")
+    queueautoptr_cleanup_GtkSeparator :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSettings_wrapper")
+    autoptr_clear_GtkSettings :: proc(_ptr: ^Settings) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSettings_wrapper")
+    autoptr_cleanup_GtkSettings :: proc(_ptr: ^^Settings) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSettings_wrapper")
+    autoptr_destroy_GtkSettings :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSettings_wrapper")
+    listautoptr_cleanup_GtkSettings :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSettings_wrapper")
+    slistautoptr_cleanup_GtkSettings :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSettings_wrapper")
+    queueautoptr_cleanup_GtkSettings :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkShortcutManager_wrapper")
+    autoptr_clear_GtkShortcutManager :: proc(_ptr: ^ShortcutManager) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkShortcutManager_wrapper")
+    autoptr_cleanup_GtkShortcutManager :: proc(_ptr: ^^ShortcutManager) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkShortcutManager_wrapper")
+    autoptr_destroy_GtkShortcutManager :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkShortcutManager_wrapper")
+    listautoptr_cleanup_GtkShortcutManager :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkShortcutManager_wrapper")
+    slistautoptr_cleanup_GtkShortcutManager :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkShortcutManager_wrapper")
+    queueautoptr_cleanup_GtkShortcutManager :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SHORTCUT_MANAGER_wrapper")
+    SHORTCUT_MANAGER :: proc(ptr: glib.pointer) -> ^ShortcutManager ---
+
+    @(link_name = "GTK_IS_SHORTCUT_MANAGER_wrapper")
+    IS_SHORTCUT_MANAGER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_SHORTCUT_MANAGER_GET_IFACE_wrapper")
+    SHORTCUT_MANAGER_GET_IFACE :: proc(ptr: glib.pointer) -> ^ShortcutManagerInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkShortcutTrigger_wrapper")
+    autoptr_clear_GtkShortcutTrigger :: proc(_ptr: ^ShortcutTrigger) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkShortcutTrigger_wrapper")
+    autoptr_cleanup_GtkShortcutTrigger :: proc(_ptr: ^^ShortcutTrigger) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkShortcutTrigger_wrapper")
+    autoptr_destroy_GtkShortcutTrigger :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkShortcutTrigger_wrapper")
+    listautoptr_cleanup_GtkShortcutTrigger :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkShortcutTrigger_wrapper")
+    slistautoptr_cleanup_GtkShortcutTrigger :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkShortcutTrigger_wrapper")
+    queueautoptr_cleanup_GtkShortcutTrigger :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkShortcutTriggerClass_wrapper")
+    autoptr_clear_GtkShortcutTriggerClass :: proc(_ptr: ^ShortcutTriggerClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkShortcutTriggerClass_wrapper")
+    autoptr_cleanup_GtkShortcutTriggerClass :: proc(_ptr: ^^ShortcutTriggerClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkShortcutTriggerClass_wrapper")
+    autoptr_destroy_GtkShortcutTriggerClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkShortcutTriggerClass_wrapper")
+    listautoptr_cleanup_GtkShortcutTriggerClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkShortcutTriggerClass_wrapper")
+    slistautoptr_cleanup_GtkShortcutTriggerClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkShortcutTriggerClass_wrapper")
+    queueautoptr_cleanup_GtkShortcutTriggerClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SHORTCUT_TRIGGER_wrapper")
+    SHORTCUT_TRIGGER :: proc(ptr: glib.pointer) -> ^ShortcutTrigger ---
+
+    @(link_name = "GTK_SHORTCUT_TRIGGER_CLASS_wrapper")
+    SHORTCUT_TRIGGER_CLASS :: proc(ptr: glib.pointer) -> ^ShortcutTriggerClass ---
+
+    @(link_name = "GTK_IS_SHORTCUT_TRIGGER_wrapper")
+    IS_SHORTCUT_TRIGGER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_SHORTCUT_TRIGGER_CLASS_wrapper")
+    IS_SHORTCUT_TRIGGER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_SHORTCUT_TRIGGER_GET_CLASS_wrapper")
+    SHORTCUT_TRIGGER_GET_CLASS :: proc(ptr: glib.pointer) -> ^ShortcutTriggerClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkNeverTrigger_wrapper")
+    autoptr_clear_GtkNeverTrigger :: proc(_ptr: ^NeverTrigger) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNeverTrigger_wrapper")
+    autoptr_cleanup_GtkNeverTrigger :: proc(_ptr: ^^NeverTrigger) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNeverTrigger_wrapper")
+    autoptr_destroy_GtkNeverTrigger :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNeverTrigger_wrapper")
+    listautoptr_cleanup_GtkNeverTrigger :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNeverTrigger_wrapper")
+    slistautoptr_cleanup_GtkNeverTrigger :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNeverTrigger_wrapper")
+    queueautoptr_cleanup_GtkNeverTrigger :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkNeverTriggerClass_wrapper")
+    autoptr_clear_GtkNeverTriggerClass :: proc(_ptr: ^NeverTriggerClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkNeverTriggerClass_wrapper")
+    autoptr_cleanup_GtkNeverTriggerClass :: proc(_ptr: ^^NeverTriggerClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkNeverTriggerClass_wrapper")
+    autoptr_destroy_GtkNeverTriggerClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkNeverTriggerClass_wrapper")
+    listautoptr_cleanup_GtkNeverTriggerClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkNeverTriggerClass_wrapper")
+    slistautoptr_cleanup_GtkNeverTriggerClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkNeverTriggerClass_wrapper")
+    queueautoptr_cleanup_GtkNeverTriggerClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_NEVER_TRIGGER_wrapper")
+    NEVER_TRIGGER :: proc(ptr: glib.pointer) -> ^NeverTrigger ---
+
+    @(link_name = "GTK_NEVER_TRIGGER_CLASS_wrapper")
+    NEVER_TRIGGER_CLASS :: proc(ptr: glib.pointer) -> ^NeverTriggerClass ---
+
+    @(link_name = "GTK_IS_NEVER_TRIGGER_wrapper")
+    IS_NEVER_TRIGGER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_NEVER_TRIGGER_CLASS_wrapper")
+    IS_NEVER_TRIGGER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_NEVER_TRIGGER_GET_CLASS_wrapper")
+    NEVER_TRIGGER_GET_CLASS :: proc(ptr: glib.pointer) -> ^NeverTriggerClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkKeyvalTrigger_wrapper")
+    autoptr_clear_GtkKeyvalTrigger :: proc(_ptr: ^KeyvalTrigger) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkKeyvalTrigger_wrapper")
+    autoptr_cleanup_GtkKeyvalTrigger :: proc(_ptr: ^^KeyvalTrigger) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkKeyvalTrigger_wrapper")
+    autoptr_destroy_GtkKeyvalTrigger :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkKeyvalTrigger_wrapper")
+    listautoptr_cleanup_GtkKeyvalTrigger :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkKeyvalTrigger_wrapper")
+    slistautoptr_cleanup_GtkKeyvalTrigger :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkKeyvalTrigger_wrapper")
+    queueautoptr_cleanup_GtkKeyvalTrigger :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkKeyvalTriggerClass_wrapper")
+    autoptr_clear_GtkKeyvalTriggerClass :: proc(_ptr: ^KeyvalTriggerClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkKeyvalTriggerClass_wrapper")
+    autoptr_cleanup_GtkKeyvalTriggerClass :: proc(_ptr: ^^KeyvalTriggerClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkKeyvalTriggerClass_wrapper")
+    autoptr_destroy_GtkKeyvalTriggerClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkKeyvalTriggerClass_wrapper")
+    listautoptr_cleanup_GtkKeyvalTriggerClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkKeyvalTriggerClass_wrapper")
+    slistautoptr_cleanup_GtkKeyvalTriggerClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkKeyvalTriggerClass_wrapper")
+    queueautoptr_cleanup_GtkKeyvalTriggerClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_KEYVAL_TRIGGER_wrapper")
+    KEYVAL_TRIGGER :: proc(ptr: glib.pointer) -> ^KeyvalTrigger ---
+
+    @(link_name = "GTK_KEYVAL_TRIGGER_CLASS_wrapper")
+    KEYVAL_TRIGGER_CLASS :: proc(ptr: glib.pointer) -> ^KeyvalTriggerClass ---
+
+    @(link_name = "GTK_IS_KEYVAL_TRIGGER_wrapper")
+    IS_KEYVAL_TRIGGER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_KEYVAL_TRIGGER_CLASS_wrapper")
+    IS_KEYVAL_TRIGGER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_KEYVAL_TRIGGER_GET_CLASS_wrapper")
+    KEYVAL_TRIGGER_GET_CLASS :: proc(ptr: glib.pointer) -> ^KeyvalTriggerClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkMnemonicTrigger_wrapper")
+    autoptr_clear_GtkMnemonicTrigger :: proc(_ptr: ^MnemonicTrigger) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMnemonicTrigger_wrapper")
+    autoptr_cleanup_GtkMnemonicTrigger :: proc(_ptr: ^^MnemonicTrigger) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMnemonicTrigger_wrapper")
+    autoptr_destroy_GtkMnemonicTrigger :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMnemonicTrigger_wrapper")
+    listautoptr_cleanup_GtkMnemonicTrigger :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMnemonicTrigger_wrapper")
+    slistautoptr_cleanup_GtkMnemonicTrigger :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMnemonicTrigger_wrapper")
+    queueautoptr_cleanup_GtkMnemonicTrigger :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkMnemonicTriggerClass_wrapper")
+    autoptr_clear_GtkMnemonicTriggerClass :: proc(_ptr: ^MnemonicTriggerClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkMnemonicTriggerClass_wrapper")
+    autoptr_cleanup_GtkMnemonicTriggerClass :: proc(_ptr: ^^MnemonicTriggerClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkMnemonicTriggerClass_wrapper")
+    autoptr_destroy_GtkMnemonicTriggerClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkMnemonicTriggerClass_wrapper")
+    listautoptr_cleanup_GtkMnemonicTriggerClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkMnemonicTriggerClass_wrapper")
+    slistautoptr_cleanup_GtkMnemonicTriggerClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkMnemonicTriggerClass_wrapper")
+    queueautoptr_cleanup_GtkMnemonicTriggerClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_MNEMONIC_TRIGGER_wrapper")
+    MNEMONIC_TRIGGER :: proc(ptr: glib.pointer) -> ^MnemonicTrigger ---
+
+    @(link_name = "GTK_MNEMONIC_TRIGGER_CLASS_wrapper")
+    MNEMONIC_TRIGGER_CLASS :: proc(ptr: glib.pointer) -> ^MnemonicTriggerClass ---
+
+    @(link_name = "GTK_IS_MNEMONIC_TRIGGER_wrapper")
+    IS_MNEMONIC_TRIGGER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_MNEMONIC_TRIGGER_CLASS_wrapper")
+    IS_MNEMONIC_TRIGGER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_MNEMONIC_TRIGGER_GET_CLASS_wrapper")
+    MNEMONIC_TRIGGER_GET_CLASS :: proc(ptr: glib.pointer) -> ^MnemonicTriggerClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkAlternativeTrigger_wrapper")
+    autoptr_clear_GtkAlternativeTrigger :: proc(_ptr: ^AlternativeTrigger) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAlternativeTrigger_wrapper")
+    autoptr_cleanup_GtkAlternativeTrigger :: proc(_ptr: ^^AlternativeTrigger) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAlternativeTrigger_wrapper")
+    autoptr_destroy_GtkAlternativeTrigger :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAlternativeTrigger_wrapper")
+    listautoptr_cleanup_GtkAlternativeTrigger :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAlternativeTrigger_wrapper")
+    slistautoptr_cleanup_GtkAlternativeTrigger :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAlternativeTrigger_wrapper")
+    queueautoptr_cleanup_GtkAlternativeTrigger :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkAlternativeTriggerClass_wrapper")
+    autoptr_clear_GtkAlternativeTriggerClass :: proc(_ptr: ^AlternativeTriggerClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAlternativeTriggerClass_wrapper")
+    autoptr_cleanup_GtkAlternativeTriggerClass :: proc(_ptr: ^^AlternativeTriggerClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAlternativeTriggerClass_wrapper")
+    autoptr_destroy_GtkAlternativeTriggerClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAlternativeTriggerClass_wrapper")
+    listautoptr_cleanup_GtkAlternativeTriggerClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAlternativeTriggerClass_wrapper")
+    slistautoptr_cleanup_GtkAlternativeTriggerClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAlternativeTriggerClass_wrapper")
+    queueautoptr_cleanup_GtkAlternativeTriggerClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_ALTERNATIVE_TRIGGER_wrapper")
+    ALTERNATIVE_TRIGGER :: proc(ptr: glib.pointer) -> ^AlternativeTrigger ---
+
+    @(link_name = "GTK_ALTERNATIVE_TRIGGER_CLASS_wrapper")
+    ALTERNATIVE_TRIGGER_CLASS :: proc(ptr: glib.pointer) -> ^AlternativeTriggerClass ---
+
+    @(link_name = "GTK_IS_ALTERNATIVE_TRIGGER_wrapper")
+    IS_ALTERNATIVE_TRIGGER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_IS_ALTERNATIVE_TRIGGER_CLASS_wrapper")
+    IS_ALTERNATIVE_TRIGGER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_ALTERNATIVE_TRIGGER_GET_CLASS_wrapper")
+    ALTERNATIVE_TRIGGER_GET_CLASS :: proc(ptr: glib.pointer) -> ^AlternativeTriggerClass ---
+
+    @(link_name = "glib_autoptr_clear_GtkSingleSelection_wrapper")
+    autoptr_clear_GtkSingleSelection :: proc(_ptr: ^SingleSelection) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSingleSelection_wrapper")
+    autoptr_cleanup_GtkSingleSelection :: proc(_ptr: ^^SingleSelection) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSingleSelection_wrapper")
+    autoptr_destroy_GtkSingleSelection :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSingleSelection_wrapper")
+    listautoptr_cleanup_GtkSingleSelection :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSingleSelection_wrapper")
+    slistautoptr_cleanup_GtkSingleSelection :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSingleSelection_wrapper")
+    queueautoptr_cleanup_GtkSingleSelection :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSingleSelectionClass_wrapper")
+    autoptr_clear_GtkSingleSelectionClass :: proc(_ptr: ^SingleSelectionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSingleSelectionClass_wrapper")
+    autoptr_cleanup_GtkSingleSelectionClass :: proc(_ptr: ^^SingleSelectionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSingleSelectionClass_wrapper")
+    autoptr_destroy_GtkSingleSelectionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSingleSelectionClass_wrapper")
+    listautoptr_cleanup_GtkSingleSelectionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSingleSelectionClass_wrapper")
+    slistautoptr_cleanup_GtkSingleSelectionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSingleSelectionClass_wrapper")
+    queueautoptr_cleanup_GtkSingleSelectionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SINGLE_SELECTION_wrapper")
+    SINGLE_SELECTION :: proc(ptr: glib.pointer) -> ^SingleSelection ---
+
+    @(link_name = "GTK_IS_SINGLE_SELECTION_wrapper")
+    IS_SINGLE_SELECTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkSliceListModel_wrapper")
+    autoptr_clear_GtkSliceListModel :: proc(_ptr: ^SliceListModel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSliceListModel_wrapper")
+    autoptr_cleanup_GtkSliceListModel :: proc(_ptr: ^^SliceListModel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSliceListModel_wrapper")
+    autoptr_destroy_GtkSliceListModel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSliceListModel_wrapper")
+    listautoptr_cleanup_GtkSliceListModel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSliceListModel_wrapper")
+    slistautoptr_cleanup_GtkSliceListModel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSliceListModel_wrapper")
+    queueautoptr_cleanup_GtkSliceListModel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSliceListModelClass_wrapper")
+    autoptr_clear_GtkSliceListModelClass :: proc(_ptr: ^SliceListModelClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSliceListModelClass_wrapper")
+    autoptr_cleanup_GtkSliceListModelClass :: proc(_ptr: ^^SliceListModelClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSliceListModelClass_wrapper")
+    autoptr_destroy_GtkSliceListModelClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSliceListModelClass_wrapper")
+    listautoptr_cleanup_GtkSliceListModelClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSliceListModelClass_wrapper")
+    slistautoptr_cleanup_GtkSliceListModelClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSliceListModelClass_wrapper")
+    queueautoptr_cleanup_GtkSliceListModelClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SLICE_LIST_MODEL_wrapper")
+    SLICE_LIST_MODEL :: proc(ptr: glib.pointer) -> ^SliceListModel ---
+
+    @(link_name = "GTK_IS_SLICE_LIST_MODEL_wrapper")
+    IS_SLICE_LIST_MODEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkStack_wrapper")
+    autoptr_clear_GtkStack :: proc(_ptr: ^Stack) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStack_wrapper")
+    autoptr_cleanup_GtkStack :: proc(_ptr: ^^Stack) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStack_wrapper")
+    autoptr_destroy_GtkStack :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStack_wrapper")
+    listautoptr_cleanup_GtkStack :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStack_wrapper")
+    slistautoptr_cleanup_GtkStack :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStack_wrapper")
+    queueautoptr_cleanup_GtkStack :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStackSidebar_wrapper")
+    autoptr_clear_GtkStackSidebar :: proc(_ptr: ^StackSidebar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStackSidebar_wrapper")
+    autoptr_cleanup_GtkStackSidebar :: proc(_ptr: ^^StackSidebar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStackSidebar_wrapper")
+    autoptr_destroy_GtkStackSidebar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStackSidebar_wrapper")
+    listautoptr_cleanup_GtkStackSidebar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStackSidebar_wrapper")
+    slistautoptr_cleanup_GtkStackSidebar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStackSidebar_wrapper")
+    queueautoptr_cleanup_GtkStackSidebar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSizeGroup_wrapper")
+    autoptr_clear_GtkSizeGroup :: proc(_ptr: ^SizeGroup) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSizeGroup_wrapper")
+    autoptr_cleanup_GtkSizeGroup :: proc(_ptr: ^^SizeGroup) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSizeGroup_wrapper")
+    autoptr_destroy_GtkSizeGroup :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSizeGroup_wrapper")
+    listautoptr_cleanup_GtkSizeGroup :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSizeGroup_wrapper")
+    slistautoptr_cleanup_GtkSizeGroup :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSizeGroup_wrapper")
+    queueautoptr_cleanup_GtkSizeGroup :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSpinButton_wrapper")
+    autoptr_clear_GtkSpinButton :: proc(_ptr: ^SpinButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSpinButton_wrapper")
+    autoptr_cleanup_GtkSpinButton :: proc(_ptr: ^^SpinButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSpinButton_wrapper")
+    autoptr_destroy_GtkSpinButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSpinButton_wrapper")
+    listautoptr_cleanup_GtkSpinButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSpinButton_wrapper")
+    slistautoptr_cleanup_GtkSpinButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSpinButton_wrapper")
+    queueautoptr_cleanup_GtkSpinButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSpinner_wrapper")
+    autoptr_clear_GtkSpinner :: proc(_ptr: ^Spinner) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSpinner_wrapper")
+    autoptr_cleanup_GtkSpinner :: proc(_ptr: ^^Spinner) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSpinner_wrapper")
+    autoptr_destroy_GtkSpinner :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSpinner_wrapper")
+    listautoptr_cleanup_GtkSpinner :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSpinner_wrapper")
+    slistautoptr_cleanup_GtkSpinner :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSpinner_wrapper")
+    queueautoptr_cleanup_GtkSpinner :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStackSwitcher_wrapper")
+    autoptr_clear_GtkStackSwitcher :: proc(_ptr: ^StackSwitcher) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStackSwitcher_wrapper")
+    autoptr_cleanup_GtkStackSwitcher :: proc(_ptr: ^^StackSwitcher) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStackSwitcher_wrapper")
+    autoptr_destroy_GtkStackSwitcher :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStackSwitcher_wrapper")
+    listautoptr_cleanup_GtkStackSwitcher :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStackSwitcher_wrapper")
+    slistautoptr_cleanup_GtkStackSwitcher :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStackSwitcher_wrapper")
+    queueautoptr_cleanup_GtkStackSwitcher :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStatusbar_wrapper")
+    autoptr_clear_GtkStatusbar :: proc(_ptr: ^Statusbar) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStatusbar_wrapper")
+    autoptr_cleanup_GtkStatusbar :: proc(_ptr: ^^Statusbar) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStatusbar_wrapper")
+    autoptr_destroy_GtkStatusbar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStatusbar_wrapper")
+    listautoptr_cleanup_GtkStatusbar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStatusbar_wrapper")
+    slistautoptr_cleanup_GtkStatusbar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStatusbar_wrapper")
+    queueautoptr_cleanup_GtkStatusbar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStringObject_wrapper")
+    autoptr_clear_GtkStringObject :: proc(_ptr: ^StringObject) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStringObject_wrapper")
+    autoptr_cleanup_GtkStringObject :: proc(_ptr: ^^StringObject) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStringObject_wrapper")
+    autoptr_destroy_GtkStringObject :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStringObject_wrapper")
+    listautoptr_cleanup_GtkStringObject :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStringObject_wrapper")
+    slistautoptr_cleanup_GtkStringObject :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStringObject_wrapper")
+    queueautoptr_cleanup_GtkStringObject :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStringObjectClass_wrapper")
+    autoptr_clear_GtkStringObjectClass :: proc(_ptr: ^StringObjectClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStringObjectClass_wrapper")
+    autoptr_cleanup_GtkStringObjectClass :: proc(_ptr: ^^StringObjectClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStringObjectClass_wrapper")
+    autoptr_destroy_GtkStringObjectClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStringObjectClass_wrapper")
+    listautoptr_cleanup_GtkStringObjectClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStringObjectClass_wrapper")
+    slistautoptr_cleanup_GtkStringObjectClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStringObjectClass_wrapper")
+    queueautoptr_cleanup_GtkStringObjectClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_STRING_OBJECT_wrapper")
+    STRING_OBJECT :: proc(ptr: glib.pointer) -> ^StringObject ---
+
+    @(link_name = "GTK_IS_STRING_OBJECT_wrapper")
+    IS_STRING_OBJECT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkStringList_wrapper")
+    autoptr_clear_GtkStringList :: proc(_ptr: ^StringList) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStringList_wrapper")
+    autoptr_cleanup_GtkStringList :: proc(_ptr: ^^StringList) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStringList_wrapper")
+    autoptr_destroy_GtkStringList :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStringList_wrapper")
+    listautoptr_cleanup_GtkStringList :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStringList_wrapper")
+    slistautoptr_cleanup_GtkStringList :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStringList_wrapper")
+    queueautoptr_cleanup_GtkStringList :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStringListClass_wrapper")
+    autoptr_clear_GtkStringListClass :: proc(_ptr: ^StringListClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStringListClass_wrapper")
+    autoptr_cleanup_GtkStringListClass :: proc(_ptr: ^^StringListClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStringListClass_wrapper")
+    autoptr_destroy_GtkStringListClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStringListClass_wrapper")
+    listautoptr_cleanup_GtkStringListClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStringListClass_wrapper")
+    slistautoptr_cleanup_GtkStringListClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStringListClass_wrapper")
+    queueautoptr_cleanup_GtkStringListClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_STRING_LIST_wrapper")
+    STRING_LIST :: proc(ptr: glib.pointer) -> ^StringList ---
+
+    @(link_name = "GTK_IS_STRING_LIST_wrapper")
+    IS_STRING_LIST :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkStringSorter_wrapper")
+    autoptr_clear_GtkStringSorter :: proc(_ptr: ^StringSorter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStringSorter_wrapper")
+    autoptr_cleanup_GtkStringSorter :: proc(_ptr: ^^StringSorter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStringSorter_wrapper")
+    autoptr_destroy_GtkStringSorter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStringSorter_wrapper")
+    listautoptr_cleanup_GtkStringSorter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStringSorter_wrapper")
+    slistautoptr_cleanup_GtkStringSorter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStringSorter_wrapper")
+    queueautoptr_cleanup_GtkStringSorter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStringSorterClass_wrapper")
+    autoptr_clear_GtkStringSorterClass :: proc(_ptr: ^StringSorterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStringSorterClass_wrapper")
+    autoptr_cleanup_GtkStringSorterClass :: proc(_ptr: ^^StringSorterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStringSorterClass_wrapper")
+    autoptr_destroy_GtkStringSorterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStringSorterClass_wrapper")
+    listautoptr_cleanup_GtkStringSorterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStringSorterClass_wrapper")
+    slistautoptr_cleanup_GtkStringSorterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStringSorterClass_wrapper")
+    queueautoptr_cleanup_GtkStringSorterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_STRING_SORTER_wrapper")
+    STRING_SORTER :: proc(ptr: glib.pointer) -> ^StringSorter ---
+
+    @(link_name = "GTK_IS_STRING_SORTER_wrapper")
+    IS_STRING_SORTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkStyleProvider_wrapper")
+    autoptr_clear_GtkStyleProvider :: proc(_ptr: ^StyleProvider) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStyleProvider_wrapper")
+    autoptr_cleanup_GtkStyleProvider :: proc(_ptr: ^^StyleProvider) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStyleProvider_wrapper")
+    autoptr_destroy_GtkStyleProvider :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStyleProvider_wrapper")
+    listautoptr_cleanup_GtkStyleProvider :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStyleProvider_wrapper")
+    slistautoptr_cleanup_GtkStyleProvider :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStyleProvider_wrapper")
+    queueautoptr_cleanup_GtkStyleProvider :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStyleContext_wrapper")
+    autoptr_clear_GtkStyleContext :: proc(_ptr: ^StyleContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStyleContext_wrapper")
+    autoptr_cleanup_GtkStyleContext :: proc(_ptr: ^^StyleContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStyleContext_wrapper")
+    autoptr_destroy_GtkStyleContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStyleContext_wrapper")
+    listautoptr_cleanup_GtkStyleContext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStyleContext_wrapper")
+    slistautoptr_cleanup_GtkStyleContext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStyleContext_wrapper")
+    queueautoptr_cleanup_GtkStyleContext :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSwitch_wrapper")
+    autoptr_clear_GtkSwitch :: proc(_ptr: ^Switch) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSwitch_wrapper")
+    autoptr_cleanup_GtkSwitch :: proc(_ptr: ^^Switch) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSwitch_wrapper")
+    autoptr_destroy_GtkSwitch :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSwitch_wrapper")
+    listautoptr_cleanup_GtkSwitch :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSwitch_wrapper")
+    slistautoptr_cleanup_GtkSwitch :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSwitch_wrapper")
+    queueautoptr_cleanup_GtkSwitch :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkSymbolicPaintable_wrapper")
+    autoptr_clear_GtkSymbolicPaintable :: proc(_ptr: ^SymbolicPaintable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkSymbolicPaintable_wrapper")
+    autoptr_cleanup_GtkSymbolicPaintable :: proc(_ptr: ^^SymbolicPaintable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkSymbolicPaintable_wrapper")
+    autoptr_destroy_GtkSymbolicPaintable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkSymbolicPaintable_wrapper")
+    listautoptr_cleanup_GtkSymbolicPaintable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkSymbolicPaintable_wrapper")
+    slistautoptr_cleanup_GtkSymbolicPaintable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkSymbolicPaintable_wrapper")
+    queueautoptr_cleanup_GtkSymbolicPaintable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_SYMBOLIC_PAINTABLE_wrapper")
+    SYMBOLIC_PAINTABLE :: proc(ptr: glib.pointer) -> ^SymbolicPaintable ---
+
+    @(link_name = "GTK_IS_SYMBOLIC_PAINTABLE_wrapper")
+    IS_SYMBOLIC_PAINTABLE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_SYMBOLIC_PAINTABLE_GET_IFACE_wrapper")
+    SYMBOLIC_PAINTABLE_GET_IFACE :: proc(ptr: glib.pointer) -> ^SymbolicPaintableInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkTextTag_wrapper")
+    autoptr_clear_GtkTextTag :: proc(_ptr: ^TextTag) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTextTag_wrapper")
+    autoptr_cleanup_GtkTextTag :: proc(_ptr: ^^TextTag) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTextTag_wrapper")
+    autoptr_destroy_GtkTextTag :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTextTag_wrapper")
+    listautoptr_cleanup_GtkTextTag :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTextTag_wrapper")
+    slistautoptr_cleanup_GtkTextTag :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTextTag_wrapper")
+    queueautoptr_cleanup_GtkTextTag :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTextTagTable_wrapper")
+    autoptr_clear_GtkTextTagTable :: proc(_ptr: ^TextTagTable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTextTagTable_wrapper")
+    autoptr_cleanup_GtkTextTagTable :: proc(_ptr: ^^TextTagTable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTextTagTable_wrapper")
+    autoptr_destroy_GtkTextTagTable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTextTagTable_wrapper")
+    listautoptr_cleanup_GtkTextTagTable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTextTagTable_wrapper")
+    slistautoptr_cleanup_GtkTextTagTable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTextTagTable_wrapper")
+    queueautoptr_cleanup_GtkTextTagTable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTextChildAnchor_wrapper")
+    autoptr_clear_GtkTextChildAnchor :: proc(_ptr: ^TextChildAnchor) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTextChildAnchor_wrapper")
+    autoptr_cleanup_GtkTextChildAnchor :: proc(_ptr: ^^TextChildAnchor) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTextChildAnchor_wrapper")
+    autoptr_destroy_GtkTextChildAnchor :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTextChildAnchor_wrapper")
+    listautoptr_cleanup_GtkTextChildAnchor :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTextChildAnchor_wrapper")
+    slistautoptr_cleanup_GtkTextChildAnchor :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTextChildAnchor_wrapper")
+    queueautoptr_cleanup_GtkTextChildAnchor :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTextIter_wrapper")
+    autoptr_clear_GtkTextIter :: proc(_ptr: ^TextIter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTextIter_wrapper")
+    autoptr_cleanup_GtkTextIter :: proc(_ptr: ^^TextIter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTextIter_wrapper")
+    autoptr_destroy_GtkTextIter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTextIter_wrapper")
+    listautoptr_cleanup_GtkTextIter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTextIter_wrapper")
+    slistautoptr_cleanup_GtkTextIter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTextIter_wrapper")
+    queueautoptr_cleanup_GtkTextIter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTextMark_wrapper")
+    autoptr_clear_GtkTextMark :: proc(_ptr: ^TextMark) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTextMark_wrapper")
+    autoptr_cleanup_GtkTextMark :: proc(_ptr: ^^TextMark) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTextMark_wrapper")
+    autoptr_destroy_GtkTextMark :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTextMark_wrapper")
+    listautoptr_cleanup_GtkTextMark :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTextMark_wrapper")
+    slistautoptr_cleanup_GtkTextMark :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTextMark_wrapper")
+    queueautoptr_cleanup_GtkTextMark :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTextBuffer_wrapper")
+    autoptr_clear_GtkTextBuffer :: proc(_ptr: ^TextBuffer) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTextBuffer_wrapper")
+    autoptr_cleanup_GtkTextBuffer :: proc(_ptr: ^^TextBuffer) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTextBuffer_wrapper")
+    autoptr_destroy_GtkTextBuffer :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTextBuffer_wrapper")
+    listautoptr_cleanup_GtkTextBuffer :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTextBuffer_wrapper")
+    slistautoptr_cleanup_GtkTextBuffer :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTextBuffer_wrapper")
+    queueautoptr_cleanup_GtkTextBuffer :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTextView_wrapper")
+    autoptr_clear_GtkTextView :: proc(_ptr: ^TextView) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTextView_wrapper")
+    autoptr_cleanup_GtkTextView :: proc(_ptr: ^^TextView) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTextView_wrapper")
+    autoptr_destroy_GtkTextView :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTextView_wrapper")
+    listautoptr_cleanup_GtkTextView :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTextView_wrapper")
+    slistautoptr_cleanup_GtkTextView :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTextView_wrapper")
+    queueautoptr_cleanup_GtkTextView :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeDragDest_wrapper")
+    autoptr_clear_GtkTreeDragDest :: proc(_ptr: ^TreeDragDest) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeDragDest_wrapper")
+    autoptr_cleanup_GtkTreeDragDest :: proc(_ptr: ^^TreeDragDest) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeDragDest_wrapper")
+    autoptr_destroy_GtkTreeDragDest :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeDragDest_wrapper")
+    listautoptr_cleanup_GtkTreeDragDest :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeDragDest_wrapper")
+    slistautoptr_cleanup_GtkTreeDragDest :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeDragDest_wrapper")
+    queueautoptr_cleanup_GtkTreeDragDest :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeDragSource_wrapper")
+    autoptr_clear_GtkTreeDragSource :: proc(_ptr: ^TreeDragSource) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeDragSource_wrapper")
+    autoptr_cleanup_GtkTreeDragSource :: proc(_ptr: ^^TreeDragSource) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeDragSource_wrapper")
+    autoptr_destroy_GtkTreeDragSource :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeDragSource_wrapper")
+    listautoptr_cleanup_GtkTreeDragSource :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeDragSource_wrapper")
+    slistautoptr_cleanup_GtkTreeDragSource :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeDragSource_wrapper")
+    queueautoptr_cleanup_GtkTreeDragSource :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeListModel_wrapper")
+    autoptr_clear_GtkTreeListModel :: proc(_ptr: ^TreeListModel) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeListModel_wrapper")
+    autoptr_cleanup_GtkTreeListModel :: proc(_ptr: ^^TreeListModel) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeListModel_wrapper")
+    autoptr_destroy_GtkTreeListModel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeListModel_wrapper")
+    listautoptr_cleanup_GtkTreeListModel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeListModel_wrapper")
+    slistautoptr_cleanup_GtkTreeListModel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeListModel_wrapper")
+    queueautoptr_cleanup_GtkTreeListModel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeListModelClass_wrapper")
+    autoptr_clear_GtkTreeListModelClass :: proc(_ptr: ^TreeListModelClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeListModelClass_wrapper")
+    autoptr_cleanup_GtkTreeListModelClass :: proc(_ptr: ^^TreeListModelClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeListModelClass_wrapper")
+    autoptr_destroy_GtkTreeListModelClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeListModelClass_wrapper")
+    listautoptr_cleanup_GtkTreeListModelClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeListModelClass_wrapper")
+    slistautoptr_cleanup_GtkTreeListModelClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeListModelClass_wrapper")
+    queueautoptr_cleanup_GtkTreeListModelClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_TREE_LIST_MODEL_wrapper")
+    TREE_LIST_MODEL :: proc(ptr: glib.pointer) -> ^TreeListModel ---
+
+    @(link_name = "GTK_IS_TREE_LIST_MODEL_wrapper")
+    IS_TREE_LIST_MODEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeListRow_wrapper")
+    autoptr_clear_GtkTreeListRow :: proc(_ptr: ^TreeListRow) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeListRow_wrapper")
+    autoptr_cleanup_GtkTreeListRow :: proc(_ptr: ^^TreeListRow) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeListRow_wrapper")
+    autoptr_destroy_GtkTreeListRow :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeListRow_wrapper")
+    listautoptr_cleanup_GtkTreeListRow :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeListRow_wrapper")
+    slistautoptr_cleanup_GtkTreeListRow :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeListRow_wrapper")
+    queueautoptr_cleanup_GtkTreeListRow :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeListRowClass_wrapper")
+    autoptr_clear_GtkTreeListRowClass :: proc(_ptr: ^TreeListRowClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeListRowClass_wrapper")
+    autoptr_cleanup_GtkTreeListRowClass :: proc(_ptr: ^^TreeListRowClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeListRowClass_wrapper")
+    autoptr_destroy_GtkTreeListRowClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeListRowClass_wrapper")
+    listautoptr_cleanup_GtkTreeListRowClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeListRowClass_wrapper")
+    slistautoptr_cleanup_GtkTreeListRowClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeListRowClass_wrapper")
+    queueautoptr_cleanup_GtkTreeListRowClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_TREE_LIST_ROW_wrapper")
+    TREE_LIST_ROW :: proc(ptr: glib.pointer) -> ^TreeListRow ---
+
+    @(link_name = "GTK_IS_TREE_LIST_ROW_wrapper")
+    IS_TREE_LIST_ROW :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeExpander_wrapper")
+    autoptr_clear_GtkTreeExpander :: proc(_ptr: ^TreeExpander) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeExpander_wrapper")
+    autoptr_cleanup_GtkTreeExpander :: proc(_ptr: ^^TreeExpander) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeExpander_wrapper")
+    autoptr_destroy_GtkTreeExpander :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeExpander_wrapper")
+    listautoptr_cleanup_GtkTreeExpander :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeExpander_wrapper")
+    slistautoptr_cleanup_GtkTreeExpander :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeExpander_wrapper")
+    queueautoptr_cleanup_GtkTreeExpander :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeExpanderClass_wrapper")
+    autoptr_clear_GtkTreeExpanderClass :: proc(_ptr: ^TreeExpanderClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeExpanderClass_wrapper")
+    autoptr_cleanup_GtkTreeExpanderClass :: proc(_ptr: ^^TreeExpanderClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeExpanderClass_wrapper")
+    autoptr_destroy_GtkTreeExpanderClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeExpanderClass_wrapper")
+    listautoptr_cleanup_GtkTreeExpanderClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeExpanderClass_wrapper")
+    slistautoptr_cleanup_GtkTreeExpanderClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeExpanderClass_wrapper")
+    queueautoptr_cleanup_GtkTreeExpanderClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_TREE_EXPANDER_wrapper")
+    TREE_EXPANDER :: proc(ptr: glib.pointer) -> ^TreeExpander ---
+
+    @(link_name = "GTK_IS_TREE_EXPANDER_wrapper")
+    IS_TREE_EXPANDER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeListRowSorter_wrapper")
+    autoptr_clear_GtkTreeListRowSorter :: proc(_ptr: ^TreeListRowSorter) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeListRowSorter_wrapper")
+    autoptr_cleanup_GtkTreeListRowSorter :: proc(_ptr: ^^TreeListRowSorter) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeListRowSorter_wrapper")
+    autoptr_destroy_GtkTreeListRowSorter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeListRowSorter_wrapper")
+    listautoptr_cleanup_GtkTreeListRowSorter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeListRowSorter_wrapper")
+    slistautoptr_cleanup_GtkTreeListRowSorter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeListRowSorter_wrapper")
+    queueautoptr_cleanup_GtkTreeListRowSorter :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeListRowSorterClass_wrapper")
+    autoptr_clear_GtkTreeListRowSorterClass :: proc(_ptr: ^TreeListRowSorterClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeListRowSorterClass_wrapper")
+    autoptr_cleanup_GtkTreeListRowSorterClass :: proc(_ptr: ^^TreeListRowSorterClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeListRowSorterClass_wrapper")
+    autoptr_destroy_GtkTreeListRowSorterClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeListRowSorterClass_wrapper")
+    listautoptr_cleanup_GtkTreeListRowSorterClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeListRowSorterClass_wrapper")
+    slistautoptr_cleanup_GtkTreeListRowSorterClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeListRowSorterClass_wrapper")
+    queueautoptr_cleanup_GtkTreeListRowSorterClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_TREE_LIST_ROW_SORTER_wrapper")
+    TREE_LIST_ROW_SORTER :: proc(ptr: glib.pointer) -> ^TreeListRowSorter ---
+
+    @(link_name = "GTK_IS_TREE_LIST_ROW_SORTER_wrapper")
+    IS_TREE_LIST_ROW_SORTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeModelSort_wrapper")
+    autoptr_clear_GtkTreeModelSort :: proc(_ptr: ^TreeModelSort) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeModelSort_wrapper")
+    autoptr_cleanup_GtkTreeModelSort :: proc(_ptr: ^^TreeModelSort) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeModelSort_wrapper")
+    autoptr_destroy_GtkTreeModelSort :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeModelSort_wrapper")
+    listautoptr_cleanup_GtkTreeModelSort :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeModelSort_wrapper")
+    slistautoptr_cleanup_GtkTreeModelSort :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeModelSort_wrapper")
+    queueautoptr_cleanup_GtkTreeModelSort :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeSelection_wrapper")
+    autoptr_clear_GtkTreeSelection :: proc(_ptr: ^TreeSelection) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeSelection_wrapper")
+    autoptr_cleanup_GtkTreeSelection :: proc(_ptr: ^^TreeSelection) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeSelection_wrapper")
+    autoptr_destroy_GtkTreeSelection :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeSelection_wrapper")
+    listautoptr_cleanup_GtkTreeSelection :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeSelection_wrapper")
+    slistautoptr_cleanup_GtkTreeSelection :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeSelection_wrapper")
+    queueautoptr_cleanup_GtkTreeSelection :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkTreeStore_wrapper")
+    autoptr_clear_GtkTreeStore :: proc(_ptr: ^TreeStore) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkTreeStore_wrapper")
+    autoptr_cleanup_GtkTreeStore :: proc(_ptr: ^^TreeStore) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkTreeStore_wrapper")
+    autoptr_destroy_GtkTreeStore :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkTreeStore_wrapper")
+    listautoptr_cleanup_GtkTreeStore :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkTreeStore_wrapper")
+    slistautoptr_cleanup_GtkTreeStore :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkTreeStore_wrapper")
+    queueautoptr_cleanup_GtkTreeStore :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkUriLauncher_wrapper")
+    autoptr_clear_GtkUriLauncher :: proc(_ptr: ^UriLauncher) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkUriLauncher_wrapper")
+    autoptr_cleanup_GtkUriLauncher :: proc(_ptr: ^^UriLauncher) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkUriLauncher_wrapper")
+    autoptr_destroy_GtkUriLauncher :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkUriLauncher_wrapper")
+    listautoptr_cleanup_GtkUriLauncher :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkUriLauncher_wrapper")
+    slistautoptr_cleanup_GtkUriLauncher :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkUriLauncher_wrapper")
+    queueautoptr_cleanup_GtkUriLauncher :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkUriLauncherClass_wrapper")
+    autoptr_clear_GtkUriLauncherClass :: proc(_ptr: ^UriLauncherClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkUriLauncherClass_wrapper")
+    autoptr_cleanup_GtkUriLauncherClass :: proc(_ptr: ^^UriLauncherClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkUriLauncherClass_wrapper")
+    autoptr_destroy_GtkUriLauncherClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkUriLauncherClass_wrapper")
+    listautoptr_cleanup_GtkUriLauncherClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkUriLauncherClass_wrapper")
+    slistautoptr_cleanup_GtkUriLauncherClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkUriLauncherClass_wrapper")
+    queueautoptr_cleanup_GtkUriLauncherClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_URI_LAUNCHER_wrapper")
+    URI_LAUNCHER :: proc(ptr: glib.pointer) -> ^UriLauncher ---
+
+    @(link_name = "GTK_IS_URI_LAUNCHER_wrapper")
+    IS_URI_LAUNCHER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkVideo_wrapper")
+    autoptr_clear_GtkVideo :: proc(_ptr: ^Video) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkVideo_wrapper")
+    autoptr_cleanup_GtkVideo :: proc(_ptr: ^^Video) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkVideo_wrapper")
+    autoptr_destroy_GtkVideo :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkVideo_wrapper")
+    listautoptr_cleanup_GtkVideo :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkVideo_wrapper")
+    slistautoptr_cleanup_GtkVideo :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkVideo_wrapper")
+    queueautoptr_cleanup_GtkVideo :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkVideoClass_wrapper")
+    autoptr_clear_GtkVideoClass :: proc(_ptr: ^VideoClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkVideoClass_wrapper")
+    autoptr_cleanup_GtkVideoClass :: proc(_ptr: ^^VideoClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkVideoClass_wrapper")
+    autoptr_destroy_GtkVideoClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkVideoClass_wrapper")
+    listautoptr_cleanup_GtkVideoClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkVideoClass_wrapper")
+    slistautoptr_cleanup_GtkVideoClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkVideoClass_wrapper")
+    queueautoptr_cleanup_GtkVideoClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_VIDEO_wrapper")
+    VIDEO :: proc(ptr: glib.pointer) -> ^Video ---
+
+    @(link_name = "GTK_IS_VIDEO_wrapper")
+    IS_VIDEO :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkViewport_wrapper")
+    autoptr_clear_GtkViewport :: proc(_ptr: ^Viewport) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkViewport_wrapper")
+    autoptr_cleanup_GtkViewport :: proc(_ptr: ^^Viewport) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkViewport_wrapper")
+    autoptr_destroy_GtkViewport :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkViewport_wrapper")
+    listautoptr_cleanup_GtkViewport :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkViewport_wrapper")
+    slistautoptr_cleanup_GtkViewport :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkViewport_wrapper")
+    queueautoptr_cleanup_GtkViewport :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkVolumeButton_wrapper")
+    autoptr_clear_GtkVolumeButton :: proc(_ptr: ^VolumeButton) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkVolumeButton_wrapper")
+    autoptr_cleanup_GtkVolumeButton :: proc(_ptr: ^^VolumeButton) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkVolumeButton_wrapper")
+    autoptr_destroy_GtkVolumeButton :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkVolumeButton_wrapper")
+    listautoptr_cleanup_GtkVolumeButton :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkVolumeButton_wrapper")
+    slistautoptr_cleanup_GtkVolumeButton :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkVolumeButton_wrapper")
+    queueautoptr_cleanup_GtkVolumeButton :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkWidgetPaintable_wrapper")
+    autoptr_clear_GtkWidgetPaintable :: proc(_ptr: ^WidgetPaintable) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkWidgetPaintable_wrapper")
+    autoptr_cleanup_GtkWidgetPaintable :: proc(_ptr: ^^WidgetPaintable) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkWidgetPaintable_wrapper")
+    autoptr_destroy_GtkWidgetPaintable :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkWidgetPaintable_wrapper")
+    listautoptr_cleanup_GtkWidgetPaintable :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkWidgetPaintable_wrapper")
+    slistautoptr_cleanup_GtkWidgetPaintable :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkWidgetPaintable_wrapper")
+    queueautoptr_cleanup_GtkWidgetPaintable :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkWidgetPaintableClass_wrapper")
+    autoptr_clear_GtkWidgetPaintableClass :: proc(_ptr: ^WidgetPaintableClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkWidgetPaintableClass_wrapper")
+    autoptr_cleanup_GtkWidgetPaintableClass :: proc(_ptr: ^^WidgetPaintableClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkWidgetPaintableClass_wrapper")
+    autoptr_destroy_GtkWidgetPaintableClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkWidgetPaintableClass_wrapper")
+    listautoptr_cleanup_GtkWidgetPaintableClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkWidgetPaintableClass_wrapper")
+    slistautoptr_cleanup_GtkWidgetPaintableClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkWidgetPaintableClass_wrapper")
+    queueautoptr_cleanup_GtkWidgetPaintableClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_WIDGET_PAINTABLE_wrapper")
+    WIDGET_PAINTABLE :: proc(ptr: glib.pointer) -> ^WidgetPaintable ---
+
+    @(link_name = "GTK_IS_WIDGET_PAINTABLE_wrapper")
+    IS_WIDGET_PAINTABLE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkWindowControls_wrapper")
+    autoptr_clear_GtkWindowControls :: proc(_ptr: ^WindowControls) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkWindowControls_wrapper")
+    autoptr_cleanup_GtkWindowControls :: proc(_ptr: ^^WindowControls) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkWindowControls_wrapper")
+    autoptr_destroy_GtkWindowControls :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkWindowControls_wrapper")
+    listautoptr_cleanup_GtkWindowControls :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkWindowControls_wrapper")
+    slistautoptr_cleanup_GtkWindowControls :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkWindowControls_wrapper")
+    queueautoptr_cleanup_GtkWindowControls :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkWindowControlsClass_wrapper")
+    autoptr_clear_GtkWindowControlsClass :: proc(_ptr: ^WindowControlsClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkWindowControlsClass_wrapper")
+    autoptr_cleanup_GtkWindowControlsClass :: proc(_ptr: ^^WindowControlsClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkWindowControlsClass_wrapper")
+    autoptr_destroy_GtkWindowControlsClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkWindowControlsClass_wrapper")
+    listautoptr_cleanup_GtkWindowControlsClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkWindowControlsClass_wrapper")
+    slistautoptr_cleanup_GtkWindowControlsClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkWindowControlsClass_wrapper")
+    queueautoptr_cleanup_GtkWindowControlsClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_WINDOW_CONTROLS_wrapper")
+    WINDOW_CONTROLS :: proc(ptr: glib.pointer) -> ^WindowControls ---
+
+    @(link_name = "GTK_IS_WINDOW_CONTROLS_wrapper")
+    IS_WINDOW_CONTROLS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkWindowHandle_wrapper")
+    autoptr_clear_GtkWindowHandle :: proc(_ptr: ^WindowHandle) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkWindowHandle_wrapper")
+    autoptr_cleanup_GtkWindowHandle :: proc(_ptr: ^^WindowHandle) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkWindowHandle_wrapper")
+    autoptr_destroy_GtkWindowHandle :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkWindowHandle_wrapper")
+    listautoptr_cleanup_GtkWindowHandle :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkWindowHandle_wrapper")
+    slistautoptr_cleanup_GtkWindowHandle :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkWindowHandle_wrapper")
+    queueautoptr_cleanup_GtkWindowHandle :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkWindowHandleClass_wrapper")
+    autoptr_clear_GtkWindowHandleClass :: proc(_ptr: ^WindowHandleClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkWindowHandleClass_wrapper")
+    autoptr_cleanup_GtkWindowHandleClass :: proc(_ptr: ^^WindowHandleClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkWindowHandleClass_wrapper")
+    autoptr_destroy_GtkWindowHandleClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkWindowHandleClass_wrapper")
+    listautoptr_cleanup_GtkWindowHandleClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkWindowHandleClass_wrapper")
+    slistautoptr_cleanup_GtkWindowHandleClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkWindowHandleClass_wrapper")
+    queueautoptr_cleanup_GtkWindowHandleClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_WINDOW_HANDLE_wrapper")
+    WINDOW_HANDLE :: proc(ptr: glib.pointer) -> ^WindowHandle ---
+
+    @(link_name = "GTK_IS_WINDOW_HANDLE_wrapper")
+    IS_WINDOW_HANDLE :: proc(ptr: glib.pointer) -> glib.boolean ---
 
 }
 
