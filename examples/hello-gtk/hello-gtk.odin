@@ -20,13 +20,11 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     button := cast(^gtk.Button)gtk.button_new_with_label("Click me! >///<")
     gtk.window_set_child(window, cast(^gtk.Widget)button)
 
-    gobj.signal_connect_data(
+    gobj.signal_connect(
         button,
         "clicked",
         cast(gobj.Callback)on_button_clicked,
         nil,
-        nil,
-        .CONNECT_DEFAULT,
     )
 
     gtk.window_present(window)
@@ -37,14 +35,7 @@ main :: proc() {
         "org.runic.hello-gtk",
         .APPLICATION_DEFAULT_FLAGS,
     )
-    gobj.signal_connect_data(
-        app,
-        "activate",
-        cast(gobj.Callback)activate,
-        nil,
-        nil,
-        .CONNECT_DEFAULT,
-    )
+    gobj.signal_connect(app, "activate", cast(gobj.Callback)activate, nil)
 
     argv := make([]cstring, len(os.args))
     for &arg, idx in argv {
