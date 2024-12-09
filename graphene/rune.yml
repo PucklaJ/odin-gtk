@@ -1,6 +1,7 @@
 version: 0
 platforms:
   - Linux x86_64
+  - Linux arm64
 wrapper:
   language: c
   in_headers: ../shared/graphene/include/graphene.h

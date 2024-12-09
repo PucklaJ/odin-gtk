@@ -195,7 +195,14 @@ pangocairo:
         -e '/^TYPE_/ {s/`//g; s/(//g; s/)//g; s/pango_cairo_//g}' \
 
 graphene-setup:
-    cd shared/graphene && meson setup _build
+    cd shared/graphene && meson setup \
+       -Dsse2=false \
+       -Darm_neon=false \
+       -Dgcc_vector=false \
+       -Dintrospection=disabled \
+       -Dtests=false \
+       -Dinstalled_tests=false \
+       _build
 
 graphene:
     {{ RUNIC }} graphene/rune.yml
