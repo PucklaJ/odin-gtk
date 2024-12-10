@@ -9,9 +9,9 @@ pango-all: pango pangocairo
 wrapper:  glib-wrapper-all gdk-pixbuf-wrapper pango-wrapper graphene-wrapper gtk-wrapper
 glib-wrapper-all: glib-wrapper gobject-wrapper gio-wrapper girepository-wrapper
 
-build: glib-build
+build: glib-build cairo-build
 
-clean: glib-clean
+clean: glib-clean cairo-clean
 
 RUNIC := 'runic'
 
@@ -197,7 +197,25 @@ gdk-pixbuf-wrapper:
     @rm lib/linux/gdk-pixbuf-wrapper.o
 
 cairo-setup:
-    cd shared/cairo && meson setup _build
+    cd shared/cairo && meson setup \
+        --default-library static \
+        -Dxcb=disabled \
+        -Dxlib=disabled \
+        -Dxlib-xcb=disabled \
+        -Dtests=disabled \
+        _build
+
+    @mkdir -p lib/linux
+    ar r lib/linux/libcairo.a
+
+cairo-build:
+    meson compile -C shared/cairo/_build -j{{ num_cpus() }}
+    @mkdir -p lib/linux
+    ln -srf shared/cairo/_build/src/libcairo.a lib/linux/
+
+cairo-clean:
+    rm -rf shared/cairo/_build \
+           lib/linux/libcairo.a
 
 cairo:
     {{ RUNIC }} cairo/rune.yml

@@ -171,7 +171,11 @@ region_t :: _cairo_region
 _cairo_region_overlap :: enum u32 {REGION_OVERLAP_IN = 0, REGION_OVERLAP_OUT = 1, REGION_OVERLAP_PART = 2, }
 region_overlap_t :: _cairo_region_overlap
 
-foreign import cairo_runic "system:cairo"
+when #config(CAIRO_STATIC, false) {
+    foreign import cairo_runic "../lib/linux/libcairo.a"
+} else {
+    foreign import cairo_runic "system:cairo"
+}
 
 @(default_calling_convention = "c")
 foreign cairo_runic {

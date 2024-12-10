@@ -4,7 +4,8 @@ platforms:
   - Linux arm64
 from:
   language: c
-  shared: 'libcairo.so'
+  shared.linux: 'libcairo.so'
+  static.linux: '../lib/linux/libcairo.a'
   headers:
     - ../shared/cairo/src/cairo.h
   includedirs:
