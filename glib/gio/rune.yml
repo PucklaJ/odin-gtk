@@ -10,7 +10,8 @@ wrapper:
   load_all_includes: true
 from:
   language: c
-  shared: 'libgio-2.0.so'
+  shared.linux: 'libgio-2.0.so'
+  static.linux: '../../lib/linux/libgio-2.0.a'
   headers:
     - ../../shared/glib/gio/gio.h
     - gio-wrapper.h
@@ -79,4 +80,12 @@ to:
       pid_t: Pid
       uid_t: Uid
     trim_prefix: true
-  add_libs: ../../lib/linux/libgio-wrapper.a
+  add_libs: 
+    - ../../lib/linux/libgio-wrapper.a
+    - '../../lib/linux/libglib-2.0.a'
+    - '../../lib/linux/libgmodule-2.0.a'
+    - libffi.so
+    - libpcre2-8.so
+    - libmount.so
+    - libz.so
+  static_switch: 'GLIB_STATIC'

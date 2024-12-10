@@ -9,10 +9,23 @@ pango-all: pango pangocairo
 wrapper:  glib-wrapper-all gdk-pixbuf-wrapper pango-wrapper graphene-wrapper gtk-wrapper
 glib-wrapper-all: glib-wrapper gobject-wrapper gio-wrapper girepository-wrapper
 
+build: glib-build
+
+clean: glib-clean
+
 RUNIC := 'runic'
 
 glib-setup:
-    cd shared/glib && meson setup _build
+    cd shared/glib && meson setup \
+         --default-library static \
+         -Dman-pages=disabled \
+         -Ddtrace=disabled \
+         -Dsystemtap=disabled \
+         -Dsysprof=disabled \
+         -Dtests=false \
+         -Dglib_debug=disabled \
+         -Dintrospection=disabled \
+         _build
     ninja -C shared/glib/_build \
         'glib/gversionmacros.h' \
         'glib/glib-visibility.h' \
@@ -22,6 +35,30 @@ glib-setup:
         'gio/gio-visibility.h' \
         'gio/gioenumtypes.h' \
         'girepository/gi-visibility.h' \
+
+    @mkdir -p lib/linux
+    ar r lib/linux/libglib-2.0.a
+    ar r lib/linux/libgobject-2.0.a
+    ar r lib/linux/libgmodule-2.0.a
+    ar r lib/linux/libgio-2.0.a
+    ar r lib/linux/libgrepository-2.0.a
+
+glib-build:
+    meson compile -C shared/glib/_build -j{{ num_cpus() }}
+    @mkdir -p lib/linux
+    ln -srf shared/glib/_build/glib/libglib-2.0.a lib/linux/
+    ln -srf shared/glib/_build/gio/libgio-2.0.a lib/linux/
+    ln -srf shared/glib/_build/gmodule/libgmodule-2.0.a lib/linux/
+    ln -srf shared/glib/_build/girepository/libgirepository-2.0.a lib/linux/
+    ln -srf shared/glib/_build/gobject/libgobject-2.0.a lib/linux/
+
+glib-clean:
+    rm -rf shared/glib/_build \
+           lib/linux/libglib-2.0.a \
+           lib/linux/libgio-2.0.a \
+           lib/linux/libgmodule-2.0.a \
+           lib/linux/libgirepository-2.0.a \
+           lib/linux/libgobject-2.0.a \
 
 glib:
     {{ RUNIC }} glib/rune.yml
@@ -67,9 +104,10 @@ glib:
         -e '/^LOG_DOMAIN/s/(gchar\*)//g' \
         -e '/^URI_/s/" "//g'\
 
+    echo '#undef g_steal_pointer' >> glib/glib-wrapper.h
+
 [linux]
 glib-wrapper:
-    echo '#undef g_steal_pointer' >> glib/glib-wrapper.h
     @mkdir -p lib/linux
     gcc -c -o lib/linux/glib-wrapper.o -Ishared/glib/ -Ishared/glib/_build -Ishared/glib/_build/glib glib/glib-wrapper.c
     ar rs lib/linux/libglib-wrapper.a lib/linux/glib-wrapper.o
@@ -241,8 +279,8 @@ gtk-wrapper:
     ar rs lib/linux/libgtk-wrapper.a lib/linux/gtk-wrapper.o
     @rm lib/linux/gtk-wrapper.o
 
-example NAME='hello-glib':
-    odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }}
+example NAME='hello-glib' KIND='static':
+    odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }} -define:GLIB_STATIC={{ if KIND == 'static' { 'true' } else { 'false' } }}
 
 check PACKAGE:
     odin check {{ PACKAGE }} -error-pos-style:unix -vet -no-entry-point

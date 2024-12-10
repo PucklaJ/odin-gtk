@@ -10,7 +10,8 @@ wrapper:
   load_all_includes: true
 from:
   language: c
-  shared: 'libglib-2.0.so'
+  shared.linux: 'libglib-2.0.so'
+  static.linux: '../lib/linux/libglib-2.0.a'
   headers:
     - ../shared/glib/glib/glib.h
     - glib-wrapper.h
@@ -25,6 +26,7 @@ from:
   load_all_includes: true
   extern:
     - "../stdinc/*"
+    - "../stdinc/sys/*"
   overwrite:
     functions: &any_function_overwrites
       g_assertion_message_cmpint.param.8.type: 'gchar'
@@ -126,6 +128,8 @@ from:
       - 'G_OPTION_REMAINING'
       - 'G_CSET_LATIN*'
       - 'G_URI_ERROR'
+      - '*COMPILATION'
+      - '*BUILD'
 to:
   language: odin
   package: glib
@@ -147,4 +151,8 @@ to:
       "../stdinc/time.h": "core:c/libc"
       "../stdinc/stdarg.h": "core:c/libc"
       "../stdinc/pthread.h": "core:sys/posix"
-  add_libs: ../lib/linux/libglib-wrapper.a
+  add_libs:
+    - ../lib/linux/libglib-wrapper.a
+    - libffi.so
+    - libpcre2-8.so
+  static_switch: 'GLIB_STATIC'

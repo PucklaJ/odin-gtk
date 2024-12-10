@@ -4,7 +4,8 @@ platforms:
   - Linux arm64
 from:
   language: c
-  shared: 'libgmodule-2.0.so'
+  shared.linux: 'libgmodule-2.0.so'
+  static.linux: '../../lib/linux/libgmodule-2.0.a'
   headers:
     - ../../shared/glib/gmodule/gmodule.h
   includedirs:
@@ -38,3 +39,8 @@ to:
       '../../shared/glib/glib/*': 'glib ..'
       '../../shared/glib/_build/glib/*': 'glib ..'
     trim_prefix: true
+  static_switch: 'GLIB_STATIC'
+  add_libs:
+    - '../../lib/linux/libglib-2.0.a'
+    - libffi.so
+    - libpcre2-8.so

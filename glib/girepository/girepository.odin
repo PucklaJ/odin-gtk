@@ -203,7 +203,11 @@ VFuncInfo_listautoptr :: ^glib.List
 VFuncInfo_slistautoptr :: ^glib.SList
 VFuncInfo_queueautoptr :: ^glib.Queue
 
-foreign import girepository_runic { "system:girepository-2.0", "../../lib/linux/libgirepository-wrapper.a" }
+when #config(GLIB_STATIC, false) {
+    foreign import girepository_runic { "../../lib/linux/libgirepository-2.0.a", "../../lib/linux/libgirepository-wrapper.a", "../../lib/linux/libglib-2.0.a", "system:ffi", "system:pcre2-8" }
+} else {
+    foreign import girepository_runic { "system:girepository-2.0", "../../lib/linux/libgirepository-wrapper.a", "../../lib/linux/libglib-2.0.a", "system:ffi", "system:pcre2-8" }
+}
 
 @(default_calling_convention = "c")
 foreign girepository_runic {

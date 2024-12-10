@@ -584,7 +584,11 @@ TypeClass_slistautoptr :: ^glib.SList
 TypeClass_queueautoptr :: ^glib.Queue
 _g_type_once_init_type :: Type
 
-foreign import gobject_runic { "system:gobject-2.0", "../../lib/linux/libgobject-wrapper.a" }
+when #config(GLIB_STATIC, false) {
+    foreign import gobject_runic { "../../lib/linux/libgobject-2.0.a", "../../lib/linux/libgobject-wrapper.a", "../../lib/linux/libglib-2.0.a", "system:ffi", "system:pcre2-8" }
+} else {
+    foreign import gobject_runic { "system:gobject-2.0", "../../lib/linux/libgobject-wrapper.a", "../../lib/linux/libglib-2.0.a", "system:ffi", "system:pcre2-8" }
+}
 
 @(default_calling_convention = "c")
 foreign gobject_runic {

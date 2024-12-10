@@ -9,7 +9,11 @@ ModuleCheckInit :: #type proc "c" (module: ^Module) -> cstring
 ModuleUnload :: #type proc "c" (module: ^Module)
 ModuleError :: enum u32 {FAILED = 0, CHECK_FAILED = 1, }
 
-foreign import gmodule_runic "system:gmodule-2.0"
+when #config(GLIB_STATIC, false) {
+    foreign import gmodule_runic { "../../lib/linux/libgmodule-2.0.a", "../../lib/linux/libglib-2.0.a", "system:ffi", "system:pcre2-8" }
+} else {
+    foreign import gmodule_runic { "system:gmodule-2.0", "../../lib/linux/libglib-2.0.a", "system:ffi", "system:pcre2-8" }
+}
 
 @(default_calling_convention = "c")
 foreign gmodule_runic {

@@ -1038,7 +1038,11 @@ PathBuf_queueautoptr :: ^Queue
 TestCase :: rawptr
 TestSuite :: rawptr
 
-foreign import glib_runic { "system:glib-2.0", "../lib/linux/libglib-wrapper.a" }
+when #config(GLIB_STATIC, false) {
+    foreign import glib_runic { "../lib/linux/libglib-2.0.a", "../lib/linux/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
+} else {
+    foreign import glib_runic { "system:glib-2.0", "../lib/linux/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
+}
 
 @(default_calling_convention = "c")
 foreign glib_runic {

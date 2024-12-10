@@ -3761,7 +3761,11 @@ ZlibDecompressor_listautoptr :: ^glib.List
 ZlibDecompressor_slistautoptr :: ^glib.SList
 ZlibDecompressor_queueautoptr :: ^glib.Queue
 
-foreign import gio_runic { "system:gio-2.0", "../../lib/linux/libgio-wrapper.a" }
+when #config(GLIB_STATIC, false) {
+    foreign import gio_runic { "../../lib/linux/libgio-2.0.a", "../../lib/linux/libgio-wrapper.a", "../../lib/linux/libglib-2.0.a", "../../lib/linux/libgmodule-2.0.a", "system:ffi", "system:pcre2-8", "system:mount", "system:z" }
+} else {
+    foreign import gio_runic { "system:gio-2.0", "../../lib/linux/libgio-wrapper.a", "../../lib/linux/libglib-2.0.a", "../../lib/linux/libgmodule-2.0.a", "system:ffi", "system:pcre2-8", "system:mount", "system:z" }
+}
 
 @(default_calling_convention = "c")
 foreign gio_runic {
