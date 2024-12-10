@@ -109,6 +109,8 @@ TYPE_TYPE_PLUGIN :: type_plugin_get_type
 TYPE_VALUE_ARRAY :: value_array_get_type  
 TYPE_GTYPE :: gtype_get_type
 
+pid_t :: i32
+uid_t :: i32
 Type :: glib.size
 array_union_anon_0 :: struct #raw_union {v_int: glib.int_, v_uint: glib.uint_, v_long: glib.long, v_ulong: glib.ulong, v_int64: glib.int64, v_uint64: glib.uint64, v_float: glib.float, v_double: glib.double, v_pointer: glib.pointer, }
 _GValue :: struct {
@@ -1425,9 +1427,6 @@ foreign gobject_runic {
 
     @(link_name = "g_object_new_valist")
     object_new_valist :: proc(object_type: Type, first_property_name: cstring, #c_vararg var_args: ..any) -> ^Object ---
-
-    @(link_name = "g_object_set")
-    object_set :: proc(object: glib.pointer, first_property_name: cstring, #c_vararg var_args: ..any) ---
 
     @(link_name = "g_object_get")
     object_get :: proc(object: glib.pointer, first_property_name: cstring, #c_vararg var_args: ..any) ---

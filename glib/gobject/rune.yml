@@ -42,6 +42,8 @@ from:
       - 'G_VALUE_INIT'
       - 'G_TYPE*_RESERVED_*'
       - '_g_type_*'
+    functions:
+      - 'g_object_set'
   overwrite:
     types:
       # !!!!This is 64-Bit only!!!!!
