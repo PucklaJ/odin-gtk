@@ -88,7 +88,8 @@ gobject:
         -e '/^TYPE_/s/())//g' \
         -e '/^TYPE_/s/])/]/g' \
         -e '/^TYPE_/s/param/#force_inline proc "c" () -> Type { return param/g' \
-        -e '/^TYPE_/s/\]/\] }/g'
+        -e '/^TYPE_/s/\]/\] }/g' \
+        -e 's/class: \[\^\]/class: ^/g' \
 
 [linux]
 gobject-wrapper:

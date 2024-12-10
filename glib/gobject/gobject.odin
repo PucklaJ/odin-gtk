@@ -132,7 +132,7 @@ _GTypeInterface :: struct {
 }
 TypeInterface :: _GTypeInterface
 _GTypeInstance :: struct {
-    g_class: [^]TypeClass,
+    g_class: ^TypeClass,
 }
 TypeInstance :: _GTypeInstance
 BaseInitFunc :: #type proc "c" (g_class: glib.pointer)
@@ -191,7 +191,7 @@ _GTypeQuery :: struct {
 }
 TypeQuery :: _GTypeQuery
 TypeDebugFlags :: enum u32 {TYPE_DEBUG_NONE = 0, TYPE_DEBUG_OBJECTS = 1, TYPE_DEBUG_SIGNALS = 2, TYPE_DEBUG_INSTANCE_COUNT = 4, TYPE_DEBUG_MASK = 7, }
-TypeClassCacheFunc :: #type proc "c" (cache_data: glib.pointer, g_class: [^]TypeClass) -> glib.boolean
+TypeClassCacheFunc :: #type proc "c" (cache_data: glib.pointer, g_class: ^TypeClass) -> glib.boolean
 TypeInterfaceCheckFunc :: #type proc "c" (check_data: glib.pointer, g_iface: glib.pointer)
 TypeFlags :: enum u32 {TYPE_FLAG_NONE = 0, TYPE_FLAG_ABSTRACT = 16, TYPE_FLAG_VALUE_ABSTRACT = 32, TYPE_FLAG_FINAL = 64, TYPE_FLAG_DEPRECATED = 128, }
 ValueTransform :: #type proc "c" (src_value: ^Value, dest_value: ^Value)
@@ -438,13 +438,13 @@ _GParamSpecUnichar :: struct {
 ParamSpecUnichar :: _GParamSpecUnichar
 _GParamSpecEnum :: struct {
     parent_instance: ParamSpec,
-    enum_class: [^]EnumClass,
+    enum_class: ^EnumClass,
     default_value: glib.int_,
 }
 ParamSpecEnum :: _GParamSpecEnum
 _GParamSpecFlags :: struct {
     parent_instance: ParamSpec,
-    flags_class: [^]FlagsClass,
+    flags_class: ^FlagsClass,
     default_value: glib.uint_,
 }
 ParamSpecFlags :: _GParamSpecFlags
@@ -766,10 +766,10 @@ foreign gobject_runic {
     type_check_instance_is_fundamentally_a :: proc(instance: ^TypeInstance, fundamental_type: Type) -> glib.boolean ---
 
     @(link_name = "g_type_check_class_cast")
-    type_check_class_cast :: proc(g_class: [^]TypeClass, is_a_type: Type) -> ^TypeClass ---
+    type_check_class_cast :: proc(g_class: ^TypeClass, is_a_type: Type) -> ^TypeClass ---
 
     @(link_name = "g_type_check_class_is_a")
-    type_check_class_is_a :: proc(g_class: [^]TypeClass, is_a_type: Type) -> glib.boolean ---
+    type_check_class_is_a :: proc(g_class: ^TypeClass, is_a_type: Type) -> glib.boolean ---
 
     @(link_name = "g_type_check_is_value_type")
     type_check_is_value_type :: proc(type: Type) -> glib.boolean ---
@@ -787,7 +787,7 @@ foreign gobject_runic {
     type_name_from_instance :: proc(instance: ^TypeInstance) -> cstring ---
 
     @(link_name = "g_type_name_from_class")
-    type_name_from_class :: proc(g_class: [^]TypeClass) -> cstring ---
+    type_name_from_class :: proc(g_class: ^TypeClass) -> cstring ---
 
     @(link_name = "g_value_init")
     value_init :: proc(value: ^Value, g_type: Type) -> ^Value ---
@@ -1390,19 +1390,19 @@ foreign gobject_runic {
     initially_unowned_get_type :: proc() -> Type ---
 
     @(link_name = "g_object_class_install_property")
-    object_class_install_property :: proc(oclass: [^]ObjectClass, property_id: glib.uint_, pspec: ^ParamSpec) ---
+    object_class_install_property :: proc(oclass: ^ObjectClass, property_id: glib.uint_, pspec: ^ParamSpec) ---
 
     @(link_name = "g_object_class_find_property")
-    object_class_find_property :: proc(oclass: [^]ObjectClass, property_name: cstring) -> ^ParamSpec ---
+    object_class_find_property :: proc(oclass: ^ObjectClass, property_name: cstring) -> ^ParamSpec ---
 
     @(link_name = "g_object_class_list_properties")
-    object_class_list_properties :: proc(oclass: [^]ObjectClass, n_properties: [^]glib.uint_) -> ^^ParamSpec ---
+    object_class_list_properties :: proc(oclass: ^ObjectClass, n_properties: [^]glib.uint_) -> ^^ParamSpec ---
 
     @(link_name = "g_object_class_override_property")
-    object_class_override_property :: proc(oclass: [^]ObjectClass, property_id: glib.uint_, name: cstring) ---
+    object_class_override_property :: proc(oclass: ^ObjectClass, property_id: glib.uint_, name: cstring) ---
 
     @(link_name = "g_object_class_install_properties")
-    object_class_install_properties :: proc(oclass: [^]ObjectClass, n_pspecs: glib.uint_, pspecs: [^]^ParamSpec) ---
+    object_class_install_properties :: proc(oclass: ^ObjectClass, n_pspecs: glib.uint_, pspecs: [^]^ParamSpec) ---
 
     @(link_name = "g_object_interface_install_property")
     object_interface_install_property :: proc(g_iface: glib.pointer, pspec: ^ParamSpec) ---
@@ -1651,22 +1651,22 @@ foreign gobject_runic {
     binding_group_bind_with_closures :: proc(self: ^BindingGroup, source_property: cstring, target: glib.pointer, target_property: cstring, flags: BindingFlags, transform_to: ^Closure, transform_from: ^Closure) ---
 
     @(link_name = "g_enum_get_value")
-    enum_get_value :: proc(enum_class: [^]EnumClass, value: glib.int_) -> ^EnumValue ---
+    enum_get_value :: proc(enum_class: ^EnumClass, value: glib.int_) -> ^EnumValue ---
 
     @(link_name = "g_enum_get_value_by_name")
-    enum_get_value_by_name :: proc(enum_class: [^]EnumClass, name: cstring) -> ^EnumValue ---
+    enum_get_value_by_name :: proc(enum_class: ^EnumClass, name: cstring) -> ^EnumValue ---
 
     @(link_name = "g_enum_get_value_by_nick")
-    enum_get_value_by_nick :: proc(enum_class: [^]EnumClass, nick: cstring) -> ^EnumValue ---
+    enum_get_value_by_nick :: proc(enum_class: ^EnumClass, nick: cstring) -> ^EnumValue ---
 
     @(link_name = "g_flags_get_first_value")
-    flags_get_first_value :: proc(flags_class: [^]FlagsClass, value: glib.uint_) -> ^FlagsValue ---
+    flags_get_first_value :: proc(flags_class: ^FlagsClass, value: glib.uint_) -> ^FlagsValue ---
 
     @(link_name = "g_flags_get_value_by_name")
-    flags_get_value_by_name :: proc(flags_class: [^]FlagsClass, name: cstring) -> ^FlagsValue ---
+    flags_get_value_by_name :: proc(flags_class: ^FlagsClass, name: cstring) -> ^FlagsValue ---
 
     @(link_name = "g_flags_get_value_by_nick")
-    flags_get_value_by_nick :: proc(flags_class: [^]FlagsClass, nick: cstring) -> ^FlagsValue ---
+    flags_get_value_by_nick :: proc(flags_class: ^FlagsClass, nick: cstring) -> ^FlagsValue ---
 
     @(link_name = "g_enum_to_string")
     enum_to_string :: proc(g_enum_type: Type, value: glib.int_) -> cstring ---
