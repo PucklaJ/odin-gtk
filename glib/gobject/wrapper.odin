@@ -50,3 +50,20 @@ signal_connect_swapped :: #force_inline proc "c" (
     )
 }
 
+type_cast :: #force_inline proc "contextless" (
+    $T: typeid,
+    instance: ^$Ptr,
+    g_type: Type,
+) -> ^T {
+    when #config(GTK_SAFE_CAST, true) {
+        return(
+            cast(^T)type_check_instance_cast(
+                cast(^TypeInstance)instance,
+                g_type,
+            ) \
+        )
+    } else {
+        return cast(^T)instance
+    }
+}
+

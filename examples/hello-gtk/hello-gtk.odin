@@ -12,13 +12,17 @@ on_button_clicked :: proc "c" (button: ^gtk.Button, user_data: glib.pointer) {
 }
 
 activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
-    window := cast(^gtk.Window)gtk.application_window_new(app)
+    window := gobj.type_cast(
+        gtk.Window,
+        gtk.application_window_new(app),
+        gtk.window_get_type(),
+    )
     gtk.window_set_title(window, "Window")
     gtk.window_set_default_size(window, 640, 480)
     gtk.window_set_title(window, "Hello, GTK4!")
 
-    button := cast(^gtk.Button)gtk.button_new_with_label("Click me! >///<")
-    gtk.window_set_child(window, cast(^gtk.Widget)button)
+    button := gtk.button_new_with_label("Click me! >///<")
+    gtk.window_set_child(window, button)
 
     gobj.signal_connect(
         button,
@@ -45,7 +49,7 @@ main :: proc() {
     defer for arg in argv do delete(arg)
 
     status := gio.application_run(
-        cast(^gio.Application)app,
+        gobj.type_cast(gio.Application, app, gio.TYPE_APPLICATION()),
         i32(len(argv)),
         raw_data(argv),
     )
