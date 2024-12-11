@@ -302,3 +302,10 @@ example NAME='hello-glib' KIND='static':
 
 check PACKAGE:
     odin check {{ PACKAGE }} -error-pos-style:unix -vet -no-entry-point
+
+download-webkitgtk VERSION='2.46.4':
+    @mkdir -p shared/webkitgtk
+    curl -SL https://webkitgtk.org/releases/webkitgtk-{{ VERSION }}.tar.xz --output shared/webkitgtk/source.tar.xz
+    cd shared/webkitgtk && tar xvf source.tar.xz
+    mv shared/webkitgtk/webkitgtk-{{ VERSION }}/* shared/webkitgtk/
+    rmdir shared/webkitgtk/webkitgtk-{{ VERSION }}/
