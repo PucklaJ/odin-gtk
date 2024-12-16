@@ -2,7 +2,7 @@ default: setup wrapper
 
 setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup graphene-setup
 
-bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk
+bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell
 glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
@@ -296,6 +296,9 @@ gtk-wrapper:
     gcc -c -o lib/linux/gtk-wrapper.o -Ishared/gtk -Ishared/glib -Ishared/glib/glib -Ishared/glib/gmodule -Ishared/glib/_build -Ishared/glib/_build/glib -Ishared/gtk/_build -Ishared/cairo/src -Ishared/cairo/_build/src -Ishared/pango -Ishared/pango/_build -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build -Ishared/graphene/include -Ishared/graphene/_build/include -I/usr/include/harfbuzz gtk/gtk-wrapper.c
     ar rs lib/linux/libgtk-wrapper.a lib/linux/gtk-wrapper.o
     @rm lib/linux/gtk-wrapper.o
+
+gtk-layer-shell:
+    {{ RUNIC }} gtk/layer-shell/rune.yml
 
 example NAME='hello-glib' KIND='static':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }} -define:GLIB_STATIC={{ if KIND == 'static' { 'true' } else { 'false' } }}
