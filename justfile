@@ -9,9 +9,9 @@ pango-all: pango pangocairo
 wrapper:  glib-wrapper-all gdk-pixbuf-wrapper pango-wrapper graphene-wrapper gtk-wrapper
 glib-wrapper-all: glib-wrapper gobject-wrapper gio-wrapper girepository-wrapper
 
-build: glib-build cairo-build
+build: glib-build cairo-build gtk-build
 
-clean: glib-clean cairo-clean
+clean: glib-clean cairo-clean gtk-clean
 
 RUNIC := 'runic'
 
@@ -267,7 +267,17 @@ graphene-wrapper:
     @rm lib/linux/graphene-wrapper.o
 
 gtk-setup:
-  cd shared/gtk && meson setup _build
+  cd shared/gtk && meson setup \
+     -Ddefault_library=static \
+     -Dvulkan=enabled \
+     -Dintrospection=disabled \
+     -Ddocumentation=false \
+     -Dman-pages=false \
+     -Dbuild-demos=false \
+     -Dbuild-testsuite=false \
+     -Dbuild-examples=false \
+     -Dbuild-tests=false \
+     _build
   ninja -C shared/gtk/_build \
       'gdk/version/gdkversionmacros.h' \
       'gdk/version/gdk-visibility.h' \
@@ -275,6 +285,14 @@ gtk-setup:
       'gdk/gdkenumtypes.h' \
       'gsk/gskenumtypes.h' \
       'gtk/gtktypebuiltins.h' \
+
+gtk-build:
+    meson compile -C shared/gtk/_build -j{{ num_cpus() }}
+
+    @mkdir -p lib/linux
+    ln -sfr shared/gtk/_build/gtk/libgtk.a lib/linux/libgtk.a
+gtk-clean:
+    rm -rf shared/gtk/_build
 
 gtk:
     {{ RUNIC }} gtk/rune.yml

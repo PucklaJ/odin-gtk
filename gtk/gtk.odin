@@ -4337,7 +4337,11 @@ WindowHandleClass_slistautoptr :: ^glib.SList
 WindowHandleClass_queueautoptr :: ^glib.Queue
 _GtkSnapshotClass :: rawptr
 
-foreign import gtk_runic { "system:gtk-4", "../lib/linux/libgtk-wrapper.a" }
+when #config(GTK_STATIC, false) {
+    foreign import gtk_runic { "../lib/linux/libgtk.a", "../lib/linux/libgtk-wrapper.a" }
+} else {
+    foreign import gtk_runic { "system:gtk-4", "../lib/linux/libgtk-wrapper.a" }
+}
 
 @(default_calling_convention = "c")
 foreign gtk_runic {
@@ -6320,6 +6324,39 @@ foreign gtk_runic {
 
     @(link_name = "gdk_vulkan_context_get_type")
     gdk_vulkan_context_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gdk_vulkan_strerror")
+    gdk_vulkan_strerror :: proc(result: i32) -> cstring ---
+
+    @(link_name = "gdk_vulkan_context_get_instance")
+    gdk_vulkan_context_get_instance :: proc(context_p: ^VulkanContext) -> i32 ---
+
+    @(link_name = "gdk_vulkan_context_get_physical_device")
+    gdk_vulkan_context_get_physical_device :: proc(context_p: ^VulkanContext) -> i32 ---
+
+    @(link_name = "gdk_vulkan_context_get_device")
+    gdk_vulkan_context_get_device :: proc(context_p: ^VulkanContext) -> i32 ---
+
+    @(link_name = "gdk_vulkan_context_get_queue")
+    gdk_vulkan_context_get_queue :: proc(context_p: ^VulkanContext) -> i32 ---
+
+    @(link_name = "gdk_vulkan_context_get_queue_family_index")
+    gdk_vulkan_context_get_queue_family_index :: proc(context_p: ^VulkanContext) -> u32 ---
+
+    @(link_name = "gdk_vulkan_context_get_image_format")
+    gdk_vulkan_context_get_image_format :: proc(context_p: ^VulkanContext) -> i32 ---
+
+    @(link_name = "gdk_vulkan_context_get_n_images")
+    gdk_vulkan_context_get_n_images :: proc(context_p: ^VulkanContext) -> u32 ---
+
+    @(link_name = "gdk_vulkan_context_get_image")
+    gdk_vulkan_context_get_image :: proc(context_p: ^VulkanContext, id: glib.uint_) -> i32 ---
+
+    @(link_name = "gdk_vulkan_context_get_draw_index")
+    gdk_vulkan_context_get_draw_index :: proc(context_p: ^VulkanContext) -> u32 ---
+
+    @(link_name = "gdk_vulkan_context_get_draw_semaphore")
+    gdk_vulkan_context_get_draw_semaphore :: proc(context_p: ^VulkanContext) -> i32 ---
 
     @(link_name = "gsk_rounded_rect_init")
     gsk_rounded_rect_init :: proc(self: ^RoundedRect, bounds: [^]graphene.rect_t, top_left: ^graphene.size_t, top_right: ^graphene.size_t, bottom_right: ^graphene.size_t, bottom_left: ^graphene.size_t) -> ^RoundedRect ---
