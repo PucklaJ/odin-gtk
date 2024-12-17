@@ -41,6 +41,5 @@ to:
     trim_prefix: true
   static_switch: 'GLIB_STATIC'
   add_libs:
-    - '../../lib/linux/libglib-2.0.a'
     - libffi.so
     - libpcre2-8.so

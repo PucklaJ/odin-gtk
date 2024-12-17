@@ -85,7 +85,6 @@ to:
     trim_prefix: true
   add_libs:
     - '../../lib/linux/libgirepository-wrapper.a'
-    - '../../lib/linux/libglib-2.0.a'
     - libffi.so
     - libpcre2-8.so
   static_switch: 'GLIB_STATIC'

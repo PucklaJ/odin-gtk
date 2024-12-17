@@ -36,13 +36,6 @@ glib-setup:
         'gio/gioenumtypes.h' \
         'girepository/gi-visibility.h' \
 
-    @mkdir -p lib/linux
-    ar r lib/linux/libglib-2.0.a
-    ar r lib/linux/libgobject-2.0.a
-    ar r lib/linux/libgmodule-2.0.a
-    ar r lib/linux/libgio-2.0.a
-    ar r lib/linux/libgrepository-2.0.a
-
 glib-build:
     meson compile -C shared/glib/_build -j{{ num_cpus() }}
     @mkdir -p lib/linux
