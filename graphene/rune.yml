@@ -11,9 +11,7 @@ wrapper:
 from:
   language: c
   shared: 'libgraphene-1.0.so'
-  headers:
-    - ../shared/graphene/include/graphene.h
-    - graphene-wrapper.h
+  headers: ../shared/graphene/include/graphene.h
   includedirs:
     - ../shared/graphene/_build/include/
   load_all_includes: true

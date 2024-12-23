@@ -12,9 +12,7 @@ from:
   language: c
   shared.linux: 'libglib-2.0.so'
   static.linux: '../lib/linux/libglib-2.0.a'
-  headers:
-    - ../shared/glib/glib/glib.h
-    - glib-wrapper.h
+  headers: ../shared/glib/glib/glib.h
   includedirs:
     - ../stdinc/
     - ../shared/glib/

@@ -11,9 +11,7 @@ wrapper:
 from:
   language: c
   shared: 'libpango-1.0.so'
-  headers:
-    - ../shared/pango/pango/pango.h
-    - pango-wrapper.h
+  headers: ../shared/pango/pango/pango.h
   includedirs:
     - ../stdinc/
     - ../shared/pango/

@@ -6,10 +6,8 @@ from:
   language: c
   shared.linux: 'libcairo.so'
   static.linux: '../lib/linux/libcairo.a'
-  headers:
-    - ../shared/cairo/src/cairo.h
-  includedirs:
-    - ../shared/cairo/_build/src
+  headers: ../shared/cairo/src/cairo.h
+  includedirs: ../shared/cairo/_build/src
   defines:
     CAIRO_COMPILATION: 1
     CAIRO_HAS_PNG_FUNCTIONS: 1

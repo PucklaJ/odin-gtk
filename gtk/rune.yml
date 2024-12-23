@@ -12,9 +12,7 @@ from:
   language: c
   shared.linux: 'libgtk-4.so'
   static.linux: '../lib/linux/libgtk.a'
-  headers:
-    - ../shared/gtk/gtk/gtk.h
-    - gtk-wrapper.h
+  headers: ../shared/gtk/gtk/gtk.h
   includedirs:
     - ../stdinc/
     - ../shared/gtk/

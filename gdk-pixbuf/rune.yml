@@ -11,9 +11,7 @@ wrapper:
 from:
   language: c
   shared: 'libgdk_pixbuf-2.0.so'
-  headers:
-    - ../shared/gdk-pixbuf/gdk-pixbuf/gdk-pixbuf.h
-    - gdk-pixbuf-wrapper.h
+  headers: ../shared/gdk-pixbuf/gdk-pixbuf/gdk-pixbuf.h
   includedirs:
     - ../stdinc/
     - ../shared/glib/

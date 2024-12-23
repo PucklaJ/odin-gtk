@@ -198,9 +198,6 @@ cairo-setup:
         -Dtests=disabled \
         _build
 
-    @mkdir -p lib/linux
-    ar r lib/linux/libcairo.a
-
 cairo-build:
     meson compile -C shared/cairo/_build -j{{ num_cpus() }}
     @mkdir -p lib/linux

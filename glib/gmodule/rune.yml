@@ -6,8 +6,7 @@ from:
   language: c
   shared.linux: 'libgmodule-2.0.so'
   static.linux: '../../lib/linux/libgmodule-2.0.a'
-  headers:
-    - ../../shared/glib/gmodule/gmodule.h
+  headers: ../../shared/glib/gmodule/gmodule.h
   includedirs:
     - ../../stdinc/
     - ../../shared/glib/glib/

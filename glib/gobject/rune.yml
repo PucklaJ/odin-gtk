@@ -12,9 +12,7 @@ from:
   language: c
   shared.linux: 'libgobject-2.0.so'
   static.linux: '../../lib/linux/libgobject-2.0.a'
-  headers:
-    - ../../shared/glib/glib/glib-object.h
-    - gobject-wrapper.h
+  headers: ../../shared/glib/glib/glib-object.h
   includedirs:
     - ../../stdinc/
     - ../../shared/glib/

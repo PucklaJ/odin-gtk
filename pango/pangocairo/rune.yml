@@ -5,8 +5,7 @@ platforms:
 from:
   language: c
   shared: 'libpangocairo-1.0.so'
-  headers:
-    - ../../shared/pango/pango/pangocairo.h
+  headers: ../../shared/pango/pango/pangocairo.h
   includedirs:
     - ../../stdinc/
     - ../../shared/pango/

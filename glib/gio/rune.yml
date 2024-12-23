@@ -12,9 +12,7 @@ from:
   language: c
   shared.linux: 'libgio-2.0.so'
   static.linux: '../../lib/linux/libgio-2.0.a'
-  headers:
-    - ../../shared/glib/gio/gio.h
-    - gio-wrapper.h
+  headers: ../../shared/glib/gio/gio.h
   includedirs:
     - ../../stdinc/
     - ../../shared/glib/
