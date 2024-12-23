@@ -62,7 +62,7 @@ glib:
         -e 's/buffer: cstring/buffer: ^byte/g' \
         -e 's/inbuf: \^cstring/inbuf: \^^byte/g' \
         -e 's/outbuf: \^cstring/outbuf: \^^byte/g' \
-        -e '/\(_MODIFIER\|_FORMAT\|MINOFFSET\|MAXOFFSET\|OS_INFO_KEY\|LOG_2_BASE_10\|IEEE754\|TIME_SPAN\|DATE_BAD\|KEY_FILE_DESKTOP\|STR_DELIMITERS\|ASCII_DTOSTR_BUF_SIZE\|VARIANT_TYPE_\|LOG_LEVEL_USER_SHIFT\|LOG_FATAL_MASK\|LOG_DOMAIN\|CSET_\|TEST_OPTION_ISOLATE_DIRS\|URI_\)/{s/`//g; s/\\//g}' \
+        -e '/\(MINOFFSET\|MAXOFFSET\|LOG_2_BASE_10\|IEEE754\|TIME_SPAN\|ASCII_DTOSTR_BUF_SIZE\|VARIANT_TYPE_\|LOG_LEVEL_USER_SHIFT\|LOG_FATAL_MASK\|LOG_DOMAIN\)/{s/`//g; s/\\//g}' \
         -e 's/\(MINFLOAT :: \).*/\1min(float)/' \
         -e 's/\(MAXFLOAT :: \).*/\1max(float)/' \
         -e 's/\(MINDOUBLE :: \).*/\1min(double)/' \
@@ -79,7 +79,7 @@ glib:
         -e 's/\(MAXSIZE :: \).*/\1max(size)/' \
         -e 's/\(MINSSIZE :: \).*/\1min(ssize)/' \
         -e 's/\(MAXSSIZE :: \).*/\1max(ssize)/' \
-        -e '/^\(MINOFFSET\|MAXOFFSET\|TIME_SPAN\|DATE_BAD\)/ {s/(gint64)//g; s/L//g; s/U//g}' \
+        -e '/^\(MINOFFSET\|MAXOFFSET\|TIME_SPAN\)/ {s/(gint64)//g; s/L//g; s/U//g}' \
         -e 's/\(MININT8 :: \).*/\1min(int8)/' \
         -e 's/\(MAXINT8 :: \).*/\1max(int8)/' \
         -e 's/\(MAXUINT8 :: \).*/\1max(uint8)/' \
@@ -95,7 +95,7 @@ glib:
         -e '/^VARIANT_TYPE_/s/(const GVariantType \*)//g' \
         -e '/^LOG_FATAL_MASK/s/G_LOG/LogLevelFlags.LOG/g' \
         -e '/^LOG_DOMAIN/s/(gchar\*)//g' \
-        -e '/^URI_/s/" "//g'\
+        -e '/^URI_/s/\\" \\"//g'\
 
     echo '#undef g_steal_pointer' >> glib/glib-wrapper.h
 

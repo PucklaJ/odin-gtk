@@ -94,7 +94,7 @@ TIME_SPAN_MIISECOND :: ((1000))
 BOOKMARK_FILE_ERROR :: `(g_bookmark_file_error_quark ())`
 CONVERT_ERROR :: `g_convert_error_quark()`
 DATALIST_FLAGS_MASK :: 3
-DATE_BAD_JIAN :: 0
+DATE_BAD_JULIAN :: 0
 DATE_BAD_DAY :: 0
 DATE_BAD_YEAR :: 0
 FILE_ERROR :: `g_file_error_quark ()`

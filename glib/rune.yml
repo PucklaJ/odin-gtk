@@ -58,6 +58,9 @@ from:
       'G_MAXSIZE': '"USIZE_MAX" #Untyped'
       'G_MINSSIZE': '"SSIZE_MIN" #Untyped'
       'G_MAXSSIZE': '"SSIZE_MAX" #Untyped'
+      'G_DATE_BAD_JULIAN': '0 #Untyped'
+      'G_DATE_BAD_DAY': '0 #Untyped'
+      'G_DATE_BAD_YEAR': '0 #Untyped'
   overwrite.linux.x86_64: &overwrites_64
     functions:
       <<: *any_function_overwrites
