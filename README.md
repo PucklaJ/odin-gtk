@@ -35,9 +35,29 @@ By default all the libraries will be linked dynamically. Installing the gtk pack
 + python
 + gcc
 
+To install them on archlinux:
+```
+sudo pacman -S --needed --noconfirm base-devel just meson ninja python
+```
+on ubuntu:
+```
+sudo apt install -y build-essential just meson ninja-build python3
+```
+on alpine:
+```
+sudo apk add just meson ninja-build python3 gcc
+```
+
 Then execute:
 
 ```
 just setup && just wrapper
 ```
 
+The gtk package on different linux distributions:
+
+| Distribution | Package Name                              |
+| ------------ | ----------------------------------------- |
+| Arch Linux   | `gtk4`, `gtk4-layer-shell`                |
+| Ubuntu       | `libgtk-4-dev`, `libgtk4-layer-shell-dev` |
+| Alpine Linux | `gtk4.0-dev`, `gtk4-layer-shell-dev`      |
