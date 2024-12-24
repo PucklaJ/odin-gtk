@@ -1,6 +1,6 @@
 # Odin GTK
 
-Odin bindings to GTK4 and associated libraries
+Odin Bindings to GTK4 and associated libraries generated using [runic](https://github.com/Samudevv/runic)
 
 | Library                                                          | Path                | License                                                                                    |
 | ---------------------------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------ |
