@@ -308,7 +308,7 @@ gtk-wrapper:
 gtk-layer-shell:
     {{ RUNIC }} gtk/layer-shell/rune.yml
 
-example NAME='hello-glib' KIND='static':
+example NAME='hello-glib' KIND='shared':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }} -define:GLIB_STATIC={{ if KIND == 'static' { 'true' } else { 'false' } }}
 
 check PACKAGE:
