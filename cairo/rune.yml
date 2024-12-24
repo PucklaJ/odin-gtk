@@ -12,7 +12,7 @@ from:
     CAIRO_COMPILATION: 1
     CAIRO_HAS_PNG_FUNCTIONS: 1
   ignore:
-    macros:
+    constants:
       - '*cairo*'
       - 'CAIRO_VERSION*'
   overwrite:

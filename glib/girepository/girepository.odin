@@ -29,9 +29,9 @@ TYPE_VFUNC_INFO :: vfunc_info_get_type
 TYPE_REPOSITORY :: repository_get_type 
 REPOSITORY_ERROR :: repository_error_quark 
 
-_GIBaseInfo :: rawptr
+_GIBaseInfo :: struct #packed {}
 BaseInfo :: _GIBaseInfo
-_GIBaseInfoClass :: rawptr
+_GIBaseInfoClass :: struct #packed {}
 BaseInfoClass :: _GIBaseInfoClass
 BaseInfoStack :: struct {
     parent_instance: gobj.TypeInstance,
@@ -40,37 +40,37 @@ BaseInfoStack :: struct {
     dummy2: [2]u32,
     dummy3: [6]rawptr,
 }
-_GICallableInfo :: rawptr
+_GICallableInfo :: struct #packed {}
 CallableInfo :: _GICallableInfo
-_GIFunctionInfo :: rawptr
+_GIFunctionInfo :: struct #packed {}
 FunctionInfo :: _GIFunctionInfo
-_GICallbackInfo :: rawptr
+_GICallbackInfo :: struct #packed {}
 CallbackInfo :: _GICallbackInfo
-_GIRegisteredTypeInfo :: rawptr
+_GIRegisteredTypeInfo :: struct #packed {}
 RegisteredTypeInfo :: _GIRegisteredTypeInfo
-_GIStructInfo :: rawptr
+_GIStructInfo :: struct #packed {}
 StructInfo :: _GIStructInfo
-_GIUnionInfo :: rawptr
+_GIUnionInfo :: struct #packed {}
 UnionInfo :: _GIUnionInfo
-_GIEnumInfo :: rawptr
+_GIEnumInfo :: struct #packed {}
 EnumInfo :: _GIEnumInfo
-_GIFlagsInfo :: rawptr
+_GIFlagsInfo :: struct #packed {}
 FlagsInfo :: _GIFlagsInfo
-_GIObjectInfo :: rawptr
+_GIObjectInfo :: struct #packed {}
 ObjectInfo :: _GIObjectInfo
-_GIInterfaceInfo :: rawptr
+_GIInterfaceInfo :: struct #packed {}
 InterfaceInfo :: _GIInterfaceInfo
-_GIConstantInfo :: rawptr
+_GIConstantInfo :: struct #packed {}
 ConstantInfo :: _GIConstantInfo
-_GIValueInfo :: rawptr
+_GIValueInfo :: struct #packed {}
 ValueInfo :: _GIValueInfo
-_GISignalInfo :: rawptr
+_GISignalInfo :: struct #packed {}
 SignalInfo :: _GISignalInfo
-_GIVFuncInfo :: rawptr
+_GIVFuncInfo :: struct #packed {}
 VFuncInfo :: _GIVFuncInfo
-_GIPropertyInfo :: rawptr
+_GIPropertyInfo :: struct #packed {}
 PropertyInfo :: _GIPropertyInfo
-_GIFieldInfo :: rawptr
+_GIFieldInfo :: struct #packed {}
 FieldInfo :: _GIFieldInfo
 ArgInfo :: struct {
     parent: BaseInfoStack,
@@ -80,7 +80,7 @@ TypeInfo :: struct {
     parent: BaseInfoStack,
     padding: [6]rawptr,
 }
-_GIUnresolvedInfo :: rawptr
+_GIUnresolvedInfo :: struct #packed {}
 UnresolvedInfo :: _GIUnresolvedInfo
 _GIArgument :: struct #raw_union {v_boolean: glib.boolean, v_int8: i8, v_uint8: u8, v_int16: i16, v_uint16: u16, v_int32: i32, v_uint32: u32, v_int64: i64, v_uint64: u64, v_float: f32, v_double: f64, v_short: i16, v_ushort: u16, v_int: i32, v_uint: u32, v_long: i64, v_ulong: u64, v_ssize: glib.ssize, v_size: u64, v_string: cstring, v_pointer: rawptr, }
 Argument :: _GIArgument
@@ -92,7 +92,7 @@ ArrayType :: enum u32 {ARRAY_TYPE_C = 0, ARRAY_TYPE_ARRAY = 1, ARRAY_TYPE_PTR_AR
 FieldInfoFlags :: enum u32 {FIELD_IS_READABLE = 1, FIELD_IS_WRITABLE = 2, }
 VFuncInfoFlags :: enum u32 {VFUNC_MUST_CHAIN_UP = 1, VFUNC_MUST_OVERRIDE = 2, VFUNC_MUST_NOT_OVERRIDE = 4, }
 FunctionInfoFlags :: enum u32 {FUNCTION_IS_METHOD = 1, FUNCTION_IS_CONSTRUCTOR = 2, FUNCTION_IS_GETTER = 4, FUNCTION_IS_SETTER = 8, FUNCTION_WRAPS_VFUNC = 16, FUNCTION_IS_ASYNC = 32, }
-_GITypelib :: rawptr
+_GITypelib :: struct #packed {}
 Typelib :: _GITypelib
 AttributeIter :: struct {
     data: rawptr,
@@ -103,7 +103,7 @@ ObjectInfoRefFunction :: #type proc "c" (object: rawptr) -> rawptr
 ObjectInfoUnrefFunction :: #type proc "c" (object: rawptr)
 ObjectInfoSetValueFunction :: #type proc "c" (value: ^gobj.Value, object: rawptr)
 ObjectInfoGetValueFunction :: #type proc "c" (value: ^gobj.Value) -> rawptr
-_GIRepository :: rawptr
+_GIRepository :: struct #packed {}
 Repository :: _GIRepository
 RepositoryClass :: struct {
     parent_class: gobj.ObjectClass,

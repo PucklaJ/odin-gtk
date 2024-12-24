@@ -3,7 +3,7 @@ package gmodule
 import glib ".."
 
 ModuleFlags :: enum u32 {BIND_LAZY = 1, BIND_LOCAL = 2, BIND_MASK = 3, }
-_GModule :: rawptr
+_GModule :: struct #packed {}
 Module :: _GModule
 ModuleCheckInit :: #type proc "c" (module: ^Module) -> cstring
 ModuleUnload :: #type proc "c" (module: ^Module)

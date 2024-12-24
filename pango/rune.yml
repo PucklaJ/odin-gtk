@@ -8,6 +8,7 @@ wrapper:
   out_header: pango-wrapper.h
   out_source: pango-wrapper.c
   load_all_includes: true
+  multi_platform: false
 from:
   language: c
   shared: 'libpango-1.0.so'
@@ -30,7 +31,7 @@ from:
     - '../shared/glib/_build/gobject/*'
     - '../shared/glib/gobject/*'
   ignore:
-    macros:
+    constants:
       - '*_INIT'
       - '_PANGO*'
       - 'PANGO_VERSION*'

@@ -8,6 +8,7 @@ wrapper:
   out_header: gio-wrapper.h
   out_source: gio-wrapper.c
   load_all_includes: true
+  multi_platform: false
 from:
   language: c
   shared.linux: 'libgio-2.0.so'
@@ -41,7 +42,7 @@ from:
   ignore:
     types:
       - va_list
-    macros:
+    constants:
       - '_GIO_*'
       - 'GIO_*'
 to:

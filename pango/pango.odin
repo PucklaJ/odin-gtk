@@ -81,7 +81,7 @@ TYPE_RENDERER :: renderer_get_type
 
 hb_feature_t :: rawptr
 hb_font_t :: rawptr
-_PangoCoverage :: rawptr
+_PangoCoverage :: struct #packed {}
 Coverage :: _PangoCoverage
 CoverageLevel :: enum u32 {COVERAGE_NONE = 0, COVERAGE_FALLBACK = 1, COVERAGE_APPROXIMATE = 2, COVERAGE_EXACT = 3, }
 Coverage_autoptr :: ^Coverage
@@ -117,9 +117,9 @@ _PangoRectangle :: struct {
     height: i32,
 }
 Rectangle :: _PangoRectangle
-_PangoContext :: rawptr
+_PangoContext :: struct #packed {}
 Context :: _PangoContext
-_PangoLanguage :: rawptr
+_PangoLanguage :: struct #packed {}
 Language :: _PangoLanguage
 Glyph :: glib.uint32
 Gravity :: enum u32 {GRAVITY_SOUTH = 0, GRAVITY_EAST = 1, GRAVITY_NORTH = 2, GRAVITY_WEST = 3, GRAVITY_AUTO = 4, }
@@ -133,12 +133,12 @@ _PangoMatrix :: struct {
     y0: f64,
 }
 Matrix :: _PangoMatrix
-_PangoScriptIter :: rawptr
+_PangoScriptIter :: struct #packed {}
 ScriptIter :: _PangoScriptIter
 Script :: enum i32 {SCRIPT_INVALID_CODE = -1, SCRIPT_COMMON = 0, SCRIPT_INHERITED = 1, SCRIPT_ARABIC = 2, SCRIPT_ARMENIAN = 3, SCRIPT_BENGALI = 4, SCRIPT_BOPOMOFO = 5, SCRIPT_CHEROKEE = 6, SCRIPT_COPTIC = 7, SCRIPT_CYRILLIC = 8, SCRIPT_DESERET = 9, SCRIPT_DEVANAGARI = 10, SCRIPT_ETHIOPIC = 11, SCRIPT_GEORGIAN = 12, SCRIPT_GOTHIC = 13, SCRIPT_GREEK = 14, SCRIPT_GUJARATI = 15, SCRIPT_GURMUKHI = 16, SCRIPT_HAN = 17, SCRIPT_HANGUL = 18, SCRIPT_HEBREW = 19, SCRIPT_HIRAGANA = 20, SCRIPT_KANNADA = 21, SCRIPT_KATAKANA = 22, SCRIPT_KHMER = 23, SCRIPT_LAO = 24, SCRIPT_LATIN = 25, SCRIPT_MALAYALAM = 26, SCRIPT_MONGOLIAN = 27, SCRIPT_MYANMAR = 28, SCRIPT_OGHAM = 29, SCRIPT_OLD_ITALIC = 30, SCRIPT_ORIYA = 31, SCRIPT_RUNIC = 32, SCRIPT_SINHALA = 33, SCRIPT_SYRIAC = 34, SCRIPT_TAMIL = 35, SCRIPT_TELUGU = 36, SCRIPT_THAANA = 37, SCRIPT_THAI = 38, SCRIPT_TIBETAN = 39, SCRIPT_CANADIAN_ABORIGINAL = 40, SCRIPT_YI = 41, SCRIPT_TAGALOG = 42, SCRIPT_HANUNOO = 43, SCRIPT_BUHID = 44, SCRIPT_TAGBANWA = 45, SCRIPT_BRAILLE = 46, SCRIPT_CYPRIOT = 47, SCRIPT_LIMBU = 48, SCRIPT_OSMANYA = 49, SCRIPT_SHAVIAN = 50, SCRIPT_LINEAR_B = 51, SCRIPT_TAI_LE = 52, SCRIPT_UGARITIC = 53, SCRIPT_NEW_TAI_LUE = 54, SCRIPT_BUGINESE = 55, SCRIPT_GLAGOLITIC = 56, SCRIPT_TIFINAGH = 57, SCRIPT_SYLOTI_NAGRI = 58, SCRIPT_OLD_PERSIAN = 59, SCRIPT_KHAROSHTHI = 60, SCRIPT_UNKNOWN = 61, SCRIPT_BALINESE = 62, SCRIPT_CUNEIFORM = 63, SCRIPT_PHOENICIAN = 64, SCRIPT_PHAGS_PA = 65, SCRIPT_NKO = 66, SCRIPT_KAYAH_LI = 67, SCRIPT_LEPCHA = 68, SCRIPT_REJANG = 69, SCRIPT_SUNDANESE = 70, SCRIPT_SAURASHTRA = 71, SCRIPT_CHAM = 72, SCRIPT_OL_CHIKI = 73, SCRIPT_VAI = 74, SCRIPT_CARIAN = 75, SCRIPT_LYCIAN = 76, SCRIPT_LYDIAN = 77, SCRIPT_BATAK = 78, SCRIPT_BRAHMI = 79, SCRIPT_MANDAIC = 80, SCRIPT_CHAKMA = 81, SCRIPT_MEROITIC_CURSIVE = 82, SCRIPT_MEROITIC_HIEROGLYPHS = 83, SCRIPT_MIAO = 84, SCRIPT_SHARADA = 85, SCRIPT_SORA_SOMPENG = 86, SCRIPT_TAKRI = 87, SCRIPT_BASSA_VAH = 88, SCRIPT_CAUCASIAN_ALBANIAN = 89, SCRIPT_DUPLOYAN = 90, SCRIPT_ELBASAN = 91, SCRIPT_GRANTHA = 92, SCRIPT_KHOJKI = 93, SCRIPT_KHUDAWADI = 94, SCRIPT_LINEAR_A = 95, SCRIPT_MAHAJANI = 96, SCRIPT_MANICHAEAN = 97, SCRIPT_MENDE_KIKAKUI = 98, SCRIPT_MODI = 99, SCRIPT_MRO = 100, SCRIPT_NABATAEAN = 101, SCRIPT_OLD_NORTH_ARABIAN = 102, SCRIPT_OLD_PERMIC = 103, SCRIPT_PAHAWH_HMONG = 104, SCRIPT_PALMYRENE = 105, SCRIPT_PAU_CIN_HAU = 106, SCRIPT_PSALTER_PAHLAVI = 107, SCRIPT_SIDDHAM = 108, SCRIPT_TIRHUTA = 109, SCRIPT_WARANG_CITI = 110, SCRIPT_AHOM = 111, SCRIPT_ANATOLIAN_HIEROGLYPHS = 112, SCRIPT_HATRAN = 113, SCRIPT_MULTANI = 114, SCRIPT_OLD_HUNGARIAN = 115, SCRIPT_SIGNWRITING = 116, }
 Direction :: enum u32 {DIRECTION_LTR = 0, DIRECTION_RTL = 1, DIRECTION_TTB_LTR = 2, DIRECTION_TTB_RTL = 3, DIRECTION_WEAK_LTR = 4, DIRECTION_WEAK_RTL = 5, DIRECTION_NEUTRAL = 6, }
 BidiType :: enum u32 {BIDI_TYPE_L = 0, BIDI_TYPE_LRE = 1, BIDI_TYPE_LRO = 2, BIDI_TYPE_R = 3, BIDI_TYPE_AL = 4, BIDI_TYPE_RLE = 5, BIDI_TYPE_RLO = 6, BIDI_TYPE_PDF = 7, BIDI_TYPE_EN = 8, BIDI_TYPE_ES = 9, BIDI_TYPE_ET = 10, BIDI_TYPE_AN = 11, BIDI_TYPE_CS = 12, BIDI_TYPE_NSM = 13, BIDI_TYPE_BN = 14, BIDI_TYPE_B = 15, BIDI_TYPE_S = 16, BIDI_TYPE_WS = 17, BIDI_TYPE_ON = 18, BIDI_TYPE_LRI = 19, BIDI_TYPE_RLI = 20, BIDI_TYPE_FSI = 21, BIDI_TYPE_PDI = 22, }
-_PangoFontDescription :: rawptr
+_PangoFontDescription :: struct #packed {}
 FontDescription :: _PangoFontDescription
 _PangoFontMetrics :: struct {
     ref_count: glib.uint_,
@@ -313,9 +313,9 @@ _PangoAttrClass :: struct {
     destroy: destroy_func_ptr_anon_22,
     equal: equal_func_ptr_anon_23,
 }
-_PangoAttrList :: rawptr
+_PangoAttrList :: struct #packed {}
 AttrList :: _PangoAttrList
-_PangoAttrIterator :: rawptr
+_PangoAttrIterator :: struct #packed {}
 AttrIterator :: _PangoAttrIterator
 Attribute_autoptr :: ^Attribute
 Attribute_listautoptr :: ^glib.List
@@ -396,7 +396,7 @@ FontMap_autoptr :: ^FontMap
 FontMap_listautoptr :: ^glib.List
 FontMap_slistautoptr :: ^glib.SList
 FontMap_queueautoptr :: ^glib.Queue
-_PangoContextClass :: rawptr
+_PangoContextClass :: struct #packed {}
 ContextClass :: _PangoContextClass
 GlyphUnit :: glib.int32
 _PangoGlyphGeometry :: struct {
@@ -452,9 +452,9 @@ _PangoEngineInfo :: struct {
     n_scripts: glib.int_,
 }
 EngineInfo :: _PangoEngineInfo
-_PangoFontsetSimple :: rawptr
+_PangoFontsetSimple :: struct #packed {}
 FontsetSimple :: _PangoFontsetSimple
-_PangoFontsetSimpleClass :: rawptr
+_PangoFontsetSimpleClass :: struct #packed {}
 FontsetSimpleClass :: _PangoFontsetSimpleClass
 _PangoGlyphItem :: struct {
     item: ^Item,
@@ -475,16 +475,16 @@ _PangoGlyphItemIter :: struct {
     end_char: i32,
 }
 GlyphItemIter :: _PangoGlyphItemIter
-_PangoTabArray :: rawptr
+_PangoTabArray :: struct #packed {}
 TabArray :: _PangoTabArray
 TabAlign :: enum u32 {TAB_LEFT = 0, TAB_RIGHT = 1, TAB_CENTER = 2, TAB_DECIMAL = 3, }
 TabArray_autoptr :: ^TabArray
 TabArray_listautoptr :: ^glib.List
 TabArray_slistautoptr :: ^glib.SList
 TabArray_queueautoptr :: ^glib.Queue
-_PangoLayout :: rawptr
+_PangoLayout :: struct #packed {}
 Layout :: _PangoLayout
-_PangoLayoutClass :: rawptr
+_PangoLayoutClass :: struct #packed {}
 LayoutClass :: _PangoLayoutClass
 _PangoLayoutLine :: [32]i8
 LayoutLine :: _PangoLayoutLine
@@ -495,7 +495,7 @@ EllipsizeMode :: enum u32 {ELLIPSIZE_NONE = 0, ELLIPSIZE_START = 1, ELLIPSIZE_MI
 LayoutSerializeFlags :: enum u32 {LAYOUT_SERIALIZE_DEFAULT = 0, LAYOUT_SERIALIZE_CONTEXT = 1, LAYOUT_SERIALIZE_OUTPUT = 2, }
 LayoutDeserializeError :: enum u32 {LAYOUT_DESERIALIZE_INVALID = 0, LAYOUT_DESERIALIZE_INVALID_VALUE = 1, LAYOUT_DESERIALIZE_MISSING_VALUE = 2, }
 LayoutDeserializeFlags :: enum u32 {LAYOUT_DESERIALIZE_DEFAULT = 0, LAYOUT_DESERIALIZE_CONTEXT = 1, }
-_PangoLayoutIter :: rawptr
+_PangoLayoutIter :: struct #packed {}
 LayoutIter :: _PangoLayoutIter
 Layout_autoptr :: ^Layout
 Layout_listautoptr :: ^glib.List
@@ -505,7 +505,7 @@ LayoutIter_autoptr :: ^LayoutIter
 LayoutIter_listautoptr :: ^glib.List
 LayoutIter_slistautoptr :: ^glib.SList
 LayoutIter_queueautoptr :: ^glib.Queue
-_PangoRendererPrivate :: rawptr
+_PangoRendererPrivate :: struct #packed {}
 RendererPrivate :: _PangoRendererPrivate
 _PangoRenderer :: struct {
     parent_instance: gobj.Object,

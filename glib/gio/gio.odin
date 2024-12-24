@@ -456,20 +456,20 @@ NotificationPriority :: enum u32 {NOTIFICATION_PRIORITY_NORMAL = 0, NOTIFICATION
 NetworkConnectivity :: enum u32 {NETWORK_CONNECTIVITY_LOCAL = 1, NETWORK_CONNECTIVITY_LIMITED = 2, NETWORK_CONNECTIVITY_PORTAL = 3, NETWORK_CONNECTIVITY_FULL = 4, }
 PollableReturn :: enum i32 {POLLABLE_RETURN_FAILED = 0, POLLABLE_RETURN_OK = 1, POLLABLE_RETURN_WOULD_BLOCK = -27, }
 MemoryMonitorWarningLevel :: enum u32 {MEMORY_MONITOR_WARNING_LEVEL_LOW = 50, MEMORY_MONITOR_WARNING_LEVEL_MEDIUM = 100, MEMORY_MONITOR_WARNING_LEVEL_CRITICAL = 255, }
-_GAppLaunchContextPrivate :: rawptr
+_GAppLaunchContextPrivate :: struct #packed {}
 AppLaunchContextPrivate :: _GAppLaunchContextPrivate
 _GAppLaunchContext :: struct {
     parent_instance: gobj.Object,
     priv: ^AppLaunchContextPrivate,
 }
 AppLaunchContext :: _GAppLaunchContext
-_GAppInfo :: rawptr
+_GAppInfo :: struct #packed {}
 AppInfo :: _GAppInfo
-_GAsyncResult :: rawptr
+_GAsyncResult :: struct #packed {}
 AsyncResult :: _GAsyncResult
-_GAsyncInitable :: rawptr
+_GAsyncInitable :: struct #packed {}
 AsyncInitable :: _GAsyncInitable
-_GInputStreamPrivate :: rawptr
+_GInputStreamPrivate :: struct #packed {}
 InputStreamPrivate :: _GInputStreamPrivate
 _GInputStream :: struct {
     parent_instance: gobj.Object,
@@ -481,14 +481,14 @@ _GFilterInputStream :: struct {
     base_stream: ^InputStream,
 }
 FilterInputStream :: _GFilterInputStream
-_GBufferedInputStreamPrivate :: rawptr
+_GBufferedInputStreamPrivate :: struct #packed {}
 BufferedInputStreamPrivate :: _GBufferedInputStreamPrivate
 _GBufferedInputStream :: struct {
     parent_instance: FilterInputStream,
     priv: ^BufferedInputStreamPrivate,
 }
 BufferedInputStream :: _GBufferedInputStream
-_GOutputStreamPrivate :: rawptr
+_GOutputStreamPrivate :: struct #packed {}
 OutputStreamPrivate :: _GOutputStreamPrivate
 _GOutputStream :: struct {
     parent_instance: gobj.Object,
@@ -500,134 +500,134 @@ _GFilterOutputStream :: struct {
     base_stream: ^OutputStream,
 }
 FilterOutputStream :: _GFilterOutputStream
-_GBufferedOutputStreamPrivate :: rawptr
+_GBufferedOutputStreamPrivate :: struct #packed {}
 BufferedOutputStreamPrivate :: _GBufferedOutputStreamPrivate
 _GBufferedOutputStream :: struct {
     parent_instance: FilterOutputStream,
     priv: ^BufferedOutputStreamPrivate,
 }
 BufferedOutputStream :: _GBufferedOutputStream
-_GCancellablePrivate :: rawptr
+_GCancellablePrivate :: struct #packed {}
 CancellablePrivate :: _GCancellablePrivate
 _GCancellable :: struct {
     parent_instance: gobj.Object,
     priv: ^CancellablePrivate,
 }
 Cancellable :: _GCancellable
-_GCharsetConverter :: rawptr
+_GCharsetConverter :: struct #packed {}
 CharsetConverter :: _GCharsetConverter
-_GConverter :: rawptr
+_GConverter :: struct #packed {}
 Converter :: _GConverter
-_GConverterInputStreamPrivate :: rawptr
+_GConverterInputStreamPrivate :: struct #packed {}
 ConverterInputStreamPrivate :: _GConverterInputStreamPrivate
 _GConverterInputStream :: struct {
     parent_instance: FilterInputStream,
     priv: ^ConverterInputStreamPrivate,
 }
 ConverterInputStream :: _GConverterInputStream
-_GConverterOutputStreamPrivate :: rawptr
+_GConverterOutputStreamPrivate :: struct #packed {}
 ConverterOutputStreamPrivate :: _GConverterOutputStreamPrivate
 _GConverterOutputStream :: struct {
     parent_instance: FilterOutputStream,
     priv: ^ConverterOutputStreamPrivate,
 }
 ConverterOutputStream :: _GConverterOutputStream
-_GDatagramBased :: rawptr
+_GDatagramBased :: struct #packed {}
 DatagramBased :: _GDatagramBased
-_GDataInputStreamPrivate :: rawptr
+_GDataInputStreamPrivate :: struct #packed {}
 DataInputStreamPrivate :: _GDataInputStreamPrivate
 _GDataInputStream :: struct {
     parent_instance: BufferedInputStream,
     priv: ^DataInputStreamPrivate,
 }
 DataInputStream :: _GDataInputStream
-_GSimplePermission :: rawptr
+_GSimplePermission :: struct #packed {}
 SimplePermission :: _GSimplePermission
-_GZlibCompressor :: rawptr
+_GZlibCompressor :: struct #packed {}
 ZlibCompressor :: _GZlibCompressor
-_GZlibDecompressor :: rawptr
+_GZlibDecompressor :: struct #packed {}
 ZlibDecompressor :: _GZlibDecompressor
-_GSimpleActionGroupPrivate :: rawptr
+_GSimpleActionGroupPrivate :: struct #packed {}
 SimpleActionGroupPrivate :: _GSimpleActionGroupPrivate
 _GSimpleActionGroup :: struct {
     parent_instance: gobj.Object,
     priv: ^SimpleActionGroupPrivate,
 }
 SimpleActionGroup :: _GSimpleActionGroup
-_GRemoteActionGroup :: rawptr
+_GRemoteActionGroup :: struct #packed {}
 RemoteActionGroup :: _GRemoteActionGroup
-_GDBusActionGroup :: rawptr
+_GDBusActionGroup :: struct #packed {}
 DBusActionGroup :: _GDBusActionGroup
-_GActionMap :: rawptr
+_GActionMap :: struct #packed {}
 ActionMap :: _GActionMap
-_GActionGroup :: rawptr
+_GActionGroup :: struct #packed {}
 ActionGroup :: _GActionGroup
-_GPropertyAction :: rawptr
+_GPropertyAction :: struct #packed {}
 PropertyAction :: _GPropertyAction
-_GSimpleAction :: rawptr
+_GSimpleAction :: struct #packed {}
 SimpleAction :: _GSimpleAction
-_GAction :: rawptr
+_GAction :: struct #packed {}
 Action :: _GAction
-_GApplicationPrivate :: rawptr
+_GApplicationPrivate :: struct #packed {}
 ApplicationPrivate :: _GApplicationPrivate
 _GApplication :: struct {
     parent_instance: gobj.Object,
     priv: ^ApplicationPrivate,
 }
 Application :: _GApplication
-_GApplicationCommandLinePrivate :: rawptr
+_GApplicationCommandLinePrivate :: struct #packed {}
 ApplicationCommandLinePrivate :: _GApplicationCommandLinePrivate
 _GApplicationCommandLine :: struct {
     parent_instance: gobj.Object,
     priv: ^ApplicationCommandLinePrivate,
 }
 ApplicationCommandLine :: _GApplicationCommandLine
-_GSettingsBackend :: rawptr
+_GSettingsBackend :: struct #packed {}
 SettingsBackend :: _GSettingsBackend
-_GSettingsPrivate :: rawptr
+_GSettingsPrivate :: struct #packed {}
 SettingsPrivate :: _GSettingsPrivate
 _GSettings :: struct {
     parent_instance: gobj.Object,
     priv: ^SettingsPrivate,
 }
 Settings :: _GSettings
-_GPermissionPrivate :: rawptr
+_GPermissionPrivate :: struct #packed {}
 PermissionPrivate :: _GPermissionPrivate
 _GPermission :: struct {
     parent_instance: gobj.Object,
     priv: ^PermissionPrivate,
 }
 Permission :: _GPermission
-_GMenuModelPrivate :: rawptr
+_GMenuModelPrivate :: struct #packed {}
 MenuModelPrivate :: _GMenuModelPrivate
 _GMenuModel :: struct {
     parent_instance: gobj.Object,
     priv: ^MenuModelPrivate,
 }
 MenuModel :: _GMenuModel
-_GNotification :: rawptr
+_GNotification :: struct #packed {}
 Notification :: _GNotification
-_GDrive :: rawptr
+_GDrive :: struct #packed {}
 Drive :: _GDrive
-_GFileEnumeratorPrivate :: rawptr
+_GFileEnumeratorPrivate :: struct #packed {}
 FileEnumeratorPrivate :: _GFileEnumeratorPrivate
 _GFileEnumerator :: struct {
     parent_instance: gobj.Object,
     priv: ^FileEnumeratorPrivate,
 }
 FileEnumerator :: _GFileEnumerator
-_GFileMonitorPrivate :: rawptr
+_GFileMonitorPrivate :: struct #packed {}
 FileMonitorPrivate :: _GFileMonitorPrivate
 _GFileMonitor :: struct {
     parent_instance: gobj.Object,
     priv: ^FileMonitorPrivate,
 }
 FileMonitor :: _GFileMonitor
-_GFile :: rawptr
+_GFile :: struct #packed {}
 File :: _GFile
-_GFileInfo :: rawptr
+_GFileInfo :: struct #packed {}
 FileInfo :: _GFileInfo
-_GFileAttributeMatcher :: rawptr
+_GFileAttributeMatcher :: struct #packed {}
 FileAttributeMatcher :: _GFileAttributeMatcher
 _GFileAttributeInfo :: struct {
     name: cstring,
@@ -640,48 +640,48 @@ _GFileAttributeInfoList :: struct {
     n_infos: i32,
 }
 FileAttributeInfoList :: _GFileAttributeInfoList
-_GFileInputStreamPrivate :: rawptr
+_GFileInputStreamPrivate :: struct #packed {}
 FileInputStreamPrivate :: _GFileInputStreamPrivate
 _GFileInputStream :: struct {
     parent_instance: InputStream,
     priv: ^FileInputStreamPrivate,
 }
 FileInputStream :: _GFileInputStream
-_GFileOutputStreamPrivate :: rawptr
+_GFileOutputStreamPrivate :: struct #packed {}
 FileOutputStreamPrivate :: _GFileOutputStreamPrivate
 _GFileOutputStream :: struct {
     parent_instance: OutputStream,
     priv: ^FileOutputStreamPrivate,
 }
 FileOutputStream :: _GFileOutputStream
-_GIOStreamPrivate :: rawptr
+_GIOStreamPrivate :: struct #packed {}
 IOStreamPrivate :: _GIOStreamPrivate
 _GIOStream :: struct {
     parent_instance: gobj.Object,
     priv: ^IOStreamPrivate,
 }
 IOStream :: _GIOStream
-_GFileIOStreamPrivate :: rawptr
+_GFileIOStreamPrivate :: struct #packed {}
 FileIOStreamPrivate :: _GFileIOStreamPrivate
 _GFileIOStream :: struct {
     parent_instance: IOStream,
     priv: ^FileIOStreamPrivate,
 }
 FileIOStream :: _GFileIOStream
-_GFileIcon :: rawptr
+_GFileIcon :: struct #packed {}
 FileIcon :: _GFileIcon
-_GFilenameCompleter :: rawptr
+_GFilenameCompleter :: struct #packed {}
 FilenameCompleter :: _GFilenameCompleter
-_GIcon :: rawptr
+_GIcon :: struct #packed {}
 Icon :: _GIcon
-_GInetAddressPrivate :: rawptr
+_GInetAddressPrivate :: struct #packed {}
 InetAddressPrivate :: _GInetAddressPrivate
 _GInetAddress :: struct {
     parent_instance: gobj.Object,
     priv: ^InetAddressPrivate,
 }
 InetAddress :: _GInetAddress
-_GInetAddressMaskPrivate :: rawptr
+_GInetAddressMaskPrivate :: struct #packed {}
 InetAddressMaskPrivate :: _GInetAddressMaskPrivate
 _GInetAddressMask :: struct {
     parent_instance: gobj.Object,
@@ -692,130 +692,130 @@ _GSocketAddress :: struct {
     parent_instance: gobj.Object,
 }
 SocketAddress :: _GSocketAddress
-_GInetSocketAddressPrivate :: rawptr
+_GInetSocketAddressPrivate :: struct #packed {}
 InetSocketAddressPrivate :: _GInetSocketAddressPrivate
 _GInetSocketAddress :: struct {
     parent_instance: SocketAddress,
     priv: ^InetSocketAddressPrivate,
 }
 InetSocketAddress :: _GInetSocketAddress
-_GNativeSocketAddressPrivate :: rawptr
+_GNativeSocketAddressPrivate :: struct #packed {}
 NativeSocketAddressPrivate :: _GNativeSocketAddressPrivate
 _GNativeSocketAddress :: struct {
     parent_instance: SocketAddress,
     priv: ^NativeSocketAddressPrivate,
 }
 NativeSocketAddress :: _GNativeSocketAddress
-_GInitable :: rawptr
+_GInitable :: struct #packed {}
 Initable :: _GInitable
-_GIOModule :: rawptr
+_GIOModule :: struct #packed {}
 IOModule :: _GIOModule
-_GIOExtensionPoint :: rawptr
+_GIOExtensionPoint :: struct #packed {}
 IOExtensionPoint :: _GIOExtensionPoint
-_GIOExtension :: rawptr
+_GIOExtension :: struct #packed {}
 IOExtension :: _GIOExtension
-_GIOSchedulerJob :: rawptr
+_GIOSchedulerJob :: struct #packed {}
 IOSchedulerJob :: _GIOSchedulerJob
-_GIOStreamAdapter :: rawptr
+_GIOStreamAdapter :: struct #packed {}
 IOStreamAdapter :: _GIOStreamAdapter
-_GLoadableIcon :: rawptr
+_GLoadableIcon :: struct #packed {}
 LoadableIcon :: _GLoadableIcon
-_GBytesIcon :: rawptr
+_GBytesIcon :: struct #packed {}
 BytesIcon :: _GBytesIcon
-_GMemoryInputStreamPrivate :: rawptr
+_GMemoryInputStreamPrivate :: struct #packed {}
 MemoryInputStreamPrivate :: _GMemoryInputStreamPrivate
 _GMemoryInputStream :: struct {
     parent_instance: InputStream,
     priv: ^MemoryInputStreamPrivate,
 }
 MemoryInputStream :: _GMemoryInputStream
-_GMemoryOutputStreamPrivate :: rawptr
+_GMemoryOutputStreamPrivate :: struct #packed {}
 MemoryOutputStreamPrivate :: _GMemoryOutputStreamPrivate
 _GMemoryOutputStream :: struct {
     parent_instance: OutputStream,
     priv: ^MemoryOutputStreamPrivate,
 }
 MemoryOutputStream :: _GMemoryOutputStream
-_GMount :: rawptr
+_GMount :: struct #packed {}
 Mount :: _GMount
-_GMountOperationPrivate :: rawptr
+_GMountOperationPrivate :: struct #packed {}
 MountOperationPrivate :: _GMountOperationPrivate
 _GMountOperation :: struct {
     parent_instance: gobj.Object,
     priv: ^MountOperationPrivate,
 }
 MountOperation :: _GMountOperation
-_GNetworkAddressPrivate :: rawptr
+_GNetworkAddressPrivate :: struct #packed {}
 NetworkAddressPrivate :: _GNetworkAddressPrivate
 _GNetworkAddress :: struct {
     parent_instance: gobj.Object,
     priv: ^NetworkAddressPrivate,
 }
 NetworkAddress :: _GNetworkAddress
-_GNetworkMonitor :: rawptr
+_GNetworkMonitor :: struct #packed {}
 NetworkMonitor :: _GNetworkMonitor
-_GNetworkServicePrivate :: rawptr
+_GNetworkServicePrivate :: struct #packed {}
 NetworkServicePrivate :: _GNetworkServicePrivate
 _GNetworkService :: struct {
     parent_instance: gobj.Object,
     priv: ^NetworkServicePrivate,
 }
 NetworkService :: _GNetworkService
-_GSimpleIOStream :: rawptr
+_GSimpleIOStream :: struct #packed {}
 SimpleIOStream :: _GSimpleIOStream
-_GPollableInputStream :: rawptr
+_GPollableInputStream :: struct #packed {}
 PollableInputStream :: _GPollableInputStream
-_GPollableOutputStream :: rawptr
+_GPollableOutputStream :: struct #packed {}
 PollableOutputStream :: _GPollableOutputStream
-_GResolverPrivate :: rawptr
+_GResolverPrivate :: struct #packed {}
 ResolverPrivate :: _GResolverPrivate
 _GResolver :: struct {
     parent_instance: gobj.Object,
     priv: ^ResolverPrivate,
 }
 Resolver :: _GResolver
-_GResource :: rawptr
+_GResource :: struct #packed {}
 Resource :: _GResource
-_GSeekable :: rawptr
+_GSeekable :: struct #packed {}
 Seekable :: _GSeekable
-_GSimpleAsyncResult :: rawptr
+_GSimpleAsyncResult :: struct #packed {}
 SimpleAsyncResult :: _GSimpleAsyncResult
-_GSocketPrivate :: rawptr
+_GSocketPrivate :: struct #packed {}
 SocketPrivate :: _GSocketPrivate
 _GSocket :: struct {
     parent_instance: gobj.Object,
     priv: ^SocketPrivate,
 }
 Socket :: _GSocket
-_GSocketControlMessagePrivate :: rawptr
+_GSocketControlMessagePrivate :: struct #packed {}
 SocketControlMessagePrivate :: _GSocketControlMessagePrivate
 _GSocketControlMessage :: struct {
     parent_instance: gobj.Object,
     priv: ^SocketControlMessagePrivate,
 }
 SocketControlMessage :: _GSocketControlMessage
-_GSocketClientPrivate :: rawptr
+_GSocketClientPrivate :: struct #packed {}
 SocketClientPrivate :: _GSocketClientPrivate
 _GSocketClient :: struct {
     parent_instance: gobj.Object,
     priv: ^SocketClientPrivate,
 }
 SocketClient :: _GSocketClient
-_GSocketConnectionPrivate :: rawptr
+_GSocketConnectionPrivate :: struct #packed {}
 SocketConnectionPrivate :: _GSocketConnectionPrivate
 _GSocketConnection :: struct {
     parent_instance: IOStream,
     priv: ^SocketConnectionPrivate,
 }
 SocketConnection :: _GSocketConnection
-_GSocketListenerPrivate :: rawptr
+_GSocketListenerPrivate :: struct #packed {}
 SocketListenerPrivate :: _GSocketListenerPrivate
 _GSocketListener :: struct {
     parent_instance: gobj.Object,
     priv: ^SocketListenerPrivate,
 }
 SocketListener :: _GSocketListener
-_GSocketServicePrivate :: rawptr
+_GSocketServicePrivate :: struct #packed {}
 SocketServicePrivate :: _GSocketServicePrivate
 _GSocketService :: struct {
     parent_instance: SocketListener,
@@ -826,105 +826,105 @@ _GSocketAddressEnumerator :: struct {
     parent_instance: gobj.Object,
 }
 SocketAddressEnumerator :: _GSocketAddressEnumerator
-_GSocketConnectable :: rawptr
+_GSocketConnectable :: struct #packed {}
 SocketConnectable :: _GSocketConnectable
-_GSrvTarget :: rawptr
+_GSrvTarget :: struct #packed {}
 SrvTarget :: _GSrvTarget
-_GTask :: rawptr
+_GTask :: struct #packed {}
 Task :: _GTask
-_GTcpConnectionPrivate :: rawptr
+_GTcpConnectionPrivate :: struct #packed {}
 TcpConnectionPrivate :: _GTcpConnectionPrivate
 _GTcpConnection :: struct {
     parent_instance: SocketConnection,
     priv: ^TcpConnectionPrivate,
 }
 TcpConnection :: _GTcpConnection
-_GTcpWrapperConnectionPrivate :: rawptr
+_GTcpWrapperConnectionPrivate :: struct #packed {}
 TcpWrapperConnectionPrivate :: _GTcpWrapperConnectionPrivate
 _GTcpWrapperConnection :: struct {
     parent_instance: TcpConnection,
     priv: ^TcpWrapperConnectionPrivate,
 }
 TcpWrapperConnection :: _GTcpWrapperConnection
-_GThreadedSocketServicePrivate :: rawptr
+_GThreadedSocketServicePrivate :: struct #packed {}
 ThreadedSocketServicePrivate :: _GThreadedSocketServicePrivate
 _GThreadedSocketService :: struct {
     parent_instance: SocketService,
     priv: ^ThreadedSocketServicePrivate,
 }
 ThreadedSocketService :: _GThreadedSocketService
-_GDtlsConnection :: rawptr
+_GDtlsConnection :: struct #packed {}
 DtlsConnection :: _GDtlsConnection
-_GDtlsClientConnection :: rawptr
+_GDtlsClientConnection :: struct #packed {}
 DtlsClientConnection :: _GDtlsClientConnection
-_GDtlsServerConnection :: rawptr
+_GDtlsServerConnection :: struct #packed {}
 DtlsServerConnection :: _GDtlsServerConnection
-_GThemedIcon :: rawptr
+_GThemedIcon :: struct #packed {}
 ThemedIcon :: _GThemedIcon
-_GTlsCertificatePrivate :: rawptr
+_GTlsCertificatePrivate :: struct #packed {}
 TlsCertificatePrivate :: _GTlsCertificatePrivate
 _GTlsCertificate :: struct {
     parent_instance: gobj.Object,
     priv: ^TlsCertificatePrivate,
 }
 TlsCertificate :: _GTlsCertificate
-_GTlsClientConnection :: rawptr
+_GTlsClientConnection :: struct #packed {}
 TlsClientConnection :: _GTlsClientConnection
-_GTlsConnectionPrivate :: rawptr
+_GTlsConnectionPrivate :: struct #packed {}
 TlsConnectionPrivate :: _GTlsConnectionPrivate
 _GTlsConnection :: struct {
     parent_instance: IOStream,
     priv: ^TlsConnectionPrivate,
 }
 TlsConnection :: _GTlsConnection
-_GTlsDatabasePrivate :: rawptr
+_GTlsDatabasePrivate :: struct #packed {}
 TlsDatabasePrivate :: _GTlsDatabasePrivate
 _GTlsDatabase :: struct {
     parent_instance: gobj.Object,
     priv: ^TlsDatabasePrivate,
 }
 TlsDatabase :: _GTlsDatabase
-_GTlsFileDatabase :: rawptr
+_GTlsFileDatabase :: struct #packed {}
 TlsFileDatabase :: _GTlsFileDatabase
-_GTlsInteractionPrivate :: rawptr
+_GTlsInteractionPrivate :: struct #packed {}
 TlsInteractionPrivate :: _GTlsInteractionPrivate
 _GTlsInteraction :: struct {
     parent_instance: gobj.Object,
     priv: ^TlsInteractionPrivate,
 }
 TlsInteraction :: _GTlsInteraction
-_GTlsPasswordPrivate :: rawptr
+_GTlsPasswordPrivate :: struct #packed {}
 TlsPasswordPrivate :: _GTlsPasswordPrivate
 _GTlsPassword :: struct {
     parent_instance: gobj.Object,
     priv: ^TlsPasswordPrivate,
 }
 TlsPassword :: _GTlsPassword
-_GTlsServerConnection :: rawptr
+_GTlsServerConnection :: struct #packed {}
 TlsServerConnection :: _GTlsServerConnection
 _GVfs :: struct {
     parent_instance: gobj.Object,
 }
 Vfs :: _GVfs
-_GProxyResolver :: rawptr
+_GProxyResolver :: struct #packed {}
 ProxyResolver :: _GProxyResolver
-_GProxy :: rawptr
+_GProxy :: struct #packed {}
 Proxy :: _GProxy
-_GProxyAddressPrivate :: rawptr
+_GProxyAddressPrivate :: struct #packed {}
 ProxyAddressPrivate :: _GProxyAddressPrivate
 _GProxyAddress :: struct {
     parent_instance: InetSocketAddress,
     priv: ^ProxyAddressPrivate,
 }
 ProxyAddress :: _GProxyAddress
-_GProxyAddressEnumeratorPrivate :: rawptr
+_GProxyAddressEnumeratorPrivate :: struct #packed {}
 ProxyAddressEnumeratorPrivate :: _GProxyAddressEnumeratorPrivate
 _GProxyAddressEnumerator :: struct {
     parent_instance: SocketAddressEnumerator,
     priv: ^ProxyAddressEnumeratorPrivate,
 }
 ProxyAddressEnumerator :: _GProxyAddressEnumerator
-_GVolume :: rawptr
+_GVolume :: struct #packed {}
 Volume :: _GVolume
 _GVolumeMonitor :: struct {
     parent_instance: gobj.Object,
@@ -968,38 +968,38 @@ _GOutputMessage :: struct {
     num_control_messages: glib.uint_,
 }
 OutputMessage :: _GOutputMessage
-_GCredentials :: rawptr
+_GCredentials :: struct #packed {}
 Credentials :: _GCredentials
-_GUnixCredentialsMessagePrivate :: rawptr
+_GUnixCredentialsMessagePrivate :: struct #packed {}
 UnixCredentialsMessagePrivate :: _GUnixCredentialsMessagePrivate
 _GUnixCredentialsMessage :: struct {
     parent_instance: SocketControlMessage,
     priv: ^UnixCredentialsMessagePrivate,
 }
 UnixCredentialsMessage :: _GUnixCredentialsMessage
-_GUnixFDListPrivate :: rawptr
+_GUnixFDListPrivate :: struct #packed {}
 UnixFDListPrivate :: _GUnixFDListPrivate
 _GUnixFDList :: struct {
     parent_instance: gobj.Object,
     priv: ^UnixFDListPrivate,
 }
 UnixFDList :: _GUnixFDList
-_GDBusMessage :: rawptr
+_GDBusMessage :: struct #packed {}
 DBusMessage :: _GDBusMessage
-_GDBusConnection :: rawptr
+_GDBusConnection :: struct #packed {}
 DBusConnection :: _GDBusConnection
-_GDBusProxyPrivate :: rawptr
+_GDBusProxyPrivate :: struct #packed {}
 DBusProxyPrivate :: _GDBusProxyPrivate
 _GDBusProxy :: struct {
     parent_instance: gobj.Object,
     priv: ^DBusProxyPrivate,
 }
 DBusProxy :: _GDBusProxy
-_GDBusMethodInvocation :: rawptr
+_GDBusMethodInvocation :: struct #packed {}
 DBusMethodInvocation :: _GDBusMethodInvocation
-_GDBusServer :: rawptr
+_GDBusServer :: struct #packed {}
 DBusServer :: _GDBusServer
-_GDBusAuthObserver :: rawptr
+_GDBusAuthObserver :: struct #packed {}
 DBusAuthObserver :: _GDBusAuthObserver
 _GDBusErrorEntry :: struct {
     error_code: glib.int_,
@@ -1069,41 +1069,41 @@ DBusSubtreeVTable :: _GDBusSubtreeVTable
 DBusNodeInfo :: _GDBusNodeInfo
 CancellableSourceFunc :: #type proc "c" (cancellable: ^Cancellable, data: glib.pointer) -> glib.boolean
 PollableSourceFunc :: #type proc "c" (pollable_stream: ^gobj.Object, data: glib.pointer) -> glib.boolean
-_GDBusInterface :: rawptr
+_GDBusInterface :: struct #packed {}
 DBusInterface :: _GDBusInterface
-_GDBusInterfaceSkeletonPrivate :: rawptr
+_GDBusInterfaceSkeletonPrivate :: struct #packed {}
 DBusInterfaceSkeletonPrivate :: _GDBusInterfaceSkeletonPrivate
 _GDBusInterfaceSkeleton :: struct {
     parent_instance: gobj.Object,
     priv: ^DBusInterfaceSkeletonPrivate,
 }
 DBusInterfaceSkeleton :: _GDBusInterfaceSkeleton
-_GDBusObject :: rawptr
+_GDBusObject :: struct #packed {}
 DBusObject :: _GDBusObject
-_GDBusObjectSkeletonPrivate :: rawptr
+_GDBusObjectSkeletonPrivate :: struct #packed {}
 DBusObjectSkeletonPrivate :: _GDBusObjectSkeletonPrivate
 _GDBusObjectSkeleton :: struct {
     parent_instance: gobj.Object,
     priv: ^DBusObjectSkeletonPrivate,
 }
 DBusObjectSkeleton :: _GDBusObjectSkeleton
-_GDBusObjectProxyPrivate :: rawptr
+_GDBusObjectProxyPrivate :: struct #packed {}
 DBusObjectProxyPrivate :: _GDBusObjectProxyPrivate
 _GDBusObjectProxy :: struct {
     parent_instance: gobj.Object,
     priv: ^DBusObjectProxyPrivate,
 }
 DBusObjectProxy :: _GDBusObjectProxy
-_GDBusObjectManager :: rawptr
+_GDBusObjectManager :: struct #packed {}
 DBusObjectManager :: _GDBusObjectManager
-_GDBusObjectManagerClientPrivate :: rawptr
+_GDBusObjectManagerClientPrivate :: struct #packed {}
 DBusObjectManagerClientPrivate :: _GDBusObjectManagerClientPrivate
 _GDBusObjectManagerClient :: struct {
     parent_instance: gobj.Object,
     priv: ^DBusObjectManagerClientPrivate,
 }
 DBusObjectManagerClient :: _GDBusObjectManagerClient
-_GDBusObjectManagerServerPrivate :: rawptr
+_GDBusObjectManagerServerPrivate :: struct #packed {}
 DBusObjectManagerServerPrivate :: _GDBusObjectManagerServerPrivate
 _GDBusObjectManagerServer :: struct {
     parent_instance: gobj.Object,
@@ -1111,11 +1111,11 @@ _GDBusObjectManagerServer :: struct {
 }
 DBusObjectManagerServer :: _GDBusObjectManagerServer
 DBusProxyTypeFunc :: #type proc "c" (manager: ^DBusObjectManagerClient, object_path: cstring, interface_name: cstring, data: glib.pointer) -> gobj.Type
-_GTestDBus :: rawptr
+_GTestDBus :: struct #packed {}
 TestDBus :: _GTestDBus
-_GSubprocess :: rawptr
+_GSubprocess :: struct #packed {}
 Subprocess :: _GSubprocess
-_GSubprocessLauncher :: rawptr
+_GSubprocessLauncher :: struct #packed {}
 SubprocessLauncher :: _GSubprocessLauncher
 et_name_func_ptr_anon_0 :: #type proc "c" (action: ^Action) -> cstring
 et_parameter_type_func_ptr_anon_1 :: #type proc "c" (action: ^Action) -> ^glib.VariantType
@@ -1264,7 +1264,7 @@ _GAppInfoIface :: struct {
     launch_uris_finish: launch_uris_finish_func_ptr_anon_51,
 }
 AppInfoIface :: _GAppInfoIface
-_GAppInfoMonitor :: rawptr
+_GAppInfoMonitor :: struct #packed {}
 AppInfoMonitor :: _GAppInfoMonitor
 startup_func_ptr_anon_60 :: #type proc "c" (application: ^Application)
 activate_func_ptr_anon_61 :: #type proc "c" (application: ^Application)
@@ -1518,7 +1518,7 @@ _GConverterOutputStreamClass :: struct {
     _g_reserved5: _g_reserved5_func_ptr_anon_152,
 }
 ConverterOutputStreamClass :: _GConverterOutputStreamClass
-_GCredentialsClass :: rawptr
+_GCredentialsClass :: struct #packed {}
 CredentialsClass :: _GCredentialsClass
 receive_messages_func_ptr_anon_153 :: #type proc "c" (datagram_based: ^DatagramBased, messages: [^]InputMessage, num_messages: glib.uint_, flags: glib.int_, timeout: glib.int64, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.int_
 send_messages_func_ptr_anon_154 :: #type proc "c" (datagram_based: ^DatagramBased, messages: [^]OutputMessage, num_messages: glib.uint_, flags: glib.int_, timeout: glib.int64, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.int_
@@ -1548,7 +1548,7 @@ _GDataInputStreamClass :: struct {
     _g_reserved5: _g_reserved5_func_ptr_anon_162,
 }
 DataInputStreamClass :: _GDataInputStreamClass
-_GDataOutputStreamPrivate :: rawptr
+_GDataOutputStreamPrivate :: struct #packed {}
 DataOutputStreamPrivate :: _GDataOutputStreamPrivate
 _GDataOutputStream :: struct {
     parent_instance: FilterOutputStream,
@@ -1612,7 +1612,7 @@ _GDBusNodeInfo :: struct {
     nodes: [^]^DBusNodeInfo,
     annotations: [^]^DBusAnnotationInfo,
 }
-_GDBusMenuModel :: rawptr
+_GDBusMenuModel :: struct #packed {}
 DBusMenuModel :: _GDBusMenuModel
 BusAcquiredCallback :: #type proc "c" (connection: ^DBusConnection, name: cstring, user_data: glib.pointer)
 BusNameAcquiredCallback :: #type proc "c" (connection: ^DBusConnection, name: cstring, user_data: glib.pointer)
@@ -1688,7 +1688,7 @@ _GDBusProxyClass :: struct {
     padding: [32]glib.pointer,
 }
 DBusProxyClass :: _GDBusProxyClass
-_GDebugController :: rawptr
+_GDebugController :: struct #packed {}
 DebugController :: _GDebugController
 _GDebugControllerInterface :: struct {
     g_iface: gobj.TypeInterface,
@@ -1831,11 +1831,11 @@ _GIconIface :: struct {
     serialize: serialize_func_ptr_anon_242,
 }
 IconIface :: _GIconIface
-_GEmblem :: rawptr
+_GEmblem :: struct #packed {}
 Emblem :: _GEmblem
-_GEmblemClass :: rawptr
+_GEmblemClass :: struct #packed {}
 EmblemClass :: _GEmblemClass
-_GEmblemedIconPrivate :: rawptr
+_GEmblemedIconPrivate :: struct #packed {}
 EmblemedIconPrivate :: _GEmblemedIconPrivate
 _GEmblemedIcon :: struct {
     parent_instance: gobj.Object,
@@ -2087,9 +2087,9 @@ _GFileEnumeratorClass :: struct {
     _g_reserved7: _g_reserved7_func_ptr_anon_358,
 }
 FileEnumeratorClass :: _GFileEnumeratorClass
-_GFileIconClass :: rawptr
+_GFileIconClass :: struct #packed {}
 FileIconClass :: _GFileIconClass
-_GFileInfoClass :: rawptr
+_GFileInfoClass :: struct #packed {}
 FileInfoClass :: _GFileInfoClass
 tell_func_ptr_anon_359 :: #type proc "c" (stream: ^FileInputStream) -> glib.offset
 can_seek_func_ptr_anon_360 :: #type proc "c" (stream: ^FileInputStream) -> glib.boolean
@@ -2271,11 +2271,11 @@ _GInetSocketAddressClass :: struct {
     parent_class: SocketAddressClass,
 }
 InetSocketAddressClass :: _GInetSocketAddressClass
-_GIOModuleScope :: rawptr
+_GIOModuleScope :: struct #packed {}
 IOModuleScope :: _GIOModuleScope
-_GIOModuleClass :: rawptr
+_GIOModuleClass :: struct #packed {}
 IOModuleClass :: _GIOModuleClass
-_GListModel :: rawptr
+_GListModel :: struct #packed {}
 ListModel :: _GListModel
 et_item_type_func_ptr_anon_429 :: #type proc "c" (list: ^ListModel) -> gobj.Type
 et_n_items_func_ptr_anon_430 :: #type proc "c" (list: ^ListModel) -> glib.uint_
@@ -2291,7 +2291,7 @@ ListModel_autoptr :: ^ListModel
 ListModel_listautoptr :: ^glib.List
 ListModel_slistautoptr :: ^glib.SList
 ListModel_queueautoptr :: ^glib.Queue
-_GListStore :: rawptr
+_GListStore :: struct #packed {}
 ListStore :: _GListStore
 ListStoreClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -2328,7 +2328,7 @@ _GMemoryInputStreamClass :: struct {
     _g_reserved5: _g_reserved5_func_ptr_anon_439,
 }
 MemoryInputStreamClass :: _GMemoryInputStreamClass
-_GMemoryMonitor :: rawptr
+_GMemoryMonitor :: struct #packed {}
 MemoryMonitor :: _GMemoryMonitor
 low_memory_warning_func_ptr_anon_440 :: #type proc "c" (monitor: ^MemoryMonitor, level: MemoryMonitorWarningLevel)
 _GMemoryMonitorInterface :: struct {
@@ -2358,7 +2358,7 @@ ReallocFunc :: #type proc "c" (data: glib.pointer, size_p: glib.size) -> glib.po
 is_mutable_func_ptr_anon_446 :: #type proc "c" (model: ^MenuModel) -> glib.boolean
 et_n_items_func_ptr_anon_447 :: #type proc "c" (model: ^MenuModel) -> glib.int_
 et_item_attributes_func_ptr_anon_448 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, attributes: [^]^glib.HashTable)
-_GMenuAttributeIterPrivate :: rawptr
+_GMenuAttributeIterPrivate :: struct #packed {}
 MenuAttributeIterPrivate :: _GMenuAttributeIterPrivate
 _GMenuAttributeIter :: struct {
     parent_instance: gobj.Object,
@@ -2368,7 +2368,7 @@ MenuAttributeIter :: _GMenuAttributeIter
 iterate_item_attributes_func_ptr_anon_449 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_) -> ^MenuAttributeIter
 et_item_attribute_value_func_ptr_anon_450 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, attribute: cstring, expected_type: ^glib.VariantType) -> ^glib.Variant
 et_item_links_func_ptr_anon_451 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, links: [^]^glib.HashTable)
-_GMenuLinkIterPrivate :: rawptr
+_GMenuLinkIterPrivate :: struct #packed {}
 MenuLinkIterPrivate :: _GMenuLinkIterPrivate
 _GMenuLinkIter :: struct {
     parent_instance: gobj.Object,
@@ -2401,9 +2401,9 @@ _GMenuLinkIterClass :: struct {
     get_next: et_next_func_ptr_anon_455,
 }
 MenuLinkIterClass :: _GMenuLinkIterClass
-_GMenuItem :: rawptr
+_GMenuItem :: struct #packed {}
 MenuItem :: _GMenuItem
-_GMenu :: rawptr
+_GMenu :: struct #packed {}
 Menu :: _GMenu
 changed_func_ptr_anon_456 :: #type proc "c" (mount: ^Mount)
 unmounted_func_ptr_anon_457 :: #type proc "c" (mount: ^Mount)
@@ -2628,7 +2628,7 @@ _GPollableOutputStreamInterface :: struct {
     writev_nonblocking: writev_nonblocking_func_ptr_anon_542,
 }
 PollableOutputStreamInterface :: _GPollableOutputStreamInterface
-_GPowerProfileMonitor :: rawptr
+_GPowerProfileMonitor :: struct #packed {}
 PowerProfileMonitor :: _GPowerProfileMonitor
 _GPowerProfileMonitorInterface :: struct {
     g_iface: gobj.TypeInterface,
@@ -2761,11 +2761,11 @@ _GSeekableIface :: struct {
     truncate_fn: truncate_fn_func_ptr_anon_583,
 }
 SeekableIface :: _GSeekableIface
-_GSettingsSchemaSource :: rawptr
+_GSettingsSchemaSource :: struct #packed {}
 SettingsSchemaSource :: _GSettingsSchemaSource
-_GSettingsSchema :: rawptr
+_GSettingsSchema :: struct #packed {}
 SettingsSchema :: _GSettingsSchema
-_GSettingsSchemaKey :: rawptr
+_GSettingsSchemaKey :: struct #packed {}
 SettingsSchemaKey :: _GSettingsSchemaKey
 writable_changed_func_ptr_anon_584 :: #type proc "c" (settings: [^]Settings, key: cstring)
 changed_func_ptr_anon_585 :: #type proc "c" (settings: [^]Settings, key: cstring)
@@ -2789,9 +2789,9 @@ _GSimpleActionGroupClass :: struct {
     padding: [12]glib.pointer,
 }
 SimpleActionGroupClass :: _GSimpleActionGroupClass
-_GSimpleAsyncResultClass :: rawptr
+_GSimpleAsyncResultClass :: struct #packed {}
 SimpleAsyncResultClass :: _GSimpleAsyncResultClass
-_GSimpleProxyResolverPrivate :: rawptr
+_GSimpleProxyResolverPrivate :: struct #packed {}
 SimpleProxyResolverPrivate :: _GSimpleProxyResolverPrivate
 _GSimpleProxyResolver :: struct {
     parent_instance: gobj.Object,
@@ -2936,7 +2936,7 @@ _GSocketServiceClass :: struct {
     _g_reserved6: _g_reserved6_func_ptr_anon_640,
 }
 SocketServiceClass :: _GSocketServiceClass
-_GTaskClass :: rawptr
+_GTaskClass :: struct #packed {}
 TaskClass :: _GTaskClass
 TaskThreadFunc :: #type proc "c" (task: ^Task, source_object: glib.pointer, task_data: glib.pointer, cancellable: ^Cancellable)
 _GTcpConnectionClass :: struct {
@@ -2947,7 +2947,7 @@ _GTcpWrapperConnectionClass :: struct {
     parent_class: TcpConnectionClass,
 }
 TcpWrapperConnectionClass :: _GTcpWrapperConnectionClass
-_GThemedIconClass :: rawptr
+_GThemedIconClass :: struct #packed {}
 ThemedIconClass :: _GThemedIconClass
 run_func_ptr_anon_641 :: #type proc "c" (service: ^ThreadedSocketService, connection: ^SocketConnection, source_object: ^gobj.Object) -> glib.boolean
 _g_reserved1_func_ptr_anon_642 :: #type proc "c" ()
@@ -2965,7 +2965,7 @@ _GThreadedSocketServiceClass :: struct {
     _g_reserved5: _g_reserved5_func_ptr_anon_646,
 }
 ThreadedSocketServiceClass :: _GThreadedSocketServiceClass
-_GTlsBackend :: rawptr
+_GTlsBackend :: struct #packed {}
 TlsBackend :: _GTlsBackend
 supports_tls_func_ptr_anon_647 :: #type proc "c" (backend: ^TlsBackend) -> glib.boolean
 et_certificate_type_func_ptr_anon_648 :: #type proc "c" () -> gobj.Type
@@ -3087,7 +3087,7 @@ _GTlsServerConnectionInterface :: struct {
     g_iface: gobj.TypeInterface,
 }
 TlsServerConnectionInterface :: _GTlsServerConnectionInterface
-_GUnixConnectionPrivate :: rawptr
+_GUnixConnectionPrivate :: struct #packed {}
 UnixConnectionPrivate :: _GUnixConnectionPrivate
 _GUnixConnection :: struct {
     parent_instance: SocketConnection,
@@ -3132,7 +3132,7 @@ _GUnixFDListClass :: struct {
     _g_reserved5: _g_reserved5_func_ptr_anon_692,
 }
 UnixFDListClass :: _GUnixFDListClass
-_GUnixSocketAddressPrivate :: rawptr
+_GUnixSocketAddressPrivate :: struct #packed {}
 UnixSocketAddressPrivate :: _GUnixSocketAddressPrivate
 _GUnixSocketAddress :: struct {
     parent_instance: SocketAddress,

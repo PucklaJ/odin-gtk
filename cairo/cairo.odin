@@ -19,11 +19,11 @@ MIME_TYPE_EPS :: "application/postscript"
 MIME_TYPE_EPS_PARAMS :: "application/x-cairo.eps.params"
 
 bool_t :: b32
-_cairo :: rawptr
+_cairo :: struct #packed {}
 context_t :: _cairo
-_cairo_surface :: rawptr
+_cairo_surface :: struct #packed {}
 surface_t :: _cairo_surface
-_cairo_device :: rawptr
+_cairo_device :: struct #packed {}
 device_t :: _cairo_device
 _cairo_matrix :: struct {
     xx: f64,
@@ -34,7 +34,7 @@ _cairo_matrix :: struct {
     y0: f64,
 }
 matrix_t :: _cairo_matrix
-_cairo_pattern :: rawptr
+_cairo_pattern :: struct #packed {}
 pattern_t :: _cairo_pattern
 destroy_func_t :: #type proc "c" (data: rawptr)
 _cairo_user_data_key :: struct {
@@ -81,9 +81,9 @@ _cairo_rectangle_list :: struct {
     num_rectangles: i32,
 }
 rectangle_list_t :: _cairo_rectangle_list
-_cairo_scaled_font :: rawptr
+_cairo_scaled_font :: struct #packed {}
 scaled_font_t :: _cairo_scaled_font
-_cairo_font_face :: rawptr
+_cairo_font_face :: struct #packed {}
 font_face_t :: _cairo_font_face
 glyph_t :: struct {
     index: u64,
@@ -123,7 +123,7 @@ _cairo_hint_metrics :: enum u32 {HINT_METRICS_DEFAULT = 0, HINT_METRICS_OFF = 1,
 hint_metrics_t :: _cairo_hint_metrics
 _cairo_color_mode :: enum u32 {COLOR_MODE_DEFAULT = 0, COLOR_MODE_NO_COLOR = 1, COLOR_MODE_COLOR = 2, }
 color_mode_t :: _cairo_color_mode
-_cairo_font_options :: rawptr
+_cairo_font_options :: struct #packed {}
 font_options_t :: _cairo_font_options
 _cairo_font_type :: enum u32 {FONT_TYPE_TOY = 0, FONT_TYPE_FT = 1, FONT_TYPE_WIN32 = 2, FONT_TYPE_QUARTZ = 3, FONT_TYPE_USER = 4, FONT_TYPE_DWRITE = 5, }
 font_type_t :: _cairo_font_type
@@ -166,7 +166,7 @@ _cairo_extend :: enum u32 {EXTEND_NONE = 0, EXTEND_REPEAT = 1, EXTEND_REFLECT = 
 extend_t :: _cairo_extend
 _cairo_filter :: enum u32 {FILTER_FAST = 0, FILTER_GOOD = 1, FILTER_BEST = 2, FILTER_NEAREST = 3, FILTER_BILINEAR = 4, FILTER_GAUSSIAN = 5, }
 filter_t :: _cairo_filter
-_cairo_region :: rawptr
+_cairo_region :: struct #packed {}
 region_t :: _cairo_region
 _cairo_region_overlap :: enum u32 {REGION_OVERLAP_IN = 0, REGION_OVERLAP_OUT = 1, REGION_OVERLAP_PART = 2, }
 region_overlap_t :: _cairo_region_overlap

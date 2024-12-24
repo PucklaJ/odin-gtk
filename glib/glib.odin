@@ -239,7 +239,7 @@ _GTimeVal :: struct {
 TimeVal :: _GTimeVal
 refcount :: int_
 atomicrefcount :: int_
-_GBytes :: rawptr
+_GBytes :: struct #packed {}
 Bytes :: _GBytes
 _GArray :: struct {
     data: ^byte,
@@ -317,24 +317,24 @@ MutexLocker :: rawptr
 RecMutexLocker :: rawptr
 RWLockWriterLocker :: rawptr
 RWLockReaderLocker :: rawptr
-_GAsyncQueue :: rawptr
+_GAsyncQueue :: struct #packed {}
 AsyncQueue :: _GAsyncQueue
-_GTimeZone :: rawptr
+_GTimeZone :: struct #packed {}
 TimeZone :: _GTimeZone
 TimeType :: enum u32 {TIME_TYPE_STANDARD = 0, TIME_TYPE_DAYLIGHT = 1, TIME_TYPE_UNIVERSAL = 2, }
 TimeSpan :: int64
-_GDateTime :: rawptr
+_GDateTime :: struct #packed {}
 DateTime :: _GDateTime
 BookmarkFileError :: enum u32 {BOOKMARK_FILE_ERROR_INVALID_URI = 0, BOOKMARK_FILE_ERROR_INVALID_VALUE = 1, BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED = 2, BOOKMARK_FILE_ERROR_URI_NOT_FOUND = 3, BOOKMARK_FILE_ERROR_READ = 4, BOOKMARK_FILE_ERROR_UNKNOWN_ENCODING = 5, BOOKMARK_FILE_ERROR_WRITE = 6, BOOKMARK_FILE_ERROR_FILE_NOT_FOUND = 7, }
-_GBookmarkFile :: rawptr
+_GBookmarkFile :: struct #packed {}
 BookmarkFile :: _GBookmarkFile
 ChecksumType :: enum u32 {CHECKSUM_MD5 = 0, CHECKSUM_SHA1 = 1, CHECKSUM_SHA256 = 2, CHECKSUM_SHA512 = 3, CHECKSUM_SHA384 = 4, }
-_GChecksum :: rawptr
+_GChecksum :: struct #packed {}
 Checksum :: _GChecksum
 ConvertError :: enum u32 {CONVERT_ERROR_NO_CONVERSION = 0, CONVERT_ERROR_ILLEGAL_SEQUENCE = 1, CONVERT_ERROR_FAILED = 2, CONVERT_ERROR_PARTIAL_INPUT = 3, CONVERT_ERROR_BAD_URI = 4, CONVERT_ERROR_NOT_ABSOLUTE_PATH = 5, CONVERT_ERROR_NO_MEMORY = 6, CONVERT_ERROR_EMBEDDED_NUL = 7, }
-_GIConv :: rawptr
+_GIConv :: struct #packed {}
 IConv :: ^_GIConv
-_GData :: rawptr
+_GData :: struct #packed {}
 Data :: _GData
 DataForeachFunc :: #type proc "c" (key_id: Quark, data: pointer, user_data: pointer)
 DuplicateFunc :: #type proc "c" (data: pointer, user_data: pointer) -> pointer
@@ -346,7 +346,7 @@ Date :: _GDate
 DateDMY :: enum u32 {DATE_DAY = 0, DATE_MONTH = 1, DATE_YEAR = 2, }
 DateWeekday :: enum u32 {DATE_BAD_WEEKDAY = 0, DATE_MONDAY = 1, DATE_TUESDAY = 2, DATE_WEDNESDAY = 3, DATE_THURSDAY = 4, DATE_FRIDAY = 5, DATE_SATURDAY = 6, DATE_SUNDAY = 7, }
 DateMonth :: enum u32 {DATE_BAD_MONTH = 0, DATE_JANUARY = 1, DATE_FEBRUARY = 2, DATE_MARCH = 3, DATE_APRIL = 4, DATE_MAY = 5, DATE_JUNE = 6, DATE_JULY = 7, DATE_AUGUST = 8, DATE_SEPTEMBER = 9, DATE_OCTOBER = 10, DATE_NOVEMBER = 11, DATE_DECEMBER = 12, }
-_GDir :: rawptr
+_GDir :: struct #packed {}
 Dir :: _GDir
 FileError :: enum u32 {FILE_ERROR_EXIST = 0, FILE_ERROR_ISDIR = 1, FILE_ERROR_ACCES = 2, FILE_ERROR_NAMETOOLONG = 3, FILE_ERROR_NOENT = 4, FILE_ERROR_NOTDIR = 5, FILE_ERROR_NXIO = 6, FILE_ERROR_NODEV = 7, FILE_ERROR_ROFS = 8, FILE_ERROR_TXTBSY = 9, FILE_ERROR_FAULT = 10, FILE_ERROR_LOOP = 11, FILE_ERROR_NOSPC = 12, FILE_ERROR_NOMEM = 13, FILE_ERROR_MFILE = 14, FILE_ERROR_NFILE = 15, FILE_ERROR_BADF = 16, FILE_ERROR_INVAL = 17, FILE_ERROR_PIPE = 18, FILE_ERROR_AGAIN = 19, FILE_ERROR_INTR = 20, FILE_ERROR_IO = 21, FILE_ERROR_PERM = 22, FILE_ERROR_NOSYS = 23, FILE_ERROR_FAILED = 24, }
 FileTest :: enum u32 {FILE_TEST_IS_REGULAR = 1, FILE_TEST_IS_SYMLINK = 2, FILE_TEST_IS_DIR = 4, FILE_TEST_IS_EXECUTABLE = 8, FILE_TEST_EXISTS = 16, }
@@ -384,7 +384,7 @@ _GList :: struct {
     next: ^List,
     prev: ^List,
 }
-_GHashTable :: rawptr
+_GHashTable :: struct #packed {}
 HashTable :: _GHashTable
 HRFunc :: #type proc "c" (key: pointer, value: pointer, user_data: pointer) -> boolean
 _GHashTableIter :: struct {
@@ -396,7 +396,7 @@ _GHashTableIter :: struct {
     dummy6: pointer,
 }
 HashTableIter :: _GHashTableIter
-_GHmac :: rawptr
+_GHmac :: struct #packed {}
 Hmac :: _GHmac
 Hook :: _GHook
 HookCompareFunc :: #type proc "c" (new_hook: ^Hook, sibling: ^Hook) -> int_
@@ -431,12 +431,12 @@ _GSList :: struct {
 }
 IOCondition :: enum u32 {IO_IN = 1, IO_OUT = 4, IO_PRI = 2, IO_ERR = 8, IO_HUP = 16, IO_NVAL = 32, }
 MainContextFlags :: enum u32 {MAIN_CONTEXT_FLAGS_NONE = 0, MAIN_CONTEXT_FLAGS_OWNERLESS_POLLING = 1, }
-_GMainContext :: rawptr
+_GMainContext :: struct #packed {}
 MainContext :: _GMainContext
-_GMainLoop :: rawptr
+_GMainLoop :: struct #packed {}
 MainLoop :: _GMainLoop
 Source :: _GSource
-_GSourcePrivate :: rawptr
+_GSourcePrivate :: struct #packed {}
 SourcePrivate :: _GSourcePrivate
 SourceCallbackFuncs :: _GSourceCallbackFuncs
 SourceFuncs :: _GSourceFuncs
@@ -523,14 +523,14 @@ IOError :: enum u32 {IO_ERROR_NONE = 0, IO_ERROR_AGAIN = 1, IO_ERROR_INVAL = 2, 
 IOChannelError :: enum u32 {IO_CHANNEL_ERROR_FBIG = 0, IO_CHANNEL_ERROR_INVAL = 1, IO_CHANNEL_ERROR_IO = 2, IO_CHANNEL_ERROR_ISDIR = 3, IO_CHANNEL_ERROR_NOSPC = 4, IO_CHANNEL_ERROR_NXIO = 5, IO_CHANNEL_ERROR_OVERFLOW = 6, IO_CHANNEL_ERROR_PIPE = 7, IO_CHANNEL_ERROR_FAILED = 8, }
 IOFunc :: #type proc "c" (source: rawptr, condition: IOCondition, data: pointer) -> boolean
 KeyFileError :: enum u32 {KEY_FILE_ERROR_UNKNOWN_ENCODING = 0, KEY_FILE_ERROR_PARSE = 1, KEY_FILE_ERROR_NOT_FOUND = 2, KEY_FILE_ERROR_KEY_NOT_FOUND = 3, KEY_FILE_ERROR_GROUP_NOT_FOUND = 4, KEY_FILE_ERROR_INVALID_VALUE = 5, }
-_GKeyFile :: rawptr
+_GKeyFile :: struct #packed {}
 KeyFile :: _GKeyFile
 KeyFileFlags :: enum u32 {KEY_FILE_NONE = 0, KEY_FILE_KEEP_COMMENTS = 1, KEY_FILE_KEEP_TRANSLATIONS = 2, }
-_GMappedFile :: rawptr
+_GMappedFile :: struct #packed {}
 MappedFile :: _GMappedFile
 MarkupError :: enum u32 {MARKUP_ERROR_BAD_UTF8 = 0, MARKUP_ERROR_EMPTY = 1, MARKUP_ERROR_PARSE = 2, MARKUP_ERROR_UNKNOWN_ELEMENT = 3, MARKUP_ERROR_UNKNOWN_ATTRIBUTE = 4, MARKUP_ERROR_INVALID_CONTENT = 5, MARKUP_ERROR_MISSING_ATTRIBUTE = 6, }
 MarkupParseFlags :: enum u32 {MARKUP_DEFAULT_FLAGS = 0, MARKUP_DO_NOT_USE_THIS_UNSUPPORTED_FLAG = 1, MARKUP_TREAT_CDATA_AS_TEXT = 2, MARKUP_PREFIX_ERROR_POSITION = 4, MARKUP_IGNORE_QUALIFIED = 8, }
-_GMarkupParseContext :: rawptr
+_GMarkupParseContext :: struct #packed {}
 MarkupParseContext :: _GMarkupParseContext
 start_element_func_ptr_anon_17 :: #type proc "c" (context_p: ^MarkupParseContext, element_name: cstring, attribute_names: [^]cstring, attribute_values: [^]cstring, user_data: pointer, error: ^^Error)
 end_element_func_ptr_anon_18 :: #type proc "c" (context_p: ^MarkupParseContext, element_name: cstring, user_data: pointer, error: ^^Error)
@@ -546,9 +546,9 @@ _GMarkupParser :: struct {
 }
 MarkupParser :: _GMarkupParser
 MarkupCollectType :: enum u32 {MARKUP_COLLECT_INVALID = 0, MARKUP_COLLECT_STRING = 1, MARKUP_COLLECT_STRDUP = 2, MARKUP_COLLECT_BOOLEAN = 3, MARKUP_COLLECT_TRISTATE = 4, MARKUP_COLLECT_OPTIONAL = 65536, }
-_GVariantType :: rawptr
+_GVariantType :: struct #packed {}
 VariantType :: _GVariantType
-_GVariant :: rawptr
+_GVariant :: struct #packed {}
 Variant :: _GVariant
 VariantClass :: enum u32 {VARIANT_CLASS_BOOLEAN = 98, VARIANT_CLASS_BYTE = 121, VARIANT_CLASS_INT16 = 110, VARIANT_CLASS_UINT16 = 113, VARIANT_CLASS_INT32 = 105, VARIANT_CLASS_UINT32 = 117, VARIANT_CLASS_INT64 = 120, VARIANT_CLASS_UINT64 = 116, VARIANT_CLASS_HANDLE = 104, VARIANT_CLASS_DOUBLE = 100, VARIANT_CLASS_STRING = 115, VARIANT_CLASS_OBJECT_PATH = 111, VARIANT_CLASS_SIGNATURE = 103, VARIANT_CLASS_VARIANT = 118, VARIANT_CLASS_MAYBE = 109, VARIANT_CLASS_ARRAY = 97, VARIANT_CLASS_TUPLE = 40, VARIANT_CLASS_DICT_ENTRY = 123, }
 _GVariantIter :: struct {
@@ -587,9 +587,9 @@ _GLogField :: struct {
 LogField :: _GLogField
 LogWriterFunc :: #type proc "c" (log_level: LogLevelFlags, fields: [^]LogField, n_fields: size, user_data: pointer) -> LogWriterOutput
 PrintFunc :: #type proc "c" (string_p: cstring)
-_GOptionContext :: rawptr
+_GOptionContext :: struct #packed {}
 OptionContext :: _GOptionContext
-_GOptionGroup :: rawptr
+_GOptionGroup :: struct #packed {}
 OptionGroup :: _GOptionGroup
 OptionArg :: enum u32 {OPTION_ARG_NONE = 0, OPTION_ARG_STRING = 1, OPTION_ARG_INT = 2, OPTION_ARG_CALLBACK = 3, OPTION_ARG_FILENAME = 4, OPTION_ARG_STRING_ARRAY = 5, OPTION_ARG_FILENAME_ARRAY = 6, OPTION_ARG_DOUBLE = 7, OPTION_ARG_INT64 = 8, }
 _GOptionEntry :: struct {
@@ -611,7 +611,7 @@ _GPathBuf :: struct {
     dummy: [8]pointer,
 }
 PathBuf :: _GPathBuf
-_GPatternSpec :: rawptr
+_GPatternSpec :: struct #packed {}
 PatternSpec :: _GPatternSpec
 _GQueue :: struct {
     head: ^List,
@@ -619,15 +619,15 @@ _GQueue :: struct {
     length: uint_,
 }
 Queue :: _GQueue
-_GRand :: rawptr
+_GRand :: struct #packed {}
 Rand :: _GRand
 RefString :: char
 RegexError :: enum u32 {REGEX_ERROR_COMPILE = 0, REGEX_ERROR_OPTIMIZE = 1, REGEX_ERROR_REPLACE = 2, REGEX_ERROR_MATCH = 3, REGEX_ERROR_INTERNAL = 4, REGEX_ERROR_STRAY_BACKSLASH = 101, REGEX_ERROR_MISSING_CONTROL_CHAR = 102, REGEX_ERROR_UNRECOGNIZED_ESCAPE = 103, REGEX_ERROR_QUANTIFIERS_OUT_OF_ORDER = 104, REGEX_ERROR_QUANTIFIER_TOO_BIG = 105, REGEX_ERROR_UNTERMINATED_CHARACTER_CLASS = 106, REGEX_ERROR_INVALID_ESCAPE_IN_CHARACTER_CLASS = 107, REGEX_ERROR_RANGE_OUT_OF_ORDER = 108, REGEX_ERROR_NOTHING_TO_REPEAT = 109, REGEX_ERROR_UNRECOGNIZED_CHARACTER = 112, REGEX_ERROR_POSIX_NAMED_CLASS_OUTSIDE_CLASS = 113, REGEX_ERROR_UNMATCHED_PARENTHESIS = 114, REGEX_ERROR_INEXISTENT_SUBPATTERN_REFERENCE = 115, REGEX_ERROR_UNTERMINATED_COMMENT = 118, REGEX_ERROR_EXPRESSION_TOO_LARGE = 120, REGEX_ERROR_MEMORY_ERROR = 121, REGEX_ERROR_VARIABLE_LENGTH_LOOKBEHIND = 125, REGEX_ERROR_MALFORMED_CONDITION = 126, REGEX_ERROR_TOO_MANY_CONDITIONAL_BRANCHES = 127, REGEX_ERROR_ASSERTION_EXPECTED = 128, REGEX_ERROR_UNKNOWN_POSIX_CLASS_NAME = 130, REGEX_ERROR_POSIX_COLLATING_ELEMENTS_NOT_SUPPORTED = 131, REGEX_ERROR_HEX_CODE_TOO_LARGE = 134, REGEX_ERROR_INVALID_CONDITION = 135, REGEX_ERROR_SINGLE_BYTE_MATCH_IN_LOOKBEHIND = 136, REGEX_ERROR_INFINITE_LOOP = 140, REGEX_ERROR_MISSING_SUBPATTERN_NAME_TERMINATOR = 142, REGEX_ERROR_DUPLICATE_SUBPATTERN_NAME = 143, REGEX_ERROR_MALFORMED_PROPERTY = 146, REGEX_ERROR_UNKNOWN_PROPERTY = 147, REGEX_ERROR_SUBPATTERN_NAME_TOO_LONG = 148, REGEX_ERROR_TOO_MANY_SUBPATTERNS = 149, REGEX_ERROR_INVALID_OCTAL_VALUE = 151, REGEX_ERROR_TOO_MANY_BRANCHES_IN_DEFINE = 154, REGEX_ERROR_DEFINE_REPETION = 155, REGEX_ERROR_INCONSISTENT_NEWLINE_OPTIONS = 156, REGEX_ERROR_MISSING_BACK_REFERENCE = 157, REGEX_ERROR_INVALID_RELATIVE_REFERENCE = 158, REGEX_ERROR_BACKTRACKING_CONTROL_VERB_ARGUMENT_FORBIDDEN = 159, REGEX_ERROR_UNKNOWN_BACKTRACKING_CONTROL_VERB = 160, REGEX_ERROR_NUMBER_TOO_BIG = 161, REGEX_ERROR_MISSING_SUBPATTERN_NAME = 162, REGEX_ERROR_MISSING_DIGIT = 163, REGEX_ERROR_INVALID_DATA_CHARACTER = 164, REGEX_ERROR_EXTRA_SUBPATTERN_NAME = 165, REGEX_ERROR_BACKTRACKING_CONTROL_VERB_ARGUMENT_REQUIRED = 166, REGEX_ERROR_INVALID_CONTROL_CHAR = 168, REGEX_ERROR_MISSING_NAME = 169, REGEX_ERROR_NOT_SUPPORTED_IN_CLASS = 171, REGEX_ERROR_TOO_MANY_FORWARD_REFERENCES = 172, REGEX_ERROR_NAME_TOO_LONG = 175, REGEX_ERROR_CHARACTER_VALUE_TOO_LARGE = 176, }
 RegexCompileFlags :: enum u32 {REGEX_DEFAULT = 0, REGEX_CASELESS = 1, REGEX_MULTILINE = 2, REGEX_DOTALL = 4, REGEX_EXTENDED = 8, REGEX_ANCHORED = 16, REGEX_DOLLAR_ENDONLY = 32, REGEX_UNGREEDY = 512, REGEX_RAW = 2048, REGEX_NO_AUTO_CAPTURE = 4096, REGEX_OPTIMIZE = 8192, REGEX_FIRSTLINE = 262144, REGEX_DUPNAMES = 524288, REGEX_NEWLINE_CR = 1048576, REGEX_NEWLINE_LF = 2097152, REGEX_NEWLINE_CRLF = 3145728, REGEX_NEWLINE_ANYCRLF = 5242880, REGEX_BSR_ANYCRLF = 8388608, REGEX_JAVASCRIPT_COMPAT = 33554432, }
 RegexMatchFlags :: enum u32 {REGEX_MATCH_DEFAULT = 0, REGEX_MATCH_ANCHORED = 16, REGEX_MATCH_NOTBOL = 128, REGEX_MATCH_NOTEOL = 256, REGEX_MATCH_NOTEMPTY = 1024, REGEX_MATCH_PARTIAL = 32768, REGEX_MATCH_NEWLINE_CR = 1048576, REGEX_MATCH_NEWLINE_LF = 2097152, REGEX_MATCH_NEWLINE_CRLF = 3145728, REGEX_MATCH_NEWLINE_ANY = 4194304, REGEX_MATCH_NEWLINE_ANYCRLF = 5242880, REGEX_MATCH_BSR_ANYCRLF = 8388608, REGEX_MATCH_BSR_ANY = 16777216, REGEX_MATCH_PARTIAL_SOFT = 32768, REGEX_MATCH_PARTIAL_HARD = 134217728, REGEX_MATCH_NOTEMPTY_ATSTART = 268435456, }
-_GRegex :: rawptr
+_GRegex :: struct #packed {}
 Regex :: _GRegex
-_GMatchInfo :: rawptr
+_GMatchInfo :: struct #packed {}
 MatchInfo :: _GMatchInfo
 RegexEvalCallback :: #type proc "c" (match_info: ^MatchInfo, result: ^String, user_data: pointer) -> boolean
 Scanner :: _GScanner
@@ -659,9 +659,9 @@ _GScanner :: struct {
     scope_id: uint_,
     msg_handler: ScannerMsgFunc,
 }
-_GSequence :: rawptr
+_GSequence :: struct #packed {}
 Sequence :: _GSequence
-_GSequenceNode :: rawptr
+_GSequenceNode :: struct #packed {}
 SequenceIter :: _GSequenceNode
 SequenceIterCompareFunc :: #type proc "c" (a: ^SequenceIter, b: ^SequenceIter, data: pointer) -> int_
 ShellError :: enum u32 {SHELL_ERROR_BAD_QUOTING = 0, SHELL_ERROR_EMPTY_STRING = 1, SHELL_ERROR_FAILED = 2, }
@@ -669,9 +669,9 @@ SliceConfig :: enum u32 {SLICE_CONFIG_ALWAYS_MALLOC = 1, SLICE_CONFIG_BYPASS_MAG
 SpawnError :: enum u32 {SPAWN_ERROR_FORK = 0, SPAWN_ERROR_READ = 1, SPAWN_ERROR_CHDIR = 2, SPAWN_ERROR_ACCES = 3, SPAWN_ERROR_PERM = 4, SPAWN_ERROR_TOO_BIG = 5, SPAWN_ERROR_2BIG = 5, SPAWN_ERROR_NOEXEC = 6, SPAWN_ERROR_NAMETOOLONG = 7, SPAWN_ERROR_NOENT = 8, SPAWN_ERROR_NOMEM = 9, SPAWN_ERROR_NOTDIR = 10, SPAWN_ERROR_LOOP = 11, SPAWN_ERROR_TXTBUSY = 12, SPAWN_ERROR_IO = 13, SPAWN_ERROR_NFILE = 14, SPAWN_ERROR_MFILE = 15, SPAWN_ERROR_INVAL = 16, SPAWN_ERROR_ISDIR = 17, SPAWN_ERROR_LIBBAD = 18, SPAWN_ERROR_FAILED = 19, }
 SpawnChildSetupFunc :: #type proc "c" (data: pointer)
 SpawnFlags :: enum u32 {SPAWN_DEFAULT = 0, SPAWN_LEAVE_DESCRIPTORS_OPEN = 1, SPAWN_DO_NOT_REAP_CHILD = 2, SPAWN_SEARCH_PATH = 4, SPAWN_STDOUT_TO_DEV_NULL = 8, SPAWN_STDERR_TO_DEV_NULL = 16, SPAWN_CHILD_INHERITS_STDIN = 32, SPAWN_FILE_AND_ARGV_ZERO = 64, SPAWN_SEARCH_PATH_FROM_ENVP = 128, SPAWN_CLOEXEC_PIPES = 256, SPAWN_CHILD_INHERITS_STDOUT = 512, SPAWN_CHILD_INHERITS_STDERR = 1024, SPAWN_STDIN_FROM_DEV_NULL = 2048, }
-_GStringChunk :: rawptr
+_GStringChunk :: struct #packed {}
 StringChunk :: _GStringChunk
-_GStrvBuilder :: rawptr
+_GStrvBuilder :: struct #packed {}
 StrvBuilder :: _GStrvBuilder
 TestFunc :: #type proc "c" ()
 TestDataFunc :: #type proc "c" (user_data: constpointer)
@@ -707,19 +707,19 @@ _GThreadPool :: struct {
     exclusive: boolean,
 }
 ThreadPool :: _GThreadPool
-_GTimer :: rawptr
+_GTimer :: struct #packed {}
 Timer :: _GTimer
 TrashStack :: _GTrashStack
 _GTrashStack :: struct {
     next: ^TrashStack,
 }
-_GTree :: rawptr
+_GTree :: struct #packed {}
 Tree :: _GTree
-_GTreeNode :: rawptr
+_GTreeNode :: struct #packed {}
 TreeNode :: _GTreeNode
 TraverseFunc :: #type proc "c" (key: pointer, value: pointer, data: pointer) -> boolean
 TraverseNodeFunc :: #type proc "c" (node: ^TreeNode, data: pointer) -> boolean
-_GUri :: rawptr
+_GUri :: struct #packed {}
 Uri :: _GUri
 UriFlags :: enum u32 {URI_FLAGS_NONE = 0, URI_FLAGS_PARSE_RELAXED = 1, URI_FLAGS_HAS_PASSWORD = 2, URI_FLAGS_HAS_AUTH_PARAMS = 4, URI_FLAGS_ENCODED = 8, URI_FLAGS_NON_DNS = 16, URI_FLAGS_ENCODED_QUERY = 32, URI_FLAGS_ENCODED_PATH = 64, URI_FLAGS_ENCODED_FRAGMENT = 128, URI_FLAGS_SCHEME_NORMALIZE = 256, }
 UriHideFlags :: enum u32 {URI_HIDE_NONE = 0, URI_HIDE_USERINFO = 1, URI_HIDE_PASSWORD = 2, URI_HIDE_AUTH_PARAMS = 4, URI_HIDE_QUERY = 8, URI_HIDE_FRAGMENT = 16, }
@@ -732,11 +732,11 @@ _GUriParamsIter :: struct {
 }
 UriParamsIter :: _GUriParamsIter
 UriError :: enum u32 {URI_ERROR_FAILED = 0, URI_ERROR_BAD_SCHEME = 1, URI_ERROR_BAD_USER = 2, URI_ERROR_BAD_PASSWORD = 3, URI_ERROR_BAD_AUTH_PARAMS = 4, URI_ERROR_BAD_HOST = 5, URI_ERROR_BAD_PORT = 6, URI_ERROR_BAD_PATH = 7, URI_ERROR_BAD_QUERY = 8, URI_ERROR_BAD_FRAGMENT = 9, }
-_GAllocator :: rawptr
+_GAllocator :: struct #packed {}
 Allocator :: _GAllocator
-_GMemChunk :: rawptr
+_GMemChunk :: struct #packed {}
 MemChunk :: _GMemChunk
-_GCache :: rawptr
+_GCache :: struct #packed {}
 Cache :: _GCache
 CacheNewFunc :: #type proc "c" (key: pointer) -> pointer
 CacheDupFunc :: #type proc "c" (value: pointer) -> pointer
@@ -751,7 +751,7 @@ _GCompletion :: struct {
     strncmp_func: CompletionStrncmpFunc,
 }
 Completion :: _GCompletion
-_GRelation :: rawptr
+_GRelation :: struct #packed {}
 Relation :: _GRelation
 _GTuples :: struct {
     len: uint_,
@@ -1035,8 +1035,8 @@ PathBuf_autoptr :: ^PathBuf
 PathBuf_listautoptr :: ^List
 PathBuf_slistautoptr :: ^SList
 PathBuf_queueautoptr :: ^Queue
-TestCase :: rawptr
-TestSuite :: rawptr
+TestCase :: struct #packed {}
+TestSuite :: struct #packed {}
 
 when #config(GLIB_STATIC, false) {
     foreign import glib_runic { "../lib/linux/libglib-2.0.a", "../lib/linux/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }

@@ -8,6 +8,7 @@ wrapper:
   out_header: gtk-wrapper.h
   out_source: gtk-wrapper.c
   load_all_includes: true
+  multi_platform: false
 from:
   language: c
   shared.linux: 'libgtk-4.so'
@@ -52,7 +53,7 @@ from:
     - '../shared/graphene/include/*'
     - '../shared/graphene/_build/include/*'
   ignore:
-    macros:
+    constants:
       - 'GDK_DEPRECATED*'
   overwrite:
     types:

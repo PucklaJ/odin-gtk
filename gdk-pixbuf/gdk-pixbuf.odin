@@ -18,22 +18,22 @@ TYPE_PIXBUF_ROTATION :: pixbuf_rotation_get_type
 
 PixbufAlphaMode :: enum u32 {ALPHA_BILEVEL = 0, ALPHA_FULL = 1, }
 Colorspace :: enum u32 {COLORSPACE_RGB = 0, }
-_GdkPixbuf :: rawptr
+_GdkPixbuf :: struct #packed {}
 Pixbuf :: _GdkPixbuf
 PixbufDestroyNotify :: #type proc "c" (pixels: [^]glib.uchar, data: glib.pointer)
 PixbufError :: enum u32 {ERROR_CORRUPT_IMAGE = 0, ERROR_INSUFFICIENT_MEMORY = 1, ERROR_BAD_OPTION = 2, ERROR_UNKNOWN_TYPE = 3, ERROR_UNSUPPORTED_OPERATION = 4, ERROR_FAILED = 5, ERROR_INCOMPLETE_ANIMATION = 6, }
 PixbufSaveFunc :: #type proc "c" (buf: ^glib.char, count: glib.size, error: ^^glib.Error, data: glib.pointer) -> glib.boolean
 InterpType :: enum u32 {INTERP_NEAREST = 0, INTERP_TILES = 1, INTERP_BILINEAR = 2, INTERP_HYPER = 3, }
 PixbufRotation :: enum u32 {ROTATE_NONE = 0, ROTATE_COUNTERCLOCKWISE = 90, ROTATE_UPSIDEDOWN = 180, ROTATE_CLOCKWISE = 270, }
-_GdkPixbufAnimation :: rawptr
+_GdkPixbufAnimation :: struct #packed {}
 PixbufAnimation :: _GdkPixbufAnimation
-_GdkPixbufAnimationIter :: rawptr
+_GdkPixbufAnimationIter :: struct #packed {}
 PixbufAnimationIter :: _GdkPixbufAnimationIter
-_GdkPixbufSimpleAnim :: rawptr
+_GdkPixbufSimpleAnim :: struct #packed {}
 PixbufSimpleAnim :: _GdkPixbufSimpleAnim
-_GdkPixbufSimpleAnimClass :: rawptr
+_GdkPixbufSimpleAnimClass :: struct #packed {}
 PixbufSimpleAnimClass :: _GdkPixbufSimpleAnimClass
-_GdkPixbufFormat :: rawptr
+_GdkPixbufFormat :: struct #packed {}
 PixbufFormat :: _GdkPixbufFormat
 _GdkPixbufLoader :: struct {
     parent_instance: gobj.Object,

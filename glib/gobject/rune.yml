@@ -8,6 +8,7 @@ wrapper:
   out_header: gobject-wrapper.h
   out_source: gobject-wrapper.c
   load_all_includes: true
+  multi_platform: false
 from:
   language: c
   shared.linux: 'libgobject-2.0.so'
@@ -30,7 +31,7 @@ from:
     - "../../shared/glib/glib/deprecated/*"
     - "../../shared/glib/_build/glib/*"
   ignore:
-    macros:
+    constants:
       - 'G_STATIC_*'
       - '_GOBJECT_*'
       - 'GOBJECT_DEPRECATED_*'

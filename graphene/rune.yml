@@ -8,6 +8,7 @@ wrapper:
   out_header: graphene-wrapper.h
   out_source: graphene-wrapper.c
   load_all_includes: true
+  multi_platform: false
 from:
   language: c
   shared: 'libgraphene-1.0.so'
@@ -16,7 +17,7 @@ from:
     - ../shared/graphene/_build/include/
   load_all_includes: true
   ignore:
-    macros:
+    constants:
       - 'GRAPHENE_HAS_*'
       - 'GRAPHENE*_VERSION*'
       - '*GRAPHENE_DEPRECATED*'

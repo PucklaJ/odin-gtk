@@ -8,6 +8,7 @@ wrapper:
   out_header: glib-wrapper.h
   out_source: glib-wrapper.c
   load_all_includes: true
+  multi_platform: false
 from:
   language: c
   shared.linux: 'libglib-2.0.so'
@@ -106,7 +107,7 @@ from:
       - _GScannerConfig
       - GScannerConfig
       - va_list
-    macros:
+    constants:
       - '*GNUC*'
       - 'G_C_STD_VERSION'
       - 'G_*INLINE*'

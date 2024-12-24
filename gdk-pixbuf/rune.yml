@@ -8,6 +8,7 @@ wrapper:
   out_header: gdk-pixbuf-wrapper.h
   out_source: gdk-pixbuf-wrapper.c
   load_all_includes: true
+  multi_platform: false
 from:
   language: c
   shared: 'libgdk_pixbuf-2.0.so'
@@ -38,7 +39,7 @@ from:
     - '../shared/glib/_build/gmodule/*'
     - '../shared/glib/glib/deprecated/*'
   ignore:
-    macros:
+    constants:
       - 'GDK_PIXBUF_MAJOR'
       - 'GDK_PIXBUF_MINOR'
       - 'GDK_PIXBUF_MICRO'

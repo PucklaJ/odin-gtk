@@ -18,7 +18,7 @@ from:
     - '../../shared/glib/glib/*'
     - '../../shared/glib/_build/glib/*'
   ignore:
-    macros:
+    constants:
       - 'G_MODULE_*'
 to:
   language: odin

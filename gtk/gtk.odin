@@ -18,7 +18,7 @@ _GtkCssLocation :: struct {
     line_chars: glib.size,
 }
 CssLocation :: _GtkCssLocation
-_GtkCssSection :: rawptr
+_GtkCssSection :: struct #packed {}
 CssSection :: _GtkCssSection
 GLAPI :: enum u32 {GL_API_GL = 1, GL_API_GLES = 2, }
 Gravity :: enum u32 {GRAVITY_NORTH_WEST = 1, GRAVITY_NORTH = 2, GRAVITY_NORTH_EAST = 3, GRAVITY_WEST = 4, GRAVITY_CENTER = 5, GRAVITY_EAST = 6, GRAVITY_SOUTH_WEST = 7, GRAVITY_SOUTH = 8, GRAVITY_SOUTH_EAST = 9, GRAVITY_STATIC = 10, }
@@ -37,47 +37,47 @@ _GdkRGBA :: struct {
     alpha: f32,
 }
 RGBA :: _GdkRGBA
-_GdkContentFormats :: rawptr
+_GdkContentFormats :: struct #packed {}
 ContentFormats :: _GdkContentFormats
 _GdkContentProvider :: struct {
     parent: gobj.Object,
 }
 ContentProvider :: _GdkContentProvider
-_GdkCursor :: rawptr
+_GdkCursor :: struct #packed {}
 Cursor :: _GdkCursor
-_GdkTexture :: rawptr
+_GdkTexture :: struct #packed {}
 Texture :: _GdkTexture
-_GdkTextureDownloader :: rawptr
+_GdkTextureDownloader :: struct #packed {}
 TextureDownloader :: _GdkTextureDownloader
-_GdkDevice :: rawptr
+_GdkDevice :: struct #packed {}
 Device :: _GdkDevice
-_GdkDrag :: rawptr
+_GdkDrag :: struct #packed {}
 Drag :: _GdkDrag
-_GdkDrop :: rawptr
+_GdkDrop :: struct #packed {}
 Drop :: _GdkDrop
-_GdkClipboard :: rawptr
+_GdkClipboard :: struct #packed {}
 Clipboard :: _GdkClipboard
-_GdkDisplayManager :: rawptr
+_GdkDisplayManager :: struct #packed {}
 DisplayManager :: _GdkDisplayManager
-_GdkDisplay :: rawptr
+_GdkDisplay :: struct #packed {}
 Display :: _GdkDisplay
-_GdkSurface :: rawptr
+_GdkSurface :: struct #packed {}
 Surface :: _GdkSurface
-_GdkAppLaunchContext :: rawptr
+_GdkAppLaunchContext :: struct #packed {}
 AppLaunchContext :: _GdkAppLaunchContext
 _GdkSeat :: struct {
     parent_instance: gobj.Object,
 }
 Seat :: _GdkSeat
-_GdkSnapshot :: rawptr
+_GdkSnapshot :: struct #packed {}
 Snapshot :: _GdkSnapshot
-_GdkDrawContext :: rawptr
+_GdkDrawContext :: struct #packed {}
 DrawContext :: _GdkDrawContext
-_GdkCairoContext :: rawptr
+_GdkCairoContext :: struct #packed {}
 CairoContext :: _GdkCairoContext
-_GdkGLContext :: rawptr
+_GdkGLContext :: struct #packed {}
 GLContext :: _GdkGLContext
-_GdkVulkanContext :: rawptr
+_GdkVulkanContext :: struct #packed {}
 VulkanContext :: _GdkVulkanContext
 _GdkKeymapKey :: struct {
     keycode: glib.uint_,
@@ -93,16 +93,16 @@ Clipboard_autoptr :: ^Clipboard
 Clipboard_listautoptr :: ^glib.List
 Clipboard_slistautoptr :: ^glib.SList
 Clipboard_queueautoptr :: ^glib.Queue
-_GdkContentDeserializer :: rawptr
+_GdkContentDeserializer :: struct #packed {}
 ContentDeserializer :: _GdkContentDeserializer
 ContentDeserializeFunc :: #type proc "c" (deserializer: ^ContentDeserializer)
-_GdkContentFormatsBuilder :: rawptr
+_GdkContentFormatsBuilder :: struct #packed {}
 ContentFormatsBuilder :: _GdkContentFormatsBuilder
 ContentFormats_autoptr :: ^ContentFormats
 ContentFormats_listautoptr :: ^glib.List
 ContentFormats_slistautoptr :: ^glib.SList
 ContentFormats_queueautoptr :: ^glib.Queue
-_GdkFileList :: rawptr
+_GdkFileList :: struct #packed {}
 FileList :: _GdkFileList
 content_changed_func_ptr_anon_0 :: #type proc "c" (provider: ^ContentProvider)
 attach_clipboard_func_ptr_anon_1 :: #type proc "c" (provider: ^ContentProvider, clipboard: ^Clipboard)
@@ -129,14 +129,14 @@ ContentProvider_autoptr :: ^ContentProvider
 ContentProvider_listautoptr :: ^glib.List
 ContentProvider_slistautoptr :: ^glib.SList
 ContentProvider_queueautoptr :: ^glib.Queue
-_GdkContentSerializer :: rawptr
+_GdkContentSerializer :: struct #packed {}
 ContentSerializer :: _GdkContentSerializer
 ContentSerializeFunc :: #type proc "c" (serializer: ^ContentSerializer)
 Cursor_autoptr :: ^Cursor
 Cursor_listautoptr :: ^glib.List
 Cursor_slistautoptr :: ^glib.SList
 Cursor_queueautoptr :: ^glib.Queue
-_GdkDeviceTool :: rawptr
+_GdkDeviceTool :: struct #packed {}
 DeviceTool :: _GdkDeviceTool
 DeviceToolType :: enum u32 {DEVICE_TOOL_TYPE_UNKNOWN = 0, DEVICE_TOOL_TYPE_PEN = 1, DEVICE_TOOL_TYPE_ERASER = 2, DEVICE_TOOL_TYPE_BRUSH = 3, DEVICE_TOOL_TYPE_PENCIL = 4, DEVICE_TOOL_TYPE_AIRBRUSH = 5, DEVICE_TOOL_TYPE_MOUSE = 6, DEVICE_TOOL_TYPE_LENS = 7, }
 _GdkTimeCoord :: struct {
@@ -150,9 +150,9 @@ Device_autoptr :: ^Device
 Device_listautoptr :: ^glib.List
 Device_slistautoptr :: ^glib.SList
 Device_queueautoptr :: ^glib.Queue
-_GdkDevicePad :: rawptr
+_GdkDevicePad :: struct #packed {}
 DevicePad :: _GdkDevicePad
-_GdkDevicePadInterface :: rawptr
+_GdkDevicePadInterface :: struct #packed {}
 DevicePadInterface :: _GdkDevicePadInterface
 DevicePadFeature :: enum u32 {DEVICE_PAD_FEATURE_BUTTON = 0, DEVICE_PAD_FEATURE_RING = 1, DEVICE_PAD_FEATURE_STRIP = 2, }
 DragCancelReason :: enum u32 {DRAG_CANCEL_NO_TARGET = 0, DRAG_CANCEL_USER_CANCELLED = 1, DRAG_CANCEL_ERROR = 2, }
@@ -160,35 +160,35 @@ Drag_autoptr :: ^Drag
 Drag_listautoptr :: ^glib.List
 Drag_slistautoptr :: ^glib.SList
 Drag_queueautoptr :: ^glib.Queue
-_GdkEventSequence :: rawptr
+_GdkEventSequence :: struct #packed {}
 EventSequence :: _GdkEventSequence
-_GdkEvent :: rawptr
+_GdkEvent :: struct #packed {}
 Event :: _GdkEvent
-_GdkButtonEvent :: rawptr
+_GdkButtonEvent :: struct #packed {}
 ButtonEvent :: _GdkButtonEvent
-_GdkCrossingEvent :: rawptr
+_GdkCrossingEvent :: struct #packed {}
 CrossingEvent :: _GdkCrossingEvent
-_GdkDeleteEvent :: rawptr
+_GdkDeleteEvent :: struct #packed {}
 DeleteEvent :: _GdkDeleteEvent
-_GdkDNDEvent :: rawptr
+_GdkDNDEvent :: struct #packed {}
 DNDEvent :: _GdkDNDEvent
-_GdkFocusEvent :: rawptr
+_GdkFocusEvent :: struct #packed {}
 FocusEvent :: _GdkFocusEvent
-_GdkGrabBrokenEvent :: rawptr
+_GdkGrabBrokenEvent :: struct #packed {}
 GrabBrokenEvent :: _GdkGrabBrokenEvent
-_GdkKeyEvent :: rawptr
+_GdkKeyEvent :: struct #packed {}
 KeyEvent :: _GdkKeyEvent
-_GdkMotionEvent :: rawptr
+_GdkMotionEvent :: struct #packed {}
 MotionEvent :: _GdkMotionEvent
-_GdkPadEvent :: rawptr
+_GdkPadEvent :: struct #packed {}
 PadEvent :: _GdkPadEvent
-_GdkProximityEvent :: rawptr
+_GdkProximityEvent :: struct #packed {}
 ProximityEvent :: _GdkProximityEvent
-_GdkScrollEvent :: rawptr
+_GdkScrollEvent :: struct #packed {}
 ScrollEvent :: _GdkScrollEvent
-_GdkTouchEvent :: rawptr
+_GdkTouchEvent :: struct #packed {}
 TouchEvent :: _GdkTouchEvent
-_GdkTouchpadEvent :: rawptr
+_GdkTouchpadEvent :: struct #packed {}
 TouchpadEvent :: _GdkTouchpadEvent
 EventType :: enum u32 {DELETE = 0, MOTION_NOTIFY = 1, BUTTON_PRESS = 2, BUTTON_RELEASE = 3, KEY_PRESS = 4, KEY_RELEASE = 5, ENTER_NOTIFY = 6, LEAVE_NOTIFY = 7, FOCUS_CHANGE = 8, PROXIMITY_IN = 9, PROXIMITY_OUT = 10, DRAG_ENTER = 11, DRAG_LEAVE = 12, DRAG_MOTION = 13, DROP_START = 14, SCROLL = 15, GRAB_BROKEN = 16, TOUCH_BEGIN = 17, TOUCH_UPDATE = 18, TOUCH_END = 19, TOUCH_CANCEL = 20, TOUCHPAD_SWIPE = 21, TOUCHPAD_PINCH = 22, PAD_BUTTON_PRESS = 23, PAD_BUTTON_RELEASE = 24, PAD_RING = 25, PAD_STRIP = 26, PAD_GROUP_MODE = 27, TOUCHPAD_HOLD = 28, EVENT_LAST = 29, }
 TouchpadGesturePhase :: enum u32 {TOUCHPAD_GESTURE_PHASE_BEGIN = 0, TOUCHPAD_GESTURE_PHASE_UPDATE = 1, TOUCHPAD_GESTURE_PHASE_END = 2, TOUCHPAD_GESTURE_PHASE_CANCEL = 3, }
@@ -201,26 +201,26 @@ Event_autoptr :: ^Event
 Event_listautoptr :: ^glib.List
 Event_slistautoptr :: ^glib.SList
 Event_queueautoptr :: ^glib.Queue
-_GdkFrameTimings :: rawptr
+_GdkFrameTimings :: struct #packed {}
 FrameTimings :: _GdkFrameTimings
 FrameTimings_autoptr :: ^FrameTimings
 FrameTimings_listautoptr :: ^glib.List
 FrameTimings_slistautoptr :: ^glib.SList
 FrameTimings_queueautoptr :: ^glib.Queue
-_GdkFrameClock :: rawptr
+_GdkFrameClock :: struct #packed {}
 FrameClock :: _GdkFrameClock
-_GdkFrameClockPrivate :: rawptr
+_GdkFrameClockPrivate :: struct #packed {}
 FrameClockPrivate :: _GdkFrameClockPrivate
-_GdkFrameClockClass :: rawptr
+_GdkFrameClockClass :: struct #packed {}
 FrameClockClass :: _GdkFrameClockClass
 FrameClockPhase :: enum u32 {FRAME_CLOCK_PHASE_NONE = 0, FRAME_CLOCK_PHASE_FLUSH_EVENTS = 1, FRAME_CLOCK_PHASE_BEFORE_PAINT = 2, FRAME_CLOCK_PHASE_UPDATE = 4, FRAME_CLOCK_PHASE_LAYOUT = 8, FRAME_CLOCK_PHASE_PAINT = 16, FRAME_CLOCK_PHASE_RESUME_EVENTS = 32, FRAME_CLOCK_PHASE_AFTER_PAINT = 64, }
 FrameClock_autoptr :: ^FrameClock
 FrameClock_listautoptr :: ^glib.List
 FrameClock_slistautoptr :: ^glib.SList
 FrameClock_queueautoptr :: ^glib.Queue
-_GdkMonitor :: rawptr
+_GdkMonitor :: struct #packed {}
 Monitor :: _GdkMonitor
-_GdkMonitorClass :: rawptr
+_GdkMonitorClass :: struct #packed {}
 MonitorClass :: _GdkMonitorClass
 SubpixelLayout :: enum u32 {SUBPIXEL_LAYOUT_UNKNOWN = 0, SUBPIXEL_LAYOUT_NONE = 1, SUBPIXEL_LAYOUT_HORIZONTAL_RGB = 2, SUBPIXEL_LAYOUT_HORIZONTAL_BGR = 3, SUBPIXEL_LAYOUT_VERTICAL_RGB = 4, SUBPIXEL_LAYOUT_VERTICAL_BGR = 5, }
 Monitor_autoptr :: ^Monitor
@@ -228,13 +228,13 @@ Monitor_listautoptr :: ^glib.List
 Monitor_slistautoptr :: ^glib.SList
 Monitor_queueautoptr :: ^glib.Queue
 AnchorHints :: enum u32 {ANCHOR_FLIP_X = 1, ANCHOR_FLIP_Y = 2, ANCHOR_SLIDE_X = 4, ANCHOR_SLIDE_Y = 8, ANCHOR_RESIZE_X = 16, ANCHOR_RESIZE_Y = 32, ANCHOR_FLIP = 3, ANCHOR_SLIDE = 12, ANCHOR_RESIZE = 48, }
-_GdkPopupLayout :: rawptr
+_GdkPopupLayout :: struct #packed {}
 PopupLayout :: _GdkPopupLayout
 PopupLayout_autoptr :: ^PopupLayout
 PopupLayout_listautoptr :: ^glib.List
 PopupLayout_slistautoptr :: ^glib.SList
 PopupLayout_queueautoptr :: ^glib.Queue
-_GdkSurfaceClass :: rawptr
+_GdkSurfaceClass :: struct #packed {}
 SurfaceClass :: _GdkSurfaceClass
 Surface_autoptr :: ^Surface
 Surface_listautoptr :: ^glib.List
@@ -253,15 +253,15 @@ DisplayManager_autoptr :: ^DisplayManager
 DisplayManager_listautoptr :: ^glib.List
 DisplayManager_slistautoptr :: ^glib.SList
 DisplayManager_queueautoptr :: ^glib.Queue
-_GdkDragSurface :: rawptr
+_GdkDragSurface :: struct #packed {}
 DragSurface :: _GdkDragSurface
-_GdkDragSurfaceInterface :: rawptr
+_GdkDragSurfaceInterface :: struct #packed {}
 DragSurfaceInterface :: _GdkDragSurfaceInterface
 DragSurface_autoptr :: ^DragSurface
 DragSurface_listautoptr :: ^glib.List
 DragSurface_slistautoptr :: ^glib.SList
 DragSurface_queueautoptr :: ^glib.Queue
-_GdkDragSurfaceSize :: rawptr
+_GdkDragSurfaceSize :: struct #packed {}
 DragSurfaceSize :: _GdkDragSurfaceSize
 DrawContext_autoptr :: ^DrawContext
 DrawContext_listautoptr :: ^glib.List
@@ -275,24 +275,24 @@ GLContext_autoptr :: ^GLContext
 GLContext_listautoptr :: ^glib.List
 GLContext_slistautoptr :: ^glib.SList
 GLContext_queueautoptr :: ^glib.Queue
-_GdkTextureClass :: rawptr
+_GdkTextureClass :: struct #packed {}
 TextureClass :: _GdkTextureClass
 TextureError :: enum u32 {TEXTURE_ERROR_TOO_LARGE = 0, TEXTURE_ERROR_CORRUPT_IMAGE = 1, TEXTURE_ERROR_UNSUPPORTED_CONTENT = 2, TEXTURE_ERROR_UNSUPPORTED_FORMAT = 3, }
 Texture_autoptr :: ^Texture
 Texture_listautoptr :: ^glib.List
 Texture_slistautoptr :: ^glib.SList
 Texture_queueautoptr :: ^glib.Queue
-_GdkGLTexture :: rawptr
+_GdkGLTexture :: struct #packed {}
 GLTexture :: _GdkGLTexture
-_GdkGLTextureClass :: rawptr
+_GdkGLTextureClass :: struct #packed {}
 GLTextureClass :: _GdkGLTextureClass
 GLTexture_autoptr :: ^GLTexture
 GLTexture_listautoptr :: ^glib.List
 GLTexture_slistautoptr :: ^glib.SList
 GLTexture_queueautoptr :: ^glib.Queue
-_GdkGLTextureBuilder :: rawptr
+_GdkGLTextureBuilder :: struct #packed {}
 GLTextureBuilder :: _GdkGLTextureBuilder
-_GdkGLTextureBuilderClass :: rawptr
+_GdkGLTextureBuilderClass :: struct #packed {}
 GLTextureBuilderClass :: _GdkGLTextureBuilderClass
 GLTextureBuilder_autoptr :: ^GLTextureBuilder
 GLTextureBuilder_listautoptr :: ^glib.List
@@ -302,15 +302,15 @@ GLTextureBuilderClass_autoptr :: ^GLTextureBuilderClass
 GLTextureBuilderClass_listautoptr :: ^glib.List
 GLTextureBuilderClass_slistautoptr :: ^glib.SList
 GLTextureBuilderClass_queueautoptr :: ^glib.Queue
-_GdkMemoryTexture :: rawptr
+_GdkMemoryTexture :: struct #packed {}
 MemoryTexture :: _GdkMemoryTexture
-_GdkMemoryTextureClass :: rawptr
+_GdkMemoryTextureClass :: struct #packed {}
 MemoryTextureClass :: _GdkMemoryTextureClass
 MemoryTexture_autoptr :: ^MemoryTexture
 MemoryTexture_listautoptr :: ^glib.List
 MemoryTexture_slistautoptr :: ^glib.SList
 MemoryTexture_queueautoptr :: ^glib.Queue
-_GdkPaintable :: rawptr
+_GdkPaintable :: struct #packed {}
 Paintable :: _GdkPaintable
 snapshot_func_ptr_anon_8 :: #type proc "c" (paintable: ^Paintable, snapshot: ^Snapshot, width: f64, height: f64)
 et_current_image_func_ptr_anon_9 :: #type proc "c" (paintable: ^Paintable) -> ^Paintable
@@ -333,9 +333,9 @@ Paintable_autoptr :: ^Paintable
 Paintable_listautoptr :: ^glib.List
 Paintable_slistautoptr :: ^glib.SList
 Paintable_queueautoptr :: ^glib.Queue
-_GdkPopup :: rawptr
+_GdkPopup :: struct #packed {}
 Popup :: _GdkPopup
-_GdkPopupInterface :: rawptr
+_GdkPopupInterface :: struct #packed {}
 PopupInterface :: _GdkPopupInterface
 Popup_autoptr :: ^Popup
 Popup_listautoptr :: ^glib.List
@@ -345,7 +345,7 @@ RGBA_autoptr :: ^RGBA
 RGBA_listautoptr :: ^glib.List
 RGBA_slistautoptr :: ^glib.SList
 RGBA_queueautoptr :: ^glib.Queue
-_GdkSnapshotClass :: rawptr
+_GdkSnapshotClass :: struct #packed {}
 SnapshotClass :: _GdkSnapshotClass
 
 
@@ -355,7 +355,7 @@ TextureDownloader_autoptr :: ^TextureDownloader
 TextureDownloader_listautoptr :: ^glib.List
 TextureDownloader_slistautoptr :: ^glib.SList
 TextureDownloader_queueautoptr :: ^glib.Queue
-_GdkToplevelLayout :: rawptr
+_GdkToplevelLayout :: struct #packed {}
 ToplevelLayout :: _GdkToplevelLayout
 ToplevelLayout_autoptr :: ^ToplevelLayout
 ToplevelLayout_listautoptr :: ^glib.List
@@ -365,15 +365,15 @@ SurfaceEdge :: enum u32 {SURFACE_EDGE_NORTH_WEST = 0, SURFACE_EDGE_NORTH = 1, SU
 FullscreenMode :: enum u32 {FULLSCREEN_ON_CURRENT_MONITOR = 0, FULLSCREEN_ON_ALL_MONITORS = 1, }
 ToplevelState :: enum u32 {TOPLEVEL_STATE_MINIMIZED = 1, TOPLEVEL_STATE_MAXIMIZED = 2, TOPLEVEL_STATE_STICKY = 4, TOPLEVEL_STATE_FULLSCREEN = 8, TOPLEVEL_STATE_ABOVE = 16, TOPLEVEL_STATE_BELOW = 32, TOPLEVEL_STATE_FOCUSED = 64, TOPLEVEL_STATE_TILED = 128, TOPLEVEL_STATE_TOP_TILED = 256, TOPLEVEL_STATE_TOP_RESIZABLE = 512, TOPLEVEL_STATE_RIGHT_TILED = 1024, TOPLEVEL_STATE_RIGHT_RESIZABLE = 2048, TOPLEVEL_STATE_BOTTOM_TILED = 4096, TOPLEVEL_STATE_BOTTOM_RESIZABLE = 8192, TOPLEVEL_STATE_LEFT_TILED = 16384, TOPLEVEL_STATE_LEFT_RESIZABLE = 32768, TOPLEVEL_STATE_SUSPENDED = 65536, }
 TitlebarGesture :: enum u32 {TITLEBAR_GESTURE_DOUBLE_CLICK = 1, TITLEBAR_GESTURE_RIGHT_CLICK = 2, TITLEBAR_GESTURE_MIDDLE_CLICK = 3, }
-_GdkToplevel :: rawptr
+_GdkToplevel :: struct #packed {}
 Toplevel :: _GdkToplevel
-_GdkToplevelInterface :: rawptr
+_GdkToplevelInterface :: struct #packed {}
 ToplevelInterface :: _GdkToplevelInterface
 Toplevel_autoptr :: ^Toplevel
 Toplevel_listautoptr :: ^glib.List
 Toplevel_slistautoptr :: ^glib.SList
 Toplevel_queueautoptr :: ^glib.Queue
-_GdkToplevelSize :: rawptr
+_GdkToplevelSize :: struct #packed {}
 ToplevelSize :: _GdkToplevelSize
 VulkanContext_autoptr :: ^VulkanContext
 VulkanContext_listautoptr :: ^glib.List
@@ -387,18 +387,18 @@ SerializationError :: enum u32 {SERIALIZATION_UNSUPPORTED_FORMAT = 0, SERIALIZAT
 TransformCategory :: enum u32 {TRANSFORM_CATEGORY_UNKNOWN = 0, TRANSFORM_CATEGORY_ANY = 1, TRANSFORM_CATEGORY_3D = 2, TRANSFORM_CATEGORY_2D = 3, TRANSFORM_CATEGORY_2D_AFFINE = 4, TRANSFORM_CATEGORY_2D_TRANSLATE = 5, TRANSFORM_CATEGORY_IDENTITY = 6, }
 GLUniformType :: enum u32 {GL_UNIFORM_TYPE_NONE = 0, GL_UNIFORM_TYPE_FLOAT = 1, GL_UNIFORM_TYPE_INT = 2, GL_UNIFORM_TYPE_UINT = 3, GL_UNIFORM_TYPE_BOOL = 4, GL_UNIFORM_TYPE_VEC2 = 5, GL_UNIFORM_TYPE_VEC3 = 6, GL_UNIFORM_TYPE_VEC4 = 7, }
 MaskMode :: enum u32 {MASK_MODE_ALPHA = 0, MASK_MODE_INVERTED_ALPHA = 1, MASK_MODE_LUMINANCE = 2, MASK_MODE_INVERTED_LUMINANCE = 3, }
-_GskRenderer :: rawptr
+_GskRenderer :: struct #packed {}
 Renderer :: _GskRenderer
-_GskTransform :: rawptr
+_GskTransform :: struct #packed {}
 Transform :: _GskTransform
 _GskRoundedRect :: struct {
     bounds: graphene.rect_t,
     corner: [4]graphene.size_t,
 }
 RoundedRect :: _GskRoundedRect
-_GskShaderArgsBuilder :: rawptr
+_GskShaderArgsBuilder :: struct #packed {}
 ShaderArgsBuilder :: _GskShaderArgsBuilder
-_GskGLShader :: rawptr
+_GskGLShader :: struct #packed {}
 GLShader :: _GskGLShader
 GLShaderClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -411,7 +411,7 @@ GLShaderClass_autoptr :: ^GLShaderClass
 GLShaderClass_listautoptr :: ^glib.List
 GLShaderClass_slistautoptr :: ^glib.SList
 GLShaderClass_queueautoptr :: ^glib.Queue
-_GskRenderNode :: rawptr
+_GskRenderNode :: struct #packed {}
 RenderNode :: _GskRenderNode
 _GskColorStop :: struct {
     offset: f32,
@@ -434,65 +434,65 @@ _GskParseLocation :: struct {
 }
 ParseLocation :: _GskParseLocation
 ParseErrorFunc :: #type proc "c" (start: ^ParseLocation, end: ^ParseLocation, error: ^glib.Error, user_data: glib.pointer)
-_GskDebugNode :: rawptr
+_GskDebugNode :: struct #packed {}
 DebugNode :: _GskDebugNode
-_GskColorNode :: rawptr
+_GskColorNode :: struct #packed {}
 ColorNode :: _GskColorNode
-_GskTextureNode :: rawptr
+_GskTextureNode :: struct #packed {}
 TextureNode :: _GskTextureNode
-_GskTextureScaleNode :: rawptr
+_GskTextureScaleNode :: struct #packed {}
 TextureScaleNode :: _GskTextureScaleNode
-_GskLinearGradientNode :: rawptr
+_GskLinearGradientNode :: struct #packed {}
 LinearGradientNode :: _GskLinearGradientNode
-_GskRepeatingLinearGradientNode :: rawptr
+_GskRepeatingLinearGradientNode :: struct #packed {}
 RepeatingLinearGradientNode :: _GskRepeatingLinearGradientNode
-_GskRadialGradientNode :: rawptr
+_GskRadialGradientNode :: struct #packed {}
 RadialGradientNode :: _GskRadialGradientNode
-_GskRepeatingRadialGradientNode :: rawptr
+_GskRepeatingRadialGradientNode :: struct #packed {}
 RepeatingRadialGradientNode :: _GskRepeatingRadialGradientNode
-_GskConicGradientNode :: rawptr
+_GskConicGradientNode :: struct #packed {}
 ConicGradientNode :: _GskConicGradientNode
-_GskBorderNode :: rawptr
+_GskBorderNode :: struct #packed {}
 BorderNode :: _GskBorderNode
-_GskInsetShadowNode :: rawptr
+_GskInsetShadowNode :: struct #packed {}
 InsetShadowNode :: _GskInsetShadowNode
-_GskOutsetShadowNode :: rawptr
+_GskOutsetShadowNode :: struct #packed {}
 OutsetShadowNode :: _GskOutsetShadowNode
-_GskCairoNode :: rawptr
+_GskCairoNode :: struct #packed {}
 CairoNode :: _GskCairoNode
-_GskContainerNode :: rawptr
+_GskContainerNode :: struct #packed {}
 ContainerNode :: _GskContainerNode
-_GskTransformNode :: rawptr
+_GskTransformNode :: struct #packed {}
 TransformNode :: _GskTransformNode
-_GskOpacityNode :: rawptr
+_GskOpacityNode :: struct #packed {}
 OpacityNode :: _GskOpacityNode
-_GskColorMatrixNode :: rawptr
+_GskColorMatrixNode :: struct #packed {}
 ColorMatrixNode :: _GskColorMatrixNode
-_GskRepeatNode :: rawptr
+_GskRepeatNode :: struct #packed {}
 RepeatNode :: _GskRepeatNode
-_GskClipNode :: rawptr
+_GskClipNode :: struct #packed {}
 ClipNode :: _GskClipNode
-_GskRoundedClipNode :: rawptr
+_GskRoundedClipNode :: struct #packed {}
 RoundedClipNode :: _GskRoundedClipNode
-_GskShadowNode :: rawptr
+_GskShadowNode :: struct #packed {}
 ShadowNode :: _GskShadowNode
-_GskBlendNode :: rawptr
+_GskBlendNode :: struct #packed {}
 BlendNode :: _GskBlendNode
-_GskCrossFadeNode :: rawptr
+_GskCrossFadeNode :: struct #packed {}
 CrossFadeNode :: _GskCrossFadeNode
-_GskTextNode :: rawptr
+_GskTextNode :: struct #packed {}
 TextNode :: _GskTextNode
-_GskBlurNode :: rawptr
+_GskBlurNode :: struct #packed {}
 BlurNode :: _GskBlurNode
-_GskMaskNode :: rawptr
+_GskMaskNode :: struct #packed {}
 MaskNode :: _GskMaskNode
-_GskGLShaderNode :: rawptr
+_GskGLShaderNode :: struct #packed {}
 GLShaderNode :: _GskGLShaderNode
 RenderNode_autoptr :: ^RenderNode
 RenderNode_listautoptr :: ^glib.List
 RenderNode_slistautoptr :: ^glib.SList
 RenderNode_queueautoptr :: ^glib.Queue
-_GskRendererClass :: rawptr
+_GskRendererClass :: struct #packed {}
 RendererClass :: _GskRendererClass
 Renderer_autoptr :: ^Renderer
 Renderer_listautoptr :: ^glib.List
@@ -502,9 +502,9 @@ Transform_autoptr :: ^Transform
 Transform_listautoptr :: ^glib.List
 Transform_slistautoptr :: ^glib.SList
 Transform_queueautoptr :: ^glib.Queue
-_GskCairoRenderer :: rawptr
+_GskCairoRenderer :: struct #packed {}
 CairoRenderer :: _GskCairoRenderer
-_GskCairoRendererClass :: rawptr
+_GskCairoRendererClass :: struct #packed {}
 CairoRendererClass :: _GskCairoRendererClass
 Align :: enum u32 {ALIGN_FILL = 0, ALIGN_START = 1, ALIGN_END = 2, ALIGN_CENTER = 3, ALIGN_BASELINE_FILL = 4, ALIGN_BASELINE = 4, ALIGN_BASELINE_CENTER = 5, }
 ArrowType :: enum u32 {ARROW_UP = 0, ARROW_DOWN = 1, ARROW_LEFT = 2, ARROW_RIGHT = 3, ARROW_NONE = 4, }
@@ -582,54 +582,54 @@ _GtkAdjustment :: struct {
     parent_instance: gobj.InitiallyUnowned,
 }
 Adjustment :: _GtkAdjustment
-_GtkATContext :: rawptr
+_GtkATContext :: struct #packed {}
 ATContext :: _GtkATContext
-_GtkBitset :: rawptr
+_GtkBitset :: struct #packed {}
 Bitset :: _GtkBitset
-_GtkBuilder :: rawptr
+_GtkBuilder :: struct #packed {}
 Builder :: _GtkBuilder
-_GtkBuilderScope :: rawptr
+_GtkBuilderScope :: struct #packed {}
 BuilderScope :: _GtkBuilderScope
-_GtkCssStyleChange :: rawptr
+_GtkCssStyleChange :: struct #packed {}
 CssStyleChange :: _GtkCssStyleChange
-_GtkEventController :: rawptr
+_GtkEventController :: struct #packed {}
 EventController :: _GtkEventController
-_GtkGesture :: rawptr
+_GtkGesture :: struct #packed {}
 Gesture :: _GtkGesture
 _GtkLayoutManager :: struct {
     parent_instance: gobj.Object,
 }
 LayoutManager :: _GtkLayoutManager
-_GtkListItem :: rawptr
+_GtkListItem :: struct #packed {}
 ListItem :: _GtkListItem
-_GtkListItemFactory :: rawptr
+_GtkListItemFactory :: struct #packed {}
 ListItemFactory :: _GtkListItemFactory
-_GtkNative :: rawptr
+_GtkNative :: struct #packed {}
 Native :: _GtkNative
 _GtkRequisition :: struct {
     width: i32,
     height: i32,
 }
 Requisition :: _GtkRequisition
-_GtkRoot :: rawptr
+_GtkRoot :: struct #packed {}
 Root :: _GtkRoot
-_GtkScrollInfo :: rawptr
+_GtkScrollInfo :: struct #packed {}
 ScrollInfo :: _GtkScrollInfo
-_GtkSettings :: rawptr
+_GtkSettings :: struct #packed {}
 Settings :: _GtkSettings
-_GtkShortcut :: rawptr
+_GtkShortcut :: struct #packed {}
 Shortcut :: _GtkShortcut
-_GtkShortcutAction :: rawptr
+_GtkShortcutAction :: struct #packed {}
 ShortcutAction :: _GtkShortcutAction
-_GtkShortcutTrigger :: rawptr
+_GtkShortcutTrigger :: struct #packed {}
 ShortcutTrigger :: _GtkShortcutTrigger
 _GtkStyleContext :: struct {
     parent_object: gobj.Object,
 }
 StyleContext :: _GtkStyleContext
-_GtkTooltip :: rawptr
+_GtkTooltip :: struct #packed {}
 Tooltip :: _GtkTooltip
-_GtkWidgetPrivate :: rawptr
+_GtkWidgetPrivate :: struct #packed {}
 WidgetPrivate :: _GtkWidgetPrivate
 _GtkWidget :: struct {
     parent_instance: gobj.InitiallyUnowned,
@@ -653,7 +653,7 @@ ShortcutClass_slistautoptr :: ^glib.SList
 ShortcutClass_queueautoptr :: ^glib.Queue
 ShortcutFunc :: #type proc "c" (widget: ^Widget, args: [^]glib.Variant, user_data: glib.pointer) -> glib.boolean
 ShortcutActionFlags :: enum u32 {SHORTCUT_ACTION_EXCLUSIVE = 1, }
-_GtkShortcutActionClass :: rawptr
+_GtkShortcutActionClass :: struct #packed {}
 ShortcutActionClass :: _GtkShortcutActionClass
 ShortcutAction_autoptr :: ^ShortcutAction
 ShortcutAction_listautoptr :: ^glib.List
@@ -663,9 +663,9 @@ ShortcutActionClass_autoptr :: ^ShortcutActionClass
 ShortcutActionClass_listautoptr :: ^glib.List
 ShortcutActionClass_slistautoptr :: ^glib.SList
 ShortcutActionClass_queueautoptr :: ^glib.Queue
-_GtkNothingAction :: rawptr
+_GtkNothingAction :: struct #packed {}
 NothingAction :: _GtkNothingAction
-_GtkNothingActionClass :: rawptr
+_GtkNothingActionClass :: struct #packed {}
 NothingActionClass :: _GtkNothingActionClass
 NothingAction_autoptr :: ^NothingAction
 NothingAction_listautoptr :: ^glib.List
@@ -675,9 +675,9 @@ NothingActionClass_autoptr :: ^NothingActionClass
 NothingActionClass_listautoptr :: ^glib.List
 NothingActionClass_slistautoptr :: ^glib.SList
 NothingActionClass_queueautoptr :: ^glib.Queue
-_GtkCallbackAction :: rawptr
+_GtkCallbackAction :: struct #packed {}
 CallbackAction :: _GtkCallbackAction
-_GtkCallbackActionClass :: rawptr
+_GtkCallbackActionClass :: struct #packed {}
 CallbackActionClass :: _GtkCallbackActionClass
 CallbackAction_autoptr :: ^CallbackAction
 CallbackAction_listautoptr :: ^glib.List
@@ -687,9 +687,9 @@ CallbackActionClass_autoptr :: ^CallbackActionClass
 CallbackActionClass_listautoptr :: ^glib.List
 CallbackActionClass_slistautoptr :: ^glib.SList
 CallbackActionClass_queueautoptr :: ^glib.Queue
-_GtkMnemonicAction :: rawptr
+_GtkMnemonicAction :: struct #packed {}
 MnemonicAction :: _GtkMnemonicAction
-_GtkMnemonicActionClass :: rawptr
+_GtkMnemonicActionClass :: struct #packed {}
 MnemonicActionClass :: _GtkMnemonicActionClass
 MnemonicAction_autoptr :: ^MnemonicAction
 MnemonicAction_listautoptr :: ^glib.List
@@ -699,9 +699,9 @@ MnemonicActionClass_autoptr :: ^MnemonicActionClass
 MnemonicActionClass_listautoptr :: ^glib.List
 MnemonicActionClass_slistautoptr :: ^glib.SList
 MnemonicActionClass_queueautoptr :: ^glib.Queue
-_GtkActivateAction :: rawptr
+_GtkActivateAction :: struct #packed {}
 ActivateAction :: _GtkActivateAction
-_GtkActivateActionClass :: rawptr
+_GtkActivateActionClass :: struct #packed {}
 ActivateActionClass :: _GtkActivateActionClass
 ActivateAction_autoptr :: ^ActivateAction
 ActivateAction_listautoptr :: ^glib.List
@@ -711,9 +711,9 @@ ActivateActionClass_autoptr :: ^ActivateActionClass
 ActivateActionClass_listautoptr :: ^glib.List
 ActivateActionClass_slistautoptr :: ^glib.SList
 ActivateActionClass_queueautoptr :: ^glib.Queue
-_GtkSignalAction :: rawptr
+_GtkSignalAction :: struct #packed {}
 SignalAction :: _GtkSignalAction
-_GtkSignalActionClass :: rawptr
+_GtkSignalActionClass :: struct #packed {}
 SignalActionClass :: _GtkSignalActionClass
 SignalAction_autoptr :: ^SignalAction
 SignalAction_listautoptr :: ^glib.List
@@ -723,9 +723,9 @@ SignalActionClass_autoptr :: ^SignalActionClass
 SignalActionClass_listautoptr :: ^glib.List
 SignalActionClass_slistautoptr :: ^glib.SList
 SignalActionClass_queueautoptr :: ^glib.Queue
-_GtkNamedAction :: rawptr
+_GtkNamedAction :: struct #packed {}
 NamedAction :: _GtkNamedAction
-_GtkNamedActionClass :: rawptr
+_GtkNamedActionClass :: struct #packed {}
 NamedActionClass :: _GtkNamedActionClass
 NamedAction_autoptr :: ^NamedAction
 NamedAction_listautoptr :: ^glib.List
@@ -760,7 +760,7 @@ css_changed_func_ptr_anon_35 :: #type proc "c" (widget: ^Widget, change: ^CssSty
 system_setting_changed_func_ptr_anon_36 :: #type proc "c" (widget: ^Widget, settings: SystemSetting)
 snapshot_func_ptr_anon_37 :: #type proc "c" (widget: ^Widget, snapshot: ^Snapshot)
 contains_func_ptr_anon_38 :: #type proc "c" (widget: ^Widget, x: f64, y: f64) -> glib.boolean
-_GtkWidgetClassPrivate :: rawptr
+_GtkWidgetClassPrivate :: struct #packed {}
 WidgetClassPrivate :: _GtkWidgetClassPrivate
 _GtkWidgetClass :: struct {
     parent_class: gobj.InitiallyUnownedClass,
@@ -837,7 +837,7 @@ _GtkWindowClass :: struct {
     padding: [8]glib.pointer,
 }
 WindowClass :: _GtkWindowClass
-_GtkWindowGroupPrivate :: rawptr
+_GtkWindowGroupPrivate :: struct #packed {}
 WindowGroupPrivate :: _GtkWindowGroupPrivate
 _GtkWindowGroup :: struct {
     parent_instance: gobj.Object,
@@ -864,14 +864,14 @@ WindowGroup_autoptr :: ^WindowGroup
 WindowGroup_listautoptr :: ^glib.List
 WindowGroup_slistautoptr :: ^glib.SList
 WindowGroup_queueautoptr :: ^glib.Queue
-_GtkAboutDialog :: rawptr
+_GtkAboutDialog :: struct #packed {}
 AboutDialog :: _GtkAboutDialog
 License :: enum u32 {LICENSE_UNKNOWN = 0, LICENSE_CUSTOM = 1, LICENSE_GPL_2_0 = 2, LICENSE_GPL_3_0 = 3, LICENSE_LGPL_2_1 = 4, LICENSE_LGPL_3_0 = 5, LICENSE_BSD = 6, LICENSE_MIT_X11 = 7, LICENSE_ARTISTIC = 8, LICENSE_GPL_2_0_ONLY = 9, LICENSE_GPL_3_0_ONLY = 10, LICENSE_LGPL_2_1_ONLY = 11, LICENSE_LGPL_3_0_ONLY = 12, LICENSE_AGPL_3_0 = 13, LICENSE_AGPL_3_0_ONLY = 14, LICENSE_BSD_3 = 15, LICENSE_APACHE_2_0 = 16, LICENSE_MPL_2_0 = 17, }
 AboutDialog_autoptr :: ^AboutDialog
 AboutDialog_listautoptr :: ^glib.List
 AboutDialog_slistautoptr :: ^glib.SList
 AboutDialog_queueautoptr :: ^glib.Queue
-_GtkAccessible :: rawptr
+_GtkAccessible :: struct #packed {}
 Accessible :: _GtkAccessible
 et_at_context_func_ptr_anon_46 :: #type proc "c" (self: ^Accessible) -> ^ATContext
 AccessiblePlatformState :: enum u32 {ACCESSIBLE_PLATFORM_STATE_FOCUSABLE = 0, ACCESSIBLE_PLATFORM_STATE_FOCUSED = 1, ACCESSIBLE_PLATFORM_STATE_ACTIVE = 2, }
@@ -894,7 +894,7 @@ Accessible_autoptr :: ^Accessible
 Accessible_listautoptr :: ^glib.List
 Accessible_slistautoptr :: ^glib.SList
 Accessible_queueautoptr :: ^glib.Queue
-_GtkAccessibleRange :: rawptr
+_GtkAccessibleRange :: struct #packed {}
 AccessibleRange :: _GtkAccessibleRange
 set_current_value_func_ptr_anon_52 :: #type proc "c" (self: ^AccessibleRange, value: f64) -> glib.boolean
 _GtkAccessibleRangeInterface :: struct {
@@ -906,7 +906,7 @@ AccessibleRange_autoptr :: ^AccessibleRange
 AccessibleRange_listautoptr :: ^glib.List
 AccessibleRange_slistautoptr :: ^glib.SList
 AccessibleRange_queueautoptr :: ^glib.Queue
-_GtkActionable :: rawptr
+_GtkActionable :: struct #packed {}
 Actionable :: _GtkActionable
 et_action_name_func_ptr_anon_53 :: #type proc "c" (actionable: ^Actionable) -> cstring
 set_action_name_func_ptr_anon_54 :: #type proc "c" (actionable: ^Actionable, action_name: cstring)
@@ -924,7 +924,7 @@ Actionable_autoptr :: ^Actionable
 Actionable_listautoptr :: ^glib.List
 Actionable_slistautoptr :: ^glib.SList
 Actionable_queueautoptr :: ^glib.Queue
-_GtkActionBar :: rawptr
+_GtkActionBar :: struct #packed {}
 ActionBar :: _GtkActionBar
 ActionBar_autoptr :: ^ActionBar
 ActionBar_listautoptr :: ^glib.List
@@ -950,7 +950,7 @@ Adjustment_autoptr :: ^Adjustment
 Adjustment_listautoptr :: ^glib.List
 Adjustment_slistautoptr :: ^glib.SList
 Adjustment_queueautoptr :: ^glib.Queue
-_GtkAlertDialog :: rawptr
+_GtkAlertDialog :: struct #packed {}
 AlertDialog :: _GtkAlertDialog
 AlertDialogClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -963,7 +963,7 @@ AlertDialogClass_autoptr :: ^AlertDialogClass
 AlertDialogClass_listautoptr :: ^glib.List
 AlertDialogClass_slistautoptr :: ^glib.SList
 AlertDialogClass_queueautoptr :: ^glib.Queue
-_GtkAppChooser :: rawptr
+_GtkAppChooser :: struct #packed {}
 AppChooser :: _GtkAppChooser
 AppChooser_autoptr :: ^AppChooser
 AppChooser_listautoptr :: ^glib.List
@@ -988,25 +988,25 @@ Dialog_autoptr :: ^Dialog
 Dialog_listautoptr :: ^glib.List
 Dialog_slistautoptr :: ^glib.SList
 Dialog_queueautoptr :: ^glib.Queue
-_GtkAppChooserDialog :: rawptr
+_GtkAppChooserDialog :: struct #packed {}
 AppChooserDialog :: _GtkAppChooserDialog
 AppChooserDialog_autoptr :: ^AppChooserDialog
 AppChooserDialog_listautoptr :: ^glib.List
 AppChooserDialog_slistautoptr :: ^glib.SList
 AppChooserDialog_queueautoptr :: ^glib.Queue
-_GtkAppChooserWidget :: rawptr
+_GtkAppChooserWidget :: struct #packed {}
 AppChooserWidget :: _GtkAppChooserWidget
 AppChooserWidget_autoptr :: ^AppChooserWidget
 AppChooserWidget_listautoptr :: ^glib.List
 AppChooserWidget_slistautoptr :: ^glib.SList
 AppChooserWidget_queueautoptr :: ^glib.Queue
-_GtkAppChooserButton :: rawptr
+_GtkAppChooserButton :: struct #packed {}
 AppChooserButton :: _GtkAppChooserButton
 AppChooserButton_autoptr :: ^AppChooserButton
 AppChooserButton_listautoptr :: ^glib.List
 AppChooserButton_slistautoptr :: ^glib.SList
 AppChooserButton_queueautoptr :: ^glib.Queue
-_GtkShortcutsWindow :: rawptr
+_GtkShortcutsWindow :: struct #packed {}
 ShortcutsWindow :: _GtkShortcutsWindow
 ShortcutsWindow_autoptr :: ^ShortcutsWindow
 ShortcutsWindow_listautoptr :: ^glib.List
@@ -1025,23 +1025,23 @@ ApplicationWindow_autoptr :: ^ApplicationWindow
 ApplicationWindow_listautoptr :: ^glib.List
 ApplicationWindow_slistautoptr :: ^glib.SList
 ApplicationWindow_queueautoptr :: ^glib.Queue
-_GtkAspectFrame :: rawptr
+_GtkAspectFrame :: struct #packed {}
 AspectFrame :: _GtkAspectFrame
 AspectFrame_autoptr :: ^AspectFrame
 AspectFrame_listautoptr :: ^glib.List
 AspectFrame_slistautoptr :: ^glib.SList
 AspectFrame_queueautoptr :: ^glib.Queue
 AssistantPageType :: enum u32 {ASSISTANT_PAGE_CONTENT = 0, ASSISTANT_PAGE_INTRO = 1, ASSISTANT_PAGE_CONFIRM = 2, ASSISTANT_PAGE_SUMMARY = 3, ASSISTANT_PAGE_PROGRESS = 4, ASSISTANT_PAGE_CUSTOM = 5, }
-_GtkAssistant :: rawptr
+_GtkAssistant :: struct #packed {}
 Assistant :: _GtkAssistant
-_GtkAssistantPage :: rawptr
+_GtkAssistantPage :: struct #packed {}
 AssistantPage :: _GtkAssistantPage
 AssistantPageFunc :: #type proc "c" (current_page: i32, data: glib.pointer) -> i32
 Assistant_autoptr :: ^Assistant
 Assistant_listautoptr :: ^glib.List
 Assistant_slistautoptr :: ^glib.SList
 Assistant_queueautoptr :: ^glib.Queue
-_GtkATContextClass :: rawptr
+_GtkATContextClass :: struct #packed {}
 ATContextClass :: _GtkATContextClass
 ATContext_autoptr :: ^ATContext
 ATContext_listautoptr :: ^glib.List
@@ -1093,7 +1093,7 @@ LayoutManagerClass_autoptr :: ^LayoutManagerClass
 LayoutManagerClass_listautoptr :: ^glib.List
 LayoutManagerClass_slistautoptr :: ^glib.SList
 LayoutManagerClass_queueautoptr :: ^glib.Queue
-_GtkBinLayout :: rawptr
+_GtkBinLayout :: struct #packed {}
 BinLayout :: _GtkBinLayout
 BinLayoutClass :: struct {
     parent_class: LayoutManagerClass,
@@ -1114,7 +1114,7 @@ _GtkBitsetIter :: struct {
     private_data: [10]glib.pointer,
 }
 BitsetIter :: _GtkBitsetIter
-_GtkBookmarkList :: rawptr
+_GtkBookmarkList :: struct #packed {}
 BookmarkList :: _GtkBookmarkList
 BookmarkListClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -1127,24 +1127,24 @@ BookmarkListClass_autoptr :: ^BookmarkListClass
 BookmarkListClass_listautoptr :: ^glib.List
 BookmarkListClass_slistautoptr :: ^glib.SList
 BookmarkListClass_queueautoptr :: ^glib.Queue
-_GtkExpression :: rawptr
+_GtkExpression :: struct #packed {}
 Expression :: _GtkExpression
-_GtkExpressionWatch :: rawptr
+_GtkExpressionWatch :: struct #packed {}
 ExpressionWatch :: _GtkExpressionWatch
 ExpressionNotify :: #type proc "c" (user_data: glib.pointer)
 Expression_autoptr :: ^Expression
 Expression_listautoptr :: ^glib.List
 Expression_slistautoptr :: ^glib.SList
 Expression_queueautoptr :: ^glib.Queue
-_GtkPropertyExpression :: rawptr
+_GtkPropertyExpression :: struct #packed {}
 PropertyExpression :: _GtkPropertyExpression
-_GtkConstantExpression :: rawptr
+_GtkConstantExpression :: struct #packed {}
 ConstantExpression :: _GtkConstantExpression
-_GtkObjectExpression :: rawptr
+_GtkObjectExpression :: struct #packed {}
 ObjectExpression :: _GtkObjectExpression
-_GtkClosureExpression :: rawptr
+_GtkClosureExpression :: struct #packed {}
 ClosureExpression :: _GtkClosureExpression
-_GtkCClosureExpression :: rawptr
+_GtkCClosureExpression :: struct #packed {}
 CClosureExpression :: _GtkCClosureExpression
 ParamSpecExpression :: struct {
     parent_instance: gobj.ParamSpec,
@@ -1187,7 +1187,7 @@ FilterClass_autoptr :: ^FilterClass
 FilterClass_listautoptr :: ^glib.List
 FilterClass_slistautoptr :: ^glib.SList
 FilterClass_queueautoptr :: ^glib.Queue
-_GtkBoolFilter :: rawptr
+_GtkBoolFilter :: struct #packed {}
 BoolFilter :: _GtkBoolFilter
 BoolFilterClass :: struct {
     parent_class: FilterClass,
@@ -1200,7 +1200,7 @@ BoolFilterClass_autoptr :: ^BoolFilterClass
 BoolFilterClass_listautoptr :: ^glib.List
 BoolFilterClass_slistautoptr :: ^glib.SList
 BoolFilterClass_queueautoptr :: ^glib.Queue
-_GtkBoxLayout :: rawptr
+_GtkBoxLayout :: struct #packed {}
 BoxLayout :: _GtkBoxLayout
 BoxLayoutClass :: struct {
     parent_class: LayoutManagerClass,
@@ -1257,21 +1257,21 @@ BuilderCScopeClass_autoptr :: ^BuilderCScopeClass
 BuilderCScopeClass_listautoptr :: ^glib.List
 BuilderCScopeClass_slistautoptr :: ^glib.SList
 BuilderCScopeClass_queueautoptr :: ^glib.Queue
-_GtkBuilderClass :: rawptr
+_GtkBuilderClass :: struct #packed {}
 BuilderClass :: _GtkBuilderClass
 BuilderError :: enum u32 {BUILDER_ERROR_INVALID_TYPE_FUNCTION = 0, BUILDER_ERROR_UNHANDLED_TAG = 1, BUILDER_ERROR_MISSING_ATTRIBUTE = 2, BUILDER_ERROR_INVALID_ATTRIBUTE = 3, BUILDER_ERROR_INVALID_TAG = 4, BUILDER_ERROR_MISSING_PROPERTY_VALUE = 5, BUILDER_ERROR_INVALID_VALUE = 6, BUILDER_ERROR_VERSION_MISMATCH = 7, BUILDER_ERROR_DUPLICATE_ID = 8, BUILDER_ERROR_OBJECT_TYPE_REFUSED = 9, BUILDER_ERROR_TEMPLATE_MISMATCH = 10, BUILDER_ERROR_INVALID_PROPERTY = 11, BUILDER_ERROR_INVALID_SIGNAL = 12, BUILDER_ERROR_INVALID_ID = 13, BUILDER_ERROR_INVALID_FUNCTION = 14, }
 Builder_autoptr :: ^Builder
 Builder_listautoptr :: ^glib.List
 Builder_slistautoptr :: ^glib.SList
 Builder_queueautoptr :: ^glib.Queue
-_GtkBuildable :: rawptr
+_GtkBuildable :: struct #packed {}
 Buildable :: _GtkBuildable
 set_id_func_ptr_anon_88 :: #type proc "c" (buildable: ^Buildable, id: cstring)
 et_id_func_ptr_anon_89 :: #type proc "c" (buildable: ^Buildable) -> cstring
 add_child_func_ptr_anon_90 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, child: ^gobj.Object, type: cstring)
 set_buildable_property_func_ptr_anon_91 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, name: cstring, value: ^gobj.Value)
 construct_child_func_ptr_anon_92 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, name: cstring) -> ^gobj.Object
-_GtkBuildableParseContext :: rawptr
+_GtkBuildableParseContext :: struct #packed {}
 BuildableParseContext :: _GtkBuildableParseContext
 start_element_func_ptr_anon_84 :: #type proc "c" (context_p: ^BuildableParseContext, element_name: cstring, attribute_names: [^]cstring, attribute_values: [^]cstring, user_data: glib.pointer, error: ^^glib.Error)
 end_element_func_ptr_anon_85 :: #type proc "c" (context_p: ^BuildableParseContext, element_name: cstring, user_data: glib.pointer, error: ^^glib.Error)
@@ -1308,21 +1308,21 @@ Buildable_autoptr :: ^Buildable
 Buildable_listautoptr :: ^glib.List
 Buildable_slistautoptr :: ^glib.SList
 Buildable_queueautoptr :: ^glib.Queue
-_GtkListItemFactoryClass :: rawptr
+_GtkListItemFactoryClass :: struct #packed {}
 ListItemFactoryClass :: _GtkListItemFactoryClass
 ListItemFactory_autoptr :: ^ListItemFactory
 ListItemFactory_listautoptr :: ^glib.List
 ListItemFactory_slistautoptr :: ^glib.SList
 ListItemFactory_queueautoptr :: ^glib.Queue
-_GtkBuilderListItemFactory :: rawptr
+_GtkBuilderListItemFactory :: struct #packed {}
 BuilderListItemFactory :: _GtkBuilderListItemFactory
-_GtkBuilderListItemFactoryClass :: rawptr
+_GtkBuilderListItemFactoryClass :: struct #packed {}
 BuilderListItemFactoryClass :: _GtkBuilderListItemFactoryClass
 _GtkButton :: struct {
     parent_instance: Widget,
 }
 Button :: _GtkButton
-_GtkButtonPrivate :: rawptr
+_GtkButtonPrivate :: struct #packed {}
 ButtonPrivate :: _GtkButtonPrivate
 clicked_func_ptr_anon_98 :: #type proc "c" (button: ^Button)
 activate_func_ptr_anon_99 :: #type proc "c" (button: ^Button)
@@ -1337,13 +1337,13 @@ Button_autoptr :: ^Button
 Button_listautoptr :: ^glib.List
 Button_slistautoptr :: ^glib.SList
 Button_queueautoptr :: ^glib.Queue
-_GtkCalendar :: rawptr
+_GtkCalendar :: struct #packed {}
 Calendar :: _GtkCalendar
 Calendar_autoptr :: ^Calendar
 Calendar_listautoptr :: ^glib.List
 Calendar_slistautoptr :: ^glib.SList
 Calendar_queueautoptr :: ^glib.Queue
-_GtkCellEditable :: rawptr
+_GtkCellEditable :: struct #packed {}
 CellEditable :: _GtkCellEditable
 editing_done_func_ptr_anon_100 :: #type proc "c" (cell_editable: ^CellEditable)
 remove_widget_func_ptr_anon_101 :: #type proc "c" (cell_editable: ^CellEditable)
@@ -1361,7 +1361,7 @@ CellEditable_slistautoptr :: ^glib.SList
 CellEditable_queueautoptr :: ^glib.Queue
 CellRendererState :: enum u32 {CELL_RENDERER_SELECTED = 1, CELL_RENDERER_PRELIT = 2, CELL_RENDERER_INSENSITIVE = 4, CELL_RENDERER_SORTED = 8, CELL_RENDERER_FOCUSED = 16, CELL_RENDERER_EXPANDABLE = 32, CELL_RENDERER_EXPANDED = 64, }
 CellRendererMode :: enum u32 {CELL_RENDERER_MODE_INERT = 0, CELL_RENDERER_MODE_ACTIVATABLE = 1, CELL_RENDERER_MODE_EDITABLE = 2, }
-_GtkCellRendererPrivate :: rawptr
+_GtkCellRendererPrivate :: struct #packed {}
 CellRendererPrivate :: _GtkCellRendererPrivate
 _GtkCellRenderer :: struct {
     parent_instance: gobj.InitiallyUnowned,
@@ -1395,7 +1395,7 @@ _GtkCellRendererClass :: struct {
     padding: [8]glib.pointer,
 }
 CellRendererClass :: _GtkCellRendererClass
-_GtkCellRendererClassPrivate :: rawptr
+_GtkCellRendererClassPrivate :: struct #packed {}
 CellRendererClassPrivate :: _GtkCellRendererClassPrivate
 CellRenderer_autoptr :: ^CellRenderer
 CellRenderer_listautoptr :: ^glib.List
@@ -1408,11 +1408,11 @@ _GtkTreeIter :: struct {
     user_data3: glib.pointer,
 }
 TreeIter :: _GtkTreeIter
-_GtkTreePath :: rawptr
+_GtkTreePath :: struct #packed {}
 TreePath :: _GtkTreePath
-_GtkTreeRowReference :: rawptr
+_GtkTreeRowReference :: struct #packed {}
 TreeRowReference :: _GtkTreeRowReference
-_GtkTreeModel :: rawptr
+_GtkTreeModel :: struct #packed {}
 TreeModel :: _GtkTreeModel
 row_changed_func_ptr_anon_114 :: #type proc "c" (tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter)
 row_inserted_func_ptr_anon_115 :: #type proc "c" (tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter)
@@ -1533,13 +1533,13 @@ CellArea_autoptr :: ^CellArea
 CellArea_listautoptr :: ^glib.List
 CellArea_slistautoptr :: ^glib.SList
 CellArea_queueautoptr :: ^glib.Queue
-_GtkCellAreaBox :: rawptr
+_GtkCellAreaBox :: struct #packed {}
 CellAreaBox :: _GtkCellAreaBox
 CellAreaBox_autoptr :: ^CellAreaBox
 CellAreaBox_listautoptr :: ^glib.List
 CellAreaBox_slistautoptr :: ^glib.SList
 CellAreaBox_queueautoptr :: ^glib.Queue
-_GtkCellAreaContextPrivate :: rawptr
+_GtkCellAreaContextPrivate :: struct #packed {}
 CellAreaContextPrivate :: _GtkCellAreaContextPrivate
 allocate_func_ptr_anon_153 :: #type proc "c" (context_p: ^CellAreaContext, width: i32, height: i32)
 reset_func_ptr_anon_154 :: #type proc "c" (context_p: ^CellAreaContext)
@@ -1558,7 +1558,7 @@ CellAreaContext_autoptr :: ^CellAreaContext
 CellAreaContext_listautoptr :: ^glib.List
 CellAreaContext_slistautoptr :: ^glib.SList
 CellAreaContext_queueautoptr :: ^glib.Queue
-_GtkCellLayout :: rawptr
+_GtkCellLayout :: struct #packed {}
 CellLayout :: _GtkCellLayout
 pack_start_func_ptr_anon_157 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, expand: glib.boolean)
 pack_end_func_ptr_anon_158 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, expand: glib.boolean)
@@ -1602,60 +1602,60 @@ CellRendererText_autoptr :: ^CellRendererText
 CellRendererText_listautoptr :: ^glib.List
 CellRendererText_slistautoptr :: ^glib.SList
 CellRendererText_queueautoptr :: ^glib.Queue
-_GtkCellRendererAccel :: rawptr
+_GtkCellRendererAccel :: struct #packed {}
 CellRendererAccel :: _GtkCellRendererAccel
 CellRendererAccelMode :: enum u32 {CELL_RENDERER_ACCEL_MODE_GTK = 0, CELL_RENDERER_ACCEL_MODE_OTHER = 1, }
 CellRendererAccel_autoptr :: ^CellRendererAccel
 CellRendererAccel_listautoptr :: ^glib.List
 CellRendererAccel_slistautoptr :: ^glib.SList
 CellRendererAccel_queueautoptr :: ^glib.Queue
-_GtkCellRendererCombo :: rawptr
+_GtkCellRendererCombo :: struct #packed {}
 CellRendererCombo :: _GtkCellRendererCombo
 CellRendererCombo_autoptr :: ^CellRendererCombo
 CellRendererCombo_listautoptr :: ^glib.List
 CellRendererCombo_slistautoptr :: ^glib.SList
 CellRendererCombo_queueautoptr :: ^glib.Queue
-_GtkCellRendererPixbuf :: rawptr
+_GtkCellRendererPixbuf :: struct #packed {}
 CellRendererPixbuf :: _GtkCellRendererPixbuf
 CellRendererPixbuf_autoptr :: ^CellRendererPixbuf
 CellRendererPixbuf_listautoptr :: ^glib.List
 CellRendererPixbuf_slistautoptr :: ^glib.SList
 CellRendererPixbuf_queueautoptr :: ^glib.Queue
-_GtkCellRendererProgress :: rawptr
+_GtkCellRendererProgress :: struct #packed {}
 CellRendererProgress :: _GtkCellRendererProgress
 CellRendererProgress_autoptr :: ^CellRendererProgress
 CellRendererProgress_listautoptr :: ^glib.List
 CellRendererProgress_slistautoptr :: ^glib.SList
 CellRendererProgress_queueautoptr :: ^glib.Queue
-_GtkCellRendererSpin :: rawptr
+_GtkCellRendererSpin :: struct #packed {}
 CellRendererSpin :: _GtkCellRendererSpin
 CellRendererSpin_autoptr :: ^CellRendererSpin
 CellRendererSpin_listautoptr :: ^glib.List
 CellRendererSpin_slistautoptr :: ^glib.SList
 CellRendererSpin_queueautoptr :: ^glib.Queue
-_GtkCellRendererSpinner :: rawptr
+_GtkCellRendererSpinner :: struct #packed {}
 CellRendererSpinner :: _GtkCellRendererSpinner
 CellRendererSpinner_autoptr :: ^CellRendererSpinner
 CellRendererSpinner_listautoptr :: ^glib.List
 CellRendererSpinner_slistautoptr :: ^glib.SList
 CellRendererSpinner_queueautoptr :: ^glib.Queue
-_GtkCellRendererToggle :: rawptr
+_GtkCellRendererToggle :: struct #packed {}
 CellRendererToggle :: _GtkCellRendererToggle
 CellRendererToggle_autoptr :: ^CellRendererToggle
 CellRendererToggle_listautoptr :: ^glib.List
 CellRendererToggle_slistautoptr :: ^glib.SList
 CellRendererToggle_queueautoptr :: ^glib.Queue
-_GtkCellView :: rawptr
+_GtkCellView :: struct #packed {}
 CellView :: _GtkCellView
 CellView_autoptr :: ^CellView
 CellView_listautoptr :: ^glib.List
 CellView_slistautoptr :: ^glib.SList
 CellView_queueautoptr :: ^glib.Queue
-_GtkCenterBox :: rawptr
+_GtkCenterBox :: struct #packed {}
 CenterBox :: _GtkCenterBox
-_GtkCenterBoxClass :: rawptr
+_GtkCenterBoxClass :: struct #packed {}
 CenterBoxClass :: _GtkCenterBoxClass
-_GtkCenterLayout :: rawptr
+_GtkCenterLayout :: struct #packed {}
 CenterLayout :: _GtkCenterLayout
 CenterLayoutClass :: struct {
     parent_class: LayoutManagerClass,
@@ -1700,13 +1700,13 @@ CheckButton_autoptr :: ^CheckButton
 CheckButton_listautoptr :: ^glib.List
 CheckButton_slistautoptr :: ^glib.SList
 CheckButton_queueautoptr :: ^glib.Queue
-_GtkColorButton :: rawptr
+_GtkColorButton :: struct #packed {}
 ColorButton :: _GtkColorButton
 ColorButton_autoptr :: ^ColorButton
 ColorButton_listautoptr :: ^glib.List
 ColorButton_slistautoptr :: ^glib.SList
 ColorButton_queueautoptr :: ^glib.Queue
-_GtkColorChooser :: rawptr
+_GtkColorChooser :: struct #packed {}
 ColorChooser :: _GtkColorChooser
 et_rgba_func_ptr_anon_170 :: #type proc "c" (chooser: ^ColorChooser, color: ^RGBA)
 set_rgba_func_ptr_anon_171 :: #type proc "c" (chooser: ^ColorChooser, color: ^RGBA)
@@ -1725,19 +1725,19 @@ ColorChooser_autoptr :: ^ColorChooser
 ColorChooser_listautoptr :: ^glib.List
 ColorChooser_slistautoptr :: ^glib.SList
 ColorChooser_queueautoptr :: ^glib.Queue
-_GtkColorChooserDialog :: rawptr
+_GtkColorChooserDialog :: struct #packed {}
 ColorChooserDialog :: _GtkColorChooserDialog
 ColorChooserDialog_autoptr :: ^ColorChooserDialog
 ColorChooserDialog_listautoptr :: ^glib.List
 ColorChooserDialog_slistautoptr :: ^glib.SList
 ColorChooserDialog_queueautoptr :: ^glib.Queue
-_GtkColorChooserWidget :: rawptr
+_GtkColorChooserWidget :: struct #packed {}
 ColorChooserWidget :: _GtkColorChooserWidget
 ColorChooserWidget_autoptr :: ^ColorChooserWidget
 ColorChooserWidget_listautoptr :: ^glib.List
 ColorChooserWidget_slistautoptr :: ^glib.SList
 ColorChooserWidget_queueautoptr :: ^glib.Queue
-_GtkColorDialog :: rawptr
+_GtkColorDialog :: struct #packed {}
 ColorDialog :: _GtkColorDialog
 ColorDialogClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -1750,7 +1750,7 @@ ColorDialogClass_autoptr :: ^ColorDialogClass
 ColorDialogClass_listautoptr :: ^glib.List
 ColorDialogClass_slistautoptr :: ^glib.SList
 ColorDialogClass_queueautoptr :: ^glib.Queue
-_GtkColorDialogButton :: rawptr
+_GtkColorDialogButton :: struct #packed {}
 ColorDialogButton :: _GtkColorDialogButton
 ColorDialogButtonClass :: struct {
     parent_class: WidgetClass,
@@ -1801,7 +1801,7 @@ SorterClass_autoptr :: ^SorterClass
 SorterClass_listautoptr :: ^glib.List
 SorterClass_slistautoptr :: ^glib.SList
 SorterClass_queueautoptr :: ^glib.Queue
-_GtkSortListModel :: rawptr
+_GtkSortListModel :: struct #packed {}
 SortListModel :: _GtkSortListModel
 SortListModelClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -1814,7 +1814,7 @@ SortListModelClass_autoptr :: ^SortListModelClass
 SortListModelClass_listautoptr :: ^glib.List
 SortListModelClass_slistautoptr :: ^glib.SList
 SortListModelClass_queueautoptr :: ^glib.Queue
-_GtkSelectionModel :: rawptr
+_GtkSelectionModel :: struct #packed {}
 SelectionModel :: _GtkSelectionModel
 is_selected_func_ptr_anon_184 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_) -> glib.boolean
 et_selection_in_range_func_ptr_anon_185 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_, n_items: glib.uint_) -> ^Bitset
@@ -1842,13 +1842,13 @@ SelectionModel_autoptr :: ^SelectionModel
 SelectionModel_listautoptr :: ^glib.List
 SelectionModel_slistautoptr :: ^glib.SList
 SelectionModel_queueautoptr :: ^glib.Queue
-_GtkColumnView :: rawptr
+_GtkColumnView :: struct #packed {}
 ColumnView :: _GtkColumnView
-_GtkColumnViewClass :: rawptr
+_GtkColumnViewClass :: struct #packed {}
 ColumnViewClass :: _GtkColumnViewClass
-_GtkColumnViewColumn :: rawptr
+_GtkColumnViewColumn :: struct #packed {}
 ColumnViewColumn :: _GtkColumnViewColumn
-_GtkListItemClass :: rawptr
+_GtkListItemClass :: struct #packed {}
 ListItemClass :: _GtkListItemClass
 ListItem_autoptr :: ^ListItem
 ListItem_listautoptr :: ^glib.List
@@ -1858,9 +1858,9 @@ ListItemClass_autoptr :: ^ListItemClass
 ListItemClass_listautoptr :: ^glib.List
 ListItemClass_slistautoptr :: ^glib.SList
 ListItemClass_queueautoptr :: ^glib.Queue
-_GtkColumnViewCell :: rawptr
+_GtkColumnViewCell :: struct #packed {}
 ColumnViewCell :: _GtkColumnViewCell
-_GtkColumnViewCellClass :: rawptr
+_GtkColumnViewCellClass :: struct #packed {}
 ColumnViewCellClass :: _GtkColumnViewCellClass
 ColumnViewCell_autoptr :: ^ColumnViewCell
 ColumnViewCell_listautoptr :: ^glib.List
@@ -1874,11 +1874,11 @@ ColumnViewColumn_autoptr :: ^ColumnViewColumn
 ColumnViewColumn_listautoptr :: ^glib.List
 ColumnViewColumn_slistautoptr :: ^glib.SList
 ColumnViewColumn_queueautoptr :: ^glib.Queue
-_GtkColumnViewColumnClass :: rawptr
+_GtkColumnViewColumnClass :: struct #packed {}
 ColumnViewColumnClass :: _GtkColumnViewColumnClass
-_GtkColumnViewRow :: rawptr
+_GtkColumnViewRow :: struct #packed {}
 ColumnViewRow :: _GtkColumnViewRow
-_GtkColumnViewRowClass :: rawptr
+_GtkColumnViewRowClass :: struct #packed {}
 ColumnViewRowClass :: _GtkColumnViewRowClass
 ColumnViewRow_autoptr :: ^ColumnViewRow
 ColumnViewRow_listautoptr :: ^glib.List
@@ -1888,7 +1888,7 @@ ColumnViewRowClass_autoptr :: ^ColumnViewRowClass
 ColumnViewRowClass_listautoptr :: ^glib.List
 ColumnViewRowClass_slistautoptr :: ^glib.SList
 ColumnViewRowClass_queueautoptr :: ^glib.Queue
-_GtkColumnViewSorter :: rawptr
+_GtkColumnViewSorter :: struct #packed {}
 ColumnViewSorter :: _GtkColumnViewSorter
 ColumnViewSorterClass :: struct {
     parent_class: SorterClass,
@@ -1901,7 +1901,7 @@ ColumnViewSorterClass_autoptr :: ^ColumnViewSorterClass
 ColumnViewSorterClass_listautoptr :: ^glib.List
 ColumnViewSorterClass_slistautoptr :: ^glib.SList
 ColumnViewSorterClass_queueautoptr :: ^glib.Queue
-_GtkTreeSortable :: rawptr
+_GtkTreeSortable :: struct #packed {}
 TreeSortable :: _GtkTreeSortable
 sort_column_changed_func_ptr_anon_193 :: #type proc "c" (sortable: ^TreeSortable)
 et_sort_column_id_func_ptr_anon_194 :: #type proc "c" (sortable: ^TreeSortable, sort_column_id: ^i32, order: ^SortType) -> glib.boolean
@@ -1924,7 +1924,7 @@ TreeSortable_autoptr :: ^TreeSortable
 TreeSortable_listautoptr :: ^glib.List
 TreeSortable_slistautoptr :: ^glib.SList
 TreeSortable_queueautoptr :: ^glib.Queue
-_GtkTreeViewColumn :: rawptr
+_GtkTreeViewColumn :: struct #packed {}
 TreeViewColumn :: _GtkTreeViewColumn
 TreeViewColumnSizing :: enum u32 {TREE_VIEW_COLUMN_GROW_ONLY = 0, TREE_VIEW_COLUMN_AUTOSIZE = 1, TREE_VIEW_COLUMN_FIXED = 2, }
 TreeCellDataFunc :: #type proc "c" (tree_column: ^TreeViewColumn, cell: ^CellRenderer, tree_model: ^TreeModel, iter: ^TreeIter, data: glib.pointer)
@@ -1932,7 +1932,7 @@ TreeViewColumn_autoptr :: ^TreeViewColumn
 TreeViewColumn_listautoptr :: ^glib.List
 TreeViewColumn_slistautoptr :: ^glib.SList
 TreeViewColumn_queueautoptr :: ^glib.Queue
-_GtkEditable :: rawptr
+_GtkEditable :: struct #packed {}
 Editable :: _GtkEditable
 insert_text_func_ptr_anon_199 :: #type proc "c" (editable: ^Editable, text: cstring, length: i32, position: ^i32)
 delete_text_func_ptr_anon_200 :: #type proc "c" (editable: ^Editable, start_pos: i32, end_pos: i32)
@@ -2059,7 +2059,7 @@ EntryBuffer_autoptr :: ^EntryBuffer
 EntryBuffer_listautoptr :: ^glib.List
 EntryBuffer_slistautoptr :: ^glib.SList
 EntryBuffer_queueautoptr :: ^glib.Queue
-_GtkListStorePrivate :: rawptr
+_GtkListStorePrivate :: struct #packed {}
 ListStorePrivate :: _GtkListStorePrivate
 _GtkListStore :: struct {
     parent: gobj.Object,
@@ -2077,7 +2077,7 @@ ListStore_slistautoptr :: ^glib.SList
 ListStore_queueautoptr :: ^glib.Queue
 TreeModelFilterVisibleFunc :: #type proc "c" (model: ^TreeModel, iter: ^TreeIter, data: glib.pointer) -> glib.boolean
 TreeModelFilterModifyFunc :: #type proc "c" (model: ^TreeModel, iter: ^TreeIter, value: ^gobj.Value, column: i32, data: glib.pointer)
-_GtkTreeModelFilterPrivate :: rawptr
+_GtkTreeModelFilterPrivate :: struct #packed {}
 TreeModelFilterPrivate :: _GtkTreeModelFilterPrivate
 _GtkTreeModelFilter :: struct {
     parent: gobj.Object,
@@ -2097,14 +2097,14 @@ TreeModelFilter_autoptr :: ^TreeModelFilter
 TreeModelFilter_listautoptr :: ^glib.List
 TreeModelFilter_slistautoptr :: ^glib.SList
 TreeModelFilter_queueautoptr :: ^glib.Queue
-_GtkEntryCompletion :: rawptr
+_GtkEntryCompletion :: struct #packed {}
 EntryCompletion :: _GtkEntryCompletion
 EntryCompletionMatchFunc :: #type proc "c" (completion: ^EntryCompletion, key: cstring, iter: ^TreeIter, user_data: glib.pointer) -> glib.boolean
 EntryCompletion_autoptr :: ^EntryCompletion
 EntryCompletion_listautoptr :: ^glib.List
 EntryCompletion_slistautoptr :: ^glib.SList
 EntryCompletion_queueautoptr :: ^glib.Queue
-_GtkImage :: rawptr
+_GtkImage :: struct #packed {}
 Image :: _GtkImage
 ImageType :: enum u32 {IMAGE_EMPTY = 0, IMAGE_ICON_NAME = 1, IMAGE_GICON = 2, IMAGE_PAINTABLE = 3, }
 Image_autoptr :: ^Image
@@ -2167,7 +2167,7 @@ _GtkTreeViewClass :: struct {
     _reserved: [16]glib.pointer,
 }
 TreeViewClass :: _GtkTreeViewClass
-_GtkTreeSelection :: rawptr
+_GtkTreeSelection :: struct #packed {}
 TreeSelection :: _GtkTreeSelection
 TreeViewColumnDropFunc :: #type proc "c" (tree_view: ^TreeView, column: ^TreeViewColumn, prev_column: ^TreeViewColumn, next_column: ^TreeViewColumn, data: glib.pointer) -> glib.boolean
 TreeViewMappingFunc :: #type proc "c" (tree_view: ^TreeView, path: ^TreePath, user_data: glib.pointer)
@@ -2196,21 +2196,21 @@ ComboBox_autoptr :: ^ComboBox
 ComboBox_listautoptr :: ^glib.List
 ComboBox_slistautoptr :: ^glib.SList
 ComboBox_queueautoptr :: ^glib.Queue
-_GtkComboBoxText :: rawptr
+_GtkComboBoxText :: struct #packed {}
 ComboBoxText :: _GtkComboBoxText
 ComboBoxText_autoptr :: ^ComboBoxText
 ComboBoxText_listautoptr :: ^glib.List
 ComboBoxText_slistautoptr :: ^glib.SList
 ComboBoxText_queueautoptr :: ^glib.Queue
-_GtkConstraintTarget :: rawptr
+_GtkConstraintTarget :: struct #packed {}
 ConstraintTarget :: _GtkConstraintTarget
-_GtkConstraintTargetInterface :: rawptr
+_GtkConstraintTargetInterface :: struct #packed {}
 ConstraintTargetInterface :: _GtkConstraintTargetInterface
 ConstraintTarget_autoptr :: ^ConstraintTarget
 ConstraintTarget_listautoptr :: ^glib.List
 ConstraintTarget_slistautoptr :: ^glib.SList
 ConstraintTarget_queueautoptr :: ^glib.Queue
-_GtkConstraint :: rawptr
+_GtkConstraint :: struct #packed {}
 Constraint :: _GtkConstraint
 ConstraintClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -2223,7 +2223,7 @@ ConstraintClass_autoptr :: ^ConstraintClass
 ConstraintClass_listautoptr :: ^glib.List
 ConstraintClass_slistautoptr :: ^glib.SList
 ConstraintClass_queueautoptr :: ^glib.Queue
-_GtkConstraintGuide :: rawptr
+_GtkConstraintGuide :: struct #packed {}
 ConstraintGuide :: _GtkConstraintGuide
 ConstraintGuideClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -2236,7 +2236,7 @@ ConstraintGuideClass_autoptr :: ^ConstraintGuideClass
 ConstraintGuideClass_listautoptr :: ^glib.List
 ConstraintGuideClass_slistautoptr :: ^glib.SList
 ConstraintGuideClass_queueautoptr :: ^glib.Queue
-_GtkConstraintLayoutChild :: rawptr
+_GtkConstraintLayoutChild :: struct #packed {}
 ConstraintLayoutChild :: _GtkConstraintLayoutChild
 ConstraintLayoutChildClass :: struct {
     parent_class: LayoutChildClass,
@@ -2249,7 +2249,7 @@ ConstraintLayoutChildClass_autoptr :: ^ConstraintLayoutChildClass
 ConstraintLayoutChildClass_listautoptr :: ^glib.List
 ConstraintLayoutChildClass_slistautoptr :: ^glib.SList
 ConstraintLayoutChildClass_queueautoptr :: ^glib.Queue
-_GtkConstraintLayout :: rawptr
+_GtkConstraintLayout :: struct #packed {}
 ConstraintLayout :: _GtkConstraintLayout
 ConstraintLayoutClass :: struct {
     parent_class: LayoutManagerClass,
@@ -2266,9 +2266,9 @@ _GtkCssProvider :: struct {
     parent_instance: gobj.Object,
 }
 CssProvider :: _GtkCssProvider
-_GtkCssProviderClass :: rawptr
+_GtkCssProviderClass :: struct #packed {}
 CssProviderClass :: _GtkCssProviderClass
-_GtkCssProviderPrivate :: rawptr
+_GtkCssProviderPrivate :: struct #packed {}
 CssProviderPrivate :: _GtkCssProviderPrivate
 CssProvider_autoptr :: ^CssProvider
 CssProvider_listautoptr :: ^glib.List
@@ -2277,7 +2277,7 @@ CssProvider_queueautoptr :: ^glib.Queue
 CustomRequestModeFunc :: #type proc "c" (widget: ^Widget) -> SizeRequestMode
 CustomMeasureFunc :: #type proc "c" (widget: ^Widget, orientation: Orientation, for_size: i32, minimum: ^i32, natural: ^i32, minimum_baseline: ^i32, natural_baseline: ^i32)
 CustomAllocateFunc :: #type proc "c" (widget: ^Widget, width: i32, height: i32, baseline: i32)
-_GtkCustomLayout :: rawptr
+_GtkCustomLayout :: struct #packed {}
 CustomLayout :: _GtkCustomLayout
 CustomLayoutClass :: struct {
     parent_class: LayoutManagerClass,
@@ -2290,7 +2290,7 @@ CustomLayoutClass_autoptr :: ^CustomLayoutClass
 CustomLayoutClass_listautoptr :: ^glib.List
 CustomLayoutClass_slistautoptr :: ^glib.SList
 CustomLayoutClass_queueautoptr :: ^glib.Queue
-_GtkCustomSorter :: rawptr
+_GtkCustomSorter :: struct #packed {}
 CustomSorter :: _GtkCustomSorter
 CustomSorterClass :: struct {
     parent_class: SorterClass,
@@ -2305,7 +2305,7 @@ CustomSorterClass_slistautoptr :: ^glib.SList
 CustomSorterClass_queueautoptr :: ^glib.Queue
 DebugFlags :: enum u32 {DEBUG_TEXT = 1, DEBUG_TREE = 2, DEBUG_KEYBINDINGS = 4, DEBUG_MODULES = 8, DEBUG_GEOMETRY = 16, DEBUG_ICONTHEME = 32, DEBUG_PRINTING = 64, DEBUG_BUILDER = 128, DEBUG_SIZE_REQUEST = 256, DEBUG_NO_CSS_CACHE = 512, DEBUG_INTERACTIVE = 1024, DEBUG_ACTIONS = 4096, DEBUG_LAYOUT = 8192, DEBUG_SNAPSHOT = 16384, DEBUG_CONSTRAINTS = 32768, DEBUG_BUILDER_OBJECTS = 65536, DEBUG_A11Y = 131072, DEBUG_ICONFALLBACK = 262144, DEBUG_INVERT_TEXT_DIR = 524288, }
 DialogError :: enum u32 {DIALOG_ERROR_FAILED = 0, DIALOG_ERROR_CANCELLED = 1, DIALOG_ERROR_DISMISSED = 2, }
-_GtkDirectoryList :: rawptr
+_GtkDirectoryList :: struct #packed {}
 DirectoryList :: _GtkDirectoryList
 DirectoryListClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -2318,7 +2318,7 @@ DirectoryListClass_autoptr :: ^DirectoryListClass
 DirectoryListClass_listautoptr :: ^glib.List
 DirectoryListClass_slistautoptr :: ^glib.SList
 DirectoryListClass_queueautoptr :: ^glib.Queue
-_GtkDragIcon :: rawptr
+_GtkDragIcon :: struct #packed {}
 DragIcon :: _GtkDragIcon
 DragIconClass :: struct {
     parent_class: WidgetClass,
@@ -2331,9 +2331,9 @@ DragIconClass_autoptr :: ^DragIconClass
 DragIconClass_listautoptr :: ^glib.List
 DragIconClass_slistautoptr :: ^glib.SList
 DragIconClass_queueautoptr :: ^glib.Queue
-_GtkDragSource :: rawptr
+_GtkDragSource :: struct #packed {}
 DragSource :: _GtkDragSource
-_GtkDragSourceClass :: rawptr
+_GtkDragSourceClass :: struct #packed {}
 DragSourceClass :: _GtkDragSourceClass
 _GtkDrawingArea :: struct {
     widget: Widget,
@@ -2351,26 +2351,26 @@ DrawingArea_autoptr :: ^DrawingArea
 DrawingArea_listautoptr :: ^glib.List
 DrawingArea_slistautoptr :: ^glib.SList
 DrawingArea_queueautoptr :: ^glib.Queue
-_GtkEventControllerClass :: rawptr
+_GtkEventControllerClass :: struct #packed {}
 EventControllerClass :: _GtkEventControllerClass
 EventController_autoptr :: ^EventController
 EventController_listautoptr :: ^glib.List
 EventController_slistautoptr :: ^glib.SList
 EventController_queueautoptr :: ^glib.Queue
-_GtkDropControllerMotion :: rawptr
+_GtkDropControllerMotion :: struct #packed {}
 DropControllerMotion :: _GtkDropControllerMotion
-_GtkDropControllerMotionClass :: rawptr
+_GtkDropControllerMotionClass :: struct #packed {}
 DropControllerMotionClass :: _GtkDropControllerMotionClass
-_GtkDropTarget :: rawptr
+_GtkDropTarget :: struct #packed {}
 DropTarget :: _GtkDropTarget
-_GtkDropTargetClass :: rawptr
+_GtkDropTargetClass :: struct #packed {}
 DropTargetClass :: _GtkDropTargetClass
-_GtkDropTargetAsync :: rawptr
+_GtkDropTargetAsync :: struct #packed {}
 DropTargetAsync :: _GtkDropTargetAsync
-_GtkDropTargetAsyncClass :: rawptr
+_GtkDropTargetAsyncClass :: struct #packed {}
 DropTargetAsyncClass :: _GtkDropTargetAsyncClass
 StringFilterMatchMode :: enum u32 {STRING_FILTER_MATCH_MODE_EXACT = 0, STRING_FILTER_MATCH_MODE_SUBSTRING = 1, STRING_FILTER_MATCH_MODE_PREFIX = 2, }
-_GtkStringFilter :: rawptr
+_GtkStringFilter :: struct #packed {}
 StringFilter :: _GtkStringFilter
 StringFilterClass :: struct {
     parent_class: FilterClass,
@@ -2383,7 +2383,7 @@ StringFilterClass_autoptr :: ^StringFilterClass
 StringFilterClass_listautoptr :: ^glib.List
 StringFilterClass_slistautoptr :: ^glib.SList
 StringFilterClass_queueautoptr :: ^glib.Queue
-_GtkDropDown :: rawptr
+_GtkDropDown :: struct #packed {}
 DropDown :: _GtkDropDown
 DropDownClass :: struct {
     parent_class: WidgetClass,
@@ -2396,7 +2396,7 @@ DropDownClass_autoptr :: ^DropDownClass
 DropDownClass_listautoptr :: ^glib.List
 DropDownClass_slistautoptr :: ^glib.SList
 DropDownClass_queueautoptr :: ^glib.Queue
-_GtkEditableLabel :: rawptr
+_GtkEditableLabel :: struct #packed {}
 EditableLabel :: _GtkEditableLabel
 EditableLabelClass :: struct {
     parent_class: WidgetClass,
@@ -2409,32 +2409,32 @@ EditableLabelClass_autoptr :: ^EditableLabelClass
 EditableLabelClass_listautoptr :: ^glib.List
 EditableLabelClass_slistautoptr :: ^glib.SList
 EditableLabelClass_queueautoptr :: ^glib.Queue
-_GtkEmojiChooser :: rawptr
+_GtkEmojiChooser :: struct #packed {}
 EmojiChooser :: _GtkEmojiChooser
-_GtkEmojiChooserClass :: rawptr
+_GtkEmojiChooserClass :: struct #packed {}
 EmojiChooserClass :: _GtkEmojiChooserClass
-_GtkEventControllerFocus :: rawptr
+_GtkEventControllerFocus :: struct #packed {}
 EventControllerFocus :: _GtkEventControllerFocus
-_GtkEventControllerFocusClass :: rawptr
+_GtkEventControllerFocusClass :: struct #packed {}
 EventControllerFocusClass :: _GtkEventControllerFocusClass
-_GtkEventControllerKey :: rawptr
+_GtkEventControllerKey :: struct #packed {}
 EventControllerKey :: _GtkEventControllerKey
-_GtkEventControllerKeyClass :: rawptr
+_GtkEventControllerKeyClass :: struct #packed {}
 EventControllerKeyClass :: _GtkEventControllerKeyClass
-_GtkEventControllerLegacy :: rawptr
+_GtkEventControllerLegacy :: struct #packed {}
 EventControllerLegacy :: _GtkEventControllerLegacy
-_GtkEventControllerLegacyClass :: rawptr
+_GtkEventControllerLegacyClass :: struct #packed {}
 EventControllerLegacyClass :: _GtkEventControllerLegacyClass
-_GtkEventControllerMotion :: rawptr
+_GtkEventControllerMotion :: struct #packed {}
 EventControllerMotion :: _GtkEventControllerMotion
-_GtkEventControllerMotionClass :: rawptr
+_GtkEventControllerMotionClass :: struct #packed {}
 EventControllerMotionClass :: _GtkEventControllerMotionClass
-_GtkEventControllerScroll :: rawptr
+_GtkEventControllerScroll :: struct #packed {}
 EventControllerScroll :: _GtkEventControllerScroll
-_GtkEventControllerScrollClass :: rawptr
+_GtkEventControllerScrollClass :: struct #packed {}
 EventControllerScrollClass :: _GtkEventControllerScrollClass
 EventControllerScrollFlags :: enum u32 {EVENT_CONTROLLER_SCROLL_NONE = 0, EVENT_CONTROLLER_SCROLL_VERTICAL = 1, EVENT_CONTROLLER_SCROLL_HORIZONTAL = 2, EVENT_CONTROLLER_SCROLL_DISCRETE = 4, EVENT_CONTROLLER_SCROLL_KINETIC = 8, EVENT_CONTROLLER_SCROLL_BOTH_AXES = 3, }
-_GtkExpander :: rawptr
+_GtkExpander :: struct #packed {}
 Expander :: _GtkExpander
 Expander_autoptr :: ^Expander
 Expander_listautoptr :: ^glib.List
@@ -2453,7 +2453,7 @@ Fixed_autoptr :: ^Fixed
 Fixed_listautoptr :: ^glib.List
 Fixed_slistautoptr :: ^glib.SList
 Fixed_queueautoptr :: ^glib.Queue
-_GtkFixedLayout :: rawptr
+_GtkFixedLayout :: struct #packed {}
 FixedLayout :: _GtkFixedLayout
 FixedLayoutClass :: struct {
     parent_class: LayoutManagerClass,
@@ -2466,7 +2466,7 @@ FixedLayoutClass_autoptr :: ^FixedLayoutClass
 FixedLayoutClass_listautoptr :: ^glib.List
 FixedLayoutClass_slistautoptr :: ^glib.SList
 FixedLayoutClass_queueautoptr :: ^glib.Queue
-_GtkFixedLayoutChild :: rawptr
+_GtkFixedLayoutChild :: struct #packed {}
 FixedLayoutChild :: _GtkFixedLayoutChild
 FixedLayoutChildClass :: struct {
     parent_class: LayoutChildClass,
@@ -2479,17 +2479,17 @@ FixedLayoutChildClass_autoptr :: ^FixedLayoutChildClass
 FixedLayoutChildClass_listautoptr :: ^glib.List
 FixedLayoutChildClass_slistautoptr :: ^glib.SList
 FixedLayoutChildClass_queueautoptr :: ^glib.Queue
-_GtkFileFilter :: rawptr
+_GtkFileFilter :: struct #packed {}
 FileFilter :: _GtkFileFilter
 FileFilter_autoptr :: ^FileFilter
 FileFilter_listautoptr :: ^glib.List
 FileFilter_slistautoptr :: ^glib.SList
 FileFilter_queueautoptr :: ^glib.Queue
-_GtkFileChooser :: rawptr
+_GtkFileChooser :: struct #packed {}
 FileChooser :: _GtkFileChooser
 FileChooserAction :: enum u32 {FILE_CHOOSER_ACTION_OPEN = 0, FILE_CHOOSER_ACTION_SAVE = 1, FILE_CHOOSER_ACTION_SELECT_FOLDER = 2, }
 FileChooserError :: enum u32 {FILE_CHOOSER_ERROR_NONEXISTENT = 0, FILE_CHOOSER_ERROR_BAD_FILENAME = 1, FILE_CHOOSER_ERROR_ALREADY_EXISTS = 2, FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME = 3, }
-_GtkFileChooserDialog :: rawptr
+_GtkFileChooserDialog :: struct #packed {}
 FileChooserDialog :: _GtkFileChooserDialog
 FileChooserDialog_autoptr :: ^FileChooserDialog
 FileChooserDialog_listautoptr :: ^glib.List
@@ -2525,7 +2525,7 @@ NativeDialogClass_autoptr :: ^NativeDialogClass
 NativeDialogClass_listautoptr :: ^glib.List
 NativeDialogClass_slistautoptr :: ^glib.SList
 NativeDialogClass_queueautoptr :: ^glib.Queue
-_GtkFileChooserNative :: rawptr
+_GtkFileChooserNative :: struct #packed {}
 FileChooserNative :: _GtkFileChooserNative
 FileChooserNativeClass :: struct {
     parent_class: NativeDialogClass,
@@ -2538,13 +2538,13 @@ FileChooserNativeClass_autoptr :: ^FileChooserNativeClass
 FileChooserNativeClass_listautoptr :: ^glib.List
 FileChooserNativeClass_slistautoptr :: ^glib.SList
 FileChooserNativeClass_queueautoptr :: ^glib.Queue
-_GtkFileChooserWidget :: rawptr
+_GtkFileChooserWidget :: struct #packed {}
 FileChooserWidget :: _GtkFileChooserWidget
 FileChooserWidget_autoptr :: ^FileChooserWidget
 FileChooserWidget_listautoptr :: ^glib.List
 FileChooserWidget_slistautoptr :: ^glib.SList
 FileChooserWidget_queueautoptr :: ^glib.Queue
-_GtkFileDialog :: rawptr
+_GtkFileDialog :: struct #packed {}
 FileDialog :: _GtkFileDialog
 FileDialogClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -2557,7 +2557,7 @@ FileDialogClass_autoptr :: ^FileDialogClass
 FileDialogClass_listautoptr :: ^glib.List
 FileDialogClass_slistautoptr :: ^glib.SList
 FileDialogClass_queueautoptr :: ^glib.Queue
-_GtkFileLauncher :: rawptr
+_GtkFileLauncher :: struct #packed {}
 FileLauncher :: _GtkFileLauncher
 FileLauncherClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -2570,7 +2570,7 @@ FileLauncherClass_autoptr :: ^FileLauncherClass
 FileLauncherClass_listautoptr :: ^glib.List
 FileLauncherClass_slistautoptr :: ^glib.SList
 FileLauncherClass_queueautoptr :: ^glib.Queue
-_GtkFilterListModel :: rawptr
+_GtkFilterListModel :: struct #packed {}
 FilterListModel :: _GtkFilterListModel
 FilterListModelClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -2584,7 +2584,7 @@ FilterListModelClass_listautoptr :: ^glib.List
 FilterListModelClass_slistautoptr :: ^glib.SList
 FilterListModelClass_queueautoptr :: ^glib.Queue
 CustomFilterFunc :: #type proc "c" (item: glib.pointer, user_data: glib.pointer) -> glib.boolean
-_GtkCustomFilter :: rawptr
+_GtkCustomFilter :: struct #packed {}
 CustomFilter :: _GtkCustomFilter
 CustomFilterClass :: struct {
     parent_class: FilterClass,
@@ -2597,7 +2597,7 @@ CustomFilterClass_autoptr :: ^CustomFilterClass
 CustomFilterClass_listautoptr :: ^glib.List
 CustomFilterClass_slistautoptr :: ^glib.SList
 CustomFilterClass_queueautoptr :: ^glib.Queue
-_GtkFlattenListModel :: rawptr
+_GtkFlattenListModel :: struct #packed {}
 FlattenListModel :: _GtkFlattenListModel
 FlattenListModelClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -2610,7 +2610,7 @@ FlattenListModelClass_autoptr :: ^FlattenListModelClass
 FlattenListModelClass_listautoptr :: ^glib.List
 FlattenListModelClass_slistautoptr :: ^glib.SList
 FlattenListModelClass_queueautoptr :: ^glib.Queue
-_GtkFlowBox :: rawptr
+_GtkFlowBox :: struct #packed {}
 FlowBox :: _GtkFlowBox
 _GtkFlowBoxChild :: struct {
     parent_instance: Widget,
@@ -2635,7 +2635,7 @@ FlowBoxChild_autoptr :: ^FlowBoxChild
 FlowBoxChild_listautoptr :: ^glib.List
 FlowBoxChild_slistautoptr :: ^glib.SList
 FlowBoxChild_queueautoptr :: ^glib.Queue
-_GtkFontButton :: rawptr
+_GtkFontButton :: struct #packed {}
 FontButton :: _GtkFontButton
 FontButton_autoptr :: ^FontButton
 FontButton_listautoptr :: ^glib.List
@@ -2643,7 +2643,7 @@ FontButton_slistautoptr :: ^glib.SList
 FontButton_queueautoptr :: ^glib.Queue
 FontFilterFunc :: #type proc "c" (family: ^pango.FontFamily, face: ^pango.FontFace, data: glib.pointer) -> glib.boolean
 FontChooserLevel :: enum u32 {FONT_CHOOSER_LEVEL_FAMILY = 0, FONT_CHOOSER_LEVEL_STYLE = 1, FONT_CHOOSER_LEVEL_SIZE = 2, FONT_CHOOSER_LEVEL_VARIATIONS = 4, FONT_CHOOSER_LEVEL_FEATURES = 8, }
-_GtkFontChooser :: rawptr
+_GtkFontChooser :: struct #packed {}
 FontChooser :: _GtkFontChooser
 et_font_family_func_ptr_anon_275 :: #type proc "c" (fontchooser: ^FontChooser) -> ^pango.FontFamily
 et_font_face_func_ptr_anon_276 :: #type proc "c" (fontchooser: ^FontChooser) -> ^pango.FontFace
@@ -2668,19 +2668,19 @@ FontChooser_autoptr :: ^FontChooser
 FontChooser_listautoptr :: ^glib.List
 FontChooser_slistautoptr :: ^glib.SList
 FontChooser_queueautoptr :: ^glib.Queue
-_GtkFontChooserDialog :: rawptr
+_GtkFontChooserDialog :: struct #packed {}
 FontChooserDialog :: _GtkFontChooserDialog
 FontChooserDialog_autoptr :: ^FontChooserDialog
 FontChooserDialog_listautoptr :: ^glib.List
 FontChooserDialog_slistautoptr :: ^glib.SList
 FontChooserDialog_queueautoptr :: ^glib.Queue
-_GtkFontChooserWidget :: rawptr
+_GtkFontChooserWidget :: struct #packed {}
 FontChooserWidget :: _GtkFontChooserWidget
 FontChooserWidget_autoptr :: ^FontChooserWidget
 FontChooserWidget_listautoptr :: ^glib.List
 FontChooserWidget_slistautoptr :: ^glib.SList
 FontChooserWidget_queueautoptr :: ^glib.Queue
-_GtkFontDialog :: rawptr
+_GtkFontDialog :: struct #packed {}
 FontDialog :: _GtkFontDialog
 FontDialogClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -2693,7 +2693,7 @@ FontDialogClass_autoptr :: ^FontDialogClass
 FontDialogClass_listautoptr :: ^glib.List
 FontDialogClass_slistautoptr :: ^glib.SList
 FontDialogClass_queueautoptr :: ^glib.Queue
-_GtkFontDialogButton :: rawptr
+_GtkFontDialogButton :: struct #packed {}
 FontDialogButton :: _GtkFontDialogButton
 FontDialogButtonClass :: struct {
     parent_class: WidgetClass,
@@ -2722,75 +2722,75 @@ Frame_autoptr :: ^Frame
 Frame_listautoptr :: ^glib.List
 Frame_slistautoptr :: ^glib.SList
 Frame_queueautoptr :: ^glib.Queue
-_GtkGestureClass :: rawptr
+_GtkGestureClass :: struct #packed {}
 GestureClass :: _GtkGestureClass
 Gesture_autoptr :: ^Gesture
 Gesture_listautoptr :: ^glib.List
 Gesture_slistautoptr :: ^glib.SList
 Gesture_queueautoptr :: ^glib.Queue
-_GtkGestureSingle :: rawptr
+_GtkGestureSingle :: struct #packed {}
 GestureSingle :: _GtkGestureSingle
-_GtkGestureSingleClass :: rawptr
+_GtkGestureSingleClass :: struct #packed {}
 GestureSingleClass :: _GtkGestureSingleClass
 GestureSingle_autoptr :: ^GestureSingle
 GestureSingle_listautoptr :: ^glib.List
 GestureSingle_slistautoptr :: ^glib.SList
 GestureSingle_queueautoptr :: ^glib.Queue
-_GtkGestureClick :: rawptr
+_GtkGestureClick :: struct #packed {}
 GestureClick :: _GtkGestureClick
-_GtkGestureClickClass :: rawptr
+_GtkGestureClickClass :: struct #packed {}
 GestureClickClass :: _GtkGestureClickClass
 GestureClick_autoptr :: ^GestureClick
 GestureClick_listautoptr :: ^glib.List
 GestureClick_slistautoptr :: ^glib.SList
 GestureClick_queueautoptr :: ^glib.Queue
-_GtkGestureDrag :: rawptr
+_GtkGestureDrag :: struct #packed {}
 GestureDrag :: _GtkGestureDrag
-_GtkGestureDragClass :: rawptr
+_GtkGestureDragClass :: struct #packed {}
 GestureDragClass :: _GtkGestureDragClass
 GestureDrag_autoptr :: ^GestureDrag
 GestureDrag_listautoptr :: ^glib.List
 GestureDrag_slistautoptr :: ^glib.SList
 GestureDrag_queueautoptr :: ^glib.Queue
-_GtkGestureLongPress :: rawptr
+_GtkGestureLongPress :: struct #packed {}
 GestureLongPress :: _GtkGestureLongPress
-_GtkGestureLongPressClass :: rawptr
+_GtkGestureLongPressClass :: struct #packed {}
 GestureLongPressClass :: _GtkGestureLongPressClass
 GestureLongPress_autoptr :: ^GestureLongPress
 GestureLongPress_listautoptr :: ^glib.List
 GestureLongPress_slistautoptr :: ^glib.SList
 GestureLongPress_queueautoptr :: ^glib.Queue
-_GtkGesturePan :: rawptr
+_GtkGesturePan :: struct #packed {}
 GesturePan :: _GtkGesturePan
-_GtkGesturePanClass :: rawptr
+_GtkGesturePanClass :: struct #packed {}
 GesturePanClass :: _GtkGesturePanClass
 GesturePan_autoptr :: ^GesturePan
 GesturePan_listautoptr :: ^glib.List
 GesturePan_slistautoptr :: ^glib.SList
 GesturePan_queueautoptr :: ^glib.Queue
-_GtkGestureRotate :: rawptr
+_GtkGestureRotate :: struct #packed {}
 GestureRotate :: _GtkGestureRotate
-_GtkGestureRotateClass :: rawptr
+_GtkGestureRotateClass :: struct #packed {}
 GestureRotateClass :: _GtkGestureRotateClass
 GestureRotate_autoptr :: ^GestureRotate
 GestureRotate_listautoptr :: ^glib.List
 GestureRotate_slistautoptr :: ^glib.SList
 GestureRotate_queueautoptr :: ^glib.Queue
-_GtkGestureStylus :: rawptr
+_GtkGestureStylus :: struct #packed {}
 GestureStylus :: _GtkGestureStylus
-_GtkGestureStylusClass :: rawptr
+_GtkGestureStylusClass :: struct #packed {}
 GestureStylusClass :: _GtkGestureStylusClass
-_GtkGestureSwipe :: rawptr
+_GtkGestureSwipe :: struct #packed {}
 GestureSwipe :: _GtkGestureSwipe
-_GtkGestureSwipeClass :: rawptr
+_GtkGestureSwipeClass :: struct #packed {}
 GestureSwipeClass :: _GtkGestureSwipeClass
 GestureSwipe_autoptr :: ^GestureSwipe
 GestureSwipe_listautoptr :: ^glib.List
 GestureSwipe_slistautoptr :: ^glib.SList
 GestureSwipe_queueautoptr :: ^glib.Queue
-_GtkGestureZoom :: rawptr
+_GtkGestureZoom :: struct #packed {}
 GestureZoom :: _GtkGestureZoom
-_GtkGestureZoomClass :: rawptr
+_GtkGestureZoomClass :: struct #packed {}
 GestureZoomClass :: _GtkGestureZoomClass
 GestureZoom_autoptr :: ^GestureZoom
 GestureZoom_listautoptr :: ^glib.List
@@ -2828,7 +2828,7 @@ Grid_autoptr :: ^Grid
 Grid_listautoptr :: ^glib.List
 Grid_slistautoptr :: ^glib.SList
 Grid_queueautoptr :: ^glib.Queue
-_GtkGridLayout :: rawptr
+_GtkGridLayout :: struct #packed {}
 GridLayout :: _GtkGridLayout
 GridLayoutClass :: struct {
     parent_class: LayoutManagerClass,
@@ -2841,7 +2841,7 @@ GridLayoutClass_autoptr :: ^GridLayoutClass
 GridLayoutClass_listautoptr :: ^glib.List
 GridLayoutClass_slistautoptr :: ^glib.SList
 GridLayoutClass_queueautoptr :: ^glib.Queue
-_GtkGridLayoutChild :: rawptr
+_GtkGridLayoutChild :: struct #packed {}
 GridLayoutChild :: _GtkGridLayoutChild
 GridLayoutChildClass :: struct {
     parent_class: LayoutChildClass,
@@ -2854,27 +2854,27 @@ GridLayoutChildClass_autoptr :: ^GridLayoutChildClass
 GridLayoutChildClass_listautoptr :: ^glib.List
 GridLayoutChildClass_slistautoptr :: ^glib.SList
 GridLayoutChildClass_queueautoptr :: ^glib.Queue
-_GtkListBase :: rawptr
+_GtkListBase :: struct #packed {}
 ListBase :: _GtkListBase
-_GtkListBaseClass :: rawptr
+_GtkListBaseClass :: struct #packed {}
 ListBaseClass :: _GtkListBaseClass
-_GtkGridView :: rawptr
+_GtkGridView :: struct #packed {}
 GridView :: _GtkGridView
-_GtkGridViewClass :: rawptr
+_GtkGridViewClass :: struct #packed {}
 GridViewClass :: _GtkGridViewClass
 GridView_autoptr :: ^GridView
 GridView_listautoptr :: ^glib.List
 GridView_slistautoptr :: ^glib.SList
 GridView_queueautoptr :: ^glib.Queue
-_GtkHeaderBar :: rawptr
+_GtkHeaderBar :: struct #packed {}
 HeaderBar :: _GtkHeaderBar
 HeaderBar_autoptr :: ^HeaderBar
 HeaderBar_listautoptr :: ^glib.List
 HeaderBar_slistautoptr :: ^glib.SList
 HeaderBar_queueautoptr :: ^glib.Queue
-_GtkIconPaintable :: rawptr
+_GtkIconPaintable :: struct #packed {}
 IconPaintable :: _GtkIconPaintable
-_GtkIconTheme :: rawptr
+_GtkIconTheme :: struct #packed {}
 IconTheme :: _GtkIconTheme
 IconLookupFlags :: enum u32 {ICON_LOOKUP_FORCE_REGULAR = 1, ICON_LOOKUP_FORCE_SYMBOLIC = 2, ICON_LOOKUP_PRELOAD = 4, }
 IconThemeError :: enum u32 {ICON_THEME_NOT_FOUND = 0, ICON_THEME_FAILED = 1, }
@@ -2890,7 +2890,7 @@ Tooltip_autoptr :: ^Tooltip
 Tooltip_listautoptr :: ^glib.List
 Tooltip_slistautoptr :: ^glib.SList
 Tooltip_queueautoptr :: ^glib.Queue
-_GtkIconView :: rawptr
+_GtkIconView :: struct #packed {}
 IconView :: _GtkIconView
 IconViewForeachFunc :: #type proc "c" (icon_view: ^IconView, path: ^TreePath, data: glib.pointer)
 IconViewDropPosition :: enum u32 {ICON_VIEW_NO_DROP = 0, ICON_VIEW_DROP_INTO = 1, ICON_VIEW_DROP_LEFT = 2, ICON_VIEW_DROP_RIGHT = 3, ICON_VIEW_DROP_ABOVE = 4, ICON_VIEW_DROP_BELOW = 5, }
@@ -2898,7 +2898,7 @@ IconView_autoptr :: ^IconView
 IconView_listautoptr :: ^glib.List
 IconView_slistautoptr :: ^glib.SList
 IconView_queueautoptr :: ^glib.Queue
-_GtkIMContextSimplePrivate :: rawptr
+_GtkIMContextSimplePrivate :: struct #packed {}
 IMContextSimplePrivate :: _GtkIMContextSimplePrivate
 _GtkIMContextSimple :: struct {
     object: IMContext,
@@ -2913,7 +2913,7 @@ IMContextSimple_autoptr :: ^IMContextSimple
 IMContextSimple_listautoptr :: ^glib.List
 IMContextSimple_slistautoptr :: ^glib.SList
 IMContextSimple_queueautoptr :: ^glib.Queue
-_GtkIMMulticontextPrivate :: rawptr
+_GtkIMMulticontextPrivate :: struct #packed {}
 IMMulticontextPrivate :: _GtkIMMulticontextPrivate
 _GtkIMMulticontext :: struct {
     object: IMContext,
@@ -2936,14 +2936,14 @@ IMMulticontext_autoptr :: ^IMMulticontext
 IMMulticontext_listautoptr :: ^glib.List
 IMMulticontext_slistautoptr :: ^glib.SList
 IMMulticontext_queueautoptr :: ^glib.Queue
-_GtkInfoBar :: rawptr
+_GtkInfoBar :: struct #packed {}
 InfoBar :: _GtkInfoBar
 InfoBar_autoptr :: ^InfoBar
 InfoBar_listautoptr :: ^glib.List
 InfoBar_slistautoptr :: ^glib.SList
 InfoBar_queueautoptr :: ^glib.Queue
 InscriptionOverflow :: enum u32 {INSCRIPTION_OVERFLOW_CLIP = 0, INSCRIPTION_OVERFLOW_ELLIPSIZE_START = 1, INSCRIPTION_OVERFLOW_ELLIPSIZE_MIDDLE = 2, INSCRIPTION_OVERFLOW_ELLIPSIZE_END = 3, }
-_GtkInscription :: rawptr
+_GtkInscription :: struct #packed {}
 Inscription :: _GtkInscription
 InscriptionClass :: struct {
     parent_class: WidgetClass,
@@ -2956,25 +2956,25 @@ InscriptionClass_autoptr :: ^InscriptionClass
 InscriptionClass_listautoptr :: ^glib.List
 InscriptionClass_slistautoptr :: ^glib.SList
 InscriptionClass_queueautoptr :: ^glib.Queue
-_GtkLabel :: rawptr
+_GtkLabel :: struct #packed {}
 Label :: _GtkLabel
 Label_autoptr :: ^Label
 Label_listautoptr :: ^glib.List
 Label_slistautoptr :: ^glib.SList
 Label_queueautoptr :: ^glib.Queue
-_GtkLevelBar :: rawptr
+_GtkLevelBar :: struct #packed {}
 LevelBar :: _GtkLevelBar
 LevelBar_autoptr :: ^LevelBar
 LevelBar_listautoptr :: ^glib.List
 LevelBar_slistautoptr :: ^glib.SList
 LevelBar_queueautoptr :: ^glib.Queue
-_GtkLinkButton :: rawptr
+_GtkLinkButton :: struct #packed {}
 LinkButton :: _GtkLinkButton
 LinkButton_autoptr :: ^LinkButton
 LinkButton_listautoptr :: ^glib.List
 LinkButton_slistautoptr :: ^glib.SList
 LinkButton_queueautoptr :: ^glib.Queue
-_GtkListBox :: rawptr
+_GtkListBox :: struct #packed {}
 ListBox :: _GtkListBox
 _GtkListBoxRow :: struct {
     parent_instance: Widget,
@@ -3000,9 +3000,9 @@ ListBoxRow_autoptr :: ^ListBoxRow
 ListBoxRow_listautoptr :: ^glib.List
 ListBoxRow_slistautoptr :: ^glib.SList
 ListBoxRow_queueautoptr :: ^glib.Queue
-_GtkListHeader :: rawptr
+_GtkListHeader :: struct #packed {}
 ListHeader :: _GtkListHeader
-_GtkListHeaderClass :: rawptr
+_GtkListHeaderClass :: struct #packed {}
 ListHeaderClass :: _GtkListHeaderClass
 ListHeader_autoptr :: ^ListHeader
 ListHeader_listautoptr :: ^glib.List
@@ -3012,21 +3012,21 @@ ListHeaderClass_autoptr :: ^ListHeaderClass
 ListHeaderClass_listautoptr :: ^glib.List
 ListHeaderClass_slistautoptr :: ^glib.SList
 ListHeaderClass_queueautoptr :: ^glib.Queue
-_GtkListView :: rawptr
+_GtkListView :: struct #packed {}
 ListView :: _GtkListView
-_GtkListViewClass :: rawptr
+_GtkListViewClass :: struct #packed {}
 ListViewClass :: _GtkListViewClass
 ListView_autoptr :: ^ListView
 ListView_listautoptr :: ^glib.List
 ListView_slistautoptr :: ^glib.SList
 ListView_queueautoptr :: ^glib.Queue
-_GtkLockButton :: rawptr
+_GtkLockButton :: struct #packed {}
 LockButton :: _GtkLockButton
 LockButton_autoptr :: ^LockButton
 LockButton_listautoptr :: ^glib.List
 LockButton_slistautoptr :: ^glib.SList
 LockButton_queueautoptr :: ^glib.Queue
-_GtkMapListModel :: rawptr
+_GtkMapListModel :: struct #packed {}
 MapListModel :: _GtkMapListModel
 MapListModelClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -3084,7 +3084,7 @@ MediaStreamClass_autoptr :: ^MediaStreamClass
 MediaStreamClass_listautoptr :: ^glib.List
 MediaStreamClass_slistautoptr :: ^glib.SList
 MediaStreamClass_queueautoptr :: ^glib.Queue
-_GtkMediaControls :: rawptr
+_GtkMediaControls :: struct #packed {}
 MediaControls :: _GtkMediaControls
 MediaControlsClass :: struct {
     parent_class: WidgetClass,
@@ -3142,7 +3142,7 @@ Popover_autoptr :: ^Popover
 Popover_listautoptr :: ^glib.List
 Popover_slistautoptr :: ^glib.SList
 Popover_queueautoptr :: ^glib.Queue
-_GtkMenuButton :: rawptr
+_GtkMenuButton :: struct #packed {}
 MenuButton :: _GtkMenuButton
 MenuButtonCreatePopupFunc :: #type proc "c" (menu_button: ^MenuButton, user_data: glib.pointer)
 MenuButton_autoptr :: ^MenuButton
@@ -3153,14 +3153,14 @@ _GtkMessageDialog :: struct {
     parent_instance: Dialog,
 }
 MessageDialog :: _GtkMessageDialog
-_GtkMessageDialogClass :: rawptr
+_GtkMessageDialogClass :: struct #packed {}
 MessageDialogClass :: _GtkMessageDialogClass
 ButtonsType :: enum u32 {BUTTONS_NONE = 0, BUTTONS_OK = 1, BUTTONS_CLOSE = 2, BUTTONS_CANCEL = 3, BUTTONS_YES_NO = 4, BUTTONS_OK_CANCEL = 5, }
 MessageDialog_autoptr :: ^MessageDialog
 MessageDialog_listautoptr :: ^glib.List
 MessageDialog_slistautoptr :: ^glib.SList
 MessageDialog_queueautoptr :: ^glib.Queue
-_GtkMountOperationPrivate :: rawptr
+_GtkMountOperationPrivate :: struct #packed {}
 MountOperationPrivate :: _GtkMountOperationPrivate
 _GtkMountOperation :: struct {
     parent_instance: gio.MountOperation,
@@ -3183,9 +3183,9 @@ MountOperation_autoptr :: ^MountOperation
 MountOperation_listautoptr :: ^glib.List
 MountOperation_slistautoptr :: ^glib.SList
 MountOperation_queueautoptr :: ^glib.Queue
-_GtkMultiFilter :: rawptr
+_GtkMultiFilter :: struct #packed {}
 MultiFilter :: _GtkMultiFilter
-_GtkMultiFilterClass :: rawptr
+_GtkMultiFilterClass :: struct #packed {}
 MultiFilterClass :: _GtkMultiFilterClass
 MultiFilter_autoptr :: ^MultiFilter
 MultiFilter_listautoptr :: ^glib.List
@@ -3195,9 +3195,9 @@ MultiFilterClass_autoptr :: ^MultiFilterClass
 MultiFilterClass_listautoptr :: ^glib.List
 MultiFilterClass_slistautoptr :: ^glib.SList
 MultiFilterClass_queueautoptr :: ^glib.Queue
-_GtkAnyFilter :: rawptr
+_GtkAnyFilter :: struct #packed {}
 AnyFilter :: _GtkAnyFilter
-_GtkAnyFilterClass :: rawptr
+_GtkAnyFilterClass :: struct #packed {}
 AnyFilterClass :: _GtkAnyFilterClass
 AnyFilter_autoptr :: ^AnyFilter
 AnyFilter_listautoptr :: ^glib.List
@@ -3207,9 +3207,9 @@ AnyFilterClass_autoptr :: ^AnyFilterClass
 AnyFilterClass_listautoptr :: ^glib.List
 AnyFilterClass_slistautoptr :: ^glib.SList
 AnyFilterClass_queueautoptr :: ^glib.Queue
-_GtkEveryFilter :: rawptr
+_GtkEveryFilter :: struct #packed {}
 EveryFilter :: _GtkEveryFilter
-_GtkEveryFilterClass :: rawptr
+_GtkEveryFilterClass :: struct #packed {}
 EveryFilterClass :: _GtkEveryFilterClass
 EveryFilter_autoptr :: ^EveryFilter
 EveryFilter_listautoptr :: ^glib.List
@@ -3219,7 +3219,7 @@ EveryFilterClass_autoptr :: ^EveryFilterClass
 EveryFilterClass_listautoptr :: ^glib.List
 EveryFilterClass_slistautoptr :: ^glib.SList
 EveryFilterClass_queueautoptr :: ^glib.Queue
-_GtkMultiSelection :: rawptr
+_GtkMultiSelection :: struct #packed {}
 MultiSelection :: _GtkMultiSelection
 MultiSelectionClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -3232,7 +3232,7 @@ MultiSelectionClass_autoptr :: ^MultiSelectionClass
 MultiSelectionClass_listautoptr :: ^glib.List
 MultiSelectionClass_slistautoptr :: ^glib.SList
 MultiSelectionClass_queueautoptr :: ^glib.Queue
-_GtkMultiSorter :: rawptr
+_GtkMultiSorter :: struct #packed {}
 MultiSorter :: _GtkMultiSorter
 MultiSorterClass :: struct {
     parent_class: SorterClass,
@@ -3245,13 +3245,13 @@ MultiSorterClass_autoptr :: ^MultiSorterClass
 MultiSorterClass_listautoptr :: ^glib.List
 MultiSorterClass_slistautoptr :: ^glib.SList
 MultiSorterClass_queueautoptr :: ^glib.Queue
-_GtkNativeInterface :: rawptr
+_GtkNativeInterface :: struct #packed {}
 NativeInterface :: _GtkNativeInterface
 Native_autoptr :: ^Native
 Native_listautoptr :: ^glib.List
 Native_slistautoptr :: ^glib.SList
 Native_queueautoptr :: ^glib.Queue
-_GtkNoSelection :: rawptr
+_GtkNoSelection :: struct #packed {}
 NoSelection :: _GtkNoSelection
 NoSelectionClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -3264,16 +3264,16 @@ NoSelectionClass_autoptr :: ^NoSelectionClass
 NoSelectionClass_listautoptr :: ^glib.List
 NoSelectionClass_slistautoptr :: ^glib.SList
 NoSelectionClass_queueautoptr :: ^glib.Queue
-_GtkNotebookPage :: rawptr
+_GtkNotebookPage :: struct #packed {}
 NotebookPage :: _GtkNotebookPage
 NotebookTab :: enum u32 {NOTEBOOK_TAB_FIRST = 0, NOTEBOOK_TAB_LAST = 1, }
-_GtkNotebook :: rawptr
+_GtkNotebook :: struct #packed {}
 Notebook :: _GtkNotebook
 Notebook_autoptr :: ^Notebook
 Notebook_listautoptr :: ^glib.List
 Notebook_slistautoptr :: ^glib.SList
 Notebook_queueautoptr :: ^glib.Queue
-_GtkNumericSorter :: rawptr
+_GtkNumericSorter :: struct #packed {}
 NumericSorter :: _GtkNumericSorter
 NumericSorterClass :: struct {
     parent_class: SorterClass,
@@ -3286,7 +3286,7 @@ NumericSorterClass_autoptr :: ^NumericSorterClass
 NumericSorterClass_listautoptr :: ^glib.List
 NumericSorterClass_slistautoptr :: ^glib.SList
 NumericSorterClass_queueautoptr :: ^glib.Queue
-_GtkOrientable :: rawptr
+_GtkOrientable :: struct #packed {}
 Orientable :: _GtkOrientable
 _GtkOrientableIface :: struct {
     base_iface: gobj.TypeInterface,
@@ -3296,13 +3296,13 @@ Orientable_autoptr :: ^Orientable
 Orientable_listautoptr :: ^glib.List
 Orientable_slistautoptr :: ^glib.SList
 Orientable_queueautoptr :: ^glib.Queue
-_GtkOverlay :: rawptr
+_GtkOverlay :: struct #packed {}
 Overlay :: _GtkOverlay
 Overlay_autoptr :: ^Overlay
 Overlay_listautoptr :: ^glib.List
 Overlay_slistautoptr :: ^glib.SList
 Overlay_queueautoptr :: ^glib.Queue
-_GtkOverlayLayout :: rawptr
+_GtkOverlayLayout :: struct #packed {}
 OverlayLayout :: _GtkOverlayLayout
 OverlayLayoutClass :: struct {
     parent_class: LayoutManagerClass,
@@ -3315,7 +3315,7 @@ OverlayLayoutClass_autoptr :: ^OverlayLayoutClass
 OverlayLayoutClass_listautoptr :: ^glib.List
 OverlayLayoutClass_slistautoptr :: ^glib.SList
 OverlayLayoutClass_queueautoptr :: ^glib.Queue
-_GtkOverlayLayoutChild :: rawptr
+_GtkOverlayLayoutChild :: struct #packed {}
 OverlayLayoutChild :: _GtkOverlayLayoutChild
 OverlayLayoutChildClass :: struct {
     parent_class: LayoutChildClass,
@@ -3328,9 +3328,9 @@ OverlayLayoutChildClass_autoptr :: ^OverlayLayoutChildClass
 OverlayLayoutChildClass_listautoptr :: ^glib.List
 OverlayLayoutChildClass_slistautoptr :: ^glib.SList
 OverlayLayoutChildClass_queueautoptr :: ^glib.Queue
-_GtkPadController :: rawptr
+_GtkPadController :: struct #packed {}
 PadController :: _GtkPadController
-_GtkPadControllerClass :: rawptr
+_GtkPadControllerClass :: struct #packed {}
 PadControllerClass :: _GtkPadControllerClass
 PadActionType :: enum u32 {PAD_ACTION_BUTTON = 0, PAD_ACTION_RING = 1, PAD_ACTION_STRIP = 2, }
 _GtkPadActionEntry :: struct {
@@ -3341,29 +3341,29 @@ _GtkPadActionEntry :: struct {
     action_name: cstring,
 }
 PadActionEntry :: _GtkPadActionEntry
-_GtkPaperSize :: rawptr
+_GtkPaperSize :: struct #packed {}
 PaperSize :: _GtkPaperSize
 PaperSize_autoptr :: ^PaperSize
 PaperSize_listautoptr :: ^glib.List
 PaperSize_slistautoptr :: ^glib.SList
 PaperSize_queueautoptr :: ^glib.Queue
-_GtkPageSetup :: rawptr
+_GtkPageSetup :: struct #packed {}
 PageSetup :: _GtkPageSetup
 PageSetup_autoptr :: ^PageSetup
 PageSetup_listautoptr :: ^glib.List
 PageSetup_slistautoptr :: ^glib.SList
 PageSetup_queueautoptr :: ^glib.Queue
-_GtkPaned :: rawptr
+_GtkPaned :: struct #packed {}
 Paned :: _GtkPaned
 Paned_autoptr :: ^Paned
 Paned_listautoptr :: ^glib.List
 Paned_slistautoptr :: ^glib.SList
 Paned_queueautoptr :: ^glib.Queue
-_GtkPasswordEntry :: rawptr
+_GtkPasswordEntry :: struct #packed {}
 PasswordEntry :: _GtkPasswordEntry
-_GtkPasswordEntryClass :: rawptr
+_GtkPasswordEntryClass :: struct #packed {}
 PasswordEntryClass :: _GtkPasswordEntryClass
-_GtkPasswordEntryBuffer :: rawptr
+_GtkPasswordEntryBuffer :: struct #packed {}
 PasswordEntryBuffer :: _GtkPasswordEntryBuffer
 PasswordEntryBufferClass :: struct {
     parent_class: EntryBufferClass,
@@ -3376,7 +3376,7 @@ PasswordEntryBufferClass_autoptr :: ^PasswordEntryBufferClass
 PasswordEntryBufferClass_listautoptr :: ^glib.List
 PasswordEntryBufferClass_slistautoptr :: ^glib.SList
 PasswordEntryBufferClass_queueautoptr :: ^glib.Queue
-_GtkPicture :: rawptr
+_GtkPicture :: struct #packed {}
 Picture :: _GtkPicture
 PictureClass :: struct {
     parent_class: WidgetClass,
@@ -3389,26 +3389,26 @@ PictureClass_autoptr :: ^PictureClass
 PictureClass_listautoptr :: ^glib.List
 PictureClass_slistautoptr :: ^glib.SList
 PictureClass_queueautoptr :: ^glib.Queue
-_GtkPopoverMenu :: rawptr
+_GtkPopoverMenu :: struct #packed {}
 PopoverMenu :: _GtkPopoverMenu
 PopoverMenuFlags :: enum u32 {POPOVER_MENU_NESTED = 1, }
 PopoverMenu_autoptr :: ^PopoverMenu
 PopoverMenu_listautoptr :: ^glib.List
 PopoverMenu_slistautoptr :: ^glib.SList
 PopoverMenu_queueautoptr :: ^glib.Queue
-_GtkPopoverMenuBar :: rawptr
+_GtkPopoverMenuBar :: struct #packed {}
 PopoverMenuBar :: _GtkPopoverMenuBar
 PopoverMenuBar_autoptr :: ^PopoverMenuBar
 PopoverMenuBar_listautoptr :: ^glib.List
 PopoverMenuBar_slistautoptr :: ^glib.SList
 PopoverMenuBar_queueautoptr :: ^glib.Queue
-_GtkPrintContext :: rawptr
+_GtkPrintContext :: struct #packed {}
 PrintContext :: _GtkPrintContext
 PrintContext_autoptr :: ^PrintContext
 PrintContext_listautoptr :: ^glib.List
 PrintContext_slistautoptr :: ^glib.SList
 PrintContext_queueautoptr :: ^glib.Queue
-_GtkPrintSettings :: rawptr
+_GtkPrintSettings :: struct #packed {}
 PrintSettings :: _GtkPrintSettings
 PrintSettingsFunc :: #type proc "c" (key: cstring, value: cstring, user_data: glib.pointer)
 _GtkPageRange :: struct {
@@ -3420,7 +3420,7 @@ PrintSettings_autoptr :: ^PrintSettings
 PrintSettings_listautoptr :: ^glib.List
 PrintSettings_slistautoptr :: ^glib.SList
 PrintSettings_queueautoptr :: ^glib.Queue
-_GtkPrintOperationPreview :: rawptr
+_GtkPrintOperationPreview :: struct #packed {}
 PrintOperationPreview :: _GtkPrintOperationPreview
 ready_func_ptr_anon_317 :: #type proc "c" (preview: ^PrintOperationPreview, context_p: ^PrintContext)
 ot_page_size_func_ptr_anon_318 :: #type proc "c" (preview: ^PrintOperationPreview, context_p: ^PrintContext, page_setup: ^PageSetup)
@@ -3456,7 +3456,7 @@ PrintOperationPreview_autoptr :: ^PrintOperationPreview
 PrintOperationPreview_listautoptr :: ^glib.List
 PrintOperationPreview_slistautoptr :: ^glib.SList
 PrintOperationPreview_queueautoptr :: ^glib.Queue
-_GtkPrintOperationPrivate :: rawptr
+_GtkPrintOperationPrivate :: struct #packed {}
 PrintOperationPrivate :: _GtkPrintOperationPrivate
 _GtkPrintOperation :: struct {
     parent_instance: gobj.Object,
@@ -3499,7 +3499,7 @@ PrintOperation_autoptr :: ^PrintOperation
 PrintOperation_listautoptr :: ^glib.List
 PrintOperation_slistautoptr :: ^glib.SList
 PrintOperation_queueautoptr :: ^glib.Queue
-_GtkProgressBar :: rawptr
+_GtkProgressBar :: struct #packed {}
 ProgressBar :: _GtkProgressBar
 ProgressBar_autoptr :: ^ProgressBar
 ProgressBar_listautoptr :: ^glib.List
@@ -3528,7 +3528,7 @@ Range_autoptr :: ^Range
 Range_listautoptr :: ^glib.List
 Range_slistautoptr :: ^glib.SList
 Range_queueautoptr :: ^glib.Queue
-_GtkRecentInfo :: rawptr
+_GtkRecentInfo :: struct #packed {}
 RecentInfo :: _GtkRecentInfo
 _GtkRecentData :: struct {
     display_name: cstring,
@@ -3540,7 +3540,7 @@ _GtkRecentData :: struct {
     is_private: glib.boolean,
 }
 RecentData :: _GtkRecentData
-_GtkRecentManagerPrivate :: rawptr
+_GtkRecentManagerPrivate :: struct #packed {}
 RecentManagerPrivate :: _GtkRecentManagerPrivate
 _GtkRecentManager :: struct {
     parent_instance: gobj.Object,
@@ -3570,14 +3570,14 @@ RecentInfo_autoptr :: ^RecentInfo
 RecentInfo_listautoptr :: ^glib.List
 RecentInfo_slistautoptr :: ^glib.SList
 RecentInfo_queueautoptr :: ^glib.Queue
-_GtkRevealer :: rawptr
+_GtkRevealer :: struct #packed {}
 Revealer :: _GtkRevealer
 RevealerTransitionType :: enum u32 {REVEALER_TRANSITION_TYPE_NONE = 0, REVEALER_TRANSITION_TYPE_CROSSFADE = 1, REVEALER_TRANSITION_TYPE_SLIDE_RIGHT = 2, REVEALER_TRANSITION_TYPE_SLIDE_LEFT = 3, REVEALER_TRANSITION_TYPE_SLIDE_UP = 4, REVEALER_TRANSITION_TYPE_SLIDE_DOWN = 5, REVEALER_TRANSITION_TYPE_SWING_RIGHT = 6, REVEALER_TRANSITION_TYPE_SWING_LEFT = 7, REVEALER_TRANSITION_TYPE_SWING_UP = 8, REVEALER_TRANSITION_TYPE_SWING_DOWN = 9, }
 Revealer_autoptr :: ^Revealer
 Revealer_listautoptr :: ^glib.List
 Revealer_slistautoptr :: ^glib.SList
 Revealer_queueautoptr :: ^glib.Queue
-_GtkRootInterface :: rawptr
+_GtkRootInterface :: struct #packed {}
 RootInterface :: _GtkRootInterface
 Root_autoptr :: ^Root
 Root_listautoptr :: ^glib.List
@@ -3614,7 +3614,7 @@ ScaleButton_autoptr :: ^ScaleButton
 ScaleButton_listautoptr :: ^glib.List
 ScaleButton_slistautoptr :: ^glib.SList
 ScaleButton_queueautoptr :: ^glib.Queue
-_GtkScrollable :: rawptr
+_GtkScrollable :: struct #packed {}
 Scrollable :: _GtkScrollable
 et_border_func_ptr_anon_353 :: #type proc "c" (scrollable: ^Scrollable, border: ^Border) -> glib.boolean
 _GtkScrollableInterface :: struct {
@@ -3626,7 +3626,7 @@ Scrollable_autoptr :: ^Scrollable
 Scrollable_listautoptr :: ^glib.List
 Scrollable_slistautoptr :: ^glib.SList
 Scrollable_queueautoptr :: ^glib.Queue
-_GtkScrollbar :: rawptr
+_GtkScrollbar :: struct #packed {}
 Scrollbar :: _GtkScrollbar
 Scrollbar_autoptr :: ^Scrollbar
 Scrollbar_listautoptr :: ^glib.List
@@ -3636,7 +3636,7 @@ ScrollInfo_autoptr :: ^ScrollInfo
 ScrollInfo_listautoptr :: ^glib.List
 ScrollInfo_slistautoptr :: ^glib.SList
 ScrollInfo_queueautoptr :: ^glib.Queue
-_GtkScrolledWindow :: rawptr
+_GtkScrolledWindow :: struct #packed {}
 ScrolledWindow :: _GtkScrolledWindow
 CornerType :: enum u32 {CORNER_TOP_LEFT = 0, CORNER_BOTTOM_LEFT = 1, CORNER_TOP_RIGHT = 2, CORNER_BOTTOM_RIGHT = 3, }
 PolicyType :: enum u32 {POLICY_ALWAYS = 0, POLICY_AUTOMATIC = 1, POLICY_NEVER = 2, POLICY_EXTERNAL = 3, }
@@ -3644,19 +3644,19 @@ ScrolledWindow_autoptr :: ^ScrolledWindow
 ScrolledWindow_listautoptr :: ^glib.List
 ScrolledWindow_slistautoptr :: ^glib.SList
 ScrolledWindow_queueautoptr :: ^glib.Queue
-_GtkSearchBar :: rawptr
+_GtkSearchBar :: struct #packed {}
 SearchBar :: _GtkSearchBar
 SearchBar_autoptr :: ^SearchBar
 SearchBar_listautoptr :: ^glib.List
 SearchBar_slistautoptr :: ^glib.SList
 SearchBar_queueautoptr :: ^glib.Queue
-_GtkSearchEntry :: rawptr
+_GtkSearchEntry :: struct #packed {}
 SearchEntry :: _GtkSearchEntry
 SearchEntry_autoptr :: ^SearchEntry
 SearchEntry_listautoptr :: ^glib.List
 SearchEntry_slistautoptr :: ^glib.SList
 SearchEntry_queueautoptr :: ^glib.Queue
-_GtkSectionModel :: rawptr
+_GtkSectionModel :: struct #packed {}
 SectionModel :: _GtkSectionModel
 et_section_func_ptr_anon_354 :: #type proc "c" (self: ^SectionModel, position: glib.uint_, out_start: ^glib.uint_, out_end: ^glib.uint_)
 _GtkSectionModelInterface :: struct {
@@ -3668,7 +3668,7 @@ SectionModel_autoptr :: ^SectionModel
 SectionModel_listautoptr :: ^glib.List
 SectionModel_slistautoptr :: ^glib.SList
 SectionModel_queueautoptr :: ^glib.Queue
-_GtkSelectionFilterModel :: rawptr
+_GtkSelectionFilterModel :: struct #packed {}
 SelectionFilterModel :: _GtkSelectionFilterModel
 SelectionFilterModelClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -3681,7 +3681,7 @@ SelectionFilterModelClass_autoptr :: ^SelectionFilterModelClass
 SelectionFilterModelClass_listautoptr :: ^glib.List
 SelectionFilterModelClass_slistautoptr :: ^glib.SList
 SelectionFilterModelClass_queueautoptr :: ^glib.Queue
-_GtkSeparator :: rawptr
+_GtkSeparator :: struct #packed {}
 Separator :: _GtkSeparator
 Separator_autoptr :: ^Separator
 Separator_listautoptr :: ^glib.List
@@ -3691,15 +3691,15 @@ Settings_autoptr :: ^Settings
 Settings_listautoptr :: ^glib.List
 Settings_slistautoptr :: ^glib.SList
 Settings_queueautoptr :: ^glib.Queue
-_GtkShortcutController :: rawptr
+_GtkShortcutController :: struct #packed {}
 ShortcutController :: _GtkShortcutController
-_GtkShortcutControllerClass :: rawptr
+_GtkShortcutControllerClass :: struct #packed {}
 ShortcutControllerClass :: _GtkShortcutControllerClass
-_GtkShortcutLabel :: rawptr
+_GtkShortcutLabel :: struct #packed {}
 ShortcutLabel :: _GtkShortcutLabel
-_GtkShortcutLabelClass :: rawptr
+_GtkShortcutLabelClass :: struct #packed {}
 ShortcutLabelClass :: _GtkShortcutLabelClass
-_GtkShortcutManager :: rawptr
+_GtkShortcutManager :: struct #packed {}
 ShortcutManager :: _GtkShortcutManager
 add_controller_func_ptr_anon_355 :: #type proc "c" (self: ^ShortcutManager, controller: ^ShortcutController)
 remove_controller_func_ptr_anon_356 :: #type proc "c" (self: ^ShortcutManager, controller: ^ShortcutController)
@@ -3713,20 +3713,20 @@ ShortcutManager_autoptr :: ^ShortcutManager
 ShortcutManager_listautoptr :: ^glib.List
 ShortcutManager_slistautoptr :: ^glib.SList
 ShortcutManager_queueautoptr :: ^glib.Queue
-_GtkShortcutsGroup :: rawptr
+_GtkShortcutsGroup :: struct #packed {}
 ShortcutsGroup :: _GtkShortcutsGroup
-_GtkShortcutsGroupClass :: rawptr
+_GtkShortcutsGroupClass :: struct #packed {}
 ShortcutsGroupClass :: _GtkShortcutsGroupClass
-_GtkShortcutsSection :: rawptr
+_GtkShortcutsSection :: struct #packed {}
 ShortcutsSection :: _GtkShortcutsSection
-_GtkShortcutsSectionClass :: rawptr
+_GtkShortcutsSectionClass :: struct #packed {}
 ShortcutsSectionClass :: _GtkShortcutsSectionClass
-_GtkShortcutsShortcut :: rawptr
+_GtkShortcutsShortcut :: struct #packed {}
 ShortcutsShortcut :: _GtkShortcutsShortcut
-_GtkShortcutsShortcutClass :: rawptr
+_GtkShortcutsShortcutClass :: struct #packed {}
 ShortcutsShortcutClass :: _GtkShortcutsShortcutClass
 ShortcutType :: enum u32 {SHORTCUT_ACCELERATOR = 0, SHORTCUT_GESTURE_PINCH = 1, SHORTCUT_GESTURE_STRETCH = 2, SHORTCUT_GESTURE_ROTATE_CLOCKWISE = 3, SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE = 4, SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT = 5, SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT = 6, SHORTCUT_GESTURE = 7, SHORTCUT_GESTURE_SWIPE_LEFT = 8, SHORTCUT_GESTURE_SWIPE_RIGHT = 9, }
-_GtkShortcutTriggerClass :: rawptr
+_GtkShortcutTriggerClass :: struct #packed {}
 ShortcutTriggerClass :: _GtkShortcutTriggerClass
 ShortcutTrigger_autoptr :: ^ShortcutTrigger
 ShortcutTrigger_listautoptr :: ^glib.List
@@ -3736,9 +3736,9 @@ ShortcutTriggerClass_autoptr :: ^ShortcutTriggerClass
 ShortcutTriggerClass_listautoptr :: ^glib.List
 ShortcutTriggerClass_slistautoptr :: ^glib.SList
 ShortcutTriggerClass_queueautoptr :: ^glib.Queue
-_GtkNeverTrigger :: rawptr
+_GtkNeverTrigger :: struct #packed {}
 NeverTrigger :: _GtkNeverTrigger
-_GtkNeverTriggerClass :: rawptr
+_GtkNeverTriggerClass :: struct #packed {}
 NeverTriggerClass :: _GtkNeverTriggerClass
 NeverTrigger_autoptr :: ^NeverTrigger
 NeverTrigger_listautoptr :: ^glib.List
@@ -3748,9 +3748,9 @@ NeverTriggerClass_autoptr :: ^NeverTriggerClass
 NeverTriggerClass_listautoptr :: ^glib.List
 NeverTriggerClass_slistautoptr :: ^glib.SList
 NeverTriggerClass_queueautoptr :: ^glib.Queue
-_GtkKeyvalTrigger :: rawptr
+_GtkKeyvalTrigger :: struct #packed {}
 KeyvalTrigger :: _GtkKeyvalTrigger
-_GtkKeyvalTriggerClass :: rawptr
+_GtkKeyvalTriggerClass :: struct #packed {}
 KeyvalTriggerClass :: _GtkKeyvalTriggerClass
 KeyvalTrigger_autoptr :: ^KeyvalTrigger
 KeyvalTrigger_listautoptr :: ^glib.List
@@ -3760,9 +3760,9 @@ KeyvalTriggerClass_autoptr :: ^KeyvalTriggerClass
 KeyvalTriggerClass_listautoptr :: ^glib.List
 KeyvalTriggerClass_slistautoptr :: ^glib.SList
 KeyvalTriggerClass_queueautoptr :: ^glib.Queue
-_GtkMnemonicTrigger :: rawptr
+_GtkMnemonicTrigger :: struct #packed {}
 MnemonicTrigger :: _GtkMnemonicTrigger
-_GtkMnemonicTriggerClass :: rawptr
+_GtkMnemonicTriggerClass :: struct #packed {}
 MnemonicTriggerClass :: _GtkMnemonicTriggerClass
 MnemonicTrigger_autoptr :: ^MnemonicTrigger
 MnemonicTrigger_listautoptr :: ^glib.List
@@ -3772,9 +3772,9 @@ MnemonicTriggerClass_autoptr :: ^MnemonicTriggerClass
 MnemonicTriggerClass_listautoptr :: ^glib.List
 MnemonicTriggerClass_slistautoptr :: ^glib.SList
 MnemonicTriggerClass_queueautoptr :: ^glib.Queue
-_GtkAlternativeTrigger :: rawptr
+_GtkAlternativeTrigger :: struct #packed {}
 AlternativeTrigger :: _GtkAlternativeTrigger
-_GtkAlternativeTriggerClass :: rawptr
+_GtkAlternativeTriggerClass :: struct #packed {}
 AlternativeTriggerClass :: _GtkAlternativeTriggerClass
 AlternativeTrigger_autoptr :: ^AlternativeTrigger
 AlternativeTrigger_listautoptr :: ^glib.List
@@ -3784,11 +3784,11 @@ AlternativeTriggerClass_autoptr :: ^AlternativeTriggerClass
 AlternativeTriggerClass_listautoptr :: ^glib.List
 AlternativeTriggerClass_slistautoptr :: ^glib.SList
 AlternativeTriggerClass_queueautoptr :: ^glib.Queue
-_GtkSignalListItemFactory :: rawptr
+_GtkSignalListItemFactory :: struct #packed {}
 SignalListItemFactory :: _GtkSignalListItemFactory
-_GtkSignalListItemFactoryClass :: rawptr
+_GtkSignalListItemFactoryClass :: struct #packed {}
 SignalListItemFactoryClass :: _GtkSignalListItemFactoryClass
-_GtkSingleSelection :: rawptr
+_GtkSingleSelection :: struct #packed {}
 SingleSelection :: _GtkSingleSelection
 SingleSelectionClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -3801,7 +3801,7 @@ SingleSelectionClass_autoptr :: ^SingleSelectionClass
 SingleSelectionClass_listautoptr :: ^glib.List
 SingleSelectionClass_slistautoptr :: ^glib.SList
 SingleSelectionClass_queueautoptr :: ^glib.Queue
-_GtkSliceListModel :: rawptr
+_GtkSliceListModel :: struct #packed {}
 SliceListModel :: _GtkSliceListModel
 SliceListModelClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -3814,16 +3814,16 @@ SliceListModelClass_autoptr :: ^SliceListModelClass
 SliceListModelClass_listautoptr :: ^glib.List
 SliceListModelClass_slistautoptr :: ^glib.SList
 SliceListModelClass_queueautoptr :: ^glib.Queue
-_GtkStack :: rawptr
+_GtkStack :: struct #packed {}
 Stack :: _GtkStack
-_GtkStackPage :: rawptr
+_GtkStackPage :: struct #packed {}
 StackPage :: _GtkStackPage
 StackTransitionType :: enum u32 {STACK_TRANSITION_TYPE_NONE = 0, STACK_TRANSITION_TYPE_CROSSFADE = 1, STACK_TRANSITION_TYPE_SLIDE_RIGHT = 2, STACK_TRANSITION_TYPE_SLIDE_LEFT = 3, STACK_TRANSITION_TYPE_SLIDE_UP = 4, STACK_TRANSITION_TYPE_SLIDE_DOWN = 5, STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT = 6, STACK_TRANSITION_TYPE_SLIDE_UP_DOWN = 7, STACK_TRANSITION_TYPE_OVER_UP = 8, STACK_TRANSITION_TYPE_OVER_DOWN = 9, STACK_TRANSITION_TYPE_OVER_LEFT = 10, STACK_TRANSITION_TYPE_OVER_RIGHT = 11, STACK_TRANSITION_TYPE_UNDER_UP = 12, STACK_TRANSITION_TYPE_UNDER_DOWN = 13, STACK_TRANSITION_TYPE_UNDER_LEFT = 14, STACK_TRANSITION_TYPE_UNDER_RIGHT = 15, STACK_TRANSITION_TYPE_OVER_UP_DOWN = 16, STACK_TRANSITION_TYPE_OVER_DOWN_UP = 17, STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT = 18, STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT = 19, STACK_TRANSITION_TYPE_ROTATE_LEFT = 20, STACK_TRANSITION_TYPE_ROTATE_RIGHT = 21, STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT = 22, }
 Stack_autoptr :: ^Stack
 Stack_listautoptr :: ^glib.List
 Stack_slistautoptr :: ^glib.SList
 Stack_queueautoptr :: ^glib.Queue
-_GtkStackSidebar :: rawptr
+_GtkStackSidebar :: struct #packed {}
 StackSidebar :: _GtkStackSidebar
 StackSidebar_autoptr :: ^StackSidebar
 StackSidebar_listautoptr :: ^glib.List
@@ -3845,31 +3845,31 @@ _GtkRequestedSize :: struct {
 RequestedSize :: _GtkRequestedSize
 SpinButtonUpdatePolicy :: enum u32 {UPDATE_ALWAYS = 0, UPDATE_IF_VALID = 1, }
 SpinType :: enum u32 {SPIN_STEP_FORWARD = 0, SPIN_STEP_BACKWARD = 1, SPIN_PAGE_FORWARD = 2, SPIN_PAGE_BACKWARD = 3, SPIN_HOME = 4, SPIN_END = 5, SPIN_USER_DEFINED = 6, }
-_GtkSpinButton :: rawptr
+_GtkSpinButton :: struct #packed {}
 SpinButton :: _GtkSpinButton
 SpinButton_autoptr :: ^SpinButton
 SpinButton_listautoptr :: ^glib.List
 SpinButton_slistautoptr :: ^glib.SList
 SpinButton_queueautoptr :: ^glib.Queue
-_GtkSpinner :: rawptr
+_GtkSpinner :: struct #packed {}
 Spinner :: _GtkSpinner
 Spinner_autoptr :: ^Spinner
 Spinner_listautoptr :: ^glib.List
 Spinner_slistautoptr :: ^glib.SList
 Spinner_queueautoptr :: ^glib.Queue
-_GtkStackSwitcher :: rawptr
+_GtkStackSwitcher :: struct #packed {}
 StackSwitcher :: _GtkStackSwitcher
 StackSwitcher_autoptr :: ^StackSwitcher
 StackSwitcher_listautoptr :: ^glib.List
 StackSwitcher_slistautoptr :: ^glib.SList
 StackSwitcher_queueautoptr :: ^glib.Queue
-_GtkStatusbar :: rawptr
+_GtkStatusbar :: struct #packed {}
 Statusbar :: _GtkStatusbar
 Statusbar_autoptr :: ^Statusbar
 Statusbar_listautoptr :: ^glib.List
 Statusbar_slistautoptr :: ^glib.SList
 Statusbar_queueautoptr :: ^glib.Queue
-_GtkStringObject :: rawptr
+_GtkStringObject :: struct #packed {}
 StringObject :: _GtkStringObject
 StringObjectClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -3882,7 +3882,7 @@ StringObjectClass_autoptr :: ^StringObjectClass
 StringObjectClass_listautoptr :: ^glib.List
 StringObjectClass_slistautoptr :: ^glib.SList
 StringObjectClass_queueautoptr :: ^glib.Queue
-_GtkStringList :: rawptr
+_GtkStringList :: struct #packed {}
 StringList :: _GtkStringList
 StringListClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -3895,7 +3895,7 @@ StringListClass_autoptr :: ^StringListClass
 StringListClass_listautoptr :: ^glib.List
 StringListClass_slistautoptr :: ^glib.SList
 StringListClass_queueautoptr :: ^glib.Queue
-_GtkStringSorter :: rawptr
+_GtkStringSorter :: struct #packed {}
 StringSorter :: _GtkStringSorter
 StringSorterClass :: struct {
     parent_class: SorterClass,
@@ -3909,7 +3909,7 @@ StringSorterClass_listautoptr :: ^glib.List
 StringSorterClass_slistautoptr :: ^glib.SList
 StringSorterClass_queueautoptr :: ^glib.Queue
 Collation :: enum u32 {COLLATION_NONE = 0, COLLATION_UNICODE = 1, COLLATION_FILENAME = 2, }
-_GtkStyleProvider :: rawptr
+_GtkStyleProvider :: struct #packed {}
 StyleProvider :: _GtkStyleProvider
 StyleProvider_autoptr :: ^StyleProvider
 StyleProvider_listautoptr :: ^glib.List
@@ -3934,13 +3934,13 @@ StyleContext_autoptr :: ^StyleContext
 StyleContext_listautoptr :: ^glib.List
 StyleContext_slistautoptr :: ^glib.SList
 StyleContext_queueautoptr :: ^glib.Queue
-_GtkSwitch :: rawptr
+_GtkSwitch :: struct #packed {}
 Switch :: _GtkSwitch
 Switch_autoptr :: ^Switch
 Switch_listautoptr :: ^glib.List
 Switch_slistautoptr :: ^glib.SList
 Switch_queueautoptr :: ^glib.Queue
-_GtkSymbolicPaintable :: rawptr
+_GtkSymbolicPaintable :: struct #packed {}
 SymbolicPaintable :: _GtkSymbolicPaintable
 snapshot_symbolic_func_ptr_anon_362 :: #type proc "c" (paintable: ^SymbolicPaintable, snapshot: ^Snapshot, width: f64, height: f64, colors: [^]RGBA, n_colors: glib.size)
 _GtkSymbolicPaintableInterface :: struct {
@@ -3973,9 +3973,9 @@ _GtkTextIter :: struct {
     dummy14: glib.pointer,
 }
 TextIter :: _GtkTextIter
-_GtkTextTagTable :: rawptr
+_GtkTextTagTable :: struct #packed {}
 TextTagTable :: _GtkTextTagTable
-_GtkTextTagPrivate :: rawptr
+_GtkTextTagPrivate :: struct #packed {}
 TextTagPrivate :: _GtkTextTagPrivate
 _GtkTextTag :: struct {
     parent_instance: gobj.Object,
@@ -4018,7 +4018,7 @@ TextChildAnchor_listautoptr :: ^glib.List
 TextChildAnchor_slistautoptr :: ^glib.SList
 TextChildAnchor_queueautoptr :: ^glib.Queue
 TextSearchFlags :: enum u32 {TEXT_SEARCH_VISIBLE_ONLY = 1, TEXT_SEARCH_TEXT_ONLY = 2, TEXT_SEARCH_CASE_INSENSITIVE = 4, }
-_GtkTextBufferPrivate :: rawptr
+_GtkTextBufferPrivate :: struct #packed {}
 TextBufferPrivate :: _GtkTextBufferPrivate
 _GtkTextBuffer :: struct {
     parent_instance: gobj.Object,
@@ -4093,7 +4093,7 @@ TextBuffer_queueautoptr :: ^glib.Queue
 TextWindowType :: enum u32 {TEXT_WINDOW_WIDGET = 1, TEXT_WINDOW_TEXT = 2, TEXT_WINDOW_LEFT = 3, TEXT_WINDOW_RIGHT = 4, TEXT_WINDOW_TOP = 5, TEXT_WINDOW_BOTTOM = 6, }
 TextViewLayer :: enum u32 {TEXT_VIEW_LAYER_BELOW_TEXT = 0, TEXT_VIEW_LAYER_ABOVE_TEXT = 1, }
 TextExtendSelection :: enum u32 {TEXT_EXTEND_SELECTION_WORD = 0, TEXT_EXTEND_SELECTION_LINE = 1, }
-_GtkTextViewPrivate :: rawptr
+_GtkTextViewPrivate :: struct #packed {}
 TextViewPrivate :: _GtkTextViewPrivate
 _GtkTextView :: struct {
     parent_instance: Widget,
@@ -4135,7 +4135,7 @@ TextView_autoptr :: ^TextView
 TextView_listautoptr :: ^glib.List
 TextView_slistautoptr :: ^glib.SList
 TextView_queueautoptr :: ^glib.Queue
-_GtkTreeDragSource :: rawptr
+_GtkTreeDragSource :: struct #packed {}
 TreeDragSource :: _GtkTreeDragSource
 row_draggable_func_ptr_anon_399 :: #type proc "c" (drag_source: ^TreeDragSource, path: ^TreePath) -> glib.boolean
 drag_data_get_func_ptr_anon_400 :: #type proc "c" (drag_source: ^TreeDragSource, path: ^TreePath) -> ^ContentProvider
@@ -4147,7 +4147,7 @@ _GtkTreeDragSourceIface :: struct {
     drag_data_delete: drag_data_delete_func_ptr_anon_401,
 }
 TreeDragSourceIface :: _GtkTreeDragSourceIface
-_GtkTreeDragDest :: rawptr
+_GtkTreeDragDest :: struct #packed {}
 TreeDragDest :: _GtkTreeDragDest
 drag_data_received_func_ptr_anon_402 :: #type proc "c" (drag_dest: ^TreeDragDest, dest: ^TreePath, value: ^gobj.Value) -> glib.boolean
 row_drop_possible_func_ptr_anon_403 :: #type proc "c" (drag_dest: ^TreeDragDest, dest_path: ^TreePath, value: ^gobj.Value) -> glib.boolean
@@ -4165,7 +4165,7 @@ TreeDragSource_autoptr :: ^TreeDragSource
 TreeDragSource_listautoptr :: ^glib.List
 TreeDragSource_slistautoptr :: ^glib.SList
 TreeDragSource_queueautoptr :: ^glib.Queue
-_GtkTreeListModel :: rawptr
+_GtkTreeListModel :: struct #packed {}
 TreeListModel :: _GtkTreeListModel
 TreeListModelClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -4178,7 +4178,7 @@ TreeListModelClass_autoptr :: ^TreeListModelClass
 TreeListModelClass_listautoptr :: ^glib.List
 TreeListModelClass_slistautoptr :: ^glib.SList
 TreeListModelClass_queueautoptr :: ^glib.Queue
-_GtkTreeListRow :: rawptr
+_GtkTreeListRow :: struct #packed {}
 TreeListRow :: _GtkTreeListRow
 TreeListRowClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -4192,7 +4192,7 @@ TreeListRowClass_listautoptr :: ^glib.List
 TreeListRowClass_slistautoptr :: ^glib.SList
 TreeListRowClass_queueautoptr :: ^glib.Queue
 TreeListModelCreateModelFunc :: #type proc "c" (item: glib.pointer, user_data: glib.pointer) -> ^gio.ListModel
-_GtkTreeExpander :: rawptr
+_GtkTreeExpander :: struct #packed {}
 TreeExpander :: _GtkTreeExpander
 TreeExpanderClass :: struct {
     parent_class: WidgetClass,
@@ -4205,7 +4205,7 @@ TreeExpanderClass_autoptr :: ^TreeExpanderClass
 TreeExpanderClass_listautoptr :: ^glib.List
 TreeExpanderClass_slistautoptr :: ^glib.SList
 TreeExpanderClass_queueautoptr :: ^glib.Queue
-_GtkTreeListRowSorter :: rawptr
+_GtkTreeListRowSorter :: struct #packed {}
 TreeListRowSorter :: _GtkTreeListRowSorter
 TreeListRowSorterClass :: struct {
     parent_class: SorterClass,
@@ -4218,7 +4218,7 @@ TreeListRowSorterClass_autoptr :: ^TreeListRowSorterClass
 TreeListRowSorterClass_listautoptr :: ^glib.List
 TreeListRowSorterClass_slistautoptr :: ^glib.SList
 TreeListRowSorterClass_queueautoptr :: ^glib.Queue
-_GtkTreeModelSortPrivate :: rawptr
+_GtkTreeModelSortPrivate :: struct #packed {}
 TreeModelSortPrivate :: _GtkTreeModelSortPrivate
 _GtkTreeModelSort :: struct {
     parent: gobj.Object,
@@ -4240,7 +4240,7 @@ TreeSelection_autoptr :: ^TreeSelection
 TreeSelection_listautoptr :: ^glib.List
 TreeSelection_slistautoptr :: ^glib.SList
 TreeSelection_queueautoptr :: ^glib.Queue
-_GtkTreeStorePrivate :: rawptr
+_GtkTreeStorePrivate :: struct #packed {}
 TreeStorePrivate :: _GtkTreeStorePrivate
 _GtkTreeStore :: struct {
     parent: gobj.Object,
@@ -4256,7 +4256,7 @@ TreeStore_autoptr :: ^TreeStore
 TreeStore_listautoptr :: ^glib.List
 TreeStore_slistautoptr :: ^glib.SList
 TreeStore_queueautoptr :: ^glib.Queue
-_GtkUriLauncher :: rawptr
+_GtkUriLauncher :: struct #packed {}
 UriLauncher :: _GtkUriLauncher
 UriLauncherClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -4269,7 +4269,7 @@ UriLauncherClass_autoptr :: ^UriLauncherClass
 UriLauncherClass_listautoptr :: ^glib.List
 UriLauncherClass_slistautoptr :: ^glib.SList
 UriLauncherClass_queueautoptr :: ^glib.Queue
-_GtkVideo :: rawptr
+_GtkVideo :: struct #packed {}
 Video :: _GtkVideo
 VideoClass :: struct {
     parent_class: WidgetClass,
@@ -4282,7 +4282,7 @@ VideoClass_autoptr :: ^VideoClass
 VideoClass_listautoptr :: ^glib.List
 VideoClass_slistautoptr :: ^glib.SList
 VideoClass_queueautoptr :: ^glib.Queue
-_GtkViewport :: rawptr
+_GtkViewport :: struct #packed {}
 Viewport :: _GtkViewport
 Viewport_autoptr :: ^Viewport
 Viewport_listautoptr :: ^glib.List
@@ -4296,7 +4296,7 @@ VolumeButton_autoptr :: ^VolumeButton
 VolumeButton_listautoptr :: ^glib.List
 VolumeButton_slistautoptr :: ^glib.SList
 VolumeButton_queueautoptr :: ^glib.Queue
-_GtkWidgetPaintable :: rawptr
+_GtkWidgetPaintable :: struct #packed {}
 WidgetPaintable :: _GtkWidgetPaintable
 WidgetPaintableClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -4309,7 +4309,7 @@ WidgetPaintableClass_autoptr :: ^WidgetPaintableClass
 WidgetPaintableClass_listautoptr :: ^glib.List
 WidgetPaintableClass_slistautoptr :: ^glib.SList
 WidgetPaintableClass_queueautoptr :: ^glib.Queue
-_GtkWindowControls :: rawptr
+_GtkWindowControls :: struct #packed {}
 WindowControls :: _GtkWindowControls
 WindowControlsClass :: struct {
     parent_class: WidgetClass,
@@ -4322,7 +4322,7 @@ WindowControlsClass_autoptr :: ^WindowControlsClass
 WindowControlsClass_listautoptr :: ^glib.List
 WindowControlsClass_slistautoptr :: ^glib.SList
 WindowControlsClass_queueautoptr :: ^glib.Queue
-_GtkWindowHandle :: rawptr
+_GtkWindowHandle :: struct #packed {}
 WindowHandle :: _GtkWindowHandle
 WindowHandleClass :: struct {
     parent_class: WidgetClass,
@@ -4335,7 +4335,7 @@ WindowHandleClass_autoptr :: ^WindowHandleClass
 WindowHandleClass_listautoptr :: ^glib.List
 WindowHandleClass_slistautoptr :: ^glib.SList
 WindowHandleClass_queueautoptr :: ^glib.Queue
-_GtkSnapshotClass :: rawptr
+_GtkSnapshotClass :: struct #packed {}
 
 when #config(GTK_STATIC, false) {
     foreign import gtk_runic { "../lib/linux/libgtk.a", "../lib/linux/libgtk-wrapper.a" }

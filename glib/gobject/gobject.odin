@@ -118,9 +118,9 @@ _GValue :: struct {
     data: [2]array_union_anon_0,
 }
 Value :: _GValue
-_GTypeCValue :: rawptr
+_GTypeCValue :: struct #packed {}
 TypeCValue :: _GTypeCValue
-_GTypePlugin :: rawptr
+_GTypePlugin :: struct #packed {}
 TypePlugin :: _GTypePlugin
 _GTypeClass :: struct {
     g_type: Type,
@@ -230,7 +230,7 @@ _GParameter :: struct {
     value: Value,
 }
 Parameter :: _GParameter
-_GParamSpecPool :: rawptr
+_GParamSpecPool :: struct #packed {}
 ParamSpecPool :: _GParamSpecPool
 instance_init_func_ptr_anon_6 :: #type proc "c" (pspec: ^ParamSpec)
 finalize_func_ptr_anon_7 :: #type proc "c" (pspec: ^ParamSpec)
@@ -337,11 +337,11 @@ priv_union_anon_19 :: struct #raw_union {p: glib.pointer, }
 WeakRef :: struct {
     priv: priv_union_anon_19,
 }
-_GBinding :: rawptr
+_GBinding :: struct #packed {}
 Binding :: _GBinding
 BindingTransformFunc :: #type proc "c" (binding: ^Binding, from_value: ^Value, to_value: ^Value, user_data: glib.pointer) -> glib.boolean
 BindingFlags :: enum u32 {BINDING_DEFAULT = 0, BINDING_BIDIRECTIONAL = 1, BINDING_SYNC_CREATE = 2, BINDING_INVERT_BOOLEAN = 4, }
-_GBindingGroup :: rawptr
+_GBindingGroup :: struct #packed {}
 BindingGroup :: _GBindingGroup
 _GEnumValue :: struct {
     value: glib.int_,
@@ -505,7 +505,7 @@ _GParamSpecVariant :: struct {
     padding: [4]glib.pointer,
 }
 ParamSpecVariant :: _GParamSpecVariant
-_GSignalGroup :: rawptr
+_GSignalGroup :: struct #packed {}
 SignalGroup :: _GSignalGroup
 _GTypeModule :: struct {
     parent_instance: Object,

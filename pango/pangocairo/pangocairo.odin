@@ -8,9 +8,9 @@ import pango ".."
 TYPE_CAIRO_FONT :: font_get_type 
 TYPE_CAIRO_FONT_MAP :: font_map_get_type 
 
-_PangoCairoFont :: rawptr
+_PangoCairoFont :: struct #packed {}
 Font :: _PangoCairoFont
-_PangoCairoFontMap :: rawptr
+_PangoCairoFontMap :: struct #packed {}
 FontMap :: _PangoCairoFontMap
 ShapeRendererFunc :: #type proc "c" (cr: ^cairo.context_t, attr: ^pango.AttrShape, do_path: glib.boolean, data: glib.pointer)
 
