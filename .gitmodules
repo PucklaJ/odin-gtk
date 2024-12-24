@@ -7,12 +7,6 @@
 [submodule "shared/pango"]
 	path = shared/pango
 	url = https://gitlab.gnome.org/GNOME/pango.git
-[submodule "shared/gobject-introspection"]
-	path = shared/gobject-introspection
-	url = https://gitlab.gnome.org/GNOME/gobject-introspection.git
-[submodule "shared/pixman"]
-	path = shared/pixman
-	url = https://gitlab.freedesktop.org/pixman/pixman.git
 [submodule "shared/cairo"]
 	path = shared/cairo
 	url = https://gitlab.freedesktop.org/cairo/cairo.git
