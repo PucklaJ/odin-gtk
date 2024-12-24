@@ -79,10 +79,12 @@ to:
       pid_t: Pid
       uid_t: Uid
     trim_prefix: true
-  add_libs: 
+  add_libs.static: 
     - ../../lib/linux/libgio-wrapper.a
     - libffi.so
     - libpcre2-8.so
     - libmount.so
     - libz.so
+  add_libs.shared: 
+    - ../../lib/linux/libgio-wrapper.a
   static_switch: 'GLIB_STATIC'

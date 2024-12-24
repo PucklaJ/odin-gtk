@@ -41,7 +41,7 @@ from:
   ignore:
     types:
       - va_list
-    macros:
+    constants:
       - '_GI_*'
       - 'GI_DEPRECATED*'
       - 'GI_AVAILABLE_*'
@@ -82,8 +82,10 @@ to:
       pid_t: Pid
       uid_t: Uid
     trim_prefix: true
-  add_libs:
+  add_libs.static:
     - '../../lib/linux/libgirepository-wrapper.a'
     - libffi.so
     - libpcre2-8.so
+  add_libs.shared:
+    - '../../lib/linux/libgirepository-wrapper.a'
   static_switch: 'GLIB_STATIC'

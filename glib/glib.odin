@@ -1041,7 +1041,7 @@ TestSuite :: struct #packed {}
 when #config(GLIB_STATIC, false) {
     foreign import glib_runic { "../lib/linux/libglib-2.0.a", "../lib/linux/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
 } else {
-    foreign import glib_runic { "system:glib-2.0", "../lib/linux/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
+    foreign import glib_runic { "system:glib-2.0", "../lib/linux/libglib-wrapper.a" }
 }
 
 @(default_calling_convention = "c")

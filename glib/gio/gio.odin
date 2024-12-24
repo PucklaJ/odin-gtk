@@ -3764,7 +3764,7 @@ ZlibDecompressor_queueautoptr :: ^glib.Queue
 when #config(GLIB_STATIC, false) {
     foreign import gio_runic { "../../lib/linux/libgio-2.0.a", "../../lib/linux/libgio-wrapper.a", "system:ffi", "system:pcre2-8", "system:mount", "system:z" }
 } else {
-    foreign import gio_runic { "system:gio-2.0", "../../lib/linux/libgio-wrapper.a", "system:ffi", "system:pcre2-8", "system:mount", "system:z" }
+    foreign import gio_runic { "system:gio-2.0", "../../lib/linux/libgio-wrapper.a" }
 }
 
 @(default_calling_convention = "c")

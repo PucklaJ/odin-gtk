@@ -39,6 +39,6 @@ to:
       '../../shared/glib/_build/glib/*': 'glib ..'
     trim_prefix: true
   static_switch: 'GLIB_STATIC'
-  add_libs:
+  add_libs.static:
     - libffi.so
     - libpcre2-8.so

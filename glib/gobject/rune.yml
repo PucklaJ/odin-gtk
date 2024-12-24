@@ -74,8 +74,10 @@ to:
       "../../shared/glib/glib/*": "glib .."
       "../../shared/glib/_build/glib/*": "glib .."
     trim_prefix: true
-  add_libs:
+  add_libs.static:
     - '../../lib/linux/libgobject-wrapper.a'
     - libffi.so
     - libpcre2-8.so
+  add_libs.shared:
+    - '../../lib/linux/libgobject-wrapper.a'
   static_switch: 'GLIB_STATIC'

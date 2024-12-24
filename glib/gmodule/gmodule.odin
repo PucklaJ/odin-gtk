@@ -12,7 +12,7 @@ ModuleError :: enum u32 {FAILED = 0, CHECK_FAILED = 1, }
 when #config(GLIB_STATIC, false) {
     foreign import gmodule_runic { "../../lib/linux/libgmodule-2.0.a", "system:ffi", "system:pcre2-8" }
 } else {
-    foreign import gmodule_runic { "system:gmodule-2.0", "system:ffi", "system:pcre2-8" }
+    foreign import gmodule_runic "system:gmodule-2.0"
 }
 
 @(default_calling_convention = "c")

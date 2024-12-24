@@ -153,8 +153,10 @@ to:
       "../stdinc/time.h": "core:c/libc"
       "../stdinc/stdarg.h": "core:c/libc"
       "../stdinc/pthread.h": "core:sys/posix"
-  add_libs:
+  add_libs.static:
     - ../lib/linux/libglib-wrapper.a
     - libffi.so
     - libpcre2-8.so
+  add_libs.shared:
+    - ../lib/linux/libglib-wrapper.a
   static_switch: 'GLIB_STATIC'
