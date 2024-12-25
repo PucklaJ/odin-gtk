@@ -38,20 +38,20 @@ glib-setup:
 
 glib-build:
     meson compile -C shared/glib/_build -j{{ num_cpus() }}
-    @mkdir -p lib/linux
-    ln -srf shared/glib/_build/glib/libglib-2.0.a lib/linux/
-    ln -srf shared/glib/_build/gio/libgio-2.0.a lib/linux/
-    ln -srf shared/glib/_build/gmodule/libgmodule-2.0.a lib/linux/
-    ln -srf shared/glib/_build/girepository/libgirepository-2.0.a lib/linux/
-    ln -srf shared/glib/_build/gobject/libgobject-2.0.a lib/linux/
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    ln -srf shared/glib/_build/glib/libglib-2.0.a lib/{{ os() }}/{{ arch() }}/
+    ln -srf shared/glib/_build/gio/libgio-2.0.a lib/{{ os() }}/{{ arch() }}/
+    ln -srf shared/glib/_build/gmodule/libgmodule-2.0.a lib/{{ os() }}/{{ arch() }}/
+    ln -srf shared/glib/_build/girepository/libgirepository-2.0.a lib/{{ os() }}/{{ arch() }}/
+    ln -srf shared/glib/_build/gobject/libgobject-2.0.a lib/{{ os() }}/{{ arch() }}/
 
 glib-clean:
     rm -rf shared/glib/_build \
-           lib/linux/libglib-2.0.a \
-           lib/linux/libgio-2.0.a \
-           lib/linux/libgmodule-2.0.a \
-           lib/linux/libgirepository-2.0.a \
-           lib/linux/libgobject-2.0.a \
+           lib/{{ os() }}/{{ arch() }}/libglib-2.0.a \
+           lib/{{ os() }}/{{ arch() }}/libgio-2.0.a \
+           lib/{{ os() }}/{{ arch() }}/libgmodule-2.0.a \
+           lib/{{ os() }}/{{ arch() }}/libgirepository-2.0.a \
+           lib/{{ os() }}/{{ arch() }}/libgobject-2.0.a \
 
 glib:
     {{ RUNIC }} glib/rune.yml
@@ -99,12 +99,12 @@ glib:
 
     echo '#undef g_steal_pointer' >> glib/glib-wrapper.h
 
-[linux]
+[unix]
 glib-wrapper:
-    @mkdir -p lib/linux
-    gcc -c -o lib/linux/glib-wrapper.o -Ishared/glib/ -Ishared/glib/_build -Ishared/glib/_build/glib glib/glib-wrapper.c
-    ar rs lib/linux/libglib-wrapper.a lib/linux/glib-wrapper.o
-    @rm lib/linux/glib-wrapper.o
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    cc -c -o lib/{{ os() }}/{{ arch() }}/glib-wrapper.o -Ishared/glib/ -Ishared/glib/_build -Ishared/glib/_build/glib glib/glib-wrapper.c
+    ar rs lib/{{ os() }}/{{ arch() }}/libglib-wrapper.a lib/{{ os() }}/{{ arch() }}/glib-wrapper.o
+    @rm lib/{{ os() }}/{{ arch() }}/glib-wrapper.o
 
 gobject:
     {{ RUNIC }} glib/gobject/rune.yml
@@ -122,12 +122,12 @@ gobject:
         -e '/^TYPE_/s/\]/\] }/g' \
         -e 's/class: \[\^\]/class: ^/g' \
 
-[linux]
+[unix]
 gobject-wrapper:
-    @mkdir -p lib/linux
-    gcc -c -o lib/linux/gobject-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build glib/gobject/gobject-wrapper.c
-    ar rs lib/linux/libgobject-wrapper.a lib/linux/gobject-wrapper.o
-    @rm lib/linux/gobject-wrapper.o
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    cc -c -o lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build glib/gobject/gobject-wrapper.c
+    ar rs lib/{{ os() }}/{{ arch() }}/libgobject-wrapper.a lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o
+    @rm lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o
 
 gmodule:
     {{ RUNIC }} glib/gmodule/rune.yml
@@ -145,24 +145,24 @@ gio:
         -e 's/`FALSE`/glib.FALSE/g' \
         -e '/^VOLUME_IDENTIFIER_KIND_HAL_UDI/s/GLIB_DEPRECATED_MACRO//g' \
         -e '/^TLS_CHANNEL_BINDING_ERROR/s/bindinerror/binding_error/g' \
-[linux]
+[unix]
 gio-wrapper:
-    @mkdir -p lib/linux
-    gcc -c -o lib/linux/gio-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule glib/gio/gio-wrapper.c
-    ar rs lib/linux/libgio-wrapper.a lib/linux/gio-wrapper.o
-    @rm lib/linux/gio-wrapper.o
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    cc -c -o lib/{{ os() }}/{{ arch() }}/gio-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule glib/gio/gio-wrapper.c
+    ar rs lib/{{ os() }}/{{ arch() }}/libgio-wrapper.a lib/{{ os() }}/{{ arch() }}/gio-wrapper.o
+    @rm lib/{{ os() }}/{{ arch() }}/gio-wrapper.o
 
 girepository:
     {{ RUNIC }} glib/girepository/rune.yml
     sed glib/girepository/girepository.odin -i \
         -e '/^\(TYPE_\|[A-Z]\+_ERROR\|\)/ {s/`//g; s/(gi_//g; s/())//g}' \
         -e 's/\(TYPE_TAG_N_TYPES :: \).*/\1int(TypeTag.TYPE_TAG_UNICHAR) + 1/g' \
-[linux]
+[unix]
 girepository-wrapper:
-    @mkdir -p lib/linux
-    gcc -c -o lib/linux/girepository-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/glib/_build/girepository glib/girepository/girepository-wrapper.c
-    ar rs lib/linux/libgirepository-wrapper.a lib/linux/girepository-wrapper.o
-    @rm lib/linux/girepository-wrapper.o
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    cc -c -o lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/glib/_build/girepository glib/girepository/girepository-wrapper.c
+    ar rs lib/{{ os() }}/{{ arch() }}/libgirepository-wrapper.a lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o
+    @rm lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o
 
 gdk-pixbuf-setup:
     cd shared/gdk-pixbuf && meson setup \
@@ -182,12 +182,12 @@ gdk-pixbuf:
         -e '{s/\^glib.char/cstring/g; s/buf: cstring/buf: ^glib.char/g; s/data: ^cstring/data: ^^glib.char/g; s/buffer: ^cstring/buffer: ^^glib.char/g}' \
         -e '/^TYPE_/ {s/`//g; s/(gdk_//g; s/())//g}' \
         -e '/^ERROR/ {s/`//g; s/gdk_//g; s/()//g}' \
-[linux]
+[unix]
 gdk-pixbuf-wrapper:
-    @mkdir -p lib/linux
-    gcc -c -o lib/linux/gdk-pixbuf-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build gdk-pixbuf/gdk-pixbuf-wrapper.c
-    ar rs lib/linux/libgdk-pixbuf-wrapper.a lib/linux/gdk-pixbuf-wrapper.o
-    @rm lib/linux/gdk-pixbuf-wrapper.o
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    cc -c -o lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build gdk-pixbuf/gdk-pixbuf-wrapper.c
+    ar rs lib/{{ os() }}/{{ arch() }}/libgdk-pixbuf-wrapper.a lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o
+    @rm lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o
 
 cairo-setup:
     cd shared/cairo && meson setup \
@@ -200,12 +200,12 @@ cairo-setup:
 
 cairo-build:
     meson compile -C shared/cairo/_build -j{{ num_cpus() }}
-    @mkdir -p lib/linux
-    ln -srf shared/cairo/_build/src/libcairo.a lib/linux/
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    ln -srf shared/cairo/_build/src/libcairo.a lib/{{ os() }}/{{ arch() }}/
 
 cairo-clean:
     rm -rf shared/cairo/_build \
-           lib/linux/libcairo.a
+           lib/{{ os() }}/{{ arch() }}/libcairo.a
 
 cairo:
     {{ RUNIC }} cairo/rune.yml
@@ -229,12 +229,12 @@ pango:
         -e '/^ATTR_/ {s/`//g; s/(guint)//g; s/G_MAXUINT/glib.MAXUINT/g}' \
         -e '/^ANALYSIS_/ {s/`//g}' \
         -e '/^\(RENDER_TYPE\|ENGINE_TYPE\)/ {s/`//g; s/\\//g}' \
-[linux]
+[unix]
 pango-wrapper:
-    @mkdir -p lib/linux
-    gcc -c -o lib/linux/pango-wrapper.o -Ishared/pango -Ishared/pango/_build -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build -Ishared/glib/_build/glib -I/usr/include/harfbuzz pango/pango-wrapper.c
-    ar rs lib/linux/libpango-wrapper.a lib/linux/pango-wrapper.o
-    @rm lib/linux/pango-wrapper.o
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    cc -c -o lib/{{ os() }}/{{ arch() }}/pango-wrapper.o -Ishared/pango -Ishared/pango/_build -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build -Ishared/glib/_build/glib -I/usr/include/harfbuzz pango/pango-wrapper.c
+    ar rs lib/{{ os() }}/{{ arch() }}/libpango-wrapper.a lib/{{ os() }}/{{ arch() }}/pango-wrapper.o
+    @rm lib/{{ os() }}/{{ arch() }}/pango-wrapper.o
 
 pangocairo:
     {{ RUNIC }} pango/pangocairo/rune.yml
@@ -245,7 +245,7 @@ graphene-setup:
     cd shared/graphene && meson setup \
        -Dsse2=false \
        -Darm_neon=false \
-       -Dgcc_vector=false \
+       -Dcc_vector=false \
        -Dintrospection=disabled \
        -Dtests=false \
        -Dinstalled_tests=false \
@@ -256,12 +256,12 @@ graphene:
     sed graphene/graphene.odin -i \
         -e '/^SIMD_S/ {s/`//g; s/\\//g}' \
         -e '/^PI/ {s/`//g; s/f//g}' \
-[linux]
+[unix]
 graphene-wrapper:
-    @mkdir -p lib/linux
-    gcc -c -o lib/linux/graphene-wrapper.o -Ishared/graphene/_build/include graphene/graphene-wrapper.c
-    ar rs lib/linux/libgraphene-wrapper.a lib/linux/graphene-wrapper.o
-    @rm lib/linux/graphene-wrapper.o
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    cc -c -o lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o -Ishared/graphene/_build/include graphene/graphene-wrapper.c
+    ar rs lib/{{ os() }}/{{ arch() }}/libgraphene-wrapper.a lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o
+    @rm lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o
 
 gtk-setup:
   cd shared/gtk && meson setup \
@@ -286,8 +286,8 @@ gtk-setup:
 gtk-build:
     meson compile -C shared/gtk/_build -j{{ num_cpus() }}
 
-    @mkdir -p lib/linux
-    ln -sfr shared/gtk/_build/gtk/libgtk.a lib/linux/libgtk.a
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    ln -sfr shared/gtk/_build/gtk/libgtk.a lib/{{ os() }}/{{ arch() }}/libgtk.a
 gtk-clean:
     rm -rf shared/gtk/_build
 
@@ -298,12 +298,12 @@ gtk:
         -e 's/^Snapshot :: Snapshot//g' \
         -e 's/^SnapshotClass :: _GtkSnapshotClass//g' \
         -e '0,/Snapshot_queueautoptr/{s/Snapshot_.*//g}' \
-[linux]
+[unix]
 gtk-wrapper:
-    @mkdir -p lib/linux
-    gcc -c -o lib/linux/gtk-wrapper.o -Ishared/gtk -Ishared/glib -Ishared/glib/glib -Ishared/glib/gmodule -Ishared/glib/_build -Ishared/glib/_build/glib -Ishared/gtk/_build -Ishared/cairo/src -Ishared/cairo/_build/src -Ishared/pango -Ishared/pango/_build -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build -Ishared/graphene/include -Ishared/graphene/_build/include -I/usr/include/harfbuzz gtk/gtk-wrapper.c
-    ar rs lib/linux/libgtk-wrapper.a lib/linux/gtk-wrapper.o
-    @rm lib/linux/gtk-wrapper.o
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    cc -c -o lib/{{ os() }}/{{ arch() }}/gtk-wrapper.o -Ishared/gtk -Ishared/glib -Ishared/glib/glib -Ishared/glib/gmodule -Ishared/glib/_build -Ishared/glib/_build/glib -Ishared/gtk/_build -Ishared/cairo/src -Ishared/cairo/_build/src -Ishared/pango -Ishared/pango/_build -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build -Ishared/graphene/include -Ishared/graphene/_build/include -I/usr/include/harfbuzz gtk/gtk-wrapper.c
+    ar rs lib/{{ os() }}/{{ arch() }}/libgtk-wrapper.a lib/{{ os() }}/{{ arch() }}/gtk-wrapper.o
+    @rm lib/{{ os() }}/{{ arch() }}/gtk-wrapper.o
 
 gtk-layer-shell:
     {{ RUNIC }} gtk/layer-shell/rune.yml
