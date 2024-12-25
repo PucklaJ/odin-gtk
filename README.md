@@ -37,7 +37,7 @@ By default all the libraries will be linked dynamically. Installing the gtk pack
 
 To install them on archlinux:
 ```
-sudo pacman -S --needed --noconfirm base-devel just meson ninja python
+sudo pacman -S --needed --noconfirm base-devel just meson ninja python harfbuzz
 ```
 on ubuntu:
 ```
@@ -45,7 +45,7 @@ sudo apt install -y build-essential just meson ninja-build python3
 ```
 on alpine:
 ```
-sudo apk add just meson samurai python3 build-base
+sudo apk add just meson samurai python3 build-base harfbuzz-dev
 ```
 
 Then execute:
