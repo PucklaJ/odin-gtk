@@ -27,7 +27,17 @@ Other UNIX-like systems might also work, but anything else but 64-Bit won't work
 
 ## Usage
 
-By default all the libraries will be linked dynamically. Installing the gtk package of your linux distribution should be fine. But before you can use these bindings you need to build a wrapper. The build dependencies are:
+The gtk package on different linux distributions:
+
+| Distribution | Package Name                              |
+| ------------ | ----------------------------------------- |
+| Arch Linux   | `gtk4`, `gtk4-layer-shell`                |
+| Ubuntu       | `libgtk-4-dev`, `libgtk4-layer-shell-dev` |
+| Alpine Linux | `gtk4.0-dev`, `gtk4-layer-shell-dev`      |
+
+By default all the libraries will be linked dynamically. Installing the gtk package of your linux distribution should be fine. Library files for some wrappers are provided, but in case you want to rebuild them you need to follow the following steps.
+
+The build dependencies are:
 
 + [just](https://just.systems)
 + meson
@@ -53,11 +63,3 @@ Then execute:
 ```
 just setup && just wrapper
 ```
-
-The gtk package on different linux distributions:
-
-| Distribution | Package Name                              |
-| ------------ | ----------------------------------------- |
-| Arch Linux   | `gtk4`, `gtk4-layer-shell`                |
-| Ubuntu       | `libgtk-4-dev`, `libgtk4-layer-shell-dev` |
-| Alpine Linux | `gtk4.0-dev`, `gtk4-layer-shell-dev`      |
