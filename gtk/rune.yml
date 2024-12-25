@@ -12,7 +12,7 @@ wrapper:
 from:
   language: c
   shared.linux: 'libgtk-4.so'
-  static.linux.arm64: '../lib/linux/arm64/libgtk.a'
+  static.linux.arm64: '../lib/linux/aarch64/libgtk.a'
   static.linux.x86_64: '../lib/linux/x86_64/libgtk.a'
   headers: ../shared/gtk/gtk/gtk.h
   includedirs:

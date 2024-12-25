@@ -26929,7 +26929,7 @@ when (ODIN_ARCH == .arm64) {
 
 when #config(GTK_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import gtk_runic { "../lib/linux/arm64/libgtk.a", "../lib/linux/aarch64/libgtk-wrapper.a" }
+    foreign import gtk_runic { "../lib/linux/aarch64/libgtk.a", "../lib/linux/aarch64/libgtk-wrapper.a" }
 } 
 } else {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {

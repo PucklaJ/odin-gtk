@@ -80,7 +80,7 @@ to:
     - libffi.so
     - libpcre2-8.so
   add_libs.shared.linux.arm64:
-    - '../../lib/linux/arm64/libgobject-wrapper.a'
+    - '../../lib/linux/aarch64/libgobject-wrapper.a'
   add_libs.static.linux.x86_64:
     - '../../lib/linux/x86_64/libgobject-wrapper.a'
     - libffi.so

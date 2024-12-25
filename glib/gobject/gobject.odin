@@ -2211,7 +2211,7 @@ when #config(GLIB_STATIC, false) {
 } 
 } else {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import gobject_runic { "system:gobject-2.0", "../../lib/linux/arm64/libgobject-wrapper.a" }
+    foreign import gobject_runic { "system:gobject-2.0", "../../lib/linux/aarch64/libgobject-wrapper.a" }
 } 
 }
 
