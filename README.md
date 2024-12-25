@@ -45,7 +45,7 @@ sudo apt install -y build-essential just meson ninja-build python3
 ```
 on alpine:
 ```
-sudo apk add just meson ninja-build python3 gcc
+sudo apk add just meson samurai python3 build-base
 ```
 
 Then execute:
