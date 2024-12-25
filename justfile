@@ -6,8 +6,8 @@ bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell
 glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
-wrapper:  glib-wrapper-all gdk-pixbuf-wrapper pango-wrapper graphene-wrapper gtk-wrapper
-glib-wrapper-all: glib-wrapper gobject-wrapper gio-wrapper girepository-wrapper
+wrapper CC='cc':  (glib-wrapper-all CC) (gdk-pixbuf-wrapper CC) (pango-wrapper CC) (graphene-wrapper CC) (gtk-wrapper CC)
+glib-wrapper-all CC='cc': (glib-wrapper CC) (gobject-wrapper CC) (gio-wrapper CC) (girepository-wrapper CC)
 
 build: glib-build cairo-build gtk-build
 
@@ -102,9 +102,9 @@ glib:
     echo '#undef g_steal_pointer' >> glib/glib-wrapper.h
 
 [unix]
-glib-wrapper:
+glib-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
-    cc -c -o lib/{{ os() }}/{{ arch() }}/glib-wrapper.o -Ishared/glib/ -Ishared/glib/_build -Ishared/glib/_build/glib glib/glib-wrapper.c
+    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/glib-wrapper.o -Ishared/glib/ -Ishared/glib/_build -Ishared/glib/_build/glib glib/glib-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libglib-wrapper.a lib/{{ os() }}/{{ arch() }}/glib-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/glib-wrapper.o
 
@@ -125,9 +125,9 @@ gobject:
         -e 's/class: \[\^\]/class: ^/g' \
 
 [unix]
-gobject-wrapper:
+gobject-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
-    cc -c -o lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build glib/gobject/gobject-wrapper.c
+    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build glib/gobject/gobject-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libgobject-wrapper.a lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o
 
@@ -148,9 +148,9 @@ gio:
         -e '/^VOLUME_IDENTIFIER_KIND_HAL_UDI/s/GLIB_DEPRECATED_MACRO//g' \
         -e '/^TLS_CHANNEL_BINDING_ERROR/s/bindinerror/binding_error/g' \
 [unix]
-gio-wrapper:
+gio-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
-    cc -c -o lib/{{ os() }}/{{ arch() }}/gio-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule glib/gio/gio-wrapper.c
+    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/gio-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule glib/gio/gio-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libgio-wrapper.a lib/{{ os() }}/{{ arch() }}/gio-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/gio-wrapper.o
 
@@ -160,9 +160,9 @@ girepository:
         -e '/^\(TYPE_\|[A-Z]\+_ERROR\|\)/ {s/`//g; s/(gi_//g; s/())//g}' \
         -e 's/\(TYPE_TAG_N_TYPES :: \).*/\1int(TypeTag.TYPE_TAG_UNICHAR) + 1/g' \
 [unix]
-girepository-wrapper:
+girepository-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
-    cc -c -o lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/glib/_build/girepository glib/girepository/girepository-wrapper.c
+    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/glib/_build/girepository glib/girepository/girepository-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libgirepository-wrapper.a lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o
 
@@ -185,9 +185,9 @@ gdk-pixbuf:
         -e '/^TYPE_/ {s/`//g; s/(gdk_//g; s/())//g}' \
         -e '/^ERROR/ {s/`//g; s/gdk_//g; s/()//g}' \
 [unix]
-gdk-pixbuf-wrapper:
+gdk-pixbuf-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
-    cc -c -o lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build gdk-pixbuf/gdk-pixbuf-wrapper.c
+    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build gdk-pixbuf/gdk-pixbuf-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libgdk-pixbuf-wrapper.a lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o
 
@@ -232,9 +232,9 @@ pango:
         -e '/^ANALYSIS_/ {s/`//g}' \
         -e '/^\(RENDER_TYPE\|ENGINE_TYPE\)/ {s/`//g; s/\\//g}' \
 [unix]
-pango-wrapper:
+pango-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
-    cc -c -o lib/{{ os() }}/{{ arch() }}/pango-wrapper.o -Ishared/pango -Ishared/pango/_build -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build -Ishared/glib/_build/glib -I/usr/include/harfbuzz pango/pango-wrapper.c
+    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/pango-wrapper.o -Ishared/pango -Ishared/pango/_build -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build -Ishared/glib/_build/glib -I/usr/include/harfbuzz pango/pango-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libpango-wrapper.a lib/{{ os() }}/{{ arch() }}/pango-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/pango-wrapper.o
 
@@ -259,9 +259,9 @@ graphene:
         -e '/^SIMD_S/ {s/`//g; s/\\//g}' \
         -e '/^PI/ {s/`//g; s/f//g}' \
 [unix]
-graphene-wrapper:
+graphene-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
-    cc -c -o lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o -Ishared/graphene/_build/include graphene/graphene-wrapper.c
+    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o -Ishared/graphene/_build/include graphene/graphene-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libgraphene-wrapper.a lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o
 
@@ -301,9 +301,9 @@ gtk:
         -e 's/^SnapshotClass :: _GtkSnapshotClass//g' \
         -e '0,/Snapshot_queueautoptr/{s/Snapshot_.*//g}' \
 [unix]
-gtk-wrapper:
+gtk-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
-    cc -c -o lib/{{ os() }}/{{ arch() }}/gtk-wrapper.o -Ishared/gtk -Ishared/glib -Ishared/glib/glib -Ishared/glib/gmodule -Ishared/glib/_build -Ishared/glib/_build/glib -Ishared/gtk/_build -Ishared/cairo/src -Ishared/cairo/_build/src -Ishared/pango -Ishared/pango/_build -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build -Ishared/graphene/include -Ishared/graphene/_build/include -I/usr/include/harfbuzz gtk/gtk-wrapper.c
+    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/gtk-wrapper.o -Ishared/gtk -Ishared/glib -Ishared/glib/glib -Ishared/glib/gmodule -Ishared/glib/_build -Ishared/glib/_build/glib -Ishared/gtk/_build -Ishared/cairo/src -Ishared/cairo/_build/src -Ishared/pango -Ishared/pango/_build -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build -Ishared/graphene/include -Ishared/graphene/_build/include -I/usr/include/harfbuzz gtk/gtk-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libgtk-wrapper.a lib/{{ os() }}/{{ arch() }}/gtk-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/gtk-wrapper.o
 
