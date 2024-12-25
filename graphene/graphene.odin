@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package graphene
 
 SIMD_S :: "scalar"
@@ -104,8 +105,6 @@ _graphene_ray_t :: struct {
 }
 ray_t :: _graphene_ray_t
 ray_intersection_kind_t :: enum u32 {RAY_INTERSECTION_KIND_NONE = 0, RAY_INTERSECTION_KIND_ENTER = 1, RAY_INTERSECTION_KIND_LEAVE = 2, }
-
-foreign import graphene_runic { "system:graphene-1.0", "../lib/linux/libgraphene-wrapper.a" }
 
 @(default_calling_convention = "c")
 foreign graphene_runic {
@@ -1545,6 +1544,34 @@ foreign graphene_runic {
 
     @(link_name = "graphene_simd4x4f_is_2d_wrapper")
     simd4x4f_is_2d :: proc(m: ^simd4x4f_t) -> b8 ---
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(GRAPHENE_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import graphene_runic { "../lib/linux/x86_64/libgraphene-1.0.a", "../lib/linux/x86_64/libgraphene-wrapper.a" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import graphene_runic { "system:graphene-1.0", "../lib/linux/x86_64/libgraphene-wrapper.a" }
+} 
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(GRAPHENE_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import graphene_runic { "../lib/linux/aarch64/libgraphene-1.0.a", "../lib/linux/aarch64/libgraphene-wrapper.a" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import graphene_runic { "system:graphene-1.0", "../lib/linux/aarch64/libgraphene-wrapper.a" }
+} 
+}
 
 }
 

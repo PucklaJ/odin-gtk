@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package cairo
 
 TAG_DEST :: "cairo.dest"
@@ -170,12 +171,6 @@ _cairo_region :: struct #packed {}
 region_t :: _cairo_region
 _cairo_region_overlap :: enum u32 {REGION_OVERLAP_IN = 0, REGION_OVERLAP_OUT = 1, REGION_OVERLAP_PART = 2, }
 region_overlap_t :: _cairo_region_overlap
-
-when #config(CAIRO_STATIC, false) {
-    foreign import cairo_runic "../lib/linux/libcairo.a"
-} else {
-    foreign import cairo_runic "system:cairo"
-}
 
 @(default_calling_convention = "c")
 foreign cairo_runic {
@@ -1213,6 +1208,26 @@ foreign cairo_runic {
 
     @(link_name = "cairo_debug_reset_static_data")
     debug_reset_static_data :: proc() ---
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(CAIRO_STATIC, false) {
+    foreign import cairo_runic "../lib/linux/x86_64/libcairo.a"
+} else {
+    foreign import cairo_runic "system:cairo"
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(CAIRO_STATIC, false) {
+    foreign import cairo_runic "../lib/linux/aarch64/libcairo.a"
+} else {
+    foreign import cairo_runic "system:cairo"
+}
 
 }
 

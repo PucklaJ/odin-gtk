@@ -5,7 +5,8 @@ platforms:
 from:
   language: c
   shared.linux: 'libcairo.so'
-  static.linux: '../lib/linux/libcairo.a'
+  static.linux.arm64: '../lib/linux/aarch64/libcairo.a'
+  static.linux.x86_64: '../lib/linux/x86_64/libcairo.a'
   headers: ../shared/cairo/src/cairo.h
   includedirs: ../shared/cairo/_build/src
   defines:

@@ -11,7 +11,9 @@ wrapper:
   multi_platform: false
 from:
   language: c
-  shared: 'libpango-1.0.so'
+  shared.linux: 'libpango-1.0.so'
+  static.linux.arm64: '../lib/linux/aarch64/libpango-1.0.a'
+  static.linux.x86_64: '../lib/linux/x86_64/libpango-1.0.a'
   headers: ../shared/pango/pango/pango.h
   includedirs:
     - ../stdinc/
@@ -71,4 +73,5 @@ to:
       '../shared/glib/_build/glib/*': '../glib'
       '../shared/glib/gobject/*': 'gobj ../glib/gobject'
     trim_prefix: true
-  add_libs: ../lib/linux/libpango-wrapper.a
+  add_libs.linux.arm64: ../lib/linux/aarch64/libpango-wrapper.a
+  add_libs.linux.x86_64: ../lib/linux/x86_64/libpango-wrapper.a

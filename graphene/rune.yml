@@ -11,7 +11,9 @@ wrapper:
   multi_platform: false
 from:
   language: c
-  shared: 'libgraphene-1.0.so'
+  shared.linux: 'libgraphene-1.0.so'
+  static.linux.arm64: '../lib/linux/aarch64/libgraphene-1.0.a'
+  static.linux.x86_64: '../lib/linux/x86_64/libgraphene-1.0.a'
   headers: ../shared/graphene/include/graphene.h
   includedirs:
     - ../shared/graphene/_build/include/
@@ -35,4 +37,5 @@ to:
   trim_suffix:
     functions:
       - '_wrapper'
-  add_libs: ../lib/linux/libgraphene-wrapper.a
+  add_libs.linux.arm64: ../lib/linux/aarch64/libgraphene-wrapper.a
+  add_libs.linux.x86_64: ../lib/linux/x86_64/libgraphene-wrapper.a

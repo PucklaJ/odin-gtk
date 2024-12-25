@@ -12,7 +12,8 @@ wrapper:
 from:
   language: c
   shared.linux: 'libgio-2.0.so'
-  static.linux: '../../lib/linux/libgio-2.0.a'
+  static.linux.arm64: '../../lib/linux/aarch64/libgio-2.0.a'
+  static.linux.x86_64: '../../lib/linux/x86_64/libgio-2.0.a'
   headers: ../../shared/glib/gio/gio.h
   includedirs:
     - ../../stdinc/
@@ -79,12 +80,20 @@ to:
       pid_t: Pid
       uid_t: Uid
     trim_prefix: true
-  add_libs.static: 
-    - ../../lib/linux/libgio-wrapper.a
+  add_libs.static.linux.arm64:
+    - ../../lib/linux/aarch64/libgio-wrapper.a
     - libffi.so
     - libpcre2-8.so
     - libmount.so
     - libz.so
-  add_libs.shared: 
-    - ../../lib/linux/libgio-wrapper.a
+  add_libs.shared.linux.arm64: 
+    - ../../lib/linux/aarch64/libgio-wrapper.a
+  add_libs.static.linux.x86_64:
+    - ../../lib/linux/x86_64/libgio-wrapper.a
+    - libffi.so
+    - libpcre2-8.so
+    - libmount.so
+    - libz.so
+  add_libs.shared.linux.x86_64: 
+    - ../../lib/linux/x86_64/libgio-wrapper.a
   static_switch: 'GLIB_STATIC'

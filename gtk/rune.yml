@@ -12,7 +12,8 @@ wrapper:
 from:
   language: c
   shared.linux: 'libgtk-4.so'
-  static.linux: '../lib/linux/libgtk.a'
+  static.linux.arm64: '../lib/linux/arm64/libgtk.a'
+  static.linux.x86_64: '../lib/linux/x86_64/libgtk.a'
   headers: ../shared/gtk/gtk/gtk.h
   includedirs:
     - ../stdinc/
@@ -102,4 +103,5 @@ to:
       '../shared/graphene/include/*': '../graphene'
       '../shared/graphene/_build/include/*': '../graphene'
     trim_prefix: true
-  add_libs: ../lib/linux/libgtk-wrapper.a
+  add_libs.linux.arm64: ../lib/linux/aarch64/libgtk-wrapper.a
+  add_libs.linux.x86_64: ../lib/linux/x86_64/libgtk-wrapper.a

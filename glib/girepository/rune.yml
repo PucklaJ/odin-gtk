@@ -12,7 +12,8 @@ wrapper:
 from:
   language: c
   shared.linux: 'libgirepository-2.0.so'
-  static.linux: '../../lib/linux/libgirepository-2.0.a'
+  static.linux.arm64: '../../lib/linux/aarch64/libgirepository-2.0.a'
+  static.linux.x86_64: '../../lib/linux/x86_64/libgirepository-2.0.a'
   headers: ../../shared/glib/girepository/girepository.h
   includedirs:
     - ../../stdinc/
@@ -82,10 +83,16 @@ to:
       pid_t: Pid
       uid_t: Uid
     trim_prefix: true
-  add_libs.static:
-    - '../../lib/linux/libgirepository-wrapper.a'
+  add_libs.static.linux.arm64:
+    - ../../lib/linux/aarch64/libgirepository-wrapper.a
     - libffi.so
     - libpcre2-8.so
-  add_libs.shared:
-    - '../../lib/linux/libgirepository-wrapper.a'
+  add_libs.shared.linux.arm64:
+    - ../../lib/linux/aarch64/libgirepository-wrapper.a
+  add_libs.static.linux.x86_64:
+    - ../../lib/linux/x86_64/libgirepository-wrapper.a
+    - libffi.so
+    - libpcre2-8.so
+  add_libs.shared.linux.x86_64:
+    - ../../lib/linux/x86_64/libgirepository-wrapper.a
   static_switch: 'GLIB_STATIC'

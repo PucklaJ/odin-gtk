@@ -1038,12 +1038,6 @@ PathBuf_queueautoptr :: ^Queue
 TestCase :: struct #packed {}
 TestSuite :: struct #packed {}
 
-when #config(GLIB_STATIC, false) {
-    foreign import glib_runic { "../lib/linux/libglib-2.0.a", "../lib/linux/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
-} else {
-    foreign import glib_runic { "system:glib-2.0", "../lib/linux/libglib-wrapper.a" }
-}
-
 @(default_calling_convention = "c")
 foreign glib_runic {
     @(link_name = "g_array_new")
@@ -7554,11 +7548,31 @@ when (ODIN_ARCH == .amd64) {
 
 char :: i8
 
+when #config(GLIB_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import glib_runic { "../lib/linux/x86_64/libglib-2.0.a", "../lib/linux/x86_64/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import glib_runic { "system:glib-2.0", "../lib/linux/x86_64/libglib-wrapper.a" }
+} 
+}
+
 }
 
 when (ODIN_ARCH == .arm64) {
 
 char :: u8
+
+when #config(GLIB_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import glib_runic { "../lib/linux/aarch64/libglib-2.0.a", "../lib/linux/aarch64/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import glib_runic { "system:glib-2.0", "../lib/linux/aarch64/libglib-wrapper.a" }
+} 
+}
 
 }
 

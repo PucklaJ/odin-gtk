@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package girepository
 
 import glib ".."
@@ -202,12 +203,6 @@ VFuncInfo_autoptr :: ^VFuncInfo
 VFuncInfo_listautoptr :: ^glib.List
 VFuncInfo_slistautoptr :: ^glib.SList
 VFuncInfo_queueautoptr :: ^glib.Queue
-
-when #config(GLIB_STATIC, false) {
-    foreign import girepository_runic { "../../lib/linux/libgirepository-2.0.a", "../../lib/linux/libgirepository-wrapper.a", "system:ffi", "system:pcre2-8" }
-} else {
-    foreign import girepository_runic { "system:girepository-2.0", "../../lib/linux/libgirepository-wrapper.a" }
-}
 
 @(default_calling_convention = "c")
 foreign girepository_runic {
@@ -1308,6 +1303,34 @@ foreign girepository_runic {
 
     @(link_name = "glib_auto_cleanup_GITypeInfo_wrapper")
     auto_cleanup_GITypeInfo :: proc(_ptr: ^TypeInfo) ---
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(GLIB_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import girepository_runic { "../../lib/linux/x86_64/libgirepository-2.0.a", "../../lib/linux/x86_64/libgirepository-wrapper.a", "system:ffi", "system:pcre2-8" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import girepository_runic { "system:girepository-2.0", "../../lib/linux/x86_64/libgirepository-wrapper.a" }
+} 
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(GLIB_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import girepository_runic { "../../lib/linux/aarch64/libgirepository-2.0.a", "../../lib/linux/aarch64/libgirepository-wrapper.a", "system:ffi", "system:pcre2-8" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import girepository_runic { "system:girepository-2.0", "../../lib/linux/aarch64/libgirepository-wrapper.a" }
+} 
+}
 
 }
 

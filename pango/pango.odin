@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package pango
 
 import "../glib"
@@ -549,8 +550,6 @@ _PangoRendererClass :: struct {
     _pango_reserved4: _pango_reserved4_func_ptr_anon_55,
 }
 RendererClass :: _PangoRendererClass
-
-foreign import pango_runic { "system:pango-1.0", "../lib/linux/libpango-wrapper.a" }
 
 @(default_calling_convention = "c")
 foreign pango_runic {
@@ -2248,6 +2247,34 @@ foreign pango_runic {
 
     @(link_name = "glib_queueautoptr_cleanup_PangoLayoutIter_wrapper")
     queueautoptr_cleanup_PangoLayoutIter :: proc(_q: ^^glib.Queue) ---
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(PANGO_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import pango_runic { "../lib/linux/x86_64/libpango-1.0.a", "../lib/linux/x86_64/libpango-wrapper.a" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import pango_runic { "system:pango-1.0", "../lib/linux/x86_64/libpango-wrapper.a" }
+} 
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(PANGO_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import pango_runic { "../lib/linux/aarch64/libpango-1.0.a", "../lib/linux/aarch64/libpango-wrapper.a" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import pango_runic { "system:pango-1.0", "../lib/linux/aarch64/libpango-wrapper.a" }
+} 
+}
 
 }
 

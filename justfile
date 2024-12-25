@@ -13,7 +13,9 @@ build: glib-build cairo-build gtk-build
 
 clean: glib-clean cairo-clean gtk-clean
 
-RUNIC := 'runic'
+check-all: (check 'glib') (check 'glib/gobject') (check 'glib/gmodule') (check 'glib/gio') (check 'glib/girepository') (check 'gdk-pixbuf') (check 'cairo') (check 'pango') (check 'pango/pangocairo') (check 'graphene') (check 'gtk') (check 'gtk/layer-shell')
+
+RUNIC := 'runic_debug'
 
 glib-setup:
     cd shared/glib && meson setup \

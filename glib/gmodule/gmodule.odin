@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package gmodule
 
 import glib ".."
@@ -8,12 +9,6 @@ Module :: _GModule
 ModuleCheckInit :: #type proc "c" (module: ^Module) -> cstring
 ModuleUnload :: #type proc "c" (module: ^Module)
 ModuleError :: enum u32 {FAILED = 0, CHECK_FAILED = 1, }
-
-when #config(GLIB_STATIC, false) {
-    foreign import gmodule_runic { "../../lib/linux/libgmodule-2.0.a", "system:ffi", "system:pcre2-8" }
-} else {
-    foreign import gmodule_runic "system:gmodule-2.0"
-}
 
 @(default_calling_convention = "c")
 foreign gmodule_runic {
@@ -46,6 +41,30 @@ foreign gmodule_runic {
 
     @(link_name = "g_module_build_path")
     build_path :: proc(directory: cstring, module_name: cstring) -> cstring ---
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(GLIB_STATIC, false) {
+    when (ODIN_OS == .Linux) {
+    foreign import gmodule_runic { "../../lib/linux/x86_64/libgmodule-2.0.a", "system:ffi", "system:pcre2-8" }
+} 
+} else {
+    foreign import gmodule_runic "system:gmodule-2.0"
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(GLIB_STATIC, false) {
+    when (ODIN_OS == .Linux) {
+    foreign import gmodule_runic { "../../lib/linux/aarch64/libgmodule-2.0.a", "system:ffi", "system:pcre2-8" }
+} 
+} else {
+    foreign import gmodule_runic "system:gmodule-2.0"
+}
 
 }
 

@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package gdkpixbuf
 
 import "../glib"
@@ -72,8 +73,6 @@ PixbufSimpleAnim_autoptr :: ^PixbufSimpleAnim
 PixbufSimpleAnim_listautoptr :: ^glib.List
 PixbufSimpleAnim_slistautoptr :: ^glib.SList
 PixbufSimpleAnim_queueautoptr :: ^glib.Queue
-
-foreign import gdkpixbuf_runic { "system:gdk_pixbuf-2.0", "../lib/linux/libgdk-pixbuf-wrapper.a" }
 
 @(default_calling_convention = "c")
 foreign gdkpixbuf_runic {
@@ -538,6 +537,34 @@ foreign gdkpixbuf_runic {
 
     @(link_name = "glib_queueautoptr_cleanup_GdkPixbufSimpleAnim_wrapper")
     queueautoptr_cleanup_GdkPixbufSimpleAnim :: proc(_q: ^^glib.Queue) ---
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(GDKPIXBUF_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import gdkpixbuf_runic { "../lib/linux/x86_64/libgdk_pixbuf-2.0.a", "../lib/linux/x86_64/libgdk-pixbuf-wrapper.a" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import gdkpixbuf_runic { "system:gdk_pixbuf-2.0", "../lib/linux/x86_64/libgdk-pixbuf-wrapper.a" }
+} 
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(GDKPIXBUF_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import gdkpixbuf_runic { "../lib/linux/aarch64/libgdk_pixbuf-2.0.a", "../lib/linux/aarch64/libgdk-pixbuf-wrapper.a" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import gdkpixbuf_runic { "system:gdk_pixbuf-2.0", "../lib/linux/aarch64/libgdk-pixbuf-wrapper.a" }
+} 
+}
 
 }
 

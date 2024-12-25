@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package pangocairo
 
 import "../../cairo"
@@ -13,8 +14,6 @@ Font :: _PangoCairoFont
 _PangoCairoFontMap :: struct #packed {}
 FontMap :: _PangoCairoFontMap
 ShapeRendererFunc :: #type proc "c" (cr: ^cairo.context_t, attr: ^pango.AttrShape, do_path: glib.boolean, data: glib.pointer)
-
-foreign import pangocairo_runic "system:pangocairo-1.0"
 
 @(default_calling_convention = "c")
 foreign pangocairo_runic {
@@ -107,6 +106,26 @@ foreign pangocairo_runic {
 
     @(link_name = "pango_cairo_error_underline_path")
     error_underline_path :: proc(cr: ^cairo.context_t, x: f64, y: f64, width: f64, height: f64) ---
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(PANGOCAIRO_STATIC, false) {
+    foreign import pangocairo_runic "../../lib/linux/x86_64/libpangocairo-1.0.a"
+} else {
+    foreign import pangocairo_runic "system:pangocairo-1.0"
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(PANGOCAIRO_STATIC, false) {
+    foreign import pangocairo_runic "../../lib/linux/aarch64/libpangocairo-1.0.a"
+} else {
+    foreign import pangocairo_runic "system:pangocairo-1.0"
+}
 
 }
 

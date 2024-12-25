@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package gio
 
 import "core:c/libc"
@@ -3760,12 +3761,6 @@ ZlibDecompressor_autoptr :: ^ZlibDecompressor
 ZlibDecompressor_listautoptr :: ^glib.List
 ZlibDecompressor_slistautoptr :: ^glib.SList
 ZlibDecompressor_queueautoptr :: ^glib.Queue
-
-when #config(GLIB_STATIC, false) {
-    foreign import gio_runic { "../../lib/linux/libgio-2.0.a", "../../lib/linux/libgio-wrapper.a", "system:ffi", "system:pcre2-8", "system:mount", "system:z" }
-} else {
-    foreign import gio_runic { "system:gio-2.0", "../../lib/linux/libgio-wrapper.a" }
-}
 
 @(default_calling_convention = "c")
 foreign gio_runic {
@@ -12396,6 +12391,34 @@ foreign gio_runic {
 
     @(link_name = "glib_queueautoptr_cleanup_GZlibDecompressor_wrapper")
     queueautoptr_cleanup_GZlibDecompressor :: proc(_q: ^^glib.Queue) ---
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(GLIB_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import gio_runic { "../../lib/linux/x86_64/libgio-2.0.a", "../../lib/linux/x86_64/libgio-wrapper.a", "system:ffi", "system:pcre2-8", "system:mount", "system:z" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import gio_runic { "system:gio-2.0", "../../lib/linux/x86_64/libgio-wrapper.a" }
+} 
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(GLIB_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import gio_runic { "../../lib/linux/aarch64/libgio-2.0.a", "../../lib/linux/aarch64/libgio-wrapper.a", "system:ffi", "system:pcre2-8", "system:mount", "system:z" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import gio_runic { "system:gio-2.0", "../../lib/linux/aarch64/libgio-wrapper.a" }
+} 
+}
 
 }
 

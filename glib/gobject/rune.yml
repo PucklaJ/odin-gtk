@@ -12,7 +12,8 @@ wrapper:
 from:
   language: c
   shared.linux: 'libgobject-2.0.so'
-  static.linux: '../../lib/linux/libgobject-2.0.a'
+  static.linux.arm64: '../../lib/linux/aarch64/libgobject-2.0.a'
+  static.linux.x86_64: '../../lib/linux/x86_64/libgobject-2.0.a'
   headers: ../../shared/glib/glib/glib-object.h
   includedirs:
     - ../../stdinc/
@@ -74,10 +75,16 @@ to:
       "../../shared/glib/glib/*": "glib .."
       "../../shared/glib/_build/glib/*": "glib .."
     trim_prefix: true
-  add_libs.static:
-    - '../../lib/linux/libgobject-wrapper.a'
+  add_libs.static.linux.arm64:
+    - '../../lib/linux/aarch64/libgobject-wrapper.a'
     - libffi.so
     - libpcre2-8.so
-  add_libs.shared:
-    - '../../lib/linux/libgobject-wrapper.a'
+  add_libs.shared.linux.arm64:
+    - '../../lib/linux/arm64/libgobject-wrapper.a'
+  add_libs.static.linux.x86_64:
+    - '../../lib/linux/x86_64/libgobject-wrapper.a'
+    - libffi.so
+    - libpcre2-8.so
+  add_libs.shared.linux.x86_64:
+    - '../../lib/linux/x86_64/libgobject-wrapper.a'
   static_switch: 'GLIB_STATIC'

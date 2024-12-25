@@ -12,7 +12,8 @@ wrapper:
 from:
   language: c
   shared.linux: 'libglib-2.0.so'
-  static.linux: '../lib/linux/libglib-2.0.a'
+  static.linux.arm64: '../lib/linux/aarch64/libglib-2.0.a'
+  static.linux.x86_64: '../lib/linux/x86_64/libglib-2.0.a'
   headers: ../shared/glib/glib/glib.h
   includedirs:
     - ../stdinc/
@@ -153,10 +154,16 @@ to:
       "../stdinc/time.h": "core:c/libc"
       "../stdinc/stdarg.h": "core:c/libc"
       "../stdinc/pthread.h": "core:sys/posix"
-  add_libs.static:
-    - ../lib/linux/libglib-wrapper.a
+  add_libs.static.linux.arm64:
+    - ../lib/linux/aarch64/libglib-wrapper.a
     - libffi.so
     - libpcre2-8.so
-  add_libs.shared:
-    - ../lib/linux/libglib-wrapper.a
+  add_libs.shared.linux.arm64:
+    - ../lib/linux/aarch64/libglib-wrapper.a
+  add_libs.static.linux.x86_64:
+    - ../lib/linux/x86_64/libglib-wrapper.a
+    - libffi.so
+    - libpcre2-8.so
+  add_libs.shared.linux.x86_64:
+    - ../lib/linux/x86_64/libglib-wrapper.a
   static_switch: 'GLIB_STATIC'

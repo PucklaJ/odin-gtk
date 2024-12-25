@@ -4,7 +4,9 @@ platforms:
   - Linux arm64
 from:
   language: c
-  shared: 'libpangocairo-1.0.so'
+  shared.linux: 'libpangocairo-1.0.so'
+  static.linux.arm64: '../../lib/linux/aarch64/libpangocairo-1.0.a'
+  static.linux.x86_64: '../../lib/linux/x86_64/libpangocairo-1.0.a'
   headers: ../../shared/pango/pango/pangocairo.h
   includedirs:
     - ../../stdinc/

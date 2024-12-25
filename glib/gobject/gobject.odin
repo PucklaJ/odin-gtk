@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package gobject
 
 import "core:c/libc"
@@ -583,12 +584,6 @@ TypeClass_listautoptr :: ^glib.List
 TypeClass_slistautoptr :: ^glib.SList
 TypeClass_queueautoptr :: ^glib.Queue
 _g_type_once_init_type :: Type
-
-when #config(GLIB_STATIC, false) {
-    foreign import gobject_runic { "../../lib/linux/libgobject-2.0.a", "../../lib/linux/libgobject-wrapper.a", "system:ffi", "system:pcre2-8" }
-} else {
-    foreign import gobject_runic { "system:gobject-2.0", "../../lib/linux/libgobject-wrapper.a" }
-}
 
 @(default_calling_convention = "c")
 foreign gobject_runic {
@@ -2193,4 +2188,32 @@ foreign gobject_runic {
 cclosure_marshal_BOOL__FLAGS :: cclosure_marshal_BOOLEAN__FLAGS
 
 cclosure_marshal_BOOL__BOXED_BOXED :: cclosure_marshal_BOOLEAN__BOXED_BOXED
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(GLIB_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import gobject_runic { "../../lib/linux/x86_64/libgobject-2.0.a", "../../lib/linux/x86_64/libgobject-wrapper.a", "system:ffi", "system:pcre2-8" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import gobject_runic { "system:gobject-2.0", "../../lib/linux/x86_64/libgobject-wrapper.a" }
+} 
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(GLIB_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import gobject_runic { "../../lib/linux/aarch64/libgobject-2.0.a", "../../lib/linux/aarch64/libgobject-wrapper.a", "system:ffi", "system:pcre2-8" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import gobject_runic { "system:gobject-2.0", "../../lib/linux/arm64/libgobject-wrapper.a" }
+} 
+}
+
+}
 

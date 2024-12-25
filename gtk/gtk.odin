@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package gtk
 
 import "../cairo"
@@ -4336,12 +4337,6 @@ WindowHandleClass_listautoptr :: ^glib.List
 WindowHandleClass_slistautoptr :: ^glib.SList
 WindowHandleClass_queueautoptr :: ^glib.Queue
 _GtkSnapshotClass :: struct #packed {}
-
-when #config(GTK_STATIC, false) {
-    foreign import gtk_runic { "../lib/linux/libgtk.a", "../lib/linux/libgtk-wrapper.a" }
-} else {
-    foreign import gtk_runic { "system:gtk-4", "../lib/linux/libgtk-wrapper.a" }
-}
 
 @(default_calling_convention = "c")
 foreign gtk_runic {
@@ -26913,6 +26908,34 @@ foreign gtk_runic {
 
     @(link_name = "GTK_IS_WINDOW_HANDLE_wrapper")
     IS_WINDOW_HANDLE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(GTK_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import gtk_runic { "../lib/linux/x86_64/libgtk.a", "../lib/linux/x86_64/libgtk-wrapper.a" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
+    foreign import gtk_runic { "system:gtk-4", "../lib/linux/x86_64/libgtk-wrapper.a" }
+} 
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(GTK_STATIC, false) {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import gtk_runic { "../lib/linux/arm64/libgtk.a", "../lib/linux/aarch64/libgtk-wrapper.a" }
+} 
+} else {
+    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+    foreign import gtk_runic { "system:gtk-4", "../lib/linux/aarch64/libgtk-wrapper.a" }
+} 
+}
 
 }
 

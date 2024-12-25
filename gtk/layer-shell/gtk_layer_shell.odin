@@ -1,3 +1,4 @@
+#+build amd64, arm64
 package gtk_layer_shell
 
 import "../../glib"
@@ -6,8 +7,6 @@ import gtk ".."
 Layer :: enum u32 {BACKGROUND = 0, BOTTOM = 1, TOP = 2, OVERLAY = 3, ENTRY_NUMBER = 4, }
 Edge :: enum u32 {LEFT = 0, RIGHT = 1, TOP = 2, BOTTOM = 3, ENTRY_NUMBER = 4, }
 KeyboardMode :: enum u32 {NONE = 0, EXCLUSIVE = 1, ON_DEMAND = 2, ENTRY_NUMBER = 3, }
-
-foreign import gtk_layer_shell_runic "system:gtk4-layer-shell"
 
 @(default_calling_convention = "c")
 foreign gtk_layer_shell_runic {
@@ -82,6 +81,26 @@ foreign gtk_layer_shell_runic {
 
     @(link_name = "gtk_layer_get_keyboard_mode")
     get_keyboard_mode :: proc(window: ^gtk.Window) -> KeyboardMode ---
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
+when #config(GTK_LAYER_SHELL_STATIC, false) {
+    foreign import gtk_layer_shell_runic "../../lib/linux/x86_64/libgtk4-layer-shell.a"
+} else {
+    foreign import gtk_layer_shell_runic "system:gtk4-layer-shell"
+}
+
+}
+
+when (ODIN_ARCH == .arm64) {
+
+when #config(GTK_LAYER_SHELL_STATIC, false) {
+    foreign import gtk_layer_shell_runic "../../lib/linux/aarch64/libgtk4-layer-shell.a"
+} else {
+    foreign import gtk_layer_shell_runic "system:gtk4-layer-shell"
+}
 
 }
 

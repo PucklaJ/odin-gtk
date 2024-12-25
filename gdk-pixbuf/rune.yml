@@ -11,7 +11,9 @@ wrapper:
   multi_platform: false
 from:
   language: c
-  shared: 'libgdk_pixbuf-2.0.so'
+  shared.linux: 'libgdk_pixbuf-2.0.so'
+  static.linux.arm64: '../lib/linux/aarch64/libgdk_pixbuf-2.0.a'
+  static.linux.x86_64: '../lib/linux/x86_64/libgdk_pixbuf-2.0.a'
   headers: ../shared/gdk-pixbuf/gdk-pixbuf/gdk-pixbuf.h
   includedirs:
     - ../stdinc/
@@ -78,5 +80,6 @@ to:
       '../shared/glib/gio/*': "../glib/gio"
       '../shared/glib/_build/gio/*': "../glib/gio"
     trim_prefix: true
-  add_libs: ../lib/linux/libgdk-pixbuf-wrapper.a
+  add_libs.linux.arm64: ../lib/linux/aarch64/libgdk-pixbuf-wrapper.a
+  add_libs.linux.x86_64: ../lib/linux/x86_64/libgdk-pixbuf-wrapper.a
 
