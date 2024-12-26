@@ -58,6 +58,12 @@ on alpine:
 sudo apk add just meson samurai python3 build-base harfbuzz-dev
 ```
 
+First make sure that the submodules are checked out, if they aren't you can do it like this:
+```
+git submodule init
+git submodule update
+```
+
 Then execute:
 
 ```
