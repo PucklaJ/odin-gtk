@@ -1,4 +1,4 @@
-#+build amd64, arm64
+#+build linux amd64, linux arm64
 package gobject
 
 import "core:c/libc"

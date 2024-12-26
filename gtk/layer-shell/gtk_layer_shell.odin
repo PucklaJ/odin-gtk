@@ -1,4 +1,4 @@
-#+build amd64, arm64
+#+build linux amd64, linux arm64
 package gtk_layer_shell
 
 import "../../glib"
