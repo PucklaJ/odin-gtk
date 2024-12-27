@@ -113,7 +113,17 @@ TYPE_GTYPE :: gtype_get_type
 pid_t :: i32
 uid_t :: i32
 Type :: glib.size
-array_union_anon_0 :: struct #raw_union {v_int: glib.int_, v_uint: glib.uint_, v_long: glib.long, v_ulong: glib.ulong, v_int64: glib.int64, v_uint64: glib.uint64, v_float: glib.float, v_double: glib.double, v_pointer: glib.pointer, }
+array_union_anon_0 :: struct #raw_union {
+    v_int: glib.int_,
+    v_uint: glib.uint_,
+    v_long: glib.long,
+    v_ulong: glib.ulong,
+    v_int64: glib.int64,
+    v_uint64: glib.uint64,
+    v_float: glib.float,
+    v_double: glib.double,
+    v_pointer: glib.pointer,
+}
 _GValue :: struct {
     g_type: Type,
     data: [2]array_union_anon_0,
@@ -171,7 +181,7 @@ _GTypeInfo :: struct {
     value_table: ^TypeValueTable,
 }
 TypeInfo :: _GTypeInfo
-TypeFundamentalFlags :: enum u32 {CLASSED = 1, INSTANTIATABLE = 2, DERIVABLE = 4, DEEP_DERIVABLE = 8, }
+TypeFundamentalFlags :: enum u32 {CLASSED = 1, INSTANTIATABLE = 2, DERIVABLE = 4, DEEP_DERIVABLE = 8 }
 _GTypeFundamentalInfo :: struct {
     type_flags: TypeFundamentalFlags,
 }
@@ -191,12 +201,12 @@ _GTypeQuery :: struct {
     instance_size: glib.uint_,
 }
 TypeQuery :: _GTypeQuery
-TypeDebugFlags :: enum u32 {NONE = 0, OBJECTS = 1, SIGNALS = 2, INSTANCE_COUNT = 4, MASK = 7, }
+TypeDebugFlags :: enum u32 {NONE = 0, OBJECTS = 1, SIGNALS = 2, INSTANCE_COUNT = 4, MASK = 7 }
 TypeClassCacheFunc :: #type proc "c" (cache_data: glib.pointer, g_class: ^TypeClass) -> glib.boolean
 TypeInterfaceCheckFunc :: #type proc "c" (check_data: glib.pointer, g_iface: glib.pointer)
-TypeFlags :: enum u32 {NONE = 0, ABSTRACT = 16, VALUE_ABSTRACT = 32, FINAL = 64, DEPRECATED = 128, }
+TypeFlags :: enum u32 {NONE = 0, ABSTRACT = 16, VALUE_ABSTRACT = 32, FINAL = 64, DEPRECATED = 128 }
 ValueTransform :: #type proc "c" (src_value: ^Value, dest_value: ^Value)
-ParamFlags :: enum i32 {READABLE = 1, WRITABLE = 2, READWRITE = 3, CONSTRUCT = 4, CONSTRUCT_ONLY = 8, LAX_VALIDATION = 16, STATIC_NAME = 32, PRIVATE = 32, STATIC_NICK = 64, STATIC_BLURB = 128, EXPLICIT_NOTIFY = 1073741824, DEPRECATED = -2147483648, }
+ParamFlags :: enum i32 {READABLE = 1, WRITABLE = 2, READWRITE = 3, CONSTRUCT = 4, CONSTRUCT_ONLY = 8, LAX_VALIDATION = 16, STATIC_NAME = 32, PRIVATE = 32, STATIC_NICK = 64, STATIC_BLURB = 128, EXPLICIT_NOTIFY = 1073741824, DEPRECATED = -2147483648 }
 _GParamSpec :: struct {
     g_type_instance: TypeInstance,
     name: cstring,
@@ -265,7 +275,7 @@ _GCClosure :: struct {
     callback: glib.pointer,
 }
 CClosure :: _GCClosure
-SignalFlags :: enum u32 {RUN_FIRST = 1, RUN_LAST = 2, RUN_CLEANUP = 4, NO_RECURSE = 8, DETAILED = 16, ACTION = 32, NO_HOOKS = 64, MUST_COLLECT = 128, DEPRECATED = 256, ACCUMULATOR_FIRST_RUN = 131072, }
+SignalFlags :: enum u32 {RUN_FIRST = 1, RUN_LAST = 2, RUN_CLEANUP = 4, NO_RECURSE = 8, DETAILED = 16, ACTION = 32, NO_HOOKS = 64, MUST_COLLECT = 128, DEPRECATED = 256, ACCUMULATOR_FIRST_RUN = 131072 }
 _GSignalQuery :: struct {
     signal_id: glib.uint_,
     signal_name: cstring,
@@ -286,8 +296,8 @@ SignalCMarshaller :: ClosureMarshal
 SignalCVaMarshaller :: VaClosureMarshal
 SignalEmissionHook :: #type proc "c" (ihint: ^SignalInvocationHint, n_param_values: glib.uint_, param_values: [^]Value, data: glib.pointer) -> glib.boolean
 SignalAccumulator :: #type proc "c" (ihint: ^SignalInvocationHint, return_accu: ^Value, handler_return: ^Value, data: glib.pointer) -> glib.boolean
-ConnectFlags :: enum u32 {DEFAULT = 0, AFTER = 1, SWAPPED = 2, }
-SignalMatchType :: enum u32 {MATCH_ID = 1, MATCH_DETAIL = 2, MATCH_CLOSURE = 4, MATCH_FUNC = 8, MATCH_DATA = 16, MATCH_UNBLOCKED = 32, }
+ConnectFlags :: enum u32 {DEFAULT = 0, AFTER = 1, SWAPPED = 2 }
+SignalMatchType :: enum u32 {MATCH_ID = 1, MATCH_DETAIL = 2, MATCH_CLOSURE = 4, MATCH_FUNC = 8, MATCH_DATA = 16, MATCH_UNBLOCKED = 32 }
 BoxedCopyFunc :: #type proc "c" (boxed: glib.pointer) -> glib.pointer
 BoxedFreeFunc :: #type proc "c" (boxed: glib.pointer)
 _GObject :: struct {
@@ -334,14 +344,16 @@ ObjectSetPropertyFunc :: #type proc "c" (object: ^Object, property_id: glib.uint
 ObjectFinalizeFunc :: #type proc "c" (object: ^Object)
 WeakNotify :: #type proc "c" (data: glib.pointer, where_the_object_was: [^]Object)
 ToggleNotify :: #type proc "c" (data: glib.pointer, object: ^Object, is_last_ref: glib.boolean)
-priv_union_anon_19 :: struct #raw_union {p: glib.pointer, }
+priv_union_anon_19 :: struct #raw_union {
+    p: glib.pointer,
+}
 WeakRef :: struct {
     priv: priv_union_anon_19,
 }
 _GBinding :: struct #packed {}
 Binding :: _GBinding
 BindingTransformFunc :: #type proc "c" (binding: ^Binding, from_value: ^Value, to_value: ^Value, user_data: glib.pointer) -> glib.boolean
-BindingFlags :: enum u32 {DEFAULT = 0, BIDIRECTIONAL = 1, SYNC_CREATE = 2, INVERT_BOOLEAN = 4, }
+BindingFlags :: enum u32 {DEFAULT = 0, BIDIRECTIONAL = 1, SYNC_CREATE = 2, INVERT_BOOLEAN = 4 }
 _GBindingGroup :: struct #packed {}
 BindingGroup :: _GBindingGroup
 _GEnumValue :: struct {

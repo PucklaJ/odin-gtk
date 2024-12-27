@@ -68,7 +68,7 @@ _graphene_quaternion_t :: struct {
     __graphene_private_w: f32,
 }
 quaternion_t :: _graphene_quaternion_t
-euler_order_t :: enum i32 {DEFAULT = -1, XYZ = 0, YZX = 1, ZXY = 2, XZY = 3, YXZ = 4, ZYX = 5, SXYZ = 6, SXYX = 7, SXZY = 8, SXZX = 9, SYZX = 10, SYZY = 11, SYXZ = 12, SYXY = 13, SZXY = 14, SZXZ = 15, SZYX = 16, SZYZ = 17, RZYX = 18, RXYX = 19, RYZX = 20, RXZX = 21, RXZY = 22, RYZY = 23, RZXY = 24, RYXY = 25, RYXZ = 26, RZXZ = 27, RXYZ = 28, RZYZ = 29, }
+euler_order_t :: enum i32 {DEFAULT = -1, XYZ = 0, YZX = 1, ZXY = 2, XZY = 3, YXZ = 4, ZYX = 5, SXYZ = 6, SXYX = 7, SXZY = 8, SXZX = 9, SYZX = 10, SYZY = 11, SYXZ = 12, SYXY = 13, SZXY = 14, SZXZ = 15, SZYX = 16, SZYZ = 17, RZYX = 18, RXYX = 19, RYZX = 20, RXZX = 21, RXZY = 22, RYZY = 23, RZXY = 24, RYXY = 25, RYXZ = 26, RZXZ = 27, RXYZ = 28, RZYZ = 29 }
 _graphene_euler_t :: struct {
     __graphene_private_angles: vec3_t,
     __graphene_private_order: euler_order_t,
@@ -104,7 +104,7 @@ _graphene_ray_t :: struct {
     __graphene_private_direction: vec3_t,
 }
 ray_t :: _graphene_ray_t
-ray_intersection_kind_t :: enum u32 {NONE = 0, ENTER = 1, LEAVE = 2, }
+ray_intersection_kind_t :: enum u32 {NONE = 0, ENTER = 1, LEAVE = 2 }
 
 @(default_calling_convention = "c")
 foreign graphene_runic {

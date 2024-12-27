@@ -42,13 +42,13 @@ _cairo_user_data_key :: struct {
     unused: i32,
 }
 user_data_key_t :: _cairo_user_data_key
-_cairo_status :: enum u32 {SUCCESS = 0, NO_MEMORY = 1, INVALID_RESTORE = 2, INVALID_POP_GROUP = 3, NO_CURRENT_POINT = 4, INVALID_MATRIX = 5, INVALID_STATUS = 6, NULL_POINTER = 7, INVALID_STRING = 8, INVALID_PATH_DATA = 9, READ_ERROR = 10, WRITE_ERROR = 11, SURFACE_FINISHED = 12, SURFACE_TYPE_MISMATCH = 13, PATTERN_TYPE_MISMATCH = 14, INVALID_CONTENT = 15, INVALID_FORMAT = 16, INVALID_VISUAL = 17, FILE_NOT_FOUND = 18, INVALID_DASH = 19, INVALID_DSC_COMMENT = 20, INVALID_INDEX = 21, CLIP_NOT_REPRESENTABLE = 22, TEMP_FILE_ERROR = 23, INVALID_STRIDE = 24, FONT_TYPE_MISMATCH = 25, USER_FONT_IMMUTABLE = 26, USER_FONT_ERROR = 27, NEGATIVE_COUNT = 28, INVALID_CLUSTERS = 29, INVALID_SLANT = 30, INVALID_WEIGHT = 31, INVALID_SIZE = 32, USER_FONT_NOT_IMPLEMENTED = 33, DEVICE_TYPE_MISMATCH = 34, DEVICE_ERROR = 35, INVALID_MESH_CONSTRUCTION = 36, DEVICE_FINISHED = 37, JBIG2_GLOBAL_MISSING = 38, PNG_ERROR = 39, FREETYPE_ERROR = 40, WIN32_GDI_ERROR = 41, TAG_ERROR = 42, DWRITE_ERROR = 43, SVG_FONT_ERROR = 44, LAST_STATUS = 45, }
+_cairo_status :: enum u32 {SUCCESS = 0, NO_MEMORY = 1, INVALID_RESTORE = 2, INVALID_POP_GROUP = 3, NO_CURRENT_POINT = 4, INVALID_MATRIX = 5, INVALID_STATUS = 6, NULL_POINTER = 7, INVALID_STRING = 8, INVALID_PATH_DATA = 9, READ_ERROR = 10, WRITE_ERROR = 11, SURFACE_FINISHED = 12, SURFACE_TYPE_MISMATCH = 13, PATTERN_TYPE_MISMATCH = 14, INVALID_CONTENT = 15, INVALID_FORMAT = 16, INVALID_VISUAL = 17, FILE_NOT_FOUND = 18, INVALID_DASH = 19, INVALID_DSC_COMMENT = 20, INVALID_INDEX = 21, CLIP_NOT_REPRESENTABLE = 22, TEMP_FILE_ERROR = 23, INVALID_STRIDE = 24, FONT_TYPE_MISMATCH = 25, USER_FONT_IMMUTABLE = 26, USER_FONT_ERROR = 27, NEGATIVE_COUNT = 28, INVALID_CLUSTERS = 29, INVALID_SLANT = 30, INVALID_WEIGHT = 31, INVALID_SIZE = 32, USER_FONT_NOT_IMPLEMENTED = 33, DEVICE_TYPE_MISMATCH = 34, DEVICE_ERROR = 35, INVALID_MESH_CONSTRUCTION = 36, DEVICE_FINISHED = 37, JBIG2_GLOBAL_MISSING = 38, PNG_ERROR = 39, FREETYPE_ERROR = 40, WIN32_GDI_ERROR = 41, TAG_ERROR = 42, DWRITE_ERROR = 43, SVG_FONT_ERROR = 44, LAST_STATUS = 45 }
 status_t :: _cairo_status
-_cairo_content :: enum u32 {COLOR = 4096, ALPHA = 8192, COLOR_ALPHA = 12288, }
+_cairo_content :: enum u32 {COLOR = 4096, ALPHA = 8192, COLOR_ALPHA = 12288 }
 content_t :: _cairo_content
-_cairo_format :: enum i32 {INVALID = -1, ARGB32 = 0, RGB24 = 1, A8 = 2, A1 = 3, RGB16_565 = 4, RGB30 = 5, RGB96F = 6, RGBA128F = 7, }
+_cairo_format :: enum i32 {INVALID = -1, ARGB32 = 0, RGB24 = 1, A8 = 2, A1 = 3, RGB16_565 = 4, RGB30 = 5, RGB96F = 6, RGBA128F = 7 }
 format_t :: _cairo_format
-_cairo_dither :: enum u32 {NONE = 0, DEFAULT = 1, FAST = 2, GOOD = 3, BEST = 4, }
+_cairo_dither :: enum u32 {NONE = 0, DEFAULT = 1, FAST = 2, GOOD = 3, BEST = 4 }
 dither_t :: _cairo_dither
 write_func_t :: #type proc "c" (closure: rawptr, data: ^u8, length: u32) -> status_t
 read_func_t :: #type proc "c" (closure: rawptr, data: ^u8, length: u32) -> status_t
@@ -59,15 +59,15 @@ _cairo_rectangle_int :: struct {
     height: i32,
 }
 rectangle_int_t :: _cairo_rectangle_int
-_cairo_operator :: enum u32 {CLEAR = 0, SOURCE = 1, OVER = 2, IN = 3, OUT = 4, ATOP = 5, DEST = 6, DEST_OVER = 7, DEST_IN = 8, DEST_OUT = 9, DEST_ATOP = 10, XOR = 11, ADD = 12, SATURATE = 13, MULTIPLY = 14, SCREEN = 15, OVERLAY = 16, DARKEN = 17, LIGHTEN = 18, COLOR_DODGE = 19, COLOR_BURN = 20, HARD_LIGHT = 21, SOFT_LIGHT = 22, DIFFERENCE = 23, EXCLUSION = 24, HSL_HUE = 25, HSL_SATURATION = 26, HSL_COLOR = 27, HSL_LUMINOSITY = 28, }
+_cairo_operator :: enum u32 {CLEAR = 0, SOURCE = 1, OVER = 2, IN = 3, OUT = 4, ATOP = 5, DEST = 6, DEST_OVER = 7, DEST_IN = 8, DEST_OUT = 9, DEST_ATOP = 10, XOR = 11, ADD = 12, SATURATE = 13, MULTIPLY = 14, SCREEN = 15, OVERLAY = 16, DARKEN = 17, LIGHTEN = 18, COLOR_DODGE = 19, COLOR_BURN = 20, HARD_LIGHT = 21, SOFT_LIGHT = 22, DIFFERENCE = 23, EXCLUSION = 24, HSL_HUE = 25, HSL_SATURATION = 26, HSL_COLOR = 27, HSL_LUMINOSITY = 28 }
 operator_t :: _cairo_operator
-_cairo_antialias :: enum u32 {DEFAULT = 0, NONE = 1, GRAY = 2, SUBPIXEL = 3, FAST = 4, GOOD = 5, BEST = 6, }
+_cairo_antialias :: enum u32 {DEFAULT = 0, NONE = 1, GRAY = 2, SUBPIXEL = 3, FAST = 4, GOOD = 5, BEST = 6 }
 antialias_t :: _cairo_antialias
-_cairo_fill_rule :: enum u32 {WINDING = 0, EVEN_ODD = 1, }
+_cairo_fill_rule :: enum u32 {WINDING = 0, EVEN_ODD = 1 }
 fill_rule_t :: _cairo_fill_rule
-_cairo_line_cap :: enum u32 {BUTT = 0, ROUND = 1, SQUARE = 2, }
+_cairo_line_cap :: enum u32 {BUTT = 0, ROUND = 1, SQUARE = 2 }
 line_cap_t :: _cairo_line_cap
-_cairo_line_join :: enum u32 {MITER = 0, ROUND = 1, BEVEL = 2, }
+_cairo_line_join :: enum u32 {MITER = 0, ROUND = 1, BEVEL = 2 }
 line_join_t :: _cairo_line_join
 _cairo_rectangle :: struct {
     x: f64,
@@ -95,7 +95,7 @@ text_cluster_t :: struct {
     num_bytes: i32,
     num_glyphs: i32,
 }
-_cairo_text_cluster_flags :: enum u32 {_CAIRO_TEXT_CLUSTER_FLAG_BACKWARD = 1, }
+_cairo_text_cluster_flags :: enum u32 {_CAIRO_TEXT_CLUSTER_FLAG_BACKWARD = 1 }
 text_cluster_flags_t :: _cairo_text_cluster_flags
 text_extents_t :: struct {
     x_bearing: f64,
@@ -112,27 +112,27 @@ font_extents_t :: struct {
     max_x_advance: f64,
     max_y_advance: f64,
 }
-_cairo_font_slant :: enum u32 {NORMAL = 0, ITALIC = 1, OBLIQUE = 2, }
+_cairo_font_slant :: enum u32 {NORMAL = 0, ITALIC = 1, OBLIQUE = 2 }
 font_slant_t :: _cairo_font_slant
-_cairo_font_weight :: enum u32 {NORMAL = 0, BOLD = 1, }
+_cairo_font_weight :: enum u32 {NORMAL = 0, BOLD = 1 }
 font_weight_t :: _cairo_font_weight
-_cairo_subpixel_order :: enum u32 {DEFAULT = 0, RGB = 1, BGR = 2, VRGB = 3, VBGR = 4, }
+_cairo_subpixel_order :: enum u32 {DEFAULT = 0, RGB = 1, BGR = 2, VRGB = 3, VBGR = 4 }
 subpixel_order_t :: _cairo_subpixel_order
-_cairo_hint_style :: enum u32 {DEFAULT = 0, NONE = 1, SLIGHT = 2, MEDIUM = 3, FULL = 4, }
+_cairo_hint_style :: enum u32 {DEFAULT = 0, NONE = 1, SLIGHT = 2, MEDIUM = 3, FULL = 4 }
 hint_style_t :: _cairo_hint_style
-_cairo_hint_metrics :: enum u32 {DEFAULT = 0, OFF = 1, ON = 2, }
+_cairo_hint_metrics :: enum u32 {DEFAULT = 0, OFF = 1, ON = 2 }
 hint_metrics_t :: _cairo_hint_metrics
-_cairo_color_mode :: enum u32 {DEFAULT = 0, NO_COLOR = 1, COLOR = 2, }
+_cairo_color_mode :: enum u32 {DEFAULT = 0, NO_COLOR = 1, COLOR = 2 }
 color_mode_t :: _cairo_color_mode
 _cairo_font_options :: struct #packed {}
 font_options_t :: _cairo_font_options
-_cairo_font_type :: enum u32 {TOY = 0, FT = 1, WIN32 = 2, QUARTZ = 3, USER = 4, DWRITE = 5, }
+_cairo_font_type :: enum u32 {TOY = 0, FT = 1, WIN32 = 2, QUARTZ = 3, USER = 4, DWRITE = 5 }
 font_type_t :: _cairo_font_type
 user_scaled_font_init_func_t :: #type proc "c" (scaled_font: ^scaled_font_t, cr: ^context_t, extents: [^]font_extents_t) -> status_t
 user_scaled_font_render_glyph_func_t :: #type proc "c" (scaled_font: ^scaled_font_t, glyph: u64, cr: ^context_t, extents: [^]text_extents_t) -> status_t
 user_scaled_font_text_to_glyphs_func_t :: #type proc "c" (scaled_font: ^scaled_font_t, utf8: cstring, utf8_len: i32, glyphs: [^]^glyph_t, num_glyphs: [^]i32, clusters: [^]^text_cluster_t, num_clusters: [^]i32, cluster_flags: [^]text_cluster_flags_t) -> status_t
 user_scaled_font_unicode_to_glyph_func_t :: #type proc "c" (scaled_font: ^scaled_font_t, unicode: u64, glyph_index: ^u64) -> status_t
-_cairo_path_data_type :: enum u32 {_CAIRO_PATH_MOVE_TO = 0, _CAIRO_PATH_LINE_TO = 1, _CAIRO_PATH_CURVE_TO = 2, _CAIRO_PATH_CLOSE_PATH = 3, }
+_cairo_path_data_type :: enum u32 {_CAIRO_PATH_MOVE_TO = 0, _CAIRO_PATH_LINE_TO = 1, _CAIRO_PATH_CURVE_TO = 2, _CAIRO_PATH_CLOSE_PATH = 3 }
 path_data_type_t :: _cairo_path_data_type
 header_struct_anon_0 :: struct {
     type: path_data_type_t,
@@ -142,7 +142,10 @@ point_struct_anon_1 :: struct {
     x: f64,
     y: f64,
 }
-_cairo_path_data_t :: struct #raw_union {header: header_struct_anon_0, point: point_struct_anon_1, }
+_cairo_path_data_t :: struct #raw_union {
+    header: header_struct_anon_0,
+    point: point_struct_anon_1,
+}
 path_data_t :: _cairo_path_data_t
 path :: struct {
     status: status_t,
@@ -150,26 +153,26 @@ path :: struct {
     num_data: i32,
 }
 path_t :: path
-_cairo_device_type :: enum i32 {DRM = 0, GL = 1, SCRIPT = 2, XCB = 3, XLIB = 4, XML = 5, COGL = 6, WIN32 = 7, INVALID = -1, }
+_cairo_device_type :: enum i32 {DRM = 0, GL = 1, SCRIPT = 2, XCB = 3, XLIB = 4, XML = 5, COGL = 6, WIN32 = 7, INVALID = -1 }
 device_type_t :: _cairo_device_type
-surface_observer_mode_t :: enum u32 {_CAIRO_SURFACE_OBSERVER_NORMAL = 0, _CAIRO_SURFACE_OBSERVER_RECORD_OPERATIONS = 1, }
+surface_observer_mode_t :: enum u32 {_CAIRO_SURFACE_OBSERVER_NORMAL = 0, _CAIRO_SURFACE_OBSERVER_RECORD_OPERATIONS = 1 }
 surface_observer_callback_t :: #type proc "c" (observer: ^surface_t, target: ^surface_t, data: rawptr)
-_cairo_surface_type :: enum u32 {IMAGE = 0, PDF = 1, PS = 2, XLIB = 3, XCB = 4, GLITZ = 5, QUARTZ = 6, WIN32 = 7, BEOS = 8, DIRECTFB = 9, SVG = 10, OS2 = 11, WIN32_PRINTING = 12, QUARTZ_IMAGE = 13, SCRIPT = 14, QT = 15, RECORDING = 16, VG = 17, GL = 18, DRM = 19, TEE = 20, XML = 21, SKIA = 22, SUBSURFACE = 23, COGL = 24, }
+_cairo_surface_type :: enum u32 {IMAGE = 0, PDF = 1, PS = 2, XLIB = 3, XCB = 4, GLITZ = 5, QUARTZ = 6, WIN32 = 7, BEOS = 8, DIRECTFB = 9, SVG = 10, OS2 = 11, WIN32_PRINTING = 12, QUARTZ_IMAGE = 13, SCRIPT = 14, QT = 15, RECORDING = 16, VG = 17, GL = 18, DRM = 19, TEE = 20, XML = 21, SKIA = 22, SUBSURFACE = 23, COGL = 24 }
 surface_type_t :: _cairo_surface_type
 raster_source_acquire_func_t :: #type proc "c" (pattern: ^pattern_t, callback_data: rawptr, target: ^surface_t, extents: [^]rectangle_int_t) -> ^surface_t
 raster_source_release_func_t :: #type proc "c" (pattern: ^pattern_t, callback_data: rawptr, surface: ^surface_t)
 raster_source_snapshot_func_t :: #type proc "c" (pattern: ^pattern_t, callback_data: rawptr) -> status_t
 raster_source_copy_func_t :: #type proc "c" (pattern: ^pattern_t, callback_data: rawptr, other: ^pattern_t) -> status_t
 raster_source_finish_func_t :: #type proc "c" (pattern: ^pattern_t, callback_data: rawptr)
-_cairo_pattern_type :: enum u32 {SOLID = 0, SURFACE = 1, LINEAR = 2, RADIAL = 3, MESH = 4, RASTER_SOURCE = 5, }
+_cairo_pattern_type :: enum u32 {SOLID = 0, SURFACE = 1, LINEAR = 2, RADIAL = 3, MESH = 4, RASTER_SOURCE = 5 }
 pattern_type_t :: _cairo_pattern_type
-_cairo_extend :: enum u32 {NONE = 0, REPEAT = 1, REFLECT = 2, PAD = 3, }
+_cairo_extend :: enum u32 {NONE = 0, REPEAT = 1, REFLECT = 2, PAD = 3 }
 extend_t :: _cairo_extend
-_cairo_filter :: enum u32 {FAST = 0, GOOD = 1, BEST = 2, NEAREST = 3, BILINEAR = 4, GAUSSIAN = 5, }
+_cairo_filter :: enum u32 {FAST = 0, GOOD = 1, BEST = 2, NEAREST = 3, BILINEAR = 4, GAUSSIAN = 5 }
 filter_t :: _cairo_filter
 _cairo_region :: struct #packed {}
 region_t :: _cairo_region
-_cairo_region_overlap :: enum u32 {IN = 0, OUT = 1, PART = 2, }
+_cairo_region_overlap :: enum u32 {IN = 0, OUT = 1, PART = 2 }
 region_overlap_t :: _cairo_region_overlap
 
 @(default_calling_convention = "c")

@@ -84,7 +84,7 @@ hb_feature_t :: rawptr
 hb_font_t :: rawptr
 _PangoCoverage :: struct #packed {}
 Coverage :: _PangoCoverage
-CoverageLevel :: enum u32 {COVERAGE_NONE = 0, COVERAGE_FALLBACK = 1, COVERAGE_APPROXIMATE = 2, COVERAGE_EXACT = 3, }
+CoverageLevel :: enum u32 {COVERAGE_NONE = 0, COVERAGE_FALLBACK = 1, COVERAGE_APPROXIMATE = 2, COVERAGE_EXACT = 3 }
 Coverage_autoptr :: ^Coverage
 Coverage_listautoptr :: ^glib.List
 Coverage_slistautoptr :: ^glib.SList
@@ -123,8 +123,8 @@ Context :: _PangoContext
 _PangoLanguage :: struct #packed {}
 Language :: _PangoLanguage
 Glyph :: glib.uint32
-Gravity :: enum u32 {SOUTH = 0, EAST = 1, NORTH = 2, WEST = 3, AUTO = 4, }
-GravityHint :: enum u32 {NATURAL = 0, STRONG = 1, LINE = 2, }
+Gravity :: enum u32 {SOUTH = 0, EAST = 1, NORTH = 2, WEST = 3, AUTO = 4 }
+GravityHint :: enum u32 {NATURAL = 0, STRONG = 1, LINE = 2 }
 _PangoMatrix :: struct {
     xx: f64,
     xy: f64,
@@ -136,9 +136,9 @@ _PangoMatrix :: struct {
 Matrix :: _PangoMatrix
 _PangoScriptIter :: struct #packed {}
 ScriptIter :: _PangoScriptIter
-Script :: enum i32 {INVALID_CODE = -1, COMMON = 0, INHERITED = 1, ARABIC = 2, ARMENIAN = 3, BENGALI = 4, BOPOMOFO = 5, CHEROKEE = 6, COPTIC = 7, CYRILLIC = 8, DESERET = 9, DEVANAGARI = 10, ETHIOPIC = 11, GEORGIAN = 12, GOTHIC = 13, GREEK = 14, GUJARATI = 15, GURMUKHI = 16, HAN = 17, HANGUL = 18, HEBREW = 19, HIRAGANA = 20, KANNADA = 21, KATAKANA = 22, KHMER = 23, LAO = 24, LATIN = 25, MALAYALAM = 26, MONGOLIAN = 27, MYANMAR = 28, OGHAM = 29, OLD_ITALIC = 30, ORIYA = 31, RUNIC = 32, SINHALA = 33, SYRIAC = 34, TAMIL = 35, TELUGU = 36, THAANA = 37, THAI = 38, TIBETAN = 39, CANADIAN_ABORIGINAL = 40, YI = 41, TAGALOG = 42, HANUNOO = 43, BUHID = 44, TAGBANWA = 45, BRAILLE = 46, CYPRIOT = 47, LIMBU = 48, OSMANYA = 49, SHAVIAN = 50, LINEAR_B = 51, TAI_LE = 52, UGARITIC = 53, NEW_TAI_LUE = 54, BUGINESE = 55, GLAGOLITIC = 56, TIFINAGH = 57, SYLOTI_NAGRI = 58, OLD_PERSIAN = 59, KHAROSHTHI = 60, UNKNOWN = 61, BALINESE = 62, CUNEIFORM = 63, PHOENICIAN = 64, PHAGS_PA = 65, NKO = 66, KAYAH_LI = 67, LEPCHA = 68, REJANG = 69, SUNDANESE = 70, SAURASHTRA = 71, CHAM = 72, OL_CHIKI = 73, VAI = 74, CARIAN = 75, LYCIAN = 76, LYDIAN = 77, BATAK = 78, BRAHMI = 79, MANDAIC = 80, CHAKMA = 81, MEROITIC_CURSIVE = 82, MEROITIC_HIEROGLYPHS = 83, MIAO = 84, SHARADA = 85, SORA_SOMPENG = 86, TAKRI = 87, BASSA_VAH = 88, CAUCASIAN_ALBANIAN = 89, DUPLOYAN = 90, ELBASAN = 91, GRANTHA = 92, KHOJKI = 93, KHUDAWADI = 94, LINEAR_A = 95, MAHAJANI = 96, MANICHAEAN = 97, MENDE_KIKAKUI = 98, MODI = 99, MRO = 100, NABATAEAN = 101, OLD_NORTH_ARABIAN = 102, OLD_PERMIC = 103, PAHAWH_HMONG = 104, PALMYRENE = 105, PAU_CIN_HAU = 106, PSALTER_PAHLAVI = 107, SIDDHAM = 108, TIRHUTA = 109, WARANG_CITI = 110, AHOM = 111, ANATOLIAN_HIEROGLYPHS = 112, HATRAN = 113, MULTANI = 114, OLD_HUNGARIAN = 115, SIGNWRITING = 116, }
-Direction :: enum u32 {LTR = 0, RTL = 1, TTB_LTR = 2, TTB_RTL = 3, WEAK_LTR = 4, WEAK_RTL = 5, NEUTRAL = 6, }
-BidiType :: enum u32 {L = 0, LRE = 1, LRO = 2, R = 3, AL = 4, RLE = 5, RLO = 6, PDF = 7, EN = 8, ES = 9, ET = 10, AN = 11, CS = 12, NSM = 13, BN = 14, B = 15, S = 16, WS = 17, ON = 18, LRI = 19, RLI = 20, FSI = 21, PDI = 22, }
+Script :: enum i32 {INVALID_CODE = -1, COMMON = 0, INHERITED = 1, ARABIC = 2, ARMENIAN = 3, BENGALI = 4, BOPOMOFO = 5, CHEROKEE = 6, COPTIC = 7, CYRILLIC = 8, DESERET = 9, DEVANAGARI = 10, ETHIOPIC = 11, GEORGIAN = 12, GOTHIC = 13, GREEK = 14, GUJARATI = 15, GURMUKHI = 16, HAN = 17, HANGUL = 18, HEBREW = 19, HIRAGANA = 20, KANNADA = 21, KATAKANA = 22, KHMER = 23, LAO = 24, LATIN = 25, MALAYALAM = 26, MONGOLIAN = 27, MYANMAR = 28, OGHAM = 29, OLD_ITALIC = 30, ORIYA = 31, RUNIC = 32, SINHALA = 33, SYRIAC = 34, TAMIL = 35, TELUGU = 36, THAANA = 37, THAI = 38, TIBETAN = 39, CANADIAN_ABORIGINAL = 40, YI = 41, TAGALOG = 42, HANUNOO = 43, BUHID = 44, TAGBANWA = 45, BRAILLE = 46, CYPRIOT = 47, LIMBU = 48, OSMANYA = 49, SHAVIAN = 50, LINEAR_B = 51, TAI_LE = 52, UGARITIC = 53, NEW_TAI_LUE = 54, BUGINESE = 55, GLAGOLITIC = 56, TIFINAGH = 57, SYLOTI_NAGRI = 58, OLD_PERSIAN = 59, KHAROSHTHI = 60, UNKNOWN = 61, BALINESE = 62, CUNEIFORM = 63, PHOENICIAN = 64, PHAGS_PA = 65, NKO = 66, KAYAH_LI = 67, LEPCHA = 68, REJANG = 69, SUNDANESE = 70, SAURASHTRA = 71, CHAM = 72, OL_CHIKI = 73, VAI = 74, CARIAN = 75, LYCIAN = 76, LYDIAN = 77, BATAK = 78, BRAHMI = 79, MANDAIC = 80, CHAKMA = 81, MEROITIC_CURSIVE = 82, MEROITIC_HIEROGLYPHS = 83, MIAO = 84, SHARADA = 85, SORA_SOMPENG = 86, TAKRI = 87, BASSA_VAH = 88, CAUCASIAN_ALBANIAN = 89, DUPLOYAN = 90, ELBASAN = 91, GRANTHA = 92, KHOJKI = 93, KHUDAWADI = 94, LINEAR_A = 95, MAHAJANI = 96, MANICHAEAN = 97, MENDE_KIKAKUI = 98, MODI = 99, MRO = 100, NABATAEAN = 101, OLD_NORTH_ARABIAN = 102, OLD_PERMIC = 103, PAHAWH_HMONG = 104, PALMYRENE = 105, PAU_CIN_HAU = 106, PSALTER_PAHLAVI = 107, SIDDHAM = 108, TIRHUTA = 109, WARANG_CITI = 110, AHOM = 111, ANATOLIAN_HIEROGLYPHS = 112, HATRAN = 113, MULTANI = 114, OLD_HUNGARIAN = 115, SIGNWRITING = 116 }
+Direction :: enum u32 {LTR = 0, RTL = 1, TTB_LTR = 2, TTB_RTL = 3, WEAK_LTR = 4, WEAK_RTL = 5, NEUTRAL = 6 }
+BidiType :: enum u32 {L = 0, LRE = 1, LRO = 2, R = 3, AL = 4, RLE = 5, RLO = 6, PDF = 7, EN = 8, ES = 9, ET = 10, AN = 11, CS = 12, NSM = 13, BN = 14, B = 15, S = 16, WS = 17, ON = 18, LRI = 19, RLI = 20, FSI = 21, PDI = 22 }
 _PangoFontDescription :: struct #packed {}
 FontDescription :: _PangoFontDescription
 _PangoFontMetrics :: struct {
@@ -154,11 +154,11 @@ _PangoFontMetrics :: struct {
     strikethrough_thickness: i32,
 }
 FontMetrics :: _PangoFontMetrics
-Style :: enum u32 {NORMAL = 0, OBLIQUE = 1, ITALIC = 2, }
-Variant :: enum u32 {NORMAL = 0, SMALL_CAPS = 1, ALL_SMALL_CAPS = 2, PETITE_CAPS = 3, ALL_PETITE_CAPS = 4, UNICASE = 5, TITLE_CAPS = 6, }
-Weight :: enum u32 {THIN = 100, ULTRALIGHT = 200, LIGHT = 300, SEMILIGHT = 350, BOOK = 380, NORMAL = 400, MEDIUM = 500, SEMIBOLD = 600, BOLD = 700, ULTRABOLD = 800, HEAVY = 900, ULTRAHEAVY = 1000, }
-Stretch :: enum u32 {ULTRA_CONDENSED = 0, EXTRA_CONDENSED = 1, CONDENSED = 2, SEMI_CONDENSED = 3, NORMAL = 4, SEMI_EXPANDED = 5, EXPANDED = 6, EXTRA_EXPANDED = 7, ULTRA_EXPANDED = 8, }
-FontMask :: enum u32 {FAMILY = 1, STYLE = 2, VARIANT = 4, WEIGHT = 8, STRETCH = 16, SIZE = 32, GRAVITY = 64, VARIATIONS = 128, }
+Style :: enum u32 {NORMAL = 0, OBLIQUE = 1, ITALIC = 2 }
+Variant :: enum u32 {NORMAL = 0, SMALL_CAPS = 1, ALL_SMALL_CAPS = 2, PETITE_CAPS = 3, ALL_PETITE_CAPS = 4, UNICASE = 5, TITLE_CAPS = 6 }
+Weight :: enum u32 {THIN = 100, ULTRALIGHT = 200, LIGHT = 300, SEMILIGHT = 350, BOOK = 380, NORMAL = 400, MEDIUM = 500, SEMIBOLD = 600, BOLD = 700, ULTRABOLD = 800, HEAVY = 900, ULTRAHEAVY = 1000 }
+Stretch :: enum u32 {ULTRA_CONDENSED = 0, EXTRA_CONDENSED = 1, CONDENSED = 2, SEMI_CONDENSED = 3, NORMAL = 4, SEMI_EXPANDED = 5, EXPANDED = 6, EXTRA_EXPANDED = 7, ULTRA_EXPANDED = 8 }
+FontMask :: enum u32 {FAMILY = 1, STYLE = 2, VARIANT = 4, WEIGHT = 8, STRETCH = 16, SIZE = 32, GRAVITY = 64, VARIATIONS = 128 }
 _PangoFontFace :: struct {
     parent_instance: gobj.Object,
 }
@@ -292,13 +292,13 @@ _PangoAttrFontFeatures :: struct {
     features: cstring,
 }
 AttrFontFeatures :: _PangoAttrFontFeatures
-AttrType :: enum u32 {ATTR_INVALID = 0, ATTR_LANGUAGE = 1, ATTR_FAMILY = 2, ATTR_STYLE = 3, ATTR_WEIGHT = 4, ATTR_VARIANT = 5, ATTR_STRETCH = 6, ATTR_SIZE = 7, ATTR_FONT_DESC = 8, ATTR_FOREGROUND = 9, ATTR_BACKGROUND = 10, ATTR_UNDERLINE = 11, ATTR_STRIKETHROUGH = 12, ATTR_RISE = 13, ATTR_SHAPE = 14, ATTR_SCALE = 15, ATTR_FALLBACK = 16, ATTR_LETTER_SPACING = 17, ATTR_UNDERLINE_COLOR = 18, ATTR_STRIKETHROUGH_COLOR = 19, ATTR_ABSOLUTE_SIZE = 20, ATTR_GRAVITY = 21, ATTR_GRAVITY_HINT = 22, ATTR_FONT_FEATURES = 23, ATTR_FOREGROUND_ALPHA = 24, ATTR_BACKGROUND_ALPHA = 25, ATTR_ALLOW_BREAKS = 26, ATTR_SHOW = 27, ATTR_INSERT_HYPHENS = 28, ATTR_OVERLINE = 29, ATTR_OVERLINE_COLOR = 30, ATTR_LINE_HEIGHT = 31, ATTR_ABSOLUTE_LINE_HEIGHT = 32, ATTR_TEXT_TRANSFORM = 33, ATTR_WORD = 34, ATTR_SENTENCE = 35, ATTR_BASELINE_SHIFT = 36, ATTR_FONT_SCALE = 37, }
-Underline :: enum u32 {NONE = 0, SINGLE = 1, DOUBLE = 2, LOW = 3, ERROR = 4, SINGLE_LINE = 5, DOUBLE_LINE = 6, ERROR_LINE = 7, }
-Overline :: enum u32 {NONE = 0, SINGLE = 1, }
-ShowFlags :: enum u32 {NONE = 0, SPACES = 1, LINE_BREAKS = 2, IGNORABLES = 4, }
-TextTransform :: enum u32 {NONE = 0, LOWERCASE = 1, UPPERCASE = 2, CAPITALIZE = 3, }
-BaselineShift :: enum u32 {NONE = 0, SUPERSCRIPT = 1, SUBSCRIPT = 2, }
-FontScale :: enum u32 {NONE = 0, SUPERSCRIPT = 1, SUBSCRIPT = 2, SMALL_CAPS = 3, }
+AttrType :: enum u32 {ATTR_INVALID = 0, ATTR_LANGUAGE = 1, ATTR_FAMILY = 2, ATTR_STYLE = 3, ATTR_WEIGHT = 4, ATTR_VARIANT = 5, ATTR_STRETCH = 6, ATTR_SIZE = 7, ATTR_FONT_DESC = 8, ATTR_FOREGROUND = 9, ATTR_BACKGROUND = 10, ATTR_UNDERLINE = 11, ATTR_STRIKETHROUGH = 12, ATTR_RISE = 13, ATTR_SHAPE = 14, ATTR_SCALE = 15, ATTR_FALLBACK = 16, ATTR_LETTER_SPACING = 17, ATTR_UNDERLINE_COLOR = 18, ATTR_STRIKETHROUGH_COLOR = 19, ATTR_ABSOLUTE_SIZE = 20, ATTR_GRAVITY = 21, ATTR_GRAVITY_HINT = 22, ATTR_FONT_FEATURES = 23, ATTR_FOREGROUND_ALPHA = 24, ATTR_BACKGROUND_ALPHA = 25, ATTR_ALLOW_BREAKS = 26, ATTR_SHOW = 27, ATTR_INSERT_HYPHENS = 28, ATTR_OVERLINE = 29, ATTR_OVERLINE_COLOR = 30, ATTR_LINE_HEIGHT = 31, ATTR_ABSOLUTE_LINE_HEIGHT = 32, ATTR_TEXT_TRANSFORM = 33, ATTR_WORD = 34, ATTR_SENTENCE = 35, ATTR_BASELINE_SHIFT = 36, ATTR_FONT_SCALE = 37 }
+Underline :: enum u32 {NONE = 0, SINGLE = 1, DOUBLE = 2, LOW = 3, ERROR = 4, SINGLE_LINE = 5, DOUBLE_LINE = 6, ERROR_LINE = 7 }
+Overline :: enum u32 {NONE = 0, SINGLE = 1 }
+ShowFlags :: enum u32 {NONE = 0, SPACES = 1, LINE_BREAKS = 2, IGNORABLES = 4 }
+TextTransform :: enum u32 {NONE = 0, LOWERCASE = 1, UPPERCASE = 2, CAPITALIZE = 3 }
+BaselineShift :: enum u32 {NONE = 0, SUPERSCRIPT = 1, SUBSCRIPT = 2 }
+FontScale :: enum u32 {NONE = 0, SUPERSCRIPT = 1, SUBSCRIPT = 2, SMALL_CAPS = 3 }
 _PangoAttribute :: struct {
     klass: [^]AttrClass,
     start_index: glib.uint_,
@@ -421,7 +421,7 @@ _PangoGlyphString :: struct {
     space: i32,
 }
 GlyphString :: _PangoGlyphString
-ShapeFlags :: enum u32 {NONE = 0, ROUND_POSITIONS = 1, }
+ShapeFlags :: enum u32 {NONE = 0, ROUND_POSITIONS = 1 }
 _PangoEngineClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -478,7 +478,7 @@ _PangoGlyphItemIter :: struct {
 GlyphItemIter :: _PangoGlyphItemIter
 _PangoTabArray :: struct #packed {}
 TabArray :: _PangoTabArray
-TabAlign :: enum u32 {TAB_LEFT = 0, TAB_RIGHT = 1, TAB_CENTER = 2, TAB_DECIMAL = 3, }
+TabAlign :: enum u32 {TAB_LEFT = 0, TAB_RIGHT = 1, TAB_CENTER = 2, TAB_DECIMAL = 3 }
 TabArray_autoptr :: ^TabArray
 TabArray_listautoptr :: ^glib.List
 TabArray_slistautoptr :: ^glib.SList
@@ -490,12 +490,12 @@ LayoutClass :: _PangoLayoutClass
 _PangoLayoutLine :: [32]i8
 LayoutLine :: _PangoLayoutLine
 LayoutRun :: GlyphItem
-Alignment :: enum u32 {ALIGN_LEFT = 0, ALIGN_CENTER = 1, ALIGN_RIGHT = 2, }
-WrapMode :: enum u32 {WRAP_WORD = 0, WRAP_CHAR = 1, WRAP_WORD_CHAR = 2, }
-EllipsizeMode :: enum u32 {ELLIPSIZE_NONE = 0, ELLIPSIZE_START = 1, ELLIPSIZE_MIDDLE = 2, ELLIPSIZE_END = 3, }
-LayoutSerializeFlags :: enum u32 {DEFAULT = 0, CONTEXT = 1, OUTPUT = 2, }
-LayoutDeserializeError :: enum u32 {INVALID = 0, INVALID_VALUE = 1, MISSING_VALUE = 2, }
-LayoutDeserializeFlags :: enum u32 {DEFAULT = 0, CONTEXT = 1, }
+Alignment :: enum u32 {ALIGN_LEFT = 0, ALIGN_CENTER = 1, ALIGN_RIGHT = 2 }
+WrapMode :: enum u32 {WRAP_WORD = 0, WRAP_CHAR = 1, WRAP_WORD_CHAR = 2 }
+EllipsizeMode :: enum u32 {ELLIPSIZE_NONE = 0, ELLIPSIZE_START = 1, ELLIPSIZE_MIDDLE = 2, ELLIPSIZE_END = 3 }
+LayoutSerializeFlags :: enum u32 {DEFAULT = 0, CONTEXT = 1, OUTPUT = 2 }
+LayoutDeserializeError :: enum u32 {INVALID = 0, INVALID_VALUE = 1, MISSING_VALUE = 2 }
+LayoutDeserializeFlags :: enum u32 {DEFAULT = 0, CONTEXT = 1 }
 _PangoLayoutIter :: struct #packed {}
 LayoutIter :: _PangoLayoutIter
 Layout_autoptr :: ^Layout
@@ -518,7 +518,7 @@ _PangoRenderer :: struct {
 }
 Renderer :: _PangoRenderer
 draw_glyphs_func_ptr_anon_42 :: #type proc "c" (renderer: ^Renderer, font: ^Font, glyphs: [^]GlyphString, x: i32, y: i32)
-RenderPart :: enum u32 {FOREGROUND = 0, BACKGROUND = 1, UNDERLINE = 2, STRIKETHROUGH = 3, OVERLINE = 4, }
+RenderPart :: enum u32 {FOREGROUND = 0, BACKGROUND = 1, UNDERLINE = 2, STRIKETHROUGH = 3, OVERLINE = 4 }
 draw_rectangle_func_ptr_anon_43 :: #type proc "c" (renderer: ^Renderer, part: RenderPart, x: i32, y: i32, width: i32, height: i32)
 draw_error_underline_func_ptr_anon_44 :: #type proc "c" (renderer: ^Renderer, x: i32, y: i32, width: i32, height: i32)
 draw_shape_func_ptr_anon_45 :: #type proc "c" (renderer: ^Renderer, attr: ^AttrShape, x: i32, y: i32)

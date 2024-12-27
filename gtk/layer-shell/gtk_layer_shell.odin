@@ -4,9 +4,9 @@ package gtk_layer_shell
 import "../../glib"
 import gtk ".."
 
-Layer :: enum u32 {BACKGROUND = 0, BOTTOM = 1, TOP = 2, OVERLAY = 3, ENTRY_NUMBER = 4, }
-Edge :: enum u32 {LEFT = 0, RIGHT = 1, TOP = 2, BOTTOM = 3, ENTRY_NUMBER = 4, }
-KeyboardMode :: enum u32 {NONE = 0, EXCLUSIVE = 1, ON_DEMAND = 2, ENTRY_NUMBER = 3, }
+Layer :: enum u32 {BACKGROUND = 0, BOTTOM = 1, TOP = 2, OVERLAY = 3, ENTRY_NUMBER = 4 }
+Edge :: enum u32 {LEFT = 0, RIGHT = 1, TOP = 2, BOTTOM = 3, ENTRY_NUMBER = 4 }
+KeyboardMode :: enum u32 {NONE = 0, EXCLUSIVE = 1, ON_DEMAND = 2, ENTRY_NUMBER = 3 }
 
 @(default_calling_convention = "c")
 foreign gtk_layer_shell_runic {

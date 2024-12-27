@@ -3,12 +3,12 @@ package gmodule
 
 import glib ".."
 
-ModuleFlags :: enum u32 {BIND_LAZY = 1, BIND_LOCAL = 2, BIND_MASK = 3, }
+ModuleFlags :: enum u32 {BIND_LAZY = 1, BIND_LOCAL = 2, BIND_MASK = 3 }
 _GModule :: struct #packed {}
 Module :: _GModule
 ModuleCheckInit :: #type proc "c" (module: ^Module) -> cstring
 ModuleUnload :: #type proc "c" (module: ^Module)
-ModuleError :: enum u32 {FAILED = 0, CHECK_FAILED = 1, }
+ModuleError :: enum u32 {FAILED = 0, CHECK_FAILED = 1 }
 
 @(default_calling_convention = "c")
 foreign gmodule_runic {
