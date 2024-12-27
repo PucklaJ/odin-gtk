@@ -80,7 +80,7 @@ Shell example!
 
     box := gobj.type_cast(
         gtk.Box,
-        gtk.box_new(.ORIENTATION_VERTICAL, 10),
+        gtk.box_new(.VERTICAL, 10),
         gtk.box_get_type(),
     )
     gtk.box_append(box, label)

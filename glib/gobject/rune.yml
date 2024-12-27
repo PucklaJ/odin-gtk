@@ -67,6 +67,12 @@ to:
       - g_
     constants:
       - G_
+      - TYPE_FLAG_
+      - TYPE_DEBUG_
+      - SIGNAL_
+      - CONNECT_
+      - SIGNAL_MATCH_
+      - BINDING_
   trim_suffix:
     functions: _wrapper
   extern:

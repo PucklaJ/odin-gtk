@@ -67,6 +67,8 @@ to:
     constants:
       - G_
       - GI_
+      - REPOSITORY_LOAD_FLAG_
+    enum_type_name: true
   trim_suffix:
     functions:
       - _wrapper

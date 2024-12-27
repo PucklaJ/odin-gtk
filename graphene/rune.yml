@@ -34,6 +34,8 @@ to:
   trim_prefix:
     - 'GRAPHENE_'
     - 'graphene_'
+    - 'EULER_ORDER_'
+    - 'RAY_INTERSECTION_KIND_'
   trim_suffix:
     functions:
       - '_wrapper'

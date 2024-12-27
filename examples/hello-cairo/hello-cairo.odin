@@ -8,7 +8,7 @@ main :: proc() {
     WIDTH :: 200
     HEIGHT :: 200
 
-    surface := cairo.image_surface_create(.FORMAT_ARGB32, WIDTH, HEIGHT)
+    surface := cairo.image_surface_create(.ARGB32, WIDTH, HEIGHT)
     cr := cairo.create(surface)
     defer cairo.surface_destroy(surface)
     defer cairo.destroy(cr)

@@ -62,6 +62,11 @@ to:
     constants:
       - GDK_PIXBUF_
       - GDK_
+      - ALPHA_
+      - COLORSPACE_
+      - ERROR_
+      - INTERP_
+      - ROTATE_
     functions:
       - gdk_
       - glib_

@@ -8,7 +8,7 @@ import "core:fmt"
 
 main :: proc() {
     // MAKE DRAWING PAPER! BIG 800x400! CAIRO DOES THIS!
-    surface := cairo.image_surface_create(.FORMAT_ARGB32, 800, 400)
+    surface := cairo.image_surface_create(.ARGB32, 800, 400)
     cr := cairo.create(surface)
     // CLEAN UP! DESTROY MAGIC OBJECTS OR THEY HAUNT YOU!
     defer cairo.surface_destroy(surface)

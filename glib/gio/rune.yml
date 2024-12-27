@@ -61,6 +61,43 @@ to:
       - g_
     constants:
       - G_
+      - IO_ERROR_
+      - APP_INFO_CREATE_
+      - CONVERTER_
+      - FILE_ATTRIBUTE_INFO_
+      - FILE_QUERY_INFO_
+      - FILE_CREATE_
+      - FILE_MEASURE_
+      - MOUNT_MOUNT_
+      - MOUNT_UNMOUNT_
+      - DRIVE_START_
+      - FILE_COPY_
+      - FILE_MONITOR_
+      - ASK_PASSWORD_
+      - OUTPUT_STREAM_SPLICE_
+      - IO_STREAM_SPLICE_
+      - SOCKET_MSG_
+      - DBUS_PROXY_FLAGS_
+      - DBUS_CONNECTION_FLAGS_
+      - DBUS_CAPABILITY_FLAGS_
+      - DBUS_CALL_FLAGS_
+      - DBUS_MESSAGE_FLAGS_
+      - DBUS_PROPERTY_INFO_FLAGS_
+      - DBUS_SUBTREE_FLAGS_
+      - DBUS_SERVER_FLAGS_
+      - DBUS_SIGNAL_FLAGS_
+      - DBUS_SEND_MESSAGE_FLAGS_
+      - TLS_CERTIFICATE_
+      - TLS_PASSWORD_
+      - DBUS_INTERFACE_SKELETON_FLAGS_
+      - DBUS_OBJECT_MANAGER_CLIENT_FLAGS_
+      - TLS_DATABASE_VERIFY_
+      - TLS_DATABASE_LOOKUP_
+      - TLS_CERTIFICATE_REQUEST_
+      - IO_MODULE_SCOPE_
+      - TEST_DBUS_
+      - SETTINGS_BIND_
+    enum_type_name: true
   trim_suffix:
     functions:
       - _wrapper

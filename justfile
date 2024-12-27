@@ -114,7 +114,7 @@ gobject:
         -e 's/\^glib.char/cstring/g' \
         -e '/^\(TYPE_\|VALUE_\|SIGNAL_\|PARAM_\)/s/`//g' \
         -e '/^\(TYPE_\|SIGNAL_\)/s/(GType)//g' \
-        -e '/^PARAM_STATIC_STRINGS/s/G_/ParamFlags./g' \
+        -e '/^PARAM_STATIC_STRINGS/ s/G_PARAM_/ParamFlags./g' \
         -e 's/GLIB_DEPRECATED_MACRO//g' \
         -e 's/_FOR ((g_array_get_type ()))//g' \
         -e '/^TYPE_/s/(g_//g' \
@@ -123,6 +123,7 @@ gobject:
         -e '/^TYPE_/s/param/#force_inline proc "c" () -> Type { return param/g' \
         -e '/^TYPE_/s/\]/\] }/g' \
         -e 's/class: \[\^\]/class: ^/g' \
+        -e '/^ParamFlags/s/PARAM_//g' \
 
 [unix]
 gobject-wrapper CC='cc':
@@ -158,7 +159,7 @@ girepository:
     {{ RUNIC }} glib/girepository/rune.yml
     sed glib/girepository/girepository.odin -i \
         -e '/^\(TYPE_\|[A-Z]\+_ERROR\|\)/ {s/`//g; s/(gi_//g; s/())//g}' \
-        -e 's/\(TYPE_TAG_N_TYPES :: \).*/\1int(TypeTag.TYPE_TAG_UNICHAR) + 1/g' \
+        -e 's/\(TYPE_TAG_N_TYPES :: \).*/\1int(TypeTag.UNICHAR) + 1/g' \
 [unix]
 girepository-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
@@ -212,7 +213,7 @@ cairo-clean:
 cairo:
     {{ RUNIC }} cairo/rune.yml
     sed cairo/cairo.odin -i \
-        -e '/^[A-Z_1-9]\+ :: / {s/`//g; s/\\//g}' \
+        -e '/^[A-Z_1-9]\+ :: / {s/`//g; s/\\//g; s/_CAIRO_//}' \
         -e 's/^t ::/context_t ::/g' \
         -e '/\^text/! s/\^t/\^context_t/g' \
 

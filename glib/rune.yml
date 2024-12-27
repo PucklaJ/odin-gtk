@@ -147,6 +147,7 @@ to:
       - glib_
     constants:
       - G_
+    enum_type_name: true
   trim_suffix:
     functions: _wrapper
   extern:

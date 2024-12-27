@@ -30,7 +30,7 @@ signal_connect_after :: #force_inline proc "c" (
         c_handler,
         data,
         nil,
-        .CONNECT_AFTER,
+        .AFTER,
     )
 }
 
@@ -46,7 +46,7 @@ signal_connect_swapped :: #force_inline proc "c" (
         c_handler,
         data,
         nil,
-        .CONNECT_SWAPPED,
+        .SWAPPED,
     )
 }
 

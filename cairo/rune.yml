@@ -32,3 +32,6 @@ to:
       - cairo_
     variables:
       - cairo_
+    enum_type_name: true
+  add_prefix:
+    constants: '_CAIRO_'

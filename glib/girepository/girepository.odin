@@ -4,7 +4,7 @@ package girepository
 import glib ".."
 import gobj "../gobject"
 
-TYPE_TAG_N_TYPES :: int(TypeTag.TYPE_TAG_UNICHAR) + 1
+TYPE_TAG_N_TYPES :: int(TypeTag.UNICHAR) + 1
 TYPE_ARG_INFO :: arg_info_get_type 
 TYPE_TYPELIB :: typelib_get_type 
 TYPE_BASE_INFO :: base_info_get_type 
@@ -85,11 +85,11 @@ _GIUnresolvedInfo :: struct #packed {}
 UnresolvedInfo :: _GIUnresolvedInfo
 _GIArgument :: struct #raw_union {v_boolean: glib.boolean, v_int8: i8, v_uint8: u8, v_int16: i16, v_uint16: u16, v_int32: i32, v_uint32: u32, v_int64: i64, v_uint64: u64, v_float: f32, v_double: f64, v_short: i16, v_ushort: u16, v_int: i32, v_uint: u32, v_long: i64, v_ulong: u64, v_ssize: glib.ssize, v_size: u64, v_string: cstring, v_pointer: rawptr, }
 Argument :: _GIArgument
-Transfer :: enum u32 {TRANSFER_NOTHING = 0, TRANSFER_CONTAINER = 1, TRANSFER_EVERYTHING = 2, }
-Direction :: enum u32 {DIRECTION_IN = 0, DIRECTION_OUT = 1, DIRECTION_INOUT = 2, }
-ScopeType :: enum u32 {SCOPE_TYPE_INVALID = 0, SCOPE_TYPE_CALL = 1, SCOPE_TYPE_ASYNC = 2, SCOPE_TYPE_NOTIFIED = 3, SCOPE_TYPE_FOREVER = 4, }
-TypeTag :: enum u32 {TYPE_TAG_VOID = 0, TYPE_TAG_BOOLEAN = 1, TYPE_TAG_INT8 = 2, TYPE_TAG_UINT8 = 3, TYPE_TAG_INT16 = 4, TYPE_TAG_UINT16 = 5, TYPE_TAG_INT32 = 6, TYPE_TAG_UINT32 = 7, TYPE_TAG_INT64 = 8, TYPE_TAG_UINT64 = 9, TYPE_TAG_FLOAT = 10, TYPE_TAG_DOUBLE = 11, TYPE_TAG_GTYPE = 12, TYPE_TAG_UTF8 = 13, TYPE_TAG_FILENAME = 14, TYPE_TAG_ARRAY = 15, TYPE_TAG_INTERFACE = 16, TYPE_TAG_GLIST = 17, TYPE_TAG_GSLIST = 18, TYPE_TAG_GHASH = 19, TYPE_TAG_ERROR = 20, TYPE_TAG_UNICHAR = 21, }
-ArrayType :: enum u32 {ARRAY_TYPE_C = 0, ARRAY_TYPE_ARRAY = 1, ARRAY_TYPE_PTR_ARRAY = 2, ARRAY_TYPE_BYTE_ARRAY = 3, }
+Transfer :: enum u32 {NOTHING = 0, CONTAINER = 1, EVERYTHING = 2, }
+Direction :: enum u32 {IN = 0, OUT = 1, INOUT = 2, }
+ScopeType :: enum u32 {INVALID = 0, CALL = 1, ASYNC = 2, NOTIFIED = 3, FOREVER = 4, }
+TypeTag :: enum u32 {VOID = 0, BOOLEAN = 1, INT8 = 2, UINT8 = 3, INT16 = 4, UINT16 = 5, INT32 = 6, UINT32 = 7, INT64 = 8, UINT64 = 9, FLOAT = 10, DOUBLE = 11, GTYPE = 12, UTF8 = 13, FILENAME = 14, ARRAY = 15, INTERFACE = 16, GLIST = 17, GSLIST = 18, GHASH = 19, ERROR = 20, UNICHAR = 21, }
+ArrayType :: enum u32 {C = 0, ARRAY = 1, PTR_ARRAY = 2, BYTE_ARRAY = 3, }
 FieldInfoFlags :: enum u32 {FIELD_IS_READABLE = 1, FIELD_IS_WRITABLE = 2, }
 VFuncInfoFlags :: enum u32 {VFUNC_MUST_CHAIN_UP = 1, VFUNC_MUST_OVERRIDE = 2, VFUNC_MUST_NOT_OVERRIDE = 4, }
 FunctionInfoFlags :: enum u32 {FUNCTION_IS_METHOD = 1, FUNCTION_IS_CONSTRUCTOR = 2, FUNCTION_IS_GETTER = 4, FUNCTION_IS_SETTER = 8, FUNCTION_WRAPS_VFUNC = 16, FUNCTION_IS_ASYNC = 32, }
@@ -99,7 +99,7 @@ AttributeIter :: struct {
     data: rawptr,
     _dummy: [4]rawptr,
 }
-InvokeError :: enum u32 {INVOKE_ERROR_FAILED = 0, INVOKE_ERROR_SYMBOL_NOT_FOUND = 1, INVOKE_ERROR_ARGUMENT_MISMATCH = 2, }
+InvokeError :: enum u32 {FAILED = 0, SYMBOL_NOT_FOUND = 1, ARGUMENT_MISMATCH = 2, }
 ObjectInfoRefFunction :: #type proc "c" (object: rawptr) -> rawptr
 ObjectInfoUnrefFunction :: #type proc "c" (object: rawptr)
 ObjectInfoSetValueFunction :: #type proc "c" (value: ^gobj.Value, object: rawptr)
@@ -117,8 +117,8 @@ RepositoryClass_autoptr :: ^RepositoryClass
 RepositoryClass_listautoptr :: ^glib.List
 RepositoryClass_slistautoptr :: ^glib.SList
 RepositoryClass_queueautoptr :: ^glib.Queue
-RepositoryLoadFlags :: enum u32 {REPOSITORY_LOAD_FLAG_NONE = 0, REPOSITORY_LOAD_FLAG_LAZY = 1, }
-RepositoryError :: enum u32 {REPOSITORY_ERROR_TYPELIB_NOT_FOUND = 0, REPOSITORY_ERROR_NAMESPACE_MISMATCH = 1, REPOSITORY_ERROR_NAMESPACE_VERSION_CONFLICT = 2, REPOSITORY_ERROR_LIBRARY_NOT_FOUND = 3, }
+RepositoryLoadFlags :: enum u32 {NONE = 0, LAZY = 1, }
+RepositoryError :: enum u32 {TYPELIB_NOT_FOUND = 0, NAMESPACE_MISMATCH = 1, NAMESPACE_VERSION_CONFLICT = 2, LIBRARY_NOT_FOUND = 3, }
 Typelib_autoptr :: ^Typelib
 Typelib_listautoptr :: ^glib.List
 Typelib_slistautoptr :: ^glib.SList

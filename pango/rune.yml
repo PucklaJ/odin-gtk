@@ -63,6 +63,11 @@ to:
       - 'pango_'
     constants:
       - 'PANGO_'
+      - 'SHOW_'
+      - 'SHAPE_'
+      - 'LAYOUT_SERIALIZE_'
+      - 'LAYOUT_DESERIALIZE_'
+    enum_type_name: true
   trim_suffix:
     functions:
       - '_wrapper'

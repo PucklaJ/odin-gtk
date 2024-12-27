@@ -33,7 +33,7 @@ main :: proc() {
     enumerator := gio.file_enumerate_children(
         directory,
         gio.FILE_ATTRIBUTE_STANDARD_NAME,
-        .FILE_QUERY_INFO_NONE,
+        .NONE,
         nil,
         &error,
     )

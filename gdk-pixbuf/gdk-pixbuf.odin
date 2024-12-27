@@ -17,15 +17,15 @@ TYPE_PIXBUF_ERROR :: pixbuf_error_get_type
 TYPE_INTERP_TYPE :: interp_type_get_type 
 TYPE_PIXBUF_ROTATION :: pixbuf_rotation_get_type 
 
-PixbufAlphaMode :: enum u32 {ALPHA_BILEVEL = 0, ALPHA_FULL = 1, }
-Colorspace :: enum u32 {COLORSPACE_RGB = 0, }
+PixbufAlphaMode :: enum u32 {BILEVEL = 0, FULL = 1, }
+Colorspace :: enum u32 {RGB = 0, }
 _GdkPixbuf :: struct #packed {}
 Pixbuf :: _GdkPixbuf
 PixbufDestroyNotify :: #type proc "c" (pixels: [^]glib.uchar, data: glib.pointer)
-PixbufError :: enum u32 {ERROR_CORRUPT_IMAGE = 0, ERROR_INSUFFICIENT_MEMORY = 1, ERROR_BAD_OPTION = 2, ERROR_UNKNOWN_TYPE = 3, ERROR_UNSUPPORTED_OPERATION = 4, ERROR_FAILED = 5, ERROR_INCOMPLETE_ANIMATION = 6, }
+PixbufError :: enum u32 {CORRUPT_IMAGE = 0, INSUFFICIENT_MEMORY = 1, BAD_OPTION = 2, UNKNOWN_TYPE = 3, UNSUPPORTED_OPERATION = 4, FAILED = 5, INCOMPLETE_ANIMATION = 6, }
 PixbufSaveFunc :: #type proc "c" (buf: ^glib.char, count: glib.size, error: ^^glib.Error, data: glib.pointer) -> glib.boolean
-InterpType :: enum u32 {INTERP_NEAREST = 0, INTERP_TILES = 1, INTERP_BILINEAR = 2, INTERP_HYPER = 3, }
-PixbufRotation :: enum u32 {ROTATE_NONE = 0, ROTATE_COUNTERCLOCKWISE = 90, ROTATE_UPSIDEDOWN = 180, ROTATE_CLOCKWISE = 270, }
+InterpType :: enum u32 {NEAREST = 0, TILES = 1, BILINEAR = 2, HYPER = 3, }
+PixbufRotation :: enum u32 {NONE = 0, COUNTERCLOCKWISE = 90, UPSIDEDOWN = 180, CLOCKWISE = 270, }
 _GdkPixbufAnimation :: struct #packed {}
 PixbufAnimation :: _GdkPixbufAnimation
 _GdkPixbufAnimationIter :: struct #packed {}

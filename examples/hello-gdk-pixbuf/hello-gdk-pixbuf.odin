@@ -48,7 +48,7 @@ main :: proc() {
         in_image,
         width,
         height,
-        .INTERP_BILINEAR,
+        .BILINEAR,
     )
     if out_image == nil {
         glib.printerr("failed to scale the image\n")

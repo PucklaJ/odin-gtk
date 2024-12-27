@@ -84,6 +84,8 @@ to:
       - 'GTK_'
       - 'GDK_'
       - 'GSK_'
+      - 'GL_API_'
+    enum_type_name: true
   trim_suffix:
     functions:
       - '_wrapper'

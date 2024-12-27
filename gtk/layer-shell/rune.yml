@@ -53,9 +53,8 @@ to:
     functions:
       - 'gtk_layer_'
     constants:
-      - 'GTK_LAYER_SHELL_LAYER_'
-      - 'GTK_LAYER_SHELL_EDGE_'
-      - 'GTK_LAYER_SHELL_KEYBOARD_MODE_'
+      - 'GTK_LAYER_SHELL_'
+    enum_type_name: true
   extern:
     sources:
       '../../shared/glib/glib/*': '../../glib'

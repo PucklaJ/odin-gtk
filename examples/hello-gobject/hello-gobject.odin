@@ -38,7 +38,7 @@ person_get_type :: proc "c" () -> gobj.Type {
             person_class_intern_init,
             size_of(Person),
             person_init,
-            .TYPE_FLAG_NONE,
+            .NONE,
         )
     }
 
@@ -98,7 +98,7 @@ person_class_init :: proc "c" (klass: ^PersonClass) {
             "Name",
             "The name of the person",
             nil,
-            .PARAM_READWRITE,
+            .READWRITE,
         ),
     )
 
@@ -112,7 +112,7 @@ person_class_init :: proc "c" (klass: ^PersonClass) {
             0,
             libc.INT32_MAX,
             0,
-            .PARAM_READWRITE,
+            .READWRITE,
         ),
     )
 }
