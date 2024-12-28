@@ -1267,6 +1267,9 @@ foreign pango_runic {
     @(link_name = "pango_font_map_reload_font")
     font_map_reload_font :: proc(fontmap: ^FontMap, font: ^Font, scale: f64, context_p: ^Context, variations: cstring) -> ^Font ---
 
+    @(link_name = "pango_font_map_add_font_file")
+    font_map_add_font_file :: proc(fontmap: ^FontMap, filename: cstring, error: ^^glib.Error) -> glib.boolean ---
+
     @(link_name = "pango_context_get_type")
     context_get_type :: proc() -> gobj.Type ---
 

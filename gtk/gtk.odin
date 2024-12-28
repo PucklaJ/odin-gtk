@@ -23,13 +23,14 @@ _GtkCssSection :: struct #packed {}
 CssSection :: _GtkCssSection
 GLAPI :: enum u32 {GL = 1, GLES = 2 }
 Gravity :: enum u32 {NORTH_WEST = 1, NORTH = 2, NORTH_EAST = 3, WEST = 4, CENTER = 5, EAST = 6, SOUTH_WEST = 7, SOUTH = 8, SOUTH_EAST = 9, STATIC = 10 }
-ModifierType :: enum u32 {SHIFT_MASK = 1, LOCK_MASK = 2, CONTROL_MASK = 4, ALT_MASK = 8, BUTTON1_MASK = 256, BUTTON2_MASK = 512, BUTTON3_MASK = 1024, BUTTON4_MASK = 2048, BUTTON5_MASK = 4096, SUPER_MASK = 67108864, HYPER_MASK = 134217728, META_MASK = 268435456 }
+ModifierType :: enum u32 {NO_MODIFIER_MASK = 0, SHIFT_MASK = 1, LOCK_MASK = 2, CONTROL_MASK = 4, ALT_MASK = 8, BUTTON1_MASK = 256, BUTTON2_MASK = 512, BUTTON3_MASK = 1024, BUTTON4_MASK = 2048, BUTTON5_MASK = 4096, SUPER_MASK = 67108864, HYPER_MASK = 134217728, META_MASK = 268435456 }
+DmabufError :: enum u32 {NOT_AVAILABLE = 0, UNSUPPORTED_FORMAT = 1, CREATION_FAILED = 2 }
 GLError :: enum u32 {NOT_AVAILABLE = 0, UNSUPPORTED_FORMAT = 1, UNSUPPORTED_PROFILE = 2, COMPILATION_FAILED = 3, LINK_FAILED = 4 }
 VulkanError :: enum u32 {UNSUPPORTED = 0, NOT_AVAILABLE = 1 }
 AxisUse :: enum u32 {AXIS_IGNORE = 0, AXIS_X = 1, AXIS_Y = 2, AXIS_DELTA_X = 3, AXIS_DELTA_Y = 4, AXIS_PRESSURE = 5, AXIS_XTILT = 6, AXIS_YTILT = 7, AXIS_WHEEL = 8, AXIS_DISTANCE = 9, AXIS_ROTATION = 10, AXIS_SLIDER = 11, AXIS_LAST = 12 }
 AxisFlags :: enum u32 {AXIS_FLAG_X = 2, AXIS_FLAG_Y = 4, AXIS_FLAG_DELTA_X = 8, AXIS_FLAG_DELTA_Y = 16, AXIS_FLAG_PRESSURE = 32, AXIS_FLAG_XTILT = 64, AXIS_FLAG_YTILT = 128, AXIS_FLAG_WHEEL = 256, AXIS_FLAG_DISTANCE = 512, AXIS_FLAG_ROTATION = 1024, AXIS_FLAG_SLIDER = 2048 }
 DragAction :: enum u32 {ACTION_COPY = 1, ACTION_MOVE = 2, ACTION_LINK = 4, ACTION_ASK = 8 }
-MemoryFormat :: enum u32 {MEMORY_B8G8R8A8_PREMULTIPLIED = 0, MEMORY_A8R8G8B8_PREMULTIPLIED = 1, MEMORY_R8G8B8A8_PREMULTIPLIED = 2, MEMORY_B8G8R8A8 = 3, MEMORY_A8R8G8B8 = 4, MEMORY_R8G8B8A8 = 5, MEMORY_A8B8G8R8 = 6, MEMORY_R8G8B8 = 7, MEMORY_B8G8R8 = 8, MEMORY_R16G16B16 = 9, MEMORY_R16G16B16A16_PREMULTIPLIED = 10, MEMORY_R16G16B16A16 = 11, MEMORY_R16G16B16_FLOAT = 12, MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED = 13, MEMORY_R16G16B16A16_FLOAT = 14, MEMORY_R32G32B32_FLOAT = 15, MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED = 16, MEMORY_R32G32B32A32_FLOAT = 17, MEMORY_G8A8_PREMULTIPLIED = 18, MEMORY_G8A8 = 19, MEMORY_G8 = 20, MEMORY_G16A16_PREMULTIPLIED = 21, MEMORY_G16A16 = 22, MEMORY_G16 = 23, MEMORY_A8 = 24, MEMORY_A16 = 25, MEMORY_A16_FLOAT = 26, MEMORY_A32_FLOAT = 27, MEMORY_N_FORMATS = 28 }
+MemoryFormat :: enum u32 {MEMORY_B8G8R8A8_PREMULTIPLIED = 0, MEMORY_A8R8G8B8_PREMULTIPLIED = 1, MEMORY_R8G8B8A8_PREMULTIPLIED = 2, MEMORY_B8G8R8A8 = 3, MEMORY_A8R8G8B8 = 4, MEMORY_R8G8B8A8 = 5, MEMORY_A8B8G8R8 = 6, MEMORY_R8G8B8 = 7, MEMORY_B8G8R8 = 8, MEMORY_R16G16B16 = 9, MEMORY_R16G16B16A16_PREMULTIPLIED = 10, MEMORY_R16G16B16A16 = 11, MEMORY_R16G16B16_FLOAT = 12, MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED = 13, MEMORY_R16G16B16A16_FLOAT = 14, MEMORY_R32G32B32_FLOAT = 15, MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED = 16, MEMORY_R32G32B32A32_FLOAT = 17, MEMORY_G8A8_PREMULTIPLIED = 18, MEMORY_G8A8 = 19, MEMORY_G8 = 20, MEMORY_G16A16_PREMULTIPLIED = 21, MEMORY_G16A16 = 22, MEMORY_G16 = 23, MEMORY_A8 = 24, MEMORY_A16 = 25, MEMORY_A16_FLOAT = 26, MEMORY_A32_FLOAT = 27, MEMORY_A8B8G8R8_PREMULTIPLIED = 28, MEMORY_B8G8R8X8 = 29, MEMORY_X8R8G8B8 = 30, MEMORY_R8G8B8X8 = 31, MEMORY_X8B8G8R8 = 32, MEMORY_N_FORMATS = 33 }
 Rectangle :: cairo.rectangle_int_t
 _GdkRGBA :: struct {
     red: f32,
@@ -38,6 +39,10 @@ _GdkRGBA :: struct {
     alpha: f32,
 }
 RGBA :: _GdkRGBA
+_GdkCicpParams :: struct #packed {}
+CicpParams :: _GdkCicpParams
+_GdkColorState :: struct #packed {}
+ColorState :: _GdkColorState
 _GdkContentFormats :: struct #packed {}
 ContentFormats :: _GdkContentFormats
 _GdkContentProvider :: struct {
@@ -80,6 +85,10 @@ _GdkGLContext :: struct #packed {}
 GLContext :: _GdkGLContext
 _GdkVulkanContext :: struct #packed {}
 VulkanContext :: _GdkVulkanContext
+_GdkDmabufFormats :: struct #packed {}
+DmabufFormats :: _GdkDmabufFormats
+_GdkDmabufTexture :: struct #packed {}
+DmabufTexture :: _GdkDmabufTexture
 _GdkKeymapKey :: struct {
     keycode: glib.uint_,
     group: i32,
@@ -90,10 +99,25 @@ AppLaunchContext_autoptr :: ^AppLaunchContext
 AppLaunchContext_listautoptr :: ^glib.List
 AppLaunchContext_slistautoptr :: ^glib.SList
 AppLaunchContext_queueautoptr :: ^glib.Queue
+_GdkCicpParamsClass :: struct #packed {}
+CicpParamsClass :: _GdkCicpParamsClass
+CicpParams_autoptr :: ^CicpParams
+CicpParams_listautoptr :: ^glib.List
+CicpParams_slistautoptr :: ^glib.SList
+CicpParams_queueautoptr :: ^glib.Queue
+CicpParamsClass_autoptr :: ^CicpParamsClass
+CicpParamsClass_listautoptr :: ^glib.List
+CicpParamsClass_slistautoptr :: ^glib.SList
+CicpParamsClass_queueautoptr :: ^glib.Queue
+CicpRange :: enum u32 {NARROW = 0, FULL = 1 }
 Clipboard_autoptr :: ^Clipboard
 Clipboard_listautoptr :: ^glib.List
 Clipboard_slistautoptr :: ^glib.SList
 Clipboard_queueautoptr :: ^glib.Queue
+ColorState_autoptr :: ^ColorState
+ColorState_listautoptr :: ^glib.List
+ColorState_slistautoptr :: ^glib.SList
+ColorState_queueautoptr :: ^glib.Queue
 _GdkContentDeserializer :: struct #packed {}
 ContentDeserializer :: _GdkContentDeserializer
 ContentDeserializeFunc :: #type proc "c" (deserializer: ^ContentDeserializer)
@@ -133,6 +157,7 @@ ContentProvider_queueautoptr :: ^glib.Queue
 _GdkContentSerializer :: struct #packed {}
 ContentSerializer :: _GdkContentSerializer
 ContentSerializeFunc :: #type proc "c" (serializer: ^ContentSerializer)
+CursorGetTextureCallback :: #type proc "c" (cursor: ^Cursor, cursor_size: i32, scale: f64, width: ^i32, height: ^i32, hotspot_x: ^i32, hotspot_y: ^i32, data: glib.pointer) -> ^Texture
 Cursor_autoptr :: ^Cursor
 Cursor_listautoptr :: ^glib.List
 Cursor_slistautoptr :: ^glib.SList
@@ -254,6 +279,35 @@ DisplayManager_autoptr :: ^DisplayManager
 DisplayManager_listautoptr :: ^glib.List
 DisplayManager_slistautoptr :: ^glib.SList
 DisplayManager_queueautoptr :: ^glib.Queue
+DmabufFormats_autoptr :: ^DmabufFormats
+DmabufFormats_listautoptr :: ^glib.List
+DmabufFormats_slistautoptr :: ^glib.SList
+DmabufFormats_queueautoptr :: ^glib.Queue
+_GdkTextureClass :: struct #packed {}
+TextureClass :: _GdkTextureClass
+TextureError :: enum u32 {TOO_LARGE = 0, CORRUPT_IMAGE = 1, UNSUPPORTED_CONTENT = 2, UNSUPPORTED_FORMAT = 3 }
+Texture_autoptr :: ^Texture
+Texture_listautoptr :: ^glib.List
+Texture_slistautoptr :: ^glib.SList
+Texture_queueautoptr :: ^glib.Queue
+_GdkDmabufTextureClass :: struct #packed {}
+DmabufTextureClass :: _GdkDmabufTextureClass
+DmabufTexture_autoptr :: ^DmabufTexture
+DmabufTexture_listautoptr :: ^glib.List
+DmabufTexture_slistautoptr :: ^glib.SList
+DmabufTexture_queueautoptr :: ^glib.Queue
+_GdkDmabufTextureBuilder :: struct #packed {}
+DmabufTextureBuilder :: _GdkDmabufTextureBuilder
+_GdkDmabufTextureBuilderClass :: struct #packed {}
+DmabufTextureBuilderClass :: _GdkDmabufTextureBuilderClass
+DmabufTextureBuilder_autoptr :: ^DmabufTextureBuilder
+DmabufTextureBuilder_listautoptr :: ^glib.List
+DmabufTextureBuilder_slistautoptr :: ^glib.SList
+DmabufTextureBuilder_queueautoptr :: ^glib.Queue
+DmabufTextureBuilderClass_autoptr :: ^DmabufTextureBuilderClass
+DmabufTextureBuilderClass_listautoptr :: ^glib.List
+DmabufTextureBuilderClass_slistautoptr :: ^glib.SList
+DmabufTextureBuilderClass_queueautoptr :: ^glib.Queue
 _GdkDragSurface :: struct #packed {}
 DragSurface :: _GdkDragSurface
 _GdkDragSurfaceInterface :: struct #packed {}
@@ -276,13 +330,6 @@ GLContext_autoptr :: ^GLContext
 GLContext_listautoptr :: ^glib.List
 GLContext_slistautoptr :: ^glib.SList
 GLContext_queueautoptr :: ^glib.Queue
-_GdkTextureClass :: struct #packed {}
-TextureClass :: _GdkTextureClass
-TextureError :: enum u32 {TOO_LARGE = 0, CORRUPT_IMAGE = 1, UNSUPPORTED_CONTENT = 2, UNSUPPORTED_FORMAT = 3 }
-Texture_autoptr :: ^Texture
-Texture_listautoptr :: ^glib.List
-Texture_slistautoptr :: ^glib.SList
-Texture_queueautoptr :: ^glib.Queue
 _GdkGLTexture :: struct #packed {}
 GLTexture :: _GdkGLTexture
 _GdkGLTextureClass :: struct #packed {}
@@ -311,6 +358,18 @@ MemoryTexture_autoptr :: ^MemoryTexture
 MemoryTexture_listautoptr :: ^glib.List
 MemoryTexture_slistautoptr :: ^glib.SList
 MemoryTexture_queueautoptr :: ^glib.Queue
+_GdkMemoryTextureBuilder :: struct #packed {}
+MemoryTextureBuilder :: _GdkMemoryTextureBuilder
+_GdkMemoryTextureBuilderClass :: struct #packed {}
+MemoryTextureBuilderClass :: _GdkMemoryTextureBuilderClass
+MemoryTextureBuilder_autoptr :: ^MemoryTextureBuilder
+MemoryTextureBuilder_listautoptr :: ^glib.List
+MemoryTextureBuilder_slistautoptr :: ^glib.SList
+MemoryTextureBuilder_queueautoptr :: ^glib.Queue
+MemoryTextureBuilderClass_autoptr :: ^MemoryTextureBuilderClass
+MemoryTextureBuilderClass_listautoptr :: ^glib.List
+MemoryTextureBuilderClass_slistautoptr :: ^glib.SList
+MemoryTextureBuilderClass_queueautoptr :: ^glib.Queue
 _GdkPaintable :: struct #packed {}
 Paintable :: _GdkPaintable
 snapshot_func_ptr_anon_8 :: #type proc "c" (paintable: ^Paintable, snapshot: ^Snapshot, width: f64, height: f64)
@@ -380,27 +439,58 @@ VulkanContext_autoptr :: ^VulkanContext
 VulkanContext_listautoptr :: ^glib.List
 VulkanContext_slistautoptr :: ^glib.SList
 VulkanContext_queueautoptr :: ^glib.Queue
-RenderNodeType :: enum u32 {NOT_A_RENDER_NODE = 0, CONTAINER_NODE = 1, CAIRO_NODE = 2, COLOR_NODE = 3, LINEAR_GRADIENT_NODE = 4, REPEATING_LINEAR_GRADIENT_NODE = 5, RADIAL_GRADIENT_NODE = 6, REPEATING_RADIAL_GRADIENT_NODE = 7, CONIC_GRADIENT_NODE = 8, BORDER_NODE = 9, TEXTURE_NODE = 10, INSET_SHADOW_NODE = 11, OUTSET_SHADOW_NODE = 12, TRANSFORM_NODE = 13, OPACITY_NODE = 14, COLOR_MATRIX_NODE = 15, REPEAT_NODE = 16, CLIP_NODE = 17, ROUNDED_CLIP_NODE = 18, SHADOW_NODE = 19, BLEND_NODE = 20, CROSS_FADE_NODE = 21, TEXT_NODE = 22, BLUR_NODE = 23, DEBUG_NODE = 24, GL_SHADER_NODE = 25, TEXTURE_SCALE_NODE = 26, MASK_NODE = 27 }
+RenderNodeType :: enum u32 {NOT_A_RENDER_NODE = 0, CONTAINER_NODE = 1, CAIRO_NODE = 2, COLOR_NODE = 3, LINEAR_GRADIENT_NODE = 4, REPEATING_LINEAR_GRADIENT_NODE = 5, RADIAL_GRADIENT_NODE = 6, REPEATING_RADIAL_GRADIENT_NODE = 7, CONIC_GRADIENT_NODE = 8, BORDER_NODE = 9, TEXTURE_NODE = 10, INSET_SHADOW_NODE = 11, OUTSET_SHADOW_NODE = 12, TRANSFORM_NODE = 13, OPACITY_NODE = 14, COLOR_MATRIX_NODE = 15, REPEAT_NODE = 16, CLIP_NODE = 17, ROUNDED_CLIP_NODE = 18, SHADOW_NODE = 19, BLEND_NODE = 20, CROSS_FADE_NODE = 21, TEXT_NODE = 22, BLUR_NODE = 23, DEBUG_NODE = 24, GL_SHADER_NODE = 25, TEXTURE_SCALE_NODE = 26, MASK_NODE = 27, FILL_NODE = 28, STROKE_NODE = 29, SUBSURFACE_NODE = 30 }
 ScalingFilter :: enum u32 {LINEAR = 0, NEAREST = 1, TRILINEAR = 2 }
 BlendMode :: enum u32 {DEFAULT = 0, MULTIPLY = 1, SCREEN = 2, OVERLAY = 3, DARKEN = 4, LIGHTEN = 5, COLOR_DODGE = 6, COLOR_BURN = 7, HARD_LIGHT = 8, SOFT_LIGHT = 9, DIFFERENCE = 10, EXCLUSION = 11, COLOR = 12, HUE = 13, SATURATION = 14, LUMINOSITY = 15 }
 Corner :: enum u32 {TOP_LEFT = 0, TOP_RIGHT = 1, BOTTOM_RIGHT = 2, BOTTOM_LEFT = 3 }
+FillRule :: enum u32 {WINDING = 0, EVEN_ODD = 1 }
+LineCap :: enum u32 {BUTT = 0, ROUND = 1, SQUARE = 2 }
+LineJoin :: enum u32 {MITER = 0, ROUND = 1, BEVEL = 2 }
+PathOperation :: enum u32 {PATH_MOVE = 0, PATH_CLOSE = 1, PATH_LINE = 2, PATH_QUAD = 3, PATH_CUBIC = 4, PATH_CONIC = 5 }
+PathDirection :: enum u32 {PATH_FROM_START = 0, PATH_TO_START = 1, PATH_TO_END = 2, PATH_FROM_END = 3 }
 SerializationError :: enum u32 {SERIALIZATION_UNSUPPORTED_FORMAT = 0, SERIALIZATION_UNSUPPORTED_VERSION = 1, SERIALIZATION_INVALID_DATA = 2 }
 TransformCategory :: enum u32 {UNKNOWN = 0, ANY = 1, _3D = 2, _2D = 3, _2D_AFFINE = 4, _2D_TRANSLATE = 5, IDENTITY = 6 }
 GLUniformType :: enum u32 {NONE = 0, FLOAT = 1, INT = 2, UINT = 3, BOOL = 4, VEC2 = 5, VEC3 = 6, VEC4 = 7 }
 MaskMode :: enum u32 {ALPHA = 0, INVERTED_ALPHA = 1, LUMINANCE = 2, INVERTED_LUMINANCE = 3 }
+_GskPath :: struct #packed {}
+Path :: _GskPath
+_GskPathBuilder :: struct #packed {}
+PathBuilder :: _GskPathBuilder
+_GskPathMeasure :: struct #packed {}
+PathMeasure :: _GskPathMeasure
+_GskPathPoint :: struct #packed {}
+PathPoint :: _GskPathPoint
 _GskRenderer :: struct #packed {}
 Renderer :: _GskRenderer
-_GskTransform :: struct #packed {}
-Transform :: _GskTransform
+_GskRenderNode :: struct #packed {}
+RenderNode :: _GskRenderNode
 _GskRoundedRect :: struct {
     bounds: graphene.rect_t,
     corner: [4]graphene.size_t,
 }
 RoundedRect :: _GskRoundedRect
-_GskShaderArgsBuilder :: struct #packed {}
-ShaderArgsBuilder :: _GskShaderArgsBuilder
+_GskStroke :: struct #packed {}
+Stroke :: _GskStroke
+_GskTransform :: struct #packed {}
+Transform :: _GskTransform
+PathForeachFlags :: enum u32 {PATH_FOREACH_ALLOW_ONLY_LINES = 0, PATH_FOREACH_ALLOW_QUAD = 1, PATH_FOREACH_ALLOW_CUBIC = 2, PATH_FOREACH_ALLOW_CONIC = 4 }
+PathForeachFunc :: #type proc "c" (op: PathOperation, pts: [^]graphene.point_t, n_pts: glib.size, weight: f32, user_data: glib.pointer) -> glib.boolean
+Path_autoptr :: ^Path
+Path_listautoptr :: ^glib.List
+Path_slistautoptr :: ^glib.SList
+Path_queueautoptr :: ^glib.Queue
+PathBuilder_autoptr :: ^PathBuilder
+PathBuilder_listautoptr :: ^glib.List
+PathBuilder_slistautoptr :: ^glib.SList
+PathBuilder_queueautoptr :: ^glib.Queue
+PathMeasure_autoptr :: ^PathMeasure
+PathMeasure_listautoptr :: ^glib.List
+PathMeasure_slistautoptr :: ^glib.SList
+PathMeasure_queueautoptr :: ^glib.Queue
 _GskGLShader :: struct #packed {}
 GLShader :: _GskGLShader
+_GskShaderArgsBuilder :: struct #packed {}
+ShaderArgsBuilder :: _GskShaderArgsBuilder
 GLShaderClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -412,8 +502,6 @@ GLShaderClass_autoptr :: ^GLShaderClass
 GLShaderClass_listautoptr :: ^glib.List
 GLShaderClass_slistautoptr :: ^glib.SList
 GLShaderClass_queueautoptr :: ^glib.Queue
-_GskRenderNode :: struct #packed {}
-RenderNode :: _GskRenderNode
 _GskColorStop :: struct {
     offset: f32,
     color: RGBA,
@@ -475,6 +563,10 @@ _GskClipNode :: struct #packed {}
 ClipNode :: _GskClipNode
 _GskRoundedClipNode :: struct #packed {}
 RoundedClipNode :: _GskRoundedClipNode
+_GskFillNode :: struct #packed {}
+FillNode :: _GskFillNode
+_GskStrokeNode :: struct #packed {}
+StrokeNode :: _GskStrokeNode
 _GskShadowNode :: struct #packed {}
 ShadowNode :: _GskShadowNode
 _GskBlendNode :: struct #packed {}
@@ -489,6 +581,8 @@ _GskMaskNode :: struct #packed {}
 MaskNode :: _GskMaskNode
 _GskGLShaderNode :: struct #packed {}
 GLShaderNode :: _GskGLShaderNode
+_GskSubsurfaceNode :: struct #packed {}
+SubsurfaceNode :: _GskSubsurfaceNode
 RenderNode_autoptr :: ^RenderNode
 RenderNode_listautoptr :: ^glib.List
 RenderNode_slistautoptr :: ^glib.SList
@@ -499,6 +593,10 @@ Renderer_autoptr :: ^Renderer
 Renderer_listautoptr :: ^glib.List
 Renderer_slistautoptr :: ^glib.SList
 Renderer_queueautoptr :: ^glib.Queue
+Stroke_autoptr :: ^Stroke
+Stroke_listautoptr :: ^glib.List
+Stroke_slistautoptr :: ^glib.SList
+Stroke_queueautoptr :: ^glib.Queue
 Transform_autoptr :: ^Transform
 Transform_listautoptr :: ^glib.List
 Transform_slistautoptr :: ^glib.SList
@@ -507,6 +605,18 @@ _GskCairoRenderer :: struct #packed {}
 CairoRenderer :: _GskCairoRenderer
 _GskCairoRendererClass :: struct #packed {}
 CairoRendererClass :: _GskCairoRendererClass
+_GskGLRenderer :: struct #packed {}
+GLRenderer :: _GskGLRenderer
+_GskGLRendererClass :: struct #packed {}
+GLRendererClass :: _GskGLRendererClass
+_GskVulkanRenderer :: struct #packed {}
+VulkanRenderer :: _GskVulkanRenderer
+_GskVulkanRendererClass :: struct #packed {}
+VulkanRendererClass :: _GskVulkanRendererClass
+VulkanRenderer_autoptr :: ^VulkanRenderer
+VulkanRenderer_listautoptr :: ^glib.List
+VulkanRenderer_slistautoptr :: ^glib.SList
+VulkanRenderer_queueautoptr :: ^glib.Queue
 Align :: enum u32 {FILL = 0, START = 1, END = 2, CENTER = 3, BASELINE_FILL = 4, BASELINE = 4, BASELINE_CENTER = 5 }
 ArrowType :: enum u32 {ARROW_UP = 0, ARROW_DOWN = 1, ARROW_LEFT = 2, ARROW_RIGHT = 3, ARROW_NONE = 4 }
 BaselinePosition :: enum u32 {TOP = 0, CENTER = 1, BOTTOM = 2 }
@@ -560,25 +670,18 @@ ConstraintAttribute :: enum u32 {NONE = 0, LEFT = 1, RIGHT = 2, TOP = 3, BOTTOM 
 ConstraintVflParserError :: enum u32 {INVALID_SYMBOL = 0, INVALID_ATTRIBUTE = 1, INVALID_VIEW = 2, INVALID_METRIC = 3, INVALID_PRIORITY = 4, INVALID_RELATION = 5 }
 SystemSetting :: enum u32 {DPI = 0, FONT_NAME = 1, FONT_CONFIG = 2, DISPLAY = 3, ICON_THEME = 4 }
 SymbolicColor :: enum u32 {FOREGROUND = 0, ERROR = 1, WARNING = 2, SUCCESS = 3 }
-AccessibleRole :: enum u32 {ALERT = 0, ALERT_DIALOG = 1, BANNER = 2, BUTTON = 3, CAPTION = 4, CELL = 5, CHECKBOX = 6, COLUMN_HEADER = 7, COMBO_BOX = 8, COMMAND = 9, COMPOSITE = 10, DIALOG = 11, DOCUMENT = 12, FEED = 13, FORM = 14, GENERIC = 15, GRID = 16, GRID_CELL = 17, GROUP = 18, HEADING = 19, IMG = 20, INPUT = 21, LABEL = 22, LANDMARK = 23, LEGEND = 24, LINK = 25, LIST = 26, LIST_BOX = 27, LIST_ITEM = 28, LOG = 29, MAIN = 30, MARQUEE = 31, MATH = 32, METER = 33, MENU = 34, MENU_BAR = 35, MENU_ITEM = 36, MENU_ITEM_CHECKBOX = 37, MENU_ITEM_RADIO = 38, NAVIGATION = 39, NONE = 40, NOTE = 41, OPTION = 42, PRESENTATION = 43, PROGRESS_BAR = 44, RADIO = 45, RADIO_GROUP = 46, RANGE = 47, REGION = 48, ROW = 49, ROW_GROUP = 50, ROW_HEADER = 51, SCROLLBAR = 52, SEARCH = 53, SEARCH_BOX = 54, SECTION = 55, SECTION_HEAD = 56, SELECT = 57, SEPARATOR = 58, SLIDER = 59, SPIN_BUTTON = 60, STATUS = 61, STRUCTURE = 62, SWITCH = 63, TAB = 64, TABLE = 65, TAB_LIST = 66, TAB_PANEL = 67, TEXT_BOX = 68, TIME = 69, TIMER = 70, TOOLBAR = 71, TOOLTIP = 72, TREE = 73, TREE_GRID = 74, TREE_ITEM = 75, WIDGET = 76, WINDOW = 77, TOGGLE_BUTTON = 78, APPLICATION = 79 }
+AccessibleRole :: enum u32 {ALERT = 0, ALERT_DIALOG = 1, BANNER = 2, BUTTON = 3, CAPTION = 4, CELL = 5, CHECKBOX = 6, COLUMN_HEADER = 7, COMBO_BOX = 8, COMMAND = 9, COMPOSITE = 10, DIALOG = 11, DOCUMENT = 12, FEED = 13, FORM = 14, GENERIC = 15, GRID = 16, GRID_CELL = 17, GROUP = 18, HEADING = 19, IMG = 20, INPUT = 21, LABEL = 22, LANDMARK = 23, LEGEND = 24, LINK = 25, LIST = 26, LIST_BOX = 27, LIST_ITEM = 28, LOG = 29, MAIN = 30, MARQUEE = 31, MATH = 32, METER = 33, MENU = 34, MENU_BAR = 35, MENU_ITEM = 36, MENU_ITEM_CHECKBOX = 37, MENU_ITEM_RADIO = 38, NAVIGATION = 39, NONE = 40, NOTE = 41, OPTION = 42, PRESENTATION = 43, PROGRESS_BAR = 44, RADIO = 45, RADIO_GROUP = 46, RANGE = 47, REGION = 48, ROW = 49, ROW_GROUP = 50, ROW_HEADER = 51, SCROLLBAR = 52, SEARCH = 53, SEARCH_BOX = 54, SECTION = 55, SECTION_HEAD = 56, SELECT = 57, SEPARATOR = 58, SLIDER = 59, SPIN_BUTTON = 60, STATUS = 61, STRUCTURE = 62, SWITCH = 63, TAB = 64, TABLE = 65, TAB_LIST = 66, TAB_PANEL = 67, TEXT_BOX = 68, TIME = 69, TIMER = 70, TOOLBAR = 71, TOOLTIP = 72, TREE = 73, TREE_GRID = 74, TREE_ITEM = 75, WIDGET = 76, WINDOW = 77, TOGGLE_BUTTON = 78, APPLICATION = 79, PARAGRAPH = 80, BLOCK_QUOTE = 81, ARTICLE = 82, COMMENT = 83, TERMINAL = 84 }
 AccessibleState :: enum u32 {BUSY = 0, CHECKED = 1, DISABLED = 2, EXPANDED = 3, HIDDEN = 4, INVALID = 5, PRESSED = 6, SELECTED = 7, VISITED = 8 }
-AccessibleProperty :: enum u32 {AUTOCOMPLETE = 0, DESCRIPTION = 1, HAS_POPUP = 2, KEY_SHORTCUTS = 3, LABEL = 4, LEVEL = 5, MODAL = 6, MULTI_LINE = 7, MULTI_SELECTABLE = 8, ORIENTATION = 9, PLACEHOLDER = 10, READ_ONLY = 11, REQUIRED = 12, ROLE_DESCRIPTION = 13, SORT = 14, VALUE_MAX = 15, VALUE_MIN = 16, VALUE_NOW = 17, VALUE_TEXT = 18 }
+AccessibleProperty :: enum u32 {AUTOCOMPLETE = 0, DESCRIPTION = 1, HAS_POPUP = 2, KEY_SHORTCUTS = 3, LABEL = 4, LEVEL = 5, MODAL = 6, MULTI_LINE = 7, MULTI_SELECTABLE = 8, ORIENTATION = 9, PLACEHOLDER = 10, READ_ONLY = 11, REQUIRED = 12, ROLE_DESCRIPTION = 13, SORT = 14, VALUE_MAX = 15, VALUE_MIN = 16, VALUE_NOW = 17, VALUE_TEXT = 18, HELP_TEXT = 19 }
 AccessibleRelation :: enum u32 {ACTIVE_DESCENDANT = 0, COL_COUNT = 1, COL_INDEX = 2, COL_INDEX_TEXT = 3, COL_SPAN = 4, CONTROLS = 5, DESCRIBED_BY = 6, DETAILS = 7, ERROR_MESSAGE = 8, FLOW_TO = 9, LABELLED_BY = 10, OWNS = 11, POS_IN_SET = 12, ROW_COUNT = 13, ROW_INDEX = 14, ROW_INDEX_TEXT = 15, ROW_SPAN = 16, SET_SIZE = 17 }
 AccessibleTristate :: enum u32 {FALSE = 0, TRUE = 1, MIXED = 2 }
 AccessibleInvalidState :: enum u32 {ACCESSIBLE_INVALID_FALSE = 0, ACCESSIBLE_INVALID_TRUE = 1, ACCESSIBLE_INVALID_GRAMMAR = 2, ACCESSIBLE_INVALID_SPELLING = 3 }
 AccessibleAutocomplete :: enum u32 {NONE = 0, INLINE = 1, LIST = 2, BOTH = 3 }
 AccessibleSort :: enum u32 {NONE = 0, ASCENDING = 1, DESCENDING = 2, OTHER = 3 }
-_GtkBorder :: struct {
-    left: glib.int16,
-    right: glib.int16,
-    top: glib.int16,
-    bottom: glib.int16,
-}
-Border :: _GtkBorder
-Border_autoptr :: ^Border
-Border_listautoptr :: ^glib.List
-Border_slistautoptr :: ^glib.SList
-Border_queueautoptr :: ^glib.Queue
+AccessibleAnnouncementPriority :: enum u32 {LOW = 0, MEDIUM = 1, HIGH = 2 }
+PopoverMenuFlags :: enum u32 {POPOVER_MENU_SLIDING = 0, POPOVER_MENU_NESTED = 1 }
+FontRendering :: enum u32 {AUTOMATIC = 0, MANUAL = 1 }
+TextBufferNotifyFlags :: enum u32 {TEXT_BUFFER_NOTIFY_BEFORE_INSERT = 1, TEXT_BUFFER_NOTIFY_AFTER_INSERT = 2, TEXT_BUFFER_NOTIFY_BEFORE_DELETE = 4, TEXT_BUFFER_NOTIFY_AFTER_DELETE = 8 }
 _GtkAdjustment :: struct {
     parent_instance: gobj.InitiallyUnowned,
 }
@@ -845,16 +948,16 @@ _GtkWindowGroup :: struct {
     priv: ^WindowGroupPrivate,
 }
 WindowGroup :: _GtkWindowGroup
-_gtk_reserved1_func_ptr_anon_404 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_405 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_406 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_407 :: #type proc "c" ()
+_gtk_reserved1_func_ptr_anon_412 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_413 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_414 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_415 :: #type proc "c" ()
 _GtkWindowGroupClass :: struct {
     parent_class: gobj.ObjectClass,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_404,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_405,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_406,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_407,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_412,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_413,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_414,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_415,
 }
 WindowGroupClass :: _GtkWindowGroupClass
 Window_autoptr :: ^Window
@@ -867,7 +970,7 @@ WindowGroup_slistautoptr :: ^glib.SList
 WindowGroup_queueautoptr :: ^glib.Queue
 _GtkAboutDialog :: struct #packed {}
 AboutDialog :: _GtkAboutDialog
-License :: enum u32 {UNKNOWN = 0, CUSTOM = 1, GPL_2_0 = 2, GPL_3_0 = 3, LGPL_2_1 = 4, LGPL_3_0 = 5, BSD = 6, MIT_X11 = 7, ARTISTIC = 8, GPL_2_0_ONLY = 9, GPL_3_0_ONLY = 10, LGPL_2_1_ONLY = 11, LGPL_3_0_ONLY = 12, AGPL_3_0 = 13, AGPL_3_0_ONLY = 14, BSD_3 = 15, APACHE_2_0 = 16, MPL_2_0 = 17 }
+License :: enum u32 {UNKNOWN = 0, CUSTOM = 1, GPL_2_0 = 2, GPL_3_0 = 3, LGPL_2_1 = 4, LGPL_3_0 = 5, BSD = 6, MIT_X11 = 7, ARTISTIC = 8, GPL_2_0_ONLY = 9, GPL_3_0_ONLY = 10, LGPL_2_1_ONLY = 11, LGPL_3_0_ONLY = 12, AGPL_3_0 = 13, AGPL_3_0_ONLY = 14, BSD_3 = 15, APACHE_2_0 = 16, MPL_2_0 = 17, _0BSD = 18 }
 AboutDialog_autoptr :: ^AboutDialog
 AboutDialog_listautoptr :: ^glib.List
 AboutDialog_slistautoptr :: ^glib.SList
@@ -895,6 +998,8 @@ Accessible_autoptr :: ^Accessible
 Accessible_listautoptr :: ^glib.List
 Accessible_slistautoptr :: ^glib.SList
 Accessible_queueautoptr :: ^glib.Queue
+_GtkAccessibleList :: struct #packed {}
+AccessibleList :: _GtkAccessibleList
 _GtkAccessibleRange :: struct #packed {}
 AccessibleRange :: _GtkAccessibleRange
 set_current_value_func_ptr_anon_52 :: #type proc "c" (self: ^AccessibleRange, value: f64) -> glib.boolean
@@ -907,18 +1012,50 @@ AccessibleRange_autoptr :: ^AccessibleRange
 AccessibleRange_listautoptr :: ^glib.List
 AccessibleRange_slistautoptr :: ^glib.SList
 AccessibleRange_queueautoptr :: ^glib.Queue
+_GtkAccessibleText :: struct #packed {}
+AccessibleText :: _GtkAccessibleText
+et_contents_func_ptr_anon_53 :: #type proc "c" (self: ^AccessibleText, start: u32, end: u32) -> ^glib.Bytes
+AccessibleTextGranularity :: enum u32 {CHARACTER = 0, WORD = 1, SENTENCE = 2, LINE = 3, PARAGRAPH = 4 }
+et_contents_at_func_ptr_anon_54 :: #type proc "c" (self: ^AccessibleText, offset: u32, granularity: AccessibleTextGranularity, start: ^u32, end: ^u32) -> ^glib.Bytes
+et_caret_position_func_ptr_anon_55 :: #type proc "c" (self: ^AccessibleText) -> u32
+AccessibleTextRange :: struct {
+    start: glib.size,
+    length: glib.size,
+}
+et_selection_func_ptr_anon_56 :: #type proc "c" (self: ^AccessibleText, n_ranges: [^]glib.size, ranges: [^]^AccessibleTextRange) -> glib.boolean
+et_attributes_func_ptr_anon_57 :: #type proc "c" (self: ^AccessibleText, offset: u32, n_ranges: [^]glib.size, ranges: [^]^AccessibleTextRange, attribute_names: [^]^cstring, attribute_values: [^]^cstring) -> glib.boolean
+et_default_attributes_func_ptr_anon_58 :: #type proc "c" (self: ^AccessibleText, attribute_names: [^]^cstring, attribute_values: [^]^cstring)
+et_extents_func_ptr_anon_59 :: #type proc "c" (self: ^AccessibleText, start: u32, end: u32, extents: [^]graphene.rect_t) -> glib.boolean
+et_offset_func_ptr_anon_60 :: #type proc "c" (self: ^AccessibleText, point: ^graphene.point_t, offset: ^u32) -> glib.boolean
+_GtkAccessibleTextInterface :: struct {
+    g_iface: gobj.TypeInterface,
+    get_contents: et_contents_func_ptr_anon_53,
+    get_contents_at: et_contents_at_func_ptr_anon_54,
+    get_caret_position: et_caret_position_func_ptr_anon_55,
+    get_selection: et_selection_func_ptr_anon_56,
+    get_attributes: et_attributes_func_ptr_anon_57,
+    get_default_attributes: et_default_attributes_func_ptr_anon_58,
+    get_extents: et_extents_func_ptr_anon_59,
+    get_offset: et_offset_func_ptr_anon_60,
+}
+AccessibleTextInterface :: _GtkAccessibleTextInterface
+AccessibleText_autoptr :: ^AccessibleText
+AccessibleText_listautoptr :: ^glib.List
+AccessibleText_slistautoptr :: ^glib.SList
+AccessibleText_queueautoptr :: ^glib.Queue
+AccessibleTextContentChange :: enum u32 {INSERT = 0, REMOVE = 1 }
 _GtkActionable :: struct #packed {}
 Actionable :: _GtkActionable
-et_action_name_func_ptr_anon_53 :: #type proc "c" (actionable: ^Actionable) -> cstring
-set_action_name_func_ptr_anon_54 :: #type proc "c" (actionable: ^Actionable, action_name: cstring)
-et_action_target_value_func_ptr_anon_55 :: #type proc "c" (actionable: ^Actionable) -> ^glib.Variant
-set_action_target_value_func_ptr_anon_56 :: #type proc "c" (actionable: ^Actionable, target_value: ^glib.Variant)
+et_action_name_func_ptr_anon_61 :: #type proc "c" (actionable: ^Actionable) -> cstring
+set_action_name_func_ptr_anon_62 :: #type proc "c" (actionable: ^Actionable, action_name: cstring)
+et_action_target_value_func_ptr_anon_63 :: #type proc "c" (actionable: ^Actionable) -> ^glib.Variant
+set_action_target_value_func_ptr_anon_64 :: #type proc "c" (actionable: ^Actionable, target_value: ^glib.Variant)
 _GtkActionableInterface :: struct {
     g_iface: gobj.TypeInterface,
-    get_action_name: et_action_name_func_ptr_anon_53,
-    set_action_name: set_action_name_func_ptr_anon_54,
-    get_action_target_value: et_action_target_value_func_ptr_anon_55,
-    set_action_target_value: set_action_target_value_func_ptr_anon_56,
+    get_action_name: et_action_name_func_ptr_anon_61,
+    set_action_name: set_action_name_func_ptr_anon_62,
+    get_action_target_value: et_action_target_value_func_ptr_anon_63,
+    set_action_target_value: set_action_target_value_func_ptr_anon_64,
 }
 ActionableInterface :: _GtkActionableInterface
 Actionable_autoptr :: ^Actionable
@@ -931,20 +1068,20 @@ ActionBar_autoptr :: ^ActionBar
 ActionBar_listautoptr :: ^glib.List
 ActionBar_slistautoptr :: ^glib.SList
 ActionBar_queueautoptr :: ^glib.Queue
-changed_func_ptr_anon_57 :: #type proc "c" (adjustment: ^Adjustment)
-value_changed_func_ptr_anon_58 :: #type proc "c" (adjustment: ^Adjustment)
-_gtk_reserved1_func_ptr_anon_59 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_60 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_61 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_62 :: #type proc "c" ()
+changed_func_ptr_anon_65 :: #type proc "c" (adjustment: ^Adjustment)
+value_changed_func_ptr_anon_66 :: #type proc "c" (adjustment: ^Adjustment)
+_gtk_reserved1_func_ptr_anon_67 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_68 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_69 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_70 :: #type proc "c" ()
 _GtkAdjustmentClass :: struct {
     parent_class: gobj.InitiallyUnownedClass,
-    changed: changed_func_ptr_anon_57,
-    value_changed: value_changed_func_ptr_anon_58,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_59,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_60,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_61,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_62,
+    changed: changed_func_ptr_anon_65,
+    value_changed: value_changed_func_ptr_anon_66,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_67,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_68,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_69,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_70,
 }
 AdjustmentClass :: _GtkAdjustmentClass
 Adjustment_autoptr :: ^Adjustment
@@ -976,12 +1113,12 @@ _GtkDialog :: struct {
     parent_instance: Window,
 }
 Dialog :: _GtkDialog
-response_func_ptr_anon_63 :: #type proc "c" (dialog: ^Dialog, response_id: i32)
-close_func_ptr_anon_64 :: #type proc "c" (dialog: ^Dialog)
+response_func_ptr_anon_71 :: #type proc "c" (dialog: ^Dialog, response_id: i32)
+close_func_ptr_anon_72 :: #type proc "c" (dialog: ^Dialog)
 _GtkDialogClass :: struct {
     parent_class: WindowClass,
-    response: response_func_ptr_anon_63,
-    close: close_func_ptr_anon_64,
+    response: response_func_ptr_anon_71,
+    close: close_func_ptr_anon_72,
     padding: [8]glib.pointer,
 }
 DialogClass :: _GtkDialogClass
@@ -1007,6 +1144,19 @@ AppChooserButton_autoptr :: ^AppChooserButton
 AppChooserButton_listautoptr :: ^glib.List
 AppChooserButton_slistautoptr :: ^glib.SList
 AppChooserButton_queueautoptr :: ^glib.Queue
+_GtkShortcutsShortcut :: struct #packed {}
+ShortcutsShortcut :: _GtkShortcutsShortcut
+_GtkShortcutsShortcutClass :: struct #packed {}
+ShortcutsShortcutClass :: _GtkShortcutsShortcutClass
+ShortcutType :: enum u32 {SHORTCUT_ACCELERATOR = 0, SHORTCUT_GESTURE_PINCH = 1, SHORTCUT_GESTURE_STRETCH = 2, SHORTCUT_GESTURE_ROTATE_CLOCKWISE = 3, SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE = 4, SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT = 5, SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT = 6, SHORTCUT_GESTURE = 7, SHORTCUT_GESTURE_SWIPE_LEFT = 8, SHORTCUT_GESTURE_SWIPE_RIGHT = 9 }
+_GtkShortcutsGroup :: struct #packed {}
+ShortcutsGroup :: _GtkShortcutsGroup
+_GtkShortcutsGroupClass :: struct #packed {}
+ShortcutsGroupClass :: _GtkShortcutsGroupClass
+_GtkShortcutsSection :: struct #packed {}
+ShortcutsSection :: _GtkShortcutsSection
+_GtkShortcutsSectionClass :: struct #packed {}
+ShortcutsSectionClass :: _GtkShortcutsSectionClass
 _GtkShortcutsWindow :: struct #packed {}
 ShortcutsWindow :: _GtkShortcutsWindow
 ShortcutsWindow_autoptr :: ^ShortcutsWindow
@@ -1068,21 +1218,21 @@ LayoutChildClass_autoptr :: ^LayoutChildClass
 LayoutChildClass_listautoptr :: ^glib.List
 LayoutChildClass_slistautoptr :: ^glib.SList
 LayoutChildClass_queueautoptr :: ^glib.Queue
-et_request_mode_func_ptr_anon_65 :: #type proc "c" (manager: ^LayoutManager, widget: ^Widget) -> SizeRequestMode
-measure_func_ptr_anon_66 :: #type proc "c" (manager: ^LayoutManager, widget: ^Widget, orientation: Orientation, for_size: i32, minimum: ^i32, natural: ^i32, minimum_baseline: ^i32, natural_baseline: ^i32)
-allocate_func_ptr_anon_67 :: #type proc "c" (manager: ^LayoutManager, widget: ^Widget, width: i32, height: i32, baseline: i32)
-create_layout_child_func_ptr_anon_68 :: #type proc "c" (manager: ^LayoutManager, widget: ^Widget, for_child: ^Widget) -> ^LayoutChild
-root_func_ptr_anon_69 :: #type proc "c" (manager: ^LayoutManager)
-unroot_func_ptr_anon_70 :: #type proc "c" (manager: ^LayoutManager)
+et_request_mode_func_ptr_anon_73 :: #type proc "c" (manager: ^LayoutManager, widget: ^Widget) -> SizeRequestMode
+measure_func_ptr_anon_74 :: #type proc "c" (manager: ^LayoutManager, widget: ^Widget, orientation: Orientation, for_size: i32, minimum: ^i32, natural: ^i32, minimum_baseline: ^i32, natural_baseline: ^i32)
+allocate_func_ptr_anon_75 :: #type proc "c" (manager: ^LayoutManager, widget: ^Widget, width: i32, height: i32, baseline: i32)
+create_layout_child_func_ptr_anon_76 :: #type proc "c" (manager: ^LayoutManager, widget: ^Widget, for_child: ^Widget) -> ^LayoutChild
+root_func_ptr_anon_77 :: #type proc "c" (manager: ^LayoutManager)
+unroot_func_ptr_anon_78 :: #type proc "c" (manager: ^LayoutManager)
 _GtkLayoutManagerClass :: struct {
     parent_class: gobj.ObjectClass,
-    get_request_mode: et_request_mode_func_ptr_anon_65,
-    measure: measure_func_ptr_anon_66,
-    allocate: allocate_func_ptr_anon_67,
+    get_request_mode: et_request_mode_func_ptr_anon_73,
+    measure: measure_func_ptr_anon_74,
+    allocate: allocate_func_ptr_anon_75,
     layout_child_type: gobj.Type,
-    create_layout_child: create_layout_child_func_ptr_anon_68,
-    root: root_func_ptr_anon_69,
-    unroot: unroot_func_ptr_anon_70,
+    create_layout_child: create_layout_child_func_ptr_anon_76,
+    root: root_func_ptr_anon_77,
+    unroot: unroot_func_ptr_anon_78,
     _padding: [16]glib.pointer,
 }
 LayoutManagerClass :: _GtkLayoutManagerClass
@@ -1156,28 +1306,28 @@ _GtkFilter :: struct {
     parent_instance: gobj.Object,
 }
 Filter :: _GtkFilter
-match_func_ptr_anon_71 :: #type proc "c" (self: ^Filter, item: glib.pointer) -> glib.boolean
-et_strictness_func_ptr_anon_72 :: #type proc "c" (self: ^Filter) -> FilterMatch
-_gtk_reserved1_func_ptr_anon_73 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_74 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_75 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_76 :: #type proc "c" ()
-_gtk_reserved5_func_ptr_anon_77 :: #type proc "c" ()
-_gtk_reserved6_func_ptr_anon_78 :: #type proc "c" ()
-_gtk_reserved7_func_ptr_anon_79 :: #type proc "c" ()
-_gtk_reserved8_func_ptr_anon_80 :: #type proc "c" ()
+match_func_ptr_anon_79 :: #type proc "c" (self: ^Filter, item: glib.pointer) -> glib.boolean
+et_strictness_func_ptr_anon_80 :: #type proc "c" (self: ^Filter) -> FilterMatch
+_gtk_reserved1_func_ptr_anon_81 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_82 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_83 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_84 :: #type proc "c" ()
+_gtk_reserved5_func_ptr_anon_85 :: #type proc "c" ()
+_gtk_reserved6_func_ptr_anon_86 :: #type proc "c" ()
+_gtk_reserved7_func_ptr_anon_87 :: #type proc "c" ()
+_gtk_reserved8_func_ptr_anon_88 :: #type proc "c" ()
 _GtkFilterClass :: struct {
     parent_class: gobj.ObjectClass,
-    match: match_func_ptr_anon_71,
-    get_strictness: et_strictness_func_ptr_anon_72,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_73,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_74,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_75,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_76,
-    _gtk_reserved5: _gtk_reserved5_func_ptr_anon_77,
-    _gtk_reserved6: _gtk_reserved6_func_ptr_anon_78,
-    _gtk_reserved7: _gtk_reserved7_func_ptr_anon_79,
-    _gtk_reserved8: _gtk_reserved8_func_ptr_anon_80,
+    match: match_func_ptr_anon_79,
+    get_strictness: et_strictness_func_ptr_anon_80,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_81,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_82,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_83,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_84,
+    _gtk_reserved5: _gtk_reserved5_func_ptr_anon_85,
+    _gtk_reserved6: _gtk_reserved6_func_ptr_anon_86,
+    _gtk_reserved7: _gtk_reserved7_func_ptr_anon_87,
+    _gtk_reserved8: _gtk_reserved8_func_ptr_anon_88,
 }
 FilterClass :: _GtkFilterClass
 Filter_autoptr :: ^Filter
@@ -1201,6 +1351,17 @@ BoolFilterClass_autoptr :: ^BoolFilterClass
 BoolFilterClass_listautoptr :: ^glib.List
 BoolFilterClass_slistautoptr :: ^glib.SList
 BoolFilterClass_queueautoptr :: ^glib.Queue
+_GtkBorder :: struct {
+    left: glib.int16,
+    right: glib.int16,
+    top: glib.int16,
+    bottom: glib.int16,
+}
+Border :: _GtkBorder
+Border_autoptr :: ^Border
+Border_listautoptr :: ^glib.List
+Border_slistautoptr :: ^glib.SList
+Border_queueautoptr :: ^glib.Queue
 _GtkBoxLayout :: struct #packed {}
 BoxLayout :: _GtkBoxLayout
 BoxLayoutClass :: struct {
@@ -1227,15 +1388,15 @@ Box_autoptr :: ^Box
 Box_listautoptr :: ^glib.List
 Box_slistautoptr :: ^glib.SList
 Box_queueautoptr :: ^glib.Queue
-et_type_from_name_func_ptr_anon_81 :: #type proc "c" (self: ^BuilderScope, builder: ^Builder, type_name: cstring) -> gobj.Type
-et_type_from_function_func_ptr_anon_82 :: #type proc "c" (self: ^BuilderScope, builder: ^Builder, function_name: cstring) -> gobj.Type
+et_type_from_name_func_ptr_anon_89 :: #type proc "c" (self: ^BuilderScope, builder: ^Builder, type_name: cstring) -> gobj.Type
+et_type_from_function_func_ptr_anon_90 :: #type proc "c" (self: ^BuilderScope, builder: ^Builder, function_name: cstring) -> gobj.Type
 BuilderClosureFlags :: enum u32 {BUILDER_CLOSURE_SWAPPED = 1 }
-create_closure_func_ptr_anon_83 :: #type proc "c" (self: ^BuilderScope, builder: ^Builder, function_name: cstring, flags: BuilderClosureFlags, object: ^gobj.Object, error: ^^glib.Error) -> ^gobj.Closure
+create_closure_func_ptr_anon_91 :: #type proc "c" (self: ^BuilderScope, builder: ^Builder, function_name: cstring, flags: BuilderClosureFlags, object: ^gobj.Object, error: ^^glib.Error) -> ^gobj.Closure
 _GtkBuilderScopeInterface :: struct {
     g_iface: gobj.TypeInterface,
-    get_type_from_name: et_type_from_name_func_ptr_anon_81,
-    get_type_from_function: et_type_from_function_func_ptr_anon_82,
-    create_closure: create_closure_func_ptr_anon_83,
+    get_type_from_name: et_type_from_name_func_ptr_anon_89,
+    get_type_from_function: et_type_from_function_func_ptr_anon_90,
+    create_closure: create_closure_func_ptr_anon_91,
 }
 BuilderScopeInterface :: _GtkBuilderScopeInterface
 BuilderScope_autoptr :: ^BuilderScope
@@ -1267,42 +1428,42 @@ Builder_slistautoptr :: ^glib.SList
 Builder_queueautoptr :: ^glib.Queue
 _GtkBuildable :: struct #packed {}
 Buildable :: _GtkBuildable
-set_id_func_ptr_anon_88 :: #type proc "c" (buildable: ^Buildable, id: cstring)
-et_id_func_ptr_anon_89 :: #type proc "c" (buildable: ^Buildable) -> cstring
-add_child_func_ptr_anon_90 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, child: ^gobj.Object, type: cstring)
-set_buildable_property_func_ptr_anon_91 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, name: cstring, value: ^gobj.Value)
-construct_child_func_ptr_anon_92 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, name: cstring) -> ^gobj.Object
+set_id_func_ptr_anon_96 :: #type proc "c" (buildable: ^Buildable, id: cstring)
+et_id_func_ptr_anon_97 :: #type proc "c" (buildable: ^Buildable) -> cstring
+add_child_func_ptr_anon_98 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, child: ^gobj.Object, type: cstring)
+set_buildable_property_func_ptr_anon_99 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, name: cstring, value: ^gobj.Value)
+construct_child_func_ptr_anon_100 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, name: cstring) -> ^gobj.Object
 _GtkBuildableParseContext :: struct #packed {}
 BuildableParseContext :: _GtkBuildableParseContext
-start_element_func_ptr_anon_84 :: #type proc "c" (context_p: ^BuildableParseContext, element_name: cstring, attribute_names: [^]cstring, attribute_values: [^]cstring, user_data: glib.pointer, error: ^^glib.Error)
-end_element_func_ptr_anon_85 :: #type proc "c" (context_p: ^BuildableParseContext, element_name: cstring, user_data: glib.pointer, error: ^^glib.Error)
-text_func_ptr_anon_86 :: #type proc "c" (context_p: ^BuildableParseContext, text: cstring, text_len: glib.size, user_data: glib.pointer, error: ^^glib.Error)
-error_func_ptr_anon_87 :: #type proc "c" (context_p: ^BuildableParseContext, error: ^glib.Error, user_data: glib.pointer)
+start_element_func_ptr_anon_92 :: #type proc "c" (context_p: ^BuildableParseContext, element_name: cstring, attribute_names: [^]cstring, attribute_values: [^]cstring, user_data: glib.pointer, error: ^^glib.Error)
+end_element_func_ptr_anon_93 :: #type proc "c" (context_p: ^BuildableParseContext, element_name: cstring, user_data: glib.pointer, error: ^^glib.Error)
+text_func_ptr_anon_94 :: #type proc "c" (context_p: ^BuildableParseContext, text: cstring, text_len: glib.size, user_data: glib.pointer, error: ^^glib.Error)
+error_func_ptr_anon_95 :: #type proc "c" (context_p: ^BuildableParseContext, error: ^glib.Error, user_data: glib.pointer)
 _GtkBuildableParser :: struct {
-    start_element: start_element_func_ptr_anon_84,
-    end_element: end_element_func_ptr_anon_85,
-    text: text_func_ptr_anon_86,
-    error: error_func_ptr_anon_87,
+    start_element: start_element_func_ptr_anon_92,
+    end_element: end_element_func_ptr_anon_93,
+    text: text_func_ptr_anon_94,
+    error: error_func_ptr_anon_95,
     padding: [4]glib.pointer,
 }
 BuildableParser :: _GtkBuildableParser
-custom_tag_start_func_ptr_anon_93 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, child: ^gobj.Object, tagname: cstring, parser: ^BuildableParser, data: ^glib.pointer) -> glib.boolean
-custom_tag_end_func_ptr_anon_94 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, child: ^gobj.Object, tagname: cstring, data: glib.pointer)
-custom_finished_func_ptr_anon_95 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, child: ^gobj.Object, tagname: cstring, data: glib.pointer)
-parser_finished_func_ptr_anon_96 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder)
-et_internal_child_func_ptr_anon_97 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, childname: cstring) -> ^gobj.Object
+custom_tag_start_func_ptr_anon_101 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, child: ^gobj.Object, tagname: cstring, parser: ^BuildableParser, data: ^glib.pointer) -> glib.boolean
+custom_tag_end_func_ptr_anon_102 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, child: ^gobj.Object, tagname: cstring, data: glib.pointer)
+custom_finished_func_ptr_anon_103 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, child: ^gobj.Object, tagname: cstring, data: glib.pointer)
+parser_finished_func_ptr_anon_104 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder)
+et_internal_child_func_ptr_anon_105 :: #type proc "c" (buildable: ^Buildable, builder: ^Builder, childname: cstring) -> ^gobj.Object
 _GtkBuildableIface :: struct {
     g_iface: gobj.TypeInterface,
-    set_id: set_id_func_ptr_anon_88,
-    get_id: et_id_func_ptr_anon_89,
-    add_child: add_child_func_ptr_anon_90,
-    set_buildable_property: set_buildable_property_func_ptr_anon_91,
-    construct_child: construct_child_func_ptr_anon_92,
-    custom_tag_start: custom_tag_start_func_ptr_anon_93,
-    custom_tag_end: custom_tag_end_func_ptr_anon_94,
-    custom_finished: custom_finished_func_ptr_anon_95,
-    parser_finished: parser_finished_func_ptr_anon_96,
-    get_internal_child: et_internal_child_func_ptr_anon_97,
+    set_id: set_id_func_ptr_anon_96,
+    get_id: et_id_func_ptr_anon_97,
+    add_child: add_child_func_ptr_anon_98,
+    set_buildable_property: set_buildable_property_func_ptr_anon_99,
+    construct_child: construct_child_func_ptr_anon_100,
+    custom_tag_start: custom_tag_start_func_ptr_anon_101,
+    custom_tag_end: custom_tag_end_func_ptr_anon_102,
+    custom_finished: custom_finished_func_ptr_anon_103,
+    parser_finished: parser_finished_func_ptr_anon_104,
+    get_internal_child: et_internal_child_func_ptr_anon_105,
 }
 BuildableIface :: _GtkBuildableIface
 Buildable_autoptr :: ^Buildable
@@ -1325,12 +1486,12 @@ _GtkButton :: struct {
 Button :: _GtkButton
 _GtkButtonPrivate :: struct #packed {}
 ButtonPrivate :: _GtkButtonPrivate
-clicked_func_ptr_anon_98 :: #type proc "c" (button: ^Button)
-activate_func_ptr_anon_99 :: #type proc "c" (button: ^Button)
+clicked_func_ptr_anon_106 :: #type proc "c" (button: ^Button)
+activate_func_ptr_anon_107 :: #type proc "c" (button: ^Button)
 _GtkButtonClass :: struct {
     parent_class: WidgetClass,
-    clicked: clicked_func_ptr_anon_98,
-    activate: activate_func_ptr_anon_99,
+    clicked: clicked_func_ptr_anon_106,
+    activate: activate_func_ptr_anon_107,
     padding: [8]glib.pointer,
 }
 ButtonClass :: _GtkButtonClass
@@ -1346,14 +1507,14 @@ Calendar_slistautoptr :: ^glib.SList
 Calendar_queueautoptr :: ^glib.Queue
 _GtkCellEditable :: struct #packed {}
 CellEditable :: _GtkCellEditable
-editing_done_func_ptr_anon_100 :: #type proc "c" (cell_editable: ^CellEditable)
-remove_widget_func_ptr_anon_101 :: #type proc "c" (cell_editable: ^CellEditable)
-start_editing_func_ptr_anon_102 :: #type proc "c" (cell_editable: ^CellEditable, event: ^Event)
+editing_done_func_ptr_anon_108 :: #type proc "c" (cell_editable: ^CellEditable)
+remove_widget_func_ptr_anon_109 :: #type proc "c" (cell_editable: ^CellEditable)
+start_editing_func_ptr_anon_110 :: #type proc "c" (cell_editable: ^CellEditable, event: ^Event)
 _GtkCellEditableIface :: struct {
     g_iface: gobj.TypeInterface,
-    editing_done: editing_done_func_ptr_anon_100,
-    remove_widget: remove_widget_func_ptr_anon_101,
-    start_editing: start_editing_func_ptr_anon_102,
+    editing_done: editing_done_func_ptr_anon_108,
+    remove_widget: remove_widget_func_ptr_anon_109,
+    start_editing: start_editing_func_ptr_anon_110,
 }
 CellEditableIface :: _GtkCellEditableIface
 CellEditable_autoptr :: ^CellEditable
@@ -1369,30 +1530,30 @@ _GtkCellRenderer :: struct {
     priv: ^CellRendererPrivate,
 }
 CellRenderer :: _GtkCellRenderer
-et_request_mode_func_ptr_anon_103 :: #type proc "c" (cell: ^CellRenderer) -> SizeRequestMode
-et_preferred_width_func_ptr_anon_104 :: #type proc "c" (cell: ^CellRenderer, widget: ^Widget, minimum_size: ^i32, natural_size: ^i32)
-et_preferred_height_for_width_func_ptr_anon_105 :: #type proc "c" (cell: ^CellRenderer, widget: ^Widget, width: i32, minimum_height: ^i32, natural_height: ^i32)
-et_preferred_height_func_ptr_anon_106 :: #type proc "c" (cell: ^CellRenderer, widget: ^Widget, minimum_size: ^i32, natural_size: ^i32)
-et_preferred_width_for_height_func_ptr_anon_107 :: #type proc "c" (cell: ^CellRenderer, widget: ^Widget, height: i32, minimum_width: ^i32, natural_width: ^i32)
-et_aligned_area_func_ptr_anon_108 :: #type proc "c" (cell: ^CellRenderer, widget: ^Widget, flags: CellRendererState, cell_area: ^Rectangle, aligned_area: ^Rectangle)
-snapshot_func_ptr_anon_109 :: #type proc "c" (cell: ^CellRenderer, snapshot: ^Snapshot, widget: ^Widget, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState)
-activate_func_ptr_anon_110 :: #type proc "c" (cell: ^CellRenderer, event: ^Event, widget: ^Widget, path: cstring, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState) -> glib.boolean
-start_editing_func_ptr_anon_111 :: #type proc "c" (cell: ^CellRenderer, event: ^Event, widget: ^Widget, path: cstring, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState) -> ^CellEditable
-editing_canceled_func_ptr_anon_112 :: #type proc "c" (cell: ^CellRenderer)
-editing_started_func_ptr_anon_113 :: #type proc "c" (cell: ^CellRenderer, editable: ^CellEditable, path: cstring)
+et_request_mode_func_ptr_anon_111 :: #type proc "c" (cell: ^CellRenderer) -> SizeRequestMode
+et_preferred_width_func_ptr_anon_112 :: #type proc "c" (cell: ^CellRenderer, widget: ^Widget, minimum_size: ^i32, natural_size: ^i32)
+et_preferred_height_for_width_func_ptr_anon_113 :: #type proc "c" (cell: ^CellRenderer, widget: ^Widget, width: i32, minimum_height: ^i32, natural_height: ^i32)
+et_preferred_height_func_ptr_anon_114 :: #type proc "c" (cell: ^CellRenderer, widget: ^Widget, minimum_size: ^i32, natural_size: ^i32)
+et_preferred_width_for_height_func_ptr_anon_115 :: #type proc "c" (cell: ^CellRenderer, widget: ^Widget, height: i32, minimum_width: ^i32, natural_width: ^i32)
+et_aligned_area_func_ptr_anon_116 :: #type proc "c" (cell: ^CellRenderer, widget: ^Widget, flags: CellRendererState, cell_area: ^Rectangle, aligned_area: ^Rectangle)
+snapshot_func_ptr_anon_117 :: #type proc "c" (cell: ^CellRenderer, snapshot: ^Snapshot, widget: ^Widget, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState)
+activate_func_ptr_anon_118 :: #type proc "c" (cell: ^CellRenderer, event: ^Event, widget: ^Widget, path_p: cstring, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState) -> glib.boolean
+start_editing_func_ptr_anon_119 :: #type proc "c" (cell: ^CellRenderer, event: ^Event, widget: ^Widget, path_p: cstring, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState) -> ^CellEditable
+editing_canceled_func_ptr_anon_120 :: #type proc "c" (cell: ^CellRenderer)
+editing_started_func_ptr_anon_121 :: #type proc "c" (cell: ^CellRenderer, editable: ^CellEditable, path_p: cstring)
 _GtkCellRendererClass :: struct {
     parent_class: gobj.InitiallyUnownedClass,
-    get_request_mode: et_request_mode_func_ptr_anon_103,
-    get_preferred_width: et_preferred_width_func_ptr_anon_104,
-    get_preferred_height_for_width: et_preferred_height_for_width_func_ptr_anon_105,
-    get_preferred_height: et_preferred_height_func_ptr_anon_106,
-    get_preferred_width_for_height: et_preferred_width_for_height_func_ptr_anon_107,
-    get_aligned_area: et_aligned_area_func_ptr_anon_108,
-    snapshot: snapshot_func_ptr_anon_109,
-    activate: activate_func_ptr_anon_110,
-    start_editing: start_editing_func_ptr_anon_111,
-    editing_canceled: editing_canceled_func_ptr_anon_112,
-    editing_started: editing_started_func_ptr_anon_113,
+    get_request_mode: et_request_mode_func_ptr_anon_111,
+    get_preferred_width: et_preferred_width_func_ptr_anon_112,
+    get_preferred_height_for_width: et_preferred_height_for_width_func_ptr_anon_113,
+    get_preferred_height: et_preferred_height_func_ptr_anon_114,
+    get_preferred_width_for_height: et_preferred_width_for_height_func_ptr_anon_115,
+    get_aligned_area: et_aligned_area_func_ptr_anon_116,
+    snapshot: snapshot_func_ptr_anon_117,
+    activate: activate_func_ptr_anon_118,
+    start_editing: start_editing_func_ptr_anon_119,
+    editing_canceled: editing_canceled_func_ptr_anon_120,
+    editing_started: editing_started_func_ptr_anon_121,
     padding: [8]glib.pointer,
 }
 CellRendererClass :: _GtkCellRendererClass
@@ -1415,52 +1576,52 @@ _GtkTreeRowReference :: struct #packed {}
 TreeRowReference :: _GtkTreeRowReference
 _GtkTreeModel :: struct #packed {}
 TreeModel :: _GtkTreeModel
-row_changed_func_ptr_anon_114 :: #type proc "c" (tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter)
-row_inserted_func_ptr_anon_115 :: #type proc "c" (tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter)
-row_has_child_toggled_func_ptr_anon_116 :: #type proc "c" (tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter)
-row_deleted_func_ptr_anon_117 :: #type proc "c" (tree_model: ^TreeModel, path: ^TreePath)
-rows_reordered_func_ptr_anon_118 :: #type proc "c" (tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter, new_order: ^i32)
+row_changed_func_ptr_anon_122 :: #type proc "c" (tree_model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter)
+row_inserted_func_ptr_anon_123 :: #type proc "c" (tree_model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter)
+row_has_child_toggled_func_ptr_anon_124 :: #type proc "c" (tree_model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter)
+row_deleted_func_ptr_anon_125 :: #type proc "c" (tree_model: ^TreeModel, path_p: ^TreePath)
+rows_reordered_func_ptr_anon_126 :: #type proc "c" (tree_model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter, new_order: ^i32)
 TreeModelFlags :: enum u32 {TREE_MODEL_ITERS_PERSIST = 1, TREE_MODEL_LIST_ONLY = 2 }
-et_flags_func_ptr_anon_119 :: #type proc "c" (tree_model: ^TreeModel) -> TreeModelFlags
-et_n_columns_func_ptr_anon_120 :: #type proc "c" (tree_model: ^TreeModel) -> i32
-et_column_type_func_ptr_anon_121 :: #type proc "c" (tree_model: ^TreeModel, index_: i32) -> gobj.Type
-et_iter_func_ptr_anon_122 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter, path: ^TreePath) -> glib.boolean
-et_path_func_ptr_anon_123 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter) -> ^TreePath
-et_value_func_ptr_anon_124 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter, column: i32, value: ^gobj.Value)
-iter_next_func_ptr_anon_125 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter) -> glib.boolean
-iter_previous_func_ptr_anon_126 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter) -> glib.boolean
-iter_children_func_ptr_anon_127 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter, parent: ^TreeIter) -> glib.boolean
-iter_has_child_func_ptr_anon_128 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter) -> glib.boolean
-iter_n_children_func_ptr_anon_129 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter) -> i32
-iter_nth_child_func_ptr_anon_130 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter, parent: ^TreeIter, n: i32) -> glib.boolean
-iter_parent_func_ptr_anon_131 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter, child: ^TreeIter) -> glib.boolean
-ref_node_func_ptr_anon_132 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter)
-unref_node_func_ptr_anon_133 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter)
+et_flags_func_ptr_anon_127 :: #type proc "c" (tree_model: ^TreeModel) -> TreeModelFlags
+et_n_columns_func_ptr_anon_128 :: #type proc "c" (tree_model: ^TreeModel) -> i32
+et_column_type_func_ptr_anon_129 :: #type proc "c" (tree_model: ^TreeModel, index_: i32) -> gobj.Type
+et_iter_func_ptr_anon_130 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter, path_p: ^TreePath) -> glib.boolean
+et_path_func_ptr_anon_131 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter) -> ^TreePath
+et_value_func_ptr_anon_132 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter, column: i32, value: ^gobj.Value)
+iter_next_func_ptr_anon_133 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter) -> glib.boolean
+iter_previous_func_ptr_anon_134 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter) -> glib.boolean
+iter_children_func_ptr_anon_135 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter, parent: ^TreeIter) -> glib.boolean
+iter_has_child_func_ptr_anon_136 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter) -> glib.boolean
+iter_n_children_func_ptr_anon_137 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter) -> i32
+iter_nth_child_func_ptr_anon_138 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter, parent: ^TreeIter, n: i32) -> glib.boolean
+iter_parent_func_ptr_anon_139 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter, child: ^TreeIter) -> glib.boolean
+ref_node_func_ptr_anon_140 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter)
+unref_node_func_ptr_anon_141 :: #type proc "c" (tree_model: ^TreeModel, iter: ^TreeIter)
 _GtkTreeModelIface :: struct {
     g_iface: gobj.TypeInterface,
-    row_changed: row_changed_func_ptr_anon_114,
-    row_inserted: row_inserted_func_ptr_anon_115,
-    row_has_child_toggled: row_has_child_toggled_func_ptr_anon_116,
-    row_deleted: row_deleted_func_ptr_anon_117,
-    rows_reordered: rows_reordered_func_ptr_anon_118,
-    get_flags: et_flags_func_ptr_anon_119,
-    get_n_columns: et_n_columns_func_ptr_anon_120,
-    get_column_type: et_column_type_func_ptr_anon_121,
-    get_iter: et_iter_func_ptr_anon_122,
-    get_path: et_path_func_ptr_anon_123,
-    get_value: et_value_func_ptr_anon_124,
-    iter_next: iter_next_func_ptr_anon_125,
-    iter_previous: iter_previous_func_ptr_anon_126,
-    iter_children: iter_children_func_ptr_anon_127,
-    iter_has_child: iter_has_child_func_ptr_anon_128,
-    iter_n_children: iter_n_children_func_ptr_anon_129,
-    iter_nth_child: iter_nth_child_func_ptr_anon_130,
-    iter_parent: iter_parent_func_ptr_anon_131,
-    ref_node: ref_node_func_ptr_anon_132,
-    unref_node: unref_node_func_ptr_anon_133,
+    row_changed: row_changed_func_ptr_anon_122,
+    row_inserted: row_inserted_func_ptr_anon_123,
+    row_has_child_toggled: row_has_child_toggled_func_ptr_anon_124,
+    row_deleted: row_deleted_func_ptr_anon_125,
+    rows_reordered: rows_reordered_func_ptr_anon_126,
+    get_flags: et_flags_func_ptr_anon_127,
+    get_n_columns: et_n_columns_func_ptr_anon_128,
+    get_column_type: et_column_type_func_ptr_anon_129,
+    get_iter: et_iter_func_ptr_anon_130,
+    get_path: et_path_func_ptr_anon_131,
+    get_value: et_value_func_ptr_anon_132,
+    iter_next: iter_next_func_ptr_anon_133,
+    iter_previous: iter_previous_func_ptr_anon_134,
+    iter_children: iter_children_func_ptr_anon_135,
+    iter_has_child: iter_has_child_func_ptr_anon_136,
+    iter_n_children: iter_n_children_func_ptr_anon_137,
+    iter_nth_child: iter_nth_child_func_ptr_anon_138,
+    iter_parent: iter_parent_func_ptr_anon_139,
+    ref_node: ref_node_func_ptr_anon_140,
+    unref_node: unref_node_func_ptr_anon_141,
 }
 TreeModelIface :: _GtkTreeModelIface
-TreeModelForeachFunc :: #type proc "c" (model: ^TreeModel, path: ^TreePath, iter: ^TreeIter, data: glib.pointer) -> glib.boolean
+TreeModelForeachFunc :: #type proc "c" (model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter, data: glib.pointer) -> glib.boolean
 TreeModel_autoptr :: ^TreeModel
 TreeModel_listautoptr :: ^glib.List
 TreeModel_slistautoptr :: ^glib.SList
@@ -1481,52 +1642,52 @@ _GtkCellArea :: struct {
     parent_instance: gobj.InitiallyUnowned,
 }
 CellArea :: _GtkCellArea
-add_func_ptr_anon_134 :: #type proc "c" (area: ^CellArea, renderer: ^CellRenderer)
-remove_func_ptr_anon_135 :: #type proc "c" (area: ^CellArea, renderer: ^CellRenderer)
+add_func_ptr_anon_142 :: #type proc "c" (area: ^CellArea, renderer: ^CellRenderer)
+remove_func_ptr_anon_143 :: #type proc "c" (area: ^CellArea, renderer: ^CellRenderer)
 CellCallback :: #type proc "c" (renderer: ^CellRenderer, data: glib.pointer) -> glib.boolean
-foreach_func_ptr_anon_136 :: #type proc "c" (area: ^CellArea, callback: CellCallback, callback_data: glib.pointer)
+foreach_func_ptr_anon_144 :: #type proc "c" (area: ^CellArea, callback: CellCallback, callback_data: glib.pointer)
 _GtkCellAreaContext :: struct {
     parent_instance: gobj.Object,
 }
 CellAreaContext :: _GtkCellAreaContext
 CellAllocCallback :: #type proc "c" (renderer: ^CellRenderer, cell_area: ^Rectangle, cell_background: ^Rectangle, data: glib.pointer) -> glib.boolean
-foreach_alloc_func_ptr_anon_137 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, cell_area: ^Rectangle, background_area: ^Rectangle, callback: CellAllocCallback, callback_data: glib.pointer)
-event_func_ptr_anon_138 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, event: ^Event, cell_area: ^Rectangle, flags: CellRendererState) -> i32
-snapshot_func_ptr_anon_139 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, snapshot: ^Snapshot, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState, paint_focus: glib.boolean)
-apply_attributes_func_ptr_anon_140 :: #type proc "c" (area: ^CellArea, tree_model: ^TreeModel, iter: ^TreeIter, is_expander: glib.boolean, is_expanded: glib.boolean)
-create_context_func_ptr_anon_141 :: #type proc "c" (area: ^CellArea) -> ^CellAreaContext
-copy_context_func_ptr_anon_142 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext) -> ^CellAreaContext
-et_request_mode_func_ptr_anon_143 :: #type proc "c" (area: ^CellArea) -> SizeRequestMode
-et_preferred_width_func_ptr_anon_144 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, minimum_width: ^i32, natural_width: ^i32)
-et_preferred_height_for_width_func_ptr_anon_145 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, width: i32, minimum_height: ^i32, natural_height: ^i32)
-et_preferred_height_func_ptr_anon_146 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, minimum_height: ^i32, natural_height: ^i32)
-et_preferred_width_for_height_func_ptr_anon_147 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, height: i32, minimum_width: ^i32, natural_width: ^i32)
-set_cell_property_func_ptr_anon_148 :: #type proc "c" (area: ^CellArea, renderer: ^CellRenderer, property_id: glib.uint_, value: ^gobj.Value, pspec: ^gobj.ParamSpec)
-et_cell_property_func_ptr_anon_149 :: #type proc "c" (area: ^CellArea, renderer: ^CellRenderer, property_id: glib.uint_, value: ^gobj.Value, pspec: ^gobj.ParamSpec)
-focus_func_ptr_anon_150 :: #type proc "c" (area: ^CellArea, direction: DirectionType) -> glib.boolean
-is_activatable_func_ptr_anon_151 :: #type proc "c" (area: ^CellArea) -> glib.boolean
-activate_func_ptr_anon_152 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, cell_area: ^Rectangle, flags: CellRendererState, edit_only: glib.boolean) -> glib.boolean
+foreach_alloc_func_ptr_anon_145 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, cell_area: ^Rectangle, background_area: ^Rectangle, callback: CellAllocCallback, callback_data: glib.pointer)
+event_func_ptr_anon_146 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, event: ^Event, cell_area: ^Rectangle, flags: CellRendererState) -> i32
+snapshot_func_ptr_anon_147 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, snapshot: ^Snapshot, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState, paint_focus: glib.boolean)
+apply_attributes_func_ptr_anon_148 :: #type proc "c" (area: ^CellArea, tree_model: ^TreeModel, iter: ^TreeIter, is_expander: glib.boolean, is_expanded: glib.boolean)
+create_context_func_ptr_anon_149 :: #type proc "c" (area: ^CellArea) -> ^CellAreaContext
+copy_context_func_ptr_anon_150 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext) -> ^CellAreaContext
+et_request_mode_func_ptr_anon_151 :: #type proc "c" (area: ^CellArea) -> SizeRequestMode
+et_preferred_width_func_ptr_anon_152 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, minimum_width: ^i32, natural_width: ^i32)
+et_preferred_height_for_width_func_ptr_anon_153 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, width: i32, minimum_height: ^i32, natural_height: ^i32)
+et_preferred_height_func_ptr_anon_154 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, minimum_height: ^i32, natural_height: ^i32)
+et_preferred_width_for_height_func_ptr_anon_155 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, height: i32, minimum_width: ^i32, natural_width: ^i32)
+set_cell_property_func_ptr_anon_156 :: #type proc "c" (area: ^CellArea, renderer: ^CellRenderer, property_id: glib.uint_, value: ^gobj.Value, pspec: ^gobj.ParamSpec)
+et_cell_property_func_ptr_anon_157 :: #type proc "c" (area: ^CellArea, renderer: ^CellRenderer, property_id: glib.uint_, value: ^gobj.Value, pspec: ^gobj.ParamSpec)
+focus_func_ptr_anon_158 :: #type proc "c" (area: ^CellArea, direction: DirectionType) -> glib.boolean
+is_activatable_func_ptr_anon_159 :: #type proc "c" (area: ^CellArea) -> glib.boolean
+activate_func_ptr_anon_160 :: #type proc "c" (area: ^CellArea, context_p: ^CellAreaContext, widget: ^Widget, cell_area: ^Rectangle, flags: CellRendererState, edit_only: glib.boolean) -> glib.boolean
 _GtkCellAreaClass :: struct {
     parent_class: gobj.InitiallyUnownedClass,
-    add: add_func_ptr_anon_134,
-    remove: remove_func_ptr_anon_135,
-    foreach: foreach_func_ptr_anon_136,
-    foreach_alloc: foreach_alloc_func_ptr_anon_137,
-    event: event_func_ptr_anon_138,
-    snapshot: snapshot_func_ptr_anon_139,
-    apply_attributes: apply_attributes_func_ptr_anon_140,
-    create_context: create_context_func_ptr_anon_141,
-    copy_context: copy_context_func_ptr_anon_142,
-    get_request_mode: et_request_mode_func_ptr_anon_143,
-    get_preferred_width: et_preferred_width_func_ptr_anon_144,
-    get_preferred_height_for_width: et_preferred_height_for_width_func_ptr_anon_145,
-    get_preferred_height: et_preferred_height_func_ptr_anon_146,
-    get_preferred_width_for_height: et_preferred_width_for_height_func_ptr_anon_147,
-    set_cell_property: set_cell_property_func_ptr_anon_148,
-    get_cell_property: et_cell_property_func_ptr_anon_149,
-    focus: focus_func_ptr_anon_150,
-    is_activatable: is_activatable_func_ptr_anon_151,
-    activate: activate_func_ptr_anon_152,
+    add: add_func_ptr_anon_142,
+    remove: remove_func_ptr_anon_143,
+    foreach: foreach_func_ptr_anon_144,
+    foreach_alloc: foreach_alloc_func_ptr_anon_145,
+    event: event_func_ptr_anon_146,
+    snapshot: snapshot_func_ptr_anon_147,
+    apply_attributes: apply_attributes_func_ptr_anon_148,
+    create_context: create_context_func_ptr_anon_149,
+    copy_context: copy_context_func_ptr_anon_150,
+    get_request_mode: et_request_mode_func_ptr_anon_151,
+    get_preferred_width: et_preferred_width_func_ptr_anon_152,
+    get_preferred_height_for_width: et_preferred_height_for_width_func_ptr_anon_153,
+    get_preferred_height: et_preferred_height_func_ptr_anon_154,
+    get_preferred_width_for_height: et_preferred_width_for_height_func_ptr_anon_155,
+    set_cell_property: set_cell_property_func_ptr_anon_156,
+    get_cell_property: et_cell_property_func_ptr_anon_157,
+    focus: focus_func_ptr_anon_158,
+    is_activatable: is_activatable_func_ptr_anon_159,
+    activate: activate_func_ptr_anon_160,
     padding: [8]glib.pointer,
 }
 CellAreaClass :: _GtkCellAreaClass
@@ -1542,16 +1703,16 @@ CellAreaBox_slistautoptr :: ^glib.SList
 CellAreaBox_queueautoptr :: ^glib.Queue
 _GtkCellAreaContextPrivate :: struct #packed {}
 CellAreaContextPrivate :: _GtkCellAreaContextPrivate
-allocate_func_ptr_anon_153 :: #type proc "c" (context_p: ^CellAreaContext, width: i32, height: i32)
-reset_func_ptr_anon_154 :: #type proc "c" (context_p: ^CellAreaContext)
-et_preferred_height_for_width_func_ptr_anon_155 :: #type proc "c" (context_p: ^CellAreaContext, width: i32, minimum_height: ^i32, natural_height: ^i32)
-et_preferred_width_for_height_func_ptr_anon_156 :: #type proc "c" (context_p: ^CellAreaContext, height: i32, minimum_width: ^i32, natural_width: ^i32)
+allocate_func_ptr_anon_161 :: #type proc "c" (context_p: ^CellAreaContext, width: i32, height: i32)
+reset_func_ptr_anon_162 :: #type proc "c" (context_p: ^CellAreaContext)
+et_preferred_height_for_width_func_ptr_anon_163 :: #type proc "c" (context_p: ^CellAreaContext, width: i32, minimum_height: ^i32, natural_height: ^i32)
+et_preferred_width_for_height_func_ptr_anon_164 :: #type proc "c" (context_p: ^CellAreaContext, height: i32, minimum_width: ^i32, natural_width: ^i32)
 _GtkCellAreaContextClass :: struct {
     parent_class: gobj.ObjectClass,
-    allocate: allocate_func_ptr_anon_153,
-    reset: reset_func_ptr_anon_154,
-    get_preferred_height_for_width: et_preferred_height_for_width_func_ptr_anon_155,
-    get_preferred_width_for_height: et_preferred_width_for_height_func_ptr_anon_156,
+    allocate: allocate_func_ptr_anon_161,
+    reset: reset_func_ptr_anon_162,
+    get_preferred_height_for_width: et_preferred_height_for_width_func_ptr_anon_163,
+    get_preferred_width_for_height: et_preferred_width_for_height_func_ptr_anon_164,
     padding: [8]glib.pointer,
 }
 CellAreaContextClass :: _GtkCellAreaContextClass
@@ -1561,27 +1722,27 @@ CellAreaContext_slistautoptr :: ^glib.SList
 CellAreaContext_queueautoptr :: ^glib.Queue
 _GtkCellLayout :: struct #packed {}
 CellLayout :: _GtkCellLayout
-pack_start_func_ptr_anon_157 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, expand: glib.boolean)
-pack_end_func_ptr_anon_158 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, expand: glib.boolean)
-clear_func_ptr_anon_159 :: #type proc "c" (cell_layout: ^CellLayout)
-add_attribute_func_ptr_anon_160 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, attribute: cstring, column: i32)
+pack_start_func_ptr_anon_165 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, expand: glib.boolean)
+pack_end_func_ptr_anon_166 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, expand: glib.boolean)
+clear_func_ptr_anon_167 :: #type proc "c" (cell_layout: ^CellLayout)
+add_attribute_func_ptr_anon_168 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, attribute: cstring, column: i32)
 CellLayoutDataFunc :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, tree_model: ^TreeModel, iter: ^TreeIter, data: glib.pointer)
-set_cell_data_func_func_ptr_anon_161 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, func: CellLayoutDataFunc, func_data: glib.pointer, destroy: glib.DestroyNotify)
-clear_attributes_func_ptr_anon_162 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer)
-reorder_func_ptr_anon_163 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, position: i32)
-et_cells_func_ptr_anon_164 :: #type proc "c" (cell_layout: ^CellLayout) -> ^glib.List
-et_area_func_ptr_anon_165 :: #type proc "c" (cell_layout: ^CellLayout) -> ^CellArea
+set_cell_data_func_func_ptr_anon_169 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, func: CellLayoutDataFunc, func_data: glib.pointer, destroy: glib.DestroyNotify)
+clear_attributes_func_ptr_anon_170 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer)
+reorder_func_ptr_anon_171 :: #type proc "c" (cell_layout: ^CellLayout, cell: ^CellRenderer, position: i32)
+et_cells_func_ptr_anon_172 :: #type proc "c" (cell_layout: ^CellLayout) -> ^glib.List
+et_area_func_ptr_anon_173 :: #type proc "c" (cell_layout: ^CellLayout) -> ^CellArea
 _GtkCellLayoutIface :: struct {
     g_iface: gobj.TypeInterface,
-    pack_start: pack_start_func_ptr_anon_157,
-    pack_end: pack_end_func_ptr_anon_158,
-    clear: clear_func_ptr_anon_159,
-    add_attribute: add_attribute_func_ptr_anon_160,
-    set_cell_data_func: set_cell_data_func_func_ptr_anon_161,
-    clear_attributes: clear_attributes_func_ptr_anon_162,
-    reorder: reorder_func_ptr_anon_163,
-    get_cells: et_cells_func_ptr_anon_164,
-    get_area: et_area_func_ptr_anon_165,
+    pack_start: pack_start_func_ptr_anon_165,
+    pack_end: pack_end_func_ptr_anon_166,
+    clear: clear_func_ptr_anon_167,
+    add_attribute: add_attribute_func_ptr_anon_168,
+    set_cell_data_func: set_cell_data_func_func_ptr_anon_169,
+    clear_attributes: clear_attributes_func_ptr_anon_170,
+    reorder: reorder_func_ptr_anon_171,
+    get_cells: et_cells_func_ptr_anon_172,
+    get_area: et_area_func_ptr_anon_173,
 }
 CellLayoutIface :: _GtkCellLayoutIface
 CellLayout_autoptr :: ^CellLayout
@@ -1592,10 +1753,10 @@ _GtkCellRendererText :: struct {
     parent: CellRenderer,
 }
 CellRendererText :: _GtkCellRendererText
-edited_func_ptr_anon_166 :: #type proc "c" (cell_renderer_text: ^CellRendererText, path: cstring, new_text: cstring)
+edited_func_ptr_anon_174 :: #type proc "c" (cell_renderer_text: ^CellRendererText, path_p: cstring, new_text: cstring)
 _GtkCellRendererTextClass :: struct {
     parent_class: CellRendererClass,
-    edited: edited_func_ptr_anon_166,
+    edited: edited_func_ptr_anon_174,
     padding: [8]glib.pointer,
 }
 CellRendererTextClass :: _GtkCellRendererTextClass
@@ -1673,10 +1834,10 @@ _GtkToggleButton :: struct {
     button: Button,
 }
 ToggleButton :: _GtkToggleButton
-toggled_func_ptr_anon_167 :: #type proc "c" (toggle_button: ^ToggleButton)
+toggled_func_ptr_anon_175 :: #type proc "c" (toggle_button: ^ToggleButton)
 _GtkToggleButtonClass :: struct {
     parent_class: ButtonClass,
-    toggled: toggled_func_ptr_anon_167,
+    toggled: toggled_func_ptr_anon_175,
     padding: [8]glib.pointer,
 }
 ToggleButtonClass :: _GtkToggleButtonClass
@@ -1688,12 +1849,12 @@ _GtkCheckButton :: struct {
     parent_instance: Widget,
 }
 CheckButton :: _GtkCheckButton
-toggled_func_ptr_anon_168 :: #type proc "c" (check_button: ^CheckButton)
-activate_func_ptr_anon_169 :: #type proc "c" (check_button: ^CheckButton)
+toggled_func_ptr_anon_176 :: #type proc "c" (check_button: ^CheckButton)
+activate_func_ptr_anon_177 :: #type proc "c" (check_button: ^CheckButton)
 _GtkCheckButtonClass :: struct {
     parent_class: WidgetClass,
-    toggled: toggled_func_ptr_anon_168,
-    activate: activate_func_ptr_anon_169,
+    toggled: toggled_func_ptr_anon_176,
+    activate: activate_func_ptr_anon_177,
     padding: [7]glib.pointer,
 }
 CheckButtonClass :: _GtkCheckButtonClass
@@ -1709,16 +1870,16 @@ ColorButton_slistautoptr :: ^glib.SList
 ColorButton_queueautoptr :: ^glib.Queue
 _GtkColorChooser :: struct #packed {}
 ColorChooser :: _GtkColorChooser
-et_rgba_func_ptr_anon_170 :: #type proc "c" (chooser: ^ColorChooser, color: ^RGBA)
-set_rgba_func_ptr_anon_171 :: #type proc "c" (chooser: ^ColorChooser, color: ^RGBA)
-add_palette_func_ptr_anon_172 :: #type proc "c" (chooser: ^ColorChooser, orientation: Orientation, colors_per_line: i32, n_colors: i32, colors: [^]RGBA)
-color_activated_func_ptr_anon_173 :: #type proc "c" (chooser: ^ColorChooser, color: ^RGBA)
+et_rgba_func_ptr_anon_178 :: #type proc "c" (chooser: ^ColorChooser, color: ^RGBA)
+set_rgba_func_ptr_anon_179 :: #type proc "c" (chooser: ^ColorChooser, color: ^RGBA)
+add_palette_func_ptr_anon_180 :: #type proc "c" (chooser: ^ColorChooser, orientation: Orientation, colors_per_line: i32, n_colors: i32, colors: [^]RGBA)
+color_activated_func_ptr_anon_181 :: #type proc "c" (chooser: ^ColorChooser, color: ^RGBA)
 _GtkColorChooserInterface :: struct {
     base_interface: gobj.TypeInterface,
-    get_rgba: et_rgba_func_ptr_anon_170,
-    set_rgba: set_rgba_func_ptr_anon_171,
-    add_palette: add_palette_func_ptr_anon_172,
-    color_activated: color_activated_func_ptr_anon_173,
+    get_rgba: et_rgba_func_ptr_anon_178,
+    set_rgba: set_rgba_func_ptr_anon_179,
+    add_palette: add_palette_func_ptr_anon_180,
+    color_activated: color_activated_func_ptr_anon_181,
     padding: [12]glib.pointer,
 }
 ColorChooserInterface :: _GtkColorChooserInterface
@@ -1770,28 +1931,28 @@ _GtkSorter :: struct {
     parent_instance: gobj.Object,
 }
 Sorter :: _GtkSorter
-compare_func_ptr_anon_174 :: #type proc "c" (self: ^Sorter, item1: glib.pointer, item2: glib.pointer) -> Ordering
-et_order_func_ptr_anon_175 :: #type proc "c" (self: ^Sorter) -> SorterOrder
-_gtk_reserved1_func_ptr_anon_176 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_177 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_178 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_179 :: #type proc "c" ()
-_gtk_reserved5_func_ptr_anon_180 :: #type proc "c" ()
-_gtk_reserved6_func_ptr_anon_181 :: #type proc "c" ()
-_gtk_reserved7_func_ptr_anon_182 :: #type proc "c" ()
-_gtk_reserved8_func_ptr_anon_183 :: #type proc "c" ()
+compare_func_ptr_anon_182 :: #type proc "c" (self: ^Sorter, item1: glib.pointer, item2: glib.pointer) -> Ordering
+et_order_func_ptr_anon_183 :: #type proc "c" (self: ^Sorter) -> SorterOrder
+_gtk_reserved1_func_ptr_anon_184 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_185 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_186 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_187 :: #type proc "c" ()
+_gtk_reserved5_func_ptr_anon_188 :: #type proc "c" ()
+_gtk_reserved6_func_ptr_anon_189 :: #type proc "c" ()
+_gtk_reserved7_func_ptr_anon_190 :: #type proc "c" ()
+_gtk_reserved8_func_ptr_anon_191 :: #type proc "c" ()
 _GtkSorterClass :: struct {
     parent_class: gobj.ObjectClass,
-    compare: compare_func_ptr_anon_174,
-    get_order: et_order_func_ptr_anon_175,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_176,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_177,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_178,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_179,
-    _gtk_reserved5: _gtk_reserved5_func_ptr_anon_180,
-    _gtk_reserved6: _gtk_reserved6_func_ptr_anon_181,
-    _gtk_reserved7: _gtk_reserved7_func_ptr_anon_182,
-    _gtk_reserved8: _gtk_reserved8_func_ptr_anon_183,
+    compare: compare_func_ptr_anon_182,
+    get_order: et_order_func_ptr_anon_183,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_184,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_185,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_186,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_187,
+    _gtk_reserved5: _gtk_reserved5_func_ptr_anon_188,
+    _gtk_reserved6: _gtk_reserved6_func_ptr_anon_189,
+    _gtk_reserved7: _gtk_reserved7_func_ptr_anon_190,
+    _gtk_reserved8: _gtk_reserved8_func_ptr_anon_191,
 }
 SorterClass :: _GtkSorterClass
 Sorter_autoptr :: ^Sorter
@@ -1817,26 +1978,26 @@ SortListModelClass_slistautoptr :: ^glib.SList
 SortListModelClass_queueautoptr :: ^glib.Queue
 _GtkSelectionModel :: struct #packed {}
 SelectionModel :: _GtkSelectionModel
-is_selected_func_ptr_anon_184 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_) -> glib.boolean
-et_selection_in_range_func_ptr_anon_185 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_, n_items: glib.uint_) -> ^Bitset
-select_item_func_ptr_anon_186 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_, unselect_rest: glib.boolean) -> glib.boolean
-unselect_item_func_ptr_anon_187 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_) -> glib.boolean
-select_range_func_ptr_anon_188 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_, n_items: glib.uint_, unselect_rest: glib.boolean) -> glib.boolean
-unselect_range_func_ptr_anon_189 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_, n_items: glib.uint_) -> glib.boolean
-select_all_func_ptr_anon_190 :: #type proc "c" (model: ^SelectionModel) -> glib.boolean
-unselect_all_func_ptr_anon_191 :: #type proc "c" (model: ^SelectionModel) -> glib.boolean
-set_selection_func_ptr_anon_192 :: #type proc "c" (model: ^SelectionModel, selected: ^Bitset, mask: ^Bitset) -> glib.boolean
+is_selected_func_ptr_anon_192 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_) -> glib.boolean
+et_selection_in_range_func_ptr_anon_193 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_, n_items: glib.uint_) -> ^Bitset
+select_item_func_ptr_anon_194 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_, unselect_rest: glib.boolean) -> glib.boolean
+unselect_item_func_ptr_anon_195 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_) -> glib.boolean
+select_range_func_ptr_anon_196 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_, n_items: glib.uint_, unselect_rest: glib.boolean) -> glib.boolean
+unselect_range_func_ptr_anon_197 :: #type proc "c" (model: ^SelectionModel, position: glib.uint_, n_items: glib.uint_) -> glib.boolean
+select_all_func_ptr_anon_198 :: #type proc "c" (model: ^SelectionModel) -> glib.boolean
+unselect_all_func_ptr_anon_199 :: #type proc "c" (model: ^SelectionModel) -> glib.boolean
+set_selection_func_ptr_anon_200 :: #type proc "c" (model: ^SelectionModel, selected: ^Bitset, mask: ^Bitset) -> glib.boolean
 _GtkSelectionModelInterface :: struct {
     g_iface: gobj.TypeInterface,
-    is_selected: is_selected_func_ptr_anon_184,
-    get_selection_in_range: et_selection_in_range_func_ptr_anon_185,
-    select_item: select_item_func_ptr_anon_186,
-    unselect_item: unselect_item_func_ptr_anon_187,
-    select_range: select_range_func_ptr_anon_188,
-    unselect_range: unselect_range_func_ptr_anon_189,
-    select_all: select_all_func_ptr_anon_190,
-    unselect_all: unselect_all_func_ptr_anon_191,
-    set_selection: set_selection_func_ptr_anon_192,
+    is_selected: is_selected_func_ptr_anon_192,
+    get_selection_in_range: et_selection_in_range_func_ptr_anon_193,
+    select_item: select_item_func_ptr_anon_194,
+    unselect_item: unselect_item_func_ptr_anon_195,
+    select_range: select_range_func_ptr_anon_196,
+    unselect_range: unselect_range_func_ptr_anon_197,
+    select_all: select_all_func_ptr_anon_198,
+    unselect_all: unselect_all_func_ptr_anon_199,
+    set_selection: set_selection_func_ptr_anon_200,
 }
 SelectionModelInterface :: _GtkSelectionModelInterface
 SelectionModel_autoptr :: ^SelectionModel
@@ -1904,21 +2065,21 @@ ColumnViewSorterClass_slistautoptr :: ^glib.SList
 ColumnViewSorterClass_queueautoptr :: ^glib.Queue
 _GtkTreeSortable :: struct #packed {}
 TreeSortable :: _GtkTreeSortable
-sort_column_changed_func_ptr_anon_193 :: #type proc "c" (sortable: ^TreeSortable)
-et_sort_column_id_func_ptr_anon_194 :: #type proc "c" (sortable: ^TreeSortable, sort_column_id: ^i32, order: ^SortType) -> glib.boolean
-set_sort_column_id_func_ptr_anon_195 :: #type proc "c" (sortable: ^TreeSortable, sort_column_id: i32, order: SortType)
+sort_column_changed_func_ptr_anon_201 :: #type proc "c" (sortable: ^TreeSortable)
+et_sort_column_id_func_ptr_anon_202 :: #type proc "c" (sortable: ^TreeSortable, sort_column_id: ^i32, order: ^SortType) -> glib.boolean
+set_sort_column_id_func_ptr_anon_203 :: #type proc "c" (sortable: ^TreeSortable, sort_column_id: i32, order: SortType)
 TreeIterCompareFunc :: #type proc "c" (model: ^TreeModel, a: ^TreeIter, b: ^TreeIter, user_data: glib.pointer) -> i32
-set_sort_func_func_ptr_anon_196 :: #type proc "c" (sortable: ^TreeSortable, sort_column_id: i32, sort_func: TreeIterCompareFunc, user_data: glib.pointer, destroy: glib.DestroyNotify)
-set_default_sort_func_func_ptr_anon_197 :: #type proc "c" (sortable: ^TreeSortable, sort_func: TreeIterCompareFunc, user_data: glib.pointer, destroy: glib.DestroyNotify)
-has_default_sort_func_func_ptr_anon_198 :: #type proc "c" (sortable: ^TreeSortable) -> glib.boolean
+set_sort_func_func_ptr_anon_204 :: #type proc "c" (sortable: ^TreeSortable, sort_column_id: i32, sort_func: TreeIterCompareFunc, user_data: glib.pointer, destroy: glib.DestroyNotify)
+set_default_sort_func_func_ptr_anon_205 :: #type proc "c" (sortable: ^TreeSortable, sort_func: TreeIterCompareFunc, user_data: glib.pointer, destroy: glib.DestroyNotify)
+has_default_sort_func_func_ptr_anon_206 :: #type proc "c" (sortable: ^TreeSortable) -> glib.boolean
 _GtkTreeSortableIface :: struct {
     g_iface: gobj.TypeInterface,
-    sort_column_changed: sort_column_changed_func_ptr_anon_193,
-    get_sort_column_id: et_sort_column_id_func_ptr_anon_194,
-    set_sort_column_id: set_sort_column_id_func_ptr_anon_195,
-    set_sort_func: set_sort_func_func_ptr_anon_196,
-    set_default_sort_func: set_default_sort_func_func_ptr_anon_197,
-    has_default_sort_func: has_default_sort_func_func_ptr_anon_198,
+    sort_column_changed: sort_column_changed_func_ptr_anon_201,
+    get_sort_column_id: et_sort_column_id_func_ptr_anon_202,
+    set_sort_column_id: set_sort_column_id_func_ptr_anon_203,
+    set_sort_func: set_sort_func_func_ptr_anon_204,
+    set_default_sort_func: set_default_sort_func_func_ptr_anon_205,
+    has_default_sort_func: has_default_sort_func_func_ptr_anon_206,
 }
 TreeSortableIface :: _GtkTreeSortableIface
 TreeSortable_autoptr :: ^TreeSortable
@@ -1935,26 +2096,26 @@ TreeViewColumn_slistautoptr :: ^glib.SList
 TreeViewColumn_queueautoptr :: ^glib.Queue
 _GtkEditable :: struct #packed {}
 Editable :: _GtkEditable
-insert_text_func_ptr_anon_199 :: #type proc "c" (editable: ^Editable, text: cstring, length: i32, position: ^i32)
-delete_text_func_ptr_anon_200 :: #type proc "c" (editable: ^Editable, start_pos: i32, end_pos: i32)
-changed_func_ptr_anon_201 :: #type proc "c" (editable: ^Editable)
-et_text_func_ptr_anon_202 :: #type proc "c" (editable: ^Editable) -> cstring
-do_insert_text_func_ptr_anon_203 :: #type proc "c" (editable: ^Editable, text: cstring, length: i32, position: ^i32)
-do_delete_text_func_ptr_anon_204 :: #type proc "c" (editable: ^Editable, start_pos: i32, end_pos: i32)
-et_selection_bounds_func_ptr_anon_205 :: #type proc "c" (editable: ^Editable, start_pos: [^]i32, end_pos: [^]i32) -> glib.boolean
-set_selection_bounds_func_ptr_anon_206 :: #type proc "c" (editable: ^Editable, start_pos: i32, end_pos: i32)
-et_delegate_func_ptr_anon_207 :: #type proc "c" (editable: ^Editable) -> ^Editable
+insert_text_func_ptr_anon_207 :: #type proc "c" (editable: ^Editable, text: cstring, length: i32, position: ^i32)
+delete_text_func_ptr_anon_208 :: #type proc "c" (editable: ^Editable, start_pos: i32, end_pos: i32)
+changed_func_ptr_anon_209 :: #type proc "c" (editable: ^Editable)
+et_text_func_ptr_anon_210 :: #type proc "c" (editable: ^Editable) -> cstring
+do_insert_text_func_ptr_anon_211 :: #type proc "c" (editable: ^Editable, text: cstring, length: i32, position: ^i32)
+do_delete_text_func_ptr_anon_212 :: #type proc "c" (editable: ^Editable, start_pos: i32, end_pos: i32)
+et_selection_bounds_func_ptr_anon_213 :: #type proc "c" (editable: ^Editable, start_pos: [^]i32, end_pos: [^]i32) -> glib.boolean
+set_selection_bounds_func_ptr_anon_214 :: #type proc "c" (editable: ^Editable, start_pos: i32, end_pos: i32)
+et_delegate_func_ptr_anon_215 :: #type proc "c" (editable: ^Editable) -> ^Editable
 _GtkEditableInterface :: struct {
     base_iface: gobj.TypeInterface,
-    insert_text: insert_text_func_ptr_anon_199,
-    delete_text: delete_text_func_ptr_anon_200,
-    changed: changed_func_ptr_anon_201,
-    get_text: et_text_func_ptr_anon_202,
-    do_insert_text: do_insert_text_func_ptr_anon_203,
-    do_delete_text: do_delete_text_func_ptr_anon_204,
-    get_selection_bounds: et_selection_bounds_func_ptr_anon_205,
-    set_selection_bounds: set_selection_bounds_func_ptr_anon_206,
-    get_delegate: et_delegate_func_ptr_anon_207,
+    insert_text: insert_text_func_ptr_anon_207,
+    delete_text: delete_text_func_ptr_anon_208,
+    changed: changed_func_ptr_anon_209,
+    get_text: et_text_func_ptr_anon_210,
+    do_insert_text: do_insert_text_func_ptr_anon_211,
+    do_delete_text: do_delete_text_func_ptr_anon_212,
+    get_selection_bounds: et_selection_bounds_func_ptr_anon_213,
+    set_selection_bounds: set_selection_bounds_func_ptr_anon_214,
+    get_delegate: et_delegate_func_ptr_anon_215,
 }
 EditableInterface :: _GtkEditableInterface
 EditableProperties :: enum u32 {EDITABLE_PROP_TEXT = 0, EDITABLE_PROP_CURSOR_POSITION = 1, EDITABLE_PROP_SELECTION_BOUND = 2, EDITABLE_PROP_EDITABLE = 3, EDITABLE_PROP_WIDTH_CHARS = 4, EDITABLE_PROP_MAX_WIDTH_CHARS = 5, EDITABLE_PROP_XALIGN = 6, EDITABLE_PROP_ENABLE_UNDO = 7, EDITABLE_NUM_PROPERTIES = 8 }
@@ -1966,54 +2127,54 @@ _GtkIMContext :: struct {
     parent_instance: gobj.Object,
 }
 IMContext :: _GtkIMContext
-preedit_start_func_ptr_anon_208 :: #type proc "c" (context_p: ^IMContext)
-preedit_end_func_ptr_anon_209 :: #type proc "c" (context_p: ^IMContext)
-preedit_changed_func_ptr_anon_210 :: #type proc "c" (context_p: ^IMContext)
-commit_func_ptr_anon_211 :: #type proc "c" (context_p: ^IMContext, str: cstring)
-retrieve_surrounding_func_ptr_anon_212 :: #type proc "c" (context_p: ^IMContext) -> glib.boolean
-delete_surrounding_func_ptr_anon_213 :: #type proc "c" (context_p: ^IMContext, offset: i32, n_chars: i32) -> glib.boolean
-set_client_widget_func_ptr_anon_214 :: #type proc "c" (context_p: ^IMContext, widget: ^Widget)
-et_preedit_string_func_ptr_anon_215 :: #type proc "c" (context_p: ^IMContext, str: ^cstring, attrs: [^]^pango.AttrList, cursor_pos: [^]i32)
-filter_keypress_func_ptr_anon_216 :: #type proc "c" (context_p: ^IMContext, event: ^Event) -> glib.boolean
-focus_in_func_ptr_anon_217 :: #type proc "c" (context_p: ^IMContext)
-focus_out_func_ptr_anon_218 :: #type proc "c" (context_p: ^IMContext)
-reset_func_ptr_anon_219 :: #type proc "c" (context_p: ^IMContext)
-set_cursor_location_func_ptr_anon_220 :: #type proc "c" (context_p: ^IMContext, area: ^Rectangle)
-set_use_preedit_func_ptr_anon_221 :: #type proc "c" (context_p: ^IMContext, use_preedit: glib.boolean)
-set_surrounding_func_ptr_anon_222 :: #type proc "c" (context_p: ^IMContext, text: cstring, len: i32, cursor_index: i32)
-et_surrounding_func_ptr_anon_223 :: #type proc "c" (context_p: ^IMContext, text: ^cstring, cursor_index: ^i32) -> glib.boolean
-set_surrounding_with_selection_func_ptr_anon_224 :: #type proc "c" (context_p: ^IMContext, text: cstring, len: i32, cursor_index: i32, anchor_index: i32)
-et_surrounding_with_selection_func_ptr_anon_225 :: #type proc "c" (context_p: ^IMContext, text: ^cstring, cursor_index: ^i32, anchor_index: ^i32) -> glib.boolean
-activate_osk_func_ptr_anon_226 :: #type proc "c" (context_p: ^IMContext)
-_gtk_reserved1_func_ptr_anon_227 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_228 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_229 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_230 :: #type proc "c" ()
+preedit_start_func_ptr_anon_216 :: #type proc "c" (context_p: ^IMContext)
+preedit_end_func_ptr_anon_217 :: #type proc "c" (context_p: ^IMContext)
+preedit_changed_func_ptr_anon_218 :: #type proc "c" (context_p: ^IMContext)
+commit_func_ptr_anon_219 :: #type proc "c" (context_p: ^IMContext, str: cstring)
+retrieve_surrounding_func_ptr_anon_220 :: #type proc "c" (context_p: ^IMContext) -> glib.boolean
+delete_surrounding_func_ptr_anon_221 :: #type proc "c" (context_p: ^IMContext, offset: i32, n_chars: i32) -> glib.boolean
+set_client_widget_func_ptr_anon_222 :: #type proc "c" (context_p: ^IMContext, widget: ^Widget)
+et_preedit_string_func_ptr_anon_223 :: #type proc "c" (context_p: ^IMContext, str: ^cstring, attrs: [^]^pango.AttrList, cursor_pos: [^]i32)
+filter_keypress_func_ptr_anon_224 :: #type proc "c" (context_p: ^IMContext, event: ^Event) -> glib.boolean
+focus_in_func_ptr_anon_225 :: #type proc "c" (context_p: ^IMContext)
+focus_out_func_ptr_anon_226 :: #type proc "c" (context_p: ^IMContext)
+reset_func_ptr_anon_227 :: #type proc "c" (context_p: ^IMContext)
+set_cursor_location_func_ptr_anon_228 :: #type proc "c" (context_p: ^IMContext, area: ^Rectangle)
+set_use_preedit_func_ptr_anon_229 :: #type proc "c" (context_p: ^IMContext, use_preedit: glib.boolean)
+set_surrounding_func_ptr_anon_230 :: #type proc "c" (context_p: ^IMContext, text: cstring, len: i32, cursor_index: i32)
+et_surrounding_func_ptr_anon_231 :: #type proc "c" (context_p: ^IMContext, text: ^cstring, cursor_index: ^i32) -> glib.boolean
+set_surrounding_with_selection_func_ptr_anon_232 :: #type proc "c" (context_p: ^IMContext, text: cstring, len: i32, cursor_index: i32, anchor_index: i32)
+et_surrounding_with_selection_func_ptr_anon_233 :: #type proc "c" (context_p: ^IMContext, text: ^cstring, cursor_index: ^i32, anchor_index: ^i32) -> glib.boolean
+activate_osk_func_ptr_anon_234 :: #type proc "c" (context_p: ^IMContext)
+activate_osk_with_event_func_ptr_anon_235 :: #type proc "c" (context_p: ^IMContext, event: ^Event) -> glib.boolean
+_gtk_reserved2_func_ptr_anon_236 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_237 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_238 :: #type proc "c" ()
 _GtkIMContextClass :: struct {
     parent_class: gobj.ObjectClass,
-    preedit_start: preedit_start_func_ptr_anon_208,
-    preedit_end: preedit_end_func_ptr_anon_209,
-    preedit_changed: preedit_changed_func_ptr_anon_210,
-    commit: commit_func_ptr_anon_211,
-    retrieve_surrounding: retrieve_surrounding_func_ptr_anon_212,
-    delete_surrounding: delete_surrounding_func_ptr_anon_213,
-    set_client_widget: set_client_widget_func_ptr_anon_214,
-    get_preedit_string: et_preedit_string_func_ptr_anon_215,
-    filter_keypress: filter_keypress_func_ptr_anon_216,
-    focus_in: focus_in_func_ptr_anon_217,
-    focus_out: focus_out_func_ptr_anon_218,
-    reset: reset_func_ptr_anon_219,
-    set_cursor_location: set_cursor_location_func_ptr_anon_220,
-    set_use_preedit: set_use_preedit_func_ptr_anon_221,
-    set_surrounding: set_surrounding_func_ptr_anon_222,
-    get_surrounding: et_surrounding_func_ptr_anon_223,
-    set_surrounding_with_selection: set_surrounding_with_selection_func_ptr_anon_224,
-    get_surrounding_with_selection: et_surrounding_with_selection_func_ptr_anon_225,
-    activate_osk: activate_osk_func_ptr_anon_226,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_227,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_228,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_229,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_230,
+    preedit_start: preedit_start_func_ptr_anon_216,
+    preedit_end: preedit_end_func_ptr_anon_217,
+    preedit_changed: preedit_changed_func_ptr_anon_218,
+    commit: commit_func_ptr_anon_219,
+    retrieve_surrounding: retrieve_surrounding_func_ptr_anon_220,
+    delete_surrounding: delete_surrounding_func_ptr_anon_221,
+    set_client_widget: set_client_widget_func_ptr_anon_222,
+    get_preedit_string: et_preedit_string_func_ptr_anon_223,
+    filter_keypress: filter_keypress_func_ptr_anon_224,
+    focus_in: focus_in_func_ptr_anon_225,
+    focus_out: focus_out_func_ptr_anon_226,
+    reset: reset_func_ptr_anon_227,
+    set_cursor_location: set_cursor_location_func_ptr_anon_228,
+    set_use_preedit: set_use_preedit_func_ptr_anon_229,
+    set_surrounding: set_surrounding_func_ptr_anon_230,
+    get_surrounding: et_surrounding_func_ptr_anon_231,
+    set_surrounding_with_selection: set_surrounding_with_selection_func_ptr_anon_232,
+    get_surrounding_with_selection: et_surrounding_with_selection_func_ptr_anon_233,
+    activate_osk: activate_osk_func_ptr_anon_234,
+    activate_osk_with_event: activate_osk_with_event_func_ptr_anon_235,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_236,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_237,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_238,
 }
 IMContextClass :: _GtkIMContextClass
 IMContext_autoptr :: ^IMContext
@@ -2024,36 +2185,36 @@ _GtkEntryBuffer :: struct {
     parent_instance: gobj.Object,
 }
 EntryBuffer :: _GtkEntryBuffer
-inserted_text_func_ptr_anon_231 :: #type proc "c" (buffer: ^EntryBuffer, position: glib.uint_, chars: cstring, n_chars: glib.uint_)
-deleted_text_func_ptr_anon_232 :: #type proc "c" (buffer: ^EntryBuffer, position: glib.uint_, n_chars: glib.uint_)
-et_text_func_ptr_anon_233 :: #type proc "c" (buffer: ^EntryBuffer, n_bytes: [^]glib.size) -> cstring
-et_length_func_ptr_anon_234 :: #type proc "c" (buffer: ^EntryBuffer) -> glib.uint_
-insert_text_func_ptr_anon_235 :: #type proc "c" (buffer: ^EntryBuffer, position: glib.uint_, chars: cstring, n_chars: glib.uint_) -> glib.uint_
-delete_text_func_ptr_anon_236 :: #type proc "c" (buffer: ^EntryBuffer, position: glib.uint_, n_chars: glib.uint_) -> glib.uint_
-_gtk_reserved1_func_ptr_anon_237 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_238 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_239 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_240 :: #type proc "c" ()
-_gtk_reserved5_func_ptr_anon_241 :: #type proc "c" ()
-_gtk_reserved6_func_ptr_anon_242 :: #type proc "c" ()
-_gtk_reserved7_func_ptr_anon_243 :: #type proc "c" ()
-_gtk_reserved8_func_ptr_anon_244 :: #type proc "c" ()
+inserted_text_func_ptr_anon_239 :: #type proc "c" (buffer: ^EntryBuffer, position: glib.uint_, chars: cstring, n_chars: glib.uint_)
+deleted_text_func_ptr_anon_240 :: #type proc "c" (buffer: ^EntryBuffer, position: glib.uint_, n_chars: glib.uint_)
+et_text_func_ptr_anon_241 :: #type proc "c" (buffer: ^EntryBuffer, n_bytes: [^]glib.size) -> cstring
+et_length_func_ptr_anon_242 :: #type proc "c" (buffer: ^EntryBuffer) -> glib.uint_
+insert_text_func_ptr_anon_243 :: #type proc "c" (buffer: ^EntryBuffer, position: glib.uint_, chars: cstring, n_chars: glib.uint_) -> glib.uint_
+delete_text_func_ptr_anon_244 :: #type proc "c" (buffer: ^EntryBuffer, position: glib.uint_, n_chars: glib.uint_) -> glib.uint_
+_gtk_reserved1_func_ptr_anon_245 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_246 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_247 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_248 :: #type proc "c" ()
+_gtk_reserved5_func_ptr_anon_249 :: #type proc "c" ()
+_gtk_reserved6_func_ptr_anon_250 :: #type proc "c" ()
+_gtk_reserved7_func_ptr_anon_251 :: #type proc "c" ()
+_gtk_reserved8_func_ptr_anon_252 :: #type proc "c" ()
 _GtkEntryBufferClass :: struct {
     parent_class: gobj.ObjectClass,
-    inserted_text: inserted_text_func_ptr_anon_231,
-    deleted_text: deleted_text_func_ptr_anon_232,
-    get_text: et_text_func_ptr_anon_233,
-    get_length: et_length_func_ptr_anon_234,
-    insert_text: insert_text_func_ptr_anon_235,
-    delete_text: delete_text_func_ptr_anon_236,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_237,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_238,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_239,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_240,
-    _gtk_reserved5: _gtk_reserved5_func_ptr_anon_241,
-    _gtk_reserved6: _gtk_reserved6_func_ptr_anon_242,
-    _gtk_reserved7: _gtk_reserved7_func_ptr_anon_243,
-    _gtk_reserved8: _gtk_reserved8_func_ptr_anon_244,
+    inserted_text: inserted_text_func_ptr_anon_239,
+    deleted_text: deleted_text_func_ptr_anon_240,
+    get_text: et_text_func_ptr_anon_241,
+    get_length: et_length_func_ptr_anon_242,
+    insert_text: insert_text_func_ptr_anon_243,
+    delete_text: delete_text_func_ptr_anon_244,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_245,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_246,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_247,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_248,
+    _gtk_reserved5: _gtk_reserved5_func_ptr_anon_249,
+    _gtk_reserved6: _gtk_reserved6_func_ptr_anon_250,
+    _gtk_reserved7: _gtk_reserved7_func_ptr_anon_251,
+    _gtk_reserved8: _gtk_reserved8_func_ptr_anon_252,
 }
 EntryBufferClass :: _GtkEntryBufferClass
 EntryBuffer_autoptr :: ^EntryBuffer
@@ -2085,12 +2246,12 @@ _GtkTreeModelFilter :: struct {
     priv: ^TreeModelFilterPrivate,
 }
 TreeModelFilter :: _GtkTreeModelFilter
-visible_func_ptr_anon_245 :: #type proc "c" (self: ^TreeModelFilter, child_model: ^TreeModel, iter: ^TreeIter) -> glib.boolean
-modify_func_ptr_anon_246 :: #type proc "c" (self: ^TreeModelFilter, child_model: ^TreeModel, iter: ^TreeIter, value: ^gobj.Value, column: i32)
+visible_func_ptr_anon_253 :: #type proc "c" (self: ^TreeModelFilter, child_model: ^TreeModel, iter: ^TreeIter) -> glib.boolean
+modify_func_ptr_anon_254 :: #type proc "c" (self: ^TreeModelFilter, child_model: ^TreeModel, iter: ^TreeIter, value: ^gobj.Value, column: i32)
 _GtkTreeModelFilterClass :: struct {
     parent_class: gobj.ObjectClass,
-    visible: visible_func_ptr_anon_245,
-    modify: modify_func_ptr_anon_246,
+    visible: visible_func_ptr_anon_253,
+    modify: modify_func_ptr_anon_254,
     padding: [8]glib.pointer,
 }
 TreeModelFilterClass :: _GtkTreeModelFilterClass
@@ -2117,10 +2278,10 @@ _GtkEntry :: struct {
     parent_instance: Widget,
 }
 Entry :: _GtkEntry
-activate_func_ptr_anon_247 :: #type proc "c" (entry: ^Entry)
+activate_func_ptr_anon_255 :: #type proc "c" (entry: ^Entry)
 _GtkEntryClass :: struct {
     parent_class: WidgetClass,
-    activate: activate_func_ptr_anon_247,
+    activate: activate_func_ptr_anon_255,
     padding: [8]glib.pointer,
 }
 EntryClass :: _GtkEntryClass
@@ -2133,45 +2294,45 @@ _GtkTreeView :: struct {
     parent_instance: Widget,
 }
 TreeView :: _GtkTreeView
-row_activated_func_ptr_anon_248 :: #type proc "c" (tree_view: ^TreeView, path: ^TreePath, column: ^TreeViewColumn)
-test_expand_row_func_ptr_anon_249 :: #type proc "c" (tree_view: ^TreeView, iter: ^TreeIter, path: ^TreePath) -> glib.boolean
-test_collapse_row_func_ptr_anon_250 :: #type proc "c" (tree_view: ^TreeView, iter: ^TreeIter, path: ^TreePath) -> glib.boolean
-row_expanded_func_ptr_anon_251 :: #type proc "c" (tree_view: ^TreeView, iter: ^TreeIter, path: ^TreePath)
-row_collapsed_func_ptr_anon_252 :: #type proc "c" (tree_view: ^TreeView, iter: ^TreeIter, path: ^TreePath)
-columns_changed_func_ptr_anon_253 :: #type proc "c" (tree_view: ^TreeView)
-cursor_changed_func_ptr_anon_254 :: #type proc "c" (tree_view: ^TreeView)
-move_cursor_func_ptr_anon_255 :: #type proc "c" (tree_view: ^TreeView, step: MovementStep, count: i32, extend: glib.boolean, modify: glib.boolean) -> glib.boolean
-select_all_func_ptr_anon_256 :: #type proc "c" (tree_view: ^TreeView) -> glib.boolean
-unselect_all_func_ptr_anon_257 :: #type proc "c" (tree_view: ^TreeView) -> glib.boolean
-select_cursor_row_func_ptr_anon_258 :: #type proc "c" (tree_view: ^TreeView, start_editing: glib.boolean) -> glib.boolean
-toggle_cursor_row_func_ptr_anon_259 :: #type proc "c" (tree_view: ^TreeView) -> glib.boolean
-expand_collapse_cursor_row_func_ptr_anon_260 :: #type proc "c" (tree_view: ^TreeView, logical: glib.boolean, expand: glib.boolean, open_all: glib.boolean) -> glib.boolean
-select_cursor_parent_func_ptr_anon_261 :: #type proc "c" (tree_view: ^TreeView) -> glib.boolean
-start_interactive_search_func_ptr_anon_262 :: #type proc "c" (tree_view: ^TreeView) -> glib.boolean
+row_activated_func_ptr_anon_256 :: #type proc "c" (tree_view: ^TreeView, path_p: ^TreePath, column: ^TreeViewColumn)
+test_expand_row_func_ptr_anon_257 :: #type proc "c" (tree_view: ^TreeView, iter: ^TreeIter, path_p: ^TreePath) -> glib.boolean
+test_collapse_row_func_ptr_anon_258 :: #type proc "c" (tree_view: ^TreeView, iter: ^TreeIter, path_p: ^TreePath) -> glib.boolean
+row_expanded_func_ptr_anon_259 :: #type proc "c" (tree_view: ^TreeView, iter: ^TreeIter, path_p: ^TreePath)
+row_collapsed_func_ptr_anon_260 :: #type proc "c" (tree_view: ^TreeView, iter: ^TreeIter, path_p: ^TreePath)
+columns_changed_func_ptr_anon_261 :: #type proc "c" (tree_view: ^TreeView)
+cursor_changed_func_ptr_anon_262 :: #type proc "c" (tree_view: ^TreeView)
+move_cursor_func_ptr_anon_263 :: #type proc "c" (tree_view: ^TreeView, step: MovementStep, count: i32, extend: glib.boolean, modify: glib.boolean) -> glib.boolean
+select_all_func_ptr_anon_264 :: #type proc "c" (tree_view: ^TreeView) -> glib.boolean
+unselect_all_func_ptr_anon_265 :: #type proc "c" (tree_view: ^TreeView) -> glib.boolean
+select_cursor_row_func_ptr_anon_266 :: #type proc "c" (tree_view: ^TreeView, start_editing: glib.boolean) -> glib.boolean
+toggle_cursor_row_func_ptr_anon_267 :: #type proc "c" (tree_view: ^TreeView) -> glib.boolean
+expand_collapse_cursor_row_func_ptr_anon_268 :: #type proc "c" (tree_view: ^TreeView, logical: glib.boolean, expand: glib.boolean, open_all: glib.boolean) -> glib.boolean
+select_cursor_parent_func_ptr_anon_269 :: #type proc "c" (tree_view: ^TreeView) -> glib.boolean
+start_interactive_search_func_ptr_anon_270 :: #type proc "c" (tree_view: ^TreeView) -> glib.boolean
 _GtkTreeViewClass :: struct {
     parent_class: WidgetClass,
-    row_activated: row_activated_func_ptr_anon_248,
-    test_expand_row: test_expand_row_func_ptr_anon_249,
-    test_collapse_row: test_collapse_row_func_ptr_anon_250,
-    row_expanded: row_expanded_func_ptr_anon_251,
-    row_collapsed: row_collapsed_func_ptr_anon_252,
-    columns_changed: columns_changed_func_ptr_anon_253,
-    cursor_changed: cursor_changed_func_ptr_anon_254,
-    move_cursor: move_cursor_func_ptr_anon_255,
-    select_all: select_all_func_ptr_anon_256,
-    unselect_all: unselect_all_func_ptr_anon_257,
-    select_cursor_row: select_cursor_row_func_ptr_anon_258,
-    toggle_cursor_row: toggle_cursor_row_func_ptr_anon_259,
-    expand_collapse_cursor_row: expand_collapse_cursor_row_func_ptr_anon_260,
-    select_cursor_parent: select_cursor_parent_func_ptr_anon_261,
-    start_interactive_search: start_interactive_search_func_ptr_anon_262,
+    row_activated: row_activated_func_ptr_anon_256,
+    test_expand_row: test_expand_row_func_ptr_anon_257,
+    test_collapse_row: test_collapse_row_func_ptr_anon_258,
+    row_expanded: row_expanded_func_ptr_anon_259,
+    row_collapsed: row_collapsed_func_ptr_anon_260,
+    columns_changed: columns_changed_func_ptr_anon_261,
+    cursor_changed: cursor_changed_func_ptr_anon_262,
+    move_cursor: move_cursor_func_ptr_anon_263,
+    select_all: select_all_func_ptr_anon_264,
+    unselect_all: unselect_all_func_ptr_anon_265,
+    select_cursor_row: select_cursor_row_func_ptr_anon_266,
+    toggle_cursor_row: toggle_cursor_row_func_ptr_anon_267,
+    expand_collapse_cursor_row: expand_collapse_cursor_row_func_ptr_anon_268,
+    select_cursor_parent: select_cursor_parent_func_ptr_anon_269,
+    start_interactive_search: start_interactive_search_func_ptr_anon_270,
     _reserved: [16]glib.pointer,
 }
 TreeViewClass :: _GtkTreeViewClass
 _GtkTreeSelection :: struct #packed {}
 TreeSelection :: _GtkTreeSelection
 TreeViewColumnDropFunc :: #type proc "c" (tree_view: ^TreeView, column: ^TreeViewColumn, prev_column: ^TreeViewColumn, next_column: ^TreeViewColumn, data: glib.pointer) -> glib.boolean
-TreeViewMappingFunc :: #type proc "c" (tree_view: ^TreeView, path: ^TreePath, user_data: glib.pointer)
+TreeViewMappingFunc :: #type proc "c" (tree_view: ^TreeView, path_p: ^TreePath, user_data: glib.pointer)
 TreeViewSearchEqualFunc :: #type proc "c" (model: ^TreeModel, column: i32, key: cstring, iter: ^TreeIter, search_data: glib.pointer) -> glib.boolean
 TreeViewRowSeparatorFunc :: #type proc "c" (model: ^TreeModel, iter: ^TreeIter, data: glib.pointer) -> glib.boolean
 TreeView_autoptr :: ^TreeView
@@ -2182,14 +2343,14 @@ _GtkComboBox :: struct {
     parent_instance: Widget,
 }
 ComboBox :: _GtkComboBox
-changed_func_ptr_anon_263 :: #type proc "c" (combo_box: ^ComboBox)
-format_entry_text_func_ptr_anon_264 :: #type proc "c" (combo_box: ^ComboBox, path: cstring) -> cstring
-activate_func_ptr_anon_265 :: #type proc "c" (combo_box: ^ComboBox)
+changed_func_ptr_anon_271 :: #type proc "c" (combo_box: ^ComboBox)
+format_entry_text_func_ptr_anon_272 :: #type proc "c" (combo_box: ^ComboBox, path_p: cstring) -> cstring
+activate_func_ptr_anon_273 :: #type proc "c" (combo_box: ^ComboBox)
 _GtkComboBoxClass :: struct {
     parent_class: WidgetClass,
-    changed: changed_func_ptr_anon_263,
-    format_entry_text: format_entry_text_func_ptr_anon_264,
-    activate: activate_func_ptr_anon_265,
+    changed: changed_func_ptr_anon_271,
+    format_entry_text: format_entry_text_func_ptr_anon_272,
+    activate: activate_func_ptr_anon_273,
     padding: [7]glib.pointer,
 }
 ComboBoxClass :: _GtkComboBoxClass
@@ -2304,7 +2465,7 @@ CustomSorterClass_autoptr :: ^CustomSorterClass
 CustomSorterClass_listautoptr :: ^glib.List
 CustomSorterClass_slistautoptr :: ^glib.SList
 CustomSorterClass_queueautoptr :: ^glib.Queue
-DebugFlags :: enum u32 {DEBUG_TEXT = 1, DEBUG_TREE = 2, DEBUG_KEYBINDINGS = 4, DEBUG_MODULES = 8, DEBUG_GEOMETRY = 16, DEBUG_ICONTHEME = 32, DEBUG_PRINTING = 64, DEBUG_BUILDER = 128, DEBUG_SIZE_REQUEST = 256, DEBUG_NO_CSS_CACHE = 512, DEBUG_INTERACTIVE = 1024, DEBUG_ACTIONS = 4096, DEBUG_LAYOUT = 8192, DEBUG_SNAPSHOT = 16384, DEBUG_CONSTRAINTS = 32768, DEBUG_BUILDER_OBJECTS = 65536, DEBUG_A11Y = 131072, DEBUG_ICONFALLBACK = 262144, DEBUG_INVERT_TEXT_DIR = 524288 }
+DebugFlags :: enum u32 {DEBUG_TEXT = 1, DEBUG_TREE = 2, DEBUG_KEYBINDINGS = 4, DEBUG_MODULES = 8, DEBUG_GEOMETRY = 16, DEBUG_ICONTHEME = 32, DEBUG_PRINTING = 64, DEBUG_BUILDER = 128, DEBUG_SIZE_REQUEST = 256, DEBUG_NO_CSS_CACHE = 512, DEBUG_INTERACTIVE = 1024, DEBUG_ACTIONS = 4096, DEBUG_LAYOUT = 8192, DEBUG_SNAPSHOT = 16384, DEBUG_CONSTRAINTS = 32768, DEBUG_BUILDER_OBJECTS = 65536, DEBUG_A11Y = 131072, DEBUG_ICONFALLBACK = 262144, DEBUG_INVERT_TEXT_DIR = 524288, DEBUG_CSS = 1048576 }
 DialogError :: enum u32 {FAILED = 0, CANCELLED = 1, DISMISSED = 2 }
 _GtkDirectoryList :: struct #packed {}
 DirectoryList :: _GtkDirectoryList
@@ -2340,10 +2501,10 @@ _GtkDrawingArea :: struct {
     widget: Widget,
 }
 DrawingArea :: _GtkDrawingArea
-resize_func_ptr_anon_266 :: #type proc "c" (area: ^DrawingArea, width: i32, height: i32)
+resize_func_ptr_anon_274 :: #type proc "c" (area: ^DrawingArea, width: i32, height: i32)
 _GtkDrawingAreaClass :: struct {
     parent_class: WidgetClass,
-    resize: resize_func_ptr_anon_266,
+    resize: resize_func_ptr_anon_274,
     padding: [8]glib.pointer,
 }
 DrawingAreaClass :: _GtkDrawingAreaClass
@@ -2500,22 +2661,22 @@ _GtkNativeDialog :: struct {
     parent_instance: gobj.Object,
 }
 NativeDialog :: _GtkNativeDialog
-response_func_ptr_anon_267 :: #type proc "c" (self: ^NativeDialog, response_id: i32)
-show_func_ptr_anon_268 :: #type proc "c" (self: ^NativeDialog)
-hide_func_ptr_anon_269 :: #type proc "c" (self: ^NativeDialog)
-_gtk_reserved1_func_ptr_anon_270 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_271 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_272 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_273 :: #type proc "c" ()
+response_func_ptr_anon_275 :: #type proc "c" (self: ^NativeDialog, response_id: i32)
+show_func_ptr_anon_276 :: #type proc "c" (self: ^NativeDialog)
+hide_func_ptr_anon_277 :: #type proc "c" (self: ^NativeDialog)
+_gtk_reserved1_func_ptr_anon_278 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_279 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_280 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_281 :: #type proc "c" ()
 _GtkNativeDialogClass :: struct {
     parent_class: gobj.ObjectClass,
-    response: response_func_ptr_anon_267,
-    show: show_func_ptr_anon_268,
-    hide: hide_func_ptr_anon_269,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_270,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_271,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_272,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_273,
+    response: response_func_ptr_anon_275,
+    show: show_func_ptr_anon_276,
+    hide: hide_func_ptr_anon_277,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_278,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_279,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_280,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_281,
 }
 NativeDialogClass :: _GtkNativeDialogClass
 NativeDialog_autoptr :: ^NativeDialog
@@ -2617,10 +2778,10 @@ _GtkFlowBoxChild :: struct {
     parent_instance: Widget,
 }
 FlowBoxChild :: _GtkFlowBoxChild
-activate_func_ptr_anon_274 :: #type proc "c" (child: ^FlowBoxChild)
+activate_func_ptr_anon_282 :: #type proc "c" (child: ^FlowBoxChild)
 _GtkFlowBoxChildClass :: struct {
     parent_class: WidgetClass,
-    activate: activate_func_ptr_anon_274,
+    activate: activate_func_ptr_anon_282,
     padding: [8]glib.pointer,
 }
 FlowBoxChildClass :: _GtkFlowBoxChildClass
@@ -2646,22 +2807,22 @@ FontFilterFunc :: #type proc "c" (family: ^pango.FontFamily, face: ^pango.FontFa
 FontChooserLevel :: enum u32 {FAMILY = 0, STYLE = 1, SIZE = 2, VARIATIONS = 4, FEATURES = 8 }
 _GtkFontChooser :: struct #packed {}
 FontChooser :: _GtkFontChooser
-et_font_family_func_ptr_anon_275 :: #type proc "c" (fontchooser: ^FontChooser) -> ^pango.FontFamily
-et_font_face_func_ptr_anon_276 :: #type proc "c" (fontchooser: ^FontChooser) -> ^pango.FontFace
-et_font_size_func_ptr_anon_277 :: #type proc "c" (fontchooser: ^FontChooser) -> i32
-set_filter_func_func_ptr_anon_278 :: #type proc "c" (fontchooser: ^FontChooser, filter: FontFilterFunc, user_data: glib.pointer, destroy: glib.DestroyNotify)
-font_activated_func_ptr_anon_279 :: #type proc "c" (chooser: ^FontChooser, fontname: cstring)
-set_font_map_func_ptr_anon_280 :: #type proc "c" (fontchooser: ^FontChooser, fontmap: ^pango.FontMap)
-et_font_map_func_ptr_anon_281 :: #type proc "c" (fontchooser: ^FontChooser) -> ^pango.FontMap
+et_font_family_func_ptr_anon_283 :: #type proc "c" (fontchooser: ^FontChooser) -> ^pango.FontFamily
+et_font_face_func_ptr_anon_284 :: #type proc "c" (fontchooser: ^FontChooser) -> ^pango.FontFace
+et_font_size_func_ptr_anon_285 :: #type proc "c" (fontchooser: ^FontChooser) -> i32
+set_filter_func_func_ptr_anon_286 :: #type proc "c" (fontchooser: ^FontChooser, filter: FontFilterFunc, user_data: glib.pointer, destroy: glib.DestroyNotify)
+font_activated_func_ptr_anon_287 :: #type proc "c" (chooser: ^FontChooser, fontname: cstring)
+set_font_map_func_ptr_anon_288 :: #type proc "c" (fontchooser: ^FontChooser, fontmap: ^pango.FontMap)
+et_font_map_func_ptr_anon_289 :: #type proc "c" (fontchooser: ^FontChooser) -> ^pango.FontMap
 _GtkFontChooserIface :: struct {
     base_iface: gobj.TypeInterface,
-    get_font_family: et_font_family_func_ptr_anon_275,
-    get_font_face: et_font_face_func_ptr_anon_276,
-    get_font_size: et_font_size_func_ptr_anon_277,
-    set_filter_func: set_filter_func_func_ptr_anon_278,
-    font_activated: font_activated_func_ptr_anon_279,
-    set_font_map: set_font_map_func_ptr_anon_280,
-    get_font_map: et_font_map_func_ptr_anon_281,
+    get_font_family: et_font_family_func_ptr_anon_283,
+    get_font_face: et_font_face_func_ptr_anon_284,
+    get_font_size: et_font_size_func_ptr_anon_285,
+    set_filter_func: set_filter_func_func_ptr_anon_286,
+    font_activated: font_activated_func_ptr_anon_287,
+    set_font_map: set_font_map_func_ptr_anon_288,
+    get_font_map: et_font_map_func_ptr_anon_289,
     padding: [10]glib.pointer,
 }
 FontChooserIface :: _GtkFontChooserIface
@@ -2712,10 +2873,10 @@ _GtkFrame :: struct {
     parent_instance: Widget,
 }
 Frame :: _GtkFrame
-compute_child_allocation_func_ptr_anon_282 :: #type proc "c" (frame: ^Frame, allocation: ^Allocation)
+compute_child_allocation_func_ptr_anon_290 :: #type proc "c" (frame: ^Frame, allocation: ^Allocation)
 _GtkFrameClass :: struct {
     parent_class: WidgetClass,
-    compute_child_allocation: compute_child_allocation_func_ptr_anon_282,
+    compute_child_allocation: compute_child_allocation_func_ptr_anon_290,
     padding: [8]glib.pointer,
 }
 FrameClass :: _GtkFrameClass
@@ -2801,14 +2962,14 @@ _GtkGLArea :: struct {
     parent_instance: Widget,
 }
 GLArea :: _GtkGLArea
-render_func_ptr_anon_283 :: #type proc "c" (area: ^GLArea, context_p: ^GLContext) -> glib.boolean
-resize_func_ptr_anon_284 :: #type proc "c" (area: ^GLArea, width: i32, height: i32)
-create_context_func_ptr_anon_285 :: #type proc "c" (area: ^GLArea) -> ^GLContext
+render_func_ptr_anon_291 :: #type proc "c" (area: ^GLArea, context_p: ^GLContext) -> glib.boolean
+resize_func_ptr_anon_292 :: #type proc "c" (area: ^GLArea, width: i32, height: i32)
+create_context_func_ptr_anon_293 :: #type proc "c" (area: ^GLArea) -> ^GLContext
 _GtkGLAreaClass :: struct {
     parent_class: WidgetClass,
-    render: render_func_ptr_anon_283,
-    resize: resize_func_ptr_anon_284,
-    create_context: create_context_func_ptr_anon_285,
+    render: render_func_ptr_anon_291,
+    resize: resize_func_ptr_anon_292,
+    create_context: create_context_func_ptr_anon_293,
     _padding: [8]glib.pointer,
 }
 GLAreaClass :: _GtkGLAreaClass
@@ -2816,6 +2977,20 @@ GLArea_autoptr :: ^GLArea
 GLArea_listautoptr :: ^glib.List
 GLArea_slistautoptr :: ^glib.SList
 GLArea_queueautoptr :: ^glib.Queue
+_GtkGraphicsOffload :: struct #packed {}
+GraphicsOffload :: _GtkGraphicsOffload
+GraphicsOffloadClass :: struct {
+    parent_class: WidgetClass,
+}
+GraphicsOffload_autoptr :: ^GraphicsOffload
+GraphicsOffload_listautoptr :: ^glib.List
+GraphicsOffload_slistautoptr :: ^glib.SList
+GraphicsOffload_queueautoptr :: ^glib.Queue
+GraphicsOffloadClass_autoptr :: ^GraphicsOffloadClass
+GraphicsOffloadClass_listautoptr :: ^glib.List
+GraphicsOffloadClass_slistautoptr :: ^glib.SList
+GraphicsOffloadClass_queueautoptr :: ^glib.Queue
+GraphicsOffloadEnabled :: enum u32 {GRAPHICS_OFFLOAD_ENABLED = 0, GRAPHICS_OFFLOAD_DISABLED = 1 }
 _GtkGrid :: struct {
     parent_instance: Widget,
 }
@@ -2877,7 +3052,7 @@ _GtkIconPaintable :: struct #packed {}
 IconPaintable :: _GtkIconPaintable
 _GtkIconTheme :: struct #packed {}
 IconTheme :: _GtkIconTheme
-IconLookupFlags :: enum u32 {ICON_LOOKUP_FORCE_REGULAR = 1, ICON_LOOKUP_FORCE_SYMBOLIC = 2, ICON_LOOKUP_PRELOAD = 4 }
+IconLookupFlags :: enum u32 {ICON_LOOKUP_NONE = 0, ICON_LOOKUP_FORCE_REGULAR = 1, ICON_LOOKUP_FORCE_SYMBOLIC = 2, ICON_LOOKUP_PRELOAD = 4 }
 IconThemeError :: enum u32 {ICON_THEME_NOT_FOUND = 0, ICON_THEME_FAILED = 1 }
 IconPaintable_autoptr :: ^IconPaintable
 IconPaintable_listautoptr :: ^glib.List
@@ -2893,7 +3068,7 @@ Tooltip_slistautoptr :: ^glib.SList
 Tooltip_queueautoptr :: ^glib.Queue
 _GtkIconView :: struct #packed {}
 IconView :: _GtkIconView
-IconViewForeachFunc :: #type proc "c" (icon_view: ^IconView, path: ^TreePath, data: glib.pointer)
+IconViewForeachFunc :: #type proc "c" (icon_view: ^IconView, path_p: ^TreePath, data: glib.pointer)
 IconViewDropPosition :: enum u32 {ICON_VIEW_NO_DROP = 0, ICON_VIEW_DROP_INTO = 1, ICON_VIEW_DROP_LEFT = 2, ICON_VIEW_DROP_RIGHT = 3, ICON_VIEW_DROP_ABOVE = 4, ICON_VIEW_DROP_BELOW = 5 }
 IconView_autoptr :: ^IconView
 IconView_listautoptr :: ^glib.List
@@ -2921,16 +3096,16 @@ _GtkIMMulticontext :: struct {
     priv: ^IMMulticontextPrivate,
 }
 IMMulticontext :: _GtkIMMulticontext
-_gtk_reserved1_func_ptr_anon_286 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_287 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_288 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_289 :: #type proc "c" ()
+_gtk_reserved1_func_ptr_anon_294 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_295 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_296 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_297 :: #type proc "c" ()
 _GtkIMMulticontextClass :: struct {
     parent_class: IMContextClass,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_286,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_287,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_288,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_289,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_294,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_295,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_296,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_297,
 }
 IMMulticontextClass :: _GtkIMMulticontextClass
 IMMulticontext_autoptr :: ^IMMulticontext
@@ -2981,10 +3156,10 @@ _GtkListBoxRow :: struct {
     parent_instance: Widget,
 }
 ListBoxRow :: _GtkListBoxRow
-activate_func_ptr_anon_290 :: #type proc "c" (row: ^ListBoxRow)
+activate_func_ptr_anon_298 :: #type proc "c" (row: ^ListBoxRow)
 _GtkListBoxRowClass :: struct {
     parent_class: WidgetClass,
-    activate: activate_func_ptr_anon_290,
+    activate: activate_func_ptr_anon_298,
     padding: [8]glib.pointer,
 }
 ListBoxRowClass :: _GtkListBoxRowClass
@@ -3045,36 +3220,36 @@ _GtkMediaStream :: struct {
     parent_instance: gobj.Object,
 }
 MediaStream :: _GtkMediaStream
-play_func_ptr_anon_291 :: #type proc "c" (self: ^MediaStream) -> glib.boolean
-pause_func_ptr_anon_292 :: #type proc "c" (self: ^MediaStream)
-seek_func_ptr_anon_293 :: #type proc "c" (self: ^MediaStream, timestamp: glib.int64)
-update_audio_func_ptr_anon_294 :: #type proc "c" (self: ^MediaStream, muted: glib.boolean, volume: f64)
-realize_func_ptr_anon_295 :: #type proc "c" (self: ^MediaStream, surface: ^Surface)
-unrealize_func_ptr_anon_296 :: #type proc "c" (self: ^MediaStream, surface: ^Surface)
-_gtk_reserved1_func_ptr_anon_297 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_298 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_299 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_300 :: #type proc "c" ()
-_gtk_reserved5_func_ptr_anon_301 :: #type proc "c" ()
-_gtk_reserved6_func_ptr_anon_302 :: #type proc "c" ()
-_gtk_reserved7_func_ptr_anon_303 :: #type proc "c" ()
-_gtk_reserved8_func_ptr_anon_304 :: #type proc "c" ()
+play_func_ptr_anon_299 :: #type proc "c" (self: ^MediaStream) -> glib.boolean
+pause_func_ptr_anon_300 :: #type proc "c" (self: ^MediaStream)
+seek_func_ptr_anon_301 :: #type proc "c" (self: ^MediaStream, timestamp: glib.int64)
+update_audio_func_ptr_anon_302 :: #type proc "c" (self: ^MediaStream, muted: glib.boolean, volume: f64)
+realize_func_ptr_anon_303 :: #type proc "c" (self: ^MediaStream, surface: ^Surface)
+unrealize_func_ptr_anon_304 :: #type proc "c" (self: ^MediaStream, surface: ^Surface)
+_gtk_reserved1_func_ptr_anon_305 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_306 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_307 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_308 :: #type proc "c" ()
+_gtk_reserved5_func_ptr_anon_309 :: #type proc "c" ()
+_gtk_reserved6_func_ptr_anon_310 :: #type proc "c" ()
+_gtk_reserved7_func_ptr_anon_311 :: #type proc "c" ()
+_gtk_reserved8_func_ptr_anon_312 :: #type proc "c" ()
 _GtkMediaStreamClass :: struct {
     parent_class: gobj.ObjectClass,
-    play: play_func_ptr_anon_291,
-    pause: pause_func_ptr_anon_292,
-    seek: seek_func_ptr_anon_293,
-    update_audio: update_audio_func_ptr_anon_294,
-    realize: realize_func_ptr_anon_295,
-    unrealize: unrealize_func_ptr_anon_296,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_297,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_298,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_299,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_300,
-    _gtk_reserved5: _gtk_reserved5_func_ptr_anon_301,
-    _gtk_reserved6: _gtk_reserved6_func_ptr_anon_302,
-    _gtk_reserved7: _gtk_reserved7_func_ptr_anon_303,
-    _gtk_reserved8: _gtk_reserved8_func_ptr_anon_304,
+    play: play_func_ptr_anon_299,
+    pause: pause_func_ptr_anon_300,
+    seek: seek_func_ptr_anon_301,
+    update_audio: update_audio_func_ptr_anon_302,
+    realize: realize_func_ptr_anon_303,
+    unrealize: unrealize_func_ptr_anon_304,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_305,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_306,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_307,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_308,
+    _gtk_reserved5: _gtk_reserved5_func_ptr_anon_309,
+    _gtk_reserved6: _gtk_reserved6_func_ptr_anon_310,
+    _gtk_reserved7: _gtk_reserved7_func_ptr_anon_311,
+    _gtk_reserved8: _gtk_reserved8_func_ptr_anon_312,
 }
 MediaStreamClass :: _GtkMediaStreamClass
 MediaStream_autoptr :: ^MediaStream
@@ -3102,20 +3277,20 @@ _GtkMediaFile :: struct {
     parent_instance: MediaStream,
 }
 MediaFile :: _GtkMediaFile
-open_func_ptr_anon_305 :: #type proc "c" (self: ^MediaFile)
-close_func_ptr_anon_306 :: #type proc "c" (self: ^MediaFile)
-_gtk_reserved1_func_ptr_anon_307 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_308 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_309 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_310 :: #type proc "c" ()
+open_func_ptr_anon_313 :: #type proc "c" (self: ^MediaFile)
+close_func_ptr_anon_314 :: #type proc "c" (self: ^MediaFile)
+_gtk_reserved1_func_ptr_anon_315 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_316 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_317 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_318 :: #type proc "c" ()
 _GtkMediaFileClass :: struct {
     parent_class: MediaStreamClass,
-    open: open_func_ptr_anon_305,
-    close: close_func_ptr_anon_306,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_307,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_308,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_309,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_310,
+    open: open_func_ptr_anon_313,
+    close: close_func_ptr_anon_314,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_315,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_316,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_317,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_318,
 }
 MediaFileClass :: _GtkMediaFileClass
 MediaFile_autoptr :: ^MediaFile
@@ -3130,12 +3305,12 @@ _GtkPopover :: struct {
     parent: Widget,
 }
 Popover :: _GtkPopover
-closed_func_ptr_anon_311 :: #type proc "c" (popover: ^Popover)
-activate_default_func_ptr_anon_312 :: #type proc "c" (popover: ^Popover)
+closed_func_ptr_anon_319 :: #type proc "c" (popover: ^Popover)
+activate_default_func_ptr_anon_320 :: #type proc "c" (popover: ^Popover)
 _GtkPopoverClass :: struct {
     parent_class: WidgetClass,
-    closed: closed_func_ptr_anon_311,
-    activate_default: activate_default_func_ptr_anon_312,
+    closed: closed_func_ptr_anon_319,
+    activate_default: activate_default_func_ptr_anon_320,
     reserved: [8]glib.pointer,
 }
 PopoverClass :: _GtkPopoverClass
@@ -3168,16 +3343,16 @@ _GtkMountOperation :: struct {
     priv: ^MountOperationPrivate,
 }
 MountOperation :: _GtkMountOperation
-_gtk_reserved1_func_ptr_anon_313 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_314 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_315 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_316 :: #type proc "c" ()
+_gtk_reserved1_func_ptr_anon_321 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_322 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_323 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_324 :: #type proc "c" ()
 _GtkMountOperationClass :: struct {
     parent_class: gio.MountOperationClass,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_313,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_314,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_315,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_316,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_321,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_322,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_323,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_324,
 }
 MountOperationClass :: _GtkMountOperationClass
 MountOperation_autoptr :: ^MountOperation
@@ -3392,7 +3567,6 @@ PictureClass_slistautoptr :: ^glib.SList
 PictureClass_queueautoptr :: ^glib.Queue
 _GtkPopoverMenu :: struct #packed {}
 PopoverMenu :: _GtkPopoverMenu
-PopoverMenuFlags :: enum u32 {POPOVER_MENU_NESTED = 1 }
 PopoverMenu_autoptr :: ^PopoverMenu
 PopoverMenu_listautoptr :: ^glib.List
 PopoverMenu_slistautoptr :: ^glib.SList
@@ -3403,12 +3577,6 @@ PopoverMenuBar_autoptr :: ^PopoverMenuBar
 PopoverMenuBar_listautoptr :: ^glib.List
 PopoverMenuBar_slistautoptr :: ^glib.SList
 PopoverMenuBar_queueautoptr :: ^glib.Queue
-_GtkPrintContext :: struct #packed {}
-PrintContext :: _GtkPrintContext
-PrintContext_autoptr :: ^PrintContext
-PrintContext_listautoptr :: ^glib.List
-PrintContext_slistautoptr :: ^glib.SList
-PrintContext_queueautoptr :: ^glib.Queue
 _GtkPrintSettings :: struct #packed {}
 PrintSettings :: _GtkPrintSettings
 PrintSettingsFunc :: #type proc "c" (key: cstring, value: cstring, user_data: glib.pointer)
@@ -3421,36 +3589,57 @@ PrintSettings_autoptr :: ^PrintSettings
 PrintSettings_listautoptr :: ^glib.List
 PrintSettings_slistautoptr :: ^glib.SList
 PrintSettings_queueautoptr :: ^glib.Queue
+_GtkPrintSetup :: struct #packed {}
+PrintSetup :: _GtkPrintSetup
+_GtkPrintDialog :: struct #packed {}
+PrintDialog :: _GtkPrintDialog
+PrintDialogClass :: struct {
+    parent_class: gobj.ObjectClass,
+}
+PrintDialog_autoptr :: ^PrintDialog
+PrintDialog_listautoptr :: ^glib.List
+PrintDialog_slistautoptr :: ^glib.SList
+PrintDialog_queueautoptr :: ^glib.Queue
+PrintDialogClass_autoptr :: ^PrintDialogClass
+PrintDialogClass_listautoptr :: ^glib.List
+PrintDialogClass_slistautoptr :: ^glib.SList
+PrintDialogClass_queueautoptr :: ^glib.Queue
+_GtkPrintContext :: struct #packed {}
+PrintContext :: _GtkPrintContext
+PrintContext_autoptr :: ^PrintContext
+PrintContext_listautoptr :: ^glib.List
+PrintContext_slistautoptr :: ^glib.SList
+PrintContext_queueautoptr :: ^glib.Queue
 _GtkPrintOperationPreview :: struct #packed {}
 PrintOperationPreview :: _GtkPrintOperationPreview
-ready_func_ptr_anon_317 :: #type proc "c" (preview: ^PrintOperationPreview, context_p: ^PrintContext)
-ot_page_size_func_ptr_anon_318 :: #type proc "c" (preview: ^PrintOperationPreview, context_p: ^PrintContext, page_setup: ^PageSetup)
-render_page_func_ptr_anon_319 :: #type proc "c" (preview: ^PrintOperationPreview, page_nr: i32)
-is_selected_func_ptr_anon_320 :: #type proc "c" (preview: ^PrintOperationPreview, page_nr: i32) -> glib.boolean
-end_preview_func_ptr_anon_321 :: #type proc "c" (preview: ^PrintOperationPreview)
-_gtk_reserved1_func_ptr_anon_322 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_323 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_324 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_325 :: #type proc "c" ()
-_gtk_reserved5_func_ptr_anon_326 :: #type proc "c" ()
-_gtk_reserved6_func_ptr_anon_327 :: #type proc "c" ()
-_gtk_reserved7_func_ptr_anon_328 :: #type proc "c" ()
-_gtk_reserved8_func_ptr_anon_329 :: #type proc "c" ()
+ready_func_ptr_anon_325 :: #type proc "c" (preview: ^PrintOperationPreview, context_p: ^PrintContext)
+ot_page_size_func_ptr_anon_326 :: #type proc "c" (preview: ^PrintOperationPreview, context_p: ^PrintContext, page_setup: ^PageSetup)
+render_page_func_ptr_anon_327 :: #type proc "c" (preview: ^PrintOperationPreview, page_nr: i32)
+is_selected_func_ptr_anon_328 :: #type proc "c" (preview: ^PrintOperationPreview, page_nr: i32) -> glib.boolean
+end_preview_func_ptr_anon_329 :: #type proc "c" (preview: ^PrintOperationPreview)
+_gtk_reserved1_func_ptr_anon_330 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_331 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_332 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_333 :: #type proc "c" ()
+_gtk_reserved5_func_ptr_anon_334 :: #type proc "c" ()
+_gtk_reserved6_func_ptr_anon_335 :: #type proc "c" ()
+_gtk_reserved7_func_ptr_anon_336 :: #type proc "c" ()
+_gtk_reserved8_func_ptr_anon_337 :: #type proc "c" ()
 _GtkPrintOperationPreviewIface :: struct {
     g_iface: gobj.TypeInterface,
-    ready: ready_func_ptr_anon_317,
-    got_page_size: ot_page_size_func_ptr_anon_318,
-    render_page: render_page_func_ptr_anon_319,
-    is_selected: is_selected_func_ptr_anon_320,
-    end_preview: end_preview_func_ptr_anon_321,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_322,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_323,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_324,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_325,
-    _gtk_reserved5: _gtk_reserved5_func_ptr_anon_326,
-    _gtk_reserved6: _gtk_reserved6_func_ptr_anon_327,
-    _gtk_reserved7: _gtk_reserved7_func_ptr_anon_328,
-    _gtk_reserved8: _gtk_reserved8_func_ptr_anon_329,
+    ready: ready_func_ptr_anon_325,
+    got_page_size: ot_page_size_func_ptr_anon_326,
+    render_page: render_page_func_ptr_anon_327,
+    is_selected: is_selected_func_ptr_anon_328,
+    end_preview: end_preview_func_ptr_anon_329,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_330,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_331,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_332,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_333,
+    _gtk_reserved5: _gtk_reserved5_func_ptr_anon_334,
+    _gtk_reserved6: _gtk_reserved6_func_ptr_anon_335,
+    _gtk_reserved7: _gtk_reserved7_func_ptr_anon_336,
+    _gtk_reserved8: _gtk_reserved8_func_ptr_anon_337,
 }
 PrintOperationPreviewIface :: _GtkPrintOperationPreviewIface
 PrintOperationPreview_autoptr :: ^PrintOperationPreview
@@ -3465,30 +3654,30 @@ _GtkPrintOperation :: struct {
 }
 PrintOperation :: _GtkPrintOperation
 PrintOperationResult :: enum u32 {ERROR = 0, APPLY = 1, CANCEL = 2, IN_PROGRESS = 3 }
-done_func_ptr_anon_330 :: #type proc "c" (operation: ^PrintOperation, result: PrintOperationResult)
-begin_print_func_ptr_anon_331 :: #type proc "c" (operation: ^PrintOperation, context_p: ^PrintContext)
-paginate_func_ptr_anon_332 :: #type proc "c" (operation: ^PrintOperation, context_p: ^PrintContext) -> glib.boolean
-request_page_setup_func_ptr_anon_333 :: #type proc "c" (operation: ^PrintOperation, context_p: ^PrintContext, page_nr: i32, setup: ^PageSetup)
-draw_page_func_ptr_anon_334 :: #type proc "c" (operation: ^PrintOperation, context_p: ^PrintContext, page_nr: i32)
-end_print_func_ptr_anon_335 :: #type proc "c" (operation: ^PrintOperation, context_p: ^PrintContext)
-status_changed_func_ptr_anon_336 :: #type proc "c" (operation: ^PrintOperation)
-create_custom_widget_func_ptr_anon_337 :: #type proc "c" (operation: ^PrintOperation) -> ^Widget
-custom_widget_apply_func_ptr_anon_338 :: #type proc "c" (operation: ^PrintOperation, widget: ^Widget)
-preview_func_ptr_anon_339 :: #type proc "c" (operation: ^PrintOperation, preview: ^PrintOperationPreview, context_p: ^PrintContext, parent: ^Window) -> glib.boolean
-update_custom_widget_func_ptr_anon_340 :: #type proc "c" (operation: ^PrintOperation, widget: ^Widget, setup: ^PageSetup, settings: [^]PrintSettings)
+done_func_ptr_anon_338 :: #type proc "c" (operation: ^PrintOperation, result: PrintOperationResult)
+begin_print_func_ptr_anon_339 :: #type proc "c" (operation: ^PrintOperation, context_p: ^PrintContext)
+paginate_func_ptr_anon_340 :: #type proc "c" (operation: ^PrintOperation, context_p: ^PrintContext) -> glib.boolean
+request_page_setup_func_ptr_anon_341 :: #type proc "c" (operation: ^PrintOperation, context_p: ^PrintContext, page_nr: i32, setup: ^PageSetup)
+draw_page_func_ptr_anon_342 :: #type proc "c" (operation: ^PrintOperation, context_p: ^PrintContext, page_nr: i32)
+end_print_func_ptr_anon_343 :: #type proc "c" (operation: ^PrintOperation, context_p: ^PrintContext)
+status_changed_func_ptr_anon_344 :: #type proc "c" (operation: ^PrintOperation)
+create_custom_widget_func_ptr_anon_345 :: #type proc "c" (operation: ^PrintOperation) -> ^Widget
+custom_widget_apply_func_ptr_anon_346 :: #type proc "c" (operation: ^PrintOperation, widget: ^Widget)
+preview_func_ptr_anon_347 :: #type proc "c" (operation: ^PrintOperation, preview: ^PrintOperationPreview, context_p: ^PrintContext, parent: ^Window) -> glib.boolean
+update_custom_widget_func_ptr_anon_348 :: #type proc "c" (operation: ^PrintOperation, widget: ^Widget, setup: ^PageSetup, settings: [^]PrintSettings)
 _GtkPrintOperationClass :: struct {
     parent_class: gobj.ObjectClass,
-    done: done_func_ptr_anon_330,
-    begin_print: begin_print_func_ptr_anon_331,
-    paginate: paginate_func_ptr_anon_332,
-    request_page_setup: request_page_setup_func_ptr_anon_333,
-    draw_page: draw_page_func_ptr_anon_334,
-    end_print: end_print_func_ptr_anon_335,
-    status_changed: status_changed_func_ptr_anon_336,
-    create_custom_widget: create_custom_widget_func_ptr_anon_337,
-    custom_widget_apply: custom_widget_apply_func_ptr_anon_338,
-    preview: preview_func_ptr_anon_339,
-    update_custom_widget: update_custom_widget_func_ptr_anon_340,
+    done: done_func_ptr_anon_338,
+    begin_print: begin_print_func_ptr_anon_339,
+    paginate: paginate_func_ptr_anon_340,
+    request_page_setup: request_page_setup_func_ptr_anon_341,
+    draw_page: draw_page_func_ptr_anon_342,
+    end_print: end_print_func_ptr_anon_343,
+    status_changed: status_changed_func_ptr_anon_344,
+    create_custom_widget: create_custom_widget_func_ptr_anon_345,
+    custom_widget_apply: custom_widget_apply_func_ptr_anon_346,
+    preview: preview_func_ptr_anon_347,
+    update_custom_widget: update_custom_widget_func_ptr_anon_348,
     padding: [8]glib.pointer,
 }
 PrintOperationClass :: _GtkPrintOperationClass
@@ -3510,18 +3699,18 @@ _GtkRange :: struct {
     parent_instance: Widget,
 }
 Range :: _GtkRange
-value_changed_func_ptr_anon_341 :: #type proc "c" (range: ^Range)
-adjust_bounds_func_ptr_anon_342 :: #type proc "c" (range: ^Range, new_value: f64)
-move_slider_func_ptr_anon_343 :: #type proc "c" (range: ^Range, scroll: ScrollType)
-et_range_border_func_ptr_anon_344 :: #type proc "c" (range: ^Range, border_: ^Border)
-change_value_func_ptr_anon_345 :: #type proc "c" (range: ^Range, scroll: ScrollType, new_value: f64) -> glib.boolean
+value_changed_func_ptr_anon_349 :: #type proc "c" (range: ^Range)
+adjust_bounds_func_ptr_anon_350 :: #type proc "c" (range: ^Range, new_value: f64)
+move_slider_func_ptr_anon_351 :: #type proc "c" (range: ^Range, scroll: ScrollType)
+et_range_border_func_ptr_anon_352 :: #type proc "c" (range: ^Range, border_: ^Border)
+change_value_func_ptr_anon_353 :: #type proc "c" (range: ^Range, scroll: ScrollType, new_value: f64) -> glib.boolean
 _GtkRangeClass :: struct {
     parent_class: WidgetClass,
-    value_changed: value_changed_func_ptr_anon_341,
-    adjust_bounds: adjust_bounds_func_ptr_anon_342,
-    move_slider: move_slider_func_ptr_anon_343,
-    get_range_border: et_range_border_func_ptr_anon_344,
-    change_value: change_value_func_ptr_anon_345,
+    value_changed: value_changed_func_ptr_anon_349,
+    adjust_bounds: adjust_bounds_func_ptr_anon_350,
+    move_slider: move_slider_func_ptr_anon_351,
+    get_range_border: et_range_border_func_ptr_anon_352,
+    change_value: change_value_func_ptr_anon_353,
     padding: [8]glib.pointer,
 }
 RangeClass :: _GtkRangeClass
@@ -3548,18 +3737,18 @@ _GtkRecentManager :: struct {
     priv: ^RecentManagerPrivate,
 }
 RecentManager :: _GtkRecentManager
-changed_func_ptr_anon_346 :: #type proc "c" (manager: ^RecentManager)
-_gtk_recent1_func_ptr_anon_347 :: #type proc "c" ()
-_gtk_recent2_func_ptr_anon_348 :: #type proc "c" ()
-_gtk_recent3_func_ptr_anon_349 :: #type proc "c" ()
-_gtk_recent4_func_ptr_anon_350 :: #type proc "c" ()
+changed_func_ptr_anon_354 :: #type proc "c" (manager: ^RecentManager)
+_gtk_recent1_func_ptr_anon_355 :: #type proc "c" ()
+_gtk_recent2_func_ptr_anon_356 :: #type proc "c" ()
+_gtk_recent3_func_ptr_anon_357 :: #type proc "c" ()
+_gtk_recent4_func_ptr_anon_358 :: #type proc "c" ()
 _GtkRecentManagerClass :: struct {
     parent_class: gobj.ObjectClass,
-    changed: changed_func_ptr_anon_346,
-    _gtk_recent1: _gtk_recent1_func_ptr_anon_347,
-    _gtk_recent2: _gtk_recent2_func_ptr_anon_348,
-    _gtk_recent3: _gtk_recent3_func_ptr_anon_349,
-    _gtk_recent4: _gtk_recent4_func_ptr_anon_350,
+    changed: changed_func_ptr_anon_354,
+    _gtk_recent1: _gtk_recent1_func_ptr_anon_355,
+    _gtk_recent2: _gtk_recent2_func_ptr_anon_356,
+    _gtk_recent3: _gtk_recent3_func_ptr_anon_357,
+    _gtk_recent4: _gtk_recent4_func_ptr_anon_358,
 }
 RecentManagerClass :: _GtkRecentManagerClass
 RecentManagerError :: enum u32 {NOT_FOUND = 0, INVALID_URI = 1, INVALID_ENCODING = 2, NOT_REGISTERED = 3, READ = 4, WRITE = 5, UNKNOWN = 6 }
@@ -3588,10 +3777,10 @@ _GtkScale :: struct {
     parent_instance: Range,
 }
 Scale :: _GtkScale
-et_layout_offsets_func_ptr_anon_351 :: #type proc "c" (scale: ^Scale, x: ^i32, y: ^i32)
+et_layout_offsets_func_ptr_anon_359 :: #type proc "c" (scale: ^Scale, x: ^i32, y: ^i32)
 _GtkScaleClass :: struct {
     parent_class: RangeClass,
-    get_layout_offsets: et_layout_offsets_func_ptr_anon_351,
+    get_layout_offsets: et_layout_offsets_func_ptr_anon_359,
     padding: [8]glib.pointer,
 }
 ScaleClass :: _GtkScaleClass
@@ -3604,10 +3793,10 @@ _GtkScaleButton :: struct {
     parent_instance: Widget,
 }
 ScaleButton :: _GtkScaleButton
-value_changed_func_ptr_anon_352 :: #type proc "c" (button: ^ScaleButton, value: f64)
+value_changed_func_ptr_anon_360 :: #type proc "c" (button: ^ScaleButton, value: f64)
 _GtkScaleButtonClass :: struct {
     parent_class: WidgetClass,
-    value_changed: value_changed_func_ptr_anon_352,
+    value_changed: value_changed_func_ptr_anon_360,
     padding: [8]glib.pointer,
 }
 ScaleButtonClass :: _GtkScaleButtonClass
@@ -3617,10 +3806,10 @@ ScaleButton_slistautoptr :: ^glib.SList
 ScaleButton_queueautoptr :: ^glib.Queue
 _GtkScrollable :: struct #packed {}
 Scrollable :: _GtkScrollable
-et_border_func_ptr_anon_353 :: #type proc "c" (scrollable: ^Scrollable, border: ^Border) -> glib.boolean
+et_border_func_ptr_anon_361 :: #type proc "c" (scrollable: ^Scrollable, border: ^Border) -> glib.boolean
 _GtkScrollableInterface :: struct {
     base_iface: gobj.TypeInterface,
-    get_border: et_border_func_ptr_anon_353,
+    get_border: et_border_func_ptr_anon_361,
 }
 ScrollableInterface :: _GtkScrollableInterface
 Scrollable_autoptr :: ^Scrollable
@@ -3659,10 +3848,10 @@ SearchEntry_slistautoptr :: ^glib.SList
 SearchEntry_queueautoptr :: ^glib.Queue
 _GtkSectionModel :: struct #packed {}
 SectionModel :: _GtkSectionModel
-et_section_func_ptr_anon_354 :: #type proc "c" (self: ^SectionModel, position: glib.uint_, out_start: ^glib.uint_, out_end: ^glib.uint_)
+et_section_func_ptr_anon_362 :: #type proc "c" (self: ^SectionModel, position: glib.uint_, out_start: ^glib.uint_, out_end: ^glib.uint_)
 _GtkSectionModelInterface :: struct {
     g_iface: gobj.TypeInterface,
-    get_section: et_section_func_ptr_anon_354,
+    get_section: et_section_func_ptr_anon_362,
 }
 SectionModelInterface :: _GtkSectionModelInterface
 SectionModel_autoptr :: ^SectionModel
@@ -3702,31 +3891,18 @@ _GtkShortcutLabelClass :: struct #packed {}
 ShortcutLabelClass :: _GtkShortcutLabelClass
 _GtkShortcutManager :: struct #packed {}
 ShortcutManager :: _GtkShortcutManager
-add_controller_func_ptr_anon_355 :: #type proc "c" (self: ^ShortcutManager, controller: ^ShortcutController)
-remove_controller_func_ptr_anon_356 :: #type proc "c" (self: ^ShortcutManager, controller: ^ShortcutController)
+add_controller_func_ptr_anon_363 :: #type proc "c" (self: ^ShortcutManager, controller: ^ShortcutController)
+remove_controller_func_ptr_anon_364 :: #type proc "c" (self: ^ShortcutManager, controller: ^ShortcutController)
 _GtkShortcutManagerInterface :: struct {
     g_iface: gobj.TypeInterface,
-    add_controller: add_controller_func_ptr_anon_355,
-    remove_controller: remove_controller_func_ptr_anon_356,
+    add_controller: add_controller_func_ptr_anon_363,
+    remove_controller: remove_controller_func_ptr_anon_364,
 }
 ShortcutManagerInterface :: _GtkShortcutManagerInterface
 ShortcutManager_autoptr :: ^ShortcutManager
 ShortcutManager_listautoptr :: ^glib.List
 ShortcutManager_slistautoptr :: ^glib.SList
 ShortcutManager_queueautoptr :: ^glib.Queue
-_GtkShortcutsGroup :: struct #packed {}
-ShortcutsGroup :: _GtkShortcutsGroup
-_GtkShortcutsGroupClass :: struct #packed {}
-ShortcutsGroupClass :: _GtkShortcutsGroupClass
-_GtkShortcutsSection :: struct #packed {}
-ShortcutsSection :: _GtkShortcutsSection
-_GtkShortcutsSectionClass :: struct #packed {}
-ShortcutsSectionClass :: _GtkShortcutsSectionClass
-_GtkShortcutsShortcut :: struct #packed {}
-ShortcutsShortcut :: _GtkShortcutsShortcut
-_GtkShortcutsShortcutClass :: struct #packed {}
-ShortcutsShortcutClass :: _GtkShortcutsShortcutClass
-ShortcutType :: enum u32 {SHORTCUT_ACCELERATOR = 0, SHORTCUT_GESTURE_PINCH = 1, SHORTCUT_GESTURE_STRETCH = 2, SHORTCUT_GESTURE_ROTATE_CLOCKWISE = 3, SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE = 4, SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT = 5, SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT = 6, SHORTCUT_GESTURE = 7, SHORTCUT_GESTURE_SWIPE_LEFT = 8, SHORTCUT_GESTURE_SWIPE_RIGHT = 9 }
 _GtkShortcutTriggerClass :: struct #packed {}
 ShortcutTriggerClass :: _GtkShortcutTriggerClass
 ShortcutTrigger_autoptr :: ^ShortcutTrigger
@@ -3824,6 +4000,10 @@ Stack_autoptr :: ^Stack
 Stack_listautoptr :: ^glib.List
 Stack_slistautoptr :: ^glib.SList
 Stack_queueautoptr :: ^glib.Queue
+StackPage_autoptr :: ^StackPage
+StackPage_listautoptr :: ^glib.List
+StackPage_slistautoptr :: ^glib.SList
+StackPage_queueautoptr :: ^glib.Queue
 _GtkStackSidebar :: struct #packed {}
 StackSidebar :: _GtkStackSidebar
 StackSidebar_autoptr :: ^StackSidebar
@@ -3916,18 +4096,18 @@ StyleProvider_autoptr :: ^StyleProvider
 StyleProvider_listautoptr :: ^glib.List
 StyleProvider_slistautoptr :: ^glib.SList
 StyleProvider_queueautoptr :: ^glib.Queue
-changed_func_ptr_anon_357 :: #type proc "c" (context_p: ^StyleContext)
-_gtk_reserved1_func_ptr_anon_358 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_359 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_360 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_361 :: #type proc "c" ()
+changed_func_ptr_anon_365 :: #type proc "c" (context_p: ^StyleContext)
+_gtk_reserved1_func_ptr_anon_366 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_367 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_368 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_369 :: #type proc "c" ()
 _GtkStyleContextClass :: struct {
     parent_class: gobj.ObjectClass,
-    changed: changed_func_ptr_anon_357,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_358,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_359,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_360,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_361,
+    changed: changed_func_ptr_anon_365,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_366,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_367,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_368,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_369,
 }
 StyleContextClass :: _GtkStyleContextClass
 StyleContextPrintFlags :: enum u32 {STYLE_CONTEXT_PRINT_NONE = 0, STYLE_CONTEXT_PRINT_RECURSE = 1, STYLE_CONTEXT_PRINT_SHOW_STYLE = 2, STYLE_CONTEXT_PRINT_SHOW_CHANGE = 4 }
@@ -3943,10 +4123,10 @@ Switch_slistautoptr :: ^glib.SList
 Switch_queueautoptr :: ^glib.Queue
 _GtkSymbolicPaintable :: struct #packed {}
 SymbolicPaintable :: _GtkSymbolicPaintable
-snapshot_symbolic_func_ptr_anon_362 :: #type proc "c" (paintable: ^SymbolicPaintable, snapshot: ^Snapshot, width: f64, height: f64, colors: [^]RGBA, n_colors: glib.size)
+snapshot_symbolic_func_ptr_anon_370 :: #type proc "c" (paintable: ^SymbolicPaintable, snapshot: ^Snapshot, width: f64, height: f64, colors: [^]RGBA, n_colors: glib.size)
 _GtkSymbolicPaintableInterface :: struct {
     g_iface: gobj.TypeInterface,
-    snapshot_symbolic: snapshot_symbolic_func_ptr_anon_362,
+    snapshot_symbolic: snapshot_symbolic_func_ptr_anon_370,
 }
 SymbolicPaintableInterface :: _GtkSymbolicPaintableInterface
 SymbolicPaintable_autoptr :: ^SymbolicPaintable
@@ -4002,16 +4182,16 @@ _GtkTextChildAnchor :: struct {
     segment: glib.pointer,
 }
 TextChildAnchor :: _GtkTextChildAnchor
-_gtk_reserved1_func_ptr_anon_363 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_364 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_365 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_366 :: #type proc "c" ()
+_gtk_reserved1_func_ptr_anon_371 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_372 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_373 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_374 :: #type proc "c" ()
 _GtkTextChildAnchorClass :: struct {
     parent_class: gobj.ObjectClass,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_363,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_364,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_365,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_366,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_371,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_372,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_373,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_374,
 }
 TextChildAnchorClass :: _GtkTextChildAnchorClass
 TextChildAnchor_autoptr :: ^TextChildAnchor
@@ -4045,48 +4225,49 @@ TextMark_autoptr :: ^TextMark
 TextMark_listautoptr :: ^glib.List
 TextMark_slistautoptr :: ^glib.SList
 TextMark_queueautoptr :: ^glib.Queue
-insert_text_func_ptr_anon_367 :: #type proc "c" (buffer: ^TextBuffer, pos: [^]TextIter, new_text: cstring, new_text_length: i32)
-insert_paintable_func_ptr_anon_368 :: #type proc "c" (buffer: ^TextBuffer, iter: ^TextIter, paintable: ^Paintable)
-insert_child_anchor_func_ptr_anon_369 :: #type proc "c" (buffer: ^TextBuffer, iter: ^TextIter, anchor: ^TextChildAnchor)
-delete_range_func_ptr_anon_370 :: #type proc "c" (buffer: ^TextBuffer, start: ^TextIter, end: ^TextIter)
-changed_func_ptr_anon_371 :: #type proc "c" (buffer: ^TextBuffer)
-modified_changed_func_ptr_anon_372 :: #type proc "c" (buffer: ^TextBuffer)
-mark_set_func_ptr_anon_373 :: #type proc "c" (buffer: ^TextBuffer, location: ^TextIter, mark: ^TextMark)
-mark_deleted_func_ptr_anon_374 :: #type proc "c" (buffer: ^TextBuffer, mark: ^TextMark)
-apply_tag_func_ptr_anon_375 :: #type proc "c" (buffer: ^TextBuffer, tag: ^TextTag, start: ^TextIter, end: ^TextIter)
-remove_tag_func_ptr_anon_376 :: #type proc "c" (buffer: ^TextBuffer, tag: ^TextTag, start: ^TextIter, end: ^TextIter)
-begin_user_action_func_ptr_anon_377 :: #type proc "c" (buffer: ^TextBuffer)
-end_user_action_func_ptr_anon_378 :: #type proc "c" (buffer: ^TextBuffer)
-paste_done_func_ptr_anon_379 :: #type proc "c" (buffer: ^TextBuffer, clipboard: ^Clipboard)
-undo_func_ptr_anon_380 :: #type proc "c" (buffer: ^TextBuffer)
-redo_func_ptr_anon_381 :: #type proc "c" (buffer: ^TextBuffer)
-_gtk_reserved1_func_ptr_anon_382 :: #type proc "c" ()
-_gtk_reserved2_func_ptr_anon_383 :: #type proc "c" ()
-_gtk_reserved3_func_ptr_anon_384 :: #type proc "c" ()
-_gtk_reserved4_func_ptr_anon_385 :: #type proc "c" ()
+insert_text_func_ptr_anon_375 :: #type proc "c" (buffer: ^TextBuffer, pos: [^]TextIter, new_text: cstring, new_text_length: i32)
+insert_paintable_func_ptr_anon_376 :: #type proc "c" (buffer: ^TextBuffer, iter: ^TextIter, paintable: ^Paintable)
+insert_child_anchor_func_ptr_anon_377 :: #type proc "c" (buffer: ^TextBuffer, iter: ^TextIter, anchor: ^TextChildAnchor)
+delete_range_func_ptr_anon_378 :: #type proc "c" (buffer: ^TextBuffer, start: ^TextIter, end: ^TextIter)
+changed_func_ptr_anon_379 :: #type proc "c" (buffer: ^TextBuffer)
+modified_changed_func_ptr_anon_380 :: #type proc "c" (buffer: ^TextBuffer)
+mark_set_func_ptr_anon_381 :: #type proc "c" (buffer: ^TextBuffer, location: ^TextIter, mark: ^TextMark)
+mark_deleted_func_ptr_anon_382 :: #type proc "c" (buffer: ^TextBuffer, mark: ^TextMark)
+apply_tag_func_ptr_anon_383 :: #type proc "c" (buffer: ^TextBuffer, tag: ^TextTag, start: ^TextIter, end: ^TextIter)
+remove_tag_func_ptr_anon_384 :: #type proc "c" (buffer: ^TextBuffer, tag: ^TextTag, start: ^TextIter, end: ^TextIter)
+begin_user_action_func_ptr_anon_385 :: #type proc "c" (buffer: ^TextBuffer)
+end_user_action_func_ptr_anon_386 :: #type proc "c" (buffer: ^TextBuffer)
+paste_done_func_ptr_anon_387 :: #type proc "c" (buffer: ^TextBuffer, clipboard: ^Clipboard)
+undo_func_ptr_anon_388 :: #type proc "c" (buffer: ^TextBuffer)
+redo_func_ptr_anon_389 :: #type proc "c" (buffer: ^TextBuffer)
+_gtk_reserved1_func_ptr_anon_390 :: #type proc "c" ()
+_gtk_reserved2_func_ptr_anon_391 :: #type proc "c" ()
+_gtk_reserved3_func_ptr_anon_392 :: #type proc "c" ()
+_gtk_reserved4_func_ptr_anon_393 :: #type proc "c" ()
 _GtkTextBufferClass :: struct {
     parent_class: gobj.ObjectClass,
-    insert_text: insert_text_func_ptr_anon_367,
-    insert_paintable: insert_paintable_func_ptr_anon_368,
-    insert_child_anchor: insert_child_anchor_func_ptr_anon_369,
-    delete_range: delete_range_func_ptr_anon_370,
-    changed: changed_func_ptr_anon_371,
-    modified_changed: modified_changed_func_ptr_anon_372,
-    mark_set: mark_set_func_ptr_anon_373,
-    mark_deleted: mark_deleted_func_ptr_anon_374,
-    apply_tag: apply_tag_func_ptr_anon_375,
-    remove_tag: remove_tag_func_ptr_anon_376,
-    begin_user_action: begin_user_action_func_ptr_anon_377,
-    end_user_action: end_user_action_func_ptr_anon_378,
-    paste_done: paste_done_func_ptr_anon_379,
-    undo: undo_func_ptr_anon_380,
-    redo: redo_func_ptr_anon_381,
-    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_382,
-    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_383,
-    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_384,
-    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_385,
+    insert_text: insert_text_func_ptr_anon_375,
+    insert_paintable: insert_paintable_func_ptr_anon_376,
+    insert_child_anchor: insert_child_anchor_func_ptr_anon_377,
+    delete_range: delete_range_func_ptr_anon_378,
+    changed: changed_func_ptr_anon_379,
+    modified_changed: modified_changed_func_ptr_anon_380,
+    mark_set: mark_set_func_ptr_anon_381,
+    mark_deleted: mark_deleted_func_ptr_anon_382,
+    apply_tag: apply_tag_func_ptr_anon_383,
+    remove_tag: remove_tag_func_ptr_anon_384,
+    begin_user_action: begin_user_action_func_ptr_anon_385,
+    end_user_action: end_user_action_func_ptr_anon_386,
+    paste_done: paste_done_func_ptr_anon_387,
+    undo: undo_func_ptr_anon_388,
+    redo: redo_func_ptr_anon_389,
+    _gtk_reserved1: _gtk_reserved1_func_ptr_anon_390,
+    _gtk_reserved2: _gtk_reserved2_func_ptr_anon_391,
+    _gtk_reserved3: _gtk_reserved3_func_ptr_anon_392,
+    _gtk_reserved4: _gtk_reserved4_func_ptr_anon_393,
 }
 TextBufferClass :: _GtkTextBufferClass
+TextBufferCommitNotify :: #type proc "c" (buffer: ^TextBuffer, flags: TextBufferNotifyFlags, position: glib.uint_, length: glib.uint_, user_data: glib.pointer)
 TextBuffer_autoptr :: ^TextBuffer
 TextBuffer_listautoptr :: ^glib.List
 TextBuffer_slistautoptr :: ^glib.SList
@@ -4101,34 +4282,34 @@ _GtkTextView :: struct {
     priv: ^TextViewPrivate,
 }
 TextView :: _GtkTextView
-move_cursor_func_ptr_anon_386 :: #type proc "c" (text_view: ^TextView, step: MovementStep, count: i32, extend_selection: glib.boolean)
-set_anchor_func_ptr_anon_387 :: #type proc "c" (text_view: ^TextView)
-insert_at_cursor_func_ptr_anon_388 :: #type proc "c" (text_view: ^TextView, str: cstring)
-delete_from_cursor_func_ptr_anon_389 :: #type proc "c" (text_view: ^TextView, type: DeleteType, count: i32)
-backspace_func_ptr_anon_390 :: #type proc "c" (text_view: ^TextView)
-cut_clipboard_func_ptr_anon_391 :: #type proc "c" (text_view: ^TextView)
-copy_clipboard_func_ptr_anon_392 :: #type proc "c" (text_view: ^TextView)
-paste_clipboard_func_ptr_anon_393 :: #type proc "c" (text_view: ^TextView)
-toggle_overwrite_func_ptr_anon_394 :: #type proc "c" (text_view: ^TextView)
-create_buffer_func_ptr_anon_395 :: #type proc "c" (text_view: ^TextView) -> ^TextBuffer
-snapshot_layer_func_ptr_anon_396 :: #type proc "c" (text_view: ^TextView, layer: TextViewLayer, snapshot: ^Snapshot)
-extend_selection_func_ptr_anon_397 :: #type proc "c" (text_view: ^TextView, granularity: TextExtendSelection, location: ^TextIter, start: ^TextIter, end: ^TextIter) -> glib.boolean
-insert_emoji_func_ptr_anon_398 :: #type proc "c" (text_view: ^TextView)
+move_cursor_func_ptr_anon_394 :: #type proc "c" (text_view: ^TextView, step: MovementStep, count: i32, extend_selection: glib.boolean)
+set_anchor_func_ptr_anon_395 :: #type proc "c" (text_view: ^TextView)
+insert_at_cursor_func_ptr_anon_396 :: #type proc "c" (text_view: ^TextView, str: cstring)
+delete_from_cursor_func_ptr_anon_397 :: #type proc "c" (text_view: ^TextView, type: DeleteType, count: i32)
+backspace_func_ptr_anon_398 :: #type proc "c" (text_view: ^TextView)
+cut_clipboard_func_ptr_anon_399 :: #type proc "c" (text_view: ^TextView)
+copy_clipboard_func_ptr_anon_400 :: #type proc "c" (text_view: ^TextView)
+paste_clipboard_func_ptr_anon_401 :: #type proc "c" (text_view: ^TextView)
+toggle_overwrite_func_ptr_anon_402 :: #type proc "c" (text_view: ^TextView)
+create_buffer_func_ptr_anon_403 :: #type proc "c" (text_view: ^TextView) -> ^TextBuffer
+snapshot_layer_func_ptr_anon_404 :: #type proc "c" (text_view: ^TextView, layer: TextViewLayer, snapshot: ^Snapshot)
+extend_selection_func_ptr_anon_405 :: #type proc "c" (text_view: ^TextView, granularity: TextExtendSelection, location: ^TextIter, start: ^TextIter, end: ^TextIter) -> glib.boolean
+insert_emoji_func_ptr_anon_406 :: #type proc "c" (text_view: ^TextView)
 _GtkTextViewClass :: struct {
     parent_class: WidgetClass,
-    move_cursor: move_cursor_func_ptr_anon_386,
-    set_anchor: set_anchor_func_ptr_anon_387,
-    insert_at_cursor: insert_at_cursor_func_ptr_anon_388,
-    delete_from_cursor: delete_from_cursor_func_ptr_anon_389,
-    backspace: backspace_func_ptr_anon_390,
-    cut_clipboard: cut_clipboard_func_ptr_anon_391,
-    copy_clipboard: copy_clipboard_func_ptr_anon_392,
-    paste_clipboard: paste_clipboard_func_ptr_anon_393,
-    toggle_overwrite: toggle_overwrite_func_ptr_anon_394,
-    create_buffer: create_buffer_func_ptr_anon_395,
-    snapshot_layer: snapshot_layer_func_ptr_anon_396,
-    extend_selection: extend_selection_func_ptr_anon_397,
-    insert_emoji: insert_emoji_func_ptr_anon_398,
+    move_cursor: move_cursor_func_ptr_anon_394,
+    set_anchor: set_anchor_func_ptr_anon_395,
+    insert_at_cursor: insert_at_cursor_func_ptr_anon_396,
+    delete_from_cursor: delete_from_cursor_func_ptr_anon_397,
+    backspace: backspace_func_ptr_anon_398,
+    cut_clipboard: cut_clipboard_func_ptr_anon_399,
+    copy_clipboard: copy_clipboard_func_ptr_anon_400,
+    paste_clipboard: paste_clipboard_func_ptr_anon_401,
+    toggle_overwrite: toggle_overwrite_func_ptr_anon_402,
+    create_buffer: create_buffer_func_ptr_anon_403,
+    snapshot_layer: snapshot_layer_func_ptr_anon_404,
+    extend_selection: extend_selection_func_ptr_anon_405,
+    insert_emoji: insert_emoji_func_ptr_anon_406,
     padding: [8]glib.pointer,
 }
 TextViewClass :: _GtkTextViewClass
@@ -4138,24 +4319,24 @@ TextView_slistautoptr :: ^glib.SList
 TextView_queueautoptr :: ^glib.Queue
 _GtkTreeDragSource :: struct #packed {}
 TreeDragSource :: _GtkTreeDragSource
-row_draggable_func_ptr_anon_399 :: #type proc "c" (drag_source: ^TreeDragSource, path: ^TreePath) -> glib.boolean
-drag_data_get_func_ptr_anon_400 :: #type proc "c" (drag_source: ^TreeDragSource, path: ^TreePath) -> ^ContentProvider
-drag_data_delete_func_ptr_anon_401 :: #type proc "c" (drag_source: ^TreeDragSource, path: ^TreePath) -> glib.boolean
+row_draggable_func_ptr_anon_407 :: #type proc "c" (drag_source: ^TreeDragSource, path_p: ^TreePath) -> glib.boolean
+drag_data_get_func_ptr_anon_408 :: #type proc "c" (drag_source: ^TreeDragSource, path_p: ^TreePath) -> ^ContentProvider
+drag_data_delete_func_ptr_anon_409 :: #type proc "c" (drag_source: ^TreeDragSource, path_p: ^TreePath) -> glib.boolean
 _GtkTreeDragSourceIface :: struct {
     g_iface: gobj.TypeInterface,
-    row_draggable: row_draggable_func_ptr_anon_399,
-    drag_data_get: drag_data_get_func_ptr_anon_400,
-    drag_data_delete: drag_data_delete_func_ptr_anon_401,
+    row_draggable: row_draggable_func_ptr_anon_407,
+    drag_data_get: drag_data_get_func_ptr_anon_408,
+    drag_data_delete: drag_data_delete_func_ptr_anon_409,
 }
 TreeDragSourceIface :: _GtkTreeDragSourceIface
 _GtkTreeDragDest :: struct #packed {}
 TreeDragDest :: _GtkTreeDragDest
-drag_data_received_func_ptr_anon_402 :: #type proc "c" (drag_dest: ^TreeDragDest, dest: ^TreePath, value: ^gobj.Value) -> glib.boolean
-row_drop_possible_func_ptr_anon_403 :: #type proc "c" (drag_dest: ^TreeDragDest, dest_path: ^TreePath, value: ^gobj.Value) -> glib.boolean
+drag_data_received_func_ptr_anon_410 :: #type proc "c" (drag_dest: ^TreeDragDest, dest: ^TreePath, value: ^gobj.Value) -> glib.boolean
+row_drop_possible_func_ptr_anon_411 :: #type proc "c" (drag_dest: ^TreeDragDest, dest_path: ^TreePath, value: ^gobj.Value) -> glib.boolean
 _GtkTreeDragDestIface :: struct {
     g_iface: gobj.TypeInterface,
-    drag_data_received: drag_data_received_func_ptr_anon_402,
-    row_drop_possible: row_drop_possible_func_ptr_anon_403,
+    drag_data_received: drag_data_received_func_ptr_anon_410,
+    row_drop_possible: row_drop_possible_func_ptr_anon_411,
 }
 TreeDragDestIface :: _GtkTreeDragDestIface
 TreeDragDest_autoptr :: ^TreeDragDest
@@ -4235,8 +4416,8 @@ TreeModelSort_autoptr :: ^TreeModelSort
 TreeModelSort_listautoptr :: ^glib.List
 TreeModelSort_slistautoptr :: ^glib.SList
 TreeModelSort_queueautoptr :: ^glib.Queue
-TreeSelectionFunc :: #type proc "c" (selection: ^TreeSelection, model: ^TreeModel, path: ^TreePath, path_currently_selected: glib.boolean, data: glib.pointer) -> glib.boolean
-TreeSelectionForeachFunc :: #type proc "c" (model: ^TreeModel, path: ^TreePath, iter: ^TreeIter, data: glib.pointer)
+TreeSelectionFunc :: #type proc "c" (selection: ^TreeSelection, model: ^TreeModel, path_p: ^TreePath, path_currently_selected: glib.boolean, data: glib.pointer) -> glib.boolean
+TreeSelectionForeachFunc :: #type proc "c" (model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter, data: glib.pointer)
 TreeSelection_autoptr :: ^TreeSelection
 TreeSelection_listautoptr :: ^glib.List
 TreeSelection_slistautoptr :: ^glib.SList
@@ -4616,6 +4797,9 @@ foreign gtk_runic {
     @(link_name = "gtk_css_section_new")
     css_section_new :: proc(file: ^gio.File, start: ^CssLocation, end: ^CssLocation) -> ^CssSection ---
 
+    @(link_name = "gtk_css_section_new_with_bytes")
+    css_section_new_with_bytes :: proc(file: ^gio.File, bytes: [^]glib.Bytes, start: ^CssLocation, end: ^CssLocation) -> ^CssSection ---
+
     @(link_name = "gtk_css_section_ref")
     css_section_ref :: proc(section: ^CssSection) -> ^CssSection ---
 
@@ -4633,6 +4817,9 @@ foreign gtk_runic {
 
     @(link_name = "gtk_css_section_get_file")
     css_section_get_file :: proc(section: ^CssSection) -> ^gio.File ---
+
+    @(link_name = "gtk_css_section_get_bytes")
+    css_section_get_bytes :: proc(section: ^CssSection) -> ^glib.Bytes ---
 
     @(link_name = "gtk_css_section_get_start_location")
     css_section_get_start_location :: proc(section: ^CssSection) -> ^CssLocation ---
@@ -4687,6 +4874,39 @@ foreign gtk_runic {
 
     @(link_name = "gdk_cairo_context_cairo_create")
     gdk_cairo_context_cairo_create :: proc(self: ^CairoContext) -> ^cairo.context_t ---
+
+    @(link_name = "gdk_cicp_params_get_type")
+    gdk_cicp_params_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gdk_cicp_params_new")
+    gdk_cicp_params_new :: proc() -> ^CicpParams ---
+
+    @(link_name = "gdk_cicp_params_get_color_primaries")
+    gdk_cicp_params_get_color_primaries :: proc(self: ^CicpParams) -> glib.uint_ ---
+
+    @(link_name = "gdk_cicp_params_set_color_primaries")
+    gdk_cicp_params_set_color_primaries :: proc(self: ^CicpParams, color_primaries: glib.uint_) ---
+
+    @(link_name = "gdk_cicp_params_get_transfer_function")
+    gdk_cicp_params_get_transfer_function :: proc(self: ^CicpParams) -> glib.uint_ ---
+
+    @(link_name = "gdk_cicp_params_set_transfer_function")
+    gdk_cicp_params_set_transfer_function :: proc(self: ^CicpParams, transfer_function: glib.uint_) ---
+
+    @(link_name = "gdk_cicp_params_get_matrix_coefficients")
+    gdk_cicp_params_get_matrix_coefficients :: proc(self: ^CicpParams) -> glib.uint_ ---
+
+    @(link_name = "gdk_cicp_params_set_matrix_coefficients")
+    gdk_cicp_params_set_matrix_coefficients :: proc(self: ^CicpParams, matrix_coefficients: glib.uint_) ---
+
+    @(link_name = "gdk_cicp_params_get_range")
+    gdk_cicp_params_get_range :: proc(self: ^CicpParams) -> CicpRange ---
+
+    @(link_name = "gdk_cicp_params_set_range")
+    gdk_cicp_params_set_range :: proc(self: ^CicpParams, range: CicpRange) ---
+
+    @(link_name = "gdk_cicp_params_build_color_state")
+    gdk_cicp_params_build_color_state :: proc(self: ^CicpParams, error: ^^glib.Error) -> ^ColorState ---
 
     @(link_name = "gdk_clipboard_get_type")
     gdk_clipboard_get_type :: proc() -> gobj.Type ---
@@ -4750,6 +4970,39 @@ foreign gtk_runic {
 
     @(link_name = "gdk_clipboard_set_texture")
     gdk_clipboard_set_texture :: proc(clipboard: ^Clipboard, texture: ^Texture) ---
+
+    @(link_name = "gdk_color_state_get_type")
+    gdk_color_state_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gdk_color_state_ref")
+    gdk_color_state_ref :: proc(self: ^ColorState) -> ^ColorState ---
+
+    @(link_name = "gdk_color_state_unref")
+    gdk_color_state_unref :: proc(self: ^ColorState) ---
+
+    @(link_name = "gdk_color_state_get_srgb")
+    gdk_color_state_get_srgb :: proc() -> ^ColorState ---
+
+    @(link_name = "gdk_color_state_get_srgb_linear")
+    gdk_color_state_get_srgb_linear :: proc() -> ^ColorState ---
+
+    @(link_name = "gdk_color_state_get_rec2100_pq")
+    gdk_color_state_get_rec2100_pq :: proc() -> ^ColorState ---
+
+    @(link_name = "gdk_color_state_get_rec2100_linear")
+    gdk_color_state_get_rec2100_linear :: proc() -> ^ColorState ---
+
+    @(link_name = "gdk_color_state_get_oklab")
+    gdk_color_state_get_oklab :: proc() -> ^ColorState ---
+
+    @(link_name = "gdk_color_state_get_oklch")
+    gdk_color_state_get_oklch :: proc() -> ^ColorState ---
+
+    @(link_name = "gdk_color_state_equal")
+    gdk_color_state_equal :: proc(self: ^ColorState, other: ^ColorState) -> glib.boolean ---
+
+    @(link_name = "gdk_color_state_create_cicp_params")
+    gdk_color_state_create_cicp_params :: proc(self: ^ColorState) -> ^CicpParams ---
 
     @(link_name = "gdk_content_deserializer_get_type")
     gdk_content_deserializer_get_type :: proc() -> gobj.Type ---
@@ -4852,6 +5105,9 @@ foreign gtk_runic {
 
     @(link_name = "gdk_content_formats_contain_mime_type")
     gdk_content_formats_contain_mime_type :: proc(formats: [^]ContentFormats, mime_type: cstring) -> glib.boolean ---
+
+    @(link_name = "gdk_content_formats_is_empty")
+    gdk_content_formats_is_empty :: proc(formats: [^]ContentFormats) -> glib.boolean ---
 
     @(link_name = "gdk_content_formats_builder_get_type")
     gdk_content_formats_builder_get_type :: proc() -> gobj.Type ---
@@ -4984,6 +5240,9 @@ foreign gtk_runic {
 
     @(link_name = "gdk_cursor_new_from_name")
     gdk_cursor_new_from_name :: proc(name: cstring, fallback: ^Cursor) -> ^Cursor ---
+
+    @(link_name = "gdk_cursor_new_from_callback")
+    gdk_cursor_new_from_callback :: proc(callback: CursorGetTextureCallback, data: glib.pointer, destroy: glib.DestroyNotify, fallback: ^Cursor) -> ^Cursor ---
 
     @(link_name = "gdk_cursor_get_fallback")
     gdk_cursor_get_fallback :: proc(cursor: ^Cursor) -> ^Cursor ---
@@ -5402,6 +5661,9 @@ foreign gtk_runic {
     @(link_name = "gdk_monitor_get_scale_factor")
     gdk_monitor_get_scale_factor :: proc(monitor: ^Monitor) -> i32 ---
 
+    @(link_name = "gdk_monitor_get_scale")
+    gdk_monitor_get_scale :: proc(monitor: ^Monitor) -> f64 ---
+
     @(link_name = "gdk_monitor_get_refresh_rate")
     gdk_monitor_get_refresh_rate :: proc(monitor: ^Monitor) -> i32 ---
 
@@ -5606,6 +5868,9 @@ foreign gtk_runic {
     @(link_name = "gdk_display_is_rgba")
     gdk_display_is_rgba :: proc(display: ^Display) -> glib.boolean ---
 
+    @(link_name = "gdk_display_supports_shadow_width")
+    gdk_display_supports_shadow_width :: proc(display: ^Display) -> glib.boolean ---
+
     @(link_name = "gdk_display_supports_input_shapes")
     gdk_display_supports_input_shapes :: proc(display: ^Display) -> glib.boolean ---
 
@@ -5660,6 +5925,9 @@ foreign gtk_runic {
     @(link_name = "gdk_display_get_setting")
     gdk_display_get_setting :: proc(display: ^Display, name: cstring, value: ^gobj.Value) -> glib.boolean ---
 
+    @(link_name = "gdk_display_get_dmabuf_formats")
+    gdk_display_get_dmabuf_formats :: proc(display: ^Display) -> ^DmabufFormats ---
+
     @(link_name = "gdk_display_manager_get_type")
     gdk_display_manager_get_type :: proc() -> gobj.Type ---
 
@@ -5680,6 +5948,168 @@ foreign gtk_runic {
 
     @(link_name = "gdk_set_allowed_backends")
     gdk_set_allowed_backends :: proc(backends: cstring) ---
+
+    @(link_name = "gdk_dmabuf_formats_get_type")
+    gdk_dmabuf_formats_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gdk_dmabuf_formats_ref")
+    gdk_dmabuf_formats_ref :: proc(formats: [^]DmabufFormats) -> ^DmabufFormats ---
+
+    @(link_name = "gdk_dmabuf_formats_unref")
+    gdk_dmabuf_formats_unref :: proc(formats: [^]DmabufFormats) ---
+
+    @(link_name = "gdk_dmabuf_formats_get_n_formats")
+    gdk_dmabuf_formats_get_n_formats :: proc(formats: [^]DmabufFormats) -> glib.size ---
+
+    @(link_name = "gdk_dmabuf_formats_get_format")
+    gdk_dmabuf_formats_get_format :: proc(formats: [^]DmabufFormats, idx: glib.size, fourcc: ^glib.uint32, modifier: ^glib.uint64) ---
+
+    @(link_name = "gdk_dmabuf_formats_contains")
+    gdk_dmabuf_formats_contains :: proc(formats: [^]DmabufFormats, fourcc: glib.uint32, modifier: glib.uint64) -> glib.boolean ---
+
+    @(link_name = "gdk_dmabuf_formats_equal")
+    gdk_dmabuf_formats_equal :: proc(formats1: ^DmabufFormats, formats2: ^DmabufFormats) -> glib.boolean ---
+
+    @(link_name = "gdk_texture_error_quark")
+    gdk_texture_error_quark :: proc() -> glib.Quark ---
+
+    @(link_name = "gdk_texture_get_type")
+    gdk_texture_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gdk_texture_new_for_pixbuf")
+    gdk_texture_new_for_pixbuf :: proc(pixbuf: ^gdk.Pixbuf) -> ^Texture ---
+
+    @(link_name = "gdk_texture_new_from_resource")
+    gdk_texture_new_from_resource :: proc(resource_path: cstring) -> ^Texture ---
+
+    @(link_name = "gdk_texture_new_from_file")
+    gdk_texture_new_from_file :: proc(file: ^gio.File, error: ^^glib.Error) -> ^Texture ---
+
+    @(link_name = "gdk_texture_new_from_filename")
+    gdk_texture_new_from_filename :: proc(path_p: cstring, error: ^^glib.Error) -> ^Texture ---
+
+    @(link_name = "gdk_texture_new_from_bytes")
+    gdk_texture_new_from_bytes :: proc(bytes: [^]glib.Bytes, error: ^^glib.Error) -> ^Texture ---
+
+    @(link_name = "gdk_texture_get_width")
+    gdk_texture_get_width :: proc(texture: ^Texture) -> i32 ---
+
+    @(link_name = "gdk_texture_get_height")
+    gdk_texture_get_height :: proc(texture: ^Texture) -> i32 ---
+
+    @(link_name = "gdk_texture_get_format")
+    gdk_texture_get_format :: proc(self: ^Texture) -> MemoryFormat ---
+
+    @(link_name = "gdk_texture_get_color_state")
+    gdk_texture_get_color_state :: proc(self: ^Texture) -> ^ColorState ---
+
+    @(link_name = "gdk_texture_download")
+    gdk_texture_download :: proc(texture: ^Texture, data: ^glib.uchar, stride: glib.size) ---
+
+    @(link_name = "gdk_texture_save_to_png")
+    gdk_texture_save_to_png :: proc(texture: ^Texture, filename: cstring) -> glib.boolean ---
+
+    @(link_name = "gdk_texture_save_to_png_bytes")
+    gdk_texture_save_to_png_bytes :: proc(texture: ^Texture) -> ^glib.Bytes ---
+
+    @(link_name = "gdk_texture_save_to_tiff")
+    gdk_texture_save_to_tiff :: proc(texture: ^Texture, filename: cstring) -> glib.boolean ---
+
+    @(link_name = "gdk_texture_save_to_tiff_bytes")
+    gdk_texture_save_to_tiff_bytes :: proc(texture: ^Texture) -> ^glib.Bytes ---
+
+    @(link_name = "gdk_dmabuf_texture_get_type")
+    gdk_dmabuf_texture_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gdk_dmabuf_error_quark")
+    gdk_dmabuf_error_quark :: proc() -> glib.Quark ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_type")
+    gdk_dmabuf_texture_builder_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_new")
+    gdk_dmabuf_texture_builder_new :: proc() -> ^DmabufTextureBuilder ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_display")
+    gdk_dmabuf_texture_builder_get_display :: proc(self: ^DmabufTextureBuilder) -> ^Display ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_display")
+    gdk_dmabuf_texture_builder_set_display :: proc(self: ^DmabufTextureBuilder, display: ^Display) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_width")
+    gdk_dmabuf_texture_builder_get_width :: proc(self: ^DmabufTextureBuilder) -> u32 ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_width")
+    gdk_dmabuf_texture_builder_set_width :: proc(self: ^DmabufTextureBuilder, width: u32) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_height")
+    gdk_dmabuf_texture_builder_get_height :: proc(self: ^DmabufTextureBuilder) -> u32 ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_height")
+    gdk_dmabuf_texture_builder_set_height :: proc(self: ^DmabufTextureBuilder, height: u32) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_fourcc")
+    gdk_dmabuf_texture_builder_get_fourcc :: proc(self: ^DmabufTextureBuilder) -> glib.uint32 ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_fourcc")
+    gdk_dmabuf_texture_builder_set_fourcc :: proc(self: ^DmabufTextureBuilder, fourcc: glib.uint32) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_modifier")
+    gdk_dmabuf_texture_builder_get_modifier :: proc(self: ^DmabufTextureBuilder) -> glib.uint64 ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_modifier")
+    gdk_dmabuf_texture_builder_set_modifier :: proc(self: ^DmabufTextureBuilder, modifier: glib.uint64) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_premultiplied")
+    gdk_dmabuf_texture_builder_get_premultiplied :: proc(self: ^DmabufTextureBuilder) -> glib.boolean ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_premultiplied")
+    gdk_dmabuf_texture_builder_set_premultiplied :: proc(self: ^DmabufTextureBuilder, premultiplied: glib.boolean) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_n_planes")
+    gdk_dmabuf_texture_builder_get_n_planes :: proc(self: ^DmabufTextureBuilder) -> u32 ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_n_planes")
+    gdk_dmabuf_texture_builder_set_n_planes :: proc(self: ^DmabufTextureBuilder, n_planes: u32) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_fd")
+    gdk_dmabuf_texture_builder_get_fd :: proc(self: ^DmabufTextureBuilder, plane: u32) -> i32 ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_fd")
+    gdk_dmabuf_texture_builder_set_fd :: proc(self: ^DmabufTextureBuilder, plane: u32, fd: i32) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_stride")
+    gdk_dmabuf_texture_builder_get_stride :: proc(self: ^DmabufTextureBuilder, plane: u32) -> u32 ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_stride")
+    gdk_dmabuf_texture_builder_set_stride :: proc(self: ^DmabufTextureBuilder, plane: u32, stride: u32) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_offset")
+    gdk_dmabuf_texture_builder_get_offset :: proc(self: ^DmabufTextureBuilder, plane: u32) -> u32 ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_offset")
+    gdk_dmabuf_texture_builder_set_offset :: proc(self: ^DmabufTextureBuilder, plane: u32, offset: u32) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_color_state")
+    gdk_dmabuf_texture_builder_get_color_state :: proc(self: ^DmabufTextureBuilder) -> ^ColorState ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_color_state")
+    gdk_dmabuf_texture_builder_set_color_state :: proc(self: ^DmabufTextureBuilder, color_state: ^ColorState) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_update_texture")
+    gdk_dmabuf_texture_builder_get_update_texture :: proc(self: ^DmabufTextureBuilder) -> ^Texture ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_update_texture")
+    gdk_dmabuf_texture_builder_set_update_texture :: proc(self: ^DmabufTextureBuilder, texture: ^Texture) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_get_update_region")
+    gdk_dmabuf_texture_builder_get_update_region :: proc(self: ^DmabufTextureBuilder) -> ^cairo.region_t ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_set_update_region")
+    gdk_dmabuf_texture_builder_set_update_region :: proc(self: ^DmabufTextureBuilder, region: ^cairo.region_t) ---
+
+    @(link_name = "gdk_dmabuf_texture_builder_build")
+    gdk_dmabuf_texture_builder_build :: proc(self: ^DmabufTextureBuilder, destroy: glib.DestroyNotify, data: glib.pointer, error: ^^glib.Error) -> ^Texture ---
 
     @(link_name = "gdk_drag_surface_get_type")
     gdk_drag_surface_get_type :: proc() -> gobj.Type ---
@@ -5753,6 +6183,9 @@ foreign gtk_runic {
     @(link_name = "gdk_drop_read_value_finish")
     gdk_drop_read_value_finish :: proc(self: ^Drop, result: ^gio.AsyncResult, error: ^^glib.Error) -> ^gobj.Value ---
 
+    @(link_name = "gdk_cicp_range_get_type")
+    gdk_cicp_range_get_type :: proc() -> gobj.Type ---
+
     @(link_name = "gdk_input_source_get_type")
     gdk_input_source_get_type :: proc() -> gobj.Type ---
 
@@ -5773,6 +6206,9 @@ foreign gtk_runic {
 
     @(link_name = "gdk_modifier_type_get_type")
     gdk_modifier_type_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gdk_dmabuf_error_get_type")
+    gdk_dmabuf_error_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gdk_gl_error_get_type")
     gdk_gl_error_get_type :: proc() -> gobj.Type ---
@@ -5912,51 +6348,6 @@ foreign gtk_runic {
     @(link_name = "gdk_gl_context_clear_current")
     gdk_gl_context_clear_current :: proc() ---
 
-    @(link_name = "gdk_texture_error_quark")
-    gdk_texture_error_quark :: proc() -> glib.Quark ---
-
-    @(link_name = "gdk_texture_get_type")
-    gdk_texture_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "gdk_texture_new_for_pixbuf")
-    gdk_texture_new_for_pixbuf :: proc(pixbuf: ^gdk.Pixbuf) -> ^Texture ---
-
-    @(link_name = "gdk_texture_new_from_resource")
-    gdk_texture_new_from_resource :: proc(resource_path: cstring) -> ^Texture ---
-
-    @(link_name = "gdk_texture_new_from_file")
-    gdk_texture_new_from_file :: proc(file: ^gio.File, error: ^^glib.Error) -> ^Texture ---
-
-    @(link_name = "gdk_texture_new_from_filename")
-    gdk_texture_new_from_filename :: proc(path: cstring, error: ^^glib.Error) -> ^Texture ---
-
-    @(link_name = "gdk_texture_new_from_bytes")
-    gdk_texture_new_from_bytes :: proc(bytes: [^]glib.Bytes, error: ^^glib.Error) -> ^Texture ---
-
-    @(link_name = "gdk_texture_get_width")
-    gdk_texture_get_width :: proc(texture: ^Texture) -> i32 ---
-
-    @(link_name = "gdk_texture_get_height")
-    gdk_texture_get_height :: proc(texture: ^Texture) -> i32 ---
-
-    @(link_name = "gdk_texture_get_format")
-    gdk_texture_get_format :: proc(self: ^Texture) -> MemoryFormat ---
-
-    @(link_name = "gdk_texture_download")
-    gdk_texture_download :: proc(texture: ^Texture, data: ^glib.uchar, stride: glib.size) ---
-
-    @(link_name = "gdk_texture_save_to_png")
-    gdk_texture_save_to_png :: proc(texture: ^Texture, filename: cstring) -> glib.boolean ---
-
-    @(link_name = "gdk_texture_save_to_png_bytes")
-    gdk_texture_save_to_png_bytes :: proc(texture: ^Texture) -> ^glib.Bytes ---
-
-    @(link_name = "gdk_texture_save_to_tiff")
-    gdk_texture_save_to_tiff :: proc(texture: ^Texture, filename: cstring) -> glib.boolean ---
-
-    @(link_name = "gdk_texture_save_to_tiff_bytes")
-    gdk_texture_save_to_tiff_bytes :: proc(texture: ^Texture) -> ^glib.Bytes ---
-
     @(link_name = "gdk_gl_texture_get_type")
     gdk_gl_texture_get_type :: proc() -> gobj.Type ---
 
@@ -6014,6 +6405,12 @@ foreign gtk_runic {
     @(link_name = "gdk_gl_texture_builder_set_sync")
     gdk_gl_texture_builder_set_sync :: proc(self: ^GLTextureBuilder, sync: glib.pointer) ---
 
+    @(link_name = "gdk_gl_texture_builder_get_color_state")
+    gdk_gl_texture_builder_get_color_state :: proc(self: ^GLTextureBuilder) -> ^ColorState ---
+
+    @(link_name = "gdk_gl_texture_builder_set_color_state")
+    gdk_gl_texture_builder_set_color_state :: proc(self: ^GLTextureBuilder, color_state: ^ColorState) ---
+
     @(link_name = "gdk_gl_texture_builder_get_update_texture")
     gdk_gl_texture_builder_get_update_texture :: proc(self: ^GLTextureBuilder) -> ^Texture ---
 
@@ -6061,6 +6458,63 @@ foreign gtk_runic {
 
     @(link_name = "gdk_memory_texture_new")
     gdk_memory_texture_new :: proc(width: i32, height: i32, format: MemoryFormat, bytes: [^]glib.Bytes, stride: glib.size) -> ^Texture ---
+
+    @(link_name = "gdk_memory_texture_builder_get_type")
+    gdk_memory_texture_builder_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gdk_memory_texture_builder_new")
+    gdk_memory_texture_builder_new :: proc() -> ^MemoryTextureBuilder ---
+
+    @(link_name = "gdk_memory_texture_builder_get_bytes")
+    gdk_memory_texture_builder_get_bytes :: proc(self: ^MemoryTextureBuilder) -> ^glib.Bytes ---
+
+    @(link_name = "gdk_memory_texture_builder_set_bytes")
+    gdk_memory_texture_builder_set_bytes :: proc(self: ^MemoryTextureBuilder, bytes: [^]glib.Bytes) ---
+
+    @(link_name = "gdk_memory_texture_builder_get_stride")
+    gdk_memory_texture_builder_get_stride :: proc(self: ^MemoryTextureBuilder) -> glib.size ---
+
+    @(link_name = "gdk_memory_texture_builder_set_stride")
+    gdk_memory_texture_builder_set_stride :: proc(self: ^MemoryTextureBuilder, stride: glib.size) ---
+
+    @(link_name = "gdk_memory_texture_builder_get_width")
+    gdk_memory_texture_builder_get_width :: proc(self: ^MemoryTextureBuilder) -> i32 ---
+
+    @(link_name = "gdk_memory_texture_builder_set_width")
+    gdk_memory_texture_builder_set_width :: proc(self: ^MemoryTextureBuilder, width: i32) ---
+
+    @(link_name = "gdk_memory_texture_builder_get_height")
+    gdk_memory_texture_builder_get_height :: proc(self: ^MemoryTextureBuilder) -> i32 ---
+
+    @(link_name = "gdk_memory_texture_builder_set_height")
+    gdk_memory_texture_builder_set_height :: proc(self: ^MemoryTextureBuilder, height: i32) ---
+
+    @(link_name = "gdk_memory_texture_builder_get_format")
+    gdk_memory_texture_builder_get_format :: proc(self: ^MemoryTextureBuilder) -> MemoryFormat ---
+
+    @(link_name = "gdk_memory_texture_builder_set_format")
+    gdk_memory_texture_builder_set_format :: proc(self: ^MemoryTextureBuilder, format: MemoryFormat) ---
+
+    @(link_name = "gdk_memory_texture_builder_get_color_state")
+    gdk_memory_texture_builder_get_color_state :: proc(self: ^MemoryTextureBuilder) -> ^ColorState ---
+
+    @(link_name = "gdk_memory_texture_builder_set_color_state")
+    gdk_memory_texture_builder_set_color_state :: proc(self: ^MemoryTextureBuilder, color_state: ^ColorState) ---
+
+    @(link_name = "gdk_memory_texture_builder_get_update_texture")
+    gdk_memory_texture_builder_get_update_texture :: proc(self: ^MemoryTextureBuilder) -> ^Texture ---
+
+    @(link_name = "gdk_memory_texture_builder_set_update_texture")
+    gdk_memory_texture_builder_set_update_texture :: proc(self: ^MemoryTextureBuilder, texture: ^Texture) ---
+
+    @(link_name = "gdk_memory_texture_builder_get_update_region")
+    gdk_memory_texture_builder_get_update_region :: proc(self: ^MemoryTextureBuilder) -> ^cairo.region_t ---
+
+    @(link_name = "gdk_memory_texture_builder_set_update_region")
+    gdk_memory_texture_builder_set_update_region :: proc(self: ^MemoryTextureBuilder, region: ^cairo.region_t) ---
+
+    @(link_name = "gdk_memory_texture_builder_build")
+    gdk_memory_texture_builder_build :: proc(self: ^MemoryTextureBuilder) -> ^Texture ---
 
     @(link_name = "gdk_paintable_get_type")
     gdk_paintable_get_type :: proc() -> gobj.Type ---
@@ -6194,6 +6648,12 @@ foreign gtk_runic {
     @(link_name = "gdk_texture_downloader_get_format")
     gdk_texture_downloader_get_format :: proc(self: ^TextureDownloader) -> MemoryFormat ---
 
+    @(link_name = "gdk_texture_downloader_set_color_state")
+    gdk_texture_downloader_set_color_state :: proc(self: ^TextureDownloader, color_state: ^ColorState) ---
+
+    @(link_name = "gdk_texture_downloader_get_color_state")
+    gdk_texture_downloader_get_color_state :: proc(self: ^TextureDownloader) -> ^ColorState ---
+
     @(link_name = "gdk_texture_downloader_download_into")
     gdk_texture_downloader_download_into :: proc(self: ^TextureDownloader, data: ^glib.uchar, stride: glib.size) ---
 
@@ -6320,38 +6780,53 @@ foreign gtk_runic {
     @(link_name = "gdk_vulkan_context_get_type")
     gdk_vulkan_context_get_type :: proc() -> gobj.Type ---
 
-    @(link_name = "gdk_vulkan_strerror")
-    gdk_vulkan_strerror :: proc(result: i32) -> cstring ---
+    @(link_name = "gsk_path_get_type")
+    gsk_path_get_type :: proc() -> gobj.Type ---
 
-    @(link_name = "gdk_vulkan_context_get_instance")
-    gdk_vulkan_context_get_instance :: proc(context_p: ^VulkanContext) -> i32 ---
+    @(link_name = "gsk_path_ref")
+    gsk_path_ref :: proc(self: ^Path) -> ^Path ---
 
-    @(link_name = "gdk_vulkan_context_get_physical_device")
-    gdk_vulkan_context_get_physical_device :: proc(context_p: ^VulkanContext) -> i32 ---
+    @(link_name = "gsk_path_unref")
+    gsk_path_unref :: proc(self: ^Path) ---
 
-    @(link_name = "gdk_vulkan_context_get_device")
-    gdk_vulkan_context_get_device :: proc(context_p: ^VulkanContext) -> i32 ---
+    @(link_name = "gsk_path_print")
+    gsk_path_print :: proc(self: ^Path, string_p: ^glib.String) ---
 
-    @(link_name = "gdk_vulkan_context_get_queue")
-    gdk_vulkan_context_get_queue :: proc(context_p: ^VulkanContext) -> i32 ---
+    @(link_name = "gsk_path_to_string")
+    gsk_path_to_string :: proc(self: ^Path) -> cstring ---
 
-    @(link_name = "gdk_vulkan_context_get_queue_family_index")
-    gdk_vulkan_context_get_queue_family_index :: proc(context_p: ^VulkanContext) -> u32 ---
+    @(link_name = "gsk_path_parse")
+    gsk_path_parse :: proc(string_p: cstring) -> ^Path ---
 
-    @(link_name = "gdk_vulkan_context_get_image_format")
-    gdk_vulkan_context_get_image_format :: proc(context_p: ^VulkanContext) -> i32 ---
+    @(link_name = "gsk_path_to_cairo")
+    gsk_path_to_cairo :: proc(self: ^Path, cr: ^cairo.context_t) ---
 
-    @(link_name = "gdk_vulkan_context_get_n_images")
-    gdk_vulkan_context_get_n_images :: proc(context_p: ^VulkanContext) -> u32 ---
+    @(link_name = "gsk_path_is_empty")
+    gsk_path_is_empty :: proc(self: ^Path) -> glib.boolean ---
 
-    @(link_name = "gdk_vulkan_context_get_image")
-    gdk_vulkan_context_get_image :: proc(context_p: ^VulkanContext, id: glib.uint_) -> i32 ---
+    @(link_name = "gsk_path_is_closed")
+    gsk_path_is_closed :: proc(self: ^Path) -> glib.boolean ---
 
-    @(link_name = "gdk_vulkan_context_get_draw_index")
-    gdk_vulkan_context_get_draw_index :: proc(context_p: ^VulkanContext) -> u32 ---
+    @(link_name = "gsk_path_get_bounds")
+    gsk_path_get_bounds :: proc(self: ^Path, bounds: [^]graphene.rect_t) -> glib.boolean ---
 
-    @(link_name = "gdk_vulkan_context_get_draw_semaphore")
-    gdk_vulkan_context_get_draw_semaphore :: proc(context_p: ^VulkanContext) -> i32 ---
+    @(link_name = "gsk_path_get_stroke_bounds")
+    gsk_path_get_stroke_bounds :: proc(self: ^Path, stroke: ^Stroke, bounds: [^]graphene.rect_t) -> glib.boolean ---
+
+    @(link_name = "gsk_path_in_fill")
+    gsk_path_in_fill :: proc(self: ^Path, point: ^graphene.point_t, fill_rule: FillRule) -> glib.boolean ---
+
+    @(link_name = "gsk_path_get_start_point")
+    gsk_path_get_start_point :: proc(self: ^Path, result: ^PathPoint) -> glib.boolean ---
+
+    @(link_name = "gsk_path_get_end_point")
+    gsk_path_get_end_point :: proc(self: ^Path, result: ^PathPoint) -> glib.boolean ---
+
+    @(link_name = "gsk_path_get_closest_point")
+    gsk_path_get_closest_point :: proc(self: ^Path, point: ^graphene.point_t, threshold: f32, result: ^PathPoint, distance: ^f32) -> glib.boolean ---
+
+    @(link_name = "gsk_path_foreach")
+    gsk_path_foreach :: proc(self: ^Path, flags: PathForeachFlags, func: PathForeachFunc, user_data: glib.pointer) -> glib.boolean ---
 
     @(link_name = "gsk_rounded_rect_init")
     gsk_rounded_rect_init :: proc(self: ^RoundedRect, bounds: [^]graphene.rect_t, top_left: ^graphene.size_t, top_right: ^graphene.size_t, bottom_right: ^graphene.size_t, bottom_left: ^graphene.size_t) -> ^RoundedRect ---
@@ -6382,6 +6857,159 @@ foreign gtk_runic {
 
     @(link_name = "gsk_rounded_rect_intersects_rect")
     gsk_rounded_rect_intersects_rect :: proc(self: ^RoundedRect, rect: ^graphene.rect_t) -> glib.boolean ---
+
+    @(link_name = "gsk_path_builder_get_type")
+    gsk_path_builder_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_path_builder_new")
+    gsk_path_builder_new :: proc() -> ^PathBuilder ---
+
+    @(link_name = "gsk_path_builder_ref")
+    gsk_path_builder_ref :: proc(self: ^PathBuilder) -> ^PathBuilder ---
+
+    @(link_name = "gsk_path_builder_unref")
+    gsk_path_builder_unref :: proc(self: ^PathBuilder) ---
+
+    @(link_name = "gsk_path_builder_free_to_path")
+    gsk_path_builder_free_to_path :: proc(self: ^PathBuilder) -> ^Path ---
+
+    @(link_name = "gsk_path_builder_to_path")
+    gsk_path_builder_to_path :: proc(self: ^PathBuilder) -> ^Path ---
+
+    @(link_name = "gsk_path_builder_get_current_point")
+    gsk_path_builder_get_current_point :: proc(self: ^PathBuilder) -> ^graphene.point_t ---
+
+    @(link_name = "gsk_path_builder_add_path")
+    gsk_path_builder_add_path :: proc(self: ^PathBuilder, path_p: ^Path) ---
+
+    @(link_name = "gsk_path_builder_add_reverse_path")
+    gsk_path_builder_add_reverse_path :: proc(self: ^PathBuilder, path_p: ^Path) ---
+
+    @(link_name = "gsk_path_builder_add_cairo_path")
+    gsk_path_builder_add_cairo_path :: proc(self: ^PathBuilder, path_p: ^cairo.path_t) ---
+
+    @(link_name = "gsk_path_builder_add_layout")
+    gsk_path_builder_add_layout :: proc(self: ^PathBuilder, layout: ^pango.Layout) ---
+
+    @(link_name = "gsk_path_builder_add_rect")
+    gsk_path_builder_add_rect :: proc(self: ^PathBuilder, rect: ^graphene.rect_t) ---
+
+    @(link_name = "gsk_path_builder_add_rounded_rect")
+    gsk_path_builder_add_rounded_rect :: proc(self: ^PathBuilder, rect: ^RoundedRect) ---
+
+    @(link_name = "gsk_path_builder_add_circle")
+    gsk_path_builder_add_circle :: proc(self: ^PathBuilder, center: ^graphene.point_t, radius: f32) ---
+
+    @(link_name = "gsk_path_builder_add_segment")
+    gsk_path_builder_add_segment :: proc(self: ^PathBuilder, path_p: ^Path, start: ^PathPoint, end: ^PathPoint) ---
+
+    @(link_name = "gsk_path_builder_move_to")
+    gsk_path_builder_move_to :: proc(self: ^PathBuilder, x: f32, y: f32) ---
+
+    @(link_name = "gsk_path_builder_rel_move_to")
+    gsk_path_builder_rel_move_to :: proc(self: ^PathBuilder, x: f32, y: f32) ---
+
+    @(link_name = "gsk_path_builder_line_to")
+    gsk_path_builder_line_to :: proc(self: ^PathBuilder, x: f32, y: f32) ---
+
+    @(link_name = "gsk_path_builder_rel_line_to")
+    gsk_path_builder_rel_line_to :: proc(self: ^PathBuilder, x: f32, y: f32) ---
+
+    @(link_name = "gsk_path_builder_quad_to")
+    gsk_path_builder_quad_to :: proc(self: ^PathBuilder, x1: f32, y1: f32, x2: f32, y2: f32) ---
+
+    @(link_name = "gsk_path_builder_rel_quad_to")
+    gsk_path_builder_rel_quad_to :: proc(self: ^PathBuilder, x1: f32, y1: f32, x2: f32, y2: f32) ---
+
+    @(link_name = "gsk_path_builder_cubic_to")
+    gsk_path_builder_cubic_to :: proc(self: ^PathBuilder, x1: f32, y1: f32, x2: f32, y2: f32, x3: f32, y3: f32) ---
+
+    @(link_name = "gsk_path_builder_rel_cubic_to")
+    gsk_path_builder_rel_cubic_to :: proc(self: ^PathBuilder, x1: f32, y1: f32, x2: f32, y2: f32, x3: f32, y3: f32) ---
+
+    @(link_name = "gsk_path_builder_conic_to")
+    gsk_path_builder_conic_to :: proc(self: ^PathBuilder, x1: f32, y1: f32, x2: f32, y2: f32, weight: f32) ---
+
+    @(link_name = "gsk_path_builder_rel_conic_to")
+    gsk_path_builder_rel_conic_to :: proc(self: ^PathBuilder, x1: f32, y1: f32, x2: f32, y2: f32, weight: f32) ---
+
+    @(link_name = "gsk_path_builder_arc_to")
+    gsk_path_builder_arc_to :: proc(self: ^PathBuilder, x1: f32, y1: f32, x2: f32, y2: f32) ---
+
+    @(link_name = "gsk_path_builder_rel_arc_to")
+    gsk_path_builder_rel_arc_to :: proc(self: ^PathBuilder, x1: f32, y1: f32, x2: f32, y2: f32) ---
+
+    @(link_name = "gsk_path_builder_svg_arc_to")
+    gsk_path_builder_svg_arc_to :: proc(self: ^PathBuilder, rx: f32, ry: f32, x_axis_rotation: f32, large_arc: glib.boolean, positive_sweep: glib.boolean, x: f32, y: f32) ---
+
+    @(link_name = "gsk_path_builder_rel_svg_arc_to")
+    gsk_path_builder_rel_svg_arc_to :: proc(self: ^PathBuilder, rx: f32, ry: f32, x_axis_rotation: f32, large_arc: glib.boolean, positive_sweep: glib.boolean, x: f32, y: f32) ---
+
+    @(link_name = "gsk_path_builder_html_arc_to")
+    gsk_path_builder_html_arc_to :: proc(self: ^PathBuilder, x1: f32, y1: f32, x2: f32, y2: f32, radius: f32) ---
+
+    @(link_name = "gsk_path_builder_rel_html_arc_to")
+    gsk_path_builder_rel_html_arc_to :: proc(self: ^PathBuilder, x1: f32, y1: f32, x2: f32, y2: f32, radius: f32) ---
+
+    @(link_name = "gsk_path_builder_close")
+    gsk_path_builder_close :: proc(self: ^PathBuilder) ---
+
+    @(link_name = "gsk_path_point_get_type")
+    gsk_path_point_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_path_point_copy")
+    gsk_path_point_copy :: proc(point: ^PathPoint) -> ^PathPoint ---
+
+    @(link_name = "gsk_path_point_free")
+    gsk_path_point_free :: proc(point: ^PathPoint) ---
+
+    @(link_name = "gsk_path_point_equal")
+    gsk_path_point_equal :: proc(point1: ^PathPoint, point2: ^PathPoint) -> glib.boolean ---
+
+    @(link_name = "gsk_path_point_compare")
+    gsk_path_point_compare :: proc(point1: ^PathPoint, point2: ^PathPoint) -> i32 ---
+
+    @(link_name = "gsk_path_point_get_position")
+    gsk_path_point_get_position :: proc(point: ^PathPoint, path_p: ^Path, position: ^graphene.point_t) ---
+
+    @(link_name = "gsk_path_point_get_tangent")
+    gsk_path_point_get_tangent :: proc(point: ^PathPoint, path_p: ^Path, direction: PathDirection, tangent: ^graphene.vec2_t) ---
+
+    @(link_name = "gsk_path_point_get_rotation")
+    gsk_path_point_get_rotation :: proc(point: ^PathPoint, path_p: ^Path, direction: PathDirection) -> f32 ---
+
+    @(link_name = "gsk_path_point_get_curvature")
+    gsk_path_point_get_curvature :: proc(point: ^PathPoint, path_p: ^Path, direction: PathDirection, center: ^graphene.point_t) -> f32 ---
+
+    @(link_name = "gsk_path_point_get_distance")
+    gsk_path_point_get_distance :: proc(point: ^PathPoint, measure: ^PathMeasure) -> f32 ---
+
+    @(link_name = "gsk_path_measure_get_type")
+    gsk_path_measure_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_path_measure_new")
+    gsk_path_measure_new :: proc(path_p: ^Path) -> ^PathMeasure ---
+
+    @(link_name = "gsk_path_measure_new_with_tolerance")
+    gsk_path_measure_new_with_tolerance :: proc(path_p: ^Path, tolerance: f32) -> ^PathMeasure ---
+
+    @(link_name = "gsk_path_measure_ref")
+    gsk_path_measure_ref :: proc(self: ^PathMeasure) -> ^PathMeasure ---
+
+    @(link_name = "gsk_path_measure_unref")
+    gsk_path_measure_unref :: proc(self: ^PathMeasure) ---
+
+    @(link_name = "gsk_path_measure_get_path")
+    gsk_path_measure_get_path :: proc(self: ^PathMeasure) -> ^Path ---
+
+    @(link_name = "gsk_path_measure_get_tolerance")
+    gsk_path_measure_get_tolerance :: proc(self: ^PathMeasure) -> f32 ---
+
+    @(link_name = "gsk_path_measure_get_length")
+    gsk_path_measure_get_length :: proc(self: ^PathMeasure) -> f32 ---
+
+    @(link_name = "gsk_path_measure_get_point")
+    gsk_path_measure_get_point :: proc(self: ^PathMeasure, distance: f32, result: ^PathPoint) -> glib.boolean ---
 
     @(link_name = "gsk_gl_shader_get_type")
     gsk_gl_shader_get_type :: proc() -> gobj.Type ---
@@ -6505,6 +7133,9 @@ foreign gtk_runic {
 
     @(link_name = "gsk_render_node_get_bounds")
     gsk_render_node_get_bounds :: proc(node: ^RenderNode, bounds: [^]graphene.rect_t) ---
+
+    @(link_name = "gsk_render_node_get_opaque_rect")
+    gsk_render_node_get_opaque_rect :: proc(self: ^RenderNode, out_opaque: ^graphene.rect_t) -> glib.boolean ---
 
     @(link_name = "gsk_render_node_draw")
     gsk_render_node_draw :: proc(node: ^RenderNode, cr: ^cairo.context_t) ---
@@ -6800,6 +7431,36 @@ foreign gtk_runic {
     @(link_name = "gsk_rounded_clip_node_get_clip")
     gsk_rounded_clip_node_get_clip :: proc(node: ^RenderNode) -> ^RoundedRect ---
 
+    @(link_name = "gsk_fill_node_get_type")
+    gsk_fill_node_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_fill_node_new")
+    gsk_fill_node_new :: proc(child: ^RenderNode, path_p: ^Path, fill_rule: FillRule) -> ^RenderNode ---
+
+    @(link_name = "gsk_fill_node_get_child")
+    gsk_fill_node_get_child :: proc(node: ^RenderNode) -> ^RenderNode ---
+
+    @(link_name = "gsk_fill_node_get_path")
+    gsk_fill_node_get_path :: proc(node: ^RenderNode) -> ^Path ---
+
+    @(link_name = "gsk_fill_node_get_fill_rule")
+    gsk_fill_node_get_fill_rule :: proc(node: ^RenderNode) -> FillRule ---
+
+    @(link_name = "gsk_stroke_node_get_type")
+    gsk_stroke_node_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_stroke_node_new")
+    gsk_stroke_node_new :: proc(child: ^RenderNode, path_p: ^Path, stroke: ^Stroke) -> ^RenderNode ---
+
+    @(link_name = "gsk_stroke_node_get_child")
+    gsk_stroke_node_get_child :: proc(node: ^RenderNode) -> ^RenderNode ---
+
+    @(link_name = "gsk_stroke_node_get_path")
+    gsk_stroke_node_get_path :: proc(node: ^RenderNode) -> ^Path ---
+
+    @(link_name = "gsk_stroke_node_get_stroke")
+    gsk_stroke_node_get_stroke :: proc(node: ^RenderNode) -> ^Stroke ---
+
     @(link_name = "gsk_shadow_node_get_type")
     gsk_shadow_node_get_type :: proc() -> gobj.Type ---
 
@@ -6914,6 +7575,18 @@ foreign gtk_runic {
     @(link_name = "gsk_gl_shader_node_get_shader")
     gsk_gl_shader_node_get_shader :: proc(node: ^RenderNode) -> ^GLShader ---
 
+    @(link_name = "gsk_subsurface_node_get_type")
+    gsk_subsurface_node_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_subsurface_node_new")
+    gsk_subsurface_node_new :: proc(child: ^RenderNode, subsurface: glib.pointer) -> ^RenderNode ---
+
+    @(link_name = "gsk_subsurface_node_get_child")
+    gsk_subsurface_node_get_child :: proc(node: ^RenderNode) -> ^RenderNode ---
+
+    @(link_name = "gsk_subsurface_node_get_subsurface")
+    gsk_subsurface_node_get_subsurface :: proc(node: ^RenderNode) -> glib.pointer ---
+
     @(link_name = "gsk_value_set_render_node")
     gsk_value_set_render_node :: proc(value: ^gobj.Value, node: ^RenderNode) ---
 
@@ -6938,6 +7611,9 @@ foreign gtk_runic {
     @(link_name = "gsk_renderer_realize")
     gsk_renderer_realize :: proc(renderer: ^Renderer, surface: ^Surface, error: ^^glib.Error) -> glib.boolean ---
 
+    @(link_name = "gsk_renderer_realize_for_display")
+    gsk_renderer_realize_for_display :: proc(renderer: ^Renderer, display: ^Display, error: ^^glib.Error) -> glib.boolean ---
+
     @(link_name = "gsk_renderer_unrealize")
     gsk_renderer_unrealize :: proc(renderer: ^Renderer) ---
 
@@ -6949,6 +7625,60 @@ foreign gtk_runic {
 
     @(link_name = "gsk_renderer_render")
     gsk_renderer_render :: proc(renderer: ^Renderer, root: ^RenderNode, region: ^cairo.region_t) ---
+
+    @(link_name = "gsk_stroke_get_type")
+    gsk_stroke_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_stroke_new")
+    gsk_stroke_new :: proc(line_width: f32) -> ^Stroke ---
+
+    @(link_name = "gsk_stroke_copy")
+    gsk_stroke_copy :: proc(other: ^Stroke) -> ^Stroke ---
+
+    @(link_name = "gsk_stroke_free")
+    gsk_stroke_free :: proc(self: ^Stroke) ---
+
+    @(link_name = "gsk_stroke_equal")
+    gsk_stroke_equal :: proc(stroke1: glib.constpointer, stroke2: glib.constpointer) -> glib.boolean ---
+
+    @(link_name = "gsk_stroke_set_line_width")
+    gsk_stroke_set_line_width :: proc(self: ^Stroke, line_width: f32) ---
+
+    @(link_name = "gsk_stroke_get_line_width")
+    gsk_stroke_get_line_width :: proc(self: ^Stroke) -> f32 ---
+
+    @(link_name = "gsk_stroke_set_line_cap")
+    gsk_stroke_set_line_cap :: proc(self: ^Stroke, line_cap: LineCap) ---
+
+    @(link_name = "gsk_stroke_get_line_cap")
+    gsk_stroke_get_line_cap :: proc(self: ^Stroke) -> LineCap ---
+
+    @(link_name = "gsk_stroke_set_line_join")
+    gsk_stroke_set_line_join :: proc(self: ^Stroke, line_join: LineJoin) ---
+
+    @(link_name = "gsk_stroke_get_line_join")
+    gsk_stroke_get_line_join :: proc(self: ^Stroke) -> LineJoin ---
+
+    @(link_name = "gsk_stroke_set_miter_limit")
+    gsk_stroke_set_miter_limit :: proc(self: ^Stroke, limit: f32) ---
+
+    @(link_name = "gsk_stroke_get_miter_limit")
+    gsk_stroke_get_miter_limit :: proc(self: ^Stroke) -> f32 ---
+
+    @(link_name = "gsk_stroke_set_dash")
+    gsk_stroke_set_dash :: proc(self: ^Stroke, dash: ^f32, n_dash: glib.size) ---
+
+    @(link_name = "gsk_stroke_get_dash")
+    gsk_stroke_get_dash :: proc(self: ^Stroke, n_dash: ^glib.size) -> ^f32 ---
+
+    @(link_name = "gsk_stroke_set_dash_offset")
+    gsk_stroke_set_dash_offset :: proc(self: ^Stroke, offset: f32) ---
+
+    @(link_name = "gsk_stroke_get_dash_offset")
+    gsk_stroke_get_dash_offset :: proc(self: ^Stroke) -> f32 ---
+
+    @(link_name = "gsk_stroke_to_cairo")
+    gsk_stroke_to_cairo :: proc(self: ^Stroke, cr: ^cairo.context_t) ---
 
     @(link_name = "gsk_transform_get_type")
     gsk_transform_get_type :: proc() -> gobj.Type ---
@@ -7037,6 +7767,24 @@ foreign gtk_runic {
     @(link_name = "gsk_cairo_renderer_new")
     gsk_cairo_renderer_new :: proc() -> ^Renderer ---
 
+    @(link_name = "gsk_gl_renderer_get_type")
+    gsk_gl_renderer_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_gl_renderer_new")
+    gsk_gl_renderer_new :: proc() -> ^Renderer ---
+
+    @(link_name = "gsk_ngl_renderer_get_type")
+    gsk_ngl_renderer_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_ngl_renderer_new")
+    gsk_ngl_renderer_new :: proc() -> ^Renderer ---
+
+    @(link_name = "gsk_vulkan_renderer_get_type")
+    gsk_vulkan_renderer_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_vulkan_renderer_new")
+    gsk_vulkan_renderer_new :: proc() -> ^Renderer ---
+
     @(link_name = "gsk_render_node_type_get_type")
     gsk_render_node_type_get_type :: proc() -> gobj.Type ---
 
@@ -7048,6 +7796,21 @@ foreign gtk_runic {
 
     @(link_name = "gsk_corner_get_type")
     gsk_corner_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_fill_rule_get_type")
+    gsk_fill_rule_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_line_cap_get_type")
+    gsk_line_cap_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_line_join_get_type")
+    gsk_line_join_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_path_operation_get_type")
+    gsk_path_operation_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_path_direction_get_type")
+    gsk_path_direction_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gsk_serialization_error_get_type")
     gsk_serialization_error_get_type :: proc() -> gobj.Type ---
@@ -7061,41 +7824,8 @@ foreign gtk_runic {
     @(link_name = "gsk_mask_mode_get_type")
     gsk_mask_mode_get_type :: proc() -> gobj.Type ---
 
-    @(link_name = "gtk_accelerator_valid")
-    accelerator_valid :: proc(keyval: glib.uint_, modifiers: ModifierType) -> glib.boolean ---
-
-    @(link_name = "gtk_accelerator_parse")
-    accelerator_parse :: proc(accelerator: cstring, accelerator_key: ^glib.uint_, accelerator_mods: [^]ModifierType) -> glib.boolean ---
-
-    @(link_name = "gtk_accelerator_parse_with_keycode")
-    accelerator_parse_with_keycode :: proc(accelerator: cstring, display: ^Display, accelerator_key: ^glib.uint_, accelerator_codes: [^]^glib.uint_, accelerator_mods: [^]ModifierType) -> glib.boolean ---
-
-    @(link_name = "gtk_accelerator_name")
-    accelerator_name :: proc(accelerator_key: glib.uint_, accelerator_mods: ModifierType) -> cstring ---
-
-    @(link_name = "gtk_accelerator_name_with_keycode")
-    accelerator_name_with_keycode :: proc(display: ^Display, accelerator_key: glib.uint_, keycode: glib.uint_, accelerator_mods: ModifierType) -> cstring ---
-
-    @(link_name = "gtk_accelerator_get_label")
-    accelerator_get_label :: proc(accelerator_key: glib.uint_, accelerator_mods: ModifierType) -> cstring ---
-
-    @(link_name = "gtk_accelerator_get_label_with_keycode")
-    accelerator_get_label_with_keycode :: proc(display: ^Display, accelerator_key: glib.uint_, keycode: glib.uint_, accelerator_mods: ModifierType) -> cstring ---
-
-    @(link_name = "gtk_accelerator_get_default_mod_mask")
-    accelerator_get_default_mod_mask :: proc() -> ModifierType ---
-
-    @(link_name = "gtk_border_get_type")
-    border_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "gtk_border_new")
-    border_new :: proc() -> ^Border ---
-
-    @(link_name = "gtk_border_copy")
-    border_copy :: proc(border_: ^Border) -> ^Border ---
-
-    @(link_name = "gtk_border_free")
-    border_free :: proc(border_: ^Border) ---
+    @(link_name = "gsk_path_foreach_flags_get_type")
+    gsk_path_foreach_flags_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gtk_shortcut_get_type")
     shortcut_get_type :: proc() -> gobj.Type ---
@@ -7796,6 +8526,30 @@ foreign gtk_runic {
     @(link_name = "gtk_application_get_menu_by_id")
     application_get_menu_by_id :: proc(application: ^Application, id: cstring) -> ^gio.Menu ---
 
+    @(link_name = "gtk_accelerator_valid")
+    accelerator_valid :: proc(keyval: glib.uint_, modifiers: ModifierType) -> glib.boolean ---
+
+    @(link_name = "gtk_accelerator_parse")
+    accelerator_parse :: proc(accelerator: cstring, accelerator_key: ^glib.uint_, accelerator_mods: [^]ModifierType) -> glib.boolean ---
+
+    @(link_name = "gtk_accelerator_parse_with_keycode")
+    accelerator_parse_with_keycode :: proc(accelerator: cstring, display: ^Display, accelerator_key: ^glib.uint_, accelerator_codes: [^]^glib.uint_, accelerator_mods: [^]ModifierType) -> glib.boolean ---
+
+    @(link_name = "gtk_accelerator_name")
+    accelerator_name :: proc(accelerator_key: glib.uint_, accelerator_mods: ModifierType) -> cstring ---
+
+    @(link_name = "gtk_accelerator_name_with_keycode")
+    accelerator_name_with_keycode :: proc(display: ^Display, accelerator_key: glib.uint_, keycode: glib.uint_, accelerator_mods: ModifierType) -> cstring ---
+
+    @(link_name = "gtk_accelerator_get_label")
+    accelerator_get_label :: proc(accelerator_key: glib.uint_, accelerator_mods: ModifierType) -> cstring ---
+
+    @(link_name = "gtk_accelerator_get_label_with_keycode")
+    accelerator_get_label_with_keycode :: proc(display: ^Display, accelerator_key: glib.uint_, keycode: glib.uint_, accelerator_mods: ModifierType) -> cstring ---
+
+    @(link_name = "gtk_accelerator_get_default_mod_mask")
+    accelerator_get_default_mod_mask :: proc() -> ModifierType ---
+
     @(link_name = "gtk_window_get_type")
     window_get_type :: proc() -> gobj.Type ---
 
@@ -8159,8 +8913,35 @@ foreign gtk_runic {
     @(link_name = "gtk_accessible_relation_init_value")
     accessible_relation_init_value :: proc(relation: AccessibleRelation, value: ^gobj.Value) ---
 
+    @(link_name = "gtk_accessible_list_get_type")
+    accessible_list_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_accessible_list_get_objects")
+    accessible_list_get_objects :: proc(accessible_list: ^AccessibleList) -> ^glib.List ---
+
+    @(link_name = "gtk_accessible_list_new_from_list")
+    accessible_list_new_from_list :: proc(list: ^glib.List) -> ^AccessibleList ---
+
+    @(link_name = "gtk_accessible_list_new_from_array")
+    accessible_list_new_from_array :: proc(accessibles: [^]^Accessible, n_accessibles: glib.size) -> ^AccessibleList ---
+
+    @(link_name = "gtk_accessible_announce")
+    accessible_announce :: proc(self: ^Accessible, message: cstring, priority: AccessibleAnnouncementPriority) ---
+
     @(link_name = "gtk_accessible_range_get_type")
     accessible_range_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_accessible_text_get_type")
+    accessible_text_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_accessible_text_update_caret_position")
+    accessible_text_update_caret_position :: proc(self: ^AccessibleText) ---
+
+    @(link_name = "gtk_accessible_text_update_selection_bound")
+    accessible_text_update_selection_bound :: proc(self: ^AccessibleText) ---
+
+    @(link_name = "gtk_accessible_text_update_contents")
+    accessible_text_update_contents :: proc(self: ^AccessibleText, change: AccessibleTextContentChange, start: u32, end: u32) ---
 
     @(link_name = "gtk_actionable_get_type")
     actionable_get_type :: proc() -> gobj.Type ---
@@ -8462,8 +9243,26 @@ foreign gtk_runic {
     @(link_name = "gtk_app_chooser_button_set_modal")
     app_chooser_button_set_modal :: proc(self: ^AppChooserButton, modal: glib.boolean) ---
 
+    @(link_name = "gtk_shortcuts_shortcut_get_type")
+    shortcuts_shortcut_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_shortcuts_group_get_type")
+    shortcuts_group_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_shortcuts_group_add_shortcut")
+    shortcuts_group_add_shortcut :: proc(self: ^ShortcutsGroup, shortcut: ^ShortcutsShortcut) ---
+
+    @(link_name = "gtk_shortcuts_section_get_type")
+    shortcuts_section_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_shortcuts_section_add_group")
+    shortcuts_section_add_group :: proc(self: ^ShortcutsSection, group: ^ShortcutsGroup) ---
+
     @(link_name = "gtk_shortcuts_window_get_type")
     shortcuts_window_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_shortcuts_window_add_section")
+    shortcuts_window_add_section :: proc(self: ^ShortcutsWindow, section: ^ShortcutsSection) ---
 
     @(link_name = "gtk_application_window_get_type")
     application_window_get_type :: proc() -> gobj.Type ---
@@ -8924,6 +9723,18 @@ foreign gtk_runic {
     @(link_name = "gtk_bool_filter_set_invert")
     bool_filter_set_invert :: proc(self: ^BoolFilter, invert: glib.boolean) ---
 
+    @(link_name = "gtk_border_get_type")
+    border_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_border_new")
+    border_new :: proc() -> ^Border ---
+
+    @(link_name = "gtk_border_copy")
+    border_copy :: proc(border_: ^Border) -> ^Border ---
+
+    @(link_name = "gtk_border_free")
+    border_free :: proc(border_: ^Border) ---
+
     @(link_name = "gtk_box_layout_get_type")
     box_layout_get_type :: proc() -> gobj.Type ---
 
@@ -9224,6 +10035,24 @@ foreign gtk_runic {
     @(link_name = "gtk_calendar_get_show_day_names")
     calendar_get_show_day_names :: proc(self: ^Calendar) -> glib.boolean ---
 
+    @(link_name = "gtk_calendar_set_day")
+    calendar_set_day :: proc(self: ^Calendar, day: i32) ---
+
+    @(link_name = "gtk_calendar_get_day")
+    calendar_get_day :: proc(self: ^Calendar) -> i32 ---
+
+    @(link_name = "gtk_calendar_set_month")
+    calendar_set_month :: proc(self: ^Calendar, month: i32) ---
+
+    @(link_name = "gtk_calendar_get_month")
+    calendar_get_month :: proc(self: ^Calendar) -> i32 ---
+
+    @(link_name = "gtk_calendar_set_year")
+    calendar_set_year :: proc(self: ^Calendar, year: i32) ---
+
+    @(link_name = "gtk_calendar_get_year")
+    calendar_get_year :: proc(self: ^Calendar) -> i32 ---
+
     @(link_name = "gtk_calendar_get_date")
     calendar_get_date :: proc(self: ^Calendar) -> ^glib.DateTime ---
 
@@ -9270,10 +10099,10 @@ foreign gtk_runic {
     cell_renderer_snapshot :: proc(cell: ^CellRenderer, snapshot: ^Snapshot, widget: ^Widget, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState) ---
 
     @(link_name = "gtk_cell_renderer_activate")
-    cell_renderer_activate :: proc(cell: ^CellRenderer, event: ^Event, widget: ^Widget, path: cstring, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState) -> glib.boolean ---
+    cell_renderer_activate :: proc(cell: ^CellRenderer, event: ^Event, widget: ^Widget, path_p: cstring, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState) -> glib.boolean ---
 
     @(link_name = "gtk_cell_renderer_start_editing")
-    cell_renderer_start_editing :: proc(cell: ^CellRenderer, event: ^Event, widget: ^Widget, path: cstring, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState) -> ^CellEditable ---
+    cell_renderer_start_editing :: proc(cell: ^CellRenderer, event: ^Event, widget: ^Widget, path_p: cstring, background_area: ^Rectangle, cell_area: ^Rectangle, flags: CellRendererState) -> ^CellEditable ---
 
     @(link_name = "gtk_cell_renderer_set_fixed_size")
     cell_renderer_set_fixed_size :: proc(cell: ^CellRenderer, width: i32, height: i32) ---
@@ -9333,7 +10162,7 @@ foreign gtk_runic {
     tree_path_new :: proc() -> ^TreePath ---
 
     @(link_name = "gtk_tree_path_new_from_string")
-    tree_path_new_from_string :: proc(path: cstring) -> ^TreePath ---
+    tree_path_new_from_string :: proc(path_p: cstring) -> ^TreePath ---
 
     @(link_name = "gtk_tree_path_new_from_indices")
     tree_path_new_from_indices :: proc(first_index: i32, #c_vararg var_args: ..any) -> ^TreePath ---
@@ -9342,31 +10171,31 @@ foreign gtk_runic {
     tree_path_new_from_indicesv :: proc(indices: [^]i32, length: glib.size) -> ^TreePath ---
 
     @(link_name = "gtk_tree_path_to_string")
-    tree_path_to_string :: proc(path: ^TreePath) -> cstring ---
+    tree_path_to_string :: proc(path_p: ^TreePath) -> cstring ---
 
     @(link_name = "gtk_tree_path_new_first")
     tree_path_new_first :: proc() -> ^TreePath ---
 
     @(link_name = "gtk_tree_path_append_index")
-    tree_path_append_index :: proc(path: ^TreePath, index_: i32) ---
+    tree_path_append_index :: proc(path_p: ^TreePath, index_: i32) ---
 
     @(link_name = "gtk_tree_path_prepend_index")
-    tree_path_prepend_index :: proc(path: ^TreePath, index_: i32) ---
+    tree_path_prepend_index :: proc(path_p: ^TreePath, index_: i32) ---
 
     @(link_name = "gtk_tree_path_get_depth")
-    tree_path_get_depth :: proc(path: ^TreePath) -> i32 ---
+    tree_path_get_depth :: proc(path_p: ^TreePath) -> i32 ---
 
     @(link_name = "gtk_tree_path_get_indices")
-    tree_path_get_indices :: proc(path: ^TreePath) -> ^i32 ---
+    tree_path_get_indices :: proc(path_p: ^TreePath) -> ^i32 ---
 
     @(link_name = "gtk_tree_path_get_indices_with_depth")
-    tree_path_get_indices_with_depth :: proc(path: ^TreePath, depth: ^i32) -> ^i32 ---
+    tree_path_get_indices_with_depth :: proc(path_p: ^TreePath, depth: ^i32) -> ^i32 ---
 
     @(link_name = "gtk_tree_path_free")
-    tree_path_free :: proc(path: ^TreePath) ---
+    tree_path_free :: proc(path_p: ^TreePath) ---
 
     @(link_name = "gtk_tree_path_copy")
-    tree_path_copy :: proc(path: ^TreePath) -> ^TreePath ---
+    tree_path_copy :: proc(path_p: ^TreePath) -> ^TreePath ---
 
     @(link_name = "gtk_tree_path_get_type")
     tree_path_get_type :: proc() -> gobj.Type ---
@@ -9375,31 +10204,31 @@ foreign gtk_runic {
     tree_path_compare :: proc(a: ^TreePath, b: ^TreePath) -> i32 ---
 
     @(link_name = "gtk_tree_path_next")
-    tree_path_next :: proc(path: ^TreePath) ---
+    tree_path_next :: proc(path_p: ^TreePath) ---
 
     @(link_name = "gtk_tree_path_prev")
-    tree_path_prev :: proc(path: ^TreePath) -> glib.boolean ---
+    tree_path_prev :: proc(path_p: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_path_up")
-    tree_path_up :: proc(path: ^TreePath) -> glib.boolean ---
+    tree_path_up :: proc(path_p: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_path_down")
-    tree_path_down :: proc(path: ^TreePath) ---
+    tree_path_down :: proc(path_p: ^TreePath) ---
 
     @(link_name = "gtk_tree_path_is_ancestor")
-    tree_path_is_ancestor :: proc(path: ^TreePath, descendant: ^TreePath) -> glib.boolean ---
+    tree_path_is_ancestor :: proc(path_p: ^TreePath, descendant: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_path_is_descendant")
-    tree_path_is_descendant :: proc(path: ^TreePath, ancestor: ^TreePath) -> glib.boolean ---
+    tree_path_is_descendant :: proc(path_p: ^TreePath, ancestor: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_row_reference_get_type")
     tree_row_reference_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gtk_tree_row_reference_new")
-    tree_row_reference_new :: proc(model: ^TreeModel, path: ^TreePath) -> ^TreeRowReference ---
+    tree_row_reference_new :: proc(model: ^TreeModel, path_p: ^TreePath) -> ^TreeRowReference ---
 
     @(link_name = "gtk_tree_row_reference_new_proxy")
-    tree_row_reference_new_proxy :: proc(proxy: ^gobj.Object, model: ^TreeModel, path: ^TreePath) -> ^TreeRowReference ---
+    tree_row_reference_new_proxy :: proc(proxy: ^gobj.Object, model: ^TreeModel, path_p: ^TreePath) -> ^TreeRowReference ---
 
     @(link_name = "gtk_tree_row_reference_get_path")
     tree_row_reference_get_path :: proc(reference: ^TreeRowReference) -> ^TreePath ---
@@ -9417,13 +10246,13 @@ foreign gtk_runic {
     tree_row_reference_free :: proc(reference: ^TreeRowReference) ---
 
     @(link_name = "gtk_tree_row_reference_inserted")
-    tree_row_reference_inserted :: proc(proxy: ^gobj.Object, path: ^TreePath) ---
+    tree_row_reference_inserted :: proc(proxy: ^gobj.Object, path_p: ^TreePath) ---
 
     @(link_name = "gtk_tree_row_reference_deleted")
-    tree_row_reference_deleted :: proc(proxy: ^gobj.Object, path: ^TreePath) ---
+    tree_row_reference_deleted :: proc(proxy: ^gobj.Object, path_p: ^TreePath) ---
 
     @(link_name = "gtk_tree_row_reference_reordered")
-    tree_row_reference_reordered :: proc(proxy: ^gobj.Object, path: ^TreePath, iter: ^TreeIter, new_order: ^i32) ---
+    tree_row_reference_reordered :: proc(proxy: ^gobj.Object, path_p: ^TreePath, iter: ^TreeIter, new_order: ^i32) ---
 
     @(link_name = "gtk_tree_iter_copy")
     tree_iter_copy :: proc(iter: ^TreeIter) -> ^TreeIter ---
@@ -9447,7 +10276,7 @@ foreign gtk_runic {
     tree_model_get_column_type :: proc(tree_model: ^TreeModel, index_: i32) -> gobj.Type ---
 
     @(link_name = "gtk_tree_model_get_iter")
-    tree_model_get_iter :: proc(tree_model: ^TreeModel, iter: ^TreeIter, path: ^TreePath) -> glib.boolean ---
+    tree_model_get_iter :: proc(tree_model: ^TreeModel, iter: ^TreeIter, path_p: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_model_get_iter_from_string")
     tree_model_get_iter_from_string :: proc(tree_model: ^TreeModel, iter: ^TreeIter, path_string: cstring) -> glib.boolean ---
@@ -9501,22 +10330,22 @@ foreign gtk_runic {
     tree_model_foreach :: proc(model: ^TreeModel, func: TreeModelForeachFunc, user_data: glib.pointer) ---
 
     @(link_name = "gtk_tree_model_row_changed")
-    tree_model_row_changed :: proc(tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter) ---
+    tree_model_row_changed :: proc(tree_model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter) ---
 
     @(link_name = "gtk_tree_model_row_inserted")
-    tree_model_row_inserted :: proc(tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter) ---
+    tree_model_row_inserted :: proc(tree_model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter) ---
 
     @(link_name = "gtk_tree_model_row_has_child_toggled")
-    tree_model_row_has_child_toggled :: proc(tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter) ---
+    tree_model_row_has_child_toggled :: proc(tree_model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter) ---
 
     @(link_name = "gtk_tree_model_row_deleted")
-    tree_model_row_deleted :: proc(tree_model: ^TreeModel, path: ^TreePath) ---
+    tree_model_row_deleted :: proc(tree_model: ^TreeModel, path_p: ^TreePath) ---
 
     @(link_name = "gtk_tree_model_rows_reordered")
-    tree_model_rows_reordered :: proc(tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter, new_order: ^i32) ---
+    tree_model_rows_reordered :: proc(tree_model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter, new_order: ^i32) ---
 
     @(link_name = "gtk_tree_model_rows_reordered_with_length")
-    tree_model_rows_reordered_with_length :: proc(tree_model: ^TreeModel, path: ^TreePath, iter: ^TreeIter, new_order: ^i32, length: i32) ---
+    tree_model_rows_reordered_with_length :: proc(tree_model: ^TreeModel, path_p: ^TreePath, iter: ^TreeIter, new_order: ^i32, length: i32) ---
 
     @(link_name = "gtk_cell_area_get_type")
     cell_area_get_type :: proc() -> gobj.Type ---
@@ -9855,7 +10684,7 @@ foreign gtk_runic {
     cell_view_get_model :: proc(cell_view: ^CellView) -> ^TreeModel ---
 
     @(link_name = "gtk_cell_view_set_displayed_row")
-    cell_view_set_displayed_row :: proc(cell_view: ^CellView, path: ^TreePath) ---
+    cell_view_set_displayed_row :: proc(cell_view: ^CellView, path_p: ^TreePath) ---
 
     @(link_name = "gtk_cell_view_get_displayed_row")
     cell_view_get_displayed_row :: proc(cell_view: ^CellView) -> ^TreePath ---
@@ -10790,6 +11619,9 @@ foreign gtk_runic {
     @(link_name = "gtk_im_context_delete_surrounding")
     im_context_delete_surrounding :: proc(context_p: ^IMContext, offset: i32, n_chars: i32) -> glib.boolean ---
 
+    @(link_name = "gtk_im_context_activate_osk")
+    im_context_activate_osk :: proc(context_p: ^IMContext, event: ^Event) -> glib.boolean ---
+
     @(link_name = "gtk_entry_buffer_get_type")
     entry_buffer_get_type :: proc() -> gobj.Type ---
 
@@ -11334,10 +12166,10 @@ foreign gtk_runic {
     tree_view_scroll_to_point :: proc(tree_view: ^TreeView, tree_x: i32, tree_y: i32) ---
 
     @(link_name = "gtk_tree_view_scroll_to_cell")
-    tree_view_scroll_to_cell :: proc(tree_view: ^TreeView, path: ^TreePath, column: ^TreeViewColumn, use_align: glib.boolean, row_align: f32, col_align: f32) ---
+    tree_view_scroll_to_cell :: proc(tree_view: ^TreeView, path_p: ^TreePath, column: ^TreeViewColumn, use_align: glib.boolean, row_align: f32, col_align: f32) ---
 
     @(link_name = "gtk_tree_view_row_activated")
-    tree_view_row_activated :: proc(tree_view: ^TreeView, path: ^TreePath, column: ^TreeViewColumn) ---
+    tree_view_row_activated :: proc(tree_view: ^TreeView, path_p: ^TreePath, column: ^TreeViewColumn) ---
 
     @(link_name = "gtk_tree_view_expand_all")
     tree_view_expand_all :: proc(tree_view: ^TreeView) ---
@@ -11346,19 +12178,19 @@ foreign gtk_runic {
     tree_view_collapse_all :: proc(tree_view: ^TreeView) ---
 
     @(link_name = "gtk_tree_view_expand_to_path")
-    tree_view_expand_to_path :: proc(tree_view: ^TreeView, path: ^TreePath) ---
+    tree_view_expand_to_path :: proc(tree_view: ^TreeView, path_p: ^TreePath) ---
 
     @(link_name = "gtk_tree_view_expand_row")
-    tree_view_expand_row :: proc(tree_view: ^TreeView, path: ^TreePath, open_all: glib.boolean) -> glib.boolean ---
+    tree_view_expand_row :: proc(tree_view: ^TreeView, path_p: ^TreePath, open_all: glib.boolean) -> glib.boolean ---
 
     @(link_name = "gtk_tree_view_collapse_row")
-    tree_view_collapse_row :: proc(tree_view: ^TreeView, path: ^TreePath) -> glib.boolean ---
+    tree_view_collapse_row :: proc(tree_view: ^TreeView, path_p: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_view_map_expanded_rows")
     tree_view_map_expanded_rows :: proc(tree_view: ^TreeView, func: TreeViewMappingFunc, data: glib.pointer) ---
 
     @(link_name = "gtk_tree_view_row_expanded")
-    tree_view_row_expanded :: proc(tree_view: ^TreeView, path: ^TreePath) -> glib.boolean ---
+    tree_view_row_expanded :: proc(tree_view: ^TreeView, path_p: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_view_set_reorderable")
     tree_view_set_reorderable :: proc(tree_view: ^TreeView, reorderable: glib.boolean) ---
@@ -11367,22 +12199,22 @@ foreign gtk_runic {
     tree_view_get_reorderable :: proc(tree_view: ^TreeView) -> glib.boolean ---
 
     @(link_name = "gtk_tree_view_set_cursor")
-    tree_view_set_cursor :: proc(tree_view: ^TreeView, path: ^TreePath, focus_column: ^TreeViewColumn, start_editing: glib.boolean) ---
+    tree_view_set_cursor :: proc(tree_view: ^TreeView, path_p: ^TreePath, focus_column: ^TreeViewColumn, start_editing: glib.boolean) ---
 
     @(link_name = "gtk_tree_view_set_cursor_on_cell")
-    tree_view_set_cursor_on_cell :: proc(tree_view: ^TreeView, path: ^TreePath, focus_column: ^TreeViewColumn, focus_cell: ^CellRenderer, start_editing: glib.boolean) ---
+    tree_view_set_cursor_on_cell :: proc(tree_view: ^TreeView, path_p: ^TreePath, focus_column: ^TreeViewColumn, focus_cell: ^CellRenderer, start_editing: glib.boolean) ---
 
     @(link_name = "gtk_tree_view_get_cursor")
-    tree_view_get_cursor :: proc(tree_view: ^TreeView, path: ^^TreePath, focus_column: ^^TreeViewColumn) ---
+    tree_view_get_cursor :: proc(tree_view: ^TreeView, path_p: ^^TreePath, focus_column: ^^TreeViewColumn) ---
 
     @(link_name = "gtk_tree_view_get_path_at_pos")
-    tree_view_get_path_at_pos :: proc(tree_view: ^TreeView, x: i32, y: i32, path: ^^TreePath, column: ^^TreeViewColumn, cell_x: ^i32, cell_y: ^i32) -> glib.boolean ---
+    tree_view_get_path_at_pos :: proc(tree_view: ^TreeView, x: i32, y: i32, path_p: ^^TreePath, column: ^^TreeViewColumn, cell_x: ^i32, cell_y: ^i32) -> glib.boolean ---
 
     @(link_name = "gtk_tree_view_get_cell_area")
-    tree_view_get_cell_area :: proc(tree_view: ^TreeView, path: ^TreePath, column: ^TreeViewColumn, rect: ^Rectangle) ---
+    tree_view_get_cell_area :: proc(tree_view: ^TreeView, path_p: ^TreePath, column: ^TreeViewColumn, rect: ^Rectangle) ---
 
     @(link_name = "gtk_tree_view_get_background_area")
-    tree_view_get_background_area :: proc(tree_view: ^TreeView, path: ^TreePath, column: ^TreeViewColumn, rect: ^Rectangle) ---
+    tree_view_get_background_area :: proc(tree_view: ^TreeView, path_p: ^TreePath, column: ^TreeViewColumn, rect: ^Rectangle) ---
 
     @(link_name = "gtk_tree_view_get_visible_rect")
     tree_view_get_visible_rect :: proc(tree_view: ^TreeView, visible_rect: ^Rectangle) ---
@@ -11391,7 +12223,7 @@ foreign gtk_runic {
     tree_view_get_visible_range :: proc(tree_view: ^TreeView, start_path: ^^TreePath, end_path: ^^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_view_is_blank_at_pos")
-    tree_view_is_blank_at_pos :: proc(tree_view: ^TreeView, x: i32, y: i32, path: ^^TreePath, column: ^^TreeViewColumn, cell_x: ^i32, cell_y: ^i32) -> glib.boolean ---
+    tree_view_is_blank_at_pos :: proc(tree_view: ^TreeView, x: i32, y: i32, path_p: ^^TreePath, column: ^^TreeViewColumn, cell_x: ^i32, cell_y: ^i32) -> glib.boolean ---
 
     @(link_name = "gtk_tree_view_enable_model_drag_source")
     tree_view_enable_model_drag_source :: proc(tree_view: ^TreeView, start_button_mask: ModifierType, formats: [^]ContentFormats, actions: DragAction) ---
@@ -11406,16 +12238,16 @@ foreign gtk_runic {
     tree_view_unset_rows_drag_dest :: proc(tree_view: ^TreeView) ---
 
     @(link_name = "gtk_tree_view_set_drag_dest_row")
-    tree_view_set_drag_dest_row :: proc(tree_view: ^TreeView, path: ^TreePath, pos: TreeViewDropPosition) ---
+    tree_view_set_drag_dest_row :: proc(tree_view: ^TreeView, path_p: ^TreePath, pos: TreeViewDropPosition) ---
 
     @(link_name = "gtk_tree_view_get_drag_dest_row")
-    tree_view_get_drag_dest_row :: proc(tree_view: ^TreeView, path: ^^TreePath, pos: [^]TreeViewDropPosition) ---
+    tree_view_get_drag_dest_row :: proc(tree_view: ^TreeView, path_p: ^^TreePath, pos: [^]TreeViewDropPosition) ---
 
     @(link_name = "gtk_tree_view_get_dest_row_at_pos")
-    tree_view_get_dest_row_at_pos :: proc(tree_view: ^TreeView, drag_x: i32, drag_y: i32, path: ^^TreePath, pos: [^]TreeViewDropPosition) -> glib.boolean ---
+    tree_view_get_dest_row_at_pos :: proc(tree_view: ^TreeView, drag_x: i32, drag_y: i32, path_p: ^^TreePath, pos: [^]TreeViewDropPosition) -> glib.boolean ---
 
     @(link_name = "gtk_tree_view_create_row_drag_icon")
-    tree_view_create_row_drag_icon :: proc(tree_view: ^TreeView, path: ^TreePath) -> ^Paintable ---
+    tree_view_create_row_drag_icon :: proc(tree_view: ^TreeView, path_p: ^TreePath) -> ^Paintable ---
 
     @(link_name = "gtk_tree_view_set_enable_search")
     tree_view_set_enable_search :: proc(tree_view: ^TreeView, enable_search: glib.boolean) ---
@@ -11517,13 +12349,13 @@ foreign gtk_runic {
     tree_view_get_level_indentation :: proc(tree_view: ^TreeView) -> i32 ---
 
     @(link_name = "gtk_tree_view_set_tooltip_row")
-    tree_view_set_tooltip_row :: proc(tree_view: ^TreeView, tooltip: ^Tooltip, path: ^TreePath) ---
+    tree_view_set_tooltip_row :: proc(tree_view: ^TreeView, tooltip: ^Tooltip, path_p: ^TreePath) ---
 
     @(link_name = "gtk_tree_view_set_tooltip_cell")
-    tree_view_set_tooltip_cell :: proc(tree_view: ^TreeView, tooltip: ^Tooltip, path: ^TreePath, column: ^TreeViewColumn, cell: ^CellRenderer) ---
+    tree_view_set_tooltip_cell :: proc(tree_view: ^TreeView, tooltip: ^Tooltip, path_p: ^TreePath, column: ^TreeViewColumn, cell: ^CellRenderer) ---
 
     @(link_name = "gtk_tree_view_get_tooltip_context")
-    tree_view_get_tooltip_context :: proc(tree_view: ^TreeView, x: i32, y: i32, keyboard_tip: glib.boolean, model: ^^TreeModel, path: ^^TreePath, iter: ^TreeIter) -> glib.boolean ---
+    tree_view_get_tooltip_context :: proc(tree_view: ^TreeView, x: i32, y: i32, keyboard_tip: glib.boolean, model: ^^TreeModel, path_p: ^^TreePath, iter: ^TreeIter) -> glib.boolean ---
 
     @(link_name = "gtk_tree_view_set_tooltip_column")
     tree_view_set_tooltip_column :: proc(tree_view: ^TreeView, column: i32) ---
@@ -11750,6 +12582,12 @@ foreign gtk_runic {
     @(link_name = "gtk_accessible_platform_state_get_type")
     accessible_platform_state_get_type :: proc() -> gobj.Type ---
 
+    @(link_name = "gtk_accessible_text_granularity_get_type")
+    accessible_text_granularity_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_accessible_text_content_change_get_type")
+    accessible_text_content_change_get_type :: proc() -> gobj.Type ---
+
     @(link_name = "gtk_application_inhibit_flags_get_type")
     application_inhibit_flags_get_type :: proc() -> gobj.Type ---
 
@@ -11954,6 +12792,18 @@ foreign gtk_runic {
     @(link_name = "gtk_accessible_sort_get_type")
     accessible_sort_get_type :: proc() -> gobj.Type ---
 
+    @(link_name = "gtk_accessible_announcement_priority_get_type")
+    accessible_announcement_priority_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_popover_menu_flags_get_type")
+    popover_menu_flags_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_font_rendering_get_type")
+    font_rendering_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_text_buffer_notify_flags_get_type")
+    text_buffer_notify_flags_get_type :: proc() -> gobj.Type ---
+
     @(link_name = "gtk_event_controller_scroll_flags_get_type")
     event_controller_scroll_flags_get_type :: proc() -> gobj.Type ---
 
@@ -11965,6 +12815,9 @@ foreign gtk_runic {
 
     @(link_name = "gtk_font_level_get_type")
     font_level_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_graphics_offload_enabled_get_type")
+    graphics_offload_enabled_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gtk_icon_lookup_flags_get_type")
     icon_lookup_flags_get_type :: proc() -> gobj.Type ---
@@ -11983,9 +12836,6 @@ foreign gtk_runic {
 
     @(link_name = "gtk_pad_action_type_get_type")
     pad_action_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "gtk_popover_menu_flags_get_type")
-    popover_menu_flags_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gtk_recent_manager_error_get_type")
     recent_manager_error_get_type :: proc() -> gobj.Type ---
@@ -12147,7 +12997,7 @@ foreign gtk_runic {
     css_provider_load_from_file :: proc(css_provider: ^CssProvider, file: ^gio.File) ---
 
     @(link_name = "gtk_css_provider_load_from_path")
-    css_provider_load_from_path :: proc(css_provider: ^CssProvider, path: cstring) ---
+    css_provider_load_from_path :: proc(css_provider: ^CssProvider, path_p: cstring) ---
 
     @(link_name = "gtk_css_provider_load_from_resource")
     css_provider_load_from_resource :: proc(css_provider: ^CssProvider, resource_path: cstring) ---
@@ -12950,6 +13800,12 @@ foreign gtk_runic {
     @(link_name = "gtk_file_launcher_set_always_ask")
     file_launcher_set_always_ask :: proc(self: ^FileLauncher, always_ask: glib.boolean) ---
 
+    @(link_name = "gtk_file_launcher_get_writable")
+    file_launcher_get_writable :: proc(self: ^FileLauncher) -> glib.boolean ---
+
+    @(link_name = "gtk_file_launcher_set_writable")
+    file_launcher_set_writable :: proc(self: ^FileLauncher, writable: glib.boolean) ---
+
     @(link_name = "gtk_file_launcher_launch")
     file_launcher_launch :: proc(self: ^FileLauncher, parent: ^Window, cancellable: ^gio.Cancellable, callback: gio.AsyncReadyCallback, user_data: glib.pointer) ---
 
@@ -13622,6 +14478,30 @@ foreign gtk_runic {
     @(link_name = "gtk_gl_area_get_error")
     gl_area_get_error :: proc(area: ^GLArea) -> ^glib.Error ---
 
+    @(link_name = "gtk_graphics_offload_get_type")
+    graphics_offload_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_graphics_offload_new")
+    graphics_offload_new :: proc(child: ^Widget) -> ^Widget ---
+
+    @(link_name = "gtk_graphics_offload_set_child")
+    graphics_offload_set_child :: proc(self: ^GraphicsOffload, child: ^Widget) ---
+
+    @(link_name = "gtk_graphics_offload_get_child")
+    graphics_offload_get_child :: proc(self: ^GraphicsOffload) -> ^Widget ---
+
+    @(link_name = "gtk_graphics_offload_set_enabled")
+    graphics_offload_set_enabled :: proc(self: ^GraphicsOffload, enabled: GraphicsOffloadEnabled) ---
+
+    @(link_name = "gtk_graphics_offload_get_enabled")
+    graphics_offload_get_enabled :: proc(self: ^GraphicsOffload) -> GraphicsOffloadEnabled ---
+
+    @(link_name = "gtk_graphics_offload_set_black_background")
+    graphics_offload_set_black_background :: proc(self: ^GraphicsOffload, value: glib.boolean) ---
+
+    @(link_name = "gtk_graphics_offload_get_black_background")
+    graphics_offload_get_black_background :: proc(self: ^GraphicsOffload) -> glib.boolean ---
+
     @(link_name = "gtk_grid_get_type")
     grid_get_type :: proc() -> gobj.Type ---
 
@@ -13866,22 +14746,22 @@ foreign gtk_runic {
     icon_theme_get_display :: proc(self: ^IconTheme) -> ^Display ---
 
     @(link_name = "gtk_icon_theme_set_search_path")
-    icon_theme_set_search_path :: proc(self: ^IconTheme, path: ^cstring) ---
+    icon_theme_set_search_path :: proc(self: ^IconTheme, path_p: ^cstring) ---
 
     @(link_name = "gtk_icon_theme_get_search_path")
     icon_theme_get_search_path :: proc(self: ^IconTheme) -> ^cstring ---
 
     @(link_name = "gtk_icon_theme_add_search_path")
-    icon_theme_add_search_path :: proc(self: ^IconTheme, path: cstring) ---
+    icon_theme_add_search_path :: proc(self: ^IconTheme, path_p: cstring) ---
 
     @(link_name = "gtk_icon_theme_set_resource_path")
-    icon_theme_set_resource_path :: proc(self: ^IconTheme, path: ^cstring) ---
+    icon_theme_set_resource_path :: proc(self: ^IconTheme, path_p: ^cstring) ---
 
     @(link_name = "gtk_icon_theme_get_resource_path")
     icon_theme_get_resource_path :: proc(self: ^IconTheme) -> ^cstring ---
 
     @(link_name = "gtk_icon_theme_add_resource_path")
-    icon_theme_add_resource_path :: proc(self: ^IconTheme, path: cstring) ---
+    icon_theme_add_resource_path :: proc(self: ^IconTheme, path_p: cstring) ---
 
     @(link_name = "gtk_icon_theme_set_theme_name")
     icon_theme_set_theme_name :: proc(self: ^IconTheme, theme_name: cstring) ---
@@ -14034,7 +14914,7 @@ foreign gtk_runic {
     icon_view_get_path_at_pos :: proc(icon_view: ^IconView, x: i32, y: i32) -> ^TreePath ---
 
     @(link_name = "gtk_icon_view_get_item_at_pos")
-    icon_view_get_item_at_pos :: proc(icon_view: ^IconView, x: i32, y: i32, path: ^^TreePath, cell: ^^CellRenderer) -> glib.boolean ---
+    icon_view_get_item_at_pos :: proc(icon_view: ^IconView, x: i32, y: i32, path_p: ^^TreePath, cell: ^^CellRenderer) -> glib.boolean ---
 
     @(link_name = "gtk_icon_view_get_visible_range")
     icon_view_get_visible_range :: proc(icon_view: ^IconView, start_path: ^^TreePath, end_path: ^^TreePath) -> glib.boolean ---
@@ -14055,19 +14935,19 @@ foreign gtk_runic {
     icon_view_get_selection_mode :: proc(icon_view: ^IconView) -> SelectionMode ---
 
     @(link_name = "gtk_icon_view_select_path")
-    icon_view_select_path :: proc(icon_view: ^IconView, path: ^TreePath) ---
+    icon_view_select_path :: proc(icon_view: ^IconView, path_p: ^TreePath) ---
 
     @(link_name = "gtk_icon_view_unselect_path")
-    icon_view_unselect_path :: proc(icon_view: ^IconView, path: ^TreePath) ---
+    icon_view_unselect_path :: proc(icon_view: ^IconView, path_p: ^TreePath) ---
 
     @(link_name = "gtk_icon_view_path_is_selected")
-    icon_view_path_is_selected :: proc(icon_view: ^IconView, path: ^TreePath) -> glib.boolean ---
+    icon_view_path_is_selected :: proc(icon_view: ^IconView, path_p: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_icon_view_get_item_row")
-    icon_view_get_item_row :: proc(icon_view: ^IconView, path: ^TreePath) -> i32 ---
+    icon_view_get_item_row :: proc(icon_view: ^IconView, path_p: ^TreePath) -> i32 ---
 
     @(link_name = "gtk_icon_view_get_item_column")
-    icon_view_get_item_column :: proc(icon_view: ^IconView, path: ^TreePath) -> i32 ---
+    icon_view_get_item_column :: proc(icon_view: ^IconView, path_p: ^TreePath) -> i32 ---
 
     @(link_name = "gtk_icon_view_get_selected_items")
     icon_view_get_selected_items :: proc(icon_view: ^IconView) -> ^glib.List ---
@@ -14079,16 +14959,16 @@ foreign gtk_runic {
     icon_view_unselect_all :: proc(icon_view: ^IconView) ---
 
     @(link_name = "gtk_icon_view_item_activated")
-    icon_view_item_activated :: proc(icon_view: ^IconView, path: ^TreePath) ---
+    icon_view_item_activated :: proc(icon_view: ^IconView, path_p: ^TreePath) ---
 
     @(link_name = "gtk_icon_view_set_cursor")
-    icon_view_set_cursor :: proc(icon_view: ^IconView, path: ^TreePath, cell: ^CellRenderer, start_editing: glib.boolean) ---
+    icon_view_set_cursor :: proc(icon_view: ^IconView, path_p: ^TreePath, cell: ^CellRenderer, start_editing: glib.boolean) ---
 
     @(link_name = "gtk_icon_view_get_cursor")
-    icon_view_get_cursor :: proc(icon_view: ^IconView, path: ^^TreePath, cell: ^^CellRenderer) -> glib.boolean ---
+    icon_view_get_cursor :: proc(icon_view: ^IconView, path_p: ^^TreePath, cell: ^^CellRenderer) -> glib.boolean ---
 
     @(link_name = "gtk_icon_view_scroll_to_path")
-    icon_view_scroll_to_path :: proc(icon_view: ^IconView, path: ^TreePath, use_align: glib.boolean, row_align: f32, col_align: f32) ---
+    icon_view_scroll_to_path :: proc(icon_view: ^IconView, path_p: ^TreePath, use_align: glib.boolean, row_align: f32, col_align: f32) ---
 
     @(link_name = "gtk_icon_view_enable_model_drag_source")
     icon_view_enable_model_drag_source :: proc(icon_view: ^IconView, start_button_mask: ModifierType, formats: [^]ContentFormats, actions: DragAction) ---
@@ -14109,28 +14989,28 @@ foreign gtk_runic {
     icon_view_get_reorderable :: proc(icon_view: ^IconView) -> glib.boolean ---
 
     @(link_name = "gtk_icon_view_set_drag_dest_item")
-    icon_view_set_drag_dest_item :: proc(icon_view: ^IconView, path: ^TreePath, pos: IconViewDropPosition) ---
+    icon_view_set_drag_dest_item :: proc(icon_view: ^IconView, path_p: ^TreePath, pos: IconViewDropPosition) ---
 
     @(link_name = "gtk_icon_view_get_drag_dest_item")
-    icon_view_get_drag_dest_item :: proc(icon_view: ^IconView, path: ^^TreePath, pos: [^]IconViewDropPosition) ---
+    icon_view_get_drag_dest_item :: proc(icon_view: ^IconView, path_p: ^^TreePath, pos: [^]IconViewDropPosition) ---
 
     @(link_name = "gtk_icon_view_get_dest_item_at_pos")
-    icon_view_get_dest_item_at_pos :: proc(icon_view: ^IconView, drag_x: i32, drag_y: i32, path: ^^TreePath, pos: [^]IconViewDropPosition) -> glib.boolean ---
+    icon_view_get_dest_item_at_pos :: proc(icon_view: ^IconView, drag_x: i32, drag_y: i32, path_p: ^^TreePath, pos: [^]IconViewDropPosition) -> glib.boolean ---
 
     @(link_name = "gtk_icon_view_create_drag_icon")
-    icon_view_create_drag_icon :: proc(icon_view: ^IconView, path: ^TreePath) -> ^Paintable ---
+    icon_view_create_drag_icon :: proc(icon_view: ^IconView, path_p: ^TreePath) -> ^Paintable ---
 
     @(link_name = "gtk_icon_view_get_cell_rect")
-    icon_view_get_cell_rect :: proc(icon_view: ^IconView, path: ^TreePath, cell: ^CellRenderer, rect: ^Rectangle) -> glib.boolean ---
+    icon_view_get_cell_rect :: proc(icon_view: ^IconView, path_p: ^TreePath, cell: ^CellRenderer, rect: ^Rectangle) -> glib.boolean ---
 
     @(link_name = "gtk_icon_view_set_tooltip_item")
-    icon_view_set_tooltip_item :: proc(icon_view: ^IconView, tooltip: ^Tooltip, path: ^TreePath) ---
+    icon_view_set_tooltip_item :: proc(icon_view: ^IconView, tooltip: ^Tooltip, path_p: ^TreePath) ---
 
     @(link_name = "gtk_icon_view_set_tooltip_cell")
-    icon_view_set_tooltip_cell :: proc(icon_view: ^IconView, tooltip: ^Tooltip, path: ^TreePath, cell: ^CellRenderer) ---
+    icon_view_set_tooltip_cell :: proc(icon_view: ^IconView, tooltip: ^Tooltip, path_p: ^TreePath, cell: ^CellRenderer) ---
 
     @(link_name = "gtk_icon_view_get_tooltip_context")
-    icon_view_get_tooltip_context :: proc(icon_view: ^IconView, x: i32, y: i32, keyboard_tip: glib.boolean, model: ^^TreeModel, path: ^^TreePath, iter: ^TreeIter) -> glib.boolean ---
+    icon_view_get_tooltip_context :: proc(icon_view: ^IconView, x: i32, y: i32, keyboard_tip: glib.boolean, model: ^^TreeModel, path_p: ^^TreePath, iter: ^TreeIter) -> glib.boolean ---
 
     @(link_name = "gtk_icon_view_set_tooltip_column")
     icon_view_set_tooltip_column :: proc(icon_view: ^IconView, column: i32) ---
@@ -14651,6 +15531,12 @@ foreign gtk_runic {
     @(link_name = "gtk_list_box_get_show_separators")
     list_box_get_show_separators :: proc(box: ^ListBox) -> glib.boolean ---
 
+    @(link_name = "gtk_list_box_set_tab_behavior")
+    list_box_set_tab_behavior :: proc(box: ^ListBox, behavior: ListTabBehavior) ---
+
+    @(link_name = "gtk_list_box_get_tab_behavior")
+    list_box_get_tab_behavior :: proc(box: ^ListBox) -> ListTabBehavior ---
+
     @(link_name = "gtk_list_header_get_type")
     list_header_get_type :: proc() -> gobj.Type ---
 
@@ -14746,6 +15632,9 @@ foreign gtk_runic {
 
     @(link_name = "gtk_disable_setlocale")
     disable_setlocale :: proc() ---
+
+    @(link_name = "gtk_disable_portals")
+    disable_portals :: proc() ---
 
     @(link_name = "gtk_get_default_language")
     get_default_language :: proc() -> ^pango.Language ---
@@ -15755,6 +16644,12 @@ foreign gtk_runic {
     @(link_name = "gtk_popover_menu_get_menu_model")
     popover_menu_get_menu_model :: proc(popover: ^PopoverMenu) -> ^gio.MenuModel ---
 
+    @(link_name = "gtk_popover_menu_set_flags")
+    popover_menu_set_flags :: proc(popover: ^PopoverMenu, flags: PopoverMenuFlags) ---
+
+    @(link_name = "gtk_popover_menu_get_flags")
+    popover_menu_get_flags :: proc(popover: ^PopoverMenu) -> PopoverMenuFlags ---
+
     @(link_name = "gtk_popover_menu_add_child")
     popover_menu_add_child :: proc(popover: ^PopoverMenu, child: ^Widget, id: cstring) -> glib.boolean ---
 
@@ -15778,42 +16673,6 @@ foreign gtk_runic {
 
     @(link_name = "gtk_popover_menu_bar_remove_child")
     popover_menu_bar_remove_child :: proc(bar: ^PopoverMenuBar, child: ^Widget) -> glib.boolean ---
-
-    @(link_name = "gtk_print_context_get_type")
-    print_context_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "gtk_print_context_get_cairo_context")
-    print_context_get_cairo_context :: proc(context_p: ^PrintContext) -> ^cairo.context_t ---
-
-    @(link_name = "gtk_print_context_get_page_setup")
-    print_context_get_page_setup :: proc(context_p: ^PrintContext) -> ^PageSetup ---
-
-    @(link_name = "gtk_print_context_get_width")
-    print_context_get_width :: proc(context_p: ^PrintContext) -> f64 ---
-
-    @(link_name = "gtk_print_context_get_height")
-    print_context_get_height :: proc(context_p: ^PrintContext) -> f64 ---
-
-    @(link_name = "gtk_print_context_get_dpi_x")
-    print_context_get_dpi_x :: proc(context_p: ^PrintContext) -> f64 ---
-
-    @(link_name = "gtk_print_context_get_dpi_y")
-    print_context_get_dpi_y :: proc(context_p: ^PrintContext) -> f64 ---
-
-    @(link_name = "gtk_print_context_get_hard_margins")
-    print_context_get_hard_margins :: proc(context_p: ^PrintContext, top: ^f64, bottom: ^f64, left: ^f64, right: ^f64) -> glib.boolean ---
-
-    @(link_name = "gtk_print_context_get_pango_fontmap")
-    print_context_get_pango_fontmap :: proc(context_p: ^PrintContext) -> ^pango.FontMap ---
-
-    @(link_name = "gtk_print_context_create_pango_context")
-    print_context_create_pango_context :: proc(context_p: ^PrintContext) -> ^pango.Context ---
-
-    @(link_name = "gtk_print_context_create_pango_layout")
-    print_context_create_pango_layout :: proc(context_p: ^PrintContext) -> ^pango.Layout ---
-
-    @(link_name = "gtk_print_context_set_cairo_context")
-    print_context_set_cairo_context :: proc(context_p: ^PrintContext, cr: ^cairo.context_t, dpi_x: f64, dpi_y: f64) ---
 
     @(link_name = "gtk_print_settings_get_type")
     print_settings_get_type :: proc() -> gobj.Type ---
@@ -16045,6 +16904,111 @@ foreign gtk_runic {
 
     @(link_name = "gtk_print_settings_new_from_gvariant")
     print_settings_new_from_gvariant :: proc(variant: ^glib.Variant) -> ^PrintSettings ---
+
+    @(link_name = "gtk_print_setup_get_type")
+    print_setup_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_print_setup_ref")
+    print_setup_ref :: proc(setup: ^PrintSetup) -> ^PrintSetup ---
+
+    @(link_name = "gtk_print_setup_unref")
+    print_setup_unref :: proc(setup: ^PrintSetup) ---
+
+    @(link_name = "gtk_print_setup_get_print_settings")
+    print_setup_get_print_settings :: proc(setup: ^PrintSetup) -> ^PrintSettings ---
+
+    @(link_name = "gtk_print_setup_get_page_setup")
+    print_setup_get_page_setup :: proc(setup: ^PrintSetup) -> ^PageSetup ---
+
+    @(link_name = "gtk_print_dialog_get_type")
+    print_dialog_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_print_dialog_new")
+    print_dialog_new :: proc() -> ^PrintDialog ---
+
+    @(link_name = "gtk_print_dialog_get_title")
+    print_dialog_get_title :: proc(self: ^PrintDialog) -> cstring ---
+
+    @(link_name = "gtk_print_dialog_set_title")
+    print_dialog_set_title :: proc(self: ^PrintDialog, title: cstring) ---
+
+    @(link_name = "gtk_print_dialog_get_accept_label")
+    print_dialog_get_accept_label :: proc(self: ^PrintDialog) -> cstring ---
+
+    @(link_name = "gtk_print_dialog_set_accept_label")
+    print_dialog_set_accept_label :: proc(self: ^PrintDialog, accept_label: cstring) ---
+
+    @(link_name = "gtk_print_dialog_get_modal")
+    print_dialog_get_modal :: proc(self: ^PrintDialog) -> glib.boolean ---
+
+    @(link_name = "gtk_print_dialog_set_modal")
+    print_dialog_set_modal :: proc(self: ^PrintDialog, modal: glib.boolean) ---
+
+    @(link_name = "gtk_print_dialog_get_page_setup")
+    print_dialog_get_page_setup :: proc(self: ^PrintDialog) -> ^PageSetup ---
+
+    @(link_name = "gtk_print_dialog_set_page_setup")
+    print_dialog_set_page_setup :: proc(self: ^PrintDialog, page_setup: ^PageSetup) ---
+
+    @(link_name = "gtk_print_dialog_get_print_settings")
+    print_dialog_get_print_settings :: proc(self: ^PrintDialog) -> ^PrintSettings ---
+
+    @(link_name = "gtk_print_dialog_set_print_settings")
+    print_dialog_set_print_settings :: proc(self: ^PrintDialog, print_settings: [^]PrintSettings) ---
+
+    @(link_name = "gtk_print_dialog_setup")
+    print_dialog_setup :: proc(self: ^PrintDialog, parent: ^Window, cancellable: ^gio.Cancellable, callback: gio.AsyncReadyCallback, user_data: glib.pointer) ---
+
+    @(link_name = "gtk_print_dialog_setup_finish")
+    print_dialog_setup_finish :: proc(self: ^PrintDialog, result: ^gio.AsyncResult, error: ^^glib.Error) -> ^PrintSetup ---
+
+    @(link_name = "gtk_print_dialog_print")
+    print_dialog_print :: proc(self: ^PrintDialog, parent: ^Window, setup: ^PrintSetup, cancellable: ^gio.Cancellable, callback: gio.AsyncReadyCallback, user_data: glib.pointer) ---
+
+    @(link_name = "gtk_print_dialog_print_finish")
+    print_dialog_print_finish :: proc(self: ^PrintDialog, result: ^gio.AsyncResult, error: ^^glib.Error) -> ^gio.OutputStream ---
+
+    @(link_name = "gtk_print_dialog_print_file")
+    print_dialog_print_file :: proc(self: ^PrintDialog, parent: ^Window, setup: ^PrintSetup, file: ^gio.File, cancellable: ^gio.Cancellable, callback: gio.AsyncReadyCallback, user_data: glib.pointer) ---
+
+    @(link_name = "gtk_print_dialog_print_file_finish")
+    print_dialog_print_file_finish :: proc(self: ^PrintDialog, result: ^gio.AsyncResult, error: ^^glib.Error) -> glib.boolean ---
+
+    @(link_name = "gtk_print_context_get_type")
+    print_context_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gtk_print_context_get_cairo_context")
+    print_context_get_cairo_context :: proc(context_p: ^PrintContext) -> ^cairo.context_t ---
+
+    @(link_name = "gtk_print_context_get_page_setup")
+    print_context_get_page_setup :: proc(context_p: ^PrintContext) -> ^PageSetup ---
+
+    @(link_name = "gtk_print_context_get_width")
+    print_context_get_width :: proc(context_p: ^PrintContext) -> f64 ---
+
+    @(link_name = "gtk_print_context_get_height")
+    print_context_get_height :: proc(context_p: ^PrintContext) -> f64 ---
+
+    @(link_name = "gtk_print_context_get_dpi_x")
+    print_context_get_dpi_x :: proc(context_p: ^PrintContext) -> f64 ---
+
+    @(link_name = "gtk_print_context_get_dpi_y")
+    print_context_get_dpi_y :: proc(context_p: ^PrintContext) -> f64 ---
+
+    @(link_name = "gtk_print_context_get_hard_margins")
+    print_context_get_hard_margins :: proc(context_p: ^PrintContext, top: ^f64, bottom: ^f64, left: ^f64, right: ^f64) -> glib.boolean ---
+
+    @(link_name = "gtk_print_context_get_pango_fontmap")
+    print_context_get_pango_fontmap :: proc(context_p: ^PrintContext) -> ^pango.FontMap ---
+
+    @(link_name = "gtk_print_context_create_pango_context")
+    print_context_create_pango_context :: proc(context_p: ^PrintContext) -> ^pango.Context ---
+
+    @(link_name = "gtk_print_context_create_pango_layout")
+    print_context_create_pango_layout :: proc(context_p: ^PrintContext) -> ^pango.Layout ---
+
+    @(link_name = "gtk_print_context_set_cairo_context")
+    print_context_set_cairo_context :: proc(context_p: ^PrintContext, cr: ^cairo.context_t, dpi_x: f64, dpi_y: f64) ---
 
     @(link_name = "gtk_print_operation_preview_get_type")
     print_operation_preview_get_type :: proc() -> gobj.Type ---
@@ -16427,6 +17391,12 @@ foreign gtk_runic {
     @(link_name = "gtk_snapshot_push_rounded_clip")
     snapshot_push_rounded_clip :: proc(snapshot: ^Snapshot, bounds: [^]RoundedRect) ---
 
+    @(link_name = "gtk_snapshot_push_fill")
+    snapshot_push_fill :: proc(snapshot: ^Snapshot, path_p: ^Path, fill_rule: FillRule) ---
+
+    @(link_name = "gtk_snapshot_push_stroke")
+    snapshot_push_stroke :: proc(snapshot: ^Snapshot, path_p: ^Path, stroke: ^Stroke) ---
+
     @(link_name = "gtk_snapshot_push_shadow")
     snapshot_push_shadow :: proc(snapshot: ^Snapshot, shadow: ^Shadow, n_shadows: glib.size) ---
 
@@ -16522,6 +17492,12 @@ foreign gtk_runic {
 
     @(link_name = "gtk_snapshot_append_layout")
     snapshot_append_layout :: proc(snapshot: ^Snapshot, layout: ^pango.Layout, color: ^RGBA) ---
+
+    @(link_name = "gtk_snapshot_append_fill")
+    snapshot_append_fill :: proc(snapshot: ^Snapshot, path_p: ^Path, fill_rule: FillRule, color: ^RGBA) ---
+
+    @(link_name = "gtk_snapshot_append_stroke")
+    snapshot_append_stroke :: proc(snapshot: ^Snapshot, path_p: ^Path, stroke: ^Stroke, color: ^RGBA) ---
 
     @(link_name = "gtk_render_check")
     render_check :: proc(context_p: ^StyleContext, cr: ^cairo.context_t, x: f64, y: f64, width: f64, height: f64) ---
@@ -16699,6 +17675,12 @@ foreign gtk_runic {
 
     @(link_name = "gtk_scale_button_get_active")
     scale_button_get_active :: proc(button: ^ScaleButton) -> glib.boolean ---
+
+    @(link_name = "gtk_scale_button_get_has_frame")
+    scale_button_get_has_frame :: proc(button: ^ScaleButton) -> glib.boolean ---
+
+    @(link_name = "gtk_scale_button_set_has_frame")
+    scale_button_set_has_frame :: proc(button: ^ScaleButton, has_frame: glib.boolean) ---
 
     @(link_name = "gtk_scrollable_get_type")
     scrollable_get_type :: proc() -> gobj.Type ---
@@ -16922,6 +17904,18 @@ foreign gtk_runic {
     @(link_name = "gtk_search_entry_get_placeholder_text")
     search_entry_get_placeholder_text :: proc(entry: ^SearchEntry) -> cstring ---
 
+    @(link_name = "gtk_search_entry_set_input_purpose")
+    search_entry_set_input_purpose :: proc(entry: ^SearchEntry, purpose: InputPurpose) ---
+
+    @(link_name = "gtk_search_entry_get_input_purpose")
+    search_entry_get_input_purpose :: proc(entry: ^SearchEntry) -> InputPurpose ---
+
+    @(link_name = "gtk_search_entry_set_input_hints")
+    search_entry_set_input_hints :: proc(entry: ^SearchEntry, hints: InputHints) ---
+
+    @(link_name = "gtk_search_entry_get_input_hints")
+    search_entry_get_input_hints :: proc(entry: ^SearchEntry) -> InputHints ---
+
     @(link_name = "gtk_section_model_get_type")
     section_model_get_type :: proc() -> gobj.Type ---
 
@@ -17008,15 +18002,6 @@ foreign gtk_runic {
 
     @(link_name = "gtk_shortcut_manager_get_type")
     shortcut_manager_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "gtk_shortcuts_group_get_type")
-    shortcuts_group_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "gtk_shortcuts_section_get_type")
-    shortcuts_section_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "gtk_shortcuts_shortcut_get_type")
-    shortcuts_shortcut_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gtk_shortcut_trigger_get_type")
     shortcut_trigger_get_type :: proc() -> gobj.Type ---
@@ -17324,6 +18309,12 @@ foreign gtk_runic {
     @(link_name = "gtk_spin_button_new_with_range")
     spin_button_new_with_range :: proc(min: f64, max: f64, step: f64) -> ^Widget ---
 
+    @(link_name = "gtk_spin_button_set_activates_default")
+    spin_button_set_activates_default :: proc(spin_button: ^SpinButton, activates_default: glib.boolean) ---
+
+    @(link_name = "gtk_spin_button_get_activates_default")
+    spin_button_get_activates_default :: proc(spin_button: ^SpinButton) -> glib.boolean ---
+
     @(link_name = "gtk_spin_button_set_adjustment")
     spin_button_set_adjustment :: proc(spin_button: ^SpinButton, adjustment: ^Adjustment) ---
 
@@ -17473,6 +18464,9 @@ foreign gtk_runic {
 
     @(link_name = "gtk_string_list_get_string")
     string_list_get_string :: proc(self: ^StringList, position: glib.uint_) -> cstring ---
+
+    @(link_name = "gtk_string_list_find")
+    string_list_find :: proc(self: ^StringList, string_p: cstring) -> glib.uint_ ---
 
     @(link_name = "gtk_string_sorter_get_type")
     string_sorter_get_type :: proc() -> gobj.Type ---
@@ -18266,6 +19260,12 @@ foreign gtk_runic {
     @(link_name = "gtk_text_buffer_end_user_action")
     text_buffer_end_user_action :: proc(buffer: ^TextBuffer) ---
 
+    @(link_name = "gtk_text_buffer_add_commit_notify")
+    text_buffer_add_commit_notify :: proc(buffer: ^TextBuffer, flags: TextBufferNotifyFlags, commit_notify: TextBufferCommitNotify, user_data: glib.pointer, destroy: glib.DestroyNotify) -> glib.uint_ ---
+
+    @(link_name = "gtk_text_buffer_remove_commit_notify")
+    text_buffer_remove_commit_notify :: proc(buffer: ^TextBuffer, commit_notify_handler: glib.uint_) ---
+
     @(link_name = "gtk_text_view_get_type")
     text_view_get_type :: proc() -> gobj.Type ---
 
@@ -18298,6 +19298,9 @@ foreign gtk_runic {
 
     @(link_name = "gtk_text_view_get_visible_rect")
     text_view_get_visible_rect :: proc(text_view: ^TextView, visible_rect: ^Rectangle) ---
+
+    @(link_name = "gtk_text_view_get_visible_offset")
+    text_view_get_visible_offset :: proc(text_view: ^TextView, x_offset: ^f64, y_offset: ^f64) ---
 
     @(link_name = "gtk_text_view_set_cursor_visible")
     text_view_set_cursor_visible :: proc(text_view: ^TextView, setting: glib.boolean) ---
@@ -18531,13 +19534,13 @@ foreign gtk_runic {
     tree_drag_source_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gtk_tree_drag_source_row_draggable")
-    tree_drag_source_row_draggable :: proc(drag_source: ^TreeDragSource, path: ^TreePath) -> glib.boolean ---
+    tree_drag_source_row_draggable :: proc(drag_source: ^TreeDragSource, path_p: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_drag_source_drag_data_delete")
-    tree_drag_source_drag_data_delete :: proc(drag_source: ^TreeDragSource, path: ^TreePath) -> glib.boolean ---
+    tree_drag_source_drag_data_delete :: proc(drag_source: ^TreeDragSource, path_p: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_drag_source_drag_data_get")
-    tree_drag_source_drag_data_get :: proc(drag_source: ^TreeDragSource, path: ^TreePath) -> ^ContentProvider ---
+    tree_drag_source_drag_data_get :: proc(drag_source: ^TreeDragSource, path_p: ^TreePath) -> ^ContentProvider ---
 
     @(link_name = "gtk_tree_drag_dest_get_type")
     tree_drag_dest_get_type :: proc() -> gobj.Type ---
@@ -18549,10 +19552,10 @@ foreign gtk_runic {
     tree_drag_dest_row_drop_possible :: proc(drag_dest: ^TreeDragDest, dest_path: ^TreePath, value: ^gobj.Value) -> glib.boolean ---
 
     @(link_name = "gtk_tree_create_row_drag_content")
-    tree_create_row_drag_content :: proc(tree_model: ^TreeModel, path: ^TreePath) -> ^ContentProvider ---
+    tree_create_row_drag_content :: proc(tree_model: ^TreeModel, path_p: ^TreePath) -> ^ContentProvider ---
 
     @(link_name = "gtk_tree_get_row_drag_data")
-    tree_get_row_drag_data :: proc(value: ^gobj.Value, tree_model: ^^TreeModel, path: ^^TreePath) -> glib.boolean ---
+    tree_get_row_drag_data :: proc(value: ^gobj.Value, tree_model: ^^TreeModel, path_p: ^^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_list_model_get_type")
     tree_list_model_get_type :: proc() -> gobj.Type ---
@@ -18723,10 +19726,10 @@ foreign gtk_runic {
     tree_selection_selected_foreach :: proc(selection: ^TreeSelection, func: TreeSelectionForeachFunc, data: glib.pointer) ---
 
     @(link_name = "gtk_tree_selection_select_path")
-    tree_selection_select_path :: proc(selection: ^TreeSelection, path: ^TreePath) ---
+    tree_selection_select_path :: proc(selection: ^TreeSelection, path_p: ^TreePath) ---
 
     @(link_name = "gtk_tree_selection_unselect_path")
-    tree_selection_unselect_path :: proc(selection: ^TreeSelection, path: ^TreePath) ---
+    tree_selection_unselect_path :: proc(selection: ^TreeSelection, path_p: ^TreePath) ---
 
     @(link_name = "gtk_tree_selection_select_iter")
     tree_selection_select_iter :: proc(selection: ^TreeSelection, iter: ^TreeIter) ---
@@ -18735,7 +19738,7 @@ foreign gtk_runic {
     tree_selection_unselect_iter :: proc(selection: ^TreeSelection, iter: ^TreeIter) ---
 
     @(link_name = "gtk_tree_selection_path_is_selected")
-    tree_selection_path_is_selected :: proc(selection: ^TreeSelection, path: ^TreePath) -> glib.boolean ---
+    tree_selection_path_is_selected :: proc(selection: ^TreeSelection, path_p: ^TreePath) -> glib.boolean ---
 
     @(link_name = "gtk_tree_selection_iter_is_selected")
     tree_selection_iter_is_selected :: proc(selection: ^TreeSelection, iter: ^TreeIter) -> glib.boolean ---
@@ -18908,6 +19911,12 @@ foreign gtk_runic {
     @(link_name = "gtk_video_set_loop")
     video_set_loop :: proc(self: ^Video, loop: glib.boolean) ---
 
+    @(link_name = "gtk_video_get_graphics_offload")
+    video_get_graphics_offload :: proc(self: ^Video) -> GraphicsOffloadEnabled ---
+
+    @(link_name = "gtk_video_set_graphics_offload")
+    video_set_graphics_offload :: proc(self: ^Video, enabled: GraphicsOffloadEnabled) ---
+
     @(link_name = "gtk_viewport_get_type")
     viewport_get_type :: proc() -> gobj.Type ---
 
@@ -19013,6 +20022,57 @@ foreign gtk_runic {
     @(link_name = "glib_queueautoptr_cleanup_GdkAppLaunchContext_wrapper")
     queueautoptr_cleanup_GdkAppLaunchContext :: proc(_q: ^^glib.Queue) ---
 
+    @(link_name = "glib_autoptr_clear_GdkCicpParams_wrapper")
+    autoptr_clear_GdkCicpParams :: proc(_ptr: ^CicpParams) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkCicpParams_wrapper")
+    autoptr_cleanup_GdkCicpParams :: proc(_ptr: ^^CicpParams) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkCicpParams_wrapper")
+    autoptr_destroy_GdkCicpParams :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkCicpParams_wrapper")
+    listautoptr_cleanup_GdkCicpParams :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkCicpParams_wrapper")
+    slistautoptr_cleanup_GdkCicpParams :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkCicpParams_wrapper")
+    queueautoptr_cleanup_GdkCicpParams :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkCicpParamsClass_wrapper")
+    autoptr_clear_GdkCicpParamsClass :: proc(_ptr: ^CicpParamsClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkCicpParamsClass_wrapper")
+    autoptr_cleanup_GdkCicpParamsClass :: proc(_ptr: ^^CicpParamsClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkCicpParamsClass_wrapper")
+    autoptr_destroy_GdkCicpParamsClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkCicpParamsClass_wrapper")
+    listautoptr_cleanup_GdkCicpParamsClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkCicpParamsClass_wrapper")
+    slistautoptr_cleanup_GdkCicpParamsClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkCicpParamsClass_wrapper")
+    queueautoptr_cleanup_GdkCicpParamsClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GDK_CICP_PARAMS_wrapper")
+    GDK_CICP_PARAMS :: proc(ptr: glib.pointer) -> ^CicpParams ---
+
+    @(link_name = "GDK_CICP_PARAMS_CLASS_wrapper")
+    GDK_CICP_PARAMS_CLASS :: proc(ptr: glib.pointer) -> ^CicpParamsClass ---
+
+    @(link_name = "GDK_IS_CICP_PARAMS_wrapper")
+    GDK_IS_CICP_PARAMS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_IS_CICP_PARAMS_CLASS_wrapper")
+    GDK_IS_CICP_PARAMS_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_CICP_PARAMS_GET_CLASS_wrapper")
+    GDK_CICP_PARAMS_GET_CLASS :: proc(ptr: glib.pointer) -> ^CicpParamsClass ---
+
     @(link_name = "glib_autoptr_clear_GdkClipboard_wrapper")
     autoptr_clear_GdkClipboard :: proc(_ptr: ^Clipboard) ---
 
@@ -19030,6 +20090,24 @@ foreign gtk_runic {
 
     @(link_name = "glib_queueautoptr_cleanup_GdkClipboard_wrapper")
     queueautoptr_cleanup_GdkClipboard :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkColorState_wrapper")
+    autoptr_clear_GdkColorState :: proc(_ptr: ^ColorState) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkColorState_wrapper")
+    autoptr_cleanup_GdkColorState :: proc(_ptr: ^^ColorState) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkColorState_wrapper")
+    autoptr_destroy_GdkColorState :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkColorState_wrapper")
+    listautoptr_cleanup_GdkColorState :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkColorState_wrapper")
+    slistautoptr_cleanup_GdkColorState :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkColorState_wrapper")
+    queueautoptr_cleanup_GdkColorState :: proc(_q: ^^glib.Queue) ---
 
     @(link_name = "glib_autoptr_clear_GdkContentFormats_wrapper")
     autoptr_clear_GdkContentFormats :: proc(_ptr: ^ContentFormats) ---
@@ -19283,6 +20361,111 @@ foreign gtk_runic {
     @(link_name = "glib_queueautoptr_cleanup_GdkDisplayManager_wrapper")
     queueautoptr_cleanup_GdkDisplayManager :: proc(_q: ^^glib.Queue) ---
 
+    @(link_name = "glib_autoptr_clear_GdkDmabufFormats_wrapper")
+    autoptr_clear_GdkDmabufFormats :: proc(_ptr: ^DmabufFormats) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDmabufFormats_wrapper")
+    autoptr_cleanup_GdkDmabufFormats :: proc(_ptr: ^^DmabufFormats) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDmabufFormats_wrapper")
+    autoptr_destroy_GdkDmabufFormats :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDmabufFormats_wrapper")
+    listautoptr_cleanup_GdkDmabufFormats :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDmabufFormats_wrapper")
+    slistautoptr_cleanup_GdkDmabufFormats :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDmabufFormats_wrapper")
+    queueautoptr_cleanup_GdkDmabufFormats :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkTexture_wrapper")
+    autoptr_clear_GdkTexture :: proc(_ptr: ^Texture) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkTexture_wrapper")
+    autoptr_cleanup_GdkTexture :: proc(_ptr: ^^Texture) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkTexture_wrapper")
+    autoptr_destroy_GdkTexture :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkTexture_wrapper")
+    listautoptr_cleanup_GdkTexture :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkTexture_wrapper")
+    slistautoptr_cleanup_GdkTexture :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkTexture_wrapper")
+    queueautoptr_cleanup_GdkTexture :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkDmabufTexture_wrapper")
+    autoptr_clear_GdkDmabufTexture :: proc(_ptr: ^DmabufTexture) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDmabufTexture_wrapper")
+    autoptr_cleanup_GdkDmabufTexture :: proc(_ptr: ^^DmabufTexture) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDmabufTexture_wrapper")
+    autoptr_destroy_GdkDmabufTexture :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDmabufTexture_wrapper")
+    listautoptr_cleanup_GdkDmabufTexture :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDmabufTexture_wrapper")
+    slistautoptr_cleanup_GdkDmabufTexture :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDmabufTexture_wrapper")
+    queueautoptr_cleanup_GdkDmabufTexture :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkDmabufTextureBuilder_wrapper")
+    autoptr_clear_GdkDmabufTextureBuilder :: proc(_ptr: ^DmabufTextureBuilder) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDmabufTextureBuilder_wrapper")
+    autoptr_cleanup_GdkDmabufTextureBuilder :: proc(_ptr: ^^DmabufTextureBuilder) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDmabufTextureBuilder_wrapper")
+    autoptr_destroy_GdkDmabufTextureBuilder :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDmabufTextureBuilder_wrapper")
+    listautoptr_cleanup_GdkDmabufTextureBuilder :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDmabufTextureBuilder_wrapper")
+    slistautoptr_cleanup_GdkDmabufTextureBuilder :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDmabufTextureBuilder_wrapper")
+    queueautoptr_cleanup_GdkDmabufTextureBuilder :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkDmabufTextureBuilderClass_wrapper")
+    autoptr_clear_GdkDmabufTextureBuilderClass :: proc(_ptr: ^DmabufTextureBuilderClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkDmabufTextureBuilderClass_wrapper")
+    autoptr_cleanup_GdkDmabufTextureBuilderClass :: proc(_ptr: ^^DmabufTextureBuilderClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkDmabufTextureBuilderClass_wrapper")
+    autoptr_destroy_GdkDmabufTextureBuilderClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkDmabufTextureBuilderClass_wrapper")
+    listautoptr_cleanup_GdkDmabufTextureBuilderClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkDmabufTextureBuilderClass_wrapper")
+    slistautoptr_cleanup_GdkDmabufTextureBuilderClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkDmabufTextureBuilderClass_wrapper")
+    queueautoptr_cleanup_GdkDmabufTextureBuilderClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GDK_DMABUF_TEXTURE_BUILDER_wrapper")
+    GDK_DMABUF_TEXTURE_BUILDER :: proc(ptr: glib.pointer) -> ^DmabufTextureBuilder ---
+
+    @(link_name = "GDK_DMABUF_TEXTURE_BUILDER_CLASS_wrapper")
+    GDK_DMABUF_TEXTURE_BUILDER_CLASS :: proc(ptr: glib.pointer) -> ^DmabufTextureBuilderClass ---
+
+    @(link_name = "GDK_IS_DMABUF_TEXTURE_BUILDER_wrapper")
+    GDK_IS_DMABUF_TEXTURE_BUILDER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_IS_DMABUF_TEXTURE_BUILDER_CLASS_wrapper")
+    GDK_IS_DMABUF_TEXTURE_BUILDER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_DMABUF_TEXTURE_BUILDER_GET_CLASS_wrapper")
+    GDK_DMABUF_TEXTURE_BUILDER_GET_CLASS :: proc(ptr: glib.pointer) -> ^DmabufTextureBuilderClass ---
+
     @(link_name = "glib_autoptr_clear_GdkDragSurface_wrapper")
     autoptr_clear_GdkDragSurface :: proc(_ptr: ^DragSurface) ---
 
@@ -19363,24 +20546,6 @@ foreign gtk_runic {
 
     @(link_name = "glib_queueautoptr_cleanup_GdkGLContext_wrapper")
     queueautoptr_cleanup_GdkGLContext :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GdkTexture_wrapper")
-    autoptr_clear_GdkTexture :: proc(_ptr: ^Texture) ---
-
-    @(link_name = "glib_autoptr_cleanup_GdkTexture_wrapper")
-    autoptr_cleanup_GdkTexture :: proc(_ptr: ^^Texture) ---
-
-    @(link_name = "glib_autoptr_destroy_GdkTexture_wrapper")
-    autoptr_destroy_GdkTexture :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GdkTexture_wrapper")
-    listautoptr_cleanup_GdkTexture :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GdkTexture_wrapper")
-    slistautoptr_cleanup_GdkTexture :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GdkTexture_wrapper")
-    queueautoptr_cleanup_GdkTexture :: proc(_q: ^^glib.Queue) ---
 
     @(link_name = "glib_autoptr_clear_GdkGLTexture_wrapper")
     autoptr_clear_GdkGLTexture :: proc(_ptr: ^GLTexture) ---
@@ -19468,6 +20633,57 @@ foreign gtk_runic {
 
     @(link_name = "glib_queueautoptr_cleanup_GdkMemoryTexture_wrapper")
     queueautoptr_cleanup_GdkMemoryTexture :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkMemoryTextureBuilder_wrapper")
+    autoptr_clear_GdkMemoryTextureBuilder :: proc(_ptr: ^MemoryTextureBuilder) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkMemoryTextureBuilder_wrapper")
+    autoptr_cleanup_GdkMemoryTextureBuilder :: proc(_ptr: ^^MemoryTextureBuilder) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkMemoryTextureBuilder_wrapper")
+    autoptr_destroy_GdkMemoryTextureBuilder :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkMemoryTextureBuilder_wrapper")
+    listautoptr_cleanup_GdkMemoryTextureBuilder :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkMemoryTextureBuilder_wrapper")
+    slistautoptr_cleanup_GdkMemoryTextureBuilder :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkMemoryTextureBuilder_wrapper")
+    queueautoptr_cleanup_GdkMemoryTextureBuilder :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GdkMemoryTextureBuilderClass_wrapper")
+    autoptr_clear_GdkMemoryTextureBuilderClass :: proc(_ptr: ^MemoryTextureBuilderClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GdkMemoryTextureBuilderClass_wrapper")
+    autoptr_cleanup_GdkMemoryTextureBuilderClass :: proc(_ptr: ^^MemoryTextureBuilderClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GdkMemoryTextureBuilderClass_wrapper")
+    autoptr_destroy_GdkMemoryTextureBuilderClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GdkMemoryTextureBuilderClass_wrapper")
+    listautoptr_cleanup_GdkMemoryTextureBuilderClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GdkMemoryTextureBuilderClass_wrapper")
+    slistautoptr_cleanup_GdkMemoryTextureBuilderClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GdkMemoryTextureBuilderClass_wrapper")
+    queueautoptr_cleanup_GdkMemoryTextureBuilderClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GDK_MEMORY_TEXTURE_BUILDER_wrapper")
+    GDK_MEMORY_TEXTURE_BUILDER :: proc(ptr: glib.pointer) -> ^MemoryTextureBuilder ---
+
+    @(link_name = "GDK_MEMORY_TEXTURE_BUILDER_CLASS_wrapper")
+    GDK_MEMORY_TEXTURE_BUILDER_CLASS :: proc(ptr: glib.pointer) -> ^MemoryTextureBuilderClass ---
+
+    @(link_name = "GDK_IS_MEMORY_TEXTURE_BUILDER_wrapper")
+    GDK_IS_MEMORY_TEXTURE_BUILDER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_IS_MEMORY_TEXTURE_BUILDER_CLASS_wrapper")
+    GDK_IS_MEMORY_TEXTURE_BUILDER_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GDK_MEMORY_TEXTURE_BUILDER_GET_CLASS_wrapper")
+    GDK_MEMORY_TEXTURE_BUILDER_GET_CLASS :: proc(ptr: glib.pointer) -> ^MemoryTextureBuilderClass ---
 
     @(link_name = "glib_autoptr_clear_GdkPaintable_wrapper")
     autoptr_clear_GdkPaintable :: proc(_ptr: ^Paintable) ---
@@ -19640,6 +20856,60 @@ foreign gtk_runic {
     @(link_name = "glib_queueautoptr_cleanup_GdkVulkanContext_wrapper")
     queueautoptr_cleanup_GdkVulkanContext :: proc(_q: ^^glib.Queue) ---
 
+    @(link_name = "glib_autoptr_clear_GskPath_wrapper")
+    autoptr_clear_GskPath :: proc(_ptr: ^Path) ---
+
+    @(link_name = "glib_autoptr_cleanup_GskPath_wrapper")
+    autoptr_cleanup_GskPath :: proc(_ptr: ^^Path) ---
+
+    @(link_name = "glib_autoptr_destroy_GskPath_wrapper")
+    autoptr_destroy_GskPath :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GskPath_wrapper")
+    listautoptr_cleanup_GskPath :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GskPath_wrapper")
+    slistautoptr_cleanup_GskPath :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GskPath_wrapper")
+    queueautoptr_cleanup_GskPath :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GskPathBuilder_wrapper")
+    autoptr_clear_GskPathBuilder :: proc(_ptr: ^PathBuilder) ---
+
+    @(link_name = "glib_autoptr_cleanup_GskPathBuilder_wrapper")
+    autoptr_cleanup_GskPathBuilder :: proc(_ptr: ^^PathBuilder) ---
+
+    @(link_name = "glib_autoptr_destroy_GskPathBuilder_wrapper")
+    autoptr_destroy_GskPathBuilder :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GskPathBuilder_wrapper")
+    listautoptr_cleanup_GskPathBuilder :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GskPathBuilder_wrapper")
+    slistautoptr_cleanup_GskPathBuilder :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GskPathBuilder_wrapper")
+    queueautoptr_cleanup_GskPathBuilder :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GskPathMeasure_wrapper")
+    autoptr_clear_GskPathMeasure :: proc(_ptr: ^PathMeasure) ---
+
+    @(link_name = "glib_autoptr_cleanup_GskPathMeasure_wrapper")
+    autoptr_cleanup_GskPathMeasure :: proc(_ptr: ^^PathMeasure) ---
+
+    @(link_name = "glib_autoptr_destroy_GskPathMeasure_wrapper")
+    autoptr_destroy_GskPathMeasure :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GskPathMeasure_wrapper")
+    listautoptr_cleanup_GskPathMeasure :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GskPathMeasure_wrapper")
+    slistautoptr_cleanup_GskPathMeasure :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GskPathMeasure_wrapper")
+    queueautoptr_cleanup_GskPathMeasure :: proc(_q: ^^glib.Queue) ---
+
     @(link_name = "glib_autoptr_clear_GskGLShader_wrapper")
     autoptr_clear_GskGLShader :: proc(_ptr: ^GLShader) ---
 
@@ -19718,6 +20988,24 @@ foreign gtk_runic {
     @(link_name = "glib_queueautoptr_cleanup_GskRenderer_wrapper")
     queueautoptr_cleanup_GskRenderer :: proc(_q: ^^glib.Queue) ---
 
+    @(link_name = "glib_autoptr_clear_GskStroke_wrapper")
+    autoptr_clear_GskStroke :: proc(_ptr: ^Stroke) ---
+
+    @(link_name = "glib_autoptr_cleanup_GskStroke_wrapper")
+    autoptr_cleanup_GskStroke :: proc(_ptr: ^^Stroke) ---
+
+    @(link_name = "glib_autoptr_destroy_GskStroke_wrapper")
+    autoptr_destroy_GskStroke :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GskStroke_wrapper")
+    listautoptr_cleanup_GskStroke :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GskStroke_wrapper")
+    slistautoptr_cleanup_GskStroke :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GskStroke_wrapper")
+    queueautoptr_cleanup_GskStroke :: proc(_q: ^^glib.Queue) ---
+
     @(link_name = "glib_autoptr_clear_GskTransform_wrapper")
     autoptr_clear_GskTransform :: proc(_ptr: ^Transform) ---
 
@@ -19736,26 +21024,26 @@ foreign gtk_runic {
     @(link_name = "glib_queueautoptr_cleanup_GskTransform_wrapper")
     queueautoptr_cleanup_GskTransform :: proc(_q: ^^glib.Queue) ---
 
+    @(link_name = "glib_autoptr_clear_GskVulkanRenderer_wrapper")
+    autoptr_clear_GskVulkanRenderer :: proc(_ptr: ^VulkanRenderer) ---
+
+    @(link_name = "glib_autoptr_cleanup_GskVulkanRenderer_wrapper")
+    autoptr_cleanup_GskVulkanRenderer :: proc(_ptr: ^^VulkanRenderer) ---
+
+    @(link_name = "glib_autoptr_destroy_GskVulkanRenderer_wrapper")
+    autoptr_destroy_GskVulkanRenderer :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GskVulkanRenderer_wrapper")
+    listautoptr_cleanup_GskVulkanRenderer :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GskVulkanRenderer_wrapper")
+    slistautoptr_cleanup_GskVulkanRenderer :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GskVulkanRenderer_wrapper")
+    queueautoptr_cleanup_GskVulkanRenderer :: proc(_q: ^^glib.Queue) ---
+
     @(link_name = "gtk_ordering_from_cmpfunc_wrapper")
     ordering_from_cmpfunc :: proc(cmpfunc_result: i32) -> Ordering ---
-
-    @(link_name = "glib_autoptr_clear_GtkBorder_wrapper")
-    autoptr_clear_GtkBorder :: proc(_ptr: ^Border) ---
-
-    @(link_name = "glib_autoptr_cleanup_GtkBorder_wrapper")
-    autoptr_cleanup_GtkBorder :: proc(_ptr: ^^Border) ---
-
-    @(link_name = "glib_autoptr_destroy_GtkBorder_wrapper")
-    autoptr_destroy_GtkBorder :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GtkBorder_wrapper")
-    listautoptr_cleanup_GtkBorder :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GtkBorder_wrapper")
-    slistautoptr_cleanup_GtkBorder :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GtkBorder_wrapper")
-    queueautoptr_cleanup_GtkBorder :: proc(_q: ^^glib.Queue) ---
 
     @(link_name = "glib_autoptr_clear_GtkShortcut_wrapper")
     autoptr_clear_GtkShortcut :: proc(_ptr: ^Shortcut) ---
@@ -20317,6 +21605,33 @@ foreign gtk_runic {
 
     @(link_name = "GTK_ACCESSIBLE_RANGE_GET_IFACE_wrapper")
     ACCESSIBLE_RANGE_GET_IFACE :: proc(ptr: glib.pointer) -> ^AccessibleRangeInterface ---
+
+    @(link_name = "glib_autoptr_clear_GtkAccessibleText_wrapper")
+    autoptr_clear_GtkAccessibleText :: proc(_ptr: ^AccessibleText) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkAccessibleText_wrapper")
+    autoptr_cleanup_GtkAccessibleText :: proc(_ptr: ^^AccessibleText) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkAccessibleText_wrapper")
+    autoptr_destroy_GtkAccessibleText :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkAccessibleText_wrapper")
+    listautoptr_cleanup_GtkAccessibleText :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkAccessibleText_wrapper")
+    slistautoptr_cleanup_GtkAccessibleText :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkAccessibleText_wrapper")
+    queueautoptr_cleanup_GtkAccessibleText :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_ACCESSIBLE_TEXT_wrapper")
+    ACCESSIBLE_TEXT :: proc(ptr: glib.pointer) -> ^AccessibleText ---
+
+    @(link_name = "GTK_IS_ACCESSIBLE_TEXT_wrapper")
+    IS_ACCESSIBLE_TEXT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "GTK_ACCESSIBLE_TEXT_GET_IFACE_wrapper")
+    ACCESSIBLE_TEXT_GET_IFACE :: proc(ptr: glib.pointer) -> ^AccessibleTextInterface ---
 
     @(link_name = "glib_autoptr_clear_GtkActionable_wrapper")
     autoptr_clear_GtkActionable :: proc(_ptr: ^Actionable) ---
@@ -20941,6 +22256,24 @@ foreign gtk_runic {
 
     @(link_name = "GTK_IS_BOOL_FILTER_wrapper")
     IS_BOOL_FILTER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkBorder_wrapper")
+    autoptr_clear_GtkBorder :: proc(_ptr: ^Border) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkBorder_wrapper")
+    autoptr_cleanup_GtkBorder :: proc(_ptr: ^^Border) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkBorder_wrapper")
+    autoptr_destroy_GtkBorder :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkBorder_wrapper")
+    listautoptr_cleanup_GtkBorder :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkBorder_wrapper")
+    slistautoptr_cleanup_GtkBorder :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkBorder_wrapper")
+    queueautoptr_cleanup_GtkBorder :: proc(_q: ^^glib.Queue) ---
 
     @(link_name = "glib_autoptr_clear_GtkBoxLayout_wrapper")
     autoptr_clear_GtkBoxLayout :: proc(_ptr: ^BoxLayout) ---
@@ -23723,6 +25056,48 @@ foreign gtk_runic {
     @(link_name = "glib_queueautoptr_cleanup_GtkGLArea_wrapper")
     queueautoptr_cleanup_GtkGLArea :: proc(_q: ^^glib.Queue) ---
 
+    @(link_name = "glib_autoptr_clear_GtkGraphicsOffload_wrapper")
+    autoptr_clear_GtkGraphicsOffload :: proc(_ptr: ^GraphicsOffload) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGraphicsOffload_wrapper")
+    autoptr_cleanup_GtkGraphicsOffload :: proc(_ptr: ^^GraphicsOffload) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGraphicsOffload_wrapper")
+    autoptr_destroy_GtkGraphicsOffload :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGraphicsOffload_wrapper")
+    listautoptr_cleanup_GtkGraphicsOffload :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGraphicsOffload_wrapper")
+    slistautoptr_cleanup_GtkGraphicsOffload :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGraphicsOffload_wrapper")
+    queueautoptr_cleanup_GtkGraphicsOffload :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkGraphicsOffloadClass_wrapper")
+    autoptr_clear_GtkGraphicsOffloadClass :: proc(_ptr: ^GraphicsOffloadClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkGraphicsOffloadClass_wrapper")
+    autoptr_cleanup_GtkGraphicsOffloadClass :: proc(_ptr: ^^GraphicsOffloadClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkGraphicsOffloadClass_wrapper")
+    autoptr_destroy_GtkGraphicsOffloadClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkGraphicsOffloadClass_wrapper")
+    listautoptr_cleanup_GtkGraphicsOffloadClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkGraphicsOffloadClass_wrapper")
+    slistautoptr_cleanup_GtkGraphicsOffloadClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkGraphicsOffloadClass_wrapper")
+    queueautoptr_cleanup_GtkGraphicsOffloadClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_GRAPHICS_OFFLOAD_wrapper")
+    GRAPHICS_OFFLOAD :: proc(ptr: glib.pointer) -> ^GraphicsOffload ---
+
+    @(link_name = "GTK_IS_GRAPHICS_OFFLOAD_wrapper")
+    IS_GRAPHICS_OFFLOAD :: proc(ptr: glib.pointer) -> glib.boolean ---
+
     @(link_name = "glib_autoptr_clear_GtkGrid_wrapper")
     autoptr_clear_GtkGrid :: proc(_ptr: ^Grid) ---
 
@@ -25124,24 +26499,6 @@ foreign gtk_runic {
     @(link_name = "glib_queueautoptr_cleanup_GtkPopoverMenuBar_wrapper")
     queueautoptr_cleanup_GtkPopoverMenuBar :: proc(_q: ^^glib.Queue) ---
 
-    @(link_name = "glib_autoptr_clear_GtkPrintContext_wrapper")
-    autoptr_clear_GtkPrintContext :: proc(_ptr: ^PrintContext) ---
-
-    @(link_name = "glib_autoptr_cleanup_GtkPrintContext_wrapper")
-    autoptr_cleanup_GtkPrintContext :: proc(_ptr: ^^PrintContext) ---
-
-    @(link_name = "glib_autoptr_destroy_GtkPrintContext_wrapper")
-    autoptr_destroy_GtkPrintContext :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GtkPrintContext_wrapper")
-    listautoptr_cleanup_GtkPrintContext :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GtkPrintContext_wrapper")
-    slistautoptr_cleanup_GtkPrintContext :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GtkPrintContext_wrapper")
-    queueautoptr_cleanup_GtkPrintContext :: proc(_q: ^^glib.Queue) ---
-
     @(link_name = "glib_autoptr_clear_GtkPrintSettings_wrapper")
     autoptr_clear_GtkPrintSettings :: proc(_ptr: ^PrintSettings) ---
 
@@ -25159,6 +26516,66 @@ foreign gtk_runic {
 
     @(link_name = "glib_queueautoptr_cleanup_GtkPrintSettings_wrapper")
     queueautoptr_cleanup_GtkPrintSettings :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPrintDialog_wrapper")
+    autoptr_clear_GtkPrintDialog :: proc(_ptr: ^PrintDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPrintDialog_wrapper")
+    autoptr_cleanup_GtkPrintDialog :: proc(_ptr: ^^PrintDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPrintDialog_wrapper")
+    autoptr_destroy_GtkPrintDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPrintDialog_wrapper")
+    listautoptr_cleanup_GtkPrintDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPrintDialog_wrapper")
+    slistautoptr_cleanup_GtkPrintDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPrintDialog_wrapper")
+    queueautoptr_cleanup_GtkPrintDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkPrintDialogClass_wrapper")
+    autoptr_clear_GtkPrintDialogClass :: proc(_ptr: ^PrintDialogClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPrintDialogClass_wrapper")
+    autoptr_cleanup_GtkPrintDialogClass :: proc(_ptr: ^^PrintDialogClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPrintDialogClass_wrapper")
+    autoptr_destroy_GtkPrintDialogClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPrintDialogClass_wrapper")
+    listautoptr_cleanup_GtkPrintDialogClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPrintDialogClass_wrapper")
+    slistautoptr_cleanup_GtkPrintDialogClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPrintDialogClass_wrapper")
+    queueautoptr_cleanup_GtkPrintDialogClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "GTK_PRINT_DIALOG_wrapper")
+    PRINT_DIALOG :: proc(ptr: glib.pointer) -> ^PrintDialog ---
+
+    @(link_name = "GTK_IS_PRINT_DIALOG_wrapper")
+    IS_PRINT_DIALOG :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GtkPrintContext_wrapper")
+    autoptr_clear_GtkPrintContext :: proc(_ptr: ^PrintContext) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkPrintContext_wrapper")
+    autoptr_cleanup_GtkPrintContext :: proc(_ptr: ^^PrintContext) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkPrintContext_wrapper")
+    autoptr_destroy_GtkPrintContext :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkPrintContext_wrapper")
+    listautoptr_cleanup_GtkPrintContext :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkPrintContext_wrapper")
+    slistautoptr_cleanup_GtkPrintContext :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkPrintContext_wrapper")
+    queueautoptr_cleanup_GtkPrintContext :: proc(_q: ^^glib.Queue) ---
 
     @(link_name = "glib_autoptr_clear_GtkPrintOperationPreview_wrapper")
     autoptr_clear_GtkPrintOperationPreview :: proc(_ptr: ^PrintOperationPreview) ---
@@ -25963,6 +27380,24 @@ foreign gtk_runic {
 
     @(link_name = "glib_queueautoptr_cleanup_GtkStack_wrapper")
     queueautoptr_cleanup_GtkStack :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GtkStackPage_wrapper")
+    autoptr_clear_GtkStackPage :: proc(_ptr: ^StackPage) ---
+
+    @(link_name = "glib_autoptr_cleanup_GtkStackPage_wrapper")
+    autoptr_cleanup_GtkStackPage :: proc(_ptr: ^^StackPage) ---
+
+    @(link_name = "glib_autoptr_destroy_GtkStackPage_wrapper")
+    autoptr_destroy_GtkStackPage :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GtkStackPage_wrapper")
+    listautoptr_cleanup_GtkStackPage :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GtkStackPage_wrapper")
+    slistautoptr_cleanup_GtkStackPage :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GtkStackPage_wrapper")
+    queueautoptr_cleanup_GtkStackPage :: proc(_q: ^^glib.Queue) ---
 
     @(link_name = "glib_autoptr_clear_GtkStackSidebar_wrapper")
     autoptr_clear_GtkStackSidebar :: proc(_ptr: ^StackSidebar) ---

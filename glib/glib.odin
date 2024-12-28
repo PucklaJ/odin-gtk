@@ -179,6 +179,8 @@ SHELL_ERROR :: `g_shell_error_quark ()`
 SPAWN_ERROR :: `g_spawn_error_quark ()`
 SPAWN_EXIT_ERROR :: `g_spawn_exit_error_quark ()`
 TEST_OPTION_ISOLATE_DIRS :: "isolate_dirs"
+TEST_OPTION_NO_PRGNAME :: "no_g_set_prgname"
+TEST_OPTION_NONFATAL_ASSERTIONS :: "nonfatal-assertions"
 USEC_PER_SEC :: 1000000
 URI_RESERVED_CHARS_GENERIC_DELIMITERS :: ":/?#[]@"
 URI_RESERVED_CHARS_SUBCOMPONENT_DELIMITERS :: "!$&'()*+,;="
@@ -1526,6 +1528,9 @@ foreign glib_runic {
 
     @(link_name = "g_thread_yield")
     thread_yield :: proc() ---
+
+    @(link_name = "g_thread_get_name")
+    thread_get_name :: proc(thread: ^Thread) -> cstring ---
 
     @(link_name = "g_mutex_init")
     mutex_init :: proc(mutex: ^Mutex) ---
