@@ -19,3 +19,6 @@
 [submodule "shared/gtk4-layer-shell"]
 	path = shared/gtk4-layer-shell
 	url = https://github.com/wmww/gtk4-layer-shell.git
+[submodule "shared/adwaita"]
+	path = shared/adwaita
+	url = https://gitlab.gnome.org/GNOME/libadwaita.git
