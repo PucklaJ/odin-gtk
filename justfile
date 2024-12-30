@@ -1,19 +1,19 @@
 default: setup wrapper
 
-setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup graphene-setup
+setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup graphene-setup adwaita-setup
 
-bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell
+bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell adwaita
 glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
 wrapper CC='cc':  (glib-wrapper-all CC) (gdk-pixbuf-wrapper CC) (pango-wrapper CC) (graphene-wrapper CC) (gtk-wrapper CC)
-glib-wrapper-all CC='cc': (glib-wrapper CC) (gobject-wrapper CC) (gio-wrapper CC) (girepository-wrapper CC)
+glib-wrapper-all CC='cc': (glib-wrapper CC) (gobject-wrapper CC) (gio-wrapper CC) (girepository-wrapper CC) (adwaita-wrapper CC)
 
 build: glib-build cairo-build gtk-build
 
-clean: glib-clean cairo-clean gtk-clean
+clean: glib-clean cairo-clean gtk-clean adwaita-clean
 
-check-all: (check 'glib') (check 'glib/gobject') (check 'glib/gmodule') (check 'glib/gio') (check 'glib/girepository') (check 'gdk-pixbuf') (check 'cairo') (check 'pango') (check 'pango/pangocairo') (check 'graphene') (check 'gtk') (check 'gtk/layer-shell')
+check-all: (check 'glib') (check 'glib/gobject') (check 'glib/gmodule') (check 'glib/gio') (check 'glib/girepository') (check 'gdk-pixbuf') (check 'cairo') (check 'pango') (check 'pango/pangocairo') (check 'graphene') (check 'gtk') (check 'gtk/layer-shell') (check 'adwaita')
 
 RUNIC := 'runic'
 
@@ -310,6 +310,34 @@ gtk-wrapper CC='cc':
 
 gtk-layer-shell:
     {{ RUNIC }} gtk/layer-shell/rune.yml
+
+adwaita-setup:
+    cd shared/adwaita && meson setup \
+          -Dprofiling=false \
+          -Dintrospection=disabled \
+          -Dvapi=false \
+          -Dgtk_doc=false \
+          -Dtests=false \
+          -Dexamples=false \
+          _build
+    ninja -C shared/adwaita/_build \
+             src/adw-version.h \
+             src/adw-enums.h
+
+adwaita:
+    {{ RUNIC }} adwaita/rune.yml
+    sed adwaita/adwaita.odin -i \
+        -e 's/focus: \[\^\]/focus: ^/' \
+
+adwaita-wrapper CC='cc':
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/adwaita-wrapper.o -Ishared/gtk -Ishared/glib -Ishared/glib/glib -Ishared/glib/gmodule -Ishared/glib/_build -Ishared/glib/_build/glib -Ishared/gtk/_build -Ishared/cairo/src -Ishared/cairo/_build/src -Ishared/pango -Ishared/pango/_build -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build -Ishared/graphene/include -Ishared/graphene/_build/include -Ishared/adwaita/_build/src -I/usr/include/harfbuzz adwaita/adwaita-wrapper.c
+    ar rs lib/{{ os() }}/{{ arch() }}/libadwaita-wrapper.a lib/{{ os() }}/{{ arch() }}/adwaita-wrapper.o
+    @rm lib/{{ os() }}/{{ arch() }}/adwaita-wrapper.o
+
+adwaita-clean:
+    rm -rf \
+       shared/adwaita/_build
 
 example NAME='hello-glib' KIND='shared':
     odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }} -define:GLIB_STATIC={{ if KIND == 'static' { 'true' } else { 'false' } }}

@@ -1,0 +1,190 @@
+version: 0
+platforms:
+  - Linux x86_64
+  - Linux arm64
+wrapper:
+  language: c
+  in_headers: ../shared/adwaita/src/adwaita.h
+  out_header: adwaita-wrapper.h
+  out_source: adwaita-wrapper.c
+  load_all_includes: true
+  multi_platform: false
+from:
+  language: c
+  shared.linux: 'libadwaita-1.so'
+  static.linux.arm64: '../lib/linux/aarch64/libadwaita.a'
+  static.linux.x86_64: '../lib/linux/x86_64/libadwaita.a'
+  headers: ../shared/adwaita/src/adwaita.h
+  includedirs:
+    - ../stdinc/
+    - ../shared/gtk/
+    - ../shared/glib/
+    - ../shared/glib/glib/
+    - ../shared/glib/gmodule/
+    - ../shared/glib/_build/
+    - ../shared/glib/_build/glib/
+    - ../shared/gtk/_build/
+    - ../shared/cairo/src/
+    - ../shared/cairo/_build/src/
+    - ../shared/pango/
+    - ../shared/pango/_build/
+    - ../shared/gdk-pixbuf/
+    - ../shared/gdk-pixbuf/_build/
+    - ../shared/graphene/include/
+    - ../shared/graphene/_build/include/
+    - ../shared/adwaita/_build/src/
+  defines:
+    GTK_COMPILATION: 1
+    GLIB_COMPILATION: 1
+  load_all_includes: true
+  extern:
+    - '../stdinc/*'
+    - '../stdinc/sys/*'
+    - '../shared/glib/glib/*'
+    - '../shared/glib/glib/deprecated/*'
+    - '../shared/glib/_build/glib/*'
+    - '../shared/glib/gobject/*'
+    - '../shared/glib/_build/gobject/*'
+    - '../shared/glib/gmodule/*'
+    - '../shared/glib/_build/gmodule/*'
+    - '../shared/glib/gio/*'
+    - '../shared/glib/_build/gio/*'
+    - '../shared/cairo/src/*'
+    - '../shared/cairo/_build/src/*'
+    - '../shared/pango/pango/*'
+    - '../shared/pango/_build/pango/*'
+    - '../shared/gdk-pixbuf/gdk-pixbuf/*'
+    - '../shared/gdk-pixbuf/_build/gdk-pixbuf/*'
+    - '../shared/graphene/include/*'
+    - '../shared/graphene/_build/include/*'
+    - '../shared/gtk/gtk/*'
+    - '../shared/gtk/_build/*'
+    - '../shared/gtk/_build/gtk/*'
+    - '../shared/gtk/_build/gtk/css/*'
+    - '../shared/gtk/_build/gdk/*'
+    - '../shared/gtk/_build/gsk/*'
+    - '../shared/gtk/gtk/a11y/*'
+    - '../shared/gtk/gtk/compose/*'
+    - '../shared/gtk/gtk/css/*'
+    - '../shared/gtk/gtk/deprecated/*'
+    - '../shared/gtk/gtk/emoji/*'
+    - '../shared/gtk/gtk/icons/*'
+    - '../shared/gtk/gtk/inspector/*'
+    - '../shared/gtk/gtk/print/*'
+    - '../shared/gtk/gtk/roaring/*'
+    - '../shared/gtk/gtk/theme/*'
+    - '../shared/gtk/gtk/timsort/*'
+    - '../shared/gtk/gtk/ui/*'
+    - '../shared/gtk/gdk/*'
+    - '../shared/gtk/gdk/broadway/*'
+    - '../shared/gtk/gdk/deprecated/*'
+    - '../shared/gtk/gdk/loaders/*'
+    - '../shared/gtk/gdk/macos/*'
+    - '../shared/gtk/gdk/version/*'
+    - '../shared/gtk/gdk/wayland/*'
+    - '../shared/gtk/gdk/win32/*'
+    - '../shared/gtk/gdk/x11/*'
+    - '../shared/gtk/gsk/*'
+    - '../shared/gtk/gsk/broadway/*'
+    - '../shared/gtk/gsk/gl/*'
+    - '../shared/gtk/gsk/gpu/*'
+  ignore:
+    constants:
+      - 'GDK_*'
+to:
+  language: odin
+  package: adwaita
+  out: adwaita.odin
+  trim_prefix:
+    types:
+      - 'g'
+      - 'G'
+      - 'tk'
+      - 'dk'
+      - 'Pango'
+      - 'sk'
+      - 'Adw'
+    functions:
+      - 'glib_'
+      - 'adw_'
+      - 'ADW_'
+    constants:
+      - 'ADW_'
+      - 'LENGTH_UNIT_'
+      - 'BREAKPOINT_CONDITION_'
+      - 'DIALOG_'
+      - 'ACCENT_COLOR_'
+      - 'RESPONSE_'
+      - 'ANIMATION_'
+      - 'COLOR_SCHEME_'
+      - 'FOLD_THRESHOLD_POLICY_'
+      - 'FLAP_FOLD_POLICY_'
+      - 'FLAP_TRANSITION_TYPE_'
+      - 'CENTERING_POLICY_'
+      - 'NAVIGATION_DIRECTION_'
+      - 'LEAFLET_TRANSITION_TYPE_'
+      - 'SQUEEZER_TRANSITION_TYPE_'
+      - 'TAB_VIEW_SHORTCUT_'
+      - 'TOOLBAR_'
+      - 'VIEW_SWITCHER_POLICY_'
+    enum_type_name: true
+  trim_suffix:
+    functions:
+      - '_wrapper'
+  extern:
+    sources:
+      '../shared/glib/glib/*': '../glib'
+      '../shared/glib/_build/glib/*': '../glib'
+      '../shared/glib/glib/deprecated/*': '../glib'
+      '../shared/glib/gio/*': '../glib/gio'
+      '../shared/glib/_build/gio/*': '../glib/gio'
+      '../shared/glib/gobject/*': 'gobj ../glib/gobject'
+      '../shared/glib/_build/gobject/*': 'gobj ../glib/gobject'
+      '../shared/cairo/src/*': '../glib'
+      '../shared/cairo/_build/src/*': '../glib'
+      '../shared/pango/pango/*': '../pango'
+      '../shared/pango/_build/pango/*': '../pango'
+      '../shared/gtk/gtk/*': '../gtk'
+      '../shared/gtk/_build/*': '../gtk'
+      '../shared/gtk/_build/gtk/*': '../gtk'
+      '../shared/gtk/_build/gtk/css/*': '../gtk'
+      '../shared/gtk/gtk/a11y/*': '../gtk'
+      '../shared/gtk/gtk/compose/*': '../gtk'
+      '../shared/gtk/gtk/css/*': '../gtk'
+      '../shared/gtk/gtk/deprecated/*': '../gtk'
+      '../shared/gtk/gtk/emoji/*': '../gtk'
+      '../shared/gtk/gtk/icons/*': '../gtk'
+      '../shared/gtk/gtk/inspector/*': '../gtk'
+      '../shared/gtk/gtk/print/*': '../gtk'
+      '../shared/gtk/gtk/roaring/*': '../gtk'
+      '../shared/gtk/gtk/theme/*': '../gtk'
+      '../shared/gtk/gtk/timsort/*': '../gtk'
+      '../shared/gtk/gtk/ui/*': '../gtk'
+      '../shared/gtk/gdk/*': '../gtk'
+      '../shared/gtk/gdk/broadway/*': '../gtk'
+      '../shared/gtk/gdk/deprecated/*': '../gtk'
+      '../shared/gtk/gdk/loaders/*': '../gtk'
+      '../shared/gtk/gdk/macos/*': '../gtk'
+      '../shared/gtk/gdk/version/*': '../gtk'
+      '../shared/gtk/gdk/wayland/*': '../gtk'
+      '../shared/gtk/gdk/win32/*': '../gtk'
+      '../shared/gtk/gdk/x11/*': '../gtk'
+      '../shared/gtk/gsk/*': '../gtk'
+      '../shared/gtk/gsk/broadway/*': '../gtk'
+      '../shared/gtk/gsk/gl/*': '../gtk'
+      '../shared/gtk/gsk/gpu/*': '../gtk'
+      '../shared/gtk/_build/gdk/*': '../gtk'
+      '../shared/gtk/_build/gsk/*': '../gtk'
+    trim_prefix: true
+  add_libs.shared.linux.arm64: 
+    - libglib-2.0.so
+    - ../lib/linux/aarch64/libadwaita-wrapper.a
+  add_libs.shared.linux.x86_64:
+    - libglib-2.0.so
+    - ../lib/linux/x86_64/libadwaita-wrapper.a
+  add_libs.static.linux.arm64: 
+    - ../lib/linux/aarch64/libglib-2.0.a
+    - ../lib/linux/aarch64/libadwaita-wrapper.a
+  add_libs.static.linux.x86_64:
+    - ../lib/linux/x86_64/libglib-2.0.a
+    - ../lib/linux/x86_64/libadwaita-wrapper.a
