@@ -2,6 +2,8 @@
 
 Odin Bindings to GTK4 and associated libraries generated using [runic](https://github.com/Samudevv/runic)
 
+**DANGER: Some functions with variadic arguments crash! If you want to use such a function make sure that it works**
+
 | Library                                                          | Path                | License                                                                                    |
 | ---------------------------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------ |
 | [glib](https://gitlab.gnome.org/GNOME/glib)                      | `glib`              | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt) |
