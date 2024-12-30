@@ -16,6 +16,7 @@ clean: glib-clean cairo-clean gtk-clean adwaita-clean
 check-all: (check 'glib') (check 'glib/gobject') (check 'glib/gmodule') (check 'glib/gio') (check 'glib/girepository') (check 'gdk-pixbuf') (check 'cairo') (check 'pango') (check 'pango/pangocairo') (check 'graphene') (check 'gtk') (check 'gtk/layer-shell') (check 'adwaita')
 
 RUNIC := 'runic'
+WINDOWS_GVSBUILD_RELEASE := '2024.12.0'
 
 glib-setup:
     cd shared/glib && meson setup \
@@ -345,9 +346,74 @@ example NAME='hello-glib' KIND='shared':
 check PACKAGE:
     odin check {{ PACKAGE }} -error-pos-style:unix -vet -no-entry-point
 
+[unix]
 download-webkitgtk VERSION='2.46.4':
     @mkdir -p shared/webkitgtk
     curl -SL https://webkitgtk.org/releases/webkitgtk-{{ VERSION }}.tar.xz --output shared/webkitgtk/source.tar.xz
     cd shared/webkitgtk && tar xvf source.tar.xz
     mv shared/webkitgtk/webkitgtk-{{ VERSION }}/* shared/webkitgtk/
     rmdir shared/webkitgtk/webkitgtk-{{ VERSION }}/
+
+[unix]
+download-and-extract-gvsbuild GVSBUILD_RELEASE:
+    #! /bin/sh
+    set -ex
+
+    VERSION_FILE="shared/gvsbuild/extract/VERSION_{{ GVSBUILD_RELEASE }}"
+    ZIP_FILE="shared/gvsbuild/{{ GVSBUILD_RELEASE }}.zip"
+
+    if [[ ! -f $VERSION_FILE ]]
+    then
+        rm -rf shared/gvsbuild/extract
+        mkdir -p shared/gvsbuild/extract
+
+        if [[ ! -f $ZIP_FILE ]]
+        then
+            curl -SL https://github.com/wingtk/gvsbuild/releases/download/{{ GVSBUILD_RELEASE }}/GTK4_Gvsbuild_{{ GVSBUILD_RELEASE }}_x64.zip --output $ZIP_FILE
+        fi
+
+        unzip $ZIP_FILE -d shared/gvsbuild/extract/
+        touch $VERSION_FILE
+    fi
+
+[unix]
+update-windows-libs GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (download-and-extract-gvsbuild GVSBUILD_RELEASE)
+    #! /bin/sh
+    set -e
+
+    mkdir -p lib/windows/x86_64
+
+    cp -v $('find' 'shared/gvsbuild/extract/lib' '-type' 'f' '-name' '*.lib' '!' '-name' '*mm*' '!' '-name' '*.cp*') lib/windows/x86_64/
+
+[unix]
+install-windows-runtime BIN_DIR GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (download-and-extract-gvsbuild GVSBUILD_RELEASE)
+    #! /bin/sh
+    set -e
+
+    mkdir -p "{{ BIN_DIR }}"
+    mkdir -p "{{ BIN_DIR / 'share' }}"
+
+    log_file="/tmp/odin-gtk-install-windows-runtime-logs"
+
+    for dyn_lib in $('find' 'shared/gvsbuild/extract/bin' '-type' 'f' '-name' '*.dll' '!' '-name' '*mm*')
+    do
+        cp -v $dyn_lib "{{ BIN_DIR }}" >> $log_file
+    done
+    for other_folder in 'share' 'etc'
+    do
+        for share_dir in $('find' 'shared/gvsbuild/extract/'$other_folder '-type' 'd' '!' '-name' '__pycache__')
+        do
+            mkdir -vp "$share_dir" >> $log_file
+        done
+        for share_file in $('find' 'shared/gvsbuild/extract/'$other_folder '-type' 'f' '!' '-wholename' '*/__pycache__/*')
+        do
+            cp -v $share_file "{{ BIN_DIR / 'share' }}" >> $log_file
+        done
+    done
+
+    /bin/cat $log_file
+    rm $log_file
+
+[unix]
+clean-windows-gvsbuild:
+    rm -r shared/gvsbuild
