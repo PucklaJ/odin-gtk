@@ -2,7 +2,7 @@
 
 Odin Bindings to GTK4, libadwaita and associated libraries generated using [runic](https://github.com/Samudevv/runic)
 
-**DANGER: Some functions with variadic arguments crash! If you want to use such a function make sure that it works**
+**DANGER: Variadic functions that must be terminated with NULL (nil in odin), like [`adwaita.show_about_dialog`](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1.6/func.show_about_dialog.html), need to be treated with caution or they will segfault. Strings need to be explicitely converted to `cstring`, arrays need to be past as pointers `arr` -> `&arr[0]`. There may even be more things you need to pay attention to, therefore I suggest you to avoid them and use the non variadic options**
 
 | Library                                                      | Path                | License                                                                                    |
 | ------------------------------------------------------------ | ------------------- | ------------------------------------------------------------------------------------------ |
