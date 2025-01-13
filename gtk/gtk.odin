@@ -9,6 +9,105 @@ import "../pango"
 import gdk "../gdk-pixbuf"
 import gobj "../glib/gobject"
 
+TYPE_CSS_PARSER_ERROR :: css_parser_error_get_type 
+TYPE_CSS_PARSER_WARNING :: css_parser_warning_get_type 
+CSS_PARSER_ERROR :: css_parser_error_quark 
+CSS_PARSER_WARNING :: `(gtk_css_parser_warning_quark ())`
+TYPE_CSS_SECTION :: css_section_get_type 
+MODIFIER_MASK :: `(GDK_SHIFT_MASK|GDK_LOCK_MASK|GDK_CONTROL_MASK| GDK_ALT_MASK|GDK_SUPER_MASK|GDK_HYPER_MASK|GDK_META_MASK| GDK_BUTTON1_MASK|GDK_BUTTON2_MASK|GDK_BUTTON3_MASK| GDK_BUTTON4_MASK|GDK_BUTTON5_MASK)`
+ACTION_ALL :: `(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK)`
+CURRENT_TIME :: `0L`
+TYPE_APP_LAUNCH_CONTEXT :: gdk_app_launch_context_get_type 
+TYPE_CAIRO_CONTEXT :: gdk_cairo_context_get_type 
+TYPE_CICP_PARAMS :: gdk_cicp_params_get_type 
+TYPE_CLIPBOARD :: gdk_clipboard_get_type 
+TYPE_COLOR_STATE :: gdk_color_state_get_type 
+TYPE_CONTENT_DESERIALIZER :: gdk_content_deserializer_get_type 
+TYPE_CONTENT_FORMATS :: gdk_content_formats_get_type 
+TYPE_CONTENT_FORMATS_BUILDER :: gdk_content_formats_builder_get_type 
+TYPE_FILE_LIST :: gdk_file_list_get_type 
+TYPE_CONTENT_PROVIDER :: gdk_content_provider_get_type 
+TYPE_CONTENT_SERIALIZER :: gdk_content_serializer_get_type 
+TYPE_CURSOR :: gdk_cursor_get_type 
+TYPE_DEVICE_TOOL :: gdk_device_tool_get_type 
+TYPE_DEVICE :: gdk_device_get_type 
+TYPE_DEVICE_PAD :: gdk_device_pad_get_type 
+TYPE_DRAG :: gdk_drag_get_type 
+TYPE_EVENT :: gdk_event_get_type 
+TYPE_EVENT_SEQUENCE :: gdk_event_sequence_get_type 
+PRIORITY_EVENTS :: `(0)`
+PRIORITY_REDRAW :: `(100 + 20)`
+EVENT_PROPAGATE :: `((0))`
+EVENT_STOP :: `((!(0)))`
+BUTTON_PRIMARY :: `(1)`
+BUTTON_MIDDLE :: `(2)`
+BUTTON_SECONDARY :: `(3)`
+TYPE_BUTTON_EVENT :: gdk_button_event_get_type
+TYPE_CROSSING_EVENT :: gdk_crossing_event_get_type
+TYPE_DELETE_EVENT :: gdk_delete_event_get_type
+TYPE_DND_EVENT :: gdk_dnd_event_get_type
+TYPE_FOCUS_EVENT :: gdk_focus_event_get_type
+TYPE_GRAB_BROKEN_EVENT :: gdk_grab_broken_event_get_type
+TYPE_KEY_EVENT :: gdk_key_event_get_type
+TYPE_MOTION_EVENT :: gdk_motion_event_get_type
+TYPE_PAD_EVENT :: gdk_pad_event_get_type
+TYPE_PROXIMITY_EVENT :: gdk_proximity_event_get_type
+TYPE_SCROLL_EVENT :: gdk_scroll_event_get_type
+TYPE_TOUCH_EVENT :: gdk_touch_event_get_type
+TYPE_TOUCHPAD_EVENT :: gdk_touchpad_event_get_type
+TYPE_FRAME_CLOCK :: gdk_frame_clock_get_type 
+TYPE_MONITOR :: gdk_monitor_get_type 
+TYPE_POPUP_LAYOUT :: gdk_popup_layout_get_type 
+TYPE_SURFACE :: gdk_surface_get_type 
+TYPE_SEAT :: gdk_seat_get_type 
+TYPE_DISPLAY :: gdk_display_get_type 
+TYPE_DISPLAY_MANAGER :: gdk_display_manager_get_type 
+TYPE_DMABUF_FORMATS :: gdk_dmabuf_formats_get_type 
+TYPE_TEXTURE :: gdk_texture_get_type 
+TEXTURE_ERROR :: gdk_texture_error_quark 
+TYPE_DMABUF_TEXTURE :: gdk_dmabuf_texture_get_type 
+DMABUF_ERROR :: gdk_dmabuf_error_quark 
+TYPE_DMABUF_TEXTURE_BUILDER :: gdk_dmabuf_texture_builder_get_type 
+TYPE_DRAG_SURFACE :: gdk_drag_surface_get_type 
+TYPE_DRAG_SURFACE_SIZE :: gdk_drag_surface_size_get_type 
+TYPE_DRAW_CONTEXT :: gdk_draw_context_get_type 
+TYPE_DROP :: gdk_drop_get_type 
+TYPE_CICP_RANGE :: gdk_cicp_range_get_type
+TYPE_INPUT_SOURCE :: gdk_input_source_get_type
+TYPE_DEVICE_PAD_FEATURE :: gdk_device_pad_feature_get_type
+TYPE_DEVICE_TOOL_TYPE :: gdk_device_tool_type_get_type
+TYPE_DRAG_CANCEL_REASON :: gdk_drag_cancel_reason_get_type
+TYPE_GL_API :: gdk_gl_api_get_type
+TYPE_GRAVITY :: gdk_gravity_get_type
+TYPE_MODIFIER_TYPE :: gdk_modifier_type_get_type
+TYPE_DMABUF_ERROR :: gdk_dmabuf_error_get_type
+TYPE_GL_ERROR :: gdk_gl_error_get_type
+TYPE_VULKAN_ERROR :: gdk_vulkan_error_get_type
+TYPE_AXIS_USE :: gdk_axis_use_get_type
+TYPE_AXIS_FLAGS :: gdk_axis_flags_get_type
+TYPE_DRAG_ACTION :: gdk_drag_action_get_type
+TYPE_MEMORY_FORMAT :: gdk_memory_format_get_type
+TYPE_EVENT_TYPE :: gdk_event_type_get_type
+TYPE_TOUCHPAD_GESTURE_PHASE :: gdk_touchpad_gesture_phase_get_type
+TYPE_SCROLL_DIRECTION :: gdk_scroll_direction_get_type
+TYPE_SCROLL_UNIT :: gdk_scroll_unit_get_type
+TYPE_NOTIFY_TYPE :: gdk_notify_type_get_type
+TYPE_CROSSING_MODE :: gdk_crossing_mode_get_type
+TYPE_KEY_MATCH :: gdk_key_match_get_type
+TYPE_FRAME_CLOCK_PHASE :: gdk_frame_clock_phase_get_type
+TYPE_SUBPIXEL_LAYOUT :: gdk_subpixel_layout_get_type
+TYPE_PAINTABLE_FLAGS :: gdk_paintable_flags_get_type
+TYPE_ANCHOR_HINTS :: gdk_anchor_hints_get_type
+TYPE_SEAT_CAPABILITIES :: gdk_seat_capabilities_get_type
+TYPE_TEXTURE_ERROR :: gdk_texture_error_get_type
+TYPE_SURFACE_EDGE :: gdk_surface_edge_get_type
+TYPE_FULLSCREEN_MODE :: gdk_fullscreen_mode_get_type
+TYPE_TOPLEVEL_STATE :: gdk_toplevel_state_get_type
+TYPE_TITLEBAR_GESTURE :: gdk_titlebar_gesture_get_type
+TYPE_GL_CONTEXT :: gdk_gl_context_get_type 
+GL_ERROR :: gdk_gl_error_quark 
+TYPE_GL_TEXTURE :: gdk_gl_texture_get_type 
+TYPE_GL_TEXTURE_BUILDER :: gdk_gl_texture_builder_get_type 
 KEY_VoidSymbol :: 16777215
 KEY_BackSpace :: 65288
 KEY_Tab :: 65289
@@ -2298,6 +2397,604 @@ KEY_Next_VMode :: 269024802
 KEY_Prev_VMode :: 269024803
 KEY_LogWindowTree :: 269024804
 KEY_LogGrabInfo :: 269024805
+MEMORY_DEFAULT :: `GDK_MEMORY_B8G8R8A8_PREMULTIPLIED`
+TYPE_MEMORY_TEXTURE :: gdk_memory_texture_get_type 
+TYPE_MEMORY_TEXTURE_BUILDER :: gdk_memory_texture_builder_get_type 
+TYPE_PAINTABLE :: gdk_paintable_get_type 
+TYPE_POPUP :: gdk_popup_get_type 
+TYPE_RECTANGLE :: gdk_rectangle_get_type 
+TYPE_RGBA :: gdk_rgba_get_type 
+TYPE_SNAPSHOT :: gdk_snapshot_get_type 
+TYPE_TEXTURE_DOWNLOADER :: gdk_texture_downloader_get_type 
+TYPE_TOPLEVEL_LAYOUT :: gdk_toplevel_layout_get_type 
+TYPE_TOPLEVEL :: gdk_toplevel_get_type 
+TYPE_TOPLEVEL_SIZE :: gdk_toplevel_size_get_type 
+TYPE_VULKAN_CONTEXT :: gdk_vulkan_context_get_type 
+VULKAN_ERROR :: gdk_vulkan_error_quark 
+TYPE_PATH :: gsk_path_get_type 
+TYPE_PATH_BUILDER :: gsk_path_builder_get_type 
+TYPE_PATH_POINT :: gsk_path_point_get_type 
+TYPE_PATH_MEASURE :: gsk_path_measure_get_type 
+TYPE_SHADER_ARGS_BUILDER :: gsk_shader_args_builder_get_type 
+TYPE_GL_SHADER :: gsk_gl_shader_get_type 
+TYPE_RENDER_NODE :: gsk_render_node_get_type 
+SERIALIZATION_ERROR :: gsk_serialization_error_quark 
+TYPE_DEBUG_NODE :: gsk_debug_node_get_type
+TYPE_COLOR_NODE :: gsk_color_node_get_type
+TYPE_TEXTURE_NODE :: gsk_texture_node_get_type
+TYPE_TEXTURE_SCALE_NODE :: gsk_texture_scale_node_get_type
+TYPE_LINEAR_GRADIENT_NODE :: gsk_linear_gradient_node_get_type
+TYPE_REPEATING_LINEAR_GRADIENT_NODE :: gsk_repeating_linear_gradient_node_get_type
+TYPE_RADIAL_GRADIENT_NODE :: gsk_radial_gradient_node_get_type
+TYPE_REPEATING_RADIAL_GRADIENT_NODE :: gsk_repeating_radial_gradient_node_get_type
+TYPE_CONIC_GRADIENT_NODE :: gsk_conic_gradient_node_get_type
+TYPE_BORDER_NODE :: gsk_border_node_get_type
+TYPE_INSET_SHADOW_NODE :: gsk_inset_shadow_node_get_type
+TYPE_OUTSET_SHADOW_NODE :: gsk_outset_shadow_node_get_type
+TYPE_CAIRO_NODE :: gsk_cairo_node_get_type
+TYPE_CONTAINER_NODE :: gsk_container_node_get_type
+TYPE_TRANSFORM_NODE :: gsk_transform_node_get_type
+TYPE_OPACITY_NODE :: gsk_opacity_node_get_type
+TYPE_COLOR_MATRIX_NODE :: gsk_color_matrix_node_get_type
+TYPE_REPEAT_NODE :: gsk_repeat_node_get_type
+TYPE_CLIP_NODE :: gsk_clip_node_get_type
+TYPE_ROUNDED_CLIP_NODE :: gsk_rounded_clip_node_get_type
+TYPE_FILL_NODE :: gsk_fill_node_get_type
+TYPE_STROKE_NODE :: gsk_stroke_node_get_type
+TYPE_SHADOW_NODE :: gsk_shadow_node_get_type
+TYPE_BLEND_NODE :: gsk_blend_node_get_type
+TYPE_CROSS_FADE_NODE :: gsk_cross_fade_node_get_type
+TYPE_TEXT_NODE :: gsk_text_node_get_type
+TYPE_BLUR_NODE :: gsk_blur_node_get_type
+TYPE_MASK_NODE :: gsk_mask_node_get_type
+TYPE_GL_SHADER_NODE :: gsk_gl_shader_node_get_type
+TYPE_SUBSURFACE_NODE :: gsk_subsurface_node_get_type
+TYPE_RENDERER :: gsk_renderer_get_type 
+TYPE_STROKE :: gsk_stroke_get_type 
+TYPE_TRANSFORM :: gsk_transform_get_type 
+TYPE_CAIRO_RENDERER :: gsk_cairo_renderer_get_type 
+TYPE_GL_RENDERER :: gsk_gl_renderer_get_type
+TYPE_VULKAN_RENDERER :: gsk_vulkan_renderer_get_type 
+TYPE_RENDER_NODE_TYPE :: gsk_render_node_type_get_type 
+TYPE_SCALING_FILTER :: gsk_scaling_filter_get_type 
+TYPE_BLEND_MODE :: gsk_blend_mode_get_type 
+TYPE_CORNER :: gsk_corner_get_type 
+TYPE_FILL_RULE :: gsk_fill_rule_get_type 
+TYPE_LINE_CAP :: gsk_line_cap_get_type 
+TYPE_LINE_JOIN :: gsk_line_join_get_type 
+TYPE_PATH_OPERATION :: gsk_path_operation_get_type 
+TYPE_PATH_DIRECTION :: gsk_path_direction_get_type 
+TYPE_SERIALIZATION_ERROR :: gsk_serialization_error_get_type 
+TYPE_TRANSFORM_CATEGORY :: gsk_transform_category_get_type 
+TYPE_GL_UNIFORM_TYPE :: gsk_gl_uniform_type_get_type 
+TYPE_MASK_MODE :: gsk_mask_mode_get_type 
+TYPE_PATH_FOREACH_FLAGS :: gsk_path_foreach_flags_get_type 
+UNIT_PIXEL :: `GTK_UNIT_NONE`
+ACCESSIBLE_VALUE_UNDEFINED :: `(-1)`
+INVALID_LIST_POSITION :: `((guint) 0xffffffff)`
+TYPE_SHORTCUT :: shortcut_get_type 
+TYPE_SHORTCUT_ACTION :: shortcut_action_get_type 
+TYPE_NOTHING_ACTION :: nothing_action_get_type
+TYPE_CALLBACK_ACTION :: callback_action_get_type
+TYPE_MNEMONIC_ACTION :: mnemonic_action_get_type
+TYPE_ACTIVATE_ACTION :: activate_action_get_type
+TYPE_SIGNAL_ACTION :: signal_action_get_type
+TYPE_NAMED_ACTION :: named_action_get_type
+TYPE_WIDGET :: widget_get_type 
+TYPE_REQUISITION :: requisition_get_type 
+TYPE_APPLICATION :: application_get_type 
+TYPE_WINDOW :: window_get_type 
+TYPE_ABOUT_DIALOG :: about_dialog_get_type 
+TYPE_ACCESSIBLE :: accessible_get_type
+ACCESSIBLE_LIST :: accessible_list_get_type
+TYPE_ACCESSIBLE_RANGE :: accessible_range_get_type
+TYPE_ACCESSIBLE_TEXT :: accessible_text_get_type 
+ACCESSIBLE_ATTRIBUTE_FAMILY :: "family-name"
+ACCESSIBLE_ATTRIBUTE_STYLE :: "style"
+ACCESSIBLE_ATTRIBUTE_WEIGHT :: "weight"
+ACCESSIBLE_ATTRIBUTE_VARIANT :: "variant"
+ACCESSIBLE_ATTRIBUTE_STRETCH :: "stretch"
+ACCESSIBLE_ATTRIBUTE_SIZE :: "size"
+ACCESSIBLE_ATTRIBUTE_FOREGROUND :: "fg-color"
+ACCESSIBLE_ATTRIBUTE_BACKGROUND :: "bg-color"
+ACCESSIBLE_ATTRIBUTE_UNDERLINE :: "underline"
+ACCESSIBLE_ATTRIBUTE_OVERLINE :: "overline"
+ACCESSIBLE_ATTRIBUTE_STRIKETHROUGH :: "strikethrough"
+ACCESSIBLE_ATTRIBUTE_STYLE_NORMAL :: "normal"
+ACCESSIBLE_ATTRIBUTE_STYLE_OBLIQUE :: "oblique"
+ACCESSIBLE_ATTRIBUTE_STYLE_ITALIC :: "italic"
+ACCESSIBLE_ATTRIBUTE_VARIANT_SMALL_CAPS :: "small-caps"
+ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_SMALL_CAPS :: "all-small-caps"
+ACCESSIBLE_ATTRIBUTE_VARIANT_PETITE_CAPS :: "petite-caps"
+ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_PETITE_CAPS :: "all-petite-caps"
+ACCESSIBLE_ATTRIBUTE_VARIANT_UNICASE :: "unicase"
+ACCESSIBLE_ATTRIBUTE_VARIANT_TITLE_CAPS :: "title-caps"
+ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_CONDENSED :: "ultra_condensed"
+ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_CONDENSED :: "extra_condensed"
+ACCESSIBLE_ATTRIBUTE_STRETCH_CONDENSED :: "condensed"
+ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_CONDENSED :: "semi_condensed"
+ACCESSIBLE_ATTRIBUTE_STRETCH_NORMAL :: "normal"
+ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_EXPANDED :: "semi_expanded"
+ACCESSIBLE_ATTRIBUTE_STRETCH_EXPANDED :: "expanded"
+ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_EXPANDED :: "extra_expanded"
+ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_EXPANDED :: "ultra_expanded"
+ACCESSIBLE_ATTRIBUTE_UNDERLINE_NONE :: "none"
+ACCESSIBLE_ATTRIBUTE_UNDERLINE_SINGLE :: "single"
+ACCESSIBLE_ATTRIBUTE_UNDERLINE_DOUBLE :: "double"
+ACCESSIBLE_ATTRIBUTE_UNDERLINE_ERROR :: "error"
+ACCESSIBLE_ATTRIBUTE_OVERLINE_NONE :: "none"
+ACCESSIBLE_ATTRIBUTE_OVERLINE_SINGLE :: "single"
+TYPE_ACTIONABLE :: actionable_get_type 
+TYPE_ACTION_BAR :: action_bar_get_type 
+TYPE_ADJUSTMENT :: adjustment_get_type 
+TYPE_ALERT_DIALOG :: alert_dialog_get_type 
+TYPE_APP_CHOOSER :: app_chooser_get_type 
+TYPE_DIALOG :: dialog_get_type 
+TYPE_APP_CHOOSER_DIALOG :: app_chooser_dialog_get_type 
+TYPE_APP_CHOOSER_WIDGET :: app_chooser_widget_get_type 
+TYPE_APP_CHOOSER_BUTTON :: app_chooser_button_get_type 
+TYPE_SHORTCUTS_SHORTCUT :: shortcuts_shortcut_get_type
+TYPE_SHORTCUTS_GROUP :: shortcuts_group_get_type 
+TYPE_SHORTCUTS_SECTION :: shortcuts_section_get_type 
+TYPE_SHORTCUTS_WINDOW :: shortcuts_window_get_type 
+TYPE_APPLICATION_WINDOW :: application_window_get_type 
+TYPE_ASPECT_FRAME :: aspect_frame_get_type 
+TYPE_ASSISTANT :: assistant_get_type 
+TYPE_ASSISTANT_PAGE :: assistant_page_get_type 
+TYPE_AT_CONTEXT :: at_context_get_type
+TYPE_LAYOUT_CHILD :: layout_child_get_type
+TYPE_LAYOUT_MANAGER :: layout_manager_get_type 
+TYPE_BIN_LAYOUT :: bin_layout_get_type 
+TYPE_BITSET :: bitset_get_type 
+TYPE_BOOKMARK_LIST :: bookmark_list_get_type 
+TYPE_EXPRESSION :: expression_get_type 
+TYPE_EXPRESSION_WATCH :: expression_watch_get_type
+TYPE_PROPERTY_EXPRESSION :: property_expression_get_type
+TYPE_CONSTANT_EXPRESSION :: constant_expression_get_type
+TYPE_OBJECT_EXPRESSION :: object_expression_get_type
+TYPE_CLOSURE_EXPRESSION :: closure_expression_get_type
+TYPE_CCLOSURE_EXPRESSION :: cclosure_expression_get_type
+TYPE_PARAM_SPEC_EXPRESSION :: param_expression_get_type
+TYPE_FILTER :: filter_get_type 
+TYPE_BOOL_FILTER :: bool_filter_get_type 
+TYPE_BORDER :: border_get_type 
+TYPE_BOX_LAYOUT :: box_layout_get_type
+TYPE_BOX :: box_get_type 
+TYPE_BUILDER_SCOPE :: builder_scope_get_type 
+TYPE_BUILDER_CSCOPE :: builder_cscope_get_type 
+TYPE_BUILDER :: builder_get_type 
+BUILDER_ERROR :: builder_error_quark 
+TYPE_BUILDABLE :: buildable_get_type 
+TYPE_LIST_ITEM_FACTORY :: list_item_factory_get_type 
+TYPE_BUILDER_LIST_ITEM_FACTORY :: builder_list_item_factory_get_type 
+TYPE_BUTTON :: button_get_type 
+TYPE_CALENDAR :: calendar_get_type 
+TYPE_CELL_EDITABLE :: cell_editable_get_type 
+TYPE_CELL_RENDERER :: cell_renderer_get_type 
+TYPE_TREE_MODEL :: tree_model_get_type 
+TYPE_TREE_ITER :: tree_iter_get_type 
+TYPE_TREE_PATH :: tree_path_get_type 
+TYPE_TREE_ROW_REFERENCE :: tree_row_reference_get_type 
+TYPE_CELL_AREA :: cell_area_get_type 
+TYPE_CELL_AREA_BOX :: cell_area_box_get_type 
+TYPE_CELL_AREA_CONTEXT :: cell_area_context_get_type 
+TYPE_CELL_LAYOUT :: cell_layout_get_type 
+TYPE_CELL_RENDERER_TEXT :: cell_renderer_text_get_type 
+TYPE_CELL_RENDERER_ACCEL :: cell_renderer_accel_get_type 
+TYPE_CELL_RENDERER_COMBO :: cell_renderer_combo_get_type 
+TYPE_CELL_RENDERER_PIXBUF :: cell_renderer_pixbuf_get_type 
+TYPE_CELL_RENDERER_PROGRESS :: cell_renderer_progress_get_type 
+TYPE_CELL_RENDERER_SPIN :: cell_renderer_spin_get_type 
+TYPE_CELL_RENDERER_SPINNER :: cell_renderer_spinner_get_type 
+TYPE_CELL_RENDERER_TOGGLE :: cell_renderer_toggle_get_type 
+TYPE_CELL_VIEW :: cell_view_get_type 
+TYPE_CENTER_BOX :: center_box_get_type 
+TYPE_CENTER_LAYOUT :: center_layout_get_type 
+TYPE_TOGGLE_BUTTON :: toggle_button_get_type 
+TYPE_CHECK_BUTTON :: check_button_get_type 
+TYPE_COLOR_BUTTON :: color_button_get_type 
+TYPE_COLOR_CHOOSER :: color_chooser_get_type 
+TYPE_COLOR_CHOOSER_DIALOG :: color_chooser_dialog_get_type 
+TYPE_COLOR_CHOOSER_WIDGET :: color_chooser_widget_get_type 
+TYPE_COLOR_DIALOG :: color_dialog_get_type 
+TYPE_COLOR_DIALOG_BUTTON :: color_dialog_button_get_type 
+TYPE_SORTER :: sorter_get_type 
+TYPE_SORT_LIST_MODEL :: sort_list_model_get_type 
+TYPE_SELECTION_MODEL :: selection_model_get_type 
+TYPE_COLUMN_VIEW :: column_view_get_type 
+TYPE_LIST_ITEM :: list_item_get_type 
+TYPE_COLUMN_VIEW_CELL :: column_view_cell_get_type 
+TYPE_COLUMN_VIEW_COLUMN :: column_view_column_get_type 
+TYPE_COLUMN_VIEW_ROW :: column_view_row_get_type 
+TYPE_COLUMN_VIEW_SORTER :: column_view_sorter_get_type 
+TYPE_TREE_SORTABLE :: tree_sortable_get_type 
+TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID :: `(-1)`
+TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID :: `(-2)`
+TYPE_TREE_VIEW_COLUMN :: tree_view_column_get_type 
+TYPE_EDITABLE :: editable_get_type 
+TYPE_IM_CONTEXT :: im_context_get_type 
+ENTRY_BUFFER_MAX_SIZE :: `USHRT_MAX`
+TYPE_ENTRY_BUFFER :: entry_buffer_get_type 
+TYPE_LIST_STORE :: list_store_get_type 
+TYPE_TREE_MODEL_FILTER :: tree_model_filter_get_type 
+TYPE_ENTRY_COMPLETION :: entry_completion_get_type 
+TYPE_IMAGE :: image_get_type 
+TYPE_ENTRY :: entry_get_type 
+TYPE_TREE_VIEW :: tree_view_get_type 
+TYPE_COMBO_BOX :: combo_box_get_type 
+TYPE_COMBO_BOX_TEXT :: combo_box_text_get_type 
+TYPE_CONSTRAINT_TARGET :: constraint_target_get_type 
+TYPE_CONSTRAINT :: constraint_get_type 
+TYPE_ASSISTANT_PAGE_TYPE :: assistant_page_type_get_type 
+TYPE_CELL_RENDERER_STATE :: cell_renderer_state_get_type 
+TYPE_CELL_RENDERER_MODE :: cell_renderer_mode_get_type 
+TYPE_CELL_RENDERER_ACCEL_MODE :: cell_renderer_accel_mode_get_type 
+TYPE_DIALOG_FLAGS :: dialog_flags_get_type 
+TYPE_RESPONSE_TYPE :: response_type_get_type 
+TYPE_FILE_CHOOSER_ACTION :: file_chooser_action_get_type 
+TYPE_FILE_CHOOSER_ERROR :: file_chooser_error_get_type 
+TYPE_FONT_CHOOSER_LEVEL :: font_chooser_level_get_type 
+TYPE_ICON_VIEW_DROP_POSITION :: icon_view_drop_position_get_type 
+TYPE_BUTTONS_TYPE :: buttons_type_get_type 
+TYPE_STYLE_CONTEXT_PRINT_FLAGS :: style_context_print_flags_get_type 
+TYPE_TREE_MODEL_FLAGS :: tree_model_flags_get_type 
+TYPE_TREE_VIEW_DROP_POSITION :: tree_view_drop_position_get_type 
+TYPE_TREE_VIEW_COLUMN_SIZING :: tree_view_column_sizing_get_type 
+TYPE_LICENSE :: license_get_type 
+TYPE_ACCESSIBLE_PLATFORM_STATE :: accessible_platform_state_get_type 
+TYPE_ACCESSIBLE_TEXT_GRANULARITY :: accessible_text_granularity_get_type 
+TYPE_ACCESSIBLE_TEXT_CONTENT_CHANGE :: accessible_text_content_change_get_type 
+TYPE_APPLICATION_INHIBIT_FLAGS :: application_inhibit_flags_get_type 
+TYPE_BUILDER_ERROR :: builder_error_get_type 
+TYPE_BUILDER_CLOSURE_FLAGS :: builder_closure_flags_get_type 
+TYPE_DEBUG_FLAGS :: debug_flags_get_type 
+TYPE_DIALOG_ERROR :: dialog_error_get_type 
+TYPE_EDITABLE_PROPERTIES :: editable_properties_get_type 
+TYPE_ENTRY_ICON_POSITION :: entry_icon_position_get_type 
+TYPE_ALIGN :: align_get_type 
+TYPE_ARROW_TYPE :: arrow_type_get_type 
+TYPE_BASELINE_POSITION :: baseline_position_get_type 
+TYPE_CONTENT_FIT :: content_fit_get_type 
+TYPE_DELETE_TYPE :: delete_type_get_type 
+TYPE_DIRECTION_TYPE :: direction_type_get_type 
+TYPE_ICON_SIZE :: icon_size_get_type 
+TYPE_SENSITIVITY_TYPE :: sensitivity_type_get_type 
+TYPE_TEXT_DIRECTION :: text_direction_get_type 
+TYPE_JUSTIFICATION :: justification_get_type 
+TYPE_LIST_TAB_BEHAVIOR :: list_tab_behavior_get_type 
+TYPE_LIST_SCROLL_FLAGS :: list_scroll_flags_get_type 
+TYPE_MESSAGE_TYPE :: message_type_get_type 
+TYPE_MOVEMENT_STEP :: movement_step_get_type 
+TYPE_NATURAL_WRAP_MODE :: natural_wrap_mode_get_type 
+TYPE_SCROLL_STEP :: scroll_step_get_type 
+TYPE_ORIENTATION :: orientation_get_type 
+TYPE_OVERFLOW :: overflow_get_type 
+TYPE_PACK_TYPE :: pack_type_get_type 
+TYPE_POSITION_TYPE :: position_type_get_type 
+TYPE_SCROLL_TYPE :: scroll_type_get_type 
+TYPE_SELECTION_MODE :: selection_mode_get_type 
+TYPE_WRAP_MODE :: wrap_mode_get_type 
+TYPE_SORT_TYPE :: sort_type_get_type 
+TYPE_PRINT_PAGES :: print_pages_get_type 
+TYPE_PAGE_SET :: page_set_get_type 
+TYPE_NUMBER_UP_LAYOUT :: number_up_layout_get_type 
+TYPE_ORDERING :: ordering_get_type 
+TYPE_PAGE_ORIENTATION :: page_orientation_get_type 
+TYPE_PRINT_QUALITY :: print_quality_get_type 
+TYPE_PRINT_DUPLEX :: print_duplex_get_type 
+TYPE_UNIT :: unit_get_type 
+TYPE_TREE_VIEW_GRID_LINES :: tree_view_grid_lines_get_type 
+TYPE_SIZE_GROUP_MODE :: size_group_mode_get_type 
+TYPE_SIZE_REQUEST_MODE :: size_request_mode_get_type 
+TYPE_SCROLLABLE_POLICY :: scrollable_policy_get_type 
+TYPE_STATE_FLAGS :: state_flags_get_type 
+TYPE_BORDER_STYLE :: border_style_get_type 
+TYPE_LEVEL_BAR_MODE :: level_bar_mode_get_type 
+TYPE_INPUT_PURPOSE :: input_purpose_get_type 
+TYPE_INPUT_HINTS :: input_hints_get_type 
+TYPE_PROPAGATION_PHASE :: propagation_phase_get_type 
+TYPE_PROPAGATION_LIMIT :: propagation_limit_get_type 
+TYPE_EVENT_SEQUENCE_STATE :: event_sequence_state_get_type 
+TYPE_PAN_DIRECTION :: pan_direction_get_type 
+TYPE_SHORTCUT_SCOPE :: shortcut_scope_get_type 
+TYPE_PICK_FLAGS :: pick_flags_get_type 
+TYPE_CONSTRAINT_RELATION :: constraint_relation_get_type 
+TYPE_CONSTRAINT_STRENGTH :: constraint_strength_get_type 
+TYPE_CONSTRAINT_ATTRIBUTE :: constraint_attribute_get_type 
+TYPE_CONSTRAINT_VFL_PARSER_ERROR :: constraint_vfl_parser_error_get_type 
+TYPE_SYSTEM_SETTING :: system_setting_get_type 
+TYPE_SYMBOLIC_COLOR :: symbolic_color_get_type 
+TYPE_ACCESSIBLE_ROLE :: accessible_role_get_type 
+TYPE_ACCESSIBLE_STATE :: accessible_state_get_type 
+TYPE_ACCESSIBLE_PROPERTY :: accessible_property_get_type 
+TYPE_ACCESSIBLE_RELATION :: accessible_relation_get_type 
+TYPE_ACCESSIBLE_TRISTATE :: accessible_tristate_get_type 
+TYPE_ACCESSIBLE_INVALID_STATE :: accessible_invalid_state_get_type 
+TYPE_ACCESSIBLE_AUTOCOMPLETE :: accessible_autocomplete_get_type 
+TYPE_ACCESSIBLE_SORT :: accessible_sort_get_type 
+TYPE_ACCESSIBLE_ANNOUNCEMENT_PRIORITY :: accessible_announcement_priority_get_type 
+TYPE_POPOVER_MENU_FLAGS :: popover_menu_flags_get_type 
+TYPE_FONT_RENDERING :: font_rendering_get_type 
+TYPE_TEXT_BUFFER_NOTIFY_FLAGS :: text_buffer_notify_flags_get_type 
+TYPE_EVENT_CONTROLLER_SCROLL_FLAGS :: event_controller_scroll_flags_get_type 
+TYPE_FILTER_MATCH :: filter_match_get_type 
+TYPE_FILTER_CHANGE :: filter_change_get_type 
+TYPE_FONT_LEVEL :: font_level_get_type 
+TYPE_GRAPHICS_OFFLOAD_ENABLED :: graphics_offload_enabled_get_type 
+TYPE_ICON_LOOKUP_FLAGS :: icon_lookup_flags_get_type 
+TYPE_ICON_THEME_ERROR :: icon_theme_error_get_type 
+TYPE_IMAGE_TYPE :: image_type_get_type 
+TYPE_INSCRIPTION_OVERFLOW :: inscription_overflow_get_type 
+TYPE_NOTEBOOK_TAB :: notebook_tab_get_type 
+TYPE_PAD_ACTION_TYPE :: pad_action_type_get_type 
+TYPE_RECENT_MANAGER_ERROR :: recent_manager_error_get_type 
+TYPE_REVEALER_TRANSITION_TYPE :: revealer_transition_type_get_type 
+TYPE_CORNER_TYPE :: corner_type_get_type 
+TYPE_POLICY_TYPE :: policy_type_get_type 
+TYPE_SHORTCUT_ACTION_FLAGS :: shortcut_action_flags_get_type 
+TYPE_SHORTCUT_TYPE :: shortcut_type_get_type 
+TYPE_SORTER_ORDER :: sorter_order_get_type 
+TYPE_SORTER_CHANGE :: sorter_change_get_type 
+TYPE_SPIN_BUTTON_UPDATE_POLICY :: spin_button_update_policy_get_type 
+TYPE_SPIN_TYPE :: spin_type_get_type 
+TYPE_STACK_TRANSITION_TYPE :: stack_transition_type_get_type 
+TYPE_STRING_FILTER_MATCH_MODE :: string_filter_match_mode_get_type 
+TYPE_COLLATION :: collation_get_type 
+TYPE_TEXT_SEARCH_FLAGS :: text_search_flags_get_type 
+TYPE_TEXT_WINDOW_TYPE :: text_window_type_get_type 
+TYPE_TEXT_VIEW_LAYER :: text_view_layer_get_type 
+TYPE_TEXT_EXTEND_SELECTION :: text_extend_selection_get_type 
+TYPE_PRINT_STATUS :: print_status_get_type 
+TYPE_PRINT_OPERATION_RESULT :: print_operation_result_get_type 
+TYPE_PRINT_OPERATION_ACTION :: print_operation_action_get_type 
+TYPE_PRINT_ERROR :: print_error_get_type 
+TYPE_CONSTRAINT_GUIDE :: constraint_guide_get_type 
+TYPE_CONSTRAINT_LAYOUT :: constraint_layout_get_type 
+TYPE_CONSTRAINT_LAYOUT_CHILD :: constraint_layout_child_get_type 
+CONSTRAINT_VFL_PARSER_ERROR :: constraint_vfl_parser_error_quark 
+TYPE_CSS_PROVIDER :: css_provider_get_type 
+TYPE_CUSTOM_LAYOUT :: custom_layout_get_type 
+TYPE_CUSTOM_SORTER :: custom_sorter_get_type 
+DIALOG_ERROR :: dialog_error_quark 
+TYPE_DIRECTORY_LIST :: directory_list_get_type 
+TYPE_DRAG_ICON :: drag_icon_get_type 
+TYPE_DRAG_SOURCE :: drag_source_get_type 
+TYPE_DRAWING_AREA :: drawing_area_get_type 
+TYPE_EVENT_CONTROLLER :: event_controller_get_type 
+TYPE_DROP_CONTROLLER_MOTION :: drop_controller_motion_get_type 
+TYPE_DROP_TARGET :: drop_target_get_type 
+TYPE_DROP_TARGET_ASYNC :: drop_target_async_get_type 
+TYPE_STRING_FILTER :: string_filter_get_type 
+TYPE_DROP_DOWN :: drop_down_get_type 
+TYPE_EDITABLE_LABEL :: editable_label_get_type 
+TYPE_EMOJI_CHOOSER :: emoji_chooser_get_type 
+TYPE_EVENT_CONTROLLER_FOCUS :: event_controller_focus_get_type 
+TYPE_EVENT_CONTROLLER_KEY :: event_controller_key_get_type 
+TYPE_EVENT_CONTROLLER_LEGACY :: event_controller_legacy_get_type 
+TYPE_EVENT_CONTROLLER_MOTION :: event_controller_motion_get_type 
+TYPE_EVENT_CONTROLLER_SCROLL :: event_controller_scroll_get_type 
+TYPE_EXPANDER :: expander_get_type 
+TYPE_FIXED :: fixed_get_type 
+TYPE_FIXED_LAYOUT :: fixed_layout_get_type 
+TYPE_FIXED_LAYOUT_CHILD :: fixed_layout_child_get_type 
+TYPE_FILE_FILTER :: file_filter_get_type 
+TYPE_FILE_CHOOSER :: file_chooser_get_type 
+FILE_CHOOSER_ERROR :: file_chooser_error_quark 
+TYPE_FILE_CHOOSER_DIALOG :: file_chooser_dialog_get_type 
+TYPE_NATIVE_DIALOG :: native_dialog_get_type 
+TYPE_FILE_CHOOSER_NATIVE :: file_chooser_native_get_type 
+TYPE_FILE_CHOOSER_WIDGET :: file_chooser_widget_get_type 
+TYPE_FILE_DIALOG :: file_dialog_get_type 
+TYPE_FILE_LAUNCHER :: file_launcher_get_type 
+TYPE_FILTER_LIST_MODEL :: filter_list_model_get_type 
+TYPE_CUSTOM_FILTER :: custom_filter_get_type 
+TYPE_FLATTEN_LIST_MODEL :: flatten_list_model_get_type 
+TYPE_FLOW_BOX :: flow_box_get_type 
+TYPE_FLOW_BOX_CHILD :: flow_box_child_get_type 
+TYPE_FONT_BUTTON :: font_button_get_type 
+TYPE_FONT_CHOOSER :: font_chooser_get_type 
+TYPE_FONT_CHOOSER_DIALOG :: font_chooser_dialog_get_type 
+TYPE_FONT_CHOOSER_WIDGET :: font_chooser_widget_get_type 
+TYPE_FONT_DIALOG :: font_dialog_get_type 
+TYPE_FONT_DIALOG_BUTTON :: font_dialog_button_get_type 
+TYPE_FRAME :: frame_get_type 
+TYPE_GESTURE :: gesture_get_type 
+TYPE_GESTURE_SINGLE :: gesture_single_get_type 
+TYPE_GESTURE_CLICK :: gesture_click_get_type 
+TYPE_GESTURE_DRAG :: gesture_drag_get_type 
+TYPE_GESTURE_LONG_PRESS :: gesture_long_press_get_type 
+TYPE_GESTURE_PAN :: gesture_pan_get_type 
+TYPE_GESTURE_ROTATE :: gesture_rotate_get_type 
+TYPE_GESTURE_STYLUS :: gesture_stylus_get_type 
+TYPE_GESTURE_SWIPE :: gesture_swipe_get_type 
+TYPE_GESTURE_ZOOM :: gesture_zoom_get_type 
+TYPE_GL_AREA :: gl_area_get_type 
+TYPE_GRAPHICS_OFFLOAD :: graphics_offload_get_type 
+TYPE_GRID :: grid_get_type 
+TYPE_GRID_LAYOUT :: grid_layout_get_type 
+TYPE_GRID_LAYOUT_CHILD :: grid_layout_child_get_type 
+TYPE_LIST_BASE :: list_base_get_type 
+TYPE_GRID_VIEW :: grid_view_get_type 
+TYPE_HEADER_BAR :: header_bar_get_type 
+TYPE_ICON_PAINTABLE :: icon_paintable_get_type 
+TYPE_ICON_THEME :: icon_theme_get_type 
+ICON_THEME_ERROR :: `gtk_icon_theme_error_quark ()`
+TYPE_TOOLTIP :: tooltip_get_type 
+TYPE_ICON_VIEW :: icon_view_get_type 
+MAX_COMPOSE_LEN :: 7
+TYPE_IM_CONTEXT_SIMPLE :: im_context_simple_get_type 
+TYPE_IM_MULTICONTEXT :: im_multicontext_get_type 
+TYPE_INFO_BAR :: info_bar_get_type
+TYPE_INSCRIPTION :: inscription_get_type 
+TYPE_LABEL :: label_get_type 
+TYPE_LEVEL_BAR :: level_bar_get_type 
+LEVEL_BAR_OFFSET_LOW :: "low"
+LEVEL_BAR_OFFSET_HIGH :: "high"
+LEVEL_BAR_OFFSET_FULL :: "full"
+TYPE_LINK_BUTTON :: link_button_get_type 
+TYPE_LIST_BOX :: list_box_get_type 
+TYPE_LIST_BOX_ROW :: list_box_row_get_type 
+TYPE_LIST_HEADER :: list_header_get_type 
+TYPE_LIST_VIEW :: list_view_get_type 
+TYPE_LOCK_BUTTON :: lock_button_get_type 
+PRIORITY_RESIZE :: `(100 + 10)`
+TYPE_MAP_LIST_MODEL :: map_list_model_get_type 
+TYPE_MEDIA_STREAM :: media_stream_get_type 
+TYPE_MEDIA_CONTROLS :: media_controls_get_type 
+MEDIA_FILE_EXTENSION_POINT_NAME :: "gtk-media-file"
+TYPE_MEDIA_FILE :: media_file_get_type 
+TYPE_POPOVER :: popover_get_type 
+TYPE_MENU_BUTTON :: menu_button_get_type 
+TYPE_MESSAGE_DIALOG :: message_dialog_get_type 
+TYPE_MOUNT_OPERATION :: mount_operation_get_type 
+TYPE_MULTI_FILTER :: multi_filter_get_type 
+TYPE_ANY_FILTER :: any_filter_get_type 
+TYPE_EVERY_FILTER :: every_filter_get_type 
+TYPE_MULTI_SELECTION :: multi_selection_get_type 
+TYPE_MULTI_SORTER :: multi_sorter_get_type 
+TYPE_NATIVE :: native_get_type 
+TYPE_NO_SELECTION :: no_selection_get_type 
+TYPE_NOTEBOOK :: notebook_get_type 
+TYPE_NOTEBOOK_PAGE :: notebook_page_get_type 
+TYPE_NUMERIC_SORTER :: numeric_sorter_get_type 
+TYPE_ORIENTABLE :: orientable_get_type 
+TYPE_OVERLAY :: overlay_get_type 
+TYPE_OVERLAY_LAYOUT :: overlay_layout_get_type 
+TYPE_OVERLAY_LAYOUT_CHILD :: overlay_layout_child_get_type 
+TYPE_PAD_CONTROLLER :: pad_controller_get_type 
+TYPE_PAPER_SIZE :: paper_size_get_type 
+PAPER_NAME_A3 :: "iso_a3"
+PAPER_NAME_A4 :: "iso_a4"
+PAPER_NAME_A5 :: "iso_a5"
+PAPER_NAME_B5 :: "iso_b5"
+PAPER_NAME_LETTER :: "na_letter"
+PAPER_NAME_EXECUTIVE :: "na_executive"
+PAPER_NAME_LEGAL :: "na_legal"
+TYPE_PAGE_SETUP :: page_setup_get_type 
+TYPE_PANED :: paned_get_type 
+TYPE_PASSWORD_ENTRY :: password_entry_get_type 
+TYPE_PASSWORD_ENTRY_BUFFER :: password_entry_buffer_get_type
+TYPE_PICTURE :: picture_get_type 
+TYPE_POPOVER_MENU :: popover_menu_get_type 
+TYPE_POPOVER_MENU_BAR :: popover_menu_bar_get_type 
+TYPE_PRINT_SETTINGS :: print_settings_get_type 
+PRINT_SETTINGS_PRINTER :: "printer"
+PRINT_SETTINGS_ORIENTATION :: "orientation"
+PRINT_SETTINGS_PAPER_FORMAT :: "paper-format"
+PRINT_SETTINGS_PAPER_WIDTH :: "paper-width"
+PRINT_SETTINGS_PAPER_HEIGHT :: "paper-height"
+PRINT_SETTINGS_N_COPIES :: "n-copies"
+PRINT_SETTINGS_DEFAULT_SOURCE :: "default-source"
+PRINT_SETTINGS_QUALITY :: "quality"
+PRINT_SETTINGS_RESOLUTION :: "resolution"
+PRINT_SETTINGS_USE_COLOR :: "use-color"
+PRINT_SETTINGS_DUPLEX :: "duplex"
+PRINT_SETTINGS_COLLATE :: "collate"
+PRINT_SETTINGS_REVERSE :: "reverse"
+PRINT_SETTINGS_MEDIA_TYPE :: "media-type"
+PRINT_SETTINGS_DITHER :: "dither"
+PRINT_SETTINGS_SCALE :: "scale"
+PRINT_SETTINGS_PRINT_PAGES :: "print-pages"
+PRINT_SETTINGS_PAGE_RANGES :: "page-ranges"
+PRINT_SETTINGS_PAGE_SET :: "page-set"
+PRINT_SETTINGS_FINISHINGS :: "finishings"
+PRINT_SETTINGS_NUMBER_UP :: "number-up"
+PRINT_SETTINGS_NUMBER_UP_LAYOUT :: "number-up-layout"
+PRINT_SETTINGS_OUTPUT_BIN :: "output-bin"
+PRINT_SETTINGS_RESOLUTION_X :: "resolution-x"
+PRINT_SETTINGS_RESOLUTION_Y :: "resolution-y"
+PRINT_SETTINGS_PRINTER_LPI :: "printer-lpi"
+PRINT_SETTINGS_OUTPUT_DIR :: "output-dir"
+PRINT_SETTINGS_OUTPUT_BASENAME :: "output-basename"
+PRINT_SETTINGS_OUTPUT_FILE_FORMAT :: "output-file-format"
+PRINT_SETTINGS_OUTPUT_URI :: "output-uri"
+PRINT_SETTINGS_WIN32_DRIVER_EXTRA :: "win32-driver-extra"
+TYPE_PRINT_SETUP :: print_setup_get_type 
+TYPE_PRINT_DIALOG :: print_dialog_get_type 
+TYPE_PRINT_CONTEXT :: print_context_get_type 
+TYPE_PRINT_OPERATION_PREVIEW :: print_operation_preview_get_type 
+TYPE_PRINT_OPERATION :: print_operation_get_type 
+PRINT_ERROR :: `gtk_print_error_quark ()`
+TYPE_PROGRESS_BAR :: progress_bar_get_type 
+TYPE_RANGE :: range_get_type 
+TYPE_RECENT_INFO :: recent_info_get_type 
+TYPE_RECENT_MANAGER :: recent_manager_get_type 
+RECENT_MANAGER_ERROR :: recent_manager_error_quark 
+TYPE_REVEALER :: revealer_get_type 
+TYPE_ROOT :: root_get_type 
+TYPE_SCALE :: scale_get_type 
+TYPE_SCALE_BUTTON :: scale_button_get_type 
+TYPE_SCROLLABLE :: scrollable_get_type 
+TYPE_SCROLLBAR :: scrollbar_get_type 
+TYPE_SCROLL_INFO :: scroll_info_get_type 
+TYPE_SCROLLED_WINDOW :: scrolled_window_get_type 
+TYPE_SEARCH_BAR :: search_bar_get_type 
+TYPE_SEARCH_ENTRY :: search_entry_get_type 
+TYPE_SECTION_MODEL :: section_model_get_type 
+TYPE_SELECTION_FILTER_MODEL :: selection_filter_model_get_type 
+TYPE_SEPARATOR :: separator_get_type 
+TYPE_SETTINGS :: settings_get_type 
+TYPE_SHORTCUT_CONTROLLER :: shortcut_controller_get_type 
+TYPE_SHORTCUT_LABEL :: shortcut_label_get_type
+TYPE_SHORTCUT_MANAGER :: shortcut_manager_get_type 
+TYPE_SHORTCUT_TRIGGER :: shortcut_trigger_get_type 
+TYPE_NEVER_TRIGGER :: never_trigger_get_type
+TYPE_KEYVAL_TRIGGER :: keyval_trigger_get_type
+TYPE_MNEMONIC_TRIGGER :: mnemonic_trigger_get_type
+TYPE_ALTERNATIVE_TRIGGER :: alternative_trigger_get_type
+TYPE_SIGNAL_LIST_ITEM_FACTORY :: signal_list_item_factory_get_type 
+TYPE_SINGLE_SELECTION :: single_selection_get_type 
+TYPE_SLICE_LIST_MODEL :: slice_list_model_get_type 
+TYPE_STACK :: stack_get_type 
+TYPE_STACK_PAGE :: stack_page_get_type 
+TYPE_STACK_SIDEBAR :: stack_sidebar_get_type 
+TYPE_SIZE_GROUP :: size_group_get_type 
+TYPE_SPIN_BUTTON :: spin_button_get_type 
+INPUT_ERROR :: -1
+TYPE_SPINNER :: spinner_get_type 
+TYPE_STACK_SWITCHER :: stack_switcher_get_type 
+TYPE_STATUSBAR :: statusbar_get_type 
+TYPE_STRING_OBJECT :: string_object_get_type 
+TYPE_STRING_LIST :: string_list_get_type 
+TYPE_STRING_SORTER :: string_sorter_get_type 
+TYPE_STYLE_PROVIDER :: style_provider_get_type 
+STYLE_PROVIDER_PRIORITY_FALLBACK :: 1
+STYLE_PROVIDER_PRIORITY_THEME :: 200
+STYLE_PROVIDER_PRIORITY_SETTINGS :: 400
+STYLE_PROVIDER_PRIORITY_APPLICATION :: 600
+STYLE_PROVIDER_PRIORITY_USER :: 800
+TYPE_STYLE_CONTEXT :: style_context_get_type 
+TYPE_SWITCH :: switch_get_type 
+TYPE_SYMBOLIC_PAINTABLE :: symbolic_paintable_get_type 
+TYPE_TEXT :: text_get_type 
+TYPE_TEXT_TAG :: text_tag_get_type 
+TYPE_TEXT_TAG_TABLE :: text_tag_table_get_type 
+TYPE_TEXT_CHILD_ANCHOR :: text_child_anchor_get_type 
+TYPE_TEXT_ITER :: text_iter_get_type 
+TYPE_TEXT_MARK :: text_mark_get_type 
+TYPE_TEXT_BUFFER :: text_buffer_get_type 
+TYPE_TEXT_VIEW :: text_view_get_type 
+TEXT_VIEW_PRIORITY_VALIDATE :: `((100 + 20) + 5)`
+TYPE_TREE_ROW_DATA :: tree_row_data_get_type 
+TYPE_TREE_DRAG_SOURCE :: tree_drag_source_get_type 
+TYPE_TREE_DRAG_DEST :: tree_drag_dest_get_type 
+TYPE_TREE_LIST_MODEL :: tree_list_model_get_type 
+TYPE_TREE_LIST_ROW :: tree_list_row_get_type 
+TYPE_TREE_EXPANDER :: tree_expander_get_type 
+TYPE_TREE_LIST_ROW_SORTER :: tree_list_row_sorter_get_type 
+TYPE_TREE_MODEL_SORT :: tree_model_sort_get_type 
+TYPE_TREE_SELECTION :: tree_selection_get_type 
+TYPE_TREE_STORE :: tree_store_get_type 
+TYPE_URI_LAUNCHER :: uri_launcher_get_type 
+BINARY_AGE :: `(1702)`
+INTERFACE_AGE :: `(0)`
+TYPE_VIDEO :: video_get_type 
+TYPE_VIEWPORT :: viewport_get_type 
+TYPE_VOLUME_BUTTON :: volume_button_get_type 
+TYPE_WIDGET_PAINTABLE :: widget_paintable_get_type 
+TYPE_WINDOW_CONTROLS :: window_controls_get_type 
+TYPE_WINDOW_GROUP :: window_group_get_type 
+TYPE_WINDOW_HANDLE :: window_handle_get_type 
 
 CssParserError :: enum u32 {FAILED = 0, SYNTAX = 1, IMPORT = 2, NAME = 3, UNKNOWN_VALUE = 4 }
 CssParserWarning :: enum u32 {DEPRECATED = 0, SYNTAX = 1, UNIMPLEMENTED = 2 }
@@ -6811,18 +7508,6 @@ _GtkSnapshotClass :: struct #packed {}
 
 @(default_calling_convention = "c")
 foreign gtk_runic {
-    @(link_name = "g_unicode_type_get_type")
-    g_unicode_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_unicode_break_type_get_type")
-    g_unicode_break_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_unicode_script_get_type")
-    g_unicode_script_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_normalize_mode_get_type")
-    g_normalize_mode_get_type :: proc() -> gobj.Type ---
-
     @(link_name = "gtk_css_parser_error_get_type")
     css_parser_error_get_type :: proc() -> gobj.Type ---
 
@@ -6834,252 +7519,6 @@ foreign gtk_runic {
 
     @(link_name = "gtk_css_parser_warning_quark")
     css_parser_warning_quark :: proc() -> glib.Quark ---
-
-    @(link_name = "g_app_info_create_flags_get_type")
-    g_app_info_create_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_converter_flags_get_type")
-    g_converter_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_converter_result_get_type")
-    g_converter_result_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_data_stream_byte_order_get_type")
-    g_data_stream_byte_order_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_data_stream_newline_type_get_type")
-    g_data_stream_newline_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_file_attribute_type_get_type")
-    g_file_attribute_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_file_attribute_info_flags_get_type")
-    g_file_attribute_info_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_file_attribute_status_get_type")
-    g_file_attribute_status_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_file_query_info_flags_get_type")
-    g_file_query_info_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_file_create_flags_get_type")
-    g_file_create_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_file_measure_flags_get_type")
-    g_file_measure_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_mount_mount_flags_get_type")
-    g_mount_mount_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_mount_unmount_flags_get_type")
-    g_mount_unmount_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_drive_start_flags_get_type")
-    g_drive_start_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_drive_start_stop_type_get_type")
-    g_drive_start_stop_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_file_copy_flags_get_type")
-    g_file_copy_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_file_monitor_flags_get_type")
-    g_file_monitor_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_file_type_get_type")
-    g_file_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_filesystem_preview_type_get_type")
-    g_filesystem_preview_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_file_monitor_event_get_type")
-    g_file_monitor_event_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_io_error_enum_get_type")
-    g_io_error_enum_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_ask_password_flags_get_type")
-    g_ask_password_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_password_save_get_type")
-    g_password_save_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_mount_operation_result_get_type")
-    g_mount_operation_result_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_output_stream_splice_flags_get_type")
-    g_output_stream_splice_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_io_stream_splice_flags_get_type")
-    g_io_stream_splice_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_emblem_origin_get_type")
-    g_emblem_origin_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_resolver_error_get_type")
-    g_resolver_error_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_resolver_record_type_get_type")
-    g_resolver_record_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_resource_error_get_type")
-    g_resource_error_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_resource_flags_get_type")
-    g_resource_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_resource_lookup_flags_get_type")
-    g_resource_lookup_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_socket_family_get_type")
-    g_socket_family_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_socket_type_get_type")
-    g_socket_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_socket_msg_flags_get_type")
-    g_socket_msg_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_socket_protocol_get_type")
-    g_socket_protocol_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_zlib_compressor_format_get_type")
-    g_zlib_compressor_format_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_unix_socket_address_type_get_type")
-    g_unix_socket_address_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_bus_type_get_type")
-    g_bus_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_bus_name_owner_flags_get_type")
-    g_bus_name_owner_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_bus_name_watcher_flags_get_type")
-    g_bus_name_watcher_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_proxy_flags_get_type")
-    g_dbus_proxy_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_error_get_type")
-    g_dbus_error_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_connection_flags_get_type")
-    g_dbus_connection_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_capability_flags_get_type")
-    g_dbus_capability_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_call_flags_get_type")
-    g_dbus_call_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_message_type_get_type")
-    g_dbus_message_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_message_flags_get_type")
-    g_dbus_message_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_message_header_field_get_type")
-    g_dbus_message_header_field_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_property_info_flags_get_type")
-    g_dbus_property_info_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_subtree_flags_get_type")
-    g_dbus_subtree_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_server_flags_get_type")
-    g_dbus_server_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_signal_flags_get_type")
-    g_dbus_signal_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_send_message_flags_get_type")
-    g_dbus_send_message_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_credentials_type_get_type")
-    g_credentials_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_message_byte_order_get_type")
-    g_dbus_message_byte_order_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_application_flags_get_type")
-    g_application_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_error_get_type")
-    g_tls_error_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_certificate_flags_get_type")
-    g_tls_certificate_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_authentication_mode_get_type")
-    g_tls_authentication_mode_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_channel_binding_type_get_type")
-    g_tls_channel_binding_type_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_channel_binding_error_get_type")
-    g_tls_channel_binding_error_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_rehandshake_mode_get_type")
-    g_tls_rehandshake_mode_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_password_flags_get_type")
-    g_tls_password_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_interaction_result_get_type")
-    g_tls_interaction_result_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_interface_skeleton_flags_get_type")
-    g_dbus_interface_skeleton_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_dbus_object_manager_client_flags_get_type")
-    g_dbus_object_manager_client_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_database_verify_flags_get_type")
-    g_tls_database_verify_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_database_lookup_flags_get_type")
-    g_tls_database_lookup_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_certificate_request_flags_get_type")
-    g_tls_certificate_request_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_tls_protocol_version_get_type")
-    g_tls_protocol_version_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_io_module_scope_flags_get_type")
-    g_io_module_scope_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_socket_client_event_get_type")
-    g_socket_client_event_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_socket_listener_event_get_type")
-    g_socket_listener_event_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_test_dbus_flags_get_type")
-    g_test_dbus_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_subprocess_flags_get_type")
-    g_subprocess_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_notification_priority_get_type")
-    g_notification_priority_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_network_connectivity_get_type")
-    g_network_connectivity_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_pollable_return_get_type")
-    g_pollable_return_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_memory_monitor_warning_level_get_type")
-    g_memory_monitor_warning_level_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_resolver_name_lookup_flags_get_type")
-    g_resolver_name_lookup_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_settings_bind_flags_get_type")
-    g_settings_bind_flags_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gtk_css_section_get_type")
     css_section_get_type :: proc() -> gobj.Type ---

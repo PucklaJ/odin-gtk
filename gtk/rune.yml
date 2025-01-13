@@ -15,7 +15,6 @@ from:
   static.linux.arm64: '../lib/linux/aarch64/libgtk.a'
   static.linux.x86_64: '../lib/linux/x86_64/libgtk.a'
   headers: 
-    - ../shared/gtk/gdk/gdkkeysyms.h
     - ../shared/gtk/gtk/gtk.h
   includedirs:
     - ../stdinc/
@@ -44,6 +43,9 @@ from:
     - '../shared/glib/glib/*'
     - '../shared/glib/glib/deprecated/*'
     - '../shared/glib/_build/glib/*'
+    - '../shared/glib/_build/gobject/*'
+    - '../shared/glib/_build/gio/*'
+    - '../shared/glib/_build/gmodule/*'
     - '../shared/glib/gobject/*'
     - '../shared/glib/gmodule/*'
     - '../shared/glib/gio/*'
@@ -57,11 +59,18 @@ from:
     - '../shared/graphene/_build/include/*'
   ignore:
     constants:
+      - '*VERSION*'
       - 'GDK_DEPRECATED*'
+      - '*AVAILABLE*'
+      - '_*'
+      - 'GDK_VAR'
+      - 'GDK_CAIRO_ERROR'
   overwrite:
     types:
       'GtkSnapshot': '_GdkSnapshot'
       'GtkSnapshotClass': '_GdkSnapshotClass'
+    constants:
+      'GTK_TYPE_SNAPSHOT': '"(gdk_snapshot_get_type ())" #Untyped'
 to:
   language: odin
   package: gtk
@@ -97,7 +106,9 @@ to:
       '../shared/glib/_build/glib/*': '../glib'
       '../shared/glib/glib/deprecated/*': '../glib'
       '../shared/glib/gobject/*': 'gobj ../glib/gobject'
+      '../shared/glib/_build/gobject/*': 'gobj ../glib/gobject'
       '../shared/glib/gio/*': '../glib/gio'
+      '../shared/glib/_build/gio/*': '../glib/gio'
       '../shared/cairo/src/*': '../cairo'
       '../shared/cairo/_build/src/*': '../cairo'
       '../shared/pango/pango/*': '../pango'

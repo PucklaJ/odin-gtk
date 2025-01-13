@@ -302,6 +302,7 @@ gtk:
         -e 's/^Snapshot :: Snapshot//g' \
         -e 's/^SnapshotClass :: _GtkSnapshotClass//g' \
         -e '0,/Snapshot_queueautoptr/{s/Snapshot_.*//g}' \
+        -e '/^\(TYPE_\|[A-Z_]\+ERROR\|ACCESSIBLE_LIST\)/ {s/`(//; s/())`//; s/ gtk_/ /}' \
 [unix]
 gtk-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}

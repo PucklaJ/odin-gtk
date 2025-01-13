@@ -58,7 +58,7 @@ init :: proc "c" (area: ^gtk.DrawingArea, user_data: glib.pointer) {
             area := gobj.type_cast(
                 gtk.DrawingArea,
                 cast(^gtk.DrawingArea)user_data,
-                gtk.drawing_area_get_type(),
+                gtk.TYPE_DRAWING_AREA(),
             )
 
             if ctx.shutdown {
@@ -647,7 +647,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     window := gobj.type_cast(
         gtk.Window,
         gtk.application_window_new(app),
-        gtk.window_get_type(),
+        gtk.TYPE_WINDOW(),
     )
 
     gtk.window_set_default_size(
@@ -676,7 +676,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     drawing_area := gobj.type_cast(
         gtk.DrawingArea,
         gtk.drawing_area_new(),
-        gtk.drawing_area_get_type(),
+        gtk.TYPE_DRAWING_AREA(),
     )
     gtk.drawing_area_set_draw_func(drawing_area, draw, nil, nil)
     gobj.signal_connect(drawing_area, "realize", cast(gobj.Callback)init, nil)

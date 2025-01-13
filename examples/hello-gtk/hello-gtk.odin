@@ -15,7 +15,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     window := gobj.type_cast(
         gtk.Window,
         gtk.application_window_new(app),
-        gtk.window_get_type(),
+        gtk.TYPE_WINDOW(),
     )
     gtk.window_set_title(window, "Window")
     gtk.window_set_default_size(window, 640, 480)

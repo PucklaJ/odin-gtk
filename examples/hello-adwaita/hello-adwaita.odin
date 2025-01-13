@@ -12,7 +12,7 @@ activate_cb :: proc "c" (app: ^gtk.Application) {
     window := gobj.type_cast(
         gtk.Window,
         gtk.application_window_new(app),
-        gtk.window_get_type(),
+        gtk.TYPE_WINDOW(),
     )
 
     label := gtk.label_new("Hello, enjoy this spinner :-)")
@@ -22,10 +22,10 @@ activate_cb :: proc "c" (app: ^gtk.Application) {
     box := gobj.type_cast(
         gtk.CenterBox,
         gtk.center_box_new(),
-        gtk.center_box_get_type(),
+        gtk.TYPE_CENTER_BOX(),
     )
     gtk.orientable_set_orientation(
-        gobj.type_cast(gtk.Orientable, box, gtk.orientable_get_type()),
+        gobj.type_cast(gtk.Orientable, box, gtk.TYPE_ORIENTABLE()),
         .VERTICAL,
     )
     gtk.center_box_set_start_widget(box, label)
