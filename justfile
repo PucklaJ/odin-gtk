@@ -230,7 +230,7 @@ pango:
         -e '/^\(TYPE_\|LAYOUT_\)/ {s/`//g; s/(//g; s/)//g; s/pango_//g}' \
         -e '/^SCALE_/ {s/`//g; s/(double)//g}' \
         -e '/^GLYPH_/ {s/`//g; s/(PangoGlyph)//g}' \
-        -e '/^ATTR_/ {s/`//g; s/(guint)//g; s/G_MAXUINT/glib.MAXUINT/g}' \
+        -e '/^ATTR_/ {s/`//g; s/(guint)//g; s/UINT_MAX/glib.MAXUINT/g}' \
         -e '/^ANALYSIS_/ {s/`//g}' \
         -e '/^\(RENDER_TYPE\|ENGINE_TYPE\)/ {s/`//g; s/\\//g}' \
 [unix]
@@ -330,6 +330,8 @@ adwaita:
     {{ RUNIC }} adwaita/rune.yml
     sed adwaita/adwaita.odin -i \
         -e 's/focus: \[\^\]/focus: ^/' \
+        -e '/^TYPE/ {s/`(//; s/())`//; s/ adw_/ /}' \
+        -e '/^DURATION_INFINITE/ {s/`//g; s/([a-zA-Z0-9_]\+)//g}' \
 
 adwaita-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}

@@ -40,6 +40,9 @@ from:
   overwrite:
     functions:
       g_application_add_main_option.param.2.type: '#Extern gchar'
+    constants:
+      'G_DBUS_METHOD_INVOCATION_HANDLED': '"TRUE" #Untyped'
+      'G_DBUS_METHOD_INVOCATION_UNHANDLED': '"FALSE" #Untyped'
   ignore:
     types:
       - va_list

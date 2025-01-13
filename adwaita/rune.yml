@@ -91,6 +91,10 @@ from:
   ignore:
     constants:
       - 'GDK_*'
+      - '_*'
+      - '*VERSION*'
+      - '*DEPRECATED*'
+      - '*AVAILABLE*'
 to:
   language: odin
   package: adwaita

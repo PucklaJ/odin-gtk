@@ -99,7 +99,7 @@ TYPE_PARAM_STRING :: #force_inline proc "c" () -> Type { return param_spec_types
 TYPE_PARAM_PARAM :: #force_inline proc "c" () -> Type { return param_spec_types[15] }
 TYPE_PARAM_BOXED :: #force_inline proc "c" () -> Type { return param_spec_types[16] }
 TYPE_PARAM_POINTER :: #force_inline proc "c" () -> Type { return param_spec_types[17] }
-TYPE_PARAM_VALUE_ARRAY :: #force_inline proc "c" () -> Type { return param_spec_types[18] } 
+TYPE_PARAM_VALUE_ARRAY :: #force_inline proc "c" () -> Type { return param_spec_types[18] }
 TYPE_PARAM_OBJECT :: #force_inline proc "c" () -> Type { return param_spec_types[19] }
 TYPE_PARAM_OVERRIDE :: #force_inline proc "c" () -> Type { return param_spec_types[20] }
 TYPE_PARAM_GTYPE :: #force_inline proc "c" () -> Type { return param_spec_types[21] }
@@ -107,7 +107,7 @@ TYPE_PARAM_VARIANT :: #force_inline proc "c" () -> Type { return param_spec_type
 TYPE_SIGNAL_GROUP :: signal_group_get_type
 TYPE_TYPE_MODULE :: type_module_get_type 
 TYPE_TYPE_PLUGIN :: type_plugin_get_type 
-TYPE_VALUE_ARRAY :: value_array_get_type  
+TYPE_VALUE_ARRAY :: value_array_get_type 
 TYPE_GTYPE :: gtype_get_type
 
 pid_t :: i32

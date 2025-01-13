@@ -7578,6 +7578,16 @@ when (ODIN_ARCH == .amd64) {
 
 char :: i8
 
+}
+
+when (ODIN_ARCH == .arm64) {
+
+char :: u8
+
+}
+
+when (ODIN_ARCH == .amd64) {
+
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
     foreign import glib_runic { "../lib/linux/x86_64/libglib-2.0.a", "../lib/linux/x86_64/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
@@ -7591,8 +7601,6 @@ when #config(GLIB_STATIC, false) {
 }
 
 when (ODIN_ARCH == .arm64) {
-
-char :: u8
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {

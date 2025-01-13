@@ -366,7 +366,7 @@ TYPE_UNIX_FD_LIST :: unix_fd_list_get_type
 TYPE_UNIX_SOCKET_ADDRESS :: unix_socket_address_get_type 
 TYPE_VFS :: vfs_get_type 
 VFS_EXTENSION_POINT_NAME :: "gio-vfs"
-VOLUME_IDENTIFIER_KIND_HAL_UDI :: "hal-udi" 
+VOLUME_IDENTIFIER_KIND_HAL_UDI :: "hal-udi"
 VOLUME_IDENTIFIER_KIND_UNIX_DEVICE :: "unix-device"
 VOLUME_IDENTIFIER_KIND_LABEL :: "label"
 VOLUME_IDENTIFIER_KIND_UUID :: "uuid"
