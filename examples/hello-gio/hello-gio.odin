@@ -7,6 +7,8 @@ import "core:os"
 import "core:strings"
 
 main :: proc() {
+    context = glib.create_context()
+
     // Check if the directory path is provided
     if len(os.args) != 2 {
         glib.printerr(

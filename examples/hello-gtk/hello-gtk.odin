@@ -35,6 +35,8 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
 }
 
 main :: proc() {
+    context = glib.create_context()
+
     app := gtk.application_new(
         "org.runic.hello-gtk",
         .APPLICATION_DEFAULT_FLAGS,

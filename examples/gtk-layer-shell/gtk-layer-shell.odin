@@ -9,6 +9,8 @@ import "core:os"
 import "core:strings"
 
 main :: proc() {
+    context = glib.create_context()
+
     app := gtk.application_new(
         "org.runic.gtk-layer-shell",
         .APPLICATION_DEFAULT_FLAGS,

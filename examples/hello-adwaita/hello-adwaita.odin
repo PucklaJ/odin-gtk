@@ -79,6 +79,8 @@ on_about :: proc "c" (self: ^gtk.Button, user_data: glib.pointer) {
 }
 
 main :: proc() {
+    context = glib.create_context()
+
     app := adw.application_new("runic.hello-adwaita", .NONE)
 
     gobj.signal_connect(app, "activate", cast(gobj.Callback)activate_cb, nil)
