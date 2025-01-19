@@ -349,6 +349,9 @@ example NAME='hello-glib' KIND='shared':
 check PACKAGE:
     odin check {{ PACKAGE }} -error-pos-style:unix -vet -no-entry-point
 
+test PACKAGE TEST_NAMES='':
+    odin test {{ PACKAGE }} -error-pos-style:unix -vet -warnings-as-errors -debug -out:/tmp/odin-gtk-test {{ if TEST_NAMES == '' { '' } else { '-define:ODIN_TEST_NAMES=' + TEST_NAMES } }} -define:ODIN_TEST_FANCY=false -define:ODIN_TEST_THREADS=1
+
 [unix]
 download-webkitgtk VERSION='2.46.4':
     @mkdir -p shared/webkitgtk
