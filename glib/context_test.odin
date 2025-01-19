@@ -3,6 +3,7 @@ package glib
 import "base:runtime"
 import "core:fmt"
 import odin_log "core:log"
+import "core:math/rand"
 import ts "core:testing"
 
 @(test)
@@ -146,5 +147,18 @@ test_allocator :: proc(t: ^ts.T) {
 test_logger :: proc(t: ^ts.T) {
     context = create_context()
     odin_log.info("this is an info test using the glib logger")
+}
+
+@(test)
+test_random :: proc(t: ^ts.T) {
+    context = create_context()
+
+    for _ in 0 ..< 10 {
+        print("%lu\n", rand.uint64())
+    }
+
+    for _ in 0 ..< 10 {
+        print("%f\n", rand.float64_range(-10.0, 10.0))
+    }
 }
 

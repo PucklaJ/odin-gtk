@@ -1,21 +1,13 @@
 package glib
 
 import "base:runtime"
-import "core:c/libc"
 import "core:mem"
 import "core:strconv"
 import "core:strings"
 
-when ODIN_ARCH == .amd64 || ODIN_ARCH == .arm64 {
-    DEFAULT_ALIGNMENT :: 8
-} else when ODIN_ARCH == .x86 || ODIN_ARCH == .arm {
-    DEFAULT_ALIGNMENT :: 4
-} else {
-    #assert(
-        "glib.Allocator: alignment for this architecture needs to be added",
-    )
-}
+DEFAULT_ALIGNMENT :: size_of(rawptr)
 
+@(thread_local)
 global_temp_allocator_arena: runtime.Arena
 
 create_context :: proc "contextless" () -> (ctx: runtime.Context) {
@@ -73,16 +65,15 @@ create_context :: proc "contextless" () -> (ctx: runtime.Context) {
                     size(alloc_size),
                     size(alloc_alignment),
                 )
-                libc.memcpy(new_mem, old_memory, uint(alloc_size))
+                runtime.mem_copy(new_mem, old_memory, old_size)
                 aligned_free(old_memory)
                 return (cast([^]byte)new_mem)[:alloc_size], .None
             } else {
                 new_mem := realloc(old_memory, size(alloc_size))
                 if alloc_size > old_size {
-                    libc.memset(
+                    runtime.mem_zero(
                         &(cast([^]byte)new_mem)[old_size],
-                        0,
-                        uint(alloc_size - old_size),
+                        alloc_size - old_size,
                     )
                 }
                 return (cast([^]byte)new_mem)[:alloc_size], .None
@@ -94,7 +85,7 @@ create_context :: proc "contextless" () -> (ctx: runtime.Context) {
                     size(alloc_size),
                     size(alloc_alignment),
                 )
-                libc.memcpy(new_mem, old_memory, uint(alloc_size))
+                runtime.mem_copy(new_mem, old_memory, old_size)
                 aligned_free(old_memory)
                 return (cast([^]byte)new_mem)[:alloc_size], .None
             } else {
@@ -211,6 +202,48 @@ create_context :: proc "contextless" () -> (ctx: runtime.Context) {
         delete(proc_cstr)
     }
 
+    ctx.random_generator.procedure =
+    proc(data: rawptr, mode: runtime.Random_Generator_Mode, p: []byte) {
+        read_u64 :: proc() -> u64 {
+            return u64(random_int()) | (u64(random_int()) << 32)
+        }
+
+        switch mode {
+        case .Read:
+            switch len(p) {
+            case size_of(u64):
+                next_val := read_u64()
+                runtime.mem_copy(raw_data(p), &next_val, len(p))
+            case:
+                pos := i8(0)
+                val := u64(0)
+                for &v in p {
+                    if pos == 0 {
+                        val = read_u64()
+                        pos = 7
+                    }
+                    v = byte(val)
+                    val >>= 8
+                    pos -= 1
+                }
+            }
+        case .Reset:
+            seed: u64 = ---
+            runtime.mem_copy_non_overlapping(
+                &seed,
+                raw_data(p),
+                min(size_of(seed), len(p)),
+            )
+            random_set_seed(uint32(seed))
+        case .Query_Info:
+            if len(p) != size_of(runtime.Random_Generator_Query_Info) {
+                return
+            }
+            info := (^runtime.Random_Generator_Query_Info)(raw_data(p))
+            info^ += {.Uniform, .Resettable}
+        }
+
+    }
     return
 }
 
