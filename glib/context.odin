@@ -3,6 +3,7 @@ package glib
 import "base:runtime"
 import "core:c/libc"
 import "core:mem"
+import "core:strconv"
 import "core:strings"
 
 when ODIN_ARCH == .amd64 || ODIN_ARCH == .arm64 {
@@ -14,6 +15,8 @@ when ODIN_ARCH == .amd64 || ODIN_ARCH == .arm64 {
         "glib.Allocator: alignment for this architecture needs to be added",
     )
 }
+
+global_temp_allocator_arena: runtime.Arena
 
 create_context :: proc "contextless" () -> (ctx: runtime.Context) {
 
@@ -119,36 +122,93 @@ create_context :: proc "contextless" () -> (ctx: runtime.Context) {
         return nil, .Invalid_Argument
     }
 
-    ctx.assertion_failure_proc =
-    proc(prefix, message: string, loc: runtime.Source_Code_Location) -> ! {
-        // NOTE: this probably crashes if a string is above 1KB
-        block_of_memory: [1024]u8
-        stack_block: mem.Arena
-        mem.arena_init(&stack_block, block_of_memory[:])
-        stack_alloc := mem.arena_allocator(&stack_block)
+    context = ctx
+    ctx.temp_allocator = runtime.arena_allocator(&global_temp_allocator_arena)
 
-        file_path_cstr := strings.clone_to_cstring(loc.file_path, stack_alloc)
-        printerr("%s", file_path_cstr)
-        mem.arena_free_all(&stack_block)
+    when !ODIN_DISABLE_ASSERT {
+        ctx.assertion_failure_proc =
+        proc(prefix, message: string, loc: runtime.Source_Code_Location) -> ! {
+            // NOTE: this probably crashes if a string is above 1KB
+            block_of_memory: [1024]u8
+            stack_block: mem.Arena
+            mem.arena_init(&stack_block, block_of_memory[:])
+            stack_alloc := mem.arena_allocator(&stack_block)
 
-        printerr(":%d:%d \"", loc.line, loc.column)
-        procedure_cstr := strings.clone_to_cstring(loc.procedure, stack_alloc)
-        printerr("%s", procedure_cstr)
-        mem.arena_free_all(&stack_block)
+            file_path_cstr := strings.clone_to_cstring(
+                loc.file_path,
+                stack_alloc,
+            )
+            printerr("%s", file_path_cstr)
+            mem.arena_free_all(&stack_block)
 
-        printerr("\" ")
-        prefix_cstr := strings.clone_to_cstring(prefix, stack_alloc)
-        printerr("%s", prefix_cstr)
-        mem.arena_free_all(&stack_block)
+            printerr(":%d:%d \"", loc.line, loc.column)
+            procedure_cstr := strings.clone_to_cstring(
+                loc.procedure,
+                stack_alloc,
+            )
+            printerr("%s", procedure_cstr)
+            mem.arena_free_all(&stack_block)
 
-        printerr(": ")
-        message_cstr := strings.clone_to_cstring(message, stack_alloc)
-        printerr("%s", message_cstr)
-        mem.arena_free_all(&stack_block)
+            printerr("\" ")
+            prefix_cstr := strings.clone_to_cstring(prefix, stack_alloc)
+            printerr("%s", prefix_cstr)
+            mem.arena_free_all(&stack_block)
 
-        printerr("\n")
+            printerr(": ")
+            message_cstr := strings.clone_to_cstring(message, stack_alloc)
+            printerr("%s", message_cstr)
+            mem.arena_free_all(&stack_block)
 
-        runtime.trap()
+            printerr("\n")
+
+            runtime.trap()
+        }
+    }
+
+    ctx.logger.procedure =
+    proc(
+        data: rawptr,
+        level: runtime.Logger_Level,
+        text: string,
+        options: runtime.Logger_Options,
+        location := #caller_location,
+    ) {
+        glib_log_level: LogLevelFlags = ---
+        switch level {
+        case .Debug:
+            glib_log_level = .LOG_LEVEL_DEBUG
+        case .Info:
+            glib_log_level = .LOG_LEVEL_INFO
+        case .Warning:
+            glib_log_level = .LOG_LEVEL_WARNING
+        case .Error:
+            glib_log_level = .LOG_LEVEL_ERROR
+        case .Fatal:
+            glib_log_level = .LOG_FLAG_FATAL | .LOG_LEVEL_ERROR
+        }
+
+        text_cstr := strings.clone_to_cstring(text)
+        file_cstr := strings.clone_to_cstring(location.file_path)
+        proc_cstr := strings.clone_to_cstring(location.procedure)
+
+        int_buf: [256]u8
+        line_str := strconv.append_uint(int_buf[:], u64(location.line), 10)
+        int_buf[len(line_str)] = 0
+        line_cstr := cstring(&int_buf[0])
+
+        log_structured_standard(
+            nil,
+            glib_log_level,
+            file_cstr,
+            line_cstr,
+            proc_cstr,
+            "%s",
+            text_cstr,
+        )
+
+        delete(text_cstr)
+        delete(file_cstr)
+        delete(proc_cstr)
     }
 
     return
