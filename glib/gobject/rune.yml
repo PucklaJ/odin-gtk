@@ -2,6 +2,7 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+  - Windows x86_64
 wrapper:
   language: c
   in_headers: ../../shared/glib/glib/glib-object.h
@@ -12,15 +13,22 @@ wrapper:
 from:
   language: c
   shared.linux: 'libgobject-2.0.so'
+  shared.windows.x86_64: '../../lib/windows/x86_64/gobject-2.0.lib'
   static.linux.arm64: '../../lib/linux/aarch64/libgobject-2.0.a'
   static.linux.x86_64: '../../lib/linux/x86_64/libgobject-2.0.a'
   headers: ../../shared/glib/glib/glib-object.h
+  headers.windows.x86_64: ../../shared/gvsbuild/extract/include/glib-2.0/glib-object.h
   includedirs:
     - ../../stdinc/
     - ../../shared/glib/
     - ../../shared/glib/glib/
-    - ../../shared/glib/_build/glib
+    - ../../shared/glib/_build/glib/
     - ../../shared/glib/_build/
+  includedirs.windows.x86_64:
+    - ../../stdinc/windows/
+    - ../../shared/gvsbuild/extract/include/glib-2.0/
+    - ../../shared/gvsbuild/extract/include/glib-2.0/glib/
+    - ../../shared/gvsbuild/extract/lib/glib-2.0/include/
   defines:
     GLIB_COMPILATION: 1
     GLIB_DISABLE_DEPRECATION_WARNINGS: 1
@@ -28,9 +36,14 @@ from:
   load_all_includes: true
   extern:
     - "../../stdinc/*"
+    - "../../stdinc/windows/*"
     - "../../shared/glib/glib/*"
     - "../../shared/glib/glib/deprecated/*"
     - "../../shared/glib/_build/glib/*"
+    - "../../shared/gvsbuild/extract/include/glib-2.0/*"
+    - "../../shared/gvsbuild/extract/include/glib-2.0/glib/*"
+    - "../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*"
+    - "../../shared/gvsbuild/extract/lib/glib-2.0/include/*"
   ignore:
     constants:
       - 'G_STATIC_*'
@@ -80,6 +93,10 @@ to:
       "../../stdinc/stdarg.h": "core:c/libc"
       "../../shared/glib/glib/*": "glib .."
       "../../shared/glib/_build/glib/*": "glib .."
+      "../../shared/gvsbuild/extract/include/glib-2.0/*": "glib .."
+      "../../shared/gvsbuild/extract/include/glib-2.0/glib/*": "glib .."
+      "../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*": "glib .."
+      "../../shared/gvsbuild/extract/lib/glib-2.0/include/*": "glib .."
     trim_prefix: true
   add_libs.static.linux.arm64:
     - '../../lib/linux/aarch64/libgobject-wrapper.a'
@@ -87,10 +104,12 @@ to:
     - libpcre2-8.so
   add_libs.shared.linux.arm64:
     - '../../lib/linux/aarch64/libgobject-wrapper.a'
-  add_libs.static.linux.x86_64:
-    - '../../lib/linux/x86_64/libgobject-wrapper.a'
-    - libffi.so
-    - libpcre2-8.so
-  add_libs.shared.linux.x86_64:
-    - '../../lib/linux/x86_64/libgobject-wrapper.a'
-  static_switch: 'GLIB_STATIC'
+  add_libs.windows.x86_64:
+    - '../../lib/windows/x86_64/gobject-wrapper.lib'
+#   add_libs.static.linux.x86_64:
+#     - '../../lib/linux/x86_64/libgobject-wrapper.a'
+#     - libffi.so
+#     - libpcre2-8.so
+#   add_libs.shared.linux.x86_64:
+#     - '../../lib/linux/x86_64/libgobject-wrapper.a'
+#   static_switch: 'GLIB_STATIC'

@@ -1,8 +1,7 @@
-#+build linux amd64, linux arm64
+#+build linux amd64, linux arm64, windows amd64
 package glib
 
 import "core:c/libc"
-import "core:sys/posix"
 
 ANALYZER_ANALYZING :: 0
 FALSE :: 0
@@ -27,28 +26,12 @@ GINT32_MODIFIER :: ""
 GINT32_FORMAT :: "i"
 GUINT32_FORMAT :: "u"
 HAVE_GINT64 :: 1
-GINT64_MODIFIER :: "l"
-GINT64_FORMAT :: "li"
-GUINT64_FORMAT :: "lu"
-GSIZE_MODIFIER :: "l"
-GSSIZE_MODIFIER :: "l"
-GSIZE_FORMAT :: "lu"
-GSSIZE_FORMAT :: "li"
 MAXSIZE :: max(size)
 MINSSIZE :: min(ssize)
 MAXSSIZE :: max(ssize)
-MINOFFSET :: ( (-(0x7fffffffffffffff) - (1)))
-MAXOFFSET :: (0x7fffffffffffffff)
-GOFFSET_MODIFIER :: "l"
-GOFFSET_FORMAT :: "li"
-POLLFD_FORMAT :: "%d"
-GINTPTR_MODIFIER :: "l"
-GINTPTR_FORMAT :: "li"
-GUINTPTR_FORMAT :: "lu"
 HAVE_ISO_VARARGS :: 1
 HAVE_GROWING_STACK :: 0
 BYTE_ORDER :: 1234
-PID_FORMAT :: "i"
 MININT8 :: min(int8)
 MAXINT8 :: max(int8)
 MAXUINT8 :: max(uint8)
@@ -58,9 +41,6 @@ MAXUINT16 :: max(uint16)
 MININT32 :: min(int32)
 MAXINT32 :: max(int32)
 MAXUINT32 :: max(uint32)
-MININT64 :: min(int64)
-MAXINT64 :: max(int64)
-MAXUINT64 :: max(uint64)
 E :: 2.7182818284590451
 LN2 :: 0.6931471805599453
 LN10 :: 2.3025850929940459
@@ -86,11 +66,6 @@ OS_INFO_KEY_SUPPORT_URL :: "SUPPORT_URL"
 OS_INFO_KEY_BUG_REPORT_URL :: "BUG_REPORT_URL"
 OS_INFO_KEY_PRIVACY_POLICY_URL :: "PRIVACY_POLICY_URL"
 THREAD_ERROR :: `g_thread_error_quark ()`
-TIME_SPAN_DAY :: ((86400000000))
-TIME_SPAN_HOR :: ((3600000000))
-TIME_SPAN_MINTE :: ((60000000))
-TIME_SPAN_SECOND :: ((1000000))
-TIME_SPAN_MIISECOND :: ((1000))
 BOOKMARK_FILE_ERROR :: `(g_bookmark_file_error_quark ())`
 CONVERT_ERROR :: `g_convert_error_quark()`
 DATALIST_FLAGS_MASK :: 3
@@ -179,8 +154,6 @@ SHELL_ERROR :: `g_shell_error_quark ()`
 SPAWN_ERROR :: `g_spawn_error_quark ()`
 SPAWN_EXIT_ERROR :: `g_spawn_exit_error_quark ()`
 TEST_OPTION_ISOLATE_DIRS :: "isolate_dirs"
-TEST_OPTION_NO_PRGNAME :: "no_g_set_prgname"
-TEST_OPTION_NONFATAL_ASSERTIONS :: "nonfatal-assertions"
 USEC_PER_SEC :: 1000000
 URI_RESERVED_CHARS_GENERIC_DELIMITERS :: ":/?#[]@"
 URI_RESERVED_CHARS_SUBCOMPONENT_DELIMITERS :: "!$&'()*+,;="
@@ -206,14 +179,11 @@ size :: u64
 offset :: int64
 intptr :: i64
 uintptr_ :: u64
-Pid :: i32
 short :: i16
-long :: i64
 int_ :: i32
 boolean :: b32
 uchar :: u8
 ushort :: u16
-ulong :: u64
 uint_ :: u32
 float :: f32
 double :: f64
@@ -268,17 +238,13 @@ Error :: _GError
 ErrorInitFunc :: #type proc "c" (error: ^Error)
 ErrorCopyFunc :: #type proc "c" (src_error: ^Error, dest_error: ^Error)
 ErrorClearFunc :: #type proc "c" (error: ^Error)
-UserDirectory :: enum u32 {DESKTOP = 0, DOCUMENTS = 1, DOWNLOAD = 2, MUSIC = 3, PICTURES = 4, PUBLIC_SHARE = 5, TEMPLATES = 6, VIDEOS = 7, USER_N_DIRECTORIES = 8 }
 _GDebugKey :: struct {
     key: cstring,
     value: uint_,
 }
 DebugKey :: _GDebugKey
-FormatSizeFlags :: enum u32 {FORMAT_SIZE_DEFAULT = 0, FORMAT_SIZE_LONG_FORMAT = 1, FORMAT_SIZE_IEC_UNITS = 2, FORMAT_SIZE_BITS = 4, FORMAT_SIZE_ONLY_VALUE = 8, FORMAT_SIZE_ONLY_UNIT = 16 }
 VoidFunc :: #type proc "c" ()
-ThreadError :: enum u32 {AGAIN = 0 }
 ThreadFunc :: #type proc "c" (data: pointer) -> pointer
-ThreadPriority :: enum u32 {LOW = 0, NORMAL = 1, HIGH = 2, URGENT = 3 }
 _GThread :: struct {
     func: ThreadFunc,
     data: pointer,
@@ -312,7 +278,6 @@ _GPrivate :: struct {
     future: [2]pointer,
 }
 Private :: _GPrivate
-OnceStatus :: enum u32 {NOTCALLED = 0, PROGRESS = 1, READY = 2 }
 _GOnce :: struct {
     status: OnceStatus,
     retval: pointer,
@@ -326,17 +291,13 @@ _GAsyncQueue :: struct #packed {}
 AsyncQueue :: _GAsyncQueue
 _GTimeZone :: struct #packed {}
 TimeZone :: _GTimeZone
-TimeType :: enum u32 {STANDARD = 0, DAYLIGHT = 1, UNIVERSAL = 2 }
 TimeSpan :: int64
 _GDateTime :: struct #packed {}
 DateTime :: _GDateTime
-BookmarkFileError :: enum u32 {INVALID_URI = 0, INVALID_VALUE = 1, APP_NOT_REGISTERED = 2, URI_NOT_FOUND = 3, READ = 4, UNKNOWN_ENCODING = 5, WRITE = 6, FILE_NOT_FOUND = 7 }
 _GBookmarkFile :: struct #packed {}
 BookmarkFile :: _GBookmarkFile
-ChecksumType :: enum u32 {CHECKSUM_MD5 = 0, CHECKSUM_SHA1 = 1, CHECKSUM_SHA256 = 2, CHECKSUM_SHA512 = 3, CHECKSUM_SHA384 = 4 }
 _GChecksum :: struct #packed {}
 Checksum :: _GChecksum
-ConvertError :: enum u32 {NO_CONVERSION = 0, ILLEGAL_SEQUENCE = 1, FAILED = 2, PARTIAL_INPUT = 3, BAD_URI = 4, NOT_ABSOLUTE_PATH = 5, NO_MEMORY = 6, EMBEDDED_NUL = 7 }
 _GIConv :: struct #packed {}
 IConv :: ^_GIConv
 _GData :: struct #packed {}
@@ -348,32 +309,10 @@ DateYear :: uint16
 DateDay :: uint8
 _GDate :: [8]u8
 Date :: _GDate
-DateDMY :: enum u32 {DATE_DAY = 0, DATE_MONTH = 1, DATE_YEAR = 2 }
-DateWeekday :: enum u32 {DATE_BAD_WEEKDAY = 0, DATE_MONDAY = 1, DATE_TUESDAY = 2, DATE_WEDNESDAY = 3, DATE_THURSDAY = 4, DATE_FRIDAY = 5, DATE_SATURDAY = 6, DATE_SUNDAY = 7 }
-DateMonth :: enum u32 {DATE_BAD_MONTH = 0, DATE_JANUARY = 1, DATE_FEBRUARY = 2, DATE_MARCH = 3, DATE_APRIL = 4, DATE_MAY = 5, DATE_JUNE = 6, DATE_JULY = 7, DATE_AUGUST = 8, DATE_SEPTEMBER = 9, DATE_OCTOBER = 10, DATE_NOVEMBER = 11, DATE_DECEMBER = 12 }
 _GDir :: struct #packed {}
 Dir :: _GDir
-FileError :: enum u32 {EXIST = 0, ISDIR = 1, ACCES = 2, NAMETOOLONG = 3, NOENT = 4, NOTDIR = 5, NXIO = 6, NODEV = 7, ROFS = 8, TXTBSY = 9, FAULT = 10, LOOP = 11, NOSPC = 12, NOMEM = 13, MFILE = 14, NFILE = 15, BADF = 16, INVAL = 17, PIPE = 18, AGAIN = 19, INTR = 20, IO = 21, PERM = 22, NOSYS = 23, FAILED = 24 }
-FileTest :: enum u32 {IS_REGULAR = 1, IS_SYMLINK = 2, IS_DIR = 4, IS_EXECUTABLE = 8, EXISTS = 16 }
-FileSetContentsFlags :: enum u32 {FILE_SET_CONTENTS_NONE = 0, FILE_SET_CONTENTS_CONSISTENT = 1, FILE_SET_CONTENTS_DURABLE = 2, FILE_SET_CONTENTS_ONLY_EXISTING = 4 }
-malloc_func_ptr_anon_0 :: #type proc "c" (n_bytes: size) -> pointer
-realloc_func_ptr_anon_1 :: #type proc "c" (mem: pointer, n_bytes: size) -> pointer
-free_func_ptr_anon_2 :: #type proc "c" (mem: pointer)
-calloc_func_ptr_anon_3 :: #type proc "c" (n_blocks: size, n_block_bytes: size) -> pointer
-try_malloc_func_ptr_anon_4 :: #type proc "c" (n_bytes: size) -> pointer
-try_realloc_func_ptr_anon_5 :: #type proc "c" (mem: pointer, n_bytes: size) -> pointer
-_GMemVTable :: struct {
-    malloc: malloc_func_ptr_anon_0,
-    realloc: realloc_func_ptr_anon_1,
-    free: free_func_ptr_anon_2,
-    calloc: calloc_func_ptr_anon_3,
-    try_malloc: try_malloc_func_ptr_anon_4,
-    try_realloc: try_realloc_func_ptr_anon_5,
-}
 MemVTable :: _GMemVTable
 Node :: _GNode
-TraverseFlags :: enum u32 {TRAVERSE_LEAVES = 1, TRAVERSE_NON_LEAVES = 2, TRAVERSE_ALL = 3, TRAVERSE_MASK = 3, TRAVERSE_LEAFS = 1, TRAVERSE_NON_LEAFS = 2 }
-TraverseType :: enum u32 {IN_ORDER = 0, PRE_ORDER = 1, POST_ORDER = 2, LEVEL_ORDER = 3 }
 NodeTraverseFunc :: #type proc "c" (node: ^Node, data: pointer) -> boolean
 NodeForeachFunc :: #type proc "c" (node: ^Node, data: pointer)
 _GNode :: struct {
@@ -404,14 +343,14 @@ HashTableIter :: _GHashTableIter
 _GHmac :: struct #packed {}
 Hmac :: _GHmac
 Hook :: _GHook
+HookList :: struct #packed {}
 HookCompareFunc :: #type proc "c" (new_hook: ^Hook, sibling: ^Hook) -> int_
 HookFindFunc :: #type proc "c" (hook: ^Hook, data: pointer) -> boolean
 HookMarshaller :: #type proc "c" (hook: ^Hook, marshal_data: pointer)
 HookCheckMarshaller :: #type proc "c" (hook: ^Hook, marshal_data: pointer) -> boolean
 HookFunc :: #type proc "c" (data: pointer)
 HookCheckFunc :: #type proc "c" (data: pointer) -> boolean
-HookFinalizeFunc :: #type proc "c" (hook_list: rawptr, hook: ^Hook)
-HookFlagMask :: enum u32 {HOOK_FLAG_ACTIVE = 1, HOOK_FLAG_IN_CALL = 2, HOOK_FLAG_MASK = 15 }
+HookFinalizeFunc :: #type proc "c" (hook_list: ^HookList, hook: ^Hook)
 _GHook :: struct {
     data: pointer,
     next: ^Hook,
@@ -422,11 +361,6 @@ _GHook :: struct {
     func: pointer,
     destroy: DestroyNotify,
 }
-_GPollFD :: struct {
-    fd: int_,
-    events: ushort,
-    revents: ushort,
-}
 PollFD :: _GPollFD
 PollFunc :: #type proc "c" (ufds: [^]PollFD, nfsd: uint_, timeout_: int_) -> int_
 SList :: _GSList
@@ -434,8 +368,6 @@ _GSList :: struct {
     data: pointer,
     next: ^SList,
 }
-IOCondition :: enum u32 {IO_IN = 1, IO_OUT = 4, IO_PRI = 2, IO_ERR = 8, IO_HUP = 16, IO_NVAL = 32 }
-MainContextFlags :: enum u32 {NONE = 0, OWNERLESS_POLLING = 1 }
 _GMainContext :: struct #packed {}
 MainContext :: _GMainContext
 _GMainLoop :: struct #packed {}
@@ -464,14 +396,6 @@ _GSource :: struct {
     name: cstring,
     priv: ^SourcePrivate,
 }
-ref_func_ptr_anon_6 :: #type proc "c" (cb_data: pointer)
-unref_func_ptr_anon_7 :: #type proc "c" (cb_data: pointer)
-et_func_ptr_anon_8 :: #type proc "c" (cb_data: pointer, source: ^Source, func: ^SourceFunc, data: ^pointer)
-_GSourceCallbackFuncs :: struct {
-    ref: ref_func_ptr_anon_6,
-    unref: unref_func_ptr_anon_7,
-    get: et_func_ptr_anon_8,
-}
 SourceDummyMarshal :: #type proc "c" ()
 SourceFuncsPrepareFunc :: #type proc "c" (source: ^Source, timeout_: ^int_) -> boolean
 SourceFuncsCheckFunc :: #type proc "c" (source: ^Source) -> boolean
@@ -489,107 +413,39 @@ MainContextPusher :: rawptr
 ClearHandleFunc :: #type proc "c" (handle_id: uint_)
 unichar :: uint32
 unichar2 :: uint16
-UnicodeType :: enum u32 {UNICODE_CONTROL = 0, UNICODE_FORMAT = 1, UNICODE_UNASSIGNED = 2, UNICODE_PRIVATE_USE = 3, UNICODE_SURROGATE = 4, UNICODE_LOWERCASE_LETTER = 5, UNICODE_MODIFIER_LETTER = 6, UNICODE_OTHER_LETTER = 7, UNICODE_TITLECASE_LETTER = 8, UNICODE_UPPERCASE_LETTER = 9, UNICODE_SPACING_MARK = 10, UNICODE_ENCLOSING_MARK = 11, UNICODE_NON_SPACING_MARK = 12, UNICODE_DECIMAL_NUMBER = 13, UNICODE_LETTER_NUMBER = 14, UNICODE_OTHER_NUMBER = 15, UNICODE_CONNECT_PUNCTUATION = 16, UNICODE_DASH_PUNCTUATION = 17, UNICODE_CLOSE_PUNCTUATION = 18, UNICODE_FINAL_PUNCTUATION = 19, UNICODE_INITIAL_PUNCTUATION = 20, UNICODE_OTHER_PUNCTUATION = 21, UNICODE_OPEN_PUNCTUATION = 22, UNICODE_CURRENCY_SYMBOL = 23, UNICODE_MODIFIER_SYMBOL = 24, UNICODE_MATH_SYMBOL = 25, UNICODE_OTHER_SYMBOL = 26, UNICODE_LINE_SEPARATOR = 27, UNICODE_PARAGRAPH_SEPARATOR = 28, UNICODE_SPACE_SEPARATOR = 29 }
-UnicodeBreakType :: enum u32 {UNICODE_BREAK_MANDATORY = 0, UNICODE_BREAK_CARRIAGE_RETURN = 1, UNICODE_BREAK_LINE_FEED = 2, UNICODE_BREAK_COMBINING_MARK = 3, UNICODE_BREAK_SURROGATE = 4, UNICODE_BREAK_ZERO_WIDTH_SPACE = 5, UNICODE_BREAK_INSEPARABLE = 6, UNICODE_BREAK_NON_BREAKING_GLUE = 7, UNICODE_BREAK_CONTINGENT = 8, UNICODE_BREAK_SPACE = 9, UNICODE_BREAK_AFTER = 10, UNICODE_BREAK_BEFORE = 11, UNICODE_BREAK_BEFORE_AND_AFTER = 12, UNICODE_BREAK_HYPHEN = 13, UNICODE_BREAK_NON_STARTER = 14, UNICODE_BREAK_OPEN_PUNCTUATION = 15, UNICODE_BREAK_CLOSE_PUNCTUATION = 16, UNICODE_BREAK_QUOTATION = 17, UNICODE_BREAK_EXCLAMATION = 18, UNICODE_BREAK_IDEOGRAPHIC = 19, UNICODE_BREAK_NUMERIC = 20, UNICODE_BREAK_INFIX_SEPARATOR = 21, UNICODE_BREAK_SYMBOL = 22, UNICODE_BREAK_ALPHABETIC = 23, UNICODE_BREAK_PREFIX = 24, UNICODE_BREAK_POSTFIX = 25, UNICODE_BREAK_COMPLEX_CONTEXT = 26, UNICODE_BREAK_AMBIGUOUS = 27, UNICODE_BREAK_UNKNOWN = 28, UNICODE_BREAK_NEXT_LINE = 29, UNICODE_BREAK_WORD_JOINER = 30, UNICODE_BREAK_HANGUL_L_JAMO = 31, UNICODE_BREAK_HANGUL_V_JAMO = 32, UNICODE_BREAK_HANGUL_T_JAMO = 33, UNICODE_BREAK_HANGUL_LV_SYLLABLE = 34, UNICODE_BREAK_HANGUL_LVT_SYLLABLE = 35, UNICODE_BREAK_CLOSE_PARANTHESIS = 36, UNICODE_BREAK_CLOSE_PARENTHESIS = 36, UNICODE_BREAK_CONDITIONAL_JAPANESE_STARTER = 37, UNICODE_BREAK_HEBREW_LETTER = 38, UNICODE_BREAK_REGIONAL_INDICATOR = 39, UNICODE_BREAK_EMOJI_BASE = 40, UNICODE_BREAK_EMOJI_MODIFIER = 41, UNICODE_BREAK_ZERO_WIDTH_JOINER = 42, UNICODE_BREAK_AKSARA = 43, UNICODE_BREAK_AKSARA_PRE_BASE = 44, UNICODE_BREAK_AKSARA_START = 45, UNICODE_BREAK_VIRAMA_FINAL = 46, UNICODE_BREAK_VIRAMA = 47 }
-UnicodeScript :: enum i32 {INVALID_CODE = -1, COMMON = 0, INHERITED = 1, ARABIC = 2, ARMENIAN = 3, BENGALI = 4, BOPOMOFO = 5, CHEROKEE = 6, COPTIC = 7, CYRILLIC = 8, DESERET = 9, DEVANAGARI = 10, ETHIOPIC = 11, GEORGIAN = 12, GOTHIC = 13, GREEK = 14, GUJARATI = 15, GURMUKHI = 16, HAN = 17, HANGUL = 18, HEBREW = 19, HIRAGANA = 20, KANNADA = 21, KATAKANA = 22, KHMER = 23, LAO = 24, LATIN = 25, MALAYALAM = 26, MONGOLIAN = 27, MYANMAR = 28, OGHAM = 29, OLD_ITALIC = 30, ORIYA = 31, RUNIC = 32, SINHALA = 33, SYRIAC = 34, TAMIL = 35, TELUGU = 36, THAANA = 37, THAI = 38, TIBETAN = 39, CANADIAN_ABORIGINAL = 40, YI = 41, TAGALOG = 42, HANUNOO = 43, BUHID = 44, TAGBANWA = 45, BRAILLE = 46, CYPRIOT = 47, LIMBU = 48, OSMANYA = 49, SHAVIAN = 50, LINEAR_B = 51, TAI_LE = 52, UGARITIC = 53, NEW_TAI_LUE = 54, BUGINESE = 55, GLAGOLITIC = 56, TIFINAGH = 57, SYLOTI_NAGRI = 58, OLD_PERSIAN = 59, KHAROSHTHI = 60, UNKNOWN = 61, BALINESE = 62, CUNEIFORM = 63, PHOENICIAN = 64, PHAGS_PA = 65, NKO = 66, KAYAH_LI = 67, LEPCHA = 68, REJANG = 69, SUNDANESE = 70, SAURASHTRA = 71, CHAM = 72, OL_CHIKI = 73, VAI = 74, CARIAN = 75, LYCIAN = 76, LYDIAN = 77, AVESTAN = 78, BAMUM = 79, EGYPTIAN_HIEROGLYPHS = 80, IMPERIAL_ARAMAIC = 81, INSCRIPTIONAL_PAHLAVI = 82, INSCRIPTIONAL_PARTHIAN = 83, JAVANESE = 84, KAITHI = 85, LISU = 86, MEETEI_MAYEK = 87, OLD_SOUTH_ARABIAN = 88, OLD_TURKIC = 89, SAMARITAN = 90, TAI_THAM = 91, TAI_VIET = 92, BATAK = 93, BRAHMI = 94, MANDAIC = 95, CHAKMA = 96, MEROITIC_CURSIVE = 97, MEROITIC_HIEROGLYPHS = 98, MIAO = 99, SHARADA = 100, SORA_SOMPENG = 101, TAKRI = 102, BASSA_VAH = 103, CAUCASIAN_ALBANIAN = 104, DUPLOYAN = 105, ELBASAN = 106, GRANTHA = 107, KHOJKI = 108, KHUDAWADI = 109, LINEAR_A = 110, MAHAJANI = 111, MANICHAEAN = 112, MENDE_KIKAKUI = 113, MODI = 114, MRO = 115, NABATAEAN = 116, OLD_NORTH_ARABIAN = 117, OLD_PERMIC = 118, PAHAWH_HMONG = 119, PALMYRENE = 120, PAU_CIN_HAU = 121, PSALTER_PAHLAVI = 122, SIDDHAM = 123, TIRHUTA = 124, WARANG_CITI = 125, AHOM = 126, ANATOLIAN_HIEROGLYPHS = 127, HATRAN = 128, MULTANI = 129, OLD_HUNGARIAN = 130, SIGNWRITING = 131, ADLAM = 132, BHAIKSUKI = 133, MARCHEN = 134, NEWA = 135, OSAGE = 136, TANGUT = 137, MASARAM_GONDI = 138, NUSHU = 139, SOYOMBO = 140, ZANABAZAR_SQUARE = 141, DOGRA = 142, GUNJALA_GONDI = 143, HANIFI_ROHINGYA = 144, MAKASAR = 145, MEDEFAIDRIN = 146, OLD_SOGDIAN = 147, SOGDIAN = 148, ELYMAIC = 149, NANDINAGARI = 150, NYIAKENG_PUACHUE_HMONG = 151, WANCHO = 152, CHORASMIAN = 153, DIVES_AKURU = 154, KHITAN_SMALL_SCRIPT = 155, YEZIDI = 156, CYPRO_MINOAN = 157, OLD_UYGHUR = 158, TANGSA = 159, TOTO = 160, VITHKUQI = 161, MATH = 162, KAWI = 163, NAG_MUNDARI = 164, TODHRI = 165, GARAY = 166, TULU_TIGALARI = 167, SUNUWAR = 168, GURUNG_KHEMA = 169, KIRAT_RAI = 170, OL_ONAL = 171 }
-NormalizeMode :: enum u32 {NORMALIZE_DEFAULT = 0, NORMALIZE_NFD = 0, NORMALIZE_DEFAULT_COMPOSE = 1, NORMALIZE_NFC = 1, NORMALIZE_ALL = 2, NORMALIZE_NFKD = 2, NORMALIZE_ALL_COMPOSE = 3, NORMALIZE_NFKC = 3 }
-AsciiType :: enum u32 {ASCII_ALNUM = 1, ASCII_ALPHA = 2, ASCII_CNTRL = 4, ASCII_DIGIT = 8, ASCII_GRAPH = 16, ASCII_LOWER = 32, ASCII_PRINT = 64, ASCII_PUNCT = 128, ASCII_SPACE = 256, ASCII_UPPER = 512, ASCII_XDIGIT = 1024 }
 Strv :: ^cstring
-NumberParserError :: enum u32 {INVALID = 0, OUT_OF_BOUNDS = 1 }
 _GString :: struct {
     str: cstring,
     len: size,
     allocated_len: size,
 }
 String :: _GString
-IOStatus :: enum u32 {ERROR = 0, NORMAL = 1, EOF = 2, AGAIN = 3 }
-io_read_func_ptr_anon_9 :: #type proc "c" (channel: rawptr, buf: ^byte, count: size, bytes_read: ^size, err: ^^Error) -> IOStatus
-io_write_func_ptr_anon_10 :: #type proc "c" (channel: rawptr, buf: ^byte, count: size, bytes_written: ^size, err: ^^Error) -> IOStatus
-SeekType :: enum u32 {SEEK_CUR = 0, SEEK_SET = 1, SEEK_END = 2 }
-io_seek_func_ptr_anon_11 :: #type proc "c" (channel: rawptr, offset_p: int64, type: SeekType, err: ^^Error) -> IOStatus
-io_close_func_ptr_anon_12 :: #type proc "c" (channel: rawptr, err: ^^Error) -> IOStatus
-io_create_watch_func_ptr_anon_13 :: #type proc "c" (channel: rawptr, condition: IOCondition) -> ^Source
-io_free_func_ptr_anon_14 :: #type proc "c" (channel: rawptr)
-IOFlags :: enum u32 {IO_FLAG_NONE = 0, IO_FLAG_APPEND = 1, IO_FLAG_NONBLOCK = 2, IO_FLAG_IS_READABLE = 4, IO_FLAG_IS_WRITABLE = 8, IO_FLAG_IS_WRITEABLE = 8, IO_FLAG_IS_SEEKABLE = 16, IO_FLAG_MASK = 31, IO_FLAG_GET_MASK = 31, IO_FLAG_SET_MASK = 3 }
-io_set_flags_func_ptr_anon_15 :: #type proc "c" (channel: rawptr, flags: IOFlags, err: ^^Error) -> IOStatus
-io_get_flags_func_ptr_anon_16 :: #type proc "c" (channel: rawptr) -> IOFlags
-_GIOFuncs :: struct {
-    io_read: io_read_func_ptr_anon_9,
-    io_write: io_write_func_ptr_anon_10,
-    io_seek: io_seek_func_ptr_anon_11,
-    io_close: io_close_func_ptr_anon_12,
-    io_create_watch: io_create_watch_func_ptr_anon_13,
-    io_free: io_free_func_ptr_anon_14,
-    io_set_flags: io_set_flags_func_ptr_anon_15,
-    io_get_flags: io_get_flags_func_ptr_anon_16,
-}
+IOChannel :: struct #packed {}
 IOFuncs :: _GIOFuncs
-IOError :: enum u32 {NONE = 0, AGAIN = 1, INVAL = 2, UNKNOWN = 3 }
-IOChannelError :: enum u32 {FBIG = 0, INVAL = 1, IO = 2, ISDIR = 3, NOSPC = 4, NXIO = 5, OVERFLOW = 6, PIPE = 7, FAILED = 8 }
-IOFunc :: #type proc "c" (source: rawptr, condition: IOCondition, data: pointer) -> boolean
-KeyFileError :: enum u32 {UNKNOWN_ENCODING = 0, PARSE = 1, NOT_FOUND = 2, KEY_NOT_FOUND = 3, GROUP_NOT_FOUND = 4, INVALID_VALUE = 5 }
+IOFunc :: #type proc "c" (source: ^IOChannel, condition: IOCondition, data: pointer) -> boolean
 _GKeyFile :: struct #packed {}
 KeyFile :: _GKeyFile
-KeyFileFlags :: enum u32 {KEY_FILE_NONE = 0, KEY_FILE_KEEP_COMMENTS = 1, KEY_FILE_KEEP_TRANSLATIONS = 2 }
 _GMappedFile :: struct #packed {}
 MappedFile :: _GMappedFile
-MarkupError :: enum u32 {BAD_UTF8 = 0, EMPTY = 1, PARSE = 2, UNKNOWN_ELEMENT = 3, UNKNOWN_ATTRIBUTE = 4, INVALID_CONTENT = 5, MISSING_ATTRIBUTE = 6 }
-MarkupParseFlags :: enum u32 {MARKUP_DEFAULT_FLAGS = 0, MARKUP_DO_NOT_USE_THIS_UNSUPPORTED_FLAG = 1, MARKUP_TREAT_CDATA_AS_TEXT = 2, MARKUP_PREFIX_ERROR_POSITION = 4, MARKUP_IGNORE_QUALIFIED = 8 }
 _GMarkupParseContext :: struct #packed {}
 MarkupParseContext :: _GMarkupParseContext
-start_element_func_ptr_anon_17 :: #type proc "c" (context_p: ^MarkupParseContext, element_name: cstring, attribute_names: [^]cstring, attribute_values: [^]cstring, user_data: pointer, error: ^^Error)
-end_element_func_ptr_anon_18 :: #type proc "c" (context_p: ^MarkupParseContext, element_name: cstring, user_data: pointer, error: ^^Error)
-text_func_ptr_anon_19 :: #type proc "c" (context_p: ^MarkupParseContext, text: cstring, text_len: size, user_data: pointer, error: ^^Error)
-passthrough_func_ptr_anon_20 :: #type proc "c" (context_p: ^MarkupParseContext, passthrough_text: cstring, text_len: size, user_data: pointer, error: ^^Error)
-error_func_ptr_anon_21 :: #type proc "c" (context_p: ^MarkupParseContext, error: ^Error, user_data: pointer)
-_GMarkupParser :: struct {
-    start_element: start_element_func_ptr_anon_17,
-    end_element: end_element_func_ptr_anon_18,
-    text: text_func_ptr_anon_19,
-    passthrough: passthrough_func_ptr_anon_20,
-    error: error_func_ptr_anon_21,
-}
 MarkupParser :: _GMarkupParser
-MarkupCollectType :: enum u32 {MARKUP_COLLECT_INVALID = 0, MARKUP_COLLECT_STRING = 1, MARKUP_COLLECT_STRDUP = 2, MARKUP_COLLECT_BOOLEAN = 3, MARKUP_COLLECT_TRISTATE = 4, MARKUP_COLLECT_OPTIONAL = 65536 }
 _GVariantType :: struct #packed {}
 VariantType :: _GVariantType
 _GVariant :: struct #packed {}
 Variant :: _GVariant
-VariantClass :: enum u32 {BOOLEAN = 98, BYTE = 121, INT16 = 110, UINT16 = 113, INT32 = 105, UINT32 = 117, INT64 = 120, UINT64 = 116, HANDLE = 104, DOUBLE = 100, STRING = 115, OBJECT_PATH = 111, SIGNATURE = 103, VARIANT = 118, MAYBE = 109, ARRAY = 97, TUPLE = 40, DICT_ENTRY = 123 }
 _GVariantIter :: struct {
     x: [16]uintptr_,
 }
 VariantIter :: _GVariantIter
-s_struct_anon_22 :: struct {
-    partial_magic: size,
-    type: ^VariantType,
-    y: [14]uintptr_,
-}
-u_union_anon_23 :: struct #raw_union {
-    s: s_struct_anon_22,
-    x: [16]uintptr_,
-}
-_GVariantBuilder :: struct {
-    u: u_union_anon_23,
-}
 VariantBuilder :: _GVariantBuilder
-VariantParseError :: enum u32 {FAILED = 0, BASIC_TYPE_EXPECTED = 1, CANNOT_INFER_TYPE = 2, DEFINITE_TYPE_EXPECTED = 3, INPUT_NOT_AT_END = 4, INVALID_CHARACTER = 5, INVALID_FORMAT_STRING = 6, INVALID_OBJECT_PATH = 7, INVALID_SIGNATURE = 8, INVALID_TYPE_STRING = 9, NO_COMMON_TYPE = 10, NUMBER_OUT_OF_RANGE = 11, NUMBER_TOO_BIG = 12, TYPE_ERROR = 13, UNEXPECTED_TOKEN = 14, UNKNOWN_KEYWORD = 15, UNTERMINATED_STRING_CONSTANT = 16, VALUE_EXPECTED = 17, RECURSION = 18 }
-s_struct_anon_24 :: struct {
-    asv: ^Variant,
-    partial_magic: size,
-    y: [14]uintptr_,
-}
 u_union_anon_25 :: struct #raw_union {
     s: s_struct_anon_24,
     x: [16]uintptr_,
 }
-_GVariantDict :: struct {
-    u: u_union_anon_25,
-}
 VariantDict :: _GVariantDict
 LogLevelFlags :: enum i32 {LOG_FLAG_RECURSION = 1, LOG_FLAG_FATAL = 2, LOG_LEVEL_ERROR = 4, LOG_LEVEL_CRITICAL = 8, LOG_LEVEL_WARNING = 16, LOG_LEVEL_MESSAGE = 32, LOG_LEVEL_INFO = 64, LOG_LEVEL_DEBUG = 128, LOG_LEVEL_MASK = -4 }
 LogFunc :: #type proc "c" (log_domain: cstring, log_level: LogLevelFlags, message: cstring, user_data: pointer)
-LogWriterOutput :: enum u32 {LOG_WRITER_HANDLED = 1, LOG_WRITER_UNHANDLED = 0 }
 _GLogField :: struct {
     key: cstring,
     value: constpointer,
@@ -602,7 +458,6 @@ _GOptionContext :: struct #packed {}
 OptionContext :: _GOptionContext
 _GOptionGroup :: struct #packed {}
 OptionGroup :: _GOptionGroup
-OptionArg :: enum u32 {NONE = 0, STRING = 1, INT = 2, CALLBACK = 3, FILENAME = 4, STRING_ARRAY = 5, FILENAME_ARRAY = 6, DOUBLE = 7, INT64 = 8 }
 _GOptionEntry :: struct {
     long_name: cstring,
     short_name: char,
@@ -613,11 +468,9 @@ _GOptionEntry :: struct {
     arg_description: cstring,
 }
 OptionEntry :: _GOptionEntry
-OptionFlags :: enum u32 {OPTION_FLAG_NONE = 0, OPTION_FLAG_HIDDEN = 1, OPTION_FLAG_IN_MAIN = 2, OPTION_FLAG_REVERSE = 4, OPTION_FLAG_NO_ARG = 8, OPTION_FLAG_FILENAME = 16, OPTION_FLAG_OPTIONAL_ARG = 32, OPTION_FLAG_NOALIAS = 64 }
 OptionArgFunc :: #type proc "c" (option_name: cstring, value: cstring, data: pointer, error: ^^Error) -> boolean
 OptionParseFunc :: #type proc "c" (context_p: ^OptionContext, group: ^OptionGroup, data: pointer, error: ^^Error) -> boolean
 OptionErrorFunc :: #type proc "c" (context_p: ^OptionContext, group: ^OptionGroup, data: pointer, error: ^^Error)
-OptionError :: enum u32 {UNKNOWN_OPTION = 0, BAD_VALUE = 1, FAILED = 2 }
 _GPathBuf :: struct {
     dummy: [8]pointer,
 }
@@ -633,15 +486,13 @@ Queue :: _GQueue
 _GRand :: struct #packed {}
 Rand :: _GRand
 RefString :: char
-RegexError :: enum u32 {COMPILE = 0, OPTIMIZE = 1, REPLACE = 2, MATCH = 3, INTERNAL = 4, STRAY_BACKSLASH = 101, MISSING_CONTROL_CHAR = 102, UNRECOGNIZED_ESCAPE = 103, QUANTIFIERS_OUT_OF_ORDER = 104, QUANTIFIER_TOO_BIG = 105, UNTERMINATED_CHARACTER_CLASS = 106, INVALID_ESCAPE_IN_CHARACTER_CLASS = 107, RANGE_OUT_OF_ORDER = 108, NOTHING_TO_REPEAT = 109, UNRECOGNIZED_CHARACTER = 112, POSIX_NAMED_CLASS_OUTSIDE_CLASS = 113, UNMATCHED_PARENTHESIS = 114, INEXISTENT_SUBPATTERN_REFERENCE = 115, UNTERMINATED_COMMENT = 118, EXPRESSION_TOO_LARGE = 120, MEMORY_ERROR = 121, VARIABLE_LENGTH_LOOKBEHIND = 125, MALFORMED_CONDITION = 126, TOO_MANY_CONDITIONAL_BRANCHES = 127, ASSERTION_EXPECTED = 128, UNKNOWN_POSIX_CLASS_NAME = 130, POSIX_COLLATING_ELEMENTS_NOT_SUPPORTED = 131, HEX_CODE_TOO_LARGE = 134, INVALID_CONDITION = 135, SINGLE_BYTE_MATCH_IN_LOOKBEHIND = 136, INFINITE_LOOP = 140, MISSING_SUBPATTERN_NAME_TERMINATOR = 142, DUPLICATE_SUBPATTERN_NAME = 143, MALFORMED_PROPERTY = 146, UNKNOWN_PROPERTY = 147, SUBPATTERN_NAME_TOO_LONG = 148, TOO_MANY_SUBPATTERNS = 149, INVALID_OCTAL_VALUE = 151, TOO_MANY_BRANCHES_IN_DEFINE = 154, DEFINE_REPETION = 155, INCONSISTENT_NEWLINE_OPTIONS = 156, MISSING_BACK_REFERENCE = 157, INVALID_RELATIVE_REFERENCE = 158, BACKTRACKING_CONTROL_VERB_ARGUMENT_FORBIDDEN = 159, UNKNOWN_BACKTRACKING_CONTROL_VERB = 160, NUMBER_TOO_BIG = 161, MISSING_SUBPATTERN_NAME = 162, MISSING_DIGIT = 163, INVALID_DATA_CHARACTER = 164, EXTRA_SUBPATTERN_NAME = 165, BACKTRACKING_CONTROL_VERB_ARGUMENT_REQUIRED = 166, INVALID_CONTROL_CHAR = 168, MISSING_NAME = 169, NOT_SUPPORTED_IN_CLASS = 171, TOO_MANY_FORWARD_REFERENCES = 172, NAME_TOO_LONG = 175, CHARACTER_VALUE_TOO_LARGE = 176 }
-RegexCompileFlags :: enum u32 {REGEX_DEFAULT = 0, REGEX_CASELESS = 1, REGEX_MULTILINE = 2, REGEX_DOTALL = 4, REGEX_EXTENDED = 8, REGEX_ANCHORED = 16, REGEX_DOLLAR_ENDONLY = 32, REGEX_UNGREEDY = 512, REGEX_RAW = 2048, REGEX_NO_AUTO_CAPTURE = 4096, REGEX_OPTIMIZE = 8192, REGEX_FIRSTLINE = 262144, REGEX_DUPNAMES = 524288, REGEX_NEWLINE_CR = 1048576, REGEX_NEWLINE_LF = 2097152, REGEX_NEWLINE_CRLF = 3145728, REGEX_NEWLINE_ANYCRLF = 5242880, REGEX_BSR_ANYCRLF = 8388608, REGEX_JAVASCRIPT_COMPAT = 33554432 }
-RegexMatchFlags :: enum u32 {REGEX_MATCH_DEFAULT = 0, REGEX_MATCH_ANCHORED = 16, REGEX_MATCH_NOTBOL = 128, REGEX_MATCH_NOTEOL = 256, REGEX_MATCH_NOTEMPTY = 1024, REGEX_MATCH_PARTIAL = 32768, REGEX_MATCH_NEWLINE_CR = 1048576, REGEX_MATCH_NEWLINE_LF = 2097152, REGEX_MATCH_NEWLINE_CRLF = 3145728, REGEX_MATCH_NEWLINE_ANY = 4194304, REGEX_MATCH_NEWLINE_ANYCRLF = 5242880, REGEX_MATCH_BSR_ANYCRLF = 8388608, REGEX_MATCH_BSR_ANY = 16777216, REGEX_MATCH_PARTIAL_SOFT = 32768, REGEX_MATCH_PARTIAL_HARD = 134217728, REGEX_MATCH_NOTEMPTY_ATSTART = 268435456 }
 _GRegex :: struct #packed {}
 Regex :: _GRegex
 _GMatchInfo :: struct #packed {}
 MatchInfo :: _GMatchInfo
 RegexEvalCallback :: #type proc "c" (match_info: ^MatchInfo, result: ^String, user_data: pointer) -> boolean
 Scanner :: _GScanner
+ScannerConfig :: struct #packed {}
 _GTokenValue :: struct #raw_union {
     v_symbol: pointer,
     v_identifier: cstring,
@@ -658,15 +509,13 @@ _GTokenValue :: struct #raw_union {
 }
 TokenValue :: _GTokenValue
 ScannerMsgFunc :: #type proc "c" (scanner: ^Scanner, message: cstring, error: boolean)
-ErrorType :: enum u32 {ERR_UNKNOWN = 0, ERR_UNEXP_EOF = 1, ERR_UNEXP_EOF_IN_STRING = 2, ERR_UNEXP_EOF_IN_COMMENT = 3, ERR_NON_DIGIT_IN_CONST = 4, ERR_DIGIT_RADIX = 5, ERR_FLOAT_RADIX = 6, ERR_FLOAT_MALFORMED = 7 }
-TokenType :: enum u32 {TOKEN_EOF = 0, TOKEN_LEFT_PAREN = 40, TOKEN_RIGHT_PAREN = 41, TOKEN_LEFT_CURLY = 123, TOKEN_RIGHT_CURLY = 125, TOKEN_LEFT_BRACE = 91, TOKEN_RIGHT_BRACE = 93, TOKEN_EQUAL_SIGN = 61, TOKEN_COMMA = 44, TOKEN_NONE = 256, TOKEN_ERROR = 257, TOKEN_CHAR = 258, TOKEN_BINARY = 259, TOKEN_OCTAL = 260, TOKEN_INT = 261, TOKEN_HEX = 262, TOKEN_FLOAT = 263, TOKEN_STRING = 264, TOKEN_SYMBOL = 265, TOKEN_IDENTIFIER = 266, TOKEN_IDENTIFIER_NULL = 267, TOKEN_COMMENT_SINGLE = 268, TOKEN_COMMENT_MULTI = 269, TOKEN_LAST = 270 }
 _GScanner :: struct {
     user_data: pointer,
     max_parse_errors: uint_,
     parse_errors: uint_,
     input_name: cstring,
     qdata: ^Data,
-    config: rawptr,
+    config: ^ScannerConfig,
     token: TokenType,
     value: TokenValue,
     line: uint_,
@@ -688,11 +537,7 @@ Sequence :: _GSequence
 _GSequenceNode :: struct #packed {}
 SequenceIter :: _GSequenceNode
 SequenceIterCompareFunc :: #type proc "c" (a: ^SequenceIter, b: ^SequenceIter, data: pointer) -> int_
-ShellError :: enum u32 {BAD_QUOTING = 0, EMPTY_STRING = 1, FAILED = 2 }
-SliceConfig :: enum u32 {ALWAYS_MALLOC = 1, BYPASS_MAGAZINES = 2, WORKING_SET_MSECS = 3, COLOR_INCREMENT = 4, CHUNK_SIZES = 5, CONTENTION_COUNTER = 6 }
-SpawnError :: enum u32 {FORK = 0, READ = 1, CHDIR = 2, ACCES = 3, PERM = 4, TOO_BIG = 5, _2BIG = 5, NOEXEC = 6, NAMETOOLONG = 7, NOENT = 8, NOMEM = 9, NOTDIR = 10, LOOP = 11, TXTBUSY = 12, IO = 13, NFILE = 14, MFILE = 15, INVAL = 16, ISDIR = 17, LIBBAD = 18, FAILED = 19 }
 SpawnChildSetupFunc :: #type proc "c" (data: pointer)
-SpawnFlags :: enum u32 {SPAWN_DEFAULT = 0, SPAWN_LEAVE_DESCRIPTORS_OPEN = 1, SPAWN_DO_NOT_REAP_CHILD = 2, SPAWN_SEARCH_PATH = 4, SPAWN_STDOUT_TO_DEV_NULL = 8, SPAWN_STDERR_TO_DEV_NULL = 16, SPAWN_CHILD_INHERITS_STDIN = 32, SPAWN_FILE_AND_ARGV_ZERO = 64, SPAWN_SEARCH_PATH_FROM_ENVP = 128, SPAWN_CLOEXEC_PIPES = 256, SPAWN_CHILD_INHERITS_STDOUT = 512, SPAWN_CHILD_INHERITS_STDERR = 1024, SPAWN_STDIN_FROM_DEV_NULL = 2048 }
 _GStringChunk :: struct #packed {}
 StringChunk :: _GStringChunk
 _GStrvBuilder :: struct #packed {}
@@ -700,8 +545,6 @@ StrvBuilder :: _GStrvBuilder
 TestFunc :: #type proc "c" ()
 TestDataFunc :: #type proc "c" (user_data: constpointer)
 TestFixtureFunc :: #type proc "c" (fixture: pointer, user_data: constpointer)
-TestTrapFlags :: enum u32 {TEST_TRAP_DEFAULT = 0, TEST_TRAP_SILENCE_STDOUT = 128, TEST_TRAP_SILENCE_STDERR = 256, TEST_TRAP_INHERIT_STDIN = 512 }
-TestSubprocessFlags :: enum u32 {TEST_SUBPROCESS_DEFAULT = 0, TEST_SUBPROCESS_INHERIT_STDIN = 1, TEST_SUBPROCESS_INHERIT_STDOUT = 2, TEST_SUBPROCESS_INHERIT_STDERR = 4 }
 TestConfig :: struct {
     test_initialized: boolean,
     test_quick: boolean,
@@ -710,21 +553,11 @@ TestConfig :: struct {
     test_quiet: boolean,
     test_undefined: boolean,
 }
-TestResult :: enum u32 {TEST_RUN_SUCCESS = 0, TEST_RUN_SKIPPED = 1, TEST_RUN_FAILURE = 2, TEST_RUN_INCOMPLETE = 3 }
-TestLogType :: enum u32 {TEST_LOG_NONE = 0, TEST_LOG_ERROR = 1, TEST_LOG_START_BINARY = 2, TEST_LOG_LIST_CASE = 3, TEST_LOG_SKIP_CASE = 4, TEST_LOG_START_CASE = 5, TEST_LOG_STOP_CASE = 6, TEST_LOG_MIN_RESULT = 7, TEST_LOG_MAX_RESULT = 8, TEST_LOG_MESSAGE = 9, TEST_LOG_START_SUITE = 10, TEST_LOG_STOP_SUITE = 11 }
-TestLogMsg :: struct {
-    log_type: TestLogType,
-    n_strings: uint_,
-    strings: [^]cstring,
-    n_nums: uint_,
-    nums: [^][16]byte,
-}
 TestLogBuffer :: struct {
     data: ^String,
     msgs: [^]SList,
 }
 TestLogFatalFunc :: #type proc "c" (log_domain: cstring, log_level: LogLevelFlags, message: cstring, user_data: pointer) -> boolean
-TestFileType :: enum u32 {TEST_DIST = 0, TEST_BUILT = 1 }
 _GThreadPool :: struct {
     func: Func,
     user_data: pointer,
@@ -745,9 +578,6 @@ TraverseFunc :: #type proc "c" (key: pointer, value: pointer, data: pointer) -> 
 TraverseNodeFunc :: #type proc "c" (node: ^TreeNode, data: pointer) -> boolean
 _GUri :: struct #packed {}
 Uri :: _GUri
-UriFlags :: enum u32 {NONE = 0, PARSE_RELAXED = 1, HAS_PASSWORD = 2, HAS_AUTH_PARAMS = 4, ENCODED = 8, NON_DNS = 16, ENCODED_QUERY = 32, ENCODED_PATH = 64, ENCODED_FRAGMENT = 128, SCHEME_NORMALIZE = 256 }
-UriHideFlags :: enum u32 {URI_HIDE_NONE = 0, URI_HIDE_USERINFO = 1, URI_HIDE_PASSWORD = 2, URI_HIDE_AUTH_PARAMS = 4, URI_HIDE_QUERY = 8, URI_HIDE_FRAGMENT = 16 }
-UriParamsFlags :: enum u32 {URI_PARAMS_NONE = 0, URI_PARAMS_CASE_INSENSITIVE = 1, URI_PARAMS_WWW_FORM = 2, URI_PARAMS_PARSE_RELAXED = 4 }
 _GUriParamsIter :: struct {
     dummy0: int_,
     dummy1: pointer,
@@ -755,7 +585,6 @@ _GUriParamsIter :: struct {
     dummy3: [256]uint8,
 }
 UriParamsIter :: _GUriParamsIter
-UriError :: enum u32 {FAILED = 0, BAD_SCHEME = 1, BAD_USER = 2, BAD_PASSWORD = 3, BAD_AUTH_PARAMS = 4, BAD_HOST = 5, BAD_PORT = 6, BAD_PATH = 7, BAD_QUERY = 8, BAD_FRAGMENT = 9 }
 _GAllocator :: struct #packed {}
 Allocator :: _GAllocator
 _GMemChunk :: struct #packed {}
@@ -781,64 +610,7 @@ _GTuples :: struct {
     len: uint_,
 }
 Tuples :: _GTuples
-mutex_new_func_ptr_anon_26 :: #type proc "c" () -> ^Mutex
-mutex_lock_func_ptr_anon_27 :: #type proc "c" (mutex: ^Mutex)
-mutex_trylock_func_ptr_anon_28 :: #type proc "c" (mutex: ^Mutex) -> boolean
-mutex_unlock_func_ptr_anon_29 :: #type proc "c" (mutex: ^Mutex)
-mutex_free_func_ptr_anon_30 :: #type proc "c" (mutex: ^Mutex)
-cond_new_func_ptr_anon_31 :: #type proc "c" () -> ^Cond
-cond_signal_func_ptr_anon_32 :: #type proc "c" (cond: ^Cond)
-cond_broadcast_func_ptr_anon_33 :: #type proc "c" (cond: ^Cond)
-cond_wait_func_ptr_anon_34 :: #type proc "c" (cond: ^Cond, mutex: ^Mutex)
-cond_timed_wait_func_ptr_anon_35 :: #type proc "c" (cond: ^Cond, mutex: ^Mutex, end_time: ^TimeVal) -> boolean
-cond_free_func_ptr_anon_36 :: #type proc "c" (cond: ^Cond)
-private_new_func_ptr_anon_37 :: #type proc "c" (destructor: DestroyNotify) -> ^Private
-private_get_func_ptr_anon_38 :: #type proc "c" (private_key: ^Private) -> pointer
-private_set_func_ptr_anon_39 :: #type proc "c" (private_key: ^Private, data: pointer)
-thread_create_func_ptr_anon_40 :: #type proc "c" (func: ThreadFunc, data: pointer, stack_size: ulong, joinable: boolean, bound: boolean, priority: ThreadPriority, thread: pointer, error: ^^Error)
-thread_yield_func_ptr_anon_41 :: #type proc "c" ()
-thread_join_func_ptr_anon_42 :: #type proc "c" (thread: pointer)
-thread_exit_func_ptr_anon_43 :: #type proc "c" ()
-thread_set_priority_func_ptr_anon_44 :: #type proc "c" (thread: pointer, priority: ThreadPriority)
-thread_self_func_ptr_anon_45 :: #type proc "c" (thread: pointer)
-thread_equal_func_ptr_anon_46 :: #type proc "c" (thread1: pointer, thread2: pointer) -> boolean
-_GThreadFunctions :: struct {
-    mutex_new: mutex_new_func_ptr_anon_26,
-    mutex_lock: mutex_lock_func_ptr_anon_27,
-    mutex_trylock: mutex_trylock_func_ptr_anon_28,
-    mutex_unlock: mutex_unlock_func_ptr_anon_29,
-    mutex_free: mutex_free_func_ptr_anon_30,
-    cond_new: cond_new_func_ptr_anon_31,
-    cond_signal: cond_signal_func_ptr_anon_32,
-    cond_broadcast: cond_broadcast_func_ptr_anon_33,
-    cond_wait: cond_wait_func_ptr_anon_34,
-    cond_timed_wait: cond_timed_wait_func_ptr_anon_35,
-    cond_free: cond_free_func_ptr_anon_36,
-    private_new: private_new_func_ptr_anon_37,
-    private_get: private_get_func_ptr_anon_38,
-    private_set: private_set_func_ptr_anon_39,
-    thread_create: thread_create_func_ptr_anon_40,
-    thread_yield: thread_yield_func_ptr_anon_41,
-    thread_join: thread_join_func_ptr_anon_42,
-    thread_exit: thread_exit_func_ptr_anon_43,
-    thread_set_priority: thread_set_priority_func_ptr_anon_44,
-    thread_self: thread_self_func_ptr_anon_45,
-    thread_equal: thread_equal_func_ptr_anon_46,
-}
 ThreadFunctions :: _GThreadFunctions
-StaticMutex :: struct {
-    mutex: ^Mutex,
-    unused: posix.pthread_mutex_t,
-}
-unused_union_anon_47 :: struct #raw_union {
-    owner: posix.pthread_t,
-    dummy: double,
-}
-_GStaticRecMutex :: struct {
-    mutex: StaticMutex,
-    depth: uint_,
-    unused: unused_union_anon_47,
-}
 StaticRecMutex :: _GStaticRecMutex
 _GStaticRWLock :: struct {
     mutex: StaticMutex,
@@ -894,7 +666,7 @@ Hmac_autoptr :: ^Hmac
 Hmac_listautoptr :: ^List
 Hmac_slistautoptr :: ^SList
 Hmac_queueautoptr :: ^Queue
-IOChannel_autoptr :: rawptr
+IOChannel_autoptr :: ^IOChannel
 IOChannel_listautoptr :: ^List
 IOChannel_slistautoptr :: ^SList
 IOChannel_queueautoptr :: ^Queue
@@ -1162,9 +934,6 @@ foreign glib_runic {
 
     @(link_name = "g_ptr_array_new_from_null_terminated_array")
     ptr_array_new_from_null_terminated_array :: proc(data: ^pointer, copy_func: CopyFunc, copy_func_user_data: pointer, element_free_func: DestroyNotify) -> ^PtrArray ---
-
-    @(link_name = "g_ptr_array_free")
-    ptr_array_free :: proc(array: ^PtrArray, free_segment: boolean) -> ^pointer ---
 
     @(link_name = "g_ptr_array_ref")
     ptr_array_ref :: proc(array: ^PtrArray) -> ^PtrArray ---
@@ -1528,9 +1297,6 @@ foreign glib_runic {
 
     @(link_name = "g_thread_yield")
     thread_yield :: proc() ---
-
-    @(link_name = "g_thread_get_name")
-    thread_get_name :: proc(thread: ^Thread) -> cstring ---
 
     @(link_name = "g_mutex_init")
     mutex_init :: proc(mutex: ^Mutex) ---
@@ -3012,73 +2778,73 @@ foreign glib_runic {
     compute_hmac_for_bytes :: proc(digest_type: ChecksumType, key: ^Bytes, data: ^Bytes) -> cstring ---
 
     @(link_name = "g_hook_list_init")
-    hook_list_init :: proc(hook_list: rawptr, hook_size: uint_) ---
+    hook_list_init :: proc(hook_list: ^HookList, hook_size: uint_) ---
 
     @(link_name = "g_hook_list_clear")
-    hook_list_clear :: proc(hook_list: rawptr) ---
+    hook_list_clear :: proc(hook_list: ^HookList) ---
 
     @(link_name = "g_hook_alloc")
-    hook_alloc :: proc(hook_list: rawptr) -> ^Hook ---
+    hook_alloc :: proc(hook_list: ^HookList) -> ^Hook ---
 
     @(link_name = "g_hook_free")
-    hook_free :: proc(hook_list: rawptr, hook: ^Hook) ---
+    hook_free :: proc(hook_list: ^HookList, hook: ^Hook) ---
 
     @(link_name = "g_hook_ref")
-    hook_ref :: proc(hook_list: rawptr, hook: ^Hook) -> ^Hook ---
+    hook_ref :: proc(hook_list: ^HookList, hook: ^Hook) -> ^Hook ---
 
     @(link_name = "g_hook_unref")
-    hook_unref :: proc(hook_list: rawptr, hook: ^Hook) ---
+    hook_unref :: proc(hook_list: ^HookList, hook: ^Hook) ---
 
     @(link_name = "g_hook_destroy")
-    hook_destroy :: proc(hook_list: rawptr, hook_id: ulong) -> boolean ---
+    hook_destroy :: proc(hook_list: ^HookList, hook_id: ulong) -> boolean ---
 
     @(link_name = "g_hook_destroy_link")
-    hook_destroy_link :: proc(hook_list: rawptr, hook: ^Hook) ---
+    hook_destroy_link :: proc(hook_list: ^HookList, hook: ^Hook) ---
 
     @(link_name = "g_hook_prepend")
-    hook_prepend :: proc(hook_list: rawptr, hook: ^Hook) ---
+    hook_prepend :: proc(hook_list: ^HookList, hook: ^Hook) ---
 
     @(link_name = "g_hook_insert_before")
-    hook_insert_before :: proc(hook_list: rawptr, sibling: ^Hook, hook: ^Hook) ---
+    hook_insert_before :: proc(hook_list: ^HookList, sibling: ^Hook, hook: ^Hook) ---
 
     @(link_name = "g_hook_insert_sorted")
-    hook_insert_sorted :: proc(hook_list: rawptr, hook: ^Hook, func: HookCompareFunc) ---
+    hook_insert_sorted :: proc(hook_list: ^HookList, hook: ^Hook, func: HookCompareFunc) ---
 
     @(link_name = "g_hook_get")
-    hook_get :: proc(hook_list: rawptr, hook_id: ulong) -> ^Hook ---
+    hook_get :: proc(hook_list: ^HookList, hook_id: ulong) -> ^Hook ---
 
     @(link_name = "g_hook_find")
-    hook_find :: proc(hook_list: rawptr, need_valids: boolean, func: HookFindFunc, data: pointer) -> ^Hook ---
+    hook_find :: proc(hook_list: ^HookList, need_valids: boolean, func: HookFindFunc, data: pointer) -> ^Hook ---
 
     @(link_name = "g_hook_find_data")
-    hook_find_data :: proc(hook_list: rawptr, need_valids: boolean, data: pointer) -> ^Hook ---
+    hook_find_data :: proc(hook_list: ^HookList, need_valids: boolean, data: pointer) -> ^Hook ---
 
     @(link_name = "g_hook_find_func")
-    hook_find_func :: proc(hook_list: rawptr, need_valids: boolean, func: pointer) -> ^Hook ---
+    hook_find_func :: proc(hook_list: ^HookList, need_valids: boolean, func: pointer) -> ^Hook ---
 
     @(link_name = "g_hook_find_func_data")
-    hook_find_func_data :: proc(hook_list: rawptr, need_valids: boolean, func: pointer, data: pointer) -> ^Hook ---
+    hook_find_func_data :: proc(hook_list: ^HookList, need_valids: boolean, func: pointer, data: pointer) -> ^Hook ---
 
     @(link_name = "g_hook_first_valid")
-    hook_first_valid :: proc(hook_list: rawptr, may_be_in_call: boolean) -> ^Hook ---
+    hook_first_valid :: proc(hook_list: ^HookList, may_be_in_call: boolean) -> ^Hook ---
 
     @(link_name = "g_hook_next_valid")
-    hook_next_valid :: proc(hook_list: rawptr, hook: ^Hook, may_be_in_call: boolean) -> ^Hook ---
+    hook_next_valid :: proc(hook_list: ^HookList, hook: ^Hook, may_be_in_call: boolean) -> ^Hook ---
 
     @(link_name = "g_hook_compare_ids")
     hook_compare_ids :: proc(new_hook: ^Hook, sibling: ^Hook) -> int_ ---
 
     @(link_name = "g_hook_list_invoke")
-    hook_list_invoke :: proc(hook_list: rawptr, may_recurse: boolean) ---
+    hook_list_invoke :: proc(hook_list: ^HookList, may_recurse: boolean) ---
 
     @(link_name = "g_hook_list_invoke_check")
-    hook_list_invoke_check :: proc(hook_list: rawptr, may_recurse: boolean) ---
+    hook_list_invoke_check :: proc(hook_list: ^HookList, may_recurse: boolean) ---
 
     @(link_name = "g_hook_list_marshal")
-    hook_list_marshal :: proc(hook_list: rawptr, may_recurse: boolean, marshaller: HookMarshaller, marshal_data: pointer) ---
+    hook_list_marshal :: proc(hook_list: ^HookList, may_recurse: boolean, marshaller: HookMarshaller, marshal_data: pointer) ---
 
     @(link_name = "g_hook_list_marshal_check")
-    hook_list_marshal_check :: proc(hook_list: rawptr, may_recurse: boolean, marshaller: HookCheckMarshaller, marshal_data: pointer) ---
+    hook_list_marshal_check :: proc(hook_list: ^HookList, may_recurse: boolean, marshaller: HookCheckMarshaller, marshal_data: pointer) ---
 
     @(link_name = "g_hostname_is_non_ascii")
     hostname_is_non_ascii :: proc(hostname: cstring) -> boolean ---
@@ -3359,18 +3125,6 @@ foreign glib_runic {
     @(link_name = "g_source_get_ready_time")
     source_get_ready_time :: proc(source: ^Source) -> int64 ---
 
-    @(link_name = "g_source_add_unix_fd")
-    source_add_unix_fd :: proc(source: ^Source, fd: int_, events: IOCondition) -> pointer ---
-
-    @(link_name = "g_source_modify_unix_fd")
-    source_modify_unix_fd :: proc(source: ^Source, tag: pointer, new_events: IOCondition) ---
-
-    @(link_name = "g_source_remove_unix_fd")
-    source_remove_unix_fd :: proc(source: ^Source, tag: pointer) ---
-
-    @(link_name = "g_source_query_unix_fd")
-    source_query_unix_fd :: proc(source: ^Source, tag: pointer) -> IOCondition ---
-
     @(link_name = "g_source_set_callback_indirect")
     source_set_callback_indirect :: proc(source: ^Source, callback_data: pointer, callback_funcs: [^]SourceCallbackFuncs) ---
 
@@ -3475,12 +3229,6 @@ foreign glib_runic {
 
     @(link_name = "g_idle_funcs")
     g_idle_funcs: SourceFuncs
-
-    @(link_name = "g_unix_signal_funcs")
-    g_unix_signal_funcs: SourceFuncs
-
-    @(link_name = "g_unix_fd_source_funcs")
-    g_unix_fd_source_funcs: SourceFuncs
 
     @(link_name = "g_unicode_script_to_iso15924")
     unicode_script_to_iso15924 :: proc(script: UnicodeScript) -> uint32 ---
@@ -3978,106 +3726,106 @@ foreign glib_runic {
     string_up :: proc(string_p: ^String) -> ^String ---
 
     @(link_name = "g_io_channel_init")
-    io_channel_init :: proc(channel: rawptr) ---
+    io_channel_init :: proc(channel: ^IOChannel) ---
 
     @(link_name = "g_io_channel_ref")
-    io_channel_ref :: proc(channel: rawptr) -> rawptr ---
+    io_channel_ref :: proc(channel: ^IOChannel) -> ^IOChannel ---
 
     @(link_name = "g_io_channel_unref")
-    io_channel_unref :: proc(channel: rawptr) ---
+    io_channel_unref :: proc(channel: ^IOChannel) ---
 
     @(link_name = "g_io_channel_read")
-    io_channel_read :: proc(channel: rawptr, buf: ^byte, count: size, bytes_read: ^size) -> IOError ---
+    io_channel_read :: proc(channel: ^IOChannel, buf: ^byte, count: size, bytes_read: ^size) -> IOError ---
 
     @(link_name = "g_io_channel_write")
-    io_channel_write :: proc(channel: rawptr, buf: ^byte, count: size, bytes_written: ^size) -> IOError ---
+    io_channel_write :: proc(channel: ^IOChannel, buf: ^byte, count: size, bytes_written: ^size) -> IOError ---
 
     @(link_name = "g_io_channel_seek")
-    io_channel_seek :: proc(channel: rawptr, offset_p: int64, type: SeekType) -> IOError ---
+    io_channel_seek :: proc(channel: ^IOChannel, offset_p: int64, type: SeekType) -> IOError ---
 
     @(link_name = "g_io_channel_close")
-    io_channel_close :: proc(channel: rawptr) ---
+    io_channel_close :: proc(channel: ^IOChannel) ---
 
     @(link_name = "g_io_channel_shutdown")
-    io_channel_shutdown :: proc(channel: rawptr, flush: boolean, err: ^^Error) -> IOStatus ---
+    io_channel_shutdown :: proc(channel: ^IOChannel, flush: boolean, err: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_add_watch_full")
-    io_add_watch_full :: proc(channel: rawptr, priority: int_, condition: IOCondition, func: IOFunc, user_data: pointer, notify: DestroyNotify) -> uint_ ---
+    io_add_watch_full :: proc(channel: ^IOChannel, priority: int_, condition: IOCondition, func: IOFunc, user_data: pointer, notify: DestroyNotify) -> uint_ ---
 
     @(link_name = "g_io_create_watch")
-    io_create_watch :: proc(channel: rawptr, condition: IOCondition) -> ^Source ---
+    io_create_watch :: proc(channel: ^IOChannel, condition: IOCondition) -> ^Source ---
 
     @(link_name = "g_io_add_watch")
-    io_add_watch :: proc(channel: rawptr, condition: IOCondition, func: IOFunc, user_data: pointer) -> uint_ ---
+    io_add_watch :: proc(channel: ^IOChannel, condition: IOCondition, func: IOFunc, user_data: pointer) -> uint_ ---
 
     @(link_name = "g_io_channel_set_buffer_size")
-    io_channel_set_buffer_size :: proc(channel: rawptr, size_p: size) ---
+    io_channel_set_buffer_size :: proc(channel: ^IOChannel, size_p: size) ---
 
     @(link_name = "g_io_channel_get_buffer_size")
-    io_channel_get_buffer_size :: proc(channel: rawptr) -> size ---
+    io_channel_get_buffer_size :: proc(channel: ^IOChannel) -> size ---
 
     @(link_name = "g_io_channel_get_buffer_condition")
-    io_channel_get_buffer_condition :: proc(channel: rawptr) -> IOCondition ---
+    io_channel_get_buffer_condition :: proc(channel: ^IOChannel) -> IOCondition ---
 
     @(link_name = "g_io_channel_set_flags")
-    io_channel_set_flags :: proc(channel: rawptr, flags: IOFlags, error: ^^Error) -> IOStatus ---
+    io_channel_set_flags :: proc(channel: ^IOChannel, flags: IOFlags, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_get_flags")
-    io_channel_get_flags :: proc(channel: rawptr) -> IOFlags ---
+    io_channel_get_flags :: proc(channel: ^IOChannel) -> IOFlags ---
 
     @(link_name = "g_io_channel_set_line_term")
-    io_channel_set_line_term :: proc(channel: rawptr, line_term: cstring, length: int_) ---
+    io_channel_set_line_term :: proc(channel: ^IOChannel, line_term: cstring, length: int_) ---
 
     @(link_name = "g_io_channel_get_line_term")
-    io_channel_get_line_term :: proc(channel: rawptr, length: ^int_) -> cstring ---
+    io_channel_get_line_term :: proc(channel: ^IOChannel, length: ^int_) -> cstring ---
 
     @(link_name = "g_io_channel_set_buffered")
-    io_channel_set_buffered :: proc(channel: rawptr, buffered: boolean) ---
+    io_channel_set_buffered :: proc(channel: ^IOChannel, buffered: boolean) ---
 
     @(link_name = "g_io_channel_get_buffered")
-    io_channel_get_buffered :: proc(channel: rawptr) -> boolean ---
+    io_channel_get_buffered :: proc(channel: ^IOChannel) -> boolean ---
 
     @(link_name = "g_io_channel_set_encoding")
-    io_channel_set_encoding :: proc(channel: rawptr, encoding: cstring, error: ^^Error) -> IOStatus ---
+    io_channel_set_encoding :: proc(channel: ^IOChannel, encoding: cstring, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_get_encoding")
-    io_channel_get_encoding :: proc(channel: rawptr) -> cstring ---
+    io_channel_get_encoding :: proc(channel: ^IOChannel) -> cstring ---
 
     @(link_name = "g_io_channel_set_close_on_unref")
-    io_channel_set_close_on_unref :: proc(channel: rawptr, do_close: boolean) ---
+    io_channel_set_close_on_unref :: proc(channel: ^IOChannel, do_close: boolean) ---
 
     @(link_name = "g_io_channel_get_close_on_unref")
-    io_channel_get_close_on_unref :: proc(channel: rawptr) -> boolean ---
+    io_channel_get_close_on_unref :: proc(channel: ^IOChannel) -> boolean ---
 
     @(link_name = "g_io_channel_flush")
-    io_channel_flush :: proc(channel: rawptr, error: ^^Error) -> IOStatus ---
+    io_channel_flush :: proc(channel: ^IOChannel, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_read_line")
-    io_channel_read_line :: proc(channel: rawptr, str_return: ^cstring, length: ^size, terminator_pos: [^]size, error: ^^Error) -> IOStatus ---
+    io_channel_read_line :: proc(channel: ^IOChannel, str_return: ^cstring, length: ^size, terminator_pos: [^]size, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_read_line_string")
-    io_channel_read_line_string :: proc(channel: rawptr, buffer: ^String, terminator_pos: [^]size, error: ^^Error) -> IOStatus ---
+    io_channel_read_line_string :: proc(channel: ^IOChannel, buffer: ^String, terminator_pos: [^]size, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_read_to_end")
-    io_channel_read_to_end :: proc(channel: rawptr, str_return: ^cstring, length: ^size, error: ^^Error) -> IOStatus ---
+    io_channel_read_to_end :: proc(channel: ^IOChannel, str_return: ^cstring, length: ^size, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_read_chars")
-    io_channel_read_chars :: proc(channel: rawptr, buf: ^byte, count: size, bytes_read: ^size, error: ^^Error) -> IOStatus ---
+    io_channel_read_chars :: proc(channel: ^IOChannel, buf: ^byte, count: size, bytes_read: ^size, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_read_unichar")
-    io_channel_read_unichar :: proc(channel: rawptr, thechar: ^unichar, error: ^^Error) -> IOStatus ---
+    io_channel_read_unichar :: proc(channel: ^IOChannel, thechar: ^unichar, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_write_chars")
-    io_channel_write_chars :: proc(channel: rawptr, buf: ^byte, count: ssize, bytes_written: ^size, error: ^^Error) -> IOStatus ---
+    io_channel_write_chars :: proc(channel: ^IOChannel, buf: ^byte, count: ssize, bytes_written: ^size, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_write_unichar")
-    io_channel_write_unichar :: proc(channel: rawptr, thechar: unichar, error: ^^Error) -> IOStatus ---
+    io_channel_write_unichar :: proc(channel: ^IOChannel, thechar: unichar, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_seek_position")
-    io_channel_seek_position :: proc(channel: rawptr, offset_p: int64, type: SeekType, error: ^^Error) -> IOStatus ---
+    io_channel_seek_position :: proc(channel: ^IOChannel, offset_p: int64, type: SeekType, error: ^^Error) -> IOStatus ---
 
     @(link_name = "g_io_channel_new_file")
-    io_channel_new_file :: proc(filename: cstring, mode: cstring, error: ^^Error) -> rawptr ---
+    io_channel_new_file :: proc(filename: cstring, mode: cstring, error: ^^Error) -> ^IOChannel ---
 
     @(link_name = "g_io_channel_error_quark")
     io_channel_error_quark :: proc() -> Quark ---
@@ -4086,10 +3834,10 @@ foreign glib_runic {
     io_channel_error_from_errno :: proc(en: int_) -> IOChannelError ---
 
     @(link_name = "g_io_channel_unix_new")
-    io_channel_unix_new :: proc(fd: i32) -> rawptr ---
+    io_channel_unix_new :: proc(fd: i32) -> ^IOChannel ---
 
     @(link_name = "g_io_channel_unix_get_fd")
-    io_channel_unix_get_fd :: proc(channel: rawptr) -> int_ ---
+    io_channel_unix_get_fd :: proc(channel: ^IOChannel) -> int_ ---
 
     @(link_name = "g_io_watch_funcs")
     g_io_watch_funcs: SourceFuncs
@@ -4687,9 +4435,6 @@ foreign glib_runic {
 
     @(link_name = "g_variant_builder_init")
     variant_builder_init :: proc(builder: ^VariantBuilder, type: ^VariantType) ---
-
-    @(link_name = "g_variant_builder_init_static")
-    variant_builder_init_static :: proc(builder: ^VariantBuilder, type: ^VariantType) ---
 
     @(link_name = "g_variant_builder_end")
     variant_builder_end :: proc(builder: ^VariantBuilder) -> ^Variant ---
@@ -5318,9 +5063,6 @@ foreign glib_runic {
     @(link_name = "g_ref_string_length")
     ref_string_length :: proc(str: cstring) -> size ---
 
-    @(link_name = "g_ref_string_equal")
-    ref_string_equal :: proc(str1: cstring, str2: cstring) -> boolean ---
-
     @(link_name = "g_regex_error_quark")
     regex_error_quark :: proc() -> Quark ---
 
@@ -5445,7 +5187,7 @@ foreign glib_runic {
     match_info_fetch_all :: proc(match_info: ^MatchInfo) -> ^cstring ---
 
     @(link_name = "g_scanner_new")
-    scanner_new :: proc(config_templ: rawptr) -> ^Scanner ---
+    scanner_new :: proc(config_templ: ^ScannerConfig) -> ^Scanner ---
 
     @(link_name = "g_scanner_destroy")
     scanner_destroy :: proc(scanner: ^Scanner) ---
@@ -5890,9 +5632,6 @@ foreign glib_runic {
 
     @(link_name = "g_assertion_message_cmpint")
     assertion_message_cmpint :: proc(domain: cstring, file: cstring, line: i32, func: cstring, expr: cstring, arg1: uint64, cmp: cstring, arg2: uint64, numtype: char) ---
-
-    @(link_name = "g_assertion_message_cmpnum")
-    assertion_message_cmpnum :: proc(domain: cstring, file: cstring, line: i32, func: cstring, expr: cstring, arg1: [16]byte, cmp: cstring, arg2: [16]byte, numtype: char) ---
 
     @(link_name = "g_assertion_message_error")
     assertion_message_error :: proc(domain: cstring, file: cstring, line: i32, func: cstring, expr: cstring, error: ^Error, error_domain: Quark, error_code: i32) ---
@@ -6554,14 +6293,8 @@ foreign glib_runic {
     @(link_name = "g_main_context_pusher_free_wrapper")
     main_context_pusher_free :: proc(pusher: ^MainContextPusher) ---
 
-    @(link_name = "g_steal_handle_id_wrapper")
-    steal_handle_id :: proc(handle_pointer: ^u32) -> u32 ---
-
     @(link_name = "g_steal_fd_wrapper")
     steal_fd :: proc(fd_ptr: ^i32) -> i32 ---
-
-    @(link_name = "g_strdup_inline_wrapper")
-    strdup_inline :: proc(str: cstring) -> cstring ---
 
     @(link_name = "g_set_str_wrapper")
     set_str :: proc(str_pointer: ^cstring, new_str: cstring) -> boolean ---
@@ -6762,10 +6495,10 @@ foreign glib_runic {
     queueautoptr_cleanup_GHmac :: proc(_q: ^^Queue) ---
 
     @(link_name = "glib_autoptr_clear_GIOChannel_wrapper")
-    autoptr_clear_GIOChannel :: proc(_ptr: rawptr) ---
+    autoptr_clear_GIOChannel :: proc(_ptr: ^IOChannel) ---
 
     @(link_name = "glib_autoptr_cleanup_GIOChannel_wrapper")
-    autoptr_cleanup_GIOChannel :: proc(_ptr: ^rawptr) ---
+    autoptr_cleanup_GIOChannel :: proc(_ptr: ^^IOChannel) ---
 
     @(link_name = "glib_autoptr_destroy_GIOChannel_wrapper")
     autoptr_destroy_GIOChannel :: proc(_ptr: rawptr) ---
@@ -7574,19 +7307,331 @@ string_sprintfa :: string_append_printf
 
 static_mutex_get_mutex :: static_mutex_get_mutex_impl
 
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
+
+char :: u8
+
+}
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+
+GINT64_MODIFIER :: "ll"
+GINT64_FORMAT :: "lli"
+GUINT64_FORMAT :: "llu"
+GSIZE_MODIFIER :: "ll"
+GSSIZE_MODIFIER :: "ll"
+GSIZE_FORMAT :: "llu"
+GSSIZE_FORMAT :: "lli"
+MINOFFSET :: ( (-( (0x7fffffffffffffff)) - ( (1))))
+MAXOFFSET :: ( (0x7fffffffffffffff))
+GOFFSET_MODIFIER :: "ll"
+GOFFSET_FORMAT :: "lli"
+POLLFD_FORMAT :: "%#llx"
+GINTPTR_MODIFIER :: "ll"
+GINTPTR_FORMAT :: "lli"
+GUINTPTR_FORMAT :: "llu"
+PID_FORMAT :: "p"
+MININT64 :: min(int64)
+MAXINT64 :: max(int64)
+MAXUINT64 :: max(uint64)
+alloca :: `_alloca`
+TIME_SPAN_DAY :: (( (86400000000)))
+TIME_SPAN_HOR :: (( (3600000000)))
+TIME_SPAN_MINTE :: (( (60000000)))
+TIME_SPAN_SECOND :: (( (1000000)))
+TIME_SPAN_MIISECOND :: (( (1000)))
+WIN32_MSG_HANDLE :: 19981206
+MAXPATHLEN :: 1024
+
+Pid :: rawptr
+long :: i32
+ulong :: u32
+address_of_function_func_ptr_anon_0 :: #type proc "c" ()
+UserDirectory :: enum i32 {DESKTOP = 0, DOCUMENTS = 1, DOWNLOAD = 2, MUSIC = 3, PICTURES = 4, PUBLIC_SHARE = 5, TEMPLATES = 6, VIDEOS = 7, USER_N_DIRECTORIES = 8 }
+FormatSizeFlags :: enum i32 {FORMAT_SIZE_DEFAULT = 0, FORMAT_SIZE_LONG_FORMAT = 1, FORMAT_SIZE_IEC_UNITS = 2, FORMAT_SIZE_BITS = 4, FORMAT_SIZE_ONLY_VALUE = 8, FORMAT_SIZE_ONLY_UNIT = 16 }
+param0_func_ptr_anon_1 :: #type proc "c" ()
+ThreadError :: enum i32 {AGAIN = 0 }
+ThreadPriority :: enum i32 {LOW = 0, NORMAL = 1, HIGH = 2, URGENT = 3 }
+OnceStatus :: enum i32 {NOTCALLED = 0, PROGRESS = 1, READY = 2 }
+TimeType :: enum i32 {STANDARD = 0, DAYLIGHT = 1, UNIVERSAL = 2 }
+BookmarkFileError :: enum i32 {INVALID_URI = 0, INVALID_VALUE = 1, APP_NOT_REGISTERED = 2, URI_NOT_FOUND = 3, READ = 4, UNKNOWN_ENCODING = 5, WRITE = 6, FILE_NOT_FOUND = 7 }
+ChecksumType :: enum i32 {CHECKSUM_MD5 = 0, CHECKSUM_SHA1 = 1, CHECKSUM_SHA256 = 2, CHECKSUM_SHA512 = 3, CHECKSUM_SHA384 = 4 }
+ConvertError :: enum i32 {NO_CONVERSION = 0, ILLEGAL_SEQUENCE = 1, FAILED = 2, PARTIAL_INPUT = 3, BAD_URI = 4, NOT_ABSOLUTE_PATH = 5, NO_MEMORY = 6, EMBEDDED_NUL = 7 }
+DateDMY :: enum i32 {DATE_DAY = 0, DATE_MONTH = 1, DATE_YEAR = 2 }
+DateWeekday :: enum i32 {DATE_BAD_WEEKDAY = 0, DATE_MONDAY = 1, DATE_TUESDAY = 2, DATE_WEDNESDAY = 3, DATE_THURSDAY = 4, DATE_FRIDAY = 5, DATE_SATURDAY = 6, DATE_SUNDAY = 7 }
+DateMonth :: enum i32 {DATE_BAD_MONTH = 0, DATE_JANUARY = 1, DATE_FEBRUARY = 2, DATE_MARCH = 3, DATE_APRIL = 4, DATE_MAY = 5, DATE_JUNE = 6, DATE_JULY = 7, DATE_AUGUST = 8, DATE_SEPTEMBER = 9, DATE_OCTOBER = 10, DATE_NOVEMBER = 11, DATE_DECEMBER = 12 }
+FileError :: enum i32 {EXIST = 0, ISDIR = 1, ACCES = 2, NAMETOOLONG = 3, NOENT = 4, NOTDIR = 5, NXIO = 6, NODEV = 7, ROFS = 8, TXTBSY = 9, FAULT = 10, LOOP = 11, NOSPC = 12, NOMEM = 13, MFILE = 14, NFILE = 15, BADF = 16, INVAL = 17, PIPE = 18, AGAIN = 19, INTR = 20, IO = 21, PERM = 22, NOSYS = 23, FAILED = 24 }
+FileTest :: enum i32 {IS_REGULAR = 1, IS_SYMLINK = 2, IS_DIR = 4, IS_EXECUTABLE = 8, EXISTS = 16 }
+FileSetContentsFlags :: enum i32 {FILE_SET_CONTENTS_NONE = 0, FILE_SET_CONTENTS_CONSISTENT = 1, FILE_SET_CONTENTS_DURABLE = 2, FILE_SET_CONTENTS_ONLY_EXISTING = 4 }
+malloc_func_ptr_anon_2 :: #type proc "c" (n_bytes: size) -> pointer
+realloc_func_ptr_anon_3 :: #type proc "c" (mem: pointer, n_bytes: size) -> pointer
+free_func_ptr_anon_4 :: #type proc "c" (mem: pointer)
+calloc_func_ptr_anon_5 :: #type proc "c" (n_blocks: size, n_block_bytes: size) -> pointer
+try_malloc_func_ptr_anon_6 :: #type proc "c" (n_bytes: size) -> pointer
+try_realloc_func_ptr_anon_7 :: #type proc "c" (mem: pointer, n_bytes: size) -> pointer
+_GMemVTable :: struct {
+    malloc: malloc_func_ptr_anon_2,
+    realloc: realloc_func_ptr_anon_3,
+    free: free_func_ptr_anon_4,
+    calloc: calloc_func_ptr_anon_5,
+    try_malloc: try_malloc_func_ptr_anon_6,
+    try_realloc: try_realloc_func_ptr_anon_7,
+}
+TraverseFlags :: enum i32 {TRAVERSE_LEAVES = 1, TRAVERSE_NON_LEAVES = 2, TRAVERSE_ALL = 3, TRAVERSE_MASK = 3, TRAVERSE_LEAFS = 1, TRAVERSE_NON_LEAFS = 2 }
+TraverseType :: enum i32 {IN_ORDER = 0, PRE_ORDER = 1, POST_ORDER = 2, LEVEL_ORDER = 3 }
+HookFlagMask :: enum i32 {HOOK_FLAG_ACTIVE = 1, HOOK_FLAG_IN_CALL = 2, HOOK_FLAG_MASK = 15 }
+_GPollFD :: struct {
+    fd: int64,
+    events: ushort,
+    revents: ushort,
+}
+IOCondition :: enum i32 {IO_IN = 1, IO_OUT = 4, IO_PRI = 2, IO_ERR = 8, IO_HUP = 16, IO_NVAL = 32 }
+MainContextFlags :: enum i32 {NONE = 0, OWNERLESS_POLLING = 1 }
+ref_func_ptr_anon_8 :: #type proc "c" (cb_data: pointer)
+unref_func_ptr_anon_9 :: #type proc "c" (cb_data: pointer)
+et_func_ptr_anon_10 :: #type proc "c" (cb_data: pointer, source: ^Source, func: ^SourceFunc, data: ^pointer)
+_GSourceCallbackFuncs :: struct {
+    ref: ref_func_ptr_anon_8,
+    unref: unref_func_ptr_anon_9,
+    get: et_func_ptr_anon_10,
+}
+UnicodeType :: enum i32 {UNICODE_CONTROL = 0, UNICODE_FORMAT = 1, UNICODE_UNASSIGNED = 2, UNICODE_PRIVATE_USE = 3, UNICODE_SURROGATE = 4, UNICODE_LOWERCASE_LETTER = 5, UNICODE_MODIFIER_LETTER = 6, UNICODE_OTHER_LETTER = 7, UNICODE_TITLECASE_LETTER = 8, UNICODE_UPPERCASE_LETTER = 9, UNICODE_SPACING_MARK = 10, UNICODE_ENCLOSING_MARK = 11, UNICODE_NON_SPACING_MARK = 12, UNICODE_DECIMAL_NUMBER = 13, UNICODE_LETTER_NUMBER = 14, UNICODE_OTHER_NUMBER = 15, UNICODE_CONNECT_PUNCTUATION = 16, UNICODE_DASH_PUNCTUATION = 17, UNICODE_CLOSE_PUNCTUATION = 18, UNICODE_FINAL_PUNCTUATION = 19, UNICODE_INITIAL_PUNCTUATION = 20, UNICODE_OTHER_PUNCTUATION = 21, UNICODE_OPEN_PUNCTUATION = 22, UNICODE_CURRENCY_SYMBOL = 23, UNICODE_MODIFIER_SYMBOL = 24, UNICODE_MATH_SYMBOL = 25, UNICODE_OTHER_SYMBOL = 26, UNICODE_LINE_SEPARATOR = 27, UNICODE_PARAGRAPH_SEPARATOR = 28, UNICODE_SPACE_SEPARATOR = 29 }
+UnicodeBreakType :: enum i32 {UNICODE_BREAK_MANDATORY = 0, UNICODE_BREAK_CARRIAGE_RETURN = 1, UNICODE_BREAK_LINE_FEED = 2, UNICODE_BREAK_COMBINING_MARK = 3, UNICODE_BREAK_SURROGATE = 4, UNICODE_BREAK_ZERO_WIDTH_SPACE = 5, UNICODE_BREAK_INSEPARABLE = 6, UNICODE_BREAK_NON_BREAKING_GLUE = 7, UNICODE_BREAK_CONTINGENT = 8, UNICODE_BREAK_SPACE = 9, UNICODE_BREAK_AFTER = 10, UNICODE_BREAK_BEFORE = 11, UNICODE_BREAK_BEFORE_AND_AFTER = 12, UNICODE_BREAK_HYPHEN = 13, UNICODE_BREAK_NON_STARTER = 14, UNICODE_BREAK_OPEN_PUNCTUATION = 15, UNICODE_BREAK_CLOSE_PUNCTUATION = 16, UNICODE_BREAK_QUOTATION = 17, UNICODE_BREAK_EXCLAMATION = 18, UNICODE_BREAK_IDEOGRAPHIC = 19, UNICODE_BREAK_NUMERIC = 20, UNICODE_BREAK_INFIX_SEPARATOR = 21, UNICODE_BREAK_SYMBOL = 22, UNICODE_BREAK_ALPHABETIC = 23, UNICODE_BREAK_PREFIX = 24, UNICODE_BREAK_POSTFIX = 25, UNICODE_BREAK_COMPLEX_CONTEXT = 26, UNICODE_BREAK_AMBIGUOUS = 27, UNICODE_BREAK_UNKNOWN = 28, UNICODE_BREAK_NEXT_LINE = 29, UNICODE_BREAK_WORD_JOINER = 30, UNICODE_BREAK_HANGUL_L_JAMO = 31, UNICODE_BREAK_HANGUL_V_JAMO = 32, UNICODE_BREAK_HANGUL_T_JAMO = 33, UNICODE_BREAK_HANGUL_LV_SYLLABLE = 34, UNICODE_BREAK_HANGUL_LVT_SYLLABLE = 35, UNICODE_BREAK_CLOSE_PARANTHESIS = 36, UNICODE_BREAK_CLOSE_PARENTHESIS = 36, UNICODE_BREAK_CONDITIONAL_JAPANESE_STARTER = 37, UNICODE_BREAK_HEBREW_LETTER = 38, UNICODE_BREAK_REGIONAL_INDICATOR = 39, UNICODE_BREAK_EMOJI_BASE = 40, UNICODE_BREAK_EMOJI_MODIFIER = 41, UNICODE_BREAK_ZERO_WIDTH_JOINER = 42, UNICODE_BREAK_AKSARA = 43, UNICODE_BREAK_AKSARA_PRE_BASE = 44, UNICODE_BREAK_AKSARA_START = 45, UNICODE_BREAK_VIRAMA_FINAL = 46, UNICODE_BREAK_VIRAMA = 47 }
+UnicodeScript :: enum i32 {INVALID_CODE = -1, COMMON = 0, INHERITED = 1, ARABIC = 2, ARMENIAN = 3, BENGALI = 4, BOPOMOFO = 5, CHEROKEE = 6, COPTIC = 7, CYRILLIC = 8, DESERET = 9, DEVANAGARI = 10, ETHIOPIC = 11, GEORGIAN = 12, GOTHIC = 13, GREEK = 14, GUJARATI = 15, GURMUKHI = 16, HAN = 17, HANGUL = 18, HEBREW = 19, HIRAGANA = 20, KANNADA = 21, KATAKANA = 22, KHMER = 23, LAO = 24, LATIN = 25, MALAYALAM = 26, MONGOLIAN = 27, MYANMAR = 28, OGHAM = 29, OLD_ITALIC = 30, ORIYA = 31, RUNIC = 32, SINHALA = 33, SYRIAC = 34, TAMIL = 35, TELUGU = 36, THAANA = 37, THAI = 38, TIBETAN = 39, CANADIAN_ABORIGINAL = 40, YI = 41, TAGALOG = 42, HANUNOO = 43, BUHID = 44, TAGBANWA = 45, BRAILLE = 46, CYPRIOT = 47, LIMBU = 48, OSMANYA = 49, SHAVIAN = 50, LINEAR_B = 51, TAI_LE = 52, UGARITIC = 53, NEW_TAI_LUE = 54, BUGINESE = 55, GLAGOLITIC = 56, TIFINAGH = 57, SYLOTI_NAGRI = 58, OLD_PERSIAN = 59, KHAROSHTHI = 60, UNKNOWN = 61, BALINESE = 62, CUNEIFORM = 63, PHOENICIAN = 64, PHAGS_PA = 65, NKO = 66, KAYAH_LI = 67, LEPCHA = 68, REJANG = 69, SUNDANESE = 70, SAURASHTRA = 71, CHAM = 72, OL_CHIKI = 73, VAI = 74, CARIAN = 75, LYCIAN = 76, LYDIAN = 77, AVESTAN = 78, BAMUM = 79, EGYPTIAN_HIEROGLYPHS = 80, IMPERIAL_ARAMAIC = 81, INSCRIPTIONAL_PAHLAVI = 82, INSCRIPTIONAL_PARTHIAN = 83, JAVANESE = 84, KAITHI = 85, LISU = 86, MEETEI_MAYEK = 87, OLD_SOUTH_ARABIAN = 88, OLD_TURKIC = 89, SAMARITAN = 90, TAI_THAM = 91, TAI_VIET = 92, BATAK = 93, BRAHMI = 94, MANDAIC = 95, CHAKMA = 96, MEROITIC_CURSIVE = 97, MEROITIC_HIEROGLYPHS = 98, MIAO = 99, SHARADA = 100, SORA_SOMPENG = 101, TAKRI = 102, BASSA_VAH = 103, CAUCASIAN_ALBANIAN = 104, DUPLOYAN = 105, ELBASAN = 106, GRANTHA = 107, KHOJKI = 108, KHUDAWADI = 109, LINEAR_A = 110, MAHAJANI = 111, MANICHAEAN = 112, MENDE_KIKAKUI = 113, MODI = 114, MRO = 115, NABATAEAN = 116, OLD_NORTH_ARABIAN = 117, OLD_PERMIC = 118, PAHAWH_HMONG = 119, PALMYRENE = 120, PAU_CIN_HAU = 121, PSALTER_PAHLAVI = 122, SIDDHAM = 123, TIRHUTA = 124, WARANG_CITI = 125, AHOM = 126, ANATOLIAN_HIEROGLYPHS = 127, HATRAN = 128, MULTANI = 129, OLD_HUNGARIAN = 130, SIGNWRITING = 131, ADLAM = 132, BHAIKSUKI = 133, MARCHEN = 134, NEWA = 135, OSAGE = 136, TANGUT = 137, MASARAM_GONDI = 138, NUSHU = 139, SOYOMBO = 140, ZANABAZAR_SQUARE = 141, DOGRA = 142, GUNJALA_GONDI = 143, HANIFI_ROHINGYA = 144, MAKASAR = 145, MEDEFAIDRIN = 146, OLD_SOGDIAN = 147, SOGDIAN = 148, ELYMAIC = 149, NANDINAGARI = 150, NYIAKENG_PUACHUE_HMONG = 151, WANCHO = 152, CHORASMIAN = 153, DIVES_AKURU = 154, KHITAN_SMALL_SCRIPT = 155, YEZIDI = 156, CYPRO_MINOAN = 157, OLD_UYGHUR = 158, TANGSA = 159, TOTO = 160, VITHKUQI = 161, MATH = 162, KAWI = 163, NAG_MUNDARI = 164 }
+NormalizeMode :: enum i32 {NORMALIZE_DEFAULT = 0, NORMALIZE_NFD = 0, NORMALIZE_DEFAULT_COMPOSE = 1, NORMALIZE_NFC = 1, NORMALIZE_ALL = 2, NORMALIZE_NFKD = 2, NORMALIZE_ALL_COMPOSE = 3, NORMALIZE_NFKC = 3 }
+AsciiType :: enum i32 {ASCII_ALNUM = 1, ASCII_ALPHA = 2, ASCII_CNTRL = 4, ASCII_DIGIT = 8, ASCII_GRAPH = 16, ASCII_LOWER = 32, ASCII_PRINT = 64, ASCII_PUNCT = 128, ASCII_SPACE = 256, ASCII_UPPER = 512, ASCII_XDIGIT = 1024 }
+NumberParserError :: enum i32 {INVALID = 0, OUT_OF_BOUNDS = 1 }
+IOStatus :: enum i32 {ERROR = 0, NORMAL = 1, EOF = 2, AGAIN = 3 }
+io_read_func_ptr_anon_11 :: #type proc "c" (channel: ^IOChannel, buf: ^byte, count: size, bytes_read: ^size, err: ^^Error) -> IOStatus
+io_write_func_ptr_anon_12 :: #type proc "c" (channel: ^IOChannel, buf: ^byte, count: size, bytes_written: ^size, err: ^^Error) -> IOStatus
+SeekType :: enum i32 {SEEK_CUR = 0, SEEK_SET = 1, SEEK_END = 2 }
+io_seek_func_ptr_anon_13 :: #type proc "c" (channel: ^IOChannel, offset_p: int64, type: SeekType, err: ^^Error) -> IOStatus
+io_close_func_ptr_anon_14 :: #type proc "c" (channel: ^IOChannel, err: ^^Error) -> IOStatus
+io_create_watch_func_ptr_anon_15 :: #type proc "c" (channel: ^IOChannel, condition: IOCondition) -> ^Source
+io_free_func_ptr_anon_16 :: #type proc "c" (channel: ^IOChannel)
+IOFlags :: enum i32 {IO_FLAG_NONE = 0, IO_FLAG_APPEND = 1, IO_FLAG_NONBLOCK = 2, IO_FLAG_IS_READABLE = 4, IO_FLAG_IS_WRITABLE = 8, IO_FLAG_IS_WRITEABLE = 8, IO_FLAG_IS_SEEKABLE = 16, IO_FLAG_MASK = 31, IO_FLAG_GET_MASK = 31, IO_FLAG_SET_MASK = 3 }
+io_set_flags_func_ptr_anon_17 :: #type proc "c" (channel: ^IOChannel, flags: IOFlags, err: ^^Error) -> IOStatus
+io_get_flags_func_ptr_anon_18 :: #type proc "c" (channel: ^IOChannel) -> IOFlags
+_GIOFuncs :: struct {
+    io_read: io_read_func_ptr_anon_11,
+    io_write: io_write_func_ptr_anon_12,
+    io_seek: io_seek_func_ptr_anon_13,
+    io_close: io_close_func_ptr_anon_14,
+    io_create_watch: io_create_watch_func_ptr_anon_15,
+    io_free: io_free_func_ptr_anon_16,
+    io_set_flags: io_set_flags_func_ptr_anon_17,
+    io_get_flags: io_get_flags_func_ptr_anon_18,
+}
+IOError :: enum i32 {NONE = 0, AGAIN = 1, INVAL = 2, UNKNOWN = 3 }
+IOChannelError :: enum i32 {FBIG = 0, INVAL = 1, IO = 2, ISDIR = 3, NOSPC = 4, NXIO = 5, OVERFLOW = 6, PIPE = 7, FAILED = 8 }
+KeyFileError :: enum i32 {UNKNOWN_ENCODING = 0, PARSE = 1, NOT_FOUND = 2, KEY_NOT_FOUND = 3, GROUP_NOT_FOUND = 4, INVALID_VALUE = 5 }
+KeyFileFlags :: enum i32 {KEY_FILE_NONE = 0, KEY_FILE_KEEP_COMMENTS = 1, KEY_FILE_KEEP_TRANSLATIONS = 2 }
+MarkupError :: enum i32 {BAD_UTF8 = 0, EMPTY = 1, PARSE = 2, UNKNOWN_ELEMENT = 3, UNKNOWN_ATTRIBUTE = 4, INVALID_CONTENT = 5, MISSING_ATTRIBUTE = 6 }
+MarkupParseFlags :: enum i32 {MARKUP_DEFAULT_FLAGS = 0, MARKUP_DO_NOT_USE_THIS_UNSUPPORTED_FLAG = 1, MARKUP_TREAT_CDATA_AS_TEXT = 2, MARKUP_PREFIX_ERROR_POSITION = 4, MARKUP_IGNORE_QUALIFIED = 8 }
+start_element_func_ptr_anon_19 :: #type proc "c" (context_p: ^MarkupParseContext, element_name: cstring, attribute_names: [^]cstring, attribute_values: [^]cstring, user_data: pointer, error: ^^Error)
+end_element_func_ptr_anon_20 :: #type proc "c" (context_p: ^MarkupParseContext, element_name: cstring, user_data: pointer, error: ^^Error)
+text_func_ptr_anon_21 :: #type proc "c" (context_p: ^MarkupParseContext, text: cstring, text_len: size, user_data: pointer, error: ^^Error)
+passthrough_func_ptr_anon_22 :: #type proc "c" (context_p: ^MarkupParseContext, passthrough_text: cstring, text_len: size, user_data: pointer, error: ^^Error)
+error_func_ptr_anon_23 :: #type proc "c" (context_p: ^MarkupParseContext, error: ^Error, user_data: pointer)
+_GMarkupParser :: struct {
+    start_element: start_element_func_ptr_anon_19,
+    end_element: end_element_func_ptr_anon_20,
+    text: text_func_ptr_anon_21,
+    passthrough: passthrough_func_ptr_anon_22,
+    error: error_func_ptr_anon_23,
+}
+MarkupCollectType :: enum i32 {MARKUP_COLLECT_INVALID = 0, MARKUP_COLLECT_STRING = 1, MARKUP_COLLECT_STRDUP = 2, MARKUP_COLLECT_BOOLEAN = 3, MARKUP_COLLECT_TRISTATE = 4, MARKUP_COLLECT_OPTIONAL = 65536 }
+VariantClass :: enum i32 {BOOLEAN = 98, BYTE = 121, INT16 = 110, UINT16 = 113, INT32 = 105, UINT32 = 117, INT64 = 120, UINT64 = 116, HANDLE = 104, DOUBLE = 100, STRING = 115, OBJECT_PATH = 111, SIGNATURE = 103, VARIANT = 118, MAYBE = 109, ARRAY = 97, TUPLE = 40, DICT_ENTRY = 123 }
+s_struct_anon_24 :: struct {
+    partial_magic: size,
+    type: ^VariantType,
+    y: [14]uintptr_,
+}
+_GVariantBuilder :: struct {
+    u: u_union_anon_25,
+}
+VariantParseError :: enum i32 {FAILED = 0, BASIC_TYPE_EXPECTED = 1, CANNOT_INFER_TYPE = 2, DEFINITE_TYPE_EXPECTED = 3, INPUT_NOT_AT_END = 4, INVALID_CHARACTER = 5, INVALID_FORMAT_STRING = 6, INVALID_OBJECT_PATH = 7, INVALID_SIGNATURE = 8, INVALID_TYPE_STRING = 9, NO_COMMON_TYPE = 10, NUMBER_OUT_OF_RANGE = 11, NUMBER_TOO_BIG = 12, TYPE_ERROR = 13, UNEXPECTED_TOKEN = 14, UNKNOWN_KEYWORD = 15, UNTERMINATED_STRING_CONSTANT = 16, VALUE_EXPECTED = 17, RECURSION = 18 }
+s_struct_anon_26 :: struct {
+    asv: ^Variant,
+    partial_magic: size,
+    y: [14]uintptr_,
+}
+u_union_anon_27 :: struct #raw_union {
+    s: s_struct_anon_26,
+    x: [16]uintptr_,
+}
+_GVariantDict :: struct {
+    u: u_union_anon_27,
+}
+LogWriterOutput :: enum i32 {LOG_WRITER_HANDLED = 1, LOG_WRITER_UNHANDLED = 0 }
+OptionArg :: enum i32 {NONE = 0, STRING = 1, INT = 2, CALLBACK = 3, FILENAME = 4, STRING_ARRAY = 5, FILENAME_ARRAY = 6, DOUBLE = 7, INT64 = 8 }
+OptionFlags :: enum i32 {OPTION_FLAG_NONE = 0, OPTION_FLAG_HIDDEN = 1, OPTION_FLAG_IN_MAIN = 2, OPTION_FLAG_REVERSE = 4, OPTION_FLAG_NO_ARG = 8, OPTION_FLAG_FILENAME = 16, OPTION_FLAG_OPTIONAL_ARG = 32, OPTION_FLAG_NOALIAS = 64 }
+OptionError :: enum i32 {UNKNOWN_OPTION = 0, BAD_VALUE = 1, FAILED = 2 }
+RegexError :: enum i32 {COMPILE = 0, OPTIMIZE = 1, REPLACE = 2, MATCH = 3, INTERNAL = 4, STRAY_BACKSLASH = 101, MISSING_CONTROL_CHAR = 102, UNRECOGNIZED_ESCAPE = 103, QUANTIFIERS_OUT_OF_ORDER = 104, QUANTIFIER_TOO_BIG = 105, UNTERMINATED_CHARACTER_CLASS = 106, INVALID_ESCAPE_IN_CHARACTER_CLASS = 107, RANGE_OUT_OF_ORDER = 108, NOTHING_TO_REPEAT = 109, UNRECOGNIZED_CHARACTER = 112, POSIX_NAMED_CLASS_OUTSIDE_CLASS = 113, UNMATCHED_PARENTHESIS = 114, INEXISTENT_SUBPATTERN_REFERENCE = 115, UNTERMINATED_COMMENT = 118, EXPRESSION_TOO_LARGE = 120, MEMORY_ERROR = 121, VARIABLE_LENGTH_LOOKBEHIND = 125, MALFORMED_CONDITION = 126, TOO_MANY_CONDITIONAL_BRANCHES = 127, ASSERTION_EXPECTED = 128, UNKNOWN_POSIX_CLASS_NAME = 130, POSIX_COLLATING_ELEMENTS_NOT_SUPPORTED = 131, HEX_CODE_TOO_LARGE = 134, INVALID_CONDITION = 135, SINGLE_BYTE_MATCH_IN_LOOKBEHIND = 136, INFINITE_LOOP = 140, MISSING_SUBPATTERN_NAME_TERMINATOR = 142, DUPLICATE_SUBPATTERN_NAME = 143, MALFORMED_PROPERTY = 146, UNKNOWN_PROPERTY = 147, SUBPATTERN_NAME_TOO_LONG = 148, TOO_MANY_SUBPATTERNS = 149, INVALID_OCTAL_VALUE = 151, TOO_MANY_BRANCHES_IN_DEFINE = 154, DEFINE_REPETION = 155, INCONSISTENT_NEWLINE_OPTIONS = 156, MISSING_BACK_REFERENCE = 157, INVALID_RELATIVE_REFERENCE = 158, BACKTRACKING_CONTROL_VERB_ARGUMENT_FORBIDDEN = 159, UNKNOWN_BACKTRACKING_CONTROL_VERB = 160, NUMBER_TOO_BIG = 161, MISSING_SUBPATTERN_NAME = 162, MISSING_DIGIT = 163, INVALID_DATA_CHARACTER = 164, EXTRA_SUBPATTERN_NAME = 165, BACKTRACKING_CONTROL_VERB_ARGUMENT_REQUIRED = 166, INVALID_CONTROL_CHAR = 168, MISSING_NAME = 169, NOT_SUPPORTED_IN_CLASS = 171, TOO_MANY_FORWARD_REFERENCES = 172, NAME_TOO_LONG = 175, CHARACTER_VALUE_TOO_LARGE = 176 }
+RegexCompileFlags :: enum i32 {REGEX_DEFAULT = 0, REGEX_CASELESS = 1, REGEX_MULTILINE = 2, REGEX_DOTALL = 4, REGEX_EXTENDED = 8, REGEX_ANCHORED = 16, REGEX_DOLLAR_ENDONLY = 32, REGEX_UNGREEDY = 512, REGEX_RAW = 2048, REGEX_NO_AUTO_CAPTURE = 4096, REGEX_OPTIMIZE = 8192, REGEX_FIRSTLINE = 262144, REGEX_DUPNAMES = 524288, REGEX_NEWLINE_CR = 1048576, REGEX_NEWLINE_LF = 2097152, REGEX_NEWLINE_CRLF = 3145728, REGEX_NEWLINE_ANYCRLF = 5242880, REGEX_BSR_ANYCRLF = 8388608, REGEX_JAVASCRIPT_COMPAT = 33554432 }
+RegexMatchFlags :: enum i32 {REGEX_MATCH_DEFAULT = 0, REGEX_MATCH_ANCHORED = 16, REGEX_MATCH_NOTBOL = 128, REGEX_MATCH_NOTEOL = 256, REGEX_MATCH_NOTEMPTY = 1024, REGEX_MATCH_PARTIAL = 32768, REGEX_MATCH_NEWLINE_CR = 1048576, REGEX_MATCH_NEWLINE_LF = 2097152, REGEX_MATCH_NEWLINE_CRLF = 3145728, REGEX_MATCH_NEWLINE_ANY = 4194304, REGEX_MATCH_NEWLINE_ANYCRLF = 5242880, REGEX_MATCH_BSR_ANYCRLF = 8388608, REGEX_MATCH_BSR_ANY = 16777216, REGEX_MATCH_PARTIAL_SOFT = 32768, REGEX_MATCH_PARTIAL_HARD = 134217728, REGEX_MATCH_NOTEMPTY_ATSTART = 268435456 }
+ErrorType :: enum i32 {ERR_UNKNOWN = 0, ERR_UNEXP_EOF = 1, ERR_UNEXP_EOF_IN_STRING = 2, ERR_UNEXP_EOF_IN_COMMENT = 3, ERR_NON_DIGIT_IN_CONST = 4, ERR_DIGIT_RADIX = 5, ERR_FLOAT_RADIX = 6, ERR_FLOAT_MALFORMED = 7 }
+TokenType :: enum i32 {TOKEN_EOF = 0, TOKEN_LEFT_PAREN = 40, TOKEN_RIGHT_PAREN = 41, TOKEN_LEFT_CURLY = 123, TOKEN_RIGHT_CURLY = 125, TOKEN_LEFT_BRACE = 91, TOKEN_RIGHT_BRACE = 93, TOKEN_EQUAL_SIGN = 61, TOKEN_COMMA = 44, TOKEN_NONE = 256, TOKEN_ERROR = 257, TOKEN_CHAR = 258, TOKEN_BINARY = 259, TOKEN_OCTAL = 260, TOKEN_INT = 261, TOKEN_HEX = 262, TOKEN_FLOAT = 263, TOKEN_STRING = 264, TOKEN_SYMBOL = 265, TOKEN_IDENTIFIER = 266, TOKEN_IDENTIFIER_NULL = 267, TOKEN_COMMENT_SINGLE = 268, TOKEN_COMMENT_MULTI = 269, TOKEN_LAST = 270 }
+ShellError :: enum i32 {BAD_QUOTING = 0, EMPTY_STRING = 1, FAILED = 2 }
+SliceConfig :: enum i32 {ALWAYS_MALLOC = 1, BYPASS_MAGAZINES = 2, WORKING_SET_MSECS = 3, COLOR_INCREMENT = 4, CHUNK_SIZES = 5, CONTENTION_COUNTER = 6 }
+SpawnError :: enum i32 {FORK = 0, READ = 1, CHDIR = 2, ACCES = 3, PERM = 4, TOO_BIG = 5, _2BIG = 5, NOEXEC = 6, NAMETOOLONG = 7, NOENT = 8, NOMEM = 9, NOTDIR = 10, LOOP = 11, TXTBUSY = 12, IO = 13, NFILE = 14, MFILE = 15, INVAL = 16, ISDIR = 17, LIBBAD = 18, FAILED = 19 }
+SpawnFlags :: enum i32 {SPAWN_DEFAULT = 0, SPAWN_LEAVE_DESCRIPTORS_OPEN = 1, SPAWN_DO_NOT_REAP_CHILD = 2, SPAWN_SEARCH_PATH = 4, SPAWN_STDOUT_TO_DEV_NULL = 8, SPAWN_STDERR_TO_DEV_NULL = 16, SPAWN_CHILD_INHERITS_STDIN = 32, SPAWN_FILE_AND_ARGV_ZERO = 64, SPAWN_SEARCH_PATH_FROM_ENVP = 128, SPAWN_CLOEXEC_PIPES = 256, SPAWN_CHILD_INHERITS_STDOUT = 512, SPAWN_CHILD_INHERITS_STDERR = 1024, SPAWN_STDIN_FROM_DEV_NULL = 2048 }
+TestTrapFlags :: enum i32 {TEST_TRAP_DEFAULT = 0, TEST_TRAP_SILENCE_STDOUT = 128, TEST_TRAP_SILENCE_STDERR = 256, TEST_TRAP_INHERIT_STDIN = 512 }
+TestSubprocessFlags :: enum i32 {TEST_SUBPROCESS_DEFAULT = 0, TEST_SUBPROCESS_INHERIT_STDIN = 1, TEST_SUBPROCESS_INHERIT_STDOUT = 2, TEST_SUBPROCESS_INHERIT_STDERR = 4 }
+TestResult :: enum i32 {TEST_RUN_SUCCESS = 0, TEST_RUN_SKIPPED = 1, TEST_RUN_FAILURE = 2, TEST_RUN_INCOMPLETE = 3 }
+TestLogType :: enum i32 {TEST_LOG_NONE = 0, TEST_LOG_ERROR = 1, TEST_LOG_START_BINARY = 2, TEST_LOG_LIST_CASE = 3, TEST_LOG_SKIP_CASE = 4, TEST_LOG_START_CASE = 5, TEST_LOG_STOP_CASE = 6, TEST_LOG_MIN_RESULT = 7, TEST_LOG_MAX_RESULT = 8, TEST_LOG_MESSAGE = 9, TEST_LOG_START_SUITE = 10, TEST_LOG_STOP_SUITE = 11 }
+TestLogMsg :: struct {
+    log_type: TestLogType,
+    n_strings: uint_,
+    strings: [^]cstring,
+    n_nums: uint_,
+    nums: [^]f64,
+}
+TestFileType :: enum i32 {TEST_DIST = 0, TEST_BUILT = 1 }
+UriFlags :: enum i32 {NONE = 0, PARSE_RELAXED = 1, HAS_PASSWORD = 2, HAS_AUTH_PARAMS = 4, ENCODED = 8, NON_DNS = 16, ENCODED_QUERY = 32, ENCODED_PATH = 64, ENCODED_FRAGMENT = 128, SCHEME_NORMALIZE = 256 }
+UriHideFlags :: enum i32 {URI_HIDE_NONE = 0, URI_HIDE_USERINFO = 1, URI_HIDE_PASSWORD = 2, URI_HIDE_AUTH_PARAMS = 4, URI_HIDE_QUERY = 8, URI_HIDE_FRAGMENT = 16 }
+UriParamsFlags :: enum i32 {URI_PARAMS_NONE = 0, URI_PARAMS_CASE_INSENSITIVE = 1, URI_PARAMS_WWW_FORM = 2, URI_PARAMS_PARSE_RELAXED = 4 }
+UriError :: enum i32 {FAILED = 0, BAD_SCHEME = 1, BAD_USER = 2, BAD_PASSWORD = 3, BAD_AUTH_PARAMS = 4, BAD_HOST = 5, BAD_PORT = 6, BAD_PATH = 7, BAD_QUERY = 8, BAD_FRAGMENT = 9 }
+Win32OSType :: enum i32 {WIN32_OS_ANY = 0, WIN32_OS_WORKSTATION = 1, WIN32_OS_SERVER = 2 }
+mutex_new_func_ptr_anon_28 :: #type proc "c" () -> ^Mutex
+mutex_lock_func_ptr_anon_29 :: #type proc "c" (mutex: ^Mutex)
+mutex_trylock_func_ptr_anon_30 :: #type proc "c" (mutex: ^Mutex) -> boolean
+mutex_unlock_func_ptr_anon_31 :: #type proc "c" (mutex: ^Mutex)
+mutex_free_func_ptr_anon_32 :: #type proc "c" (mutex: ^Mutex)
+cond_new_func_ptr_anon_33 :: #type proc "c" () -> ^Cond
+cond_signal_func_ptr_anon_34 :: #type proc "c" (cond: ^Cond)
+cond_broadcast_func_ptr_anon_35 :: #type proc "c" (cond: ^Cond)
+cond_wait_func_ptr_anon_36 :: #type proc "c" (cond: ^Cond, mutex: ^Mutex)
+cond_timed_wait_func_ptr_anon_37 :: #type proc "c" (cond: ^Cond, mutex: ^Mutex, end_time: ^TimeVal) -> boolean
+cond_free_func_ptr_anon_38 :: #type proc "c" (cond: ^Cond)
+private_new_func_ptr_anon_39 :: #type proc "c" (destructor: DestroyNotify) -> ^Private
+private_get_func_ptr_anon_40 :: #type proc "c" (private_key: ^Private) -> pointer
+private_set_func_ptr_anon_41 :: #type proc "c" (private_key: ^Private, data: pointer)
+thread_create_func_ptr_anon_42 :: #type proc "c" (func: ThreadFunc, data: pointer, stack_size: ulong, joinable: boolean, bound: boolean, priority: ThreadPriority, thread: pointer, error: ^^Error)
+thread_yield_func_ptr_anon_43 :: #type proc "c" ()
+thread_join_func_ptr_anon_44 :: #type proc "c" (thread: pointer)
+thread_exit_func_ptr_anon_45 :: #type proc "c" ()
+thread_set_priority_func_ptr_anon_46 :: #type proc "c" (thread: pointer, priority: ThreadPriority)
+thread_self_func_ptr_anon_47 :: #type proc "c" (thread: pointer)
+thread_equal_func_ptr_anon_48 :: #type proc "c" (thread1: pointer, thread2: pointer) -> boolean
+_GThreadFunctions :: struct {
+    mutex_new: mutex_new_func_ptr_anon_28,
+    mutex_lock: mutex_lock_func_ptr_anon_29,
+    mutex_trylock: mutex_trylock_func_ptr_anon_30,
+    mutex_unlock: mutex_unlock_func_ptr_anon_31,
+    mutex_free: mutex_free_func_ptr_anon_32,
+    cond_new: cond_new_func_ptr_anon_33,
+    cond_signal: cond_signal_func_ptr_anon_34,
+    cond_broadcast: cond_broadcast_func_ptr_anon_35,
+    cond_wait: cond_wait_func_ptr_anon_36,
+    cond_timed_wait: cond_timed_wait_func_ptr_anon_37,
+    cond_free: cond_free_func_ptr_anon_38,
+    private_new: private_new_func_ptr_anon_39,
+    private_get: private_get_func_ptr_anon_40,
+    private_set: private_set_func_ptr_anon_41,
+    thread_create: thread_create_func_ptr_anon_42,
+    thread_yield: thread_yield_func_ptr_anon_43,
+    thread_join: thread_join_func_ptr_anon_44,
+    thread_exit: thread_exit_func_ptr_anon_45,
+    thread_set_priority: thread_set_priority_func_ptr_anon_46,
+    thread_self: thread_self_func_ptr_anon_47,
+    thread_equal: thread_equal_func_ptr_anon_48,
+}
+StaticMutex :: struct {
+    mutex: ^Mutex,
+}
+unused_union_anon_49 :: struct #raw_union {
+    owner: rawptr,
+    dummy: double,
+}
+_GStaticRecMutex :: struct {
+    mutex: StaticMutex,
+    depth: uint_,
+    unused: unused_union_anon_49,
+}
+
+@(default_calling_convention = "c")
+foreign glib_runic {
+    @(link_name = "g_ptr_array_free")
+    ptr_array_free :: proc(array: ^PtrArray, free_seg: boolean) -> ^pointer ---
+
+    @(link_name = "g_win32_get_system_data_dirs_for_module")
+    win32_get_system_data_dirs_for_module :: proc(address_of_function: address_of_function_func_ptr_anon_0) -> ^cstring ---
+
+    @(link_name = "g_abort")
+    abort :: proc() ---
+
+    @(link_name = "g_io_channel_win32_make_pollfd")
+    io_channel_win32_make_pollfd :: proc(channel: ^IOChannel, condition: IOCondition, fd: ^PollFD) ---
+
+    @(link_name = "g_io_channel_win32_poll")
+    io_channel_win32_poll :: proc(fds: [^]PollFD, n_fds: int_, timeout_: int_) -> int_ ---
+
+    @(link_name = "g_io_channel_win32_new_messages")
+    io_channel_win32_new_messages :: proc(hwnd: size) -> ^IOChannel ---
+
+    @(link_name = "g_io_channel_win32_new_fd")
+    io_channel_win32_new_fd :: proc(fd: int_) -> ^IOChannel ---
+
+    @(link_name = "g_io_channel_win32_get_fd")
+    io_channel_win32_get_fd :: proc(channel: ^IOChannel) -> int_ ---
+
+    @(link_name = "g_io_channel_win32_new_socket")
+    io_channel_win32_new_socket :: proc(socket: int_) -> ^IOChannel ---
+
+    @(link_name = "g_io_channel_win32_new_stream_socket")
+    io_channel_win32_new_stream_socket :: proc(socket: int_) -> ^IOChannel ---
+
+    @(link_name = "g_io_channel_win32_set_debug")
+    io_channel_win32_set_debug :: proc(channel: ^IOChannel, flag: boolean) ---
+
+    @(link_name = "g_assertion_message_cmpnum")
+    assertion_message_cmpnum :: proc(domain: cstring, file: cstring, line: i32, func: cstring, expr: cstring, arg1: f64, cmp: cstring, arg2: f64, numtype: char) ---
+
+    @(link_name = "g_win32_ftruncate")
+    win32_ftruncate :: proc(f: int_, size_p: uint_) -> int_ ---
+
+    @(link_name = "g_win32_getlocale")
+    win32_getlocale :: proc() -> cstring ---
+
+    @(link_name = "g_win32_error_message")
+    win32_error_message :: proc(error: int_) -> cstring ---
+
+    @(link_name = "g_win32_get_package_installation_directory")
+    win32_get_package_installation_directory :: proc(package_p: cstring, dll_name: cstring) -> cstring ---
+
+    @(link_name = "g_win32_get_package_installation_subdirectory")
+    win32_get_package_installation_subdirectory :: proc(package_p: cstring, dll_name: cstring, subdir: cstring) -> cstring ---
+
+    @(link_name = "g_win32_get_package_installation_directory_of_module")
+    win32_get_package_installation_directory_of_module :: proc(hmodule: pointer) -> cstring ---
+
+    @(link_name = "g_win32_get_windows_version")
+    win32_get_windows_version :: proc() -> uint_ ---
+
+    @(link_name = "g_win32_locale_filename_from_utf8")
+    win32_locale_filename_from_utf8 :: proc(utf8filename: cstring) -> cstring ---
+
+    @(link_name = "g_win32_get_command_line")
+    win32_get_command_line :: proc() -> ^cstring ---
+
+    @(link_name = "g_win32_check_windows_version")
+    win32_check_windows_version :: proc(major: int_, minor: int_, spver: int_, os_type: Win32OSType) -> boolean ---
+
+    @(link_name = "_g_win32_get_system_data_dirs_wrapper")
+    _g_win32_get_system_data_dirs :: proc() -> ^cstring ---
+
+}
+
+}
+
 when (ODIN_ARCH == .amd64) {
 
 char :: i8
 
 }
 
-when (ODIN_ARCH == .arm64) {
-
-char :: u8
-
-}
-
-when (ODIN_ARCH == .amd64) {
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
@@ -7600,7 +7645,7 @@ when #config(GLIB_STATIC, false) {
 
 }
 
-when (ODIN_ARCH == .arm64) {
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
@@ -7611,6 +7656,14 @@ when #config(GLIB_STATIC, false) {
     foreign import glib_runic { "system:glib-2.0", "../lib/linux/aarch64/libglib-wrapper.a" }
 } 
 }
+
+}
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+    foreign import glib_runic { "../lib/windows/x86_64/glib-2.0.lib", "../lib/windows/x86_64/glib-wrapper.lib" }
+} 
 
 }
 

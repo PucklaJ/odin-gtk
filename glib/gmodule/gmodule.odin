@@ -1,14 +1,12 @@
-#+build linux amd64, linux arm64
+#+build linux amd64, linux arm64, windows amd64
 package gmodule
 
 import glib ".."
 
-ModuleFlags :: enum u32 {BIND_LAZY = 1, BIND_LOCAL = 2, BIND_MASK = 3 }
 _GModule :: struct #packed {}
 Module :: _GModule
 ModuleCheckInit :: #type proc "c" (module: ^Module) -> cstring
 ModuleUnload :: #type proc "c" (module: ^Module)
-ModuleError :: enum u32 {FAILED = 0, CHECK_FAILED = 1 }
 
 @(default_calling_convention = "c")
 foreign gmodule_runic {
@@ -44,7 +42,21 @@ foreign gmodule_runic {
 
 }
 
-when (ODIN_ARCH == .amd64) {
+when (ODIN_OS == .Linux) {
+
+ModuleFlags :: enum u32 {BIND_LAZY = 1, BIND_LOCAL = 2, BIND_MASK = 3 }
+ModuleError :: enum u32 {FAILED = 0, CHECK_FAILED = 1 }
+
+}
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+
+ModuleFlags :: enum i32 {BIND_LAZY = 1, BIND_LOCAL = 2, BIND_MASK = 3 }
+ModuleError :: enum i32 {FAILED = 0, CHECK_FAILED = 1 }
+
+}
+
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) {
@@ -56,7 +68,7 @@ when #config(GLIB_STATIC, false) {
 
 }
 
-when (ODIN_ARCH == .arm64) {
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) {
@@ -65,6 +77,12 @@ when #config(GLIB_STATIC, false) {
 } else {
     foreign import gmodule_runic "system:gmodule-2.0"
 }
+
+}
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+
+foreign import gmodule_runic "../../lib/windows/x86_64/gmodule-2.0.lib"
 
 }
 

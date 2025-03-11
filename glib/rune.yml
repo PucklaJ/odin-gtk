@@ -2,24 +2,32 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+  - Windows x86_64
 wrapper:
   language: c
   in_headers: ../shared/glib/glib/glib.h
   out_header: glib-wrapper.h
   out_source: glib-wrapper.c
   load_all_includes: true
-  multi_platform: false
+  multi_platform: true
 from:
   language: c
   shared.linux: 'libglib-2.0.so'
+  shared.windows.x86_64: '../lib/windows/x86_64/glib-2.0.lib'
   static.linux.arm64: '../lib/linux/aarch64/libglib-2.0.a'
   static.linux.x86_64: '../lib/linux/x86_64/libglib-2.0.a'
   headers: ../shared/glib/glib/glib.h
+  headers.windows.x86_64: ../shared/gvsbuild/extract/include/glib-2.0/glib.h
   includedirs:
     - ../stdinc/
     - ../shared/glib/
-    - ../shared/glib/_build/glib
+    - ../shared/glib/_build/glib/
     - ../shared/glib/_build/
+  includedirs.windows.x86_64:
+    - ../stdinc/windows/
+    - ../shared/gvsbuild/extract/include/
+    - ../shared/gvsbuild/extract/include/glib-2.0/
+    - ../shared/gvsbuild/extract/lib/glib-2.0/include/
   defines:
     GLIB_COMPILATION: 1
     GLIB_DISABLE_DEPRECATION_WARNINGS: 1
@@ -27,6 +35,8 @@ from:
   extern:
     - "../stdinc/*"
     - "../stdinc/sys/*"
+    - "../stdinc/windows/*"
+    - "../shared/gvsbuild/extract/include/*"
   overwrite:
     functions: &any_function_overwrites
       g_assertion_message_cmpint.param.8.type: 'gchar'
@@ -52,6 +62,9 @@ from:
       GRWLockReaderLocker: '#RawPtr'
 
       GRefString: 'gchar'
+      GIOChannel: '#Opaque'
+      GHookList: '#Opaque'
+      GScannerConfig: '#Opaque'
     constants: &any_constant_overwrites
       'FALSE': '0 #Untyped'
       'TRUE': '1 #Untyped'
@@ -100,13 +113,12 @@ from:
   overwrite.windows.arm32:
     <<: *overwrites_32
   ignore:
+    functions:
+      - 'atexit'
     types:
       - _GHookList
-      - GHookList
       - _GIOChannel
-      - GIOChannel
       - _GScannerConfig
-      - GScannerConfig
       - va_list
     constants:
       - '*GNUC*'
@@ -133,6 +145,7 @@ from:
       - 'G_URI_ERROR'
       - '*COMPILATION'
       - '*BUILD'
+      - 'G_VA_COPY_AS_ARRAY'
 to:
   language: odin
   package: glib
@@ -153,6 +166,7 @@ to:
   extern:
     sources:
       "../stdinc/time.h": "core:c/libc"
+      "../stdinc/windows/time.h": "core:c/libc"
       "../stdinc/stdarg.h": "core:c/libc"
       "../stdinc/pthread.h": "core:sys/posix"
   add_libs.static.linux.arm64:
@@ -167,4 +181,6 @@ to:
     - libpcre2-8.so
   add_libs.shared.linux.x86_64:
     - ../lib/linux/x86_64/libglib-wrapper.a
+  add_libs.windows.x86_64:
+    - ../lib/windows/x86_64/glib-wrapper.lib
   static_switch: 'GLIB_STATIC'

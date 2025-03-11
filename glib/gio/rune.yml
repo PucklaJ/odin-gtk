@@ -2,6 +2,7 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+  - Windows x86_64
 wrapper:
   language: c
   in_headers: ../../shared/glib/gio/gio.h
@@ -12,9 +13,11 @@ wrapper:
 from:
   language: c
   shared.linux: 'libgio-2.0.so'
+  shared.windows: '../../lib/windows/x86_64/gio-2.0.lib'
   static.linux.arm64: '../../lib/linux/aarch64/libgio-2.0.a'
   static.linux.x86_64: '../../lib/linux/x86_64/libgio-2.0.a'
   headers: ../../shared/glib/gio/gio.h
+  headers.windows.x86_64: ../../shared/gvsbuild/extract/include/glib-2.0/gio/gio.h
   includedirs:
     - ../../stdinc/
     - ../../shared/glib/
@@ -22,6 +25,10 @@ from:
     - ../../shared/glib/gmodule/
     - ../../shared/glib/_build/
     - ../../shared/glib/_build/glib/
+  includedirs.windows.x86_64:
+    - ../../stdinc/windows/
+    - ../../shared/gvsbuild/extract/include/glib-2.0/
+    - ../../shared/gvsbuild/extract/lib/glib-2.0/include/
   defines:
     GIO_COMPILATION: 1
     GLIB_COMPILATION: 1
@@ -29,6 +36,7 @@ from:
   extern:
     - '../../stdinc/*'
     - '../../stdinc/sys/*'
+    - '../../stdinc/windows/*'
     - '../../shared/glib/glib/*'
     - '../../shared/glib/gobject/*'
     - '../../shared/glib/gmodule/*'
@@ -36,6 +44,12 @@ from:
     - '../../shared/glib/_build/gobject/*'
     - '../../shared/glib/_build/gmodule/*'
     - '../../shared/glib/glib/deprecated/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/glib/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/gobject/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/gmodule/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*'
+    - '../../shared/gvsbuild/extract/lib/glib-2.0/include/*'
   load_all_includes: true
   overwrite:
     functions:
@@ -109,12 +123,20 @@ to:
       '../../stdinc/stdarg.h': 'core:c/libc'
       '../../stdinc/pthread.h': 'core:c/libc'
       '../../stdinc/sys/types.h': 'core:sys/linux'
+      '../../stdinc/windows/time.h': 'core:c/libc'
+      '../../stdinc/windows/stdarg.h': 'core:c/libc'
       '../../shared/glib/glib/*': 'glib ..'
+      '../../shared/gvsbuild/extract/include/glib-2.0/glib/*': 'glib ..'
       '../../shared/glib/_build/glib/*': 'glib ..'
       '../../shared/glib/glib/deprecated/*': 'glib ..'
+      '../../shared/gvsbuild/extract/include/glib-2.0/glib/*': 'glib ..'
+      '../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*': 'glib ..'
+      '../../shared/gvsbuild/extract/lib/glib-2.0/include/*': 'glib ..'
       '../../shared/glib/gobject/*': 'gobj ../gobject'
+      '../../shared/gvsbuild/extract/include/glib-2.0/gobject/*': 'gobj ../gobject'
       '../../shared/glib/_build/gobject/*': 'gobj ../gobject'
       '../../shared/glib/gmodule/*': 'gobj ../gobject'
+      '../../shared/gvsbuild/extract/include/glib-2.0/gmodule/*': 'gobj ../gobject'
       '../../shared/glib/_build/gmodule/*': 'gobj ../gobject'
     remaps:
       pid_t: Pid
@@ -136,4 +158,6 @@ to:
     - libz.so
   add_libs.shared.linux.x86_64: 
     - ../../lib/linux/x86_64/libgio-wrapper.a
+  add_libs.windows.x86_64:
+    - ../../lib/windows/x86_64/gio-wrapper.lib
   static_switch: 'GLIB_STATIC'

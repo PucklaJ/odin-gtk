@@ -2,6 +2,7 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+  - Windows x86_64
 wrapper:
   language: c
   in_headers: ../../shared/glib/girepository/girepository.h
@@ -12,9 +13,11 @@ wrapper:
 from:
   language: c
   shared.linux: 'libgirepository-2.0.so'
+  shared.windows.x86_64: '../../lib/windows/x86_64/girepository-2.0.lib'
   static.linux.arm64: '../../lib/linux/aarch64/libgirepository-2.0.a'
   static.linux.x86_64: '../../lib/linux/x86_64/libgirepository-2.0.a'
   headers: ../../shared/glib/girepository/girepository.h
+  headers.windows.x86_64: ../../shared/gvsbuild/extract/include/glib-2.0/girepository/girepository.h
   includedirs:
     - ../../stdinc/
     - ../../shared/glib/
@@ -23,12 +26,18 @@ from:
     - ../../shared/glib/_build/
     - ../../shared/glib/_build/glib/
     - ../../shared/glib/_build/girepository/
+  includedirs.windows.x86_64:
+    - ../../stdinc/windows/
+    - ../../shared/gvsbuild/extract/include/
+    - ../../shared/gvsbuild/extract/include/glib-2.0/
+    - ../../shared/gvsbuild/extract/lib/glib-2.0/include/
   defines:
     GLIB_COMPILATION: 1
     GLIB_DISABLE_DEPRECATION_WARNINGS: 1
   extern:
     - '../../stdinc/*'
     - '../../stdinc/sys/*'
+    - '../../stdinc/windows/*'
     - '../../shared/glib/glib/*'
     - '../../shared/glib/gobject/*'
     - '../../shared/glib/gmodule/*'
@@ -38,6 +47,14 @@ from:
     - '../../shared/glib/_build/gmodule/*'
     - '../../shared/glib/_build/gio/*'
     - '../../shared/glib/glib/deprecated/*'
+    - '../../shared/gvsbuild/extract/include/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/glib/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*'
+    - '../../shared/gvsbuild/extract/lib/glib-2.0/include/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/gobject/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/gmodule/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/gio/*'
   load_all_includes: true
   ignore:
     types:
@@ -81,6 +98,13 @@ to:
       '../../shared/glib/_build/gobject/*': 'gobj ../gobject'
       '../../shared/glib/gmodule/*': 'gobj ../gobject'
       '../../shared/glib/_build/gmodule/*': 'gobj ../gobject'
+      '../../shared/gvsbuild/extract/include/glib-2.0/*': 'glib ..'
+      '../../shared/gvsbuild/extract/include/glib-2.0/glib/*': 'glib ..'
+      '../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*': 'glib ..'
+      '../../shared/gvsbuild/extract/lib/glib-2.0/include/*': 'glib ..'
+      '../../shared/gvsbuild/extract/include/glib-2.0/gobject/*': 'gobj ../gobject'
+      '../../shared/gvsbuild/extract/include/glib-2.0/gmodule/*': '../gmodule'
+      '../../shared/gvsbuild/extract/include/glib-2.0/gio/*': '../gio'
     remaps:
       pid_t: Pid
       uid_t: Uid
@@ -97,4 +121,6 @@ to:
     - libpcre2-8.so
   add_libs.shared.linux.x86_64:
     - ../../lib/linux/x86_64/libgirepository-wrapper.a
+  add_libs.windows.x86_64:
+    - ../../lib/windows/x86_64/girepository-wrapper.lib
   static_switch: 'GLIB_STATIC'

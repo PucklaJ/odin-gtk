@@ -1,3 +1,5 @@
+set windows-shell := ['pwsh.exe']
+
 default: setup wrapper
 
 setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup graphene-setup adwaita-setup
@@ -6,9 +8,8 @@ bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell adwai
 glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
-wrapper CC='cc':  (glib-wrapper-all CC) (gdk-pixbuf-wrapper CC) (pango-wrapper CC) (graphene-wrapper CC) (gtk-wrapper CC)
-glib-wrapper-all CC='cc': (glib-wrapper CC) (gobject-wrapper CC) (gio-wrapper CC) (girepository-wrapper CC) (adwaita-wrapper CC)
-
+wrapper CC='cc':  (glib-wrapper-all CC) (gdk-pixbuf-wrapper CC) (pango-wrapper CC) (graphene-wrapper CC) (gtk-wrapper CC) (adwaita-wrapper CC)
+glib-wrapper-all CC='cc': (glib-wrapper CC) (gobject-wrapper CC) (gio-wrapper CC) (girepository-wrapper CC)
 build: glib-build cairo-build gtk-build
 
 clean: glib-clean cairo-clean gtk-clean adwaita-clean
@@ -16,7 +17,7 @@ clean: glib-clean cairo-clean gtk-clean adwaita-clean
 check-all: (check 'glib') (check 'glib/gobject') (check 'glib/gmodule') (check 'glib/gio') (check 'glib/girepository') (check 'gdk-pixbuf') (check 'cairo') (check 'pango') (check 'pango/pangocairo') (check 'graphene') (check 'gtk') (check 'gtk/layer-shell') (check 'adwaita')
 
 RUNIC := 'runic'
-WINDOWS_GVSBUILD_RELEASE := '2024.12.0'
+WINDOWS_GVSBUILD_RELEASE := '2025.2.0'
 
 glib-setup:
     cd shared/glib && meson setup \
@@ -58,7 +59,7 @@ glib-clean:
 
 glib:
     {{ RUNIC }} glib/rune.yml
-    sed glib/glib.odin -i \
+    sed glib/glib*.odin -i \
         -e 's/\^char/cstring/g' \
         -e 's/data: cstring/data: ^byte/g' \
         -e 's/buf: cstring/buf: ^byte/g' \
@@ -100,18 +101,45 @@ glib:
         -e '/^LOG_DOMAIN/s/(gchar\*)//g' \
         -e '/^URI_/s/\\" \\"//g'\
 
-    echo '#undef g_steal_pointer' >> glib/glib-wrapper.h
+    rm glib/glib-wrapper-Linux_arm64.*
+    mv glib/glib-wrapper-Linux_x86_64.h   glib/glib-wrapper-Linux.h
+    mv glib/glib-wrapper-Linux_x86_64.c   glib/glib-wrapper-Linux.c
+    mv glib/glib-wrapper-Windows_x86_64.h glib/glib-wrapper-Windows.h
+    mv glib/glib-wrapper-Windows_x86_64.c glib/glib-wrapper-Windows.c
+    sed glib/glib-wrapper-* -i -e '/^#include/ s/_x86_64//'
+
+    echo '#undef g_steal_pointer' >> glib/glib-wrapper-Linux.h
+    echo '#undef g_steal_pointer' >> glib/glib-wrapper-Windows.h
+
+WRAPPER_OS := if os() == 'windows' {
+  'Windows'
+} else if os() == 'linux' {
+  'Linux'
+} else {
+  os()
+}
+WRAPPER_ARCH := if arch() == 'aarch64' {
+  'arm64'
+} else {
+  arch()
+}
 
 [unix]
 glib-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
-    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/glib-wrapper.o -Ishared/glib/ -Ishared/glib/_build -Ishared/glib/_build/glib glib/glib-wrapper.c
+    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/glib-wrapper.o -Ishared/glib/ -Ishared/glib/_build -Ishared/glib/_build/glib glib/glib-wrapper-{{ WRAPPER_OS }}.c
     ar rs lib/{{ os() }}/{{ arch() }}/libglib-wrapper.a lib/{{ os() }}/{{ arch() }}/glib-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/glib-wrapper.o
 
+[windows]
+glib-wrapper CC='clang':
+    clang -c -O2 '-Ishared/gvsbuild/extract/include/glib-2.0/' '-Ishared/gvsbuild/extract/include/glib-2.0/glib/' '-Ishared/gvsbuild/extract/lib/glib-2.0/include/' -o lib/{{ os() }}/{{ arch() }}/glib-wrapper.obj glib/glib-wrapper-{{ WRAPPER_OS }}.c
+    lib /out:lib\{{ os() }}\{{ arch() }}\glib-wrapper.lib lib\{{ os() }}\{{ arch() }}\glib-wrapper.obj
+    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\glib-wrapper.obj
+
 gobject:
     {{ RUNIC }} glib/gobject/rune.yml
-    sed glib/gobject/gobject.odin -i \
+    sed glib/gobject/gobject*.odin -i \
         -e 's/\^glib.char/cstring/g' \
         -e '/^\(TYPE_\|VALUE_\|SIGNAL_\|PARAM_\)/s/`//g' \
         -e '/^\(TYPE_\|SIGNAL_\)/s/(GType)//g' \
@@ -133,14 +161,20 @@ gobject-wrapper CC='cc':
     ar rs lib/{{ os() }}/{{ arch() }}/libgobject-wrapper.a lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o
 
+[windows]
+gobject-wrapper CC='clang':
+    clang -c -O2 '-Ishared/gvsbuild/extract/include/glib-2.0/' '-Ishared/gvsbuild/extract/include/glib-2.0/glib/' '-Ishared/gvsbuild/extract/lib/glib-2.0/include/' -o lib/{{ os() }}/{{ arch() }}/gobject-wrapper.obj glib/gobject/gobject-wrapper.c
+    lib /out:lib\{{ os() }}\{{ arch() }}\gobject-wrapper.lib lib\{{ os() }}\{{ arch() }}\gobject-wrapper.obj
+    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\gobject-wrapper.obj
+
 gmodule:
     {{ RUNIC }} glib/gmodule/rune.yml
-    sed glib/gmodule/gmodule.odin -i \
+    sed glib/gmodule/gmodule*.odin -i \
         -e 's/\^glib.char/cstring/g'\
 
 gio:
     {{ RUNIC }} glib/gio/rune.yml
-    sed glib/gio/gio.odin -i \
+    sed glib/gio/gio*.odin -i \
         -e 's/\^glib.char/cstring/g' \
         -e '/^\(FILE_ATTRIBUTE_\|DEBUG_CONTROLLER_\|DRIVE_IDENTIFIER_\|MEMORY_MONITOR_\|MENU_ATTRIBUTE_\|MENU_LINK_\|VOLUME_MONITOR_\|NATIVE_VOLUME_MONITOR_\|NETWORK_MONITOR_\|POWER_PROFILE_MONITOR_\|PROXY_\|TLS_BACKEND_\|TLS_DATABASE_\|VFS_EXTENSION_\|VOLUME_IDENTIFIER_\)/ {s/`//g; s/\\//g}' \
         -e '/^\(TYPE_\|IO_TYPE_MODULE\)/ {s/`//g; s/(g_//g; s/())//g}' \
@@ -156,9 +190,15 @@ gio-wrapper CC='cc':
     ar rs lib/{{ os() }}/{{ arch() }}/libgio-wrapper.a lib/{{ os() }}/{{ arch() }}/gio-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/gio-wrapper.o
 
+[windows]
+gio-wrapper CC='clang':
+    clang -c -O2 '-Ishared/gvsbuild/extract/include/glib-2.0/' '-Ishared/gvsbuild/extract/include/glib-2.0/glib/' '-Ishared/gvsbuild/extract/lib/glib-2.0/include/' '-Ishared/gvsbuild/extract/include/glib-2.0/gmodule/' -o lib/{{ os() }}/{{ arch() }}/gio-wrapper.obj glib/gio/gio-wrapper.c
+    lib /out:lib\{{ os() }}\{{ arch() }}\gio-wrapper.lib lib\{{ os() }}\{{ arch() }}\gio-wrapper.obj
+    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\gio-wrapper.obj
+
 girepository:
     {{ RUNIC }} glib/girepository/rune.yml
-    sed glib/girepository/girepository.odin -i \
+    sed glib/girepository/girepository*.odin -i \
         -e '/^\(TYPE_\|[A-Z]\+_ERROR\|\)/ {s/`//g; s/(gi_//g; s/())//g}' \
         -e 's/\(TYPE_TAG_N_TYPES :: \).*/\1int(TypeTag.UNICHAR) + 1/g' \
 [unix]
@@ -167,6 +207,12 @@ girepository-wrapper CC='cc':
     {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/glib/_build/girepository glib/girepository/girepository-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libgirepository-wrapper.a lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o
+
+[windows]
+girepository-wrapper CC='clang':
+    clang -c -O2 '-Ishared/gvsbuild/extract/include/glib-2.0/' '-Ishared/gvsbuild/extract/include/glib-2.0/glib/' '-Ishared/gvsbuild/extract/lib/glib-2.0/include/' -o lib\{{ os() }}\{{ arch() }}\girepository-wrapper.obj glib/girepository/girepository-wrapper.c
+    lib /out:lib\{{ os() }}\{{ arch() }}\girepository-wrapper.lib lib\{{ os() }}\{{ arch() }}\girepository-wrapper.obj
+    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\girepository-wrapper.obj
 
 gdk-pixbuf-setup:
     cd shared/gdk-pixbuf && meson setup \
@@ -192,6 +238,10 @@ gdk-pixbuf-wrapper CC='cc':
     {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build gdk-pixbuf/gdk-pixbuf-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libgdk-pixbuf-wrapper.a lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o
+
+[windows]
+gdk-pixbuf-wrapper CC='cl':
+    cl C:\file\that\does\not\exist.c
 
 cairo-setup:
     cd shared/cairo && meson setup \
@@ -240,6 +290,10 @@ pango-wrapper CC='cc':
     ar rs lib/{{ os() }}/{{ arch() }}/libpango-wrapper.a lib/{{ os() }}/{{ arch() }}/pango-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/pango-wrapper.o
 
+[windows]
+pango-wrapper CC='cl':
+    cl C:\file\that\does\not\exist.c
+
 pangocairo:
     {{ RUNIC }} pango/pangocairo/rune.yml
     sed pango/pangocairo/pangocairo.odin -i \
@@ -266,6 +320,10 @@ graphene-wrapper CC='cc':
     {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o -Ishared/graphene/_build/include graphene/graphene-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libgraphene-wrapper.a lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o
+
+[windows]
+graphene-wrapper CC='cl':
+    cl C:\file\that\does\not\exist.c
 
 gtk-setup:
   cd shared/gtk && meson setup \
@@ -310,6 +368,10 @@ gtk-wrapper CC='cc':
     ar rs lib/{{ os() }}/{{ arch() }}/libgtk-wrapper.a lib/{{ os() }}/{{ arch() }}/gtk-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/gtk-wrapper.o
 
+[windows]
+gtk-wrapper CC='cl':
+    cl C:\file\that\does\not\exist.c
+
 gtk-layer-shell:
     {{ RUNIC }} gtk/layer-shell/rune.yml
 
@@ -333,21 +395,36 @@ adwaita:
         -e '/^TYPE/ {s/`(//; s/())`//; s/ adw_/ /}' \
         -e '/^DURATION_INFINITE/ {s/`//g; s/([a-zA-Z0-9_]\+)//g}' \
 
+[unix]
 adwaita-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
     {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/adwaita-wrapper.o -Ishared/gtk -Ishared/glib -Ishared/glib/glib -Ishared/glib/gmodule -Ishared/glib/_build -Ishared/glib/_build/glib -Ishared/gtk/_build -Ishared/cairo/src -Ishared/cairo/_build/src -Ishared/pango -Ishared/pango/_build -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build -Ishared/graphene/include -Ishared/graphene/_build/include -Ishared/adwaita/_build/src -I/usr/include/harfbuzz adwaita/adwaita-wrapper.c
     ar rs lib/{{ os() }}/{{ arch() }}/libadwaita-wrapper.a lib/{{ os() }}/{{ arch() }}/adwaita-wrapper.o
     @rm lib/{{ os() }}/{{ arch() }}/adwaita-wrapper.o
 
+[windows]
+adwaita-wrapper CC='cl':
+    cl C:\file\that\does\not\exist.c
+
 adwaita-clean:
     rm -rf \
        shared/adwaita/_build
 
-example NAME='hello-glib' KIND='shared':
-    odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:/tmp/{{ NAME }} -define:GLIB_STATIC={{ if KIND == 'static' { 'true' } else { 'false' } }}
+TMP_DIR := if os() == 'windows' {
+    'C:\temp'
+} else {
+    '/tmp'
+}
+EXE_END := if os() == 'windows' {
+    '.exe'
+} else {
+    ''
+}
+example NAME='hello-glib' KIND='shared': (make-directory TMP_DIR)
+    odin build {{ 'examples' / NAME }} -debug -error-pos-style:unix -vet -out:{{ TMP_DIR / NAME + EXE_END }} -define:GLIB_STATIC={{ if KIND == 'static' { 'true' } else { 'false' } }}
 
-check PACKAGE:
-    odin check {{ PACKAGE }} -error-pos-style:unix -vet -no-entry-point
+check PACKAGE TARGET='':
+    odin check {{ PACKAGE }} -error-pos-style:unix -vet -no-entry-point {{ if TARGET == '' { '' } else { '-target:' + TARGET } }}
 
 test PACKAGE TEST_NAMES='':
     odin test {{ PACKAGE }} -error-pos-style:unix -vet -warnings-as-errors -debug -out:/tmp/odin-gtk-test {{ if TEST_NAMES == '' { '' } else { '-define:ODIN_TEST_NAMES=' + TEST_NAMES } }} -define:ODIN_TEST_FANCY=false -define:ODIN_TEST_THREADS=1
@@ -382,6 +459,27 @@ download-and-extract-gvsbuild GVSBUILD_RELEASE:
         touch $VERSION_FILE
     fi
 
+[windows]
+download-and-extract-gvsbuild GVSBUILD_RELEASE:
+    #! pwsh.exe
+    Set-PSDebug -Trace 1
+    $ErrorActionPreference = "Stop"
+    
+    $VERSION_FILE = "shared/gvsbuild/extract/VERSION_{{ GVSBUILD_RELEASE }}"
+    $ZIP_FILE = "shared/gvsbuild/{{ GVSBUILD_RELEASE }}.zip"
+    
+    if (!(Test-Path $VERSION_FILE)) {
+        Remove-Item -Recurse -Force "shared/gvsbuild/extract" -ErrorAction SilentlyContinue
+        New-Item -ItemType Directory -Path "shared/gvsbuild/extract" -Force | Out-Null
+    
+        if (!(Test-Path $ZIP_FILE)) {
+            Invoke-WebRequest -Uri "https://github.com/wingtk/gvsbuild/releases/download/{{ GVSBUILD_RELEASE }}/GTK4_Gvsbuild_{{ GVSBUILD_RELEASE }}_x64.zip" -OutFile $ZIP_FILE
+        }
+    
+        Expand-Archive -Path $ZIP_FILE -DestinationPath "shared/gvsbuild/extract/" -Force
+        New-Item -ItemType File -Path $VERSION_FILE -Force | Out-Null
+    }
+
 [unix]
 update-windows-libs GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (download-and-extract-gvsbuild GVSBUILD_RELEASE)
     #! /bin/sh
@@ -390,6 +488,18 @@ update-windows-libs GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (download-and-ext
     mkdir -p lib/windows/x86_64
 
     cp -v $('find' 'shared/gvsbuild/extract/lib' '-type' 'f' '-name' '*.lib' '!' '-name' '*mm*' '!' '-name' '*.cp*') lib/windows/x86_64/
+
+[windows]
+update-windows-libs GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (download-and-extract-gvsbuild GVSBUILD_RELEASE)
+    #! pwsh.exe
+    Set-PSDebug -Trace 1
+    $ErrorActionPreference = "Stop"
+    
+    New-Item -ItemType Directory -Path "lib/windows/x86_64" -Force | Out-Null
+    
+    Get-ChildItem -Path "shared/gvsbuild/extract/lib" -Filter "*.lib" -File |
+        Where-Object { $_.Name -notmatch "mm" -and $_.Name -notmatch "\.cp" } |
+        ForEach-Object { Copy-Item -Path $_.FullName -Destination "lib/windows/x86_64/" -Verbose }
 
 [unix]
 install-windows-runtime BIN_DIR GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (download-and-extract-gvsbuild GVSBUILD_RELEASE)
@@ -409,17 +519,65 @@ install-windows-runtime BIN_DIR GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (down
     do
         for share_dir in $('find' 'shared/gvsbuild/extract/'$other_folder '-type' 'd' '!' '-name' '__pycache__')
         do
-            mkdir -vp "$share_dir" >> $log_file
+            rel_share_dir=$(realpath -s --relative-to=shared/gvsbuild/extract/ $share_dir)
+            mkdir -vp "{{ BIN_DIR }}/$rel_share_dir" >> $log_file
         done
         for share_file in $('find' 'shared/gvsbuild/extract/'$other_folder '-type' 'f' '!' '-wholename' '*/__pycache__/*')
         do
-            cp -v $share_file "{{ BIN_DIR / 'share' }}" >> $log_file
+            rel_share_file=$(realpath -s --relative-to=shared/gvsbuild/extract/ $share_file)
+            cp -v $share_file "{{ BIN_DIR }}/$rel_share_file" >> $log_file
         done
     done
 
     /bin/cat $log_file
     rm $log_file
 
+[windows]
+install-windows-runtime BIN_DIR GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (download-and-extract-gvsbuild GVSBUILD_RELEASE)
+    #! pwsh.exe
+    $ErrorActionPreference = "Stop"
+    
+    New-Item -ItemType Directory -Path "{{ BIN_DIR }}" -Force | Out-Null
+    New-Item -ItemType Directory -Path "{{ BIN_DIR }}/share" -Force | Out-Null
+    New-Item -ItemType Directory -Path "{{ BIN_DIR }}/etc" -Force | Out-Null
+    New-Item -ItemType Directory -Path "C:\temp" -Force | Out-Null
+    
+    # Copy DLL files, excluding ones containing "mm"
+    Get-ChildItem -Path "shared/gvsbuild/extract/bin" -Filter "*.dll" -File |
+        Where-Object { $_.Name -notmatch "mm" } |
+        ForEach-Object {
+            Copy-Item -Path $_.FullName -Destination "{{ BIN_DIR }}" -Verbose | Out-Null
+        }
+    
+    # Process 'share' and 'etc' directories
+    foreach ($other_folder in "share", "etc") {
+        # Create directories excluding "__pycache__"
+        Get-ChildItem -Path "shared/gvsbuild/extract/$other_folder" -Directory -Recurse |
+            Where-Object { $_.Name -ne "__pycache__" } |
+            ForEach-Object {
+                $ShareDir = $_.FullName;
+                $BinShareDir = Resolve-Path -Path $ShareDir -RelativeBasePath "shared/gvsbuild/extract/" -Relative | Join-Path -Path "{{ BIN_DIR }}" -ChildPath { $_ };
+                New-Item -ItemType Directory -Path $BinShareDir -Force | Out-Null
+            }
+    
+        # Copy files excluding those inside "__pycache__"
+        Get-ChildItem -Path "shared/gvsbuild/extract/$other_folder" -File -Recurse |
+            Where-Object { $_.FullName -notmatch "__pycache__" } |
+            ForEach-Object {
+                $ShareFile = $_.FullName;
+                $BinShareDir = Resolve-Path -Path $ShareFile -RelativeBasePath "shared/gvsbuild/extract/" -Relative | Split-Path -Path { $_ } -Parent | Join-Path -Path "{{ BIN_DIR }}" -ChildPath { $_ };
+                Copy-Item -Path $ShareFile -Destination $BinShareDir -Verbose | Out-Null
+            }
+    }
+    
 [unix]
 clean-windows-gvsbuild:
     rm -r shared/gvsbuild
+
+[unix]
+make-directory DIR:
+    @mkdir -p "{{ DIR }}"
+
+[windows]
+make-directory DIR:
+  @New-Item -Path "{{ DIR }}" -ItemType Directory -Force | Out-Null

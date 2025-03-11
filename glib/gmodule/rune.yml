@@ -2,22 +2,36 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+  - Windows x86_64
 from:
   language: c
   shared.linux: 'libgmodule-2.0.so'
+  shared.windows.x86_64: '../../lib/windows/x86_64/gmodule-2.0.lib'
   static.linux.arm64: '../../lib/linux/aarch64/libgmodule-2.0.a'
   static.linux.x86_64: '../../lib/linux/x86_64/libgmodule-2.0.a'
   headers: ../../shared/glib/gmodule/gmodule.h
+  headers.windows.x86_64: ../../shared/gvsbuild/extract/include/glib-2.0/gmodule.h
   includedirs:
     - ../../stdinc/
     - ../../shared/glib/glib/
     - ../../shared/glib/
     - ../../shared/glib/_build/glib
     - ../../shared/glib/_build/
+  includedirs.windows.x86_64:
+    - ../../stdinc/windows/
+    - ../../shared/gvsbuild/extract/include/
+    - ../../shared/gvsbuild/extract/include/glib-2.0/
+    - ../../shared/gvsbuild/extract/lib/glib-2.0/include/
   extern:
     - '../../stdinc/*'
+    - '../../stdinc/windows/*'
     - '../../shared/glib/glib/*'
     - '../../shared/glib/_build/glib/*'
+    - '../../shared/gvsbuild/extract/include/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/glib/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*'
+    - '../../shared/gvsbuild/extract/lib/glib-2.0/include/*'
   ignore:
     constants:
       - 'G_MODULE_*'
@@ -38,6 +52,10 @@ to:
     sources:
       '../../shared/glib/glib/*': 'glib ..'
       '../../shared/glib/_build/glib/*': 'glib ..'
+      '../../shared/gvsbuild/extract/include/glib-2.0/*': 'glib ..'
+      '../../shared/gvsbuild/extract/include/glib-2.0/glib/*': 'glib ..'
+      '../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*': 'glib ..'
+      '../../shared/gvsbuild/extract/lib/glib-2.0/include/*': 'glib ..'
     trim_prefix: true
   static_switch: 'GLIB_STATIC'
   add_libs.static.linux:
