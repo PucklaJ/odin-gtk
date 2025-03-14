@@ -2,6 +2,7 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+  - Windows x86_64
 wrapper:
   language: c
   in_headers: ../shared/pango/pango/pango.h
@@ -12,9 +13,13 @@ wrapper:
 from:
   language: c
   shared.linux: 'libpango-1.0.so'
+  shared.windows.x86_64: '../lib/windows/x86_64/pango-1.0.lib'
   static.linux.arm64: '../lib/linux/aarch64/libpango-1.0.a'
   static.linux.x86_64: '../lib/linux/x86_64/libpango-1.0.a'
   headers: ../shared/pango/pango/pango.h
+  headers.windows.x86_64:
+    - ../shared/gvsbuild/extract/include/pango-1.0/pango/pango.h
+    - pango-wrapper.h
   includedirs:
     - ../stdinc/
     - ../shared/pango/
@@ -23,16 +28,28 @@ from:
     - ../shared/glib/glib/
     - ../shared/glib/_build/
     - ../shared/glib/_build/glib/
+  includedirs.windows.x86_64:
+    - ../stdinc/windows/
+    - ../shared/gvsbuild/extract/include/pango-1.0/
+    - ../shared/gvsbuild/extract/lib/pango-1.0/include/
+    - ../shared/gvsbuild/extract/include/glib-2.0/
+    - ../shared/gvsbuild/extract/lib/glib-2.0/include/
   load_all_includes: true
   extern:
     - '../stdinc/*'
     - '../stdinc/sys/*'
+    - '../stdinc/windows/*'
     - '../shared/glib/glib/*'
     - '../shared/glib/glib/deprecated/*'
     - '../shared/glib/_build/glib/*'
     - '../shared/glib/_build/gobject/*'
     - '../shared/glib/gobject/*'
-  ignore:
+    - '../shared/gvsbuild/extract/include/glib-2.0/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/glib/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*'
+    - '../shared/gvsbuild/extract/lib/glib-2.0/include/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/gobject/*'
+  ignore: &ignore_any
     constants:
       - '*_INIT'
       - '_PANGO*'
@@ -46,6 +63,13 @@ from:
       _PangoAttrSize: '#SInt8 #Attr Arr 24 #AttrEnd'
       _PangoGlyphVisAttr: '#SInt8 #Attr Arr 4 #AttrEnd'
       _PangoLayoutLine: '#SInt8 #Attr Arr 32 #AttrEnd'
+  # The windows headers are based on a newer version of pango
+  ignore.windows.x86_64:
+    functions:
+      - 'pango_font_description_set_features_static'
+      - 'pango_font_description_set_features'
+      - 'pango_font_description_get_features'
+    <<: *ignore_any
 
 to:
   language: odin
@@ -74,9 +98,16 @@ to:
   extern:
     sources:
       '../stdinc/stdio.h': 'core:c/libc'
+      '../stdinc/windows/stdio.h': 'core:c/libc'
       '../shared/glib/glib/*': '../glib'
       '../shared/glib/_build/glib/*': '../glib'
       '../shared/glib/gobject/*': 'gobj ../glib/gobject'
+      '../shared/gvsbuild/extract/include/glib-2.0/*': '../glib'
+      '../shared/gvsbuild/extract/include/glib-2.0/glib/*': '../glib'
+      '../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*': '../glib'
+      '../shared/gvsbuild/extract/lib/glib-2.0/include/*': '../glib'
+      '../shared/gvsbuild/extract/include/glib-2.0/gobject/*': 'gobj ../glib/gobject'
     trim_prefix: true
   add_libs.linux.arm64: ../lib/linux/aarch64/libpango-wrapper.a
   add_libs.linux.x86_64: ../lib/linux/x86_64/libpango-wrapper.a
+  add_libs.windows.x86_64: ../lib/linux/x86_64/pango-wrapper.lib

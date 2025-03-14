@@ -1,4 +1,4 @@
-#+build linux amd64, linux arm64
+#+build linux amd64, linux arm64, windows amd64
 package pangocairo
 
 import "../../cairo"
@@ -109,7 +109,7 @@ foreign pangocairo_runic {
 
 }
 
-when (ODIN_ARCH == .amd64) {
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 
 when #config(PANGOCAIRO_STATIC, false) {
     foreign import pangocairo_runic "../../lib/linux/x86_64/libpangocairo-1.0.a"
@@ -119,13 +119,19 @@ when #config(PANGOCAIRO_STATIC, false) {
 
 }
 
-when (ODIN_ARCH == .arm64) {
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(PANGOCAIRO_STATIC, false) {
     foreign import pangocairo_runic "../../lib/linux/aarch64/libpangocairo-1.0.a"
 } else {
     foreign import pangocairo_runic "system:pangocairo-1.0"
 }
+
+}
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+
+foreign import pangocairo_runic "../../lib/windows/x86_64/pangocairo-1.0.lib"
 
 }
 

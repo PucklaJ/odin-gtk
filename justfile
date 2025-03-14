@@ -291,8 +291,10 @@ pango-wrapper CC='cc':
     @rm lib/{{ os() }}/{{ arch() }}/pango-wrapper.o
 
 [windows]
-pango-wrapper CC='cl':
-    cl C:\file\that\does\not\exist.c
+pango-wrapper CC='clang':
+    clang -c -O2 '-Ishared/gvsbuild/extract/include/pango-1.0' '-Ishared/gvsbuild/extract/include/pango-1.0/pango' '-Ishared/gvsbuild/extract/include/glib-2.0' '-Ishared/gvsbuild/extract/include/glib-2.0/glib' '-Ishared/gvsbuild/extract/lib/glib-2.0/include' '-Ishared/gvsbuild/extract/include/harfbuzz' -o lib/{{ os() }}/{{ arch() }}/pango-wrapper.obj pango/pango-wrapper.c
+    lib /out:lib\{{ os() }}\{{ arch() }}\pango-wrapper.lib lib\{{ os() }}\{{ arch() }}\pango-wrapper.obj
+    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\pango-wrapper.obj
 
 pangocairo:
     {{ RUNIC }} pango/pangocairo/rune.yml

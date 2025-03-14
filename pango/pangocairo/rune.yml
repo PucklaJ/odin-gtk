@@ -2,12 +2,15 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+  - Windows x86_64
 from:
   language: c
   shared.linux: 'libpangocairo-1.0.so'
+  shared.windows.x86_64: '../../lib/windows/x86_64/pangocairo-1.0.lib'
   static.linux.arm64: '../../lib/linux/aarch64/libpangocairo-1.0.a'
   static.linux.x86_64: '../../lib/linux/x86_64/libpangocairo-1.0.a'
   headers: ../../shared/pango/pango/pangocairo.h
+  headers.windows.x86_64: ../../shared/gvsbuild/extract/include/pango-1.0/pango/pangocairo.h
   includedirs:
     - ../../stdinc/
     - ../../shared/pango/
@@ -18,8 +21,16 @@ from:
     - ../../shared/glib/_build/glib/
     - ../../shared/cairo/src/
     - ../../shared/cairo/_build/src
+  includedirs.windows.x86_64:
+    - ../../stdinc/windows/
+    - ../../shared/gvsbuild/extract/include/pango-1.0/
+    - ../../shared/gvsbuild/extract/lib/pango-1.0/include/
+    - ../../shared/gvsbuild/extract/include/glib-2.0/
+    - ../../shared/gvsbuild/extract/lib/glib-2.0/include/
+    - ../../shared/gvsbuild/extract/include/cairo/
   extern:
     - '../../stdinc/sys/*'
+    - '../stdinc/windows/*'
     - '../../shared/glib/glib/*'
     - '../../shared/glib/glib/deprecated/*'
     - '../../shared/glib/_build/glib/*'
@@ -28,6 +39,13 @@ from:
     - '../../shared/pango/pango/*'
     - '../../shared/cairo/src/*'
     - '../../shared/cairo/_build/src/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/glib/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*'
+    - '../../shared/gvsbuild/extract/lib/glib-2.0/include/*'
+    - '../../shared/gvsbuild/extract/include/glib-2.0/gobject/*'
+    - '../../shared/gvsbuild/extract/include/pango-1.0/pango/*'
+    - '../../shared/gvsbuild/extract/include/cairo/*'
 to:
   language: odin
   package: pangocairo
@@ -50,11 +68,19 @@ to:
   extern:
     sources:
       '../../shared/glib/glib/*': '../../glib'
+      '../../stdinc/windows/stdio.h': 'core:c/libc'
       '../../shared/glib/_build/glib/*': '../../glib'
       '../../shared/glib/gobject/*': 'gobj ../../glib/gobject'
       '../../shared/pango/pango/*': 'pango ..'
       '../../shared/cairo/src/*': '../../cairo'
       '../../shared/cairo/_build/src/*': '../../cairo'
+      '../../shared/gvsbuild/extract/include/glib-2.0/*': '../glib'
+      '../../shared/gvsbuild/extract/include/glib-2.0/glib/*': '../glib'
+      '../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*': '../glib'
+      '../../shared/gvsbuild/extract/lib/glib-2.0/include/*': '../glib'
+      '../../shared/gvsbuild/extract/include/glib-2.0/gobject/*': 'gobj ../glib/gobject'
+      '../../shared/gvsbuild/extract/include/pango-1.0/pango/*': 'pango ..'
+      '../../shared/gvsbuild/extract/include/cairo/*': '../cairo'
     trim_prefix: true
     remaps:
       't': 'context_t'
