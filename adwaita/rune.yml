@@ -2,6 +2,7 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+  - Windows x86_64
 wrapper:
   language: c
   in_headers: ../shared/adwaita/src/adwaita.h
@@ -12,9 +13,13 @@ wrapper:
 from:
   language: c
   shared.linux: 'libadwaita-1.so'
+  shared.windows.x86_64: '../lib/windows/x86_64/adwaita-1.lib'
   static.linux.arm64: '../lib/linux/aarch64/libadwaita.a'
   static.linux.x86_64: '../lib/linux/x86_64/libadwaita.a'
   headers: ../shared/adwaita/src/adwaita.h
+  headers.windows.x86_64:
+    - ../shared/gvsbuild/extract/include/libadwaita-1/adwaita.h
+    - adwaita-wrapper.h
   includedirs:
     - ../stdinc/
     - ../shared/gtk/
@@ -33,6 +38,19 @@ from:
     - ../shared/graphene/include/
     - ../shared/graphene/_build/include/
     - ../shared/adwaita/_build/src/
+  includedirs.windows.x86_64:
+    - ../stdinc/windows/
+    - ../shared/gvsbuild/extract/include/libadwaita-1/
+    - ../shared/gvsbuild/extract/include/gtk-4.0/
+    - ../shared/gvsbuild/extract/include/glib-2.0/
+    - ../shared/gvsbuild/extract/include/glib-2.0/glib/
+    - ../shared/gvsbuild/extract/include/glib-2.0/gmodule/
+    - ../shared/gvsbuild/extract/lib/glib-2.0/include/
+    - ../shared/gvsbuild/extract/include/cairo/
+    - ../shared/gvsbuild/extract/include/pango-1.0/
+    - ../shared/gvsbuild/extract/include/gdk-pixbuf-2.0/
+    - ../shared/gvsbuild/extract/include/graphene-1.0/
+    - ../shared/gvsbuild/extract/lib/graphene-1.0/include/
   defines:
     GTK_COMPILATION: 1
     GLIB_COMPILATION: 1
@@ -40,6 +58,7 @@ from:
   extern:
     - '../stdinc/*'
     - '../stdinc/sys/*'
+    - '../stdinc/windows/*'
     - '../shared/glib/glib/*'
     - '../shared/glib/glib/deprecated/*'
     - '../shared/glib/_build/glib/*'
@@ -88,6 +107,44 @@ from:
     - '../shared/gtk/gsk/broadway/*'
     - '../shared/gtk/gsk/gl/*'
     - '../shared/gtk/gsk/gpu/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/glib/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*'
+    - '../shared/gvsbuild/extract/lib/glib-2.0/include/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/gobject/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/gmodule/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/gio/*'
+    - '../shared/gvsbuild/extract/include/cairo/*'
+    - '../shared/gvsbuild/extract/include/pango-1.0/pango/*'
+    - '../shared/gvsbuild/extract/include/gdk-pixbuf-2.0/gdk-pixbuf/*'
+    - '../shared/gvsbuild/extract/include/graphene-1.0/*'
+    - '../shared/gvsbuild/extract/lib/graphene-1.0/include/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/a11y/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/compose/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/css/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/deprecated/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/emoji/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/icons/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/inspector/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/print/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/roaring/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/theme/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/timsort/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gtk/ui/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gdk/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gdk/broadway/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gdk/deprecated/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gdk/loaders/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gdk/macos/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gdk/version/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gdk/wayland/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gdk/win32/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gdk/x11/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gsk/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gsk/broadway/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gsk/gl/*'
+    - '../shared/gvsbuild/extract/include/gtk-4.0/gsk/gpu/*'
   ignore:
     constants:
       - 'GDK_*'
@@ -179,16 +236,52 @@ to:
       '../shared/gtk/gsk/gpu/*': '../gtk'
       '../shared/gtk/_build/gdk/*': '../gtk'
       '../shared/gtk/_build/gsk/*': '../gtk'
+      '../shared/gvsbuild/extract/include/glib-2.0/*': '../glib'
+      '../shared/gvsbuild/extract/include/glib-2.0/glib/*': '../glib'
+      '../shared/gvsbuild/extract/lib/glib-2.0/include/*': '../glib'
+      '../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*': '../glib'
+      '../shared/gvsbuild/extract/include/glib-2.0/gio/*': '../glib/gio'
+      '../shared/gvsbuild/extract/include/glib-2.0/gobject/*': 'gobj ../glib/gobject'
+      '../shared/gvsbuild/extract/include/cairo/*': '../glib'
+      '../shared/gvsbuild/extract/include/pango-1.0/pango/*': '../pango'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/a11y/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/compose/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/css/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/deprecated/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/emoji/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/icons/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/inspector/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/print/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/roaring/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/theme/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/timsort/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gtk/ui/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gdk/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gdk/broadway/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gdk/deprecated/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gdk/loaders/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gdk/macos/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gdk/version/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gdk/wayland/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gdk/win32/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gdk/x11/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gsk/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gsk/broadway/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gsk/gl/*': '../gtk'
+      '../shared/gvsbuild/extract/include/gtk-4.0/gsk/gpu/*': '../gtk'
     trim_prefix: true
-  add_libs.shared.linux.arm64: 
+  add_libs.shared.linux.arm64:
     - libglib-2.0.so
     - ../lib/linux/aarch64/libadwaita-wrapper.a
   add_libs.shared.linux.x86_64:
     - libglib-2.0.so
     - ../lib/linux/x86_64/libadwaita-wrapper.a
-  add_libs.static.linux.arm64: 
+  add_libs.static.linux.arm64:
     - ../lib/linux/aarch64/libglib-2.0.a
     - ../lib/linux/aarch64/libadwaita-wrapper.a
   add_libs.static.linux.x86_64:
     - ../lib/linux/x86_64/libglib-2.0.a
     - ../lib/linux/x86_64/libadwaita-wrapper.a
+  add_libs.windows.x86_64:
+    - ../lib/windows/x86_64/adwaita-wrapper.lib

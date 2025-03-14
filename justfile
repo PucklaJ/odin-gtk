@@ -413,8 +413,10 @@ adwaita-wrapper CC='cc':
     @rm lib/{{ os() }}/{{ arch() }}/adwaita-wrapper.o
 
 [windows]
-adwaita-wrapper CC='cl':
-    cl C:\file\that\does\not\exist.c
+adwaita-wrapper CC='clang':
+    clang -c -O2 '-Ishared/gvsbuild/extract/include/gtk-4.0' '-Ishared/gvsbuild/extract/include/glib-2.0' '-Ishared/gvsbuild/extract/include/glib-2.0/glib' '-Ishared/gvsbuild/extract/include/glib-2.0/gmodule' '-Ishared/gvsbuild/extract/lib/glib-2.0/include' '-Ishared/gvsbuild/extract/include/cairo' '-Ishared/gvsbuild/extract/include/pango-1.0' '-Ishared/gvsbuild/extract/include/gdk-pixbuf-2.0' '-Ishared/gvsbuild/extract/include/graphene-1.0' '-Ishared/gvsbuild/extract/lib/graphene-1.0/include' '-Ishared/gvsbuild/extract/include/libadwaita-1' '-Ishared/gvsbuild/extract/include/harfbuzz' -o lib/{{ os() }}/{{ arch() }}/adwaita-wrapper.obj adwaita/adwaita-wrapper.c
+    lib /out:lib\{{ os() }}\{{ arch() }}\adwaita-wrapper.lib lib\{{ os() }}\{{ arch() }}\adwaita-wrapper.obj
+    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\adwaita-wrapper.obj
 
 adwaita-clean:
     rm -rf \
