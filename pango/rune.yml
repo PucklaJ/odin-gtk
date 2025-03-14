@@ -110,4 +110,4 @@ to:
     trim_prefix: true
   add_libs.linux.arm64: ../lib/linux/aarch64/libpango-wrapper.a
   add_libs.linux.x86_64: ../lib/linux/x86_64/libpango-wrapper.a
-  add_libs.windows.x86_64: ../lib/linux/x86_64/pango-wrapper.lib
+  add_libs.windows.x86_64: ../lib/windows/x86_64/pango-wrapper.lib

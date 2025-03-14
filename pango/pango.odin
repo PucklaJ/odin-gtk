@@ -2320,7 +2320,7 @@ when #config(PANGO_STATIC, false) {
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
-    foreign import pango_runic { "../lib/windows/x86_64/pango-1.0.lib", "../lib/linux/x86_64/pango-wrapper.lib" }
+    foreign import pango_runic { "../lib/windows/x86_64/pango-1.0.lib", "../lib/windows/x86_64/pango-wrapper.lib" }
 } 
 
 }
