@@ -2,6 +2,7 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+  - Windows x86_64
 wrapper:
   language: c
   in_headers: ../shared/graphene/include/graphene.h
@@ -12,11 +13,23 @@ wrapper:
 from:
   language: c
   shared.linux: 'libgraphene-1.0.so'
+  shared.windows.x86_64: '../lib/windows/x86_64/graphene-1.0.lib'
   static.linux.arm64: '../lib/linux/aarch64/libgraphene-1.0.a'
   static.linux.x86_64: '../lib/linux/x86_64/libgraphene-1.0.a'
   headers: ../shared/graphene/include/graphene.h
+  headers.windows.x86_64:
+    - ../shared/gvsbuild/extract/include/graphene-1.0/graphene.h
+    - graphene-wrapper.h
   includedirs:
     - ../shared/graphene/_build/include/
+  includedirs.windows.x86_64:
+    - ../stdinc/windows/
+    - ../shared/gvsbuild/extract/include/graphene-1.0/
+    - ../shared/gvsbuild/extract/lib/graphene-1.0/include/
+  extern:
+    - '../stdinc/windows/*'
+  defines.windows.x86_64:
+    '__GNUC__': 1
   load_all_includes: true
   ignore:
     constants:
@@ -27,6 +40,9 @@ from:
       - '_GRAPHENE*'
       - 'GRAPHENE_ALIGN16'
       - '*_INIT_ZERO'
+  overwrite:
+    types:
+      'graphene_simd4f_t': '#Struct x #Float32 y #Float32 z #Float32 w #Float32'
 to:
   language: odin
   package: graphene
@@ -39,5 +55,9 @@ to:
   trim_suffix:
     functions:
       - '_wrapper'
+  extern:
+    sources:
+      '../stdinc/windows/*': 'core:c/libc'
   add_libs.linux.arm64: ../lib/linux/aarch64/libgraphene-wrapper.a
   add_libs.linux.x86_64: ../lib/linux/x86_64/libgraphene-wrapper.a
+  add_libs.windows.x86_64: ../lib/windows/x86_64/graphene-wrapper.lib

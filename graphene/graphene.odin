@@ -1,7 +1,6 @@
-#+build linux amd64, linux arm64
+#+build linux amd64, linux arm64, windows amd64
 package graphene
 
-SIMD_S :: "scalar"
 PI :: 3.1415926535897932384626434
 PI_2 :: 1.5707963267948966192313217
 VEC2_LEN :: 2
@@ -104,7 +103,6 @@ _graphene_ray_t :: struct {
     __graphene_private_direction: vec3_t,
 }
 ray_t :: _graphene_ray_t
-ray_intersection_kind_t :: enum u32 {NONE = 0, ENTER = 1, LEAVE = 2 }
 
 @(default_calling_convention = "c")
 foreign graphene_runic {
@@ -1547,7 +1545,31 @@ foreign graphene_runic {
 
 }
 
-when (ODIN_ARCH == .amd64) {
+when (ODIN_OS == .Linux) {
+
+SIMD_S :: "scalar"
+
+ray_intersection_kind_t :: enum u32 {NONE = 0, ENTER = 1, LEAVE = 2 }
+
+}
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+
+SIMD_S :: "sse"
+
+simd4f_union_t :: struct #raw_union {
+    s: simd4f_t,
+    f: [4]f32,
+}
+simd4f_uif_t :: struct #raw_union {
+    ui: [4]u32,
+    f: [4]f32,
+}
+ray_intersection_kind_t :: enum i32 {NONE = 0, ENTER = 1, LEAVE = 2 }
+
+}
+
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 
 when #config(GRAPHENE_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
@@ -1561,7 +1583,7 @@ when #config(GRAPHENE_STATIC, false) {
 
 }
 
-when (ODIN_ARCH == .arm64) {
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(GRAPHENE_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
@@ -1572,6 +1594,14 @@ when #config(GRAPHENE_STATIC, false) {
     foreign import graphene_runic { "system:graphene-1.0", "../lib/linux/aarch64/libgraphene-wrapper.a" }
 } 
 }
+
+}
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+    foreign import graphene_runic { "../lib/windows/x86_64/graphene-1.0.lib", "../lib/windows/x86_64/graphene-wrapper.lib" }
+} 
 
 }
 

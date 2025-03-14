@@ -1,4 +1,4 @@
-set windows-shell := ['pwsh.exe']
+set windows-shell := ['powershell.exe']
 
 default: setup wrapper
 
@@ -303,7 +303,7 @@ graphene-setup:
     cd shared/graphene && meson setup \
        -Dsse2=false \
        -Darm_neon=false \
-       -Dcc_vector=false \
+       -Dgcc_vector=false \
        -Dintrospection=disabled \
        -Dtests=false \
        -Dinstalled_tests=false \
@@ -311,7 +311,7 @@ graphene-setup:
 
 graphene:
     {{ RUNIC }} graphene/rune.yml
-    sed graphene/graphene.odin -i \
+    sed graphene/graphene*.odin -i \
         -e '/^SIMD_S/ {s/`//g; s/\\//g}' \
         -e '/^PI/ {s/`//g; s/f//g}' \
 [unix]
@@ -322,8 +322,10 @@ graphene-wrapper CC='cc':
     @rm lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o
 
 [windows]
-graphene-wrapper CC='cl':
-    cl C:\file\that\does\not\exist.c
+graphene-wrapper CC='clang':
+    clang '-msse4.1' -c -O2 '-Ishared/gvsbuild/extract/lib/graphene-1.0/include/' '-Ishared/gvsbuild/extract/include/graphene-1.0/' -o lib/{{ os() }}/{{ arch() }}/graphene-wrapper.obj graphene/graphene-wrapper.c
+    lib /out:lib\{{ os() }}\{{ arch() }}\graphene-wrapper.lib lib\{{ os() }}\{{ arch() }}\graphene-wrapper.obj
+    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\graphene-wrapper.obj
 
 gtk-setup:
   cd shared/gtk && meson setup \
