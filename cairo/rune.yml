@@ -2,13 +2,17 @@ version: 0
 platforms:
   - Linux x86_64
   - Linux arm64
+  - Windows x86_64
 from:
   language: c
   shared.linux: 'libcairo.so'
+  shared.windows.x86_64: '../lib/windows/x86_64/cairo.lib'
   static.linux.arm64: '../lib/linux/aarch64/libcairo.a'
   static.linux.x86_64: '../lib/linux/x86_64/libcairo.a'
   headers: ../shared/cairo/src/cairo.h
+  headers.windows.x86_64: ../shared/gvsbuild/extract/include/cairo/cairo.h
   includedirs: ../shared/cairo/_build/src
+  includedirs.windows.x86_64: ../shared/gvsbuild/extract/include/cairo
   defines:
     CAIRO_COMPILATION: 1
     CAIRO_HAS_PNG_FUNCTIONS: 1
