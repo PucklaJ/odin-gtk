@@ -232,6 +232,7 @@ gdk-pixbuf:
         -e '{s/\^glib.char/cstring/g; s/buf: cstring/buf: ^glib.char/g; s/data: ^cstring/data: ^^glib.char/g; s/buffer: ^cstring/buffer: ^^glib.char/g}' \
         -e '/^TYPE_/ {s/`//g; s/(gdk_//g; s/())//g}' \
         -e '/^ERROR/ {s/`//g; s/gdk_//g; s/()//g}' \
+        -e '0,/^pixbuf_save/ {s/^pixbuf_save.*//}'
 [unix]
 gdk-pixbuf-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
@@ -240,8 +241,10 @@ gdk-pixbuf-wrapper CC='cc':
     @rm lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o
 
 [windows]
-gdk-pixbuf-wrapper CC='cl':
-    cl C:\file\that\does\not\exist.c
+gdk-pixbuf-wrapper CC='clang':
+    clang -c -O2 '-Ishared/gvsbuild/extract/include/glib-2.0' '-Ishared/gvsbuild/extract/include/glib-2.0/glib' '-Ishared/gvsbuild/extract/lib/glib-2.0/include' '-Ishared/gvsbuild/extract/include/glib-2.0/gmodule' '-Ishared/gvsbuild/extract/include/gdk-pixbuf-2.0' '-Ishared/gvsbuild/extract/include/gdk-pixbuf-2.0/gdk-pixbuf' -o lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.obj gdk-pixbuf/gdk-pixbuf-wrapper.c
+    lib /out:lib\{{ os() }}\{{ arch() }}\gdk-pixbuf-wrapper.lib lib\{{ os() }}\{{ arch() }}\gdk-pixbuf-wrapper.obj
+    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\gdk-pixbuf-wrapper.obj
 
 cairo-setup:
     cd shared/cairo && meson setup \
@@ -365,6 +368,7 @@ gtk:
         -e 's/^SnapshotClass :: _GtkSnapshotClass//g' \
         -e '0,/Snapshot_queueautoptr/{s/Snapshot_.*//g}' \
         -e '/^\(TYPE_\|[A-Z_]\+ERROR\|ACCESSIBLE_LIST\)/ {s/`(//; s/())`//; s/ gtk_/ /}' \
+        -e '/^\(BINARY_AGE\)\|\(INTERFACE_AGE\)/ {s/`//g}'
 [unix]
 gtk-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
@@ -373,8 +377,10 @@ gtk-wrapper CC='cc':
     @rm lib/{{ os() }}/{{ arch() }}/gtk-wrapper.o
 
 [windows]
-gtk-wrapper CC='cl':
-    cl C:\file\that\does\not\exist.c
+gtk-wrapper CC='clang':
+    clang -c -O2 '-DGTK_COMPILATION' '-Ishared/gvsbuild/extract/include/gtk-4.0' '-Ishared/gvsbuild/extract/lib/gtk-4.0/include' '-Ishared/gvsbuild/extract/include/glib-2.0' '-Ishared/gvsbuild/extract/include/glib-2.0/glib' '-Ishared/gvsbuild/extract/lib/glib-2.0/include' '-Ishared/gvsbuild/extract/include/glib-2.0/gmodule' '-Ishared/gvsbuild/extract/include/cairo' '-Ishared/gvsbuild/extract/include/pango-1.0' '-Ishared/gvsbuild/extract/include/gdk-pixbuf-2.0' '-Ishared/gvsbuild/extract/include/graphene-1.0' '-Ishared/gvsbuild/extract/lib/graphene-1.0/include' '-Ishared/gvsbuild/extract/include/harfbuzz' -o lib/{{ os() }}/{{ arch() }}/gtk-wrapper.obj gtk/gtk-wrapper.c
+    lib /out:lib\{{ os() }}\{{ arch() }}\gtk-wrapper.lib lib\{{ os() }}\{{ arch() }}\gtk-wrapper.obj
+    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\gtk-wrapper.obj
 
 gtk-layer-shell:
     {{ RUNIC }} gtk/layer-shell/rune.yml

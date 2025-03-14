@@ -1,4 +1,4 @@
-#+build linux amd64, linux arm64
+#+build linux amd64, linux arm64, windows amd64
 package gdkpixbuf
 
 import "../glib"
@@ -17,15 +17,10 @@ TYPE_PIXBUF_ERROR :: pixbuf_error_get_type
 TYPE_INTERP_TYPE :: interp_type_get_type 
 TYPE_PIXBUF_ROTATION :: pixbuf_rotation_get_type 
 
-PixbufAlphaMode :: enum u32 {BILEVEL = 0, FULL = 1 }
-Colorspace :: enum u32 {RGB = 0 }
 _GdkPixbuf :: struct #packed {}
 Pixbuf :: _GdkPixbuf
 PixbufDestroyNotify :: #type proc "c" (pixels: [^]glib.uchar, data: glib.pointer)
-PixbufError :: enum u32 {CORRUPT_IMAGE = 0, INSUFFICIENT_MEMORY = 1, BAD_OPTION = 2, UNKNOWN_TYPE = 3, UNSUPPORTED_OPERATION = 4, FAILED = 5, INCOMPLETE_ANIMATION = 6 }
 PixbufSaveFunc :: #type proc "c" (buf: ^glib.char, count: glib.size, error: ^^glib.Error, data: glib.pointer) -> glib.boolean
-InterpType :: enum u32 {NEAREST = 0, TILES = 1, BILINEAR = 2, HYPER = 3 }
-PixbufRotation :: enum u32 {NONE = 0, COUNTERCLOCKWISE = 90, UPSIDEDOWN = 180, CLOCKWISE = 270 }
 _GdkPixbufAnimation :: struct #packed {}
 PixbufAnimation :: _GdkPixbufAnimation
 _GdkPixbufAnimationIter :: struct #packed {}
@@ -76,18 +71,6 @@ PixbufSimpleAnim_queueautoptr :: ^glib.Queue
 
 @(default_calling_convention = "c")
 foreign gdkpixbuf_runic {
-    @(link_name = "gdk_pixbuf_major_version")
-    pixbuf_major_version: glib.uint_
-
-    @(link_name = "gdk_pixbuf_minor_version")
-    pixbuf_minor_version: glib.uint_
-
-    @(link_name = "gdk_pixbuf_micro_version")
-    pixbuf_micro_version: glib.uint_
-
-    @(link_name = "gdk_pixbuf_version")
-    pixbuf_version: cstring
-
     @(link_name = "gdk_pixbuf_error_quark")
     pixbuf_error_quark :: proc() -> glib.Quark ---
 
@@ -177,9 +160,6 @@ foreign gdkpixbuf_runic {
 
     @(link_name = "gdk_pixbuf_fill")
     pixbuf_fill :: proc(pixbuf: ^Pixbuf, pixel: glib.uint32) ---
-
-    @(link_name = "gdk_pixbuf_save")
-    pixbuf_save :: proc(pixbuf: ^Pixbuf, filename: cstring, type: cstring, error: ^^glib.Error, #c_vararg var_args: ..any) -> glib.boolean ---
 
     @(link_name = "gdk_pixbuf_savev")
     pixbuf_savev :: proc(pixbuf: ^Pixbuf, filename: cstring, type: cstring, option_keys: [^]cstring, option_values: [^]cstring, error: ^^glib.Error) -> glib.boolean ---
@@ -540,7 +520,72 @@ foreign gdkpixbuf_runic {
 
 }
 
-when (ODIN_ARCH == .amd64) {
+when (ODIN_OS == .Linux) {
+
+PixbufAlphaMode :: enum u32 {BILEVEL = 0, FULL = 1 }
+Colorspace :: enum u32 {RGB = 0 }
+PixbufError :: enum u32 {CORRUPT_IMAGE = 0, INSUFFICIENT_MEMORY = 1, BAD_OPTION = 2, UNKNOWN_TYPE = 3, UNSUPPORTED_OPERATION = 4, FAILED = 5, INCOMPLETE_ANIMATION = 6 }
+InterpType :: enum u32 {NEAREST = 0, TILES = 1, BILINEAR = 2, HYPER = 3 }
+PixbufRotation :: enum u32 {NONE = 0, COUNTERCLOCKWISE = 90, UPSIDEDOWN = 180, CLOCKWISE = 270 }
+
+@(default_calling_convention = "c")
+foreign gdkpixbuf_runic {
+    @(link_name = "gdk_pixbuf_major_version")
+    pixbuf_major_version: glib.uint_
+
+    @(link_name = "gdk_pixbuf_minor_version")
+    pixbuf_minor_version: glib.uint_
+
+    @(link_name = "gdk_pixbuf_micro_version")
+    pixbuf_micro_version: glib.uint_
+
+    @(link_name = "gdk_pixbuf_version")
+    pixbuf_version: cstring
+
+    @(link_name = "gdk_pixbuf_save")
+    pixbuf_save :: proc(pixbuf: ^Pixbuf, filename: cstring, type: cstring, error: ^^glib.Error, #c_vararg var_args: ..any) -> glib.boolean ---
+
+}
+
+}
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+
+PixbufAlphaMode :: enum i32 {BILEVEL = 0, FULL = 1 }
+Colorspace :: enum i32 {RGB = 0 }
+PixbufError :: enum i32 {CORRUPT_IMAGE = 0, INSUFFICIENT_MEMORY = 1, BAD_OPTION = 2, UNKNOWN_TYPE = 3, UNSUPPORTED_OPERATION = 4, FAILED = 5, INCOMPLETE_ANIMATION = 6 }
+InterpType :: enum i32 {NEAREST = 0, TILES = 1, BILINEAR = 2, HYPER = 3 }
+PixbufRotation :: enum i32 {NONE = 0, COUNTERCLOCKWISE = 90, UPSIDEDOWN = 180, CLOCKWISE = 270 }
+
+@(default_calling_convention = "c")
+foreign gdkpixbuf_runic {
+    @(link_name = "gdk_pixbuf_new_from_file_utf8")
+    pixbuf_new_from_file_utf8 :: proc(filename: cstring, error: ^^glib.Error) -> ^Pixbuf ---
+
+    @(link_name = "gdk_pixbuf_new_from_file_at_size_utf8")
+    pixbuf_new_from_file_at_size_utf8 :: proc(filename: cstring, width: i32, height: i32, error: ^^glib.Error) -> ^Pixbuf ---
+
+    @(link_name = "gdk_pixbuf_new_from_file_at_scale_utf8")
+    pixbuf_new_from_file_at_scale_utf8 :: proc(filename: cstring, width: i32, height: i32, preserve_aspect_ratio: glib.boolean, error: ^^glib.Error) -> ^Pixbuf ---
+
+    @(link_name = "gdk_pixbuf_save_utf8")
+    pixbuf_save_utf8 :: proc(pixbuf: ^Pixbuf, filename: cstring, type: cstring, error: ^^glib.Error, #c_vararg var_args: ..any) -> glib.boolean ---
+
+    @(link_name = "gdk_pixbuf_savev_utf8")
+    pixbuf_savev_utf8 :: proc(pixbuf: ^Pixbuf, filename: cstring, type: cstring, option_keys: [^]cstring, option_values: [^]cstring, error: ^^glib.Error) -> glib.boolean ---
+
+    @(link_name = "gdk_pixbuf_animation_new_from_file_utf8")
+    pixbuf_animation_new_from_file_utf8 :: proc(filename: cstring, error: ^^glib.Error) -> ^PixbufAnimation ---
+
+}
+
+
+
+pixbuf_save :: pixbuf_save_utf8
+
+}
+
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 
 when #config(GDKPIXBUF_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
@@ -554,7 +599,7 @@ when #config(GDKPIXBUF_STATIC, false) {
 
 }
 
-when (ODIN_ARCH == .arm64) {
+when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(GDKPIXBUF_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
@@ -565,6 +610,14 @@ when #config(GDKPIXBUF_STATIC, false) {
     foreign import gdkpixbuf_runic { "system:gdk_pixbuf-2.0", "../lib/linux/aarch64/libgdk-pixbuf-wrapper.a" }
 } 
 }
+
+}
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+
+when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
+    foreign import gdkpixbuf_runic { "../lib/windows/x86_64/gdk_pixbuf-2.0.lib", "../lib/windows/x86_64/gdk-pixbuf-wrapper.lib" }
+} 
 
 }
 

@@ -7,7 +7,10 @@ import "core:strconv"
 import "core:strings"
 
 main :: proc() {
-    glib.print("GdkPixbuf version: %s\n", gdk.pixbuf_version)
+    when ODIN_OS != .Windows {
+        // The windows binary does not export "gdk_pixbuf_version"
+        glib.print("GdkPixbuf version: %s\n", gdk.pixbuf_version)
+    }
 
     if len(os.args) != 4 {
         prog_name := strings.clone_to_cstring(os.args[0])
@@ -44,12 +47,7 @@ main :: proc() {
     width = i32(f64(width) * scale)
     height = i32(f64(height) * scale)
 
-    out_image := gdk.pixbuf_scale_simple(
-        in_image,
-        width,
-        height,
-        .BILINEAR,
-    )
+    out_image := gdk.pixbuf_scale_simple(in_image, width, height, .BILINEAR)
     if out_image == nil {
         glib.printerr("failed to scale the image\n")
         os.exit(1)
