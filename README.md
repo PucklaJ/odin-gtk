@@ -22,13 +22,14 @@ Odin Bindings to GTK4, libadwaita and associated libraries generated using [runi
 
 ## Supported Platforms
 
-| OS    | Arch          |
-| ----- | ------------- |
-| Linux | x86_64, arm64 |
+| OS      | Arch          |
+| -----   | ------------- |
+| Linux   | x86_64, arm64 |
+| Windows | x86_64        |
 
 You could get other UNIX-like systems to work if you put in some effort, but anything else but 64-Bit won't work, since there are specific workarounds used for 64-Bit.
 
-## Usage
+## Usage (Linux)
 
 The gtk package on different linux distributions:
 
@@ -88,3 +89,13 @@ Then execute:
 ```
 just setup && just wrapper
 ```
+
+## Usage (Windows)
+
+Binaries can be built without any further effort. The repository provides all the different library files (which have been provided by [gvsbuild](https://github.com/wingtk/gvsbuild)) by itself. But to actually run the applications, the dynamic libraries are necessary. They can be downloaded using the following just recipe:
+
+```
+just install-windows-runtime INSTALL_DIR
+```
+
+Provide a directory for `INSTALL_DIR` and all the dynamic library files of the entire gtk stack will be installed into it. If you are having trouble installing `just` on windows, you can install it using `winget install --id Casey.Just --exact` or by downloading the binary from [the releases page](https://github.com/casey/just/releases).
