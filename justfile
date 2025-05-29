@@ -2,7 +2,7 @@ set windows-shell := ['powershell.exe']
 
 default: setup wrapper
 
-setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup graphene-setup adwaita-setup
+setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup graphene-setup gtk-setup adwaita-setup
 
 bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell adwaita
 glib-all: glib gobject gmodule gio girepository
