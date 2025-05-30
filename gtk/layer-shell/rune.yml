@@ -39,6 +39,8 @@ from:
   ignore:
     types:
       - 'zwlr_layer_surface_v1'
+    constants:
+      - 'GTK4_LAYER_SHELL_EXPORT'
 to:
   language: odin
   package: gtk_layer_shell
