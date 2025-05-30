@@ -17,7 +17,7 @@ clean: glib-clean cairo-clean gtk-clean adwaita-clean
 check-all: (check 'glib') (check 'glib/gobject') (check 'glib/gmodule') (check 'glib/gio') (check 'glib/girepository') (check 'gdk-pixbuf') (check 'cairo') (check 'pango') (check 'pango/pangocairo') (check 'graphene') (check 'gtk') (check 'gtk/layer-shell') (check 'adwaita')
 
 RUNIC := 'runic'
-WINDOWS_GVSBUILD_RELEASE := '2025.2.0'
+WINDOWS_GVSBUILD_RELEASE := '2025.5.0'
 
 glib-setup:
     cd shared/glib && meson setup \
@@ -476,18 +476,18 @@ download-and-extract-gvsbuild GVSBUILD_RELEASE:
     #! pwsh.exe
     Set-PSDebug -Trace 1
     $ErrorActionPreference = "Stop"
-    
+
     $VERSION_FILE = "shared/gvsbuild/extract/VERSION_{{ GVSBUILD_RELEASE }}"
     $ZIP_FILE = "shared/gvsbuild/{{ GVSBUILD_RELEASE }}.zip"
-    
+
     if (!(Test-Path $VERSION_FILE)) {
         Remove-Item -Recurse -Force "shared/gvsbuild/extract" -ErrorAction SilentlyContinue
         New-Item -ItemType Directory -Path "shared/gvsbuild/extract" -Force | Out-Null
-    
+
         if (!(Test-Path $ZIP_FILE)) {
             Invoke-WebRequest -Uri "https://github.com/wingtk/gvsbuild/releases/download/{{ GVSBUILD_RELEASE }}/GTK4_Gvsbuild_{{ GVSBUILD_RELEASE }}_x64.zip" -OutFile $ZIP_FILE
         }
-    
+
         Expand-Archive -Path $ZIP_FILE -DestinationPath "shared/gvsbuild/extract/" -Force
         New-Item -ItemType File -Path $VERSION_FILE -Force | Out-Null
     }
@@ -506,9 +506,9 @@ update-windows-libs GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (download-and-ext
     #! pwsh.exe
     Set-PSDebug -Trace 1
     $ErrorActionPreference = "Stop"
-    
+
     New-Item -ItemType Directory -Path "lib/windows/x86_64" -Force | Out-Null
-    
+
     Get-ChildItem -Path "shared/gvsbuild/extract/lib" -Filter "*.lib" -File |
         Where-Object { $_.Name -notmatch "mm" -and $_.Name -notmatch "\.cp" } |
         ForEach-Object { Copy-Item -Path $_.FullName -Destination "lib/windows/x86_64/" -Verbose }
@@ -548,19 +548,19 @@ install-windows-runtime BIN_DIR GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (down
 install-windows-runtime BIN_DIR GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (download-and-extract-gvsbuild GVSBUILD_RELEASE)
     #! pwsh.exe
     $ErrorActionPreference = "Stop"
-    
+
     New-Item -ItemType Directory -Path "{{ BIN_DIR }}" -Force | Out-Null
     New-Item -ItemType Directory -Path "{{ BIN_DIR }}/share" -Force | Out-Null
     New-Item -ItemType Directory -Path "{{ BIN_DIR }}/etc" -Force | Out-Null
     New-Item -ItemType Directory -Path "C:\temp" -Force | Out-Null
-    
+
     # Copy DLL files, excluding ones containing "mm"
     Get-ChildItem -Path "shared/gvsbuild/extract/bin" -Filter "*.dll" -File |
         Where-Object { $_.Name -notmatch "mm" } |
         ForEach-Object {
             Copy-Item -Path $_.FullName -Destination "{{ BIN_DIR }}" -Verbose | Out-Null
         }
-    
+
     # Process 'share' and 'etc' directories
     foreach ($other_folder in "share", "etc") {
         # Create directories excluding "__pycache__"
@@ -571,7 +571,7 @@ install-windows-runtime BIN_DIR GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (down
                 $BinShareDir = Resolve-Path -Path $ShareDir -RelativeBasePath "shared/gvsbuild/extract/" -Relative | Join-Path -Path "{{ BIN_DIR }}" -ChildPath { $_ };
                 New-Item -ItemType Directory -Path $BinShareDir -Force | Out-Null
             }
-    
+
         # Copy files excluding those inside "__pycache__"
         Get-ChildItem -Path "shared/gvsbuild/extract/$other_folder" -File -Recurse |
             Where-Object { $_.FullName -notmatch "__pycache__" } |
@@ -581,7 +581,7 @@ install-windows-runtime BIN_DIR GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE: (down
                 Copy-Item -Path $ShareFile -Destination $BinShareDir -Verbose | Out-Null
             }
     }
-    
+
 [unix]
 clean-windows-gvsbuild:
     rm -r shared/gvsbuild
