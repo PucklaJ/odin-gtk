@@ -2238,7 +2238,7 @@ Style :: enum u32 {NORMAL = 0, OBLIQUE = 1, ITALIC = 2 }
 Variant :: enum u32 {NORMAL = 0, SMALL_CAPS = 1, ALL_SMALL_CAPS = 2, PETITE_CAPS = 3, ALL_PETITE_CAPS = 4, UNICASE = 5, TITLE_CAPS = 6 }
 Weight :: enum u32 {THIN = 100, ULTRALIGHT = 200, LIGHT = 300, SEMILIGHT = 350, BOOK = 380, NORMAL = 400, MEDIUM = 500, SEMIBOLD = 600, BOLD = 700, ULTRABOLD = 800, HEAVY = 900, ULTRAHEAVY = 1000 }
 Stretch :: enum u32 {ULTRA_CONDENSED = 0, EXTRA_CONDENSED = 1, CONDENSED = 2, SEMI_CONDENSED = 3, NORMAL = 4, SEMI_EXPANDED = 5, EXPANDED = 6, EXTRA_EXPANDED = 7, ULTRA_EXPANDED = 8 }
-FontMask :: enum u32 {FAMILY = 1, STYLE = 2, VARIANT = 4, WEIGHT = 8, STRETCH = 16, SIZE = 32, GRAVITY = 64, VARIATIONS = 128 }
+FontMask :: enum u32 {FAMILY = 1, STYLE = 2, VARIANT = 4, WEIGHT = 8, STRETCH = 16, SIZE = 32, GRAVITY = 64, VARIATIONS = 128, FEATURES = 256 }
 AttrType :: enum u32 {ATTR_INVALID = 0, ATTR_LANGUAGE = 1, ATTR_FAMILY = 2, ATTR_STYLE = 3, ATTR_WEIGHT = 4, ATTR_VARIANT = 5, ATTR_STRETCH = 6, ATTR_SIZE = 7, ATTR_FONT_DESC = 8, ATTR_FOREGROUND = 9, ATTR_BACKGROUND = 10, ATTR_UNDERLINE = 11, ATTR_STRIKETHROUGH = 12, ATTR_RISE = 13, ATTR_SHAPE = 14, ATTR_SCALE = 15, ATTR_FALLBACK = 16, ATTR_LETTER_SPACING = 17, ATTR_UNDERLINE_COLOR = 18, ATTR_STRIKETHROUGH_COLOR = 19, ATTR_ABSOLUTE_SIZE = 20, ATTR_GRAVITY = 21, ATTR_GRAVITY_HINT = 22, ATTR_FONT_FEATURES = 23, ATTR_FOREGROUND_ALPHA = 24, ATTR_BACKGROUND_ALPHA = 25, ATTR_ALLOW_BREAKS = 26, ATTR_SHOW = 27, ATTR_INSERT_HYPHENS = 28, ATTR_OVERLINE = 29, ATTR_OVERLINE_COLOR = 30, ATTR_LINE_HEIGHT = 31, ATTR_ABSOLUTE_LINE_HEIGHT = 32, ATTR_TEXT_TRANSFORM = 33, ATTR_WORD = 34, ATTR_SENTENCE = 35, ATTR_BASELINE_SHIFT = 36, ATTR_FONT_SCALE = 37 }
 Underline :: enum u32 {NONE = 0, SINGLE = 1, DOUBLE = 2, LOW = 3, ERROR = 4, SINGLE_LINE = 5, DOUBLE_LINE = 6, ERROR_LINE = 7 }
 Overline :: enum u32 {NONE = 0, SINGLE = 1 }
@@ -2249,12 +2249,25 @@ FontScale :: enum u32 {NONE = 0, SUPERSCRIPT = 1, SUBSCRIPT = 2, SMALL_CAPS = 3 
 ShapeFlags :: enum u32 {NONE = 0, ROUND_POSITIONS = 1 }
 TabAlign :: enum u32 {TAB_LEFT = 0, TAB_RIGHT = 1, TAB_CENTER = 2, TAB_DECIMAL = 3 }
 Alignment :: enum u32 {ALIGN_LEFT = 0, ALIGN_CENTER = 1, ALIGN_RIGHT = 2 }
-WrapMode :: enum u32 {WRAP_WORD = 0, WRAP_CHAR = 1, WRAP_WORD_CHAR = 2 }
+WrapMode :: enum u32 {WRAP_WORD = 0, WRAP_CHAR = 1, WRAP_WORD_CHAR = 2, WRAP_NONE = 3 }
 EllipsizeMode :: enum u32 {ELLIPSIZE_NONE = 0, ELLIPSIZE_START = 1, ELLIPSIZE_MIDDLE = 2, ELLIPSIZE_END = 3 }
 LayoutSerializeFlags :: enum u32 {DEFAULT = 0, CONTEXT = 1, OUTPUT = 2 }
 LayoutDeserializeError :: enum u32 {INVALID = 0, INVALID_VALUE = 1, MISSING_VALUE = 2 }
 LayoutDeserializeFlags :: enum u32 {DEFAULT = 0, CONTEXT = 1 }
 RenderPart :: enum u32 {FOREGROUND = 0, BACKGROUND = 1, UNDERLINE = 2, STRIKETHROUGH = 3, OVERLINE = 4 }
+
+@(default_calling_convention = "c")
+foreign pango_runic {
+    @(link_name = "pango_font_description_set_features_static")
+    font_description_set_features_static :: proc(desc: ^FontDescription, features: cstring) ---
+
+    @(link_name = "pango_font_description_set_features")
+    font_description_set_features :: proc(desc: ^FontDescription, features: cstring) ---
+
+    @(link_name = "pango_font_description_get_features")
+    font_description_get_features :: proc(desc: ^FontDescription) -> cstring ---
+
+}
 
 }
 

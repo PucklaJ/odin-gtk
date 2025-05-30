@@ -2,6 +2,7 @@
 
 #include "../../shared/glib/gio/gio.h"
 
+extern void g_clear_dbus_signal_subscription_wrapper(guint * subscription_id_pointer, GDBusConnection * connection);
 extern void glib_autoptr_clear_GDebugController_wrapper(GDebugController * _ptr);
 extern void glib_autoptr_cleanup_GDebugController_wrapper(GDebugController ** _ptr);
 extern void glib_autoptr_destroy_GDebugController_wrapper(void * _ptr);

@@ -383,6 +383,18 @@ foreign girepository_runic {
     @(link_name = "gi_callable_info_get_instance_ownership_transfer")
     callable_info_get_instance_ownership_transfer :: proc(info: ^CallableInfo) -> Transfer ---
 
+    @(link_name = "gi_callable_info_get_async_function")
+    callable_info_get_async_function :: proc(info: ^CallableInfo) -> ^CallableInfo ---
+
+    @(link_name = "gi_callable_info_get_sync_function")
+    callable_info_get_sync_function :: proc(info: ^CallableInfo) -> ^CallableInfo ---
+
+    @(link_name = "gi_callable_info_get_finish_function")
+    callable_info_get_finish_function :: proc(info: ^CallableInfo) -> ^CallableInfo ---
+
+    @(link_name = "gi_callable_info_is_async")
+    callable_info_is_async :: proc(info: ^CallableInfo) -> glib.boolean ---
+
     @(link_name = "gi_constant_info_get_type_info")
     constant_info_get_type_info :: proc(info: ^ConstantInfo) -> ^TypeInfo ---
 

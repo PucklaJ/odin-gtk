@@ -2224,6 +2224,7 @@ KEY_MonBrightnessDown :: 269025027
 KEY_KbdLightOnOff :: 269025028
 KEY_KbdBrightnessUp :: 269025029
 KEY_KbdBrightnessDown :: 269025030
+KEY_MonBrightnessCycle :: 269025031
 KEY_Standby :: 269025040
 KEY_AudioLowerVolume :: 269025041
 KEY_AudioMute :: 269025042
@@ -2379,6 +2380,8 @@ KEY_Keyboard :: 269025203
 KEY_WWAN :: 269025204
 KEY_RFKill :: 269025205
 KEY_AudioPreset :: 269025206
+KEY_RotationLockToggle :: 269025207
+KEY_FullScreen :: 269025208
 KEY_Switch_VT_1 :: 269024769
 KEY_Switch_VT_2 :: 269024770
 KEY_Switch_VT_3 :: 269024771
@@ -2397,6 +2400,164 @@ KEY_Next_VMode :: 269024802
 KEY_Prev_VMode :: 269024803
 KEY_LogWindowTree :: 269024804
 KEY_LogGrabInfo :: 269024805
+KEY_BrightnessAuto :: 268964084
+KEY_DisplayOff :: 268964085
+KEY_Info :: 268964198
+KEY_AspectRatio :: 268964215
+KEY_DVD :: 268964229
+KEY_Audio :: 268964232
+KEY_ChannelUp :: 268964242
+KEY_ChannelDown :: 268964243
+KEY_VideoPhone :: 268964256
+KEY_ZoomReset :: 268964260
+KEY_Editor :: 268964262
+KEY_GraphicsEditor :: 268964264
+KEY_Presentation :: 268964265
+KEY_Database :: 268964266
+KEY_Voicemail :: 268964268
+KEY_Addressbook :: 268964269
+KEY_DisplayToggle :: 268964271
+KEY_SpellCheck :: 268964272
+KEY_ContextMenu :: 268964278
+KEY_MediaRepeat :: 268964279
+KEY_10ChannelsUp :: 268964280
+KEY_10ChannelsDown :: 268964281
+KEY_Images :: 268964282
+KEY_NotificationCenter :: 268964284
+KEY_PickupPhone :: 268964285
+KEY_HangupPhone :: 268964286
+KEY_Fn :: 268964304
+KEY_Fn_Esc :: 268964305
+KEY_FnRightShift :: 268964325
+KEY_Numeric0 :: 268964352
+KEY_Numeric1 :: 268964353
+KEY_Numeric2 :: 268964354
+KEY_Numeric3 :: 268964355
+KEY_Numeric4 :: 268964356
+KEY_Numeric5 :: 268964357
+KEY_Numeric6 :: 268964358
+KEY_Numeric7 :: 268964359
+KEY_Numeric8 :: 268964360
+KEY_Numeric9 :: 268964361
+KEY_NumericStar :: 268964362
+KEY_NumericPound :: 268964363
+KEY_NumericA :: 268964364
+KEY_NumericB :: 268964365
+KEY_NumericC :: 268964366
+KEY_NumericD :: 268964367
+KEY_CameraFocus :: 268964368
+KEY_WPSButton :: 268964369
+KEY_CameraZoomIn :: 268964373
+KEY_CameraZoomOut :: 268964374
+KEY_CameraUp :: 268964375
+KEY_CameraDown :: 268964376
+KEY_CameraLeft :: 268964377
+KEY_CameraRight :: 268964378
+KEY_AttendantOn :: 268964379
+KEY_AttendantOff :: 268964380
+KEY_AttendantToggle :: 268964381
+KEY_LightsToggle :: 268964382
+KEY_ALSToggle :: 268964400
+KEY_RefreshRateToggle :: 268964402
+KEY_Buttonconfig :: 268964416
+KEY_Taskmanager :: 268964417
+KEY_Journal :: 268964418
+KEY_ControlPanel :: 268964419
+KEY_AppSelect :: 268964420
+KEY_Screensaver :: 268964421
+KEY_VoiceCommand :: 268964422
+KEY_Assistant :: 268964423
+KEY_EmojiPicker :: 268964425
+KEY_Dictate :: 268964426
+KEY_CameraAccessEnable :: 268964427
+KEY_CameraAccessDisable :: 268964428
+KEY_CameraAccessToggle :: 268964429
+KEY_Accessibility :: 268964430
+KEY_DoNotDisturb :: 268964431
+KEY_BrightnessMin :: 268964432
+KEY_BrightnessMax :: 268964433
+KEY_KbdInputAssistPrev :: 268964448
+KEY_KbdInputAssistNext :: 268964449
+KEY_KbdInputAssistPrevgroup :: 268964450
+KEY_KbdInputAssistNextgroup :: 268964451
+KEY_KbdInputAssistAccept :: 268964452
+KEY_KbdInputAssistCancel :: 268964453
+KEY_RightUp :: 268964454
+KEY_RightDown :: 268964455
+KEY_LeftUp :: 268964456
+KEY_LeftDown :: 268964457
+KEY_RootMenu :: 268964458
+KEY_MediaTopMenu :: 268964459
+KEY_Numeric11 :: 268964460
+KEY_Numeric12 :: 268964461
+KEY_AudioDesc :: 268964462
+KEY_3DMode :: 268964463
+KEY_NextFavorite :: 268964464
+KEY_StopRecord :: 268964465
+KEY_PauseRecord :: 268964466
+KEY_VOD :: 268964467
+KEY_Unmute :: 268964468
+KEY_FastReverse :: 268964469
+KEY_SlowReverse :: 268964470
+KEY_Data :: 268964471
+KEY_OnScreenKeyboard :: 268964472
+KEY_PrivacyScreenToggle :: 268964473
+KEY_SelectiveScreenshot :: 268964474
+KEY_NextElement :: 268964475
+KEY_PreviousElement :: 268964476
+KEY_AutopilotEngageToggle :: 268964477
+KEY_MarkWaypoint :: 268964478
+KEY_Sos :: 268964479
+KEY_NavChart :: 268964480
+KEY_FishingChart :: 268964481
+KEY_SingleRangeRadar :: 268964482
+KEY_DualRangeRadar :: 268964483
+KEY_RadarOverlay :: 268964484
+KEY_TraditionalSonar :: 268964485
+KEY_ClearvuSonar :: 268964486
+KEY_SidevuSonar :: 268964487
+KEY_NavInfo :: 268964488
+KEY_Macro1 :: 268964496
+KEY_Macro2 :: 268964497
+KEY_Macro3 :: 268964498
+KEY_Macro4 :: 268964499
+KEY_Macro5 :: 268964500
+KEY_Macro6 :: 268964501
+KEY_Macro7 :: 268964502
+KEY_Macro8 :: 268964503
+KEY_Macro9 :: 268964504
+KEY_Macro10 :: 268964505
+KEY_Macro11 :: 268964506
+KEY_Macro12 :: 268964507
+KEY_Macro13 :: 268964508
+KEY_Macro14 :: 268964509
+KEY_Macro15 :: 268964510
+KEY_Macro16 :: 268964511
+KEY_Macro17 :: 268964512
+KEY_Macro18 :: 268964513
+KEY_Macro19 :: 268964514
+KEY_Macro20 :: 268964515
+KEY_Macro21 :: 268964516
+KEY_Macro22 :: 268964517
+KEY_Macro23 :: 268964518
+KEY_Macro24 :: 268964519
+KEY_Macro25 :: 268964520
+KEY_Macro26 :: 268964521
+KEY_Macro27 :: 268964522
+KEY_Macro28 :: 268964523
+KEY_Macro29 :: 268964524
+KEY_Macro30 :: 268964525
+KEY_MacroRecordStart :: 268964528
+KEY_MacroRecordStop :: 268964529
+KEY_MacroPresetCycle :: 268964530
+KEY_MacroPreset1 :: 268964531
+KEY_MacroPreset2 :: 268964532
+KEY_MacroPreset3 :: 268964533
+KEY_KbdLcdMenu1 :: 268964536
+KEY_KbdLcdMenu2 :: 268964537
+KEY_KbdLcdMenu3 :: 268964538
+KEY_KbdLcdMenu4 :: 268964539
+KEY_KbdLcdMenu5 :: 268964540
 MEMORY_DEFAULT :: `GDK_MEMORY_B8G8R8A8_PREMULTIPLIED`
 TYPE_MEMORY_TEXTURE :: gdk_memory_texture_get_type 
 TYPE_MEMORY_TEXTURE_BUILDER :: gdk_memory_texture_builder_get_type 
@@ -2453,8 +2614,8 @@ TYPE_RENDERER :: gsk_renderer_get_type
 TYPE_STROKE :: gsk_stroke_get_type 
 TYPE_TRANSFORM :: gsk_transform_get_type 
 TYPE_CAIRO_RENDERER :: gsk_cairo_renderer_get_type 
-TYPE_GL_RENDERER :: gsk_gl_renderer_get_type
 TYPE_VULKAN_RENDERER :: gsk_vulkan_renderer_get_type 
+TYPE_GL_RENDERER :: gsk_gl_renderer_get_type
 TYPE_RENDER_NODE_TYPE :: gsk_render_node_type_get_type 
 TYPE_SCALING_FILTER :: gsk_scaling_filter_get_type 
 TYPE_BLEND_MODE :: gsk_blend_mode_get_type 
@@ -2636,6 +2797,7 @@ TYPE_FILE_CHOOSER_ERROR :: file_chooser_error_get_type
 TYPE_FONT_CHOOSER_LEVEL :: font_chooser_level_get_type 
 TYPE_ICON_VIEW_DROP_POSITION :: icon_view_drop_position_get_type 
 TYPE_BUTTONS_TYPE :: buttons_type_get_type 
+TYPE_SHORTCUT_TYPE :: shortcut_type_get_type 
 TYPE_STYLE_CONTEXT_PRINT_FLAGS :: style_context_print_flags_get_type 
 TYPE_TREE_MODEL_FLAGS :: tree_model_flags_get_type 
 TYPE_TREE_VIEW_DROP_POSITION :: tree_view_drop_position_get_type 
@@ -2732,7 +2894,6 @@ TYPE_REVEALER_TRANSITION_TYPE :: revealer_transition_type_get_type
 TYPE_CORNER_TYPE :: corner_type_get_type 
 TYPE_POLICY_TYPE :: policy_type_get_type 
 TYPE_SHORTCUT_ACTION_FLAGS :: shortcut_action_flags_get_type 
-TYPE_SHORTCUT_TYPE :: shortcut_type_get_type 
 TYPE_SORTER_ORDER :: sorter_order_get_type 
 TYPE_SORTER_CHANGE :: sorter_change_get_type 
 TYPE_SPIN_BUTTON_UPDATE_POLICY :: spin_button_update_policy_get_type 
@@ -2935,8 +3096,8 @@ TYPE_SELECTION_FILTER_MODEL :: selection_filter_model_get_type
 TYPE_SEPARATOR :: separator_get_type 
 TYPE_SETTINGS :: settings_get_type 
 TYPE_SHORTCUT_CONTROLLER :: shortcut_controller_get_type 
-TYPE_SHORTCUT_LABEL :: shortcut_label_get_type
 TYPE_SHORTCUT_MANAGER :: shortcut_manager_get_type 
+TYPE_SHORTCUT_LABEL :: shortcut_label_get_type
 TYPE_SHORTCUT_TRIGGER :: shortcut_trigger_get_type 
 TYPE_NEVER_TRIGGER :: never_trigger_get_type
 TYPE_KEYVAL_TRIGGER :: keyval_trigger_get_type
@@ -3548,10 +3709,6 @@ _GskCairoRenderer :: struct #packed {}
 CairoRenderer :: _GskCairoRenderer
 _GskCairoRendererClass :: struct #packed {}
 CairoRendererClass :: _GskCairoRendererClass
-_GskGLRenderer :: struct #packed {}
-GLRenderer :: _GskGLRenderer
-_GskGLRendererClass :: struct #packed {}
-GLRendererClass :: _GskGLRendererClass
 _GskVulkanRenderer :: struct #packed {}
 VulkanRenderer :: _GskVulkanRenderer
 _GskVulkanRendererClass :: struct #packed {}
@@ -3560,6 +3717,10 @@ VulkanRenderer_autoptr :: ^VulkanRenderer
 VulkanRenderer_listautoptr :: ^glib.List
 VulkanRenderer_slistautoptr :: ^glib.SList
 VulkanRenderer_queueautoptr :: ^glib.Queue
+_GskGLRenderer :: struct #packed {}
+GLRenderer :: _GskGLRenderer
+_GskGLRendererClass :: struct #packed {}
+GLRendererClass :: _GskGLRendererClass
 Ordering :: enum i32 {SMALLER = -1, EQUAL = 0, LARGER = 1 }
 ConstraintRelation :: enum i32 {LE = -1, EQ = 0, GE = 1 }
 _GtkAdjustment :: struct {
@@ -6717,10 +6878,6 @@ _GtkShortcutController :: struct #packed {}
 ShortcutController :: _GtkShortcutController
 _GtkShortcutControllerClass :: struct #packed {}
 ShortcutControllerClass :: _GtkShortcutControllerClass
-_GtkShortcutLabel :: struct #packed {}
-ShortcutLabel :: _GtkShortcutLabel
-_GtkShortcutLabelClass :: struct #packed {}
-ShortcutLabelClass :: _GtkShortcutLabelClass
 _GtkShortcutManager :: struct #packed {}
 ShortcutManager :: _GtkShortcutManager
 add_controller_func_ptr_anon_363 :: #type proc "c" (self: ^ShortcutManager, controller: ^ShortcutController)
@@ -6735,6 +6892,10 @@ ShortcutManager_autoptr :: ^ShortcutManager
 ShortcutManager_listautoptr :: ^glib.List
 ShortcutManager_slistautoptr :: ^glib.SList
 ShortcutManager_queueautoptr :: ^glib.Queue
+_GtkShortcutLabel :: struct #packed {}
+ShortcutLabel :: _GtkShortcutLabel
+_GtkShortcutLabelClass :: struct #packed {}
+ShortcutLabelClass :: _GtkShortcutLabelClass
 _GtkShortcutTriggerClass :: struct #packed {}
 ShortcutTriggerClass :: _GtkShortcutTriggerClass
 ShortcutTrigger_autoptr :: ^ShortcutTrigger
@@ -7557,6 +7718,12 @@ foreign gtk_runic {
     @(link_name = "gdk_color_state_get_rec2100_linear")
     gdk_color_state_get_rec2100_linear :: proc() -> ^ColorState ---
 
+    @(link_name = "gdk_color_state_get_oklab")
+    gdk_color_state_get_oklab :: proc() -> ^ColorState ---
+
+    @(link_name = "gdk_color_state_get_oklch")
+    gdk_color_state_get_oklch :: proc() -> ^ColorState ---
+
     @(link_name = "gdk_color_state_equal")
     gdk_color_state_equal :: proc(self: ^ColorState, other: ^ColorState) -> glib.boolean ---
 
@@ -7664,6 +7831,9 @@ foreign gtk_runic {
 
     @(link_name = "gdk_content_formats_contain_mime_type")
     gdk_content_formats_contain_mime_type :: proc(formats: [^]ContentFormats, mime_type: cstring) -> glib.boolean ---
+
+    @(link_name = "gdk_content_formats_is_empty")
+    gdk_content_formats_is_empty :: proc(formats: [^]ContentFormats) -> glib.boolean ---
 
     @(link_name = "gdk_content_formats_builder_get_type")
     gdk_content_formats_builder_get_type :: proc() -> gobj.Type ---
@@ -7883,6 +8053,12 @@ foreign gtk_runic {
 
     @(link_name = "gdk_device_get_timestamp")
     gdk_device_get_timestamp :: proc(device: ^Device) -> glib.uint32 ---
+
+    @(link_name = "gdk_device_get_active_layout_index")
+    gdk_device_get_active_layout_index :: proc(device: ^Device) -> glib.int_ ---
+
+    @(link_name = "gdk_device_get_layout_names")
+    gdk_device_get_layout_names :: proc(device: ^Device) -> ^^glib.char ---
 
     @(link_name = "gdk_device_pad_get_type")
     gdk_device_pad_get_type :: proc() -> gobj.Type ---
@@ -10323,23 +10499,23 @@ foreign gtk_runic {
     @(link_name = "gsk_cairo_renderer_new")
     gsk_cairo_renderer_new :: proc() -> ^Renderer ---
 
-    @(link_name = "gsk_gl_renderer_get_type")
-    gsk_gl_renderer_get_type :: proc() -> gobj.Type ---
+    @(link_name = "gsk_vulkan_renderer_get_type")
+    gsk_vulkan_renderer_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "gsk_vulkan_renderer_new")
+    gsk_vulkan_renderer_new :: proc() -> ^Renderer ---
 
     @(link_name = "gsk_gl_renderer_new")
     gsk_gl_renderer_new :: proc() -> ^Renderer ---
+
+    @(link_name = "gsk_gl_renderer_get_type")
+    gsk_gl_renderer_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gsk_ngl_renderer_get_type")
     gsk_ngl_renderer_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gsk_ngl_renderer_new")
     gsk_ngl_renderer_new :: proc() -> ^Renderer ---
-
-    @(link_name = "gsk_vulkan_renderer_get_type")
-    gsk_vulkan_renderer_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "gsk_vulkan_renderer_new")
-    gsk_vulkan_renderer_new :: proc() -> ^Renderer ---
 
     @(link_name = "gsk_render_node_type_get_type")
     gsk_render_node_type_get_type :: proc() -> gobj.Type ---
@@ -11034,6 +11210,12 @@ foreign gtk_runic {
     @(link_name = "gtk_widget_class_get_accessible_role")
     widget_class_get_accessible_role :: proc(widget_class: [^]WidgetClass) -> AccessibleRole ---
 
+    @(link_name = "gtk_widget_set_limit_events")
+    widget_set_limit_events :: proc(widget: ^Widget, limit_events: glib.boolean) ---
+
+    @(link_name = "gtk_widget_get_limit_events")
+    widget_get_limit_events :: proc(widget: ^Widget) -> glib.boolean ---
+
     @(link_name = "gtk_application_get_type")
     application_get_type :: proc() -> gobj.Type ---
 
@@ -11483,6 +11665,9 @@ foreign gtk_runic {
 
     @(link_name = "gtk_accessible_announce")
     accessible_announce :: proc(self: ^Accessible, message: cstring, priority: AccessibleAnnouncementPriority) ---
+
+    @(link_name = "gtk_accessible_update_platform_state")
+    accessible_update_platform_state :: proc(self: ^Accessible, state: AccessiblePlatformState) ---
 
     @(link_name = "gtk_accessible_range_get_type")
     accessible_range_get_type :: proc() -> gobj.Type ---
@@ -15120,6 +15305,9 @@ foreign gtk_runic {
     @(link_name = "gtk_buttons_type_get_type")
     buttons_type_get_type :: proc() -> gobj.Type ---
 
+    @(link_name = "gtk_shortcut_type_get_type")
+    shortcut_type_get_type :: proc() -> gobj.Type ---
+
     @(link_name = "gtk_style_context_print_flags_get_type")
     style_context_print_flags_get_type :: proc() -> gobj.Type ---
 
@@ -15407,9 +15595,6 @@ foreign gtk_runic {
 
     @(link_name = "gtk_shortcut_action_flags_get_type")
     shortcut_action_flags_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "gtk_shortcut_type_get_type")
-    shortcut_type_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gtk_sorter_order_get_type")
     sorter_order_get_type :: proc() -> gobj.Type ---
@@ -16337,6 +16522,24 @@ foreign gtk_runic {
 
     @(link_name = "gtk_file_dialog_select_multiple_folders_finish")
     file_dialog_select_multiple_folders_finish :: proc(self: ^FileDialog, result: ^gio.AsyncResult, error: ^^glib.Error) -> ^gio.ListModel ---
+
+    @(link_name = "gtk_file_dialog_open_text_file")
+    file_dialog_open_text_file :: proc(self: ^FileDialog, parent: ^Window, cancellable: ^gio.Cancellable, callback: gio.AsyncReadyCallback, user_data: glib.pointer) ---
+
+    @(link_name = "gtk_file_dialog_open_text_file_finish")
+    file_dialog_open_text_file_finish :: proc(self: ^FileDialog, result: ^gio.AsyncResult, encoding: ^cstring, error: ^^glib.Error) -> ^gio.File ---
+
+    @(link_name = "gtk_file_dialog_open_multiple_text_files")
+    file_dialog_open_multiple_text_files :: proc(self: ^FileDialog, parent: ^Window, cancellable: ^gio.Cancellable, callback: gio.AsyncReadyCallback, user_data: glib.pointer) ---
+
+    @(link_name = "gtk_file_dialog_open_multiple_text_files_finish")
+    file_dialog_open_multiple_text_files_finish :: proc(self: ^FileDialog, result: ^gio.AsyncResult, encoding: ^cstring, error: ^^glib.Error) -> ^gio.ListModel ---
+
+    @(link_name = "gtk_file_dialog_save_text_file")
+    file_dialog_save_text_file :: proc(self: ^FileDialog, parent: ^Window, cancellable: ^gio.Cancellable, callback: gio.AsyncReadyCallback, user_data: glib.pointer) ---
+
+    @(link_name = "gtk_file_dialog_save_text_file_finish")
+    file_dialog_save_text_file_finish :: proc(self: ^FileDialog, result: ^gio.AsyncResult, encoding: ^cstring, line_ending: ^cstring, error: ^^glib.Error) -> ^gio.File ---
 
     @(link_name = "gtk_file_launcher_get_type")
     file_launcher_get_type :: proc() -> gobj.Type ---
@@ -17286,6 +17489,12 @@ foreign gtk_runic {
     @(link_name = "gtk_header_bar_get_decoration_layout")
     header_bar_get_decoration_layout :: proc(bar: ^HeaderBar) -> cstring ---
 
+    @(link_name = "gtk_header_bar_get_use_native_controls")
+    header_bar_get_use_native_controls :: proc(bar: ^HeaderBar) -> glib.boolean ---
+
+    @(link_name = "gtk_header_bar_set_use_native_controls")
+    header_bar_set_use_native_controls :: proc(bar: ^HeaderBar, setting: glib.boolean) ---
+
     @(link_name = "gtk_icon_theme_error_quark")
     icon_theme_error_quark :: proc() -> glib.Quark ---
 
@@ -18087,6 +18296,12 @@ foreign gtk_runic {
     @(link_name = "gtk_list_box_get_show_separators")
     list_box_get_show_separators :: proc(box: ^ListBox) -> glib.boolean ---
 
+    @(link_name = "gtk_list_box_set_tab_behavior")
+    list_box_set_tab_behavior :: proc(box: ^ListBox, behavior: ListTabBehavior) ---
+
+    @(link_name = "gtk_list_box_get_tab_behavior")
+    list_box_get_tab_behavior :: proc(box: ^ListBox) -> ListTabBehavior ---
+
     @(link_name = "gtk_list_header_get_type")
     list_header_get_type :: proc() -> gobj.Type ---
 
@@ -18182,6 +18397,9 @@ foreign gtk_runic {
 
     @(link_name = "gtk_disable_setlocale")
     disable_setlocale :: proc() ---
+
+    @(link_name = "gtk_disable_portals")
+    disable_portals :: proc() ---
 
     @(link_name = "gtk_get_default_language")
     get_default_language :: proc() -> ^pango.Language ---
@@ -20529,6 +20747,9 @@ foreign gtk_runic {
     @(link_name = "gtk_shortcut_controller_remove_shortcut")
     shortcut_controller_remove_shortcut :: proc(self: ^ShortcutController, shortcut: ^Shortcut) ---
 
+    @(link_name = "gtk_shortcut_manager_get_type")
+    shortcut_manager_get_type :: proc() -> gobj.Type ---
+
     @(link_name = "gtk_shortcut_label_get_type")
     shortcut_label_get_type :: proc() -> gobj.Type ---
 
@@ -20546,9 +20767,6 @@ foreign gtk_runic {
 
     @(link_name = "gtk_shortcut_label_set_disabled_text")
     shortcut_label_set_disabled_text :: proc(self: ^ShortcutLabel, disabled_text: cstring) ---
-
-    @(link_name = "gtk_shortcut_manager_get_type")
-    shortcut_manager_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "gtk_shortcut_trigger_get_type")
     shortcut_trigger_get_type :: proc() -> gobj.Type ---
@@ -21011,6 +21229,9 @@ foreign gtk_runic {
 
     @(link_name = "gtk_string_list_get_string")
     string_list_get_string :: proc(self: ^StringList, position: glib.uint_) -> cstring ---
+
+    @(link_name = "gtk_string_list_find")
+    string_list_find :: proc(self: ^StringList, string_p: cstring) -> glib.uint_ ---
 
     @(link_name = "gtk_string_sorter_get_type")
     string_sorter_get_type :: proc() -> gobj.Type ---
@@ -21843,6 +22064,9 @@ foreign gtk_runic {
     @(link_name = "gtk_text_view_get_visible_rect")
     text_view_get_visible_rect :: proc(text_view: ^TextView, visible_rect: ^Rectangle) ---
 
+    @(link_name = "gtk_text_view_get_visible_offset")
+    text_view_get_visible_offset :: proc(text_view: ^TextView, x_offset: ^f64, y_offset: ^f64) ---
+
     @(link_name = "gtk_text_view_set_cursor_visible")
     text_view_set_cursor_visible :: proc(text_view: ^TextView, setting: glib.boolean) ---
 
@@ -22514,6 +22738,12 @@ foreign gtk_runic {
 
     @(link_name = "gtk_window_controls_set_decoration_layout")
     window_controls_set_decoration_layout :: proc(self: ^WindowControls, layout: cstring) ---
+
+    @(link_name = "gtk_window_controls_get_use_native_controls")
+    window_controls_get_use_native_controls :: proc(self: ^WindowControls) -> glib.boolean ---
+
+    @(link_name = "gtk_window_controls_set_use_native_controls")
+    window_controls_set_use_native_controls :: proc(self: ^WindowControls, setting: glib.boolean) ---
 
     @(link_name = "gtk_window_controls_get_empty")
     window_controls_get_empty :: proc(self: ^WindowControls) -> glib.boolean ---
@@ -30889,7 +31119,8 @@ foreign gtk_runic {
 
 when (ODIN_OS == .Linux) {
 
-BINARY_AGE :: (1702)
+TYPE_TOPLEVEL_CAPABILITIES :: gdk_toplevel_capabilities_get_type
+BINARY_AGE :: (1900)
 INTERFACE_AGE :: (0)
 
 CssParserError :: enum u32 {FAILED = 0, SYNTAX = 1, IMPORT = 2, NAME = 3, UNKNOWN_VALUE = 4 }
@@ -30903,7 +31134,7 @@ VulkanError :: enum u32 {UNSUPPORTED = 0, NOT_AVAILABLE = 1 }
 AxisUse :: enum u32 {AXIS_IGNORE = 0, AXIS_X = 1, AXIS_Y = 2, AXIS_DELTA_X = 3, AXIS_DELTA_Y = 4, AXIS_PRESSURE = 5, AXIS_XTILT = 6, AXIS_YTILT = 7, AXIS_WHEEL = 8, AXIS_DISTANCE = 9, AXIS_ROTATION = 10, AXIS_SLIDER = 11, AXIS_LAST = 12 }
 AxisFlags :: enum u32 {AXIS_FLAG_X = 2, AXIS_FLAG_Y = 4, AXIS_FLAG_DELTA_X = 8, AXIS_FLAG_DELTA_Y = 16, AXIS_FLAG_PRESSURE = 32, AXIS_FLAG_XTILT = 64, AXIS_FLAG_YTILT = 128, AXIS_FLAG_WHEEL = 256, AXIS_FLAG_DISTANCE = 512, AXIS_FLAG_ROTATION = 1024, AXIS_FLAG_SLIDER = 2048 }
 DragAction :: enum u32 {ACTION_COPY = 1, ACTION_MOVE = 2, ACTION_LINK = 4, ACTION_ASK = 8 }
-MemoryFormat :: enum u32 {MEMORY_B8G8R8A8_PREMULTIPLIED = 0, MEMORY_A8R8G8B8_PREMULTIPLIED = 1, MEMORY_R8G8B8A8_PREMULTIPLIED = 2, MEMORY_B8G8R8A8 = 3, MEMORY_A8R8G8B8 = 4, MEMORY_R8G8B8A8 = 5, MEMORY_A8B8G8R8 = 6, MEMORY_R8G8B8 = 7, MEMORY_B8G8R8 = 8, MEMORY_R16G16B16 = 9, MEMORY_R16G16B16A16_PREMULTIPLIED = 10, MEMORY_R16G16B16A16 = 11, MEMORY_R16G16B16_FLOAT = 12, MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED = 13, MEMORY_R16G16B16A16_FLOAT = 14, MEMORY_R32G32B32_FLOAT = 15, MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED = 16, MEMORY_R32G32B32A32_FLOAT = 17, MEMORY_G8A8_PREMULTIPLIED = 18, MEMORY_G8A8 = 19, MEMORY_G8 = 20, MEMORY_G16A16_PREMULTIPLIED = 21, MEMORY_G16A16 = 22, MEMORY_G16 = 23, MEMORY_A8 = 24, MEMORY_A16 = 25, MEMORY_A16_FLOAT = 26, MEMORY_A32_FLOAT = 27, MEMORY_A8B8G8R8_PREMULTIPLIED = 28, MEMORY_B8G8R8X8 = 29, MEMORY_X8R8G8B8 = 30, MEMORY_R8G8B8X8 = 31, MEMORY_X8B8G8R8 = 32, MEMORY_N_FORMATS = 33 }
+MemoryFormat :: enum u32 {MEMORY_B8G8R8A8_PREMULTIPLIED = 0, MEMORY_A8R8G8B8_PREMULTIPLIED = 1, MEMORY_R8G8B8A8_PREMULTIPLIED = 2, MEMORY_B8G8R8A8 = 3, MEMORY_A8R8G8B8 = 4, MEMORY_R8G8B8A8 = 5, MEMORY_A8B8G8R8 = 6, MEMORY_R8G8B8 = 7, MEMORY_B8G8R8 = 8, MEMORY_R16G16B16 = 9, MEMORY_R16G16B16A16_PREMULTIPLIED = 10, MEMORY_R16G16B16A16 = 11, MEMORY_R16G16B16_FLOAT = 12, MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED = 13, MEMORY_R16G16B16A16_FLOAT = 14, MEMORY_R32G32B32_FLOAT = 15, MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED = 16, MEMORY_R32G32B32A32_FLOAT = 17, MEMORY_G8A8_PREMULTIPLIED = 18, MEMORY_G8A8 = 19, MEMORY_G8 = 20, MEMORY_G16A16_PREMULTIPLIED = 21, MEMORY_G16A16 = 22, MEMORY_G16 = 23, MEMORY_A8 = 24, MEMORY_A16 = 25, MEMORY_A16_FLOAT = 26, MEMORY_A32_FLOAT = 27, MEMORY_A8B8G8R8_PREMULTIPLIED = 28, MEMORY_B8G8R8X8 = 29, MEMORY_X8R8G8B8 = 30, MEMORY_R8G8B8X8 = 31, MEMORY_X8B8G8R8 = 32, MEMORY_G8_B8R8_420 = 33, MEMORY_G8_R8B8_420 = 34, MEMORY_G8_B8R8_422 = 35, MEMORY_G8_R8B8_422 = 36, MEMORY_G8_B8R8_444 = 37, MEMORY_G8_R8B8_444 = 38, MEMORY_G10X6_B10X6R10X6_420 = 39, MEMORY_G12X4_B12X4R12X4_420 = 40, MEMORY_G16_B16R16_420 = 41, MEMORY_G8_B8_R8_410 = 42, MEMORY_G8_R8_B8_410 = 43, MEMORY_G8_B8_R8_411 = 44, MEMORY_G8_R8_B8_411 = 45, MEMORY_G8_B8_R8_420 = 46, MEMORY_G8_R8_B8_420 = 47, MEMORY_G8_B8_R8_422 = 48, MEMORY_G8_R8_B8_422 = 49, MEMORY_G8_B8_R8_444 = 50, MEMORY_G8_R8_B8_444 = 51, MEMORY_G8B8G8R8_422 = 52, MEMORY_G8R8G8B8_422 = 53, MEMORY_R8G8B8G8_422 = 54, MEMORY_B8G8R8G8_422 = 55, MEMORY_N_FORMATS = 56 }
 CicpRange :: enum u32 {NARROW = 0, FULL = 1 }
 DeviceToolType :: enum u32 {UNKNOWN = 0, PEN = 1, ERASER = 2, BRUSH = 3, PENCIL = 4, AIRBRUSH = 5, MOUSE = 6, LENS = 7 }
 InputSource :: enum u32 {SOURCE_MOUSE = 0, SOURCE_PEN = 1, SOURCE_KEYBOARD = 2, SOURCE_TOUCHSCREEN = 3, SOURCE_TOUCHPAD = 4, SOURCE_TRACKPOINT = 5, SOURCE_TABLET_PAD = 6 }
@@ -30926,6 +31157,7 @@ SurfaceEdge :: enum u32 {NORTH_WEST = 0, NORTH = 1, NORTH_EAST = 2, WEST = 3, EA
 FullscreenMode :: enum u32 {FULLSCREEN_ON_CURRENT_MONITOR = 0, FULLSCREEN_ON_ALL_MONITORS = 1 }
 ToplevelState :: enum u32 {MINIMIZED = 1, MAXIMIZED = 2, STICKY = 4, FULLSCREEN = 8, ABOVE = 16, BELOW = 32, FOCUSED = 64, TILED = 128, TOP_TILED = 256, TOP_RESIZABLE = 512, RIGHT_TILED = 1024, RIGHT_RESIZABLE = 2048, BOTTOM_TILED = 4096, BOTTOM_RESIZABLE = 8192, LEFT_TILED = 16384, LEFT_RESIZABLE = 32768, SUSPENDED = 65536 }
 TitlebarGesture :: enum u32 {DOUBLE_CLICK = 1, RIGHT_CLICK = 2, MIDDLE_CLICK = 3 }
+ToplevelCapabilities :: enum u32 {EDGE_CONSTRAINTS = 1, INHIBIT_SHORTCUTS = 2, TITLEBAR_GESTURES = 4, WINDOW_MENU = 8, MAXIMIZE = 16, FULLSCREEN = 32, MINIMIZE = 64, LOWER = 128 }
 RenderNodeType :: enum u32 {NOT_A_RENDER_NODE = 0, CONTAINER_NODE = 1, CAIRO_NODE = 2, COLOR_NODE = 3, LINEAR_GRADIENT_NODE = 4, REPEATING_LINEAR_GRADIENT_NODE = 5, RADIAL_GRADIENT_NODE = 6, REPEATING_RADIAL_GRADIENT_NODE = 7, CONIC_GRADIENT_NODE = 8, BORDER_NODE = 9, TEXTURE_NODE = 10, INSET_SHADOW_NODE = 11, OUTSET_SHADOW_NODE = 12, TRANSFORM_NODE = 13, OPACITY_NODE = 14, COLOR_MATRIX_NODE = 15, REPEAT_NODE = 16, CLIP_NODE = 17, ROUNDED_CLIP_NODE = 18, SHADOW_NODE = 19, BLEND_NODE = 20, CROSS_FADE_NODE = 21, TEXT_NODE = 22, BLUR_NODE = 23, DEBUG_NODE = 24, GL_SHADER_NODE = 25, TEXTURE_SCALE_NODE = 26, MASK_NODE = 27, FILL_NODE = 28, STROKE_NODE = 29, SUBSURFACE_NODE = 30 }
 ScalingFilter :: enum u32 {LINEAR = 0, NEAREST = 1, TRILINEAR = 2 }
 BlendMode :: enum u32 {DEFAULT = 0, MULTIPLY = 1, SCREEN = 2, OVERLAY = 3, DARKEN = 4, LIGHTEN = 5, COLOR_DODGE = 6, COLOR_BURN = 7, HARD_LIGHT = 8, SOFT_LIGHT = 9, DIFFERENCE = 10, EXCLUSION = 11, COLOR = 12, HUE = 13, SATURATION = 14, LUMINOSITY = 15 }
@@ -30994,7 +31226,7 @@ SymbolicColor :: enum u32 {FOREGROUND = 0, ERROR = 1, WARNING = 2, SUCCESS = 3 }
 AccessibleRole :: enum u32 {ALERT = 0, ALERT_DIALOG = 1, BANNER = 2, BUTTON = 3, CAPTION = 4, CELL = 5, CHECKBOX = 6, COLUMN_HEADER = 7, COMBO_BOX = 8, COMMAND = 9, COMPOSITE = 10, DIALOG = 11, DOCUMENT = 12, FEED = 13, FORM = 14, GENERIC = 15, GRID = 16, GRID_CELL = 17, GROUP = 18, HEADING = 19, IMG = 20, INPUT = 21, LABEL = 22, LANDMARK = 23, LEGEND = 24, LINK = 25, LIST = 26, LIST_BOX = 27, LIST_ITEM = 28, LOG = 29, MAIN = 30, MARQUEE = 31, MATH = 32, METER = 33, MENU = 34, MENU_BAR = 35, MENU_ITEM = 36, MENU_ITEM_CHECKBOX = 37, MENU_ITEM_RADIO = 38, NAVIGATION = 39, NONE = 40, NOTE = 41, OPTION = 42, PRESENTATION = 43, PROGRESS_BAR = 44, RADIO = 45, RADIO_GROUP = 46, RANGE = 47, REGION = 48, ROW = 49, ROW_GROUP = 50, ROW_HEADER = 51, SCROLLBAR = 52, SEARCH = 53, SEARCH_BOX = 54, SECTION = 55, SECTION_HEAD = 56, SELECT = 57, SEPARATOR = 58, SLIDER = 59, SPIN_BUTTON = 60, STATUS = 61, STRUCTURE = 62, SWITCH = 63, TAB = 64, TABLE = 65, TAB_LIST = 66, TAB_PANEL = 67, TEXT_BOX = 68, TIME = 69, TIMER = 70, TOOLBAR = 71, TOOLTIP = 72, TREE = 73, TREE_GRID = 74, TREE_ITEM = 75, WIDGET = 76, WINDOW = 77, TOGGLE_BUTTON = 78, APPLICATION = 79, PARAGRAPH = 80, BLOCK_QUOTE = 81, ARTICLE = 82, COMMENT = 83, TERMINAL = 84 }
 AccessibleState :: enum u32 {BUSY = 0, CHECKED = 1, DISABLED = 2, EXPANDED = 3, HIDDEN = 4, INVALID = 5, PRESSED = 6, SELECTED = 7, VISITED = 8 }
 AccessibleProperty :: enum u32 {AUTOCOMPLETE = 0, DESCRIPTION = 1, HAS_POPUP = 2, KEY_SHORTCUTS = 3, LABEL = 4, LEVEL = 5, MODAL = 6, MULTI_LINE = 7, MULTI_SELECTABLE = 8, ORIENTATION = 9, PLACEHOLDER = 10, READ_ONLY = 11, REQUIRED = 12, ROLE_DESCRIPTION = 13, SORT = 14, VALUE_MAX = 15, VALUE_MIN = 16, VALUE_NOW = 17, VALUE_TEXT = 18, HELP_TEXT = 19 }
-AccessibleRelation :: enum u32 {ACTIVE_DESCENDANT = 0, COL_COUNT = 1, COL_INDEX = 2, COL_INDEX_TEXT = 3, COL_SPAN = 4, CONTROLS = 5, DESCRIBED_BY = 6, DETAILS = 7, ERROR_MESSAGE = 8, FLOW_TO = 9, LABELLED_BY = 10, OWNS = 11, POS_IN_SET = 12, ROW_COUNT = 13, ROW_INDEX = 14, ROW_INDEX_TEXT = 15, ROW_SPAN = 16, SET_SIZE = 17 }
+AccessibleRelation :: enum u32 {ACTIVE_DESCENDANT = 0, COL_COUNT = 1, COL_INDEX = 2, COL_INDEX_TEXT = 3, COL_SPAN = 4, CONTROLS = 5, DESCRIBED_BY = 6, DETAILS = 7, ERROR_MESSAGE = 8, FLOW_TO = 9, LABELLED_BY = 10, OWNS = 11, POS_IN_SET = 12, ROW_COUNT = 13, ROW_INDEX = 14, ROW_INDEX_TEXT = 15, ROW_SPAN = 16, SET_SIZE = 17, LABEL_FOR = 18, DESCRIPTION_FOR = 19, CONTROLLED_BY = 20, DETAILS_FOR = 21, ERROR_MESSAGE_FOR = 22, FLOW_FROM = 23 }
 AccessibleTristate :: enum u32 {FALSE = 0, TRUE = 1, MIXED = 2 }
 AccessibleInvalidState :: enum u32 {ACCESSIBLE_INVALID_FALSE = 0, ACCESSIBLE_INVALID_TRUE = 1, ACCESSIBLE_INVALID_GRAMMAR = 2, ACCESSIBLE_INVALID_SPELLING = 3 }
 AccessibleAutocomplete :: enum u32 {NONE = 0, INLINE = 1, LIST = 2, BOTH = 3 }
@@ -31027,7 +31259,7 @@ EditableProperties :: enum u32 {EDITABLE_PROP_TEXT = 0, EDITABLE_PROP_CURSOR_POS
 ImageType :: enum u32 {IMAGE_EMPTY = 0, IMAGE_ICON_NAME = 1, IMAGE_GICON = 2, IMAGE_PAINTABLE = 3 }
 EntryIconPosition :: enum u32 {ENTRY_ICON_PRIMARY = 0, ENTRY_ICON_SECONDARY = 1 }
 TreeViewDropPosition :: enum u32 {TREE_VIEW_DROP_BEFORE = 0, TREE_VIEW_DROP_AFTER = 1, TREE_VIEW_DROP_INTO_OR_BEFORE = 2, TREE_VIEW_DROP_INTO_OR_AFTER = 3 }
-DebugFlags :: enum u32 {DEBUG_TEXT = 1, DEBUG_TREE = 2, DEBUG_KEYBINDINGS = 4, DEBUG_MODULES = 8, DEBUG_GEOMETRY = 16, DEBUG_ICONTHEME = 32, DEBUG_PRINTING = 64, DEBUG_BUILDER = 128, DEBUG_SIZE_REQUEST = 256, DEBUG_NO_CSS_CACHE = 512, DEBUG_INTERACTIVE = 1024, DEBUG_ACTIONS = 4096, DEBUG_LAYOUT = 8192, DEBUG_SNAPSHOT = 16384, DEBUG_CONSTRAINTS = 32768, DEBUG_BUILDER_OBJECTS = 65536, DEBUG_A11Y = 131072, DEBUG_ICONFALLBACK = 262144, DEBUG_INVERT_TEXT_DIR = 524288, DEBUG_CSS = 1048576 }
+DebugFlags :: enum u32 {DEBUG_TEXT = 1, DEBUG_TREE = 2, DEBUG_KEYBINDINGS = 4, DEBUG_MODULES = 8, DEBUG_GEOMETRY = 16, DEBUG_ICONTHEME = 32, DEBUG_PRINTING = 64, DEBUG_BUILDER_TRACE = 128, DEBUG_SIZE_REQUEST = 256, DEBUG_NO_CSS_CACHE = 512, DEBUG_INTERACTIVE = 1024, DEBUG_ACTIONS = 4096, DEBUG_LAYOUT = 8192, DEBUG_SNAPSHOT = 16384, DEBUG_CONSTRAINTS = 32768, DEBUG_BUILDER_OBJECTS = 65536, DEBUG_A11Y = 131072, DEBUG_ICONFALLBACK = 262144, DEBUG_INVERT_TEXT_DIR = 524288, DEBUG_CSS = 1048576, DEBUG_BUILDER = 2097152 }
 DialogError :: enum u32 {FAILED = 0, CANCELLED = 1, DISMISSED = 2 }
 StringFilterMatchMode :: enum u32 {EXACT = 0, SUBSTRING = 1, PREFIX = 2 }
 EventControllerScrollFlags :: enum u32 {EVENT_CONTROLLER_SCROLL_NONE = 0, EVENT_CONTROLLER_SCROLL_VERTICAL = 1, EVENT_CONTROLLER_SCROLL_HORIZONTAL = 2, EVENT_CONTROLLER_SCROLL_DISCRETE = 4, EVENT_CONTROLLER_SCROLL_KINETIC = 8, EVENT_CONTROLLER_SCROLL_BOTH_AXES = 3 }
@@ -31063,29 +31295,29 @@ TextExtendSelection :: enum u32 {WORD = 0, LINE = 1 }
 
 @(default_calling_convention = "c")
 foreign gtk_runic {
-    @(link_name = "gdk_color_state_get_oklab")
-    gdk_color_state_get_oklab :: proc() -> ^ColorState ---
+    @(link_name = "gdk_toplevel_capabilities_get_type")
+    gdk_toplevel_capabilities_get_type :: proc() -> gobj.Type ---
 
-    @(link_name = "gdk_color_state_get_oklch")
-    gdk_color_state_get_oklch :: proc() -> ^ColorState ---
+    @(link_name = "gdk_memory_texture_builder_get_stride_for_plane")
+    gdk_memory_texture_builder_get_stride_for_plane :: proc(self: ^MemoryTextureBuilder, plane: u32) -> glib.size ---
 
-    @(link_name = "gdk_content_formats_is_empty")
-    gdk_content_formats_is_empty :: proc(formats: [^]ContentFormats) -> glib.boolean ---
+    @(link_name = "gdk_memory_texture_builder_set_stride_for_plane")
+    gdk_memory_texture_builder_set_stride_for_plane :: proc(self: ^MemoryTextureBuilder, plane: u32, stride: glib.size) ---
 
-    @(link_name = "gtk_list_box_set_tab_behavior")
-    list_box_set_tab_behavior :: proc(box: ^ListBox, behavior: ListTabBehavior) ---
+    @(link_name = "gdk_memory_texture_builder_get_offset")
+    gdk_memory_texture_builder_get_offset :: proc(self: ^MemoryTextureBuilder, plane: u32) -> glib.size ---
 
-    @(link_name = "gtk_list_box_get_tab_behavior")
-    list_box_get_tab_behavior :: proc(box: ^ListBox) -> ListTabBehavior ---
+    @(link_name = "gdk_memory_texture_builder_set_offset")
+    gdk_memory_texture_builder_set_offset :: proc(self: ^MemoryTextureBuilder, plane: u32, offset: glib.size) ---
 
-    @(link_name = "gtk_disable_portals")
-    disable_portals :: proc() ---
+    @(link_name = "gdk_texture_downloader_download_bytes_with_planes")
+    gdk_texture_downloader_download_bytes_with_planes :: proc(self: ^TextureDownloader, out_offsets: [4]glib.size, out_strides: [4]glib.size) -> ^glib.Bytes ---
 
-    @(link_name = "gtk_string_list_find")
-    string_list_find :: proc(self: ^StringList, string_p: cstring) -> glib.uint_ ---
+    @(link_name = "gdk_toplevel_get_capabilities")
+    gdk_toplevel_get_capabilities :: proc(toplevel: ^Toplevel) -> ToplevelCapabilities ---
 
-    @(link_name = "gtk_text_view_get_visible_offset")
-    text_view_get_visible_offset :: proc(text_view: ^TextView, x_offset: ^f64, y_offset: ^f64) ---
+    @(link_name = "gtk_calendar_set_date")
+    calendar_set_date :: proc(self: ^Calendar, date: ^glib.DateTime) ---
 
 }
 
@@ -31093,8 +31325,8 @@ foreign gtk_runic {
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
 
-BINARY_AGE :: (1612)
-INTERFACE_AGE :: (12)
+BINARY_AGE :: (1805)
+INTERFACE_AGE :: (5)
 
 CssParserError :: enum i32 {FAILED = 0, SYNTAX = 1, IMPORT = 2, NAME = 3, UNKNOWN_VALUE = 4 }
 CssParserWarning :: enum i32 {DEPRECATED = 0, SYNTAX = 1, UNIMPLEMENTED = 2 }
@@ -31198,7 +31430,7 @@ SymbolicColor :: enum i32 {FOREGROUND = 0, ERROR = 1, WARNING = 2, SUCCESS = 3 }
 AccessibleRole :: enum i32 {ALERT = 0, ALERT_DIALOG = 1, BANNER = 2, BUTTON = 3, CAPTION = 4, CELL = 5, CHECKBOX = 6, COLUMN_HEADER = 7, COMBO_BOX = 8, COMMAND = 9, COMPOSITE = 10, DIALOG = 11, DOCUMENT = 12, FEED = 13, FORM = 14, GENERIC = 15, GRID = 16, GRID_CELL = 17, GROUP = 18, HEADING = 19, IMG = 20, INPUT = 21, LABEL = 22, LANDMARK = 23, LEGEND = 24, LINK = 25, LIST = 26, LIST_BOX = 27, LIST_ITEM = 28, LOG = 29, MAIN = 30, MARQUEE = 31, MATH = 32, METER = 33, MENU = 34, MENU_BAR = 35, MENU_ITEM = 36, MENU_ITEM_CHECKBOX = 37, MENU_ITEM_RADIO = 38, NAVIGATION = 39, NONE = 40, NOTE = 41, OPTION = 42, PRESENTATION = 43, PROGRESS_BAR = 44, RADIO = 45, RADIO_GROUP = 46, RANGE = 47, REGION = 48, ROW = 49, ROW_GROUP = 50, ROW_HEADER = 51, SCROLLBAR = 52, SEARCH = 53, SEARCH_BOX = 54, SECTION = 55, SECTION_HEAD = 56, SELECT = 57, SEPARATOR = 58, SLIDER = 59, SPIN_BUTTON = 60, STATUS = 61, STRUCTURE = 62, SWITCH = 63, TAB = 64, TABLE = 65, TAB_LIST = 66, TAB_PANEL = 67, TEXT_BOX = 68, TIME = 69, TIMER = 70, TOOLBAR = 71, TOOLTIP = 72, TREE = 73, TREE_GRID = 74, TREE_ITEM = 75, WIDGET = 76, WINDOW = 77, TOGGLE_BUTTON = 78, APPLICATION = 79, PARAGRAPH = 80, BLOCK_QUOTE = 81, ARTICLE = 82, COMMENT = 83, TERMINAL = 84 }
 AccessibleState :: enum i32 {BUSY = 0, CHECKED = 1, DISABLED = 2, EXPANDED = 3, HIDDEN = 4, INVALID = 5, PRESSED = 6, SELECTED = 7, VISITED = 8 }
 AccessibleProperty :: enum i32 {AUTOCOMPLETE = 0, DESCRIPTION = 1, HAS_POPUP = 2, KEY_SHORTCUTS = 3, LABEL = 4, LEVEL = 5, MODAL = 6, MULTI_LINE = 7, MULTI_SELECTABLE = 8, ORIENTATION = 9, PLACEHOLDER = 10, READ_ONLY = 11, REQUIRED = 12, ROLE_DESCRIPTION = 13, SORT = 14, VALUE_MAX = 15, VALUE_MIN = 16, VALUE_NOW = 17, VALUE_TEXT = 18, HELP_TEXT = 19 }
-AccessibleRelation :: enum i32 {ACTIVE_DESCENDANT = 0, COL_COUNT = 1, COL_INDEX = 2, COL_INDEX_TEXT = 3, COL_SPAN = 4, CONTROLS = 5, DESCRIBED_BY = 6, DETAILS = 7, ERROR_MESSAGE = 8, FLOW_TO = 9, LABELLED_BY = 10, OWNS = 11, POS_IN_SET = 12, ROW_COUNT = 13, ROW_INDEX = 14, ROW_INDEX_TEXT = 15, ROW_SPAN = 16, SET_SIZE = 17 }
+AccessibleRelation :: enum i32 {ACTIVE_DESCENDANT = 0, COL_COUNT = 1, COL_INDEX = 2, COL_INDEX_TEXT = 3, COL_SPAN = 4, CONTROLS = 5, DESCRIBED_BY = 6, DETAILS = 7, ERROR_MESSAGE = 8, FLOW_TO = 9, LABELLED_BY = 10, OWNS = 11, POS_IN_SET = 12, ROW_COUNT = 13, ROW_INDEX = 14, ROW_INDEX_TEXT = 15, ROW_SPAN = 16, SET_SIZE = 17, LABEL_FOR = 18, DESCRIPTION_FOR = 19, CONTROLLED_BY = 20, DETAILS_FOR = 21, ERROR_MESSAGE_FOR = 22, FLOW_FROM = 23 }
 AccessibleTristate :: enum i32 {FALSE = 0, TRUE = 1, MIXED = 2 }
 AccessibleInvalidState :: enum i32 {ACCESSIBLE_INVALID_FALSE = 0, ACCESSIBLE_INVALID_TRUE = 1, ACCESSIBLE_INVALID_GRAMMAR = 2, ACCESSIBLE_INVALID_SPELLING = 3 }
 AccessibleAutocomplete :: enum i32 {NONE = 0, INLINE = 1, LIST = 2, BOTH = 3 }
@@ -31231,7 +31463,7 @@ EditableProperties :: enum i32 {EDITABLE_PROP_TEXT = 0, EDITABLE_PROP_CURSOR_POS
 ImageType :: enum i32 {IMAGE_EMPTY = 0, IMAGE_ICON_NAME = 1, IMAGE_GICON = 2, IMAGE_PAINTABLE = 3 }
 EntryIconPosition :: enum i32 {ENTRY_ICON_PRIMARY = 0, ENTRY_ICON_SECONDARY = 1 }
 TreeViewDropPosition :: enum i32 {TREE_VIEW_DROP_BEFORE = 0, TREE_VIEW_DROP_AFTER = 1, TREE_VIEW_DROP_INTO_OR_BEFORE = 2, TREE_VIEW_DROP_INTO_OR_AFTER = 3 }
-DebugFlags :: enum i32 {DEBUG_TEXT = 1, DEBUG_TREE = 2, DEBUG_KEYBINDINGS = 4, DEBUG_MODULES = 8, DEBUG_GEOMETRY = 16, DEBUG_ICONTHEME = 32, DEBUG_PRINTING = 64, DEBUG_BUILDER = 128, DEBUG_SIZE_REQUEST = 256, DEBUG_NO_CSS_CACHE = 512, DEBUG_INTERACTIVE = 1024, DEBUG_ACTIONS = 4096, DEBUG_LAYOUT = 8192, DEBUG_SNAPSHOT = 16384, DEBUG_CONSTRAINTS = 32768, DEBUG_BUILDER_OBJECTS = 65536, DEBUG_A11Y = 131072, DEBUG_ICONFALLBACK = 262144, DEBUG_INVERT_TEXT_DIR = 524288, DEBUG_CSS = 1048576 }
+DebugFlags :: enum i32 {DEBUG_TEXT = 1, DEBUG_TREE = 2, DEBUG_KEYBINDINGS = 4, DEBUG_MODULES = 8, DEBUG_GEOMETRY = 16, DEBUG_ICONTHEME = 32, DEBUG_PRINTING = 64, DEBUG_BUILDER_TRACE = 128, DEBUG_SIZE_REQUEST = 256, DEBUG_NO_CSS_CACHE = 512, DEBUG_INTERACTIVE = 1024, DEBUG_ACTIONS = 4096, DEBUG_LAYOUT = 8192, DEBUG_SNAPSHOT = 16384, DEBUG_CONSTRAINTS = 32768, DEBUG_BUILDER_OBJECTS = 65536, DEBUG_A11Y = 131072, DEBUG_ICONFALLBACK = 262144, DEBUG_INVERT_TEXT_DIR = 524288, DEBUG_CSS = 1048576, DEBUG_BUILDER = 2097152 }
 DialogError :: enum i32 {FAILED = 0, CANCELLED = 1, DISMISSED = 2 }
 StringFilterMatchMode :: enum i32 {EXACT = 0, SUBSTRING = 1, PREFIX = 2 }
 EventControllerScrollFlags :: enum i32 {EVENT_CONTROLLER_SCROLL_NONE = 0, EVENT_CONTROLLER_SCROLL_VERTICAL = 1, EVENT_CONTROLLER_SCROLL_HORIZONTAL = 2, EVENT_CONTROLLER_SCROLL_DISCRETE = 4, EVENT_CONTROLLER_SCROLL_KINETIC = 8, EVENT_CONTROLLER_SCROLL_BOTH_AXES = 3 }
@@ -31240,7 +31472,7 @@ FileChooserError :: enum i32 {NONEXISTENT = 0, BAD_FILENAME = 1, ALREADY_EXISTS 
 FontChooserLevel :: enum i32 {FAMILY = 0, STYLE = 1, SIZE = 2, VARIATIONS = 4, FEATURES = 8 }
 FontLevel :: enum i32 {FAMILY = 0, FACE = 1, FONT = 2, FEATURES = 3 }
 GraphicsOffloadEnabled :: enum i32 {GRAPHICS_OFFLOAD_ENABLED = 0, GRAPHICS_OFFLOAD_DISABLED = 1 }
-IconLookupFlags :: enum i32 {ICON_LOOKUP_FORCE_REGULAR = 1, ICON_LOOKUP_FORCE_SYMBOLIC = 2, ICON_LOOKUP_PRELOAD = 4 }
+IconLookupFlags :: enum i32 {ICON_LOOKUP_NONE = 0, ICON_LOOKUP_FORCE_REGULAR = 1, ICON_LOOKUP_FORCE_SYMBOLIC = 2, ICON_LOOKUP_PRELOAD = 4 }
 IconThemeError :: enum i32 {ICON_THEME_NOT_FOUND = 0, ICON_THEME_FAILED = 1 }
 IconViewDropPosition :: enum i32 {ICON_VIEW_NO_DROP = 0, ICON_VIEW_DROP_INTO = 1, ICON_VIEW_DROP_LEFT = 2, ICON_VIEW_DROP_RIGHT = 3, ICON_VIEW_DROP_ABOVE = 4, ICON_VIEW_DROP_BELOW = 5 }
 InscriptionOverflow :: enum i32 {CLIP = 0, ELLIPSIZE_START = 1, ELLIPSIZE_MIDDLE = 2, ELLIPSIZE_END = 3 }

@@ -12,6 +12,7 @@ TYPE_BREAKPOINT :: breakpoint_get_type
 TYPE_ACCENT_COLOR :: accent_color_get_type
 TYPE_RESPONSE_APPEARANCE :: response_appearance_get_type
 TYPE_ANIMATION_STATE :: animation_state_get_type
+TYPE_BANNER_BUTTON_STYLE :: banner_button_style_get_type
 TYPE_BREAKPOINT_CONDITION_LENGTH_TYPE :: breakpoint_condition_length_type_get_type
 TYPE_BREAKPOINT_CONDITION_RATIO_TYPE :: breakpoint_condition_ratio_type_get_type
 TYPE_DIALOG_PRESENTATION_MODE :: dialog_presentation_mode_get_type
@@ -20,6 +21,7 @@ TYPE_FLAP_FOLD_POLICY :: flap_fold_policy_get_type
 TYPE_FLAP_TRANSITION_TYPE :: flap_transition_type_get_type
 TYPE_FOLD_THRESHOLD_POLICY :: fold_threshold_policy_get_type
 TYPE_CENTERING_POLICY :: centering_policy_get_type
+TYPE_INLINE_VIEW_SWITCHER_DISPLAY_MODE :: inline_view_switcher_display_mode_get_type
 TYPE_LEAFLET_TRANSITION_TYPE :: leaflet_transition_type_get_type
 TYPE_LENGTH_UNIT :: length_unit_get_type
 TYPE_NAVIGATION_DIRECTION :: navigation_direction_get_type
@@ -29,6 +31,9 @@ TYPE_TAB_VIEW_SHORTCUTS :: tab_view_shortcuts_get_type
 TYPE_TOAST_PRIORITY :: toast_priority_get_type
 TYPE_TOOLBAR_STYLE :: toolbar_style_get_type
 TYPE_VIEW_SWITCHER_POLICY :: view_switcher_policy_get_type
+TYPE_JUSTIFY_MODE :: justify_mode_get_type
+TYPE_PACK_DIRECTION :: pack_direction_get_type
+TYPE_WRAP_POLICY :: wrap_policy_get_type
 TYPE_DIALOG :: dialog_get_type
 TYPE_ABOUT_DIALOG :: about_dialog_get_type
 TYPE_WINDOW :: window_get_type
@@ -65,6 +70,10 @@ TYPE_ENUM_LIST_MODEL :: enum_list_model_get_type
 TYPE_EXPANDER_ROW :: expander_row_get_type
 TYPE_FLAP :: flap_get_type 
 TYPE_HEADER_BAR :: header_bar_get_type
+TYPE_VIEW_STACK_PAGE :: view_stack_page_get_type
+TYPE_VIEW_STACK :: view_stack_get_type
+TYPE_VIEW_STACK_PAGES :: view_stack_pages_get_type 
+TYPE_INLINE_VIEW_SWITCHER :: inline_view_switcher_get_type 
 TYPE_LAYOUT :: layout_get_type
 TYPE_LAYOUT_SLOT :: layout_slot_get_type
 TYPE_LEAFLET_PAGE :: leaflet_page_get_type 
@@ -99,14 +108,15 @@ TYPE_TAB_BUTTON :: tab_button_get_type
 TYPE_TAB_OVERVIEW :: tab_overview_get_type
 TYPE_TIMED_ANIMATION :: timed_animation_get_type
 TYPE_TOAST_OVERLAY :: toast_overlay_get_type
+TYPE_TOGGLE :: toggle_get_type 
+TYPE_TOGGLE_GROUP :: toggle_group_get_type 
 TYPE_TOOLBAR_VIEW :: toolbar_view_get_type
-TYPE_VIEW_STACK_PAGE :: view_stack_page_get_type
-TYPE_VIEW_STACK :: view_stack_get_type
-TYPE_VIEW_STACK_PAGES :: view_stack_pages_get_type 
 TYPE_VIEW_SWITCHER :: view_switcher_get_type
 TYPE_VIEW_SWITCHER_BAR :: view_switcher_bar_get_type
 TYPE_VIEW_SWITCHER_TITLE :: view_switcher_title_get_type
 TYPE_WINDOW_TITLE :: window_title_get_type
+TYPE_WRAP_LAYOUT :: wrap_layout_get_type
+TYPE_WRAP_BOX :: wrap_box_get_type
 
 _AdwBreakpointCondition :: struct #packed {}
 BreakpointCondition :: _AdwBreakpointCondition
@@ -628,6 +638,58 @@ HeaderBarClass_autoptr :: ^HeaderBarClass
 HeaderBarClass_listautoptr :: ^glib.List
 HeaderBarClass_slistautoptr :: ^glib.SList
 HeaderBarClass_queueautoptr :: ^glib.Queue
+_AdwViewStackPage :: struct #packed {}
+ViewStackPage :: _AdwViewStackPage
+ViewStackPageClass :: struct {
+    parent_class: gobj.ObjectClass,
+}
+ViewStackPage_autoptr :: ^ViewStackPage
+ViewStackPage_listautoptr :: ^glib.List
+ViewStackPage_slistautoptr :: ^glib.SList
+ViewStackPage_queueautoptr :: ^glib.Queue
+ViewStackPageClass_autoptr :: ^ViewStackPageClass
+ViewStackPageClass_listautoptr :: ^glib.List
+ViewStackPageClass_slistautoptr :: ^glib.SList
+ViewStackPageClass_queueautoptr :: ^glib.Queue
+_AdwViewStack :: struct #packed {}
+ViewStack :: _AdwViewStack
+ViewStackClass :: struct {
+    parent_class: gtk.WidgetClass,
+}
+ViewStack_autoptr :: ^ViewStack
+ViewStack_listautoptr :: ^glib.List
+ViewStack_slistautoptr :: ^glib.SList
+ViewStack_queueautoptr :: ^glib.Queue
+ViewStackClass_autoptr :: ^ViewStackClass
+ViewStackClass_listautoptr :: ^glib.List
+ViewStackClass_slistautoptr :: ^glib.SList
+ViewStackClass_queueautoptr :: ^glib.Queue
+_AdwViewStackPages :: struct #packed {}
+ViewStackPages :: _AdwViewStackPages
+ViewStackPagesClass :: struct {
+    parent_class: gobj.ObjectClass,
+}
+ViewStackPages_autoptr :: ^ViewStackPages
+ViewStackPages_listautoptr :: ^glib.List
+ViewStackPages_slistautoptr :: ^glib.SList
+ViewStackPages_queueautoptr :: ^glib.Queue
+ViewStackPagesClass_autoptr :: ^ViewStackPagesClass
+ViewStackPagesClass_listautoptr :: ^glib.List
+ViewStackPagesClass_slistautoptr :: ^glib.SList
+ViewStackPagesClass_queueautoptr :: ^glib.Queue
+_AdwInlineViewSwitcher :: struct #packed {}
+InlineViewSwitcher :: _AdwInlineViewSwitcher
+InlineViewSwitcherClass :: struct {
+    parent_class: gtk.WidgetClass,
+}
+InlineViewSwitcher_autoptr :: ^InlineViewSwitcher
+InlineViewSwitcher_listautoptr :: ^glib.List
+InlineViewSwitcher_slistautoptr :: ^glib.SList
+InlineViewSwitcher_queueautoptr :: ^glib.Queue
+InlineViewSwitcherClass_autoptr :: ^InlineViewSwitcherClass
+InlineViewSwitcherClass_listautoptr :: ^glib.List
+InlineViewSwitcherClass_slistautoptr :: ^glib.SList
+InlineViewSwitcherClass_queueautoptr :: ^glib.Queue
 _AdwLayout :: struct #packed {}
 Layout :: _AdwLayout
 LayoutClass :: struct {
@@ -1110,6 +1172,32 @@ ToastOverlayClass_autoptr :: ^ToastOverlayClass
 ToastOverlayClass_listautoptr :: ^glib.List
 ToastOverlayClass_slistautoptr :: ^glib.SList
 ToastOverlayClass_queueautoptr :: ^glib.Queue
+_AdwToggle :: struct #packed {}
+Toggle :: _AdwToggle
+ToggleClass :: struct {
+    parent_class: gobj.ObjectClass,
+}
+Toggle_autoptr :: ^Toggle
+Toggle_listautoptr :: ^glib.List
+Toggle_slistautoptr :: ^glib.SList
+Toggle_queueautoptr :: ^glib.Queue
+ToggleClass_autoptr :: ^ToggleClass
+ToggleClass_listautoptr :: ^glib.List
+ToggleClass_slistautoptr :: ^glib.SList
+ToggleClass_queueautoptr :: ^glib.Queue
+_AdwToggleGroup :: struct #packed {}
+ToggleGroup :: _AdwToggleGroup
+ToggleGroupClass :: struct {
+    parent_class: gtk.WidgetClass,
+}
+ToggleGroup_autoptr :: ^ToggleGroup
+ToggleGroup_listautoptr :: ^glib.List
+ToggleGroup_slistautoptr :: ^glib.SList
+ToggleGroup_queueautoptr :: ^glib.Queue
+ToggleGroupClass_autoptr :: ^ToggleGroupClass
+ToggleGroupClass_listautoptr :: ^glib.List
+ToggleGroupClass_slistautoptr :: ^glib.SList
+ToggleGroupClass_queueautoptr :: ^glib.Queue
 _AdwToolbarView :: struct #packed {}
 ToolbarView :: _AdwToolbarView
 ToolbarViewClass :: struct {
@@ -1123,45 +1211,6 @@ ToolbarViewClass_autoptr :: ^ToolbarViewClass
 ToolbarViewClass_listautoptr :: ^glib.List
 ToolbarViewClass_slistautoptr :: ^glib.SList
 ToolbarViewClass_queueautoptr :: ^glib.Queue
-_AdwViewStackPage :: struct #packed {}
-ViewStackPage :: _AdwViewStackPage
-ViewStackPageClass :: struct {
-    parent_class: gobj.ObjectClass,
-}
-ViewStackPage_autoptr :: ^ViewStackPage
-ViewStackPage_listautoptr :: ^glib.List
-ViewStackPage_slistautoptr :: ^glib.SList
-ViewStackPage_queueautoptr :: ^glib.Queue
-ViewStackPageClass_autoptr :: ^ViewStackPageClass
-ViewStackPageClass_listautoptr :: ^glib.List
-ViewStackPageClass_slistautoptr :: ^glib.SList
-ViewStackPageClass_queueautoptr :: ^glib.Queue
-_AdwViewStack :: struct #packed {}
-ViewStack :: _AdwViewStack
-ViewStackClass :: struct {
-    parent_class: gtk.WidgetClass,
-}
-ViewStack_autoptr :: ^ViewStack
-ViewStack_listautoptr :: ^glib.List
-ViewStack_slistautoptr :: ^glib.SList
-ViewStack_queueautoptr :: ^glib.Queue
-ViewStackClass_autoptr :: ^ViewStackClass
-ViewStackClass_listautoptr :: ^glib.List
-ViewStackClass_slistautoptr :: ^glib.SList
-ViewStackClass_queueautoptr :: ^glib.Queue
-_AdwViewStackPages :: struct #packed {}
-ViewStackPages :: _AdwViewStackPages
-ViewStackPagesClass :: struct {
-    parent_class: gobj.ObjectClass,
-}
-ViewStackPages_autoptr :: ^ViewStackPages
-ViewStackPages_listautoptr :: ^glib.List
-ViewStackPages_slistautoptr :: ^glib.SList
-ViewStackPages_queueautoptr :: ^glib.Queue
-ViewStackPagesClass_autoptr :: ^ViewStackPagesClass
-ViewStackPagesClass_listautoptr :: ^glib.List
-ViewStackPagesClass_slistautoptr :: ^glib.SList
-ViewStackPagesClass_queueautoptr :: ^glib.Queue
 _AdwViewSwitcher :: struct #packed {}
 ViewSwitcher :: _AdwViewSwitcher
 ViewSwitcherClass :: struct {
@@ -1214,6 +1263,32 @@ WindowTitleClass_autoptr :: ^WindowTitleClass
 WindowTitleClass_listautoptr :: ^glib.List
 WindowTitleClass_slistautoptr :: ^glib.SList
 WindowTitleClass_queueautoptr :: ^glib.Queue
+_AdwWrapLayout :: struct #packed {}
+WrapLayout :: _AdwWrapLayout
+WrapLayoutClass :: struct {
+    parent_class: gtk.LayoutManagerClass,
+}
+WrapLayout_autoptr :: ^WrapLayout
+WrapLayout_listautoptr :: ^glib.List
+WrapLayout_slistautoptr :: ^glib.SList
+WrapLayout_queueautoptr :: ^glib.Queue
+WrapLayoutClass_autoptr :: ^WrapLayoutClass
+WrapLayoutClass_listautoptr :: ^glib.List
+WrapLayoutClass_slistautoptr :: ^glib.SList
+WrapLayoutClass_queueautoptr :: ^glib.Queue
+_AdwWrapBox :: struct #packed {}
+WrapBox :: _AdwWrapBox
+WrapBoxClass :: struct {
+    parent_class: gtk.WidgetClass,
+}
+WrapBox_autoptr :: ^WrapBox
+WrapBox_listautoptr :: ^glib.List
+WrapBox_slistautoptr :: ^glib.SList
+WrapBox_queueautoptr :: ^glib.Queue
+WrapBoxClass_autoptr :: ^WrapBoxClass
+WrapBoxClass_listautoptr :: ^glib.List
+WrapBoxClass_slistautoptr :: ^glib.SList
+WrapBoxClass_queueautoptr :: ^glib.Queue
 
 @(default_calling_convention = "c")
 foreign adwaita_runic {
@@ -1292,6 +1367,9 @@ foreign adwaita_runic {
     @(link_name = "adw_animation_state_get_type")
     animation_state_get_type :: proc() -> gobj.Type ---
 
+    @(link_name = "adw_banner_button_style_get_type")
+    banner_button_style_get_type :: proc() -> gobj.Type ---
+
     @(link_name = "adw_breakpoint_condition_length_type_get_type")
     breakpoint_condition_length_type_get_type :: proc() -> gobj.Type ---
 
@@ -1315,6 +1393,9 @@ foreign adwaita_runic {
 
     @(link_name = "adw_centering_policy_get_type")
     centering_policy_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_inline_view_switcher_display_mode_get_type")
+    inline_view_switcher_display_mode_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "adw_leaflet_transition_type_get_type")
     leaflet_transition_type_get_type :: proc() -> gobj.Type ---
@@ -1342,6 +1423,15 @@ foreign adwaita_runic {
 
     @(link_name = "adw_view_switcher_policy_get_type")
     view_switcher_policy_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_justify_mode_get_type")
+    justify_mode_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_pack_direction_get_type")
+    pack_direction_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_wrap_policy_get_type")
+    wrap_policy_get_type :: proc() -> gobj.Type ---
 
     @(link_name = "adw_dialog_get_type")
     dialog_get_type :: proc() -> gobj.Type ---
@@ -1559,6 +1649,9 @@ foreign adwaita_runic {
     @(link_name = "adw_about_dialog_add_legal_section")
     about_dialog_add_legal_section :: proc(self: ^AboutDialog, title: cstring, copyright: cstring, license_type: gtk.License, license: cstring) ---
 
+    @(link_name = "adw_about_dialog_add_other_app")
+    about_dialog_add_other_app :: proc(self: ^AboutDialog, appid: cstring, name: cstring, summary: cstring) ---
+
     @(link_name = "adw_show_about_dialog")
     show_about_dialog :: proc(parent: ^gtk.Widget, first_property_name: cstring, #c_vararg var_args: ..any) ---
 
@@ -1588,6 +1681,12 @@ foreign adwaita_runic {
 
     @(link_name = "adw_window_get_visible_dialog")
     window_get_visible_dialog :: proc(self: ^Window) -> ^Dialog ---
+
+    @(link_name = "adw_window_get_adaptive_preview")
+    window_get_adaptive_preview :: proc(self: ^Window) -> glib.boolean ---
+
+    @(link_name = "adw_window_set_adaptive_preview")
+    window_set_adaptive_preview :: proc(self: ^Window, adaptive_preview: glib.boolean) ---
 
     @(link_name = "adw_about_window_get_type")
     about_window_get_type :: proc() -> gobj.Type ---
@@ -2036,6 +2135,12 @@ foreign adwaita_runic {
     @(link_name = "adw_style_manager_get_accent_color_rgba")
     style_manager_get_accent_color_rgba :: proc(self: ^StyleManager) -> ^gtk.RGBA ---
 
+    @(link_name = "adw_style_manager_get_document_font_name")
+    style_manager_get_document_font_name :: proc(self: ^StyleManager) -> cstring ---
+
+    @(link_name = "adw_style_manager_get_monospace_font_name")
+    style_manager_get_monospace_font_name :: proc(self: ^StyleManager) -> cstring ---
+
     @(link_name = "adw_application_get_type")
     application_get_type :: proc() -> gobj.Type ---
 
@@ -2068,6 +2173,12 @@ foreign adwaita_runic {
 
     @(link_name = "adw_application_window_get_visible_dialog")
     application_window_get_visible_dialog :: proc(self: ^ApplicationWindow) -> ^Dialog ---
+
+    @(link_name = "adw_application_window_get_adaptive_preview")
+    application_window_get_adaptive_preview :: proc(self: ^ApplicationWindow) -> glib.boolean ---
+
+    @(link_name = "adw_application_window_set_adaptive_preview")
+    application_window_set_adaptive_preview :: proc(self: ^ApplicationWindow, adaptive_preview: glib.boolean) ---
 
     @(link_name = "adw_avatar_get_type")
     avatar_get_type :: proc() -> gobj.Type ---
@@ -2137,6 +2248,12 @@ foreign adwaita_runic {
 
     @(link_name = "adw_banner_set_use_markup")
     banner_set_use_markup :: proc(self: ^Banner, use_markup: glib.boolean) ---
+
+    @(link_name = "adw_banner_get_button_style")
+    banner_get_button_style :: proc(self: ^Banner) -> BannerButtonStyle ---
+
+    @(link_name = "adw_banner_set_button_style")
+    banner_set_button_style :: proc(self: ^Banner, style: BannerButtonStyle) ---
 
     @(link_name = "adw_bin_get_type")
     bin_get_type :: proc() -> gobj.Type ---
@@ -2221,6 +2338,12 @@ foreign adwaita_runic {
 
     @(link_name = "adw_bottom_sheet_get_bottom_bar_height")
     bottom_sheet_get_bottom_bar_height :: proc(self: ^BottomSheet) -> i32 ---
+
+    @(link_name = "adw_bottom_sheet_get_reveal_bottom_bar")
+    bottom_sheet_get_reveal_bottom_bar :: proc(self: ^BottomSheet) -> glib.boolean ---
+
+    @(link_name = "adw_bottom_sheet_set_reveal_bottom_bar")
+    bottom_sheet_set_reveal_bottom_bar :: proc(self: ^BottomSheet, reveal: glib.boolean) ---
 
     @(link_name = "adw_breakpoint_bin_get_type")
     breakpoint_bin_get_type :: proc() -> gobj.Type ---
@@ -2870,6 +2993,162 @@ foreign adwaita_runic {
     @(link_name = "adw_header_bar_set_show_title")
     header_bar_set_show_title :: proc(self: ^HeaderBar, show_title: glib.boolean) ---
 
+    @(link_name = "adw_view_stack_page_get_type")
+    view_stack_page_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_view_stack_page_get_child")
+    view_stack_page_get_child :: proc(self: ^ViewStackPage) -> ^gtk.Widget ---
+
+    @(link_name = "adw_view_stack_page_get_name")
+    view_stack_page_get_name :: proc(self: ^ViewStackPage) -> cstring ---
+
+    @(link_name = "adw_view_stack_page_set_name")
+    view_stack_page_set_name :: proc(self: ^ViewStackPage, name: cstring) ---
+
+    @(link_name = "adw_view_stack_page_get_title")
+    view_stack_page_get_title :: proc(self: ^ViewStackPage) -> cstring ---
+
+    @(link_name = "adw_view_stack_page_set_title")
+    view_stack_page_set_title :: proc(self: ^ViewStackPage, title: cstring) ---
+
+    @(link_name = "adw_view_stack_page_get_use_underline")
+    view_stack_page_get_use_underline :: proc(self: ^ViewStackPage) -> glib.boolean ---
+
+    @(link_name = "adw_view_stack_page_set_use_underline")
+    view_stack_page_set_use_underline :: proc(self: ^ViewStackPage, use_underline: glib.boolean) ---
+
+    @(link_name = "adw_view_stack_page_get_icon_name")
+    view_stack_page_get_icon_name :: proc(self: ^ViewStackPage) -> cstring ---
+
+    @(link_name = "adw_view_stack_page_set_icon_name")
+    view_stack_page_set_icon_name :: proc(self: ^ViewStackPage, icon_name: cstring) ---
+
+    @(link_name = "adw_view_stack_page_get_needs_attention")
+    view_stack_page_get_needs_attention :: proc(self: ^ViewStackPage) -> glib.boolean ---
+
+    @(link_name = "adw_view_stack_page_set_needs_attention")
+    view_stack_page_set_needs_attention :: proc(self: ^ViewStackPage, needs_attention: glib.boolean) ---
+
+    @(link_name = "adw_view_stack_page_get_badge_number")
+    view_stack_page_get_badge_number :: proc(self: ^ViewStackPage) -> glib.uint_ ---
+
+    @(link_name = "adw_view_stack_page_set_badge_number")
+    view_stack_page_set_badge_number :: proc(self: ^ViewStackPage, badge_number: glib.uint_) ---
+
+    @(link_name = "adw_view_stack_page_get_visible")
+    view_stack_page_get_visible :: proc(self: ^ViewStackPage) -> glib.boolean ---
+
+    @(link_name = "adw_view_stack_page_set_visible")
+    view_stack_page_set_visible :: proc(self: ^ViewStackPage, visible: glib.boolean) ---
+
+    @(link_name = "adw_view_stack_get_type")
+    view_stack_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_view_stack_new")
+    view_stack_new :: proc() -> ^gtk.Widget ---
+
+    @(link_name = "adw_view_stack_add")
+    view_stack_add :: proc(self: ^ViewStack, child: ^gtk.Widget) -> ^ViewStackPage ---
+
+    @(link_name = "adw_view_stack_add_named")
+    view_stack_add_named :: proc(self: ^ViewStack, child: ^gtk.Widget, name: cstring) -> ^ViewStackPage ---
+
+    @(link_name = "adw_view_stack_add_titled")
+    view_stack_add_titled :: proc(self: ^ViewStack, child: ^gtk.Widget, name: cstring, title: cstring) -> ^ViewStackPage ---
+
+    @(link_name = "adw_view_stack_add_titled_with_icon")
+    view_stack_add_titled_with_icon :: proc(self: ^ViewStack, child: ^gtk.Widget, name: cstring, title: cstring, icon_name: cstring) -> ^ViewStackPage ---
+
+    @(link_name = "adw_view_stack_remove")
+    view_stack_remove :: proc(self: ^ViewStack, child: ^gtk.Widget) ---
+
+    @(link_name = "adw_view_stack_get_page")
+    view_stack_get_page :: proc(self: ^ViewStack, child: ^gtk.Widget) -> ^ViewStackPage ---
+
+    @(link_name = "adw_view_stack_get_child_by_name")
+    view_stack_get_child_by_name :: proc(self: ^ViewStack, name: cstring) -> ^gtk.Widget ---
+
+    @(link_name = "adw_view_stack_get_visible_child")
+    view_stack_get_visible_child :: proc(self: ^ViewStack) -> ^gtk.Widget ---
+
+    @(link_name = "adw_view_stack_set_visible_child")
+    view_stack_set_visible_child :: proc(self: ^ViewStack, child: ^gtk.Widget) ---
+
+    @(link_name = "adw_view_stack_get_visible_child_name")
+    view_stack_get_visible_child_name :: proc(self: ^ViewStack) -> cstring ---
+
+    @(link_name = "adw_view_stack_set_visible_child_name")
+    view_stack_set_visible_child_name :: proc(self: ^ViewStack, name: cstring) ---
+
+    @(link_name = "adw_view_stack_get_hhomogeneous")
+    view_stack_get_hhomogeneous :: proc(self: ^ViewStack) -> glib.boolean ---
+
+    @(link_name = "adw_view_stack_set_hhomogeneous")
+    view_stack_set_hhomogeneous :: proc(self: ^ViewStack, hhomogeneous: glib.boolean) ---
+
+    @(link_name = "adw_view_stack_get_vhomogeneous")
+    view_stack_get_vhomogeneous :: proc(self: ^ViewStack) -> glib.boolean ---
+
+    @(link_name = "adw_view_stack_set_vhomogeneous")
+    view_stack_set_vhomogeneous :: proc(self: ^ViewStack, vhomogeneous: glib.boolean) ---
+
+    @(link_name = "adw_view_stack_get_enable_transitions")
+    view_stack_get_enable_transitions :: proc(self: ^ViewStack) -> glib.boolean ---
+
+    @(link_name = "adw_view_stack_set_enable_transitions")
+    view_stack_set_enable_transitions :: proc(self: ^ViewStack, enable_transitions: glib.boolean) ---
+
+    @(link_name = "adw_view_stack_get_transition_duration")
+    view_stack_get_transition_duration :: proc(self: ^ViewStack) -> glib.uint_ ---
+
+    @(link_name = "adw_view_stack_set_transition_duration")
+    view_stack_set_transition_duration :: proc(self: ^ViewStack, duration: glib.uint_) ---
+
+    @(link_name = "adw_view_stack_get_transition_running")
+    view_stack_get_transition_running :: proc(self: ^ViewStack) -> glib.boolean ---
+
+    @(link_name = "adw_view_stack_get_pages")
+    view_stack_get_pages :: proc(self: ^ViewStack) -> ^gtk.SelectionModel ---
+
+    @(link_name = "adw_view_stack_pages_get_type")
+    view_stack_pages_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_view_stack_pages_get_selected_page")
+    view_stack_pages_get_selected_page :: proc(self: ^ViewStackPages) -> ^ViewStackPage ---
+
+    @(link_name = "adw_view_stack_pages_set_selected_page")
+    view_stack_pages_set_selected_page :: proc(self: ^ViewStackPages, page: ^ViewStackPage) ---
+
+    @(link_name = "adw_inline_view_switcher_get_type")
+    inline_view_switcher_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_inline_view_switcher_new")
+    inline_view_switcher_new :: proc() -> ^gtk.Widget ---
+
+    @(link_name = "adw_inline_view_switcher_get_stack")
+    inline_view_switcher_get_stack :: proc(self: ^InlineViewSwitcher) -> ^ViewStack ---
+
+    @(link_name = "adw_inline_view_switcher_set_stack")
+    inline_view_switcher_set_stack :: proc(self: ^InlineViewSwitcher, stack: ^ViewStack) ---
+
+    @(link_name = "adw_inline_view_switcher_get_display_mode")
+    inline_view_switcher_get_display_mode :: proc(self: ^InlineViewSwitcher) -> InlineViewSwitcherDisplayMode ---
+
+    @(link_name = "adw_inline_view_switcher_set_display_mode")
+    inline_view_switcher_set_display_mode :: proc(self: ^InlineViewSwitcher, mode: InlineViewSwitcherDisplayMode) ---
+
+    @(link_name = "adw_inline_view_switcher_get_homogeneous")
+    inline_view_switcher_get_homogeneous :: proc(self: ^InlineViewSwitcher) -> glib.boolean ---
+
+    @(link_name = "adw_inline_view_switcher_set_homogeneous")
+    inline_view_switcher_set_homogeneous :: proc(self: ^InlineViewSwitcher, homogeneous: glib.boolean) ---
+
+    @(link_name = "adw_inline_view_switcher_get_can_shrink")
+    inline_view_switcher_get_can_shrink :: proc(self: ^InlineViewSwitcher) -> glib.boolean ---
+
+    @(link_name = "adw_inline_view_switcher_set_can_shrink")
+    inline_view_switcher_set_can_shrink :: proc(self: ^InlineViewSwitcher, can_shrink: glib.boolean) ---
+
     @(link_name = "adw_layout_get_type")
     layout_get_type :: proc() -> gobj.Type ---
 
@@ -3224,8 +3503,23 @@ foreign adwaita_runic {
     @(link_name = "adw_navigation_view_get_visible_page")
     navigation_view_get_visible_page :: proc(self: ^NavigationView) -> ^NavigationPage ---
 
+    @(link_name = "adw_navigation_view_get_visible_page_tag")
+    navigation_view_get_visible_page_tag :: proc(self: ^NavigationView) -> cstring ---
+
     @(link_name = "adw_navigation_view_get_previous_page")
     navigation_view_get_previous_page :: proc(self: ^NavigationView, page: ^NavigationPage) -> ^NavigationPage ---
+
+    @(link_name = "adw_navigation_view_get_hhomogeneous")
+    navigation_view_get_hhomogeneous :: proc(self: ^NavigationView) -> glib.boolean ---
+
+    @(link_name = "adw_navigation_view_set_hhomogeneous")
+    navigation_view_set_hhomogeneous :: proc(self: ^NavigationView, hhomogeneous: glib.boolean) ---
+
+    @(link_name = "adw_navigation_view_get_vhomogeneous")
+    navigation_view_get_vhomogeneous :: proc(self: ^NavigationView) -> glib.boolean ---
+
+    @(link_name = "adw_navigation_view_set_vhomogeneous")
+    navigation_view_set_vhomogeneous :: proc(self: ^NavigationView, vhomogeneous: glib.boolean) ---
 
     @(link_name = "adw_navigation_view_get_animate_transitions")
     navigation_view_get_animate_transitions :: proc(self: ^NavigationView) -> glib.boolean ---
@@ -3259,6 +3553,12 @@ foreign adwaita_runic {
 
     @(link_name = "adw_navigation_split_view_set_content")
     navigation_split_view_set_content :: proc(self: ^NavigationSplitView, content: ^NavigationPage) ---
+
+    @(link_name = "adw_navigation_split_view_get_sidebar_position")
+    navigation_split_view_get_sidebar_position :: proc(self: ^NavigationSplitView) -> gtk.PackType ---
+
+    @(link_name = "adw_navigation_split_view_set_sidebar_position")
+    navigation_split_view_set_sidebar_position :: proc(self: ^NavigationSplitView, position: gtk.PackType) ---
 
     @(link_name = "adw_navigation_split_view_get_collapsed")
     navigation_split_view_get_collapsed :: proc(self: ^NavigationSplitView) -> glib.boolean ---
@@ -3463,6 +3763,12 @@ foreign adwaita_runic {
 
     @(link_name = "adw_preferences_page_set_description_centered")
     preferences_page_set_description_centered :: proc(self: ^PreferencesPage, centered: glib.boolean) ---
+
+    @(link_name = "adw_preferences_page_get_banner")
+    preferences_page_get_banner :: proc(self: ^PreferencesPage) -> ^Banner ---
+
+    @(link_name = "adw_preferences_page_set_banner")
+    preferences_page_set_banner :: proc(self: ^PreferencesPage, banner: ^Banner) ---
 
     @(link_name = "adw_preferences_page_scroll_to_top")
     preferences_page_scroll_to_top :: proc(self: ^PreferencesPage) ---
@@ -4454,6 +4760,111 @@ foreign adwaita_runic {
     @(link_name = "adw_toast_overlay_add_toast")
     toast_overlay_add_toast :: proc(self: ^ToastOverlay, toast: ^Toast) ---
 
+    @(link_name = "adw_toast_overlay_dismiss_all")
+    toast_overlay_dismiss_all :: proc(self: ^ToastOverlay) ---
+
+    @(link_name = "adw_toggle_get_type")
+    toggle_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_toggle_new")
+    toggle_new :: proc() -> ^Toggle ---
+
+    @(link_name = "adw_toggle_get_name")
+    toggle_get_name :: proc(self: ^Toggle) -> cstring ---
+
+    @(link_name = "adw_toggle_set_name")
+    toggle_set_name :: proc(self: ^Toggle, name: cstring) ---
+
+    @(link_name = "adw_toggle_get_label")
+    toggle_get_label :: proc(self: ^Toggle) -> cstring ---
+
+    @(link_name = "adw_toggle_set_label")
+    toggle_set_label :: proc(self: ^Toggle, label: cstring) ---
+
+    @(link_name = "adw_toggle_get_use_underline")
+    toggle_get_use_underline :: proc(self: ^Toggle) -> glib.boolean ---
+
+    @(link_name = "adw_toggle_set_use_underline")
+    toggle_set_use_underline :: proc(self: ^Toggle, use_underline: glib.boolean) ---
+
+    @(link_name = "adw_toggle_get_icon_name")
+    toggle_get_icon_name :: proc(self: ^Toggle) -> cstring ---
+
+    @(link_name = "adw_toggle_set_icon_name")
+    toggle_set_icon_name :: proc(self: ^Toggle, icon_name: cstring) ---
+
+    @(link_name = "adw_toggle_get_tooltip")
+    toggle_get_tooltip :: proc(self: ^Toggle) -> cstring ---
+
+    @(link_name = "adw_toggle_set_tooltip")
+    toggle_set_tooltip :: proc(self: ^Toggle, tooltip: cstring) ---
+
+    @(link_name = "adw_toggle_get_child")
+    toggle_get_child :: proc(self: ^Toggle) -> ^gtk.Widget ---
+
+    @(link_name = "adw_toggle_set_child")
+    toggle_set_child :: proc(self: ^Toggle, child: ^gtk.Widget) ---
+
+    @(link_name = "adw_toggle_get_enabled")
+    toggle_get_enabled :: proc(self: ^Toggle) -> glib.boolean ---
+
+    @(link_name = "adw_toggle_set_enabled")
+    toggle_set_enabled :: proc(self: ^Toggle, enabled: glib.boolean) ---
+
+    @(link_name = "adw_toggle_get_index")
+    toggle_get_index :: proc(self: ^Toggle) -> glib.uint_ ---
+
+    @(link_name = "adw_toggle_group_get_type")
+    toggle_group_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_toggle_group_new")
+    toggle_group_new :: proc() -> ^gtk.Widget ---
+
+    @(link_name = "adw_toggle_group_add")
+    toggle_group_add :: proc(self: ^ToggleGroup, toggle: ^Toggle) ---
+
+    @(link_name = "adw_toggle_group_remove")
+    toggle_group_remove :: proc(self: ^ToggleGroup, toggle: ^Toggle) ---
+
+    @(link_name = "adw_toggle_group_remove_all")
+    toggle_group_remove_all :: proc(self: ^ToggleGroup) ---
+
+    @(link_name = "adw_toggle_group_get_toggle")
+    toggle_group_get_toggle :: proc(self: ^ToggleGroup, index: glib.uint_) -> ^Toggle ---
+
+    @(link_name = "adw_toggle_group_get_toggle_by_name")
+    toggle_group_get_toggle_by_name :: proc(self: ^ToggleGroup, name: cstring) -> ^Toggle ---
+
+    @(link_name = "adw_toggle_group_get_n_toggles")
+    toggle_group_get_n_toggles :: proc(self: ^ToggleGroup) -> glib.uint_ ---
+
+    @(link_name = "adw_toggle_group_get_active")
+    toggle_group_get_active :: proc(self: ^ToggleGroup) -> glib.uint_ ---
+
+    @(link_name = "adw_toggle_group_set_active")
+    toggle_group_set_active :: proc(self: ^ToggleGroup, active: glib.uint_) ---
+
+    @(link_name = "adw_toggle_group_get_active_name")
+    toggle_group_get_active_name :: proc(self: ^ToggleGroup) -> cstring ---
+
+    @(link_name = "adw_toggle_group_set_active_name")
+    toggle_group_set_active_name :: proc(self: ^ToggleGroup, name: cstring) ---
+
+    @(link_name = "adw_toggle_group_get_homogeneous")
+    toggle_group_get_homogeneous :: proc(self: ^ToggleGroup) -> glib.boolean ---
+
+    @(link_name = "adw_toggle_group_set_homogeneous")
+    toggle_group_set_homogeneous :: proc(self: ^ToggleGroup, homogeneous: glib.boolean) ---
+
+    @(link_name = "adw_toggle_group_get_can_shrink")
+    toggle_group_get_can_shrink :: proc(self: ^ToggleGroup) -> glib.boolean ---
+
+    @(link_name = "adw_toggle_group_set_can_shrink")
+    toggle_group_set_can_shrink :: proc(self: ^ToggleGroup, can_shrink: glib.boolean) ---
+
+    @(link_name = "adw_toggle_group_get_toggles")
+    toggle_group_get_toggles :: proc(self: ^ToggleGroup) -> ^gtk.SelectionModel ---
+
     @(link_name = "adw_toolbar_view_get_type")
     toolbar_view_get_type :: proc() -> gobj.Type ---
 
@@ -4516,117 +4927,6 @@ foreign adwaita_runic {
 
     @(link_name = "adw_toolbar_view_get_bottom_bar_height")
     toolbar_view_get_bottom_bar_height :: proc(self: ^ToolbarView) -> i32 ---
-
-    @(link_name = "adw_view_stack_page_get_type")
-    view_stack_page_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "adw_view_stack_page_get_child")
-    view_stack_page_get_child :: proc(self: ^ViewStackPage) -> ^gtk.Widget ---
-
-    @(link_name = "adw_view_stack_page_get_name")
-    view_stack_page_get_name :: proc(self: ^ViewStackPage) -> cstring ---
-
-    @(link_name = "adw_view_stack_page_set_name")
-    view_stack_page_set_name :: proc(self: ^ViewStackPage, name: cstring) ---
-
-    @(link_name = "adw_view_stack_page_get_title")
-    view_stack_page_get_title :: proc(self: ^ViewStackPage) -> cstring ---
-
-    @(link_name = "adw_view_stack_page_set_title")
-    view_stack_page_set_title :: proc(self: ^ViewStackPage, title: cstring) ---
-
-    @(link_name = "adw_view_stack_page_get_use_underline")
-    view_stack_page_get_use_underline :: proc(self: ^ViewStackPage) -> glib.boolean ---
-
-    @(link_name = "adw_view_stack_page_set_use_underline")
-    view_stack_page_set_use_underline :: proc(self: ^ViewStackPage, use_underline: glib.boolean) ---
-
-    @(link_name = "adw_view_stack_page_get_icon_name")
-    view_stack_page_get_icon_name :: proc(self: ^ViewStackPage) -> cstring ---
-
-    @(link_name = "adw_view_stack_page_set_icon_name")
-    view_stack_page_set_icon_name :: proc(self: ^ViewStackPage, icon_name: cstring) ---
-
-    @(link_name = "adw_view_stack_page_get_needs_attention")
-    view_stack_page_get_needs_attention :: proc(self: ^ViewStackPage) -> glib.boolean ---
-
-    @(link_name = "adw_view_stack_page_set_needs_attention")
-    view_stack_page_set_needs_attention :: proc(self: ^ViewStackPage, needs_attention: glib.boolean) ---
-
-    @(link_name = "adw_view_stack_page_get_badge_number")
-    view_stack_page_get_badge_number :: proc(self: ^ViewStackPage) -> glib.uint_ ---
-
-    @(link_name = "adw_view_stack_page_set_badge_number")
-    view_stack_page_set_badge_number :: proc(self: ^ViewStackPage, badge_number: glib.uint_) ---
-
-    @(link_name = "adw_view_stack_page_get_visible")
-    view_stack_page_get_visible :: proc(self: ^ViewStackPage) -> glib.boolean ---
-
-    @(link_name = "adw_view_stack_page_set_visible")
-    view_stack_page_set_visible :: proc(self: ^ViewStackPage, visible: glib.boolean) ---
-
-    @(link_name = "adw_view_stack_get_type")
-    view_stack_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "adw_view_stack_new")
-    view_stack_new :: proc() -> ^gtk.Widget ---
-
-    @(link_name = "adw_view_stack_add")
-    view_stack_add :: proc(self: ^ViewStack, child: ^gtk.Widget) -> ^ViewStackPage ---
-
-    @(link_name = "adw_view_stack_add_named")
-    view_stack_add_named :: proc(self: ^ViewStack, child: ^gtk.Widget, name: cstring) -> ^ViewStackPage ---
-
-    @(link_name = "adw_view_stack_add_titled")
-    view_stack_add_titled :: proc(self: ^ViewStack, child: ^gtk.Widget, name: cstring, title: cstring) -> ^ViewStackPage ---
-
-    @(link_name = "adw_view_stack_add_titled_with_icon")
-    view_stack_add_titled_with_icon :: proc(self: ^ViewStack, child: ^gtk.Widget, name: cstring, title: cstring, icon_name: cstring) -> ^ViewStackPage ---
-
-    @(link_name = "adw_view_stack_remove")
-    view_stack_remove :: proc(self: ^ViewStack, child: ^gtk.Widget) ---
-
-    @(link_name = "adw_view_stack_get_page")
-    view_stack_get_page :: proc(self: ^ViewStack, child: ^gtk.Widget) -> ^ViewStackPage ---
-
-    @(link_name = "adw_view_stack_get_child_by_name")
-    view_stack_get_child_by_name :: proc(self: ^ViewStack, name: cstring) -> ^gtk.Widget ---
-
-    @(link_name = "adw_view_stack_get_visible_child")
-    view_stack_get_visible_child :: proc(self: ^ViewStack) -> ^gtk.Widget ---
-
-    @(link_name = "adw_view_stack_set_visible_child")
-    view_stack_set_visible_child :: proc(self: ^ViewStack, child: ^gtk.Widget) ---
-
-    @(link_name = "adw_view_stack_get_visible_child_name")
-    view_stack_get_visible_child_name :: proc(self: ^ViewStack) -> cstring ---
-
-    @(link_name = "adw_view_stack_set_visible_child_name")
-    view_stack_set_visible_child_name :: proc(self: ^ViewStack, name: cstring) ---
-
-    @(link_name = "adw_view_stack_get_hhomogeneous")
-    view_stack_get_hhomogeneous :: proc(self: ^ViewStack) -> glib.boolean ---
-
-    @(link_name = "adw_view_stack_set_hhomogeneous")
-    view_stack_set_hhomogeneous :: proc(self: ^ViewStack, hhomogeneous: glib.boolean) ---
-
-    @(link_name = "adw_view_stack_get_vhomogeneous")
-    view_stack_get_vhomogeneous :: proc(self: ^ViewStack) -> glib.boolean ---
-
-    @(link_name = "adw_view_stack_set_vhomogeneous")
-    view_stack_set_vhomogeneous :: proc(self: ^ViewStack, vhomogeneous: glib.boolean) ---
-
-    @(link_name = "adw_view_stack_get_pages")
-    view_stack_get_pages :: proc(self: ^ViewStack) -> ^gtk.SelectionModel ---
-
-    @(link_name = "adw_view_stack_pages_get_type")
-    view_stack_pages_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "adw_view_stack_pages_get_selected_page")
-    view_stack_pages_get_selected_page :: proc(self: ^ViewStackPages) -> ^ViewStackPage ---
-
-    @(link_name = "adw_view_stack_pages_set_selected_page")
-    view_stack_pages_set_selected_page :: proc(self: ^ViewStackPages, page: ^ViewStackPage) ---
 
     @(link_name = "adw_view_switcher_get_type")
     view_switcher_get_type :: proc() -> gobj.Type ---
@@ -4714,6 +5014,189 @@ foreign adwaita_runic {
 
     @(link_name = "adw_window_title_set_subtitle")
     window_title_set_subtitle :: proc(self: ^WindowTitle, subtitle: cstring) ---
+
+    @(link_name = "adw_wrap_layout_get_type")
+    wrap_layout_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_wrap_layout_new")
+    wrap_layout_new :: proc() -> ^gtk.LayoutManager ---
+
+    @(link_name = "adw_wrap_layout_get_child_spacing")
+    wrap_layout_get_child_spacing :: proc(self: ^WrapLayout) -> i32 ---
+
+    @(link_name = "adw_wrap_layout_set_child_spacing")
+    wrap_layout_set_child_spacing :: proc(self: ^WrapLayout, child_spacing: i32) ---
+
+    @(link_name = "adw_wrap_layout_get_child_spacing_unit")
+    wrap_layout_get_child_spacing_unit :: proc(self: ^WrapLayout) -> LengthUnit ---
+
+    @(link_name = "adw_wrap_layout_set_child_spacing_unit")
+    wrap_layout_set_child_spacing_unit :: proc(self: ^WrapLayout, unit: LengthUnit) ---
+
+    @(link_name = "adw_wrap_layout_get_pack_direction")
+    wrap_layout_get_pack_direction :: proc(self: ^WrapLayout) -> PackDirection ---
+
+    @(link_name = "adw_wrap_layout_set_pack_direction")
+    wrap_layout_set_pack_direction :: proc(self: ^WrapLayout, pack_direction: PackDirection) ---
+
+    @(link_name = "adw_wrap_layout_get_align")
+    wrap_layout_get_align :: proc(self: ^WrapLayout) -> f32 ---
+
+    @(link_name = "adw_wrap_layout_set_align")
+    wrap_layout_set_align :: proc(self: ^WrapLayout, align: f32) ---
+
+    @(link_name = "adw_wrap_layout_get_justify")
+    wrap_layout_get_justify :: proc(self: ^WrapLayout) -> JustifyMode ---
+
+    @(link_name = "adw_wrap_layout_set_justify")
+    wrap_layout_set_justify :: proc(self: ^WrapLayout, justify: JustifyMode) ---
+
+    @(link_name = "adw_wrap_layout_get_justify_last_line")
+    wrap_layout_get_justify_last_line :: proc(self: ^WrapLayout) -> glib.boolean ---
+
+    @(link_name = "adw_wrap_layout_set_justify_last_line")
+    wrap_layout_set_justify_last_line :: proc(self: ^WrapLayout, justify_last_line: glib.boolean) ---
+
+    @(link_name = "adw_wrap_layout_get_line_spacing")
+    wrap_layout_get_line_spacing :: proc(self: ^WrapLayout) -> i32 ---
+
+    @(link_name = "adw_wrap_layout_set_line_spacing")
+    wrap_layout_set_line_spacing :: proc(self: ^WrapLayout, line_spacing: i32) ---
+
+    @(link_name = "adw_wrap_layout_get_line_spacing_unit")
+    wrap_layout_get_line_spacing_unit :: proc(self: ^WrapLayout) -> LengthUnit ---
+
+    @(link_name = "adw_wrap_layout_set_line_spacing_unit")
+    wrap_layout_set_line_spacing_unit :: proc(self: ^WrapLayout, unit: LengthUnit) ---
+
+    @(link_name = "adw_wrap_layout_get_line_homogeneous")
+    wrap_layout_get_line_homogeneous :: proc(self: ^WrapLayout) -> glib.boolean ---
+
+    @(link_name = "adw_wrap_layout_set_line_homogeneous")
+    wrap_layout_set_line_homogeneous :: proc(self: ^WrapLayout, homogeneous: glib.boolean) ---
+
+    @(link_name = "adw_wrap_layout_get_natural_line_length")
+    wrap_layout_get_natural_line_length :: proc(self: ^WrapLayout) -> i32 ---
+
+    @(link_name = "adw_wrap_layout_set_natural_line_length")
+    wrap_layout_set_natural_line_length :: proc(self: ^WrapLayout, natural_line_length: i32) ---
+
+    @(link_name = "adw_wrap_layout_get_natural_line_length_unit")
+    wrap_layout_get_natural_line_length_unit :: proc(self: ^WrapLayout) -> LengthUnit ---
+
+    @(link_name = "adw_wrap_layout_set_natural_line_length_unit")
+    wrap_layout_set_natural_line_length_unit :: proc(self: ^WrapLayout, unit: LengthUnit) ---
+
+    @(link_name = "adw_wrap_layout_get_wrap_reverse")
+    wrap_layout_get_wrap_reverse :: proc(self: ^WrapLayout) -> glib.boolean ---
+
+    @(link_name = "adw_wrap_layout_set_wrap_reverse")
+    wrap_layout_set_wrap_reverse :: proc(self: ^WrapLayout, wrap_reverse: glib.boolean) ---
+
+    @(link_name = "adw_wrap_layout_get_wrap_policy")
+    wrap_layout_get_wrap_policy :: proc(self: ^WrapLayout) -> WrapPolicy ---
+
+    @(link_name = "adw_wrap_layout_set_wrap_policy")
+    wrap_layout_set_wrap_policy :: proc(self: ^WrapLayout, wrap_policy: WrapPolicy) ---
+
+    @(link_name = "adw_wrap_box_get_type")
+    wrap_box_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_wrap_box_new")
+    wrap_box_new :: proc() -> ^gtk.Widget ---
+
+    @(link_name = "adw_wrap_box_get_child_spacing")
+    wrap_box_get_child_spacing :: proc(self: ^WrapBox) -> i32 ---
+
+    @(link_name = "adw_wrap_box_set_child_spacing")
+    wrap_box_set_child_spacing :: proc(self: ^WrapBox, child_spacing: i32) ---
+
+    @(link_name = "adw_wrap_box_get_child_spacing_unit")
+    wrap_box_get_child_spacing_unit :: proc(self: ^WrapBox) -> LengthUnit ---
+
+    @(link_name = "adw_wrap_box_set_child_spacing_unit")
+    wrap_box_set_child_spacing_unit :: proc(self: ^WrapBox, unit: LengthUnit) ---
+
+    @(link_name = "adw_wrap_box_get_pack_direction")
+    wrap_box_get_pack_direction :: proc(self: ^WrapBox) -> PackDirection ---
+
+    @(link_name = "adw_wrap_box_set_pack_direction")
+    wrap_box_set_pack_direction :: proc(self: ^WrapBox, pack_direction: PackDirection) ---
+
+    @(link_name = "adw_wrap_box_get_align")
+    wrap_box_get_align :: proc(self: ^WrapBox) -> f32 ---
+
+    @(link_name = "adw_wrap_box_set_align")
+    wrap_box_set_align :: proc(self: ^WrapBox, align: f32) ---
+
+    @(link_name = "adw_wrap_box_get_justify")
+    wrap_box_get_justify :: proc(self: ^WrapBox) -> JustifyMode ---
+
+    @(link_name = "adw_wrap_box_set_justify")
+    wrap_box_set_justify :: proc(self: ^WrapBox, justify: JustifyMode) ---
+
+    @(link_name = "adw_wrap_box_get_justify_last_line")
+    wrap_box_get_justify_last_line :: proc(self: ^WrapBox) -> glib.boolean ---
+
+    @(link_name = "adw_wrap_box_set_justify_last_line")
+    wrap_box_set_justify_last_line :: proc(self: ^WrapBox, justify_last_line: glib.boolean) ---
+
+    @(link_name = "adw_wrap_box_get_line_spacing")
+    wrap_box_get_line_spacing :: proc(self: ^WrapBox) -> i32 ---
+
+    @(link_name = "adw_wrap_box_set_line_spacing")
+    wrap_box_set_line_spacing :: proc(self: ^WrapBox, line_spacing: i32) ---
+
+    @(link_name = "adw_wrap_box_get_line_spacing_unit")
+    wrap_box_get_line_spacing_unit :: proc(self: ^WrapBox) -> LengthUnit ---
+
+    @(link_name = "adw_wrap_box_set_line_spacing_unit")
+    wrap_box_set_line_spacing_unit :: proc(self: ^WrapBox, unit: LengthUnit) ---
+
+    @(link_name = "adw_wrap_box_get_line_homogeneous")
+    wrap_box_get_line_homogeneous :: proc(self: ^WrapBox) -> glib.boolean ---
+
+    @(link_name = "adw_wrap_box_set_line_homogeneous")
+    wrap_box_set_line_homogeneous :: proc(self: ^WrapBox, homogeneous: glib.boolean) ---
+
+    @(link_name = "adw_wrap_box_get_natural_line_length")
+    wrap_box_get_natural_line_length :: proc(self: ^WrapBox) -> i32 ---
+
+    @(link_name = "adw_wrap_box_set_natural_line_length")
+    wrap_box_set_natural_line_length :: proc(self: ^WrapBox, natural_line_length: i32) ---
+
+    @(link_name = "adw_wrap_box_get_natural_line_length_unit")
+    wrap_box_get_natural_line_length_unit :: proc(self: ^WrapBox) -> LengthUnit ---
+
+    @(link_name = "adw_wrap_box_set_natural_line_length_unit")
+    wrap_box_set_natural_line_length_unit :: proc(self: ^WrapBox, unit: LengthUnit) ---
+
+    @(link_name = "adw_wrap_box_get_wrap_reverse")
+    wrap_box_get_wrap_reverse :: proc(self: ^WrapBox) -> glib.boolean ---
+
+    @(link_name = "adw_wrap_box_set_wrap_reverse")
+    wrap_box_set_wrap_reverse :: proc(self: ^WrapBox, wrap_reverse: glib.boolean) ---
+
+    @(link_name = "adw_wrap_box_get_wrap_policy")
+    wrap_box_get_wrap_policy :: proc(self: ^WrapBox) -> WrapPolicy ---
+
+    @(link_name = "adw_wrap_box_set_wrap_policy")
+    wrap_box_set_wrap_policy :: proc(self: ^WrapBox, wrap_policy: WrapPolicy) ---
+
+    @(link_name = "adw_wrap_box_insert_child_after")
+    wrap_box_insert_child_after :: proc(self: ^WrapBox, child: ^gtk.Widget, sibling: ^gtk.Widget) ---
+
+    @(link_name = "adw_wrap_box_reorder_child_after")
+    wrap_box_reorder_child_after :: proc(self: ^WrapBox, child: ^gtk.Widget, sibling: ^gtk.Widget) ---
+
+    @(link_name = "adw_wrap_box_append")
+    wrap_box_append :: proc(self: ^WrapBox, child: ^gtk.Widget) ---
+
+    @(link_name = "adw_wrap_box_prepend")
+    wrap_box_prepend :: proc(self: ^WrapBox, child: ^gtk.Widget) ---
+
+    @(link_name = "adw_wrap_box_remove")
+    wrap_box_remove :: proc(self: ^WrapBox, child: ^gtk.Widget) ---
 
     @(link_name = "glib_autoptr_clear_AdwBreakpointCondition_wrapper")
     autoptr_clear_AdwBreakpointCondition :: proc(_ptr: ^BreakpointCondition) ---
@@ -6365,6 +6848,174 @@ foreign adwaita_runic {
     @(link_name = "ADW_IS_HEADER_BAR_wrapper")
     IS_HEADER_BAR :: proc(ptr: glib.pointer) -> glib.boolean ---
 
+    @(link_name = "glib_autoptr_clear_AdwViewStackPage_wrapper")
+    autoptr_clear_AdwViewStackPage :: proc(_ptr: ^ViewStackPage) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwViewStackPage_wrapper")
+    autoptr_cleanup_AdwViewStackPage :: proc(_ptr: ^^ViewStackPage) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwViewStackPage_wrapper")
+    autoptr_destroy_AdwViewStackPage :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwViewStackPage_wrapper")
+    listautoptr_cleanup_AdwViewStackPage :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwViewStackPage_wrapper")
+    slistautoptr_cleanup_AdwViewStackPage :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwViewStackPage_wrapper")
+    queueautoptr_cleanup_AdwViewStackPage :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwViewStackPageClass_wrapper")
+    autoptr_clear_AdwViewStackPageClass :: proc(_ptr: ^ViewStackPageClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwViewStackPageClass_wrapper")
+    autoptr_cleanup_AdwViewStackPageClass :: proc(_ptr: ^^ViewStackPageClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwViewStackPageClass_wrapper")
+    autoptr_destroy_AdwViewStackPageClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwViewStackPageClass_wrapper")
+    listautoptr_cleanup_AdwViewStackPageClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwViewStackPageClass_wrapper")
+    slistautoptr_cleanup_AdwViewStackPageClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwViewStackPageClass_wrapper")
+    queueautoptr_cleanup_AdwViewStackPageClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_VIEW_STACK_PAGE_wrapper")
+    VIEW_STACK_PAGE :: proc(ptr: glib.pointer) -> ^ViewStackPage ---
+
+    @(link_name = "ADW_IS_VIEW_STACK_PAGE_wrapper")
+    IS_VIEW_STACK_PAGE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwViewStack_wrapper")
+    autoptr_clear_AdwViewStack :: proc(_ptr: ^ViewStack) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwViewStack_wrapper")
+    autoptr_cleanup_AdwViewStack :: proc(_ptr: ^^ViewStack) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwViewStack_wrapper")
+    autoptr_destroy_AdwViewStack :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwViewStack_wrapper")
+    listautoptr_cleanup_AdwViewStack :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwViewStack_wrapper")
+    slistautoptr_cleanup_AdwViewStack :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwViewStack_wrapper")
+    queueautoptr_cleanup_AdwViewStack :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwViewStackClass_wrapper")
+    autoptr_clear_AdwViewStackClass :: proc(_ptr: ^ViewStackClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwViewStackClass_wrapper")
+    autoptr_cleanup_AdwViewStackClass :: proc(_ptr: ^^ViewStackClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwViewStackClass_wrapper")
+    autoptr_destroy_AdwViewStackClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwViewStackClass_wrapper")
+    listautoptr_cleanup_AdwViewStackClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwViewStackClass_wrapper")
+    slistautoptr_cleanup_AdwViewStackClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwViewStackClass_wrapper")
+    queueautoptr_cleanup_AdwViewStackClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_VIEW_STACK_wrapper")
+    VIEW_STACK :: proc(ptr: glib.pointer) -> ^ViewStack ---
+
+    @(link_name = "ADW_IS_VIEW_STACK_wrapper")
+    IS_VIEW_STACK :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwViewStackPages_wrapper")
+    autoptr_clear_AdwViewStackPages :: proc(_ptr: ^ViewStackPages) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwViewStackPages_wrapper")
+    autoptr_cleanup_AdwViewStackPages :: proc(_ptr: ^^ViewStackPages) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwViewStackPages_wrapper")
+    autoptr_destroy_AdwViewStackPages :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwViewStackPages_wrapper")
+    listautoptr_cleanup_AdwViewStackPages :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwViewStackPages_wrapper")
+    slistautoptr_cleanup_AdwViewStackPages :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwViewStackPages_wrapper")
+    queueautoptr_cleanup_AdwViewStackPages :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwViewStackPagesClass_wrapper")
+    autoptr_clear_AdwViewStackPagesClass :: proc(_ptr: ^ViewStackPagesClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwViewStackPagesClass_wrapper")
+    autoptr_cleanup_AdwViewStackPagesClass :: proc(_ptr: ^^ViewStackPagesClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwViewStackPagesClass_wrapper")
+    autoptr_destroy_AdwViewStackPagesClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwViewStackPagesClass_wrapper")
+    listautoptr_cleanup_AdwViewStackPagesClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwViewStackPagesClass_wrapper")
+    slistautoptr_cleanup_AdwViewStackPagesClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwViewStackPagesClass_wrapper")
+    queueautoptr_cleanup_AdwViewStackPagesClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_VIEW_STACK_PAGES_wrapper")
+    VIEW_STACK_PAGES :: proc(ptr: glib.pointer) -> ^ViewStackPages ---
+
+    @(link_name = "ADW_IS_VIEW_STACK_PAGES_wrapper")
+    IS_VIEW_STACK_PAGES :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwInlineViewSwitcher_wrapper")
+    autoptr_clear_AdwInlineViewSwitcher :: proc(_ptr: ^InlineViewSwitcher) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwInlineViewSwitcher_wrapper")
+    autoptr_cleanup_AdwInlineViewSwitcher :: proc(_ptr: ^^InlineViewSwitcher) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwInlineViewSwitcher_wrapper")
+    autoptr_destroy_AdwInlineViewSwitcher :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwInlineViewSwitcher_wrapper")
+    listautoptr_cleanup_AdwInlineViewSwitcher :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwInlineViewSwitcher_wrapper")
+    slistautoptr_cleanup_AdwInlineViewSwitcher :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwInlineViewSwitcher_wrapper")
+    queueautoptr_cleanup_AdwInlineViewSwitcher :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwInlineViewSwitcherClass_wrapper")
+    autoptr_clear_AdwInlineViewSwitcherClass :: proc(_ptr: ^InlineViewSwitcherClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwInlineViewSwitcherClass_wrapper")
+    autoptr_cleanup_AdwInlineViewSwitcherClass :: proc(_ptr: ^^InlineViewSwitcherClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwInlineViewSwitcherClass_wrapper")
+    autoptr_destroy_AdwInlineViewSwitcherClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwInlineViewSwitcherClass_wrapper")
+    listautoptr_cleanup_AdwInlineViewSwitcherClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwInlineViewSwitcherClass_wrapper")
+    slistautoptr_cleanup_AdwInlineViewSwitcherClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwInlineViewSwitcherClass_wrapper")
+    queueautoptr_cleanup_AdwInlineViewSwitcherClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_INLINE_VIEW_SWITCHER_wrapper")
+    INLINE_VIEW_SWITCHER :: proc(ptr: glib.pointer) -> ^InlineViewSwitcher ---
+
+    @(link_name = "ADW_IS_INLINE_VIEW_SWITCHER_wrapper")
+    IS_INLINE_VIEW_SWITCHER :: proc(ptr: glib.pointer) -> glib.boolean ---
+
     @(link_name = "glib_autoptr_clear_AdwLayout_wrapper")
     autoptr_clear_AdwLayout :: proc(_ptr: ^Layout) ---
 
@@ -7850,6 +8501,90 @@ foreign adwaita_runic {
     @(link_name = "ADW_IS_TOAST_OVERLAY_wrapper")
     IS_TOAST_OVERLAY :: proc(ptr: glib.pointer) -> glib.boolean ---
 
+    @(link_name = "glib_autoptr_clear_AdwToggle_wrapper")
+    autoptr_clear_AdwToggle :: proc(_ptr: ^Toggle) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwToggle_wrapper")
+    autoptr_cleanup_AdwToggle :: proc(_ptr: ^^Toggle) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwToggle_wrapper")
+    autoptr_destroy_AdwToggle :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwToggle_wrapper")
+    listautoptr_cleanup_AdwToggle :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwToggle_wrapper")
+    slistautoptr_cleanup_AdwToggle :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwToggle_wrapper")
+    queueautoptr_cleanup_AdwToggle :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwToggleClass_wrapper")
+    autoptr_clear_AdwToggleClass :: proc(_ptr: ^ToggleClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwToggleClass_wrapper")
+    autoptr_cleanup_AdwToggleClass :: proc(_ptr: ^^ToggleClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwToggleClass_wrapper")
+    autoptr_destroy_AdwToggleClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwToggleClass_wrapper")
+    listautoptr_cleanup_AdwToggleClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwToggleClass_wrapper")
+    slistautoptr_cleanup_AdwToggleClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwToggleClass_wrapper")
+    queueautoptr_cleanup_AdwToggleClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_TOGGLE_wrapper")
+    TOGGLE :: proc(ptr: glib.pointer) -> ^Toggle ---
+
+    @(link_name = "ADW_IS_TOGGLE_wrapper")
+    IS_TOGGLE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwToggleGroup_wrapper")
+    autoptr_clear_AdwToggleGroup :: proc(_ptr: ^ToggleGroup) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwToggleGroup_wrapper")
+    autoptr_cleanup_AdwToggleGroup :: proc(_ptr: ^^ToggleGroup) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwToggleGroup_wrapper")
+    autoptr_destroy_AdwToggleGroup :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwToggleGroup_wrapper")
+    listautoptr_cleanup_AdwToggleGroup :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwToggleGroup_wrapper")
+    slistautoptr_cleanup_AdwToggleGroup :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwToggleGroup_wrapper")
+    queueautoptr_cleanup_AdwToggleGroup :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwToggleGroupClass_wrapper")
+    autoptr_clear_AdwToggleGroupClass :: proc(_ptr: ^ToggleGroupClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwToggleGroupClass_wrapper")
+    autoptr_cleanup_AdwToggleGroupClass :: proc(_ptr: ^^ToggleGroupClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwToggleGroupClass_wrapper")
+    autoptr_destroy_AdwToggleGroupClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwToggleGroupClass_wrapper")
+    listautoptr_cleanup_AdwToggleGroupClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwToggleGroupClass_wrapper")
+    slistautoptr_cleanup_AdwToggleGroupClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwToggleGroupClass_wrapper")
+    queueautoptr_cleanup_AdwToggleGroupClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_TOGGLE_GROUP_wrapper")
+    TOGGLE_GROUP :: proc(ptr: glib.pointer) -> ^ToggleGroup ---
+
+    @(link_name = "ADW_IS_TOGGLE_GROUP_wrapper")
+    IS_TOGGLE_GROUP :: proc(ptr: glib.pointer) -> glib.boolean ---
+
     @(link_name = "glib_autoptr_clear_AdwToolbarView_wrapper")
     autoptr_clear_AdwToolbarView :: proc(_ptr: ^ToolbarView) ---
 
@@ -7891,132 +8626,6 @@ foreign adwaita_runic {
 
     @(link_name = "ADW_IS_TOOLBAR_VIEW_wrapper")
     IS_TOOLBAR_VIEW :: proc(ptr: glib.pointer) -> glib.boolean ---
-
-    @(link_name = "glib_autoptr_clear_AdwViewStackPage_wrapper")
-    autoptr_clear_AdwViewStackPage :: proc(_ptr: ^ViewStackPage) ---
-
-    @(link_name = "glib_autoptr_cleanup_AdwViewStackPage_wrapper")
-    autoptr_cleanup_AdwViewStackPage :: proc(_ptr: ^^ViewStackPage) ---
-
-    @(link_name = "glib_autoptr_destroy_AdwViewStackPage_wrapper")
-    autoptr_destroy_AdwViewStackPage :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_AdwViewStackPage_wrapper")
-    listautoptr_cleanup_AdwViewStackPage :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_AdwViewStackPage_wrapper")
-    slistautoptr_cleanup_AdwViewStackPage :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_AdwViewStackPage_wrapper")
-    queueautoptr_cleanup_AdwViewStackPage :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_AdwViewStackPageClass_wrapper")
-    autoptr_clear_AdwViewStackPageClass :: proc(_ptr: ^ViewStackPageClass) ---
-
-    @(link_name = "glib_autoptr_cleanup_AdwViewStackPageClass_wrapper")
-    autoptr_cleanup_AdwViewStackPageClass :: proc(_ptr: ^^ViewStackPageClass) ---
-
-    @(link_name = "glib_autoptr_destroy_AdwViewStackPageClass_wrapper")
-    autoptr_destroy_AdwViewStackPageClass :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_AdwViewStackPageClass_wrapper")
-    listautoptr_cleanup_AdwViewStackPageClass :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_AdwViewStackPageClass_wrapper")
-    slistautoptr_cleanup_AdwViewStackPageClass :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_AdwViewStackPageClass_wrapper")
-    queueautoptr_cleanup_AdwViewStackPageClass :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "ADW_VIEW_STACK_PAGE_wrapper")
-    VIEW_STACK_PAGE :: proc(ptr: glib.pointer) -> ^ViewStackPage ---
-
-    @(link_name = "ADW_IS_VIEW_STACK_PAGE_wrapper")
-    IS_VIEW_STACK_PAGE :: proc(ptr: glib.pointer) -> glib.boolean ---
-
-    @(link_name = "glib_autoptr_clear_AdwViewStack_wrapper")
-    autoptr_clear_AdwViewStack :: proc(_ptr: ^ViewStack) ---
-
-    @(link_name = "glib_autoptr_cleanup_AdwViewStack_wrapper")
-    autoptr_cleanup_AdwViewStack :: proc(_ptr: ^^ViewStack) ---
-
-    @(link_name = "glib_autoptr_destroy_AdwViewStack_wrapper")
-    autoptr_destroy_AdwViewStack :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_AdwViewStack_wrapper")
-    listautoptr_cleanup_AdwViewStack :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_AdwViewStack_wrapper")
-    slistautoptr_cleanup_AdwViewStack :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_AdwViewStack_wrapper")
-    queueautoptr_cleanup_AdwViewStack :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_AdwViewStackClass_wrapper")
-    autoptr_clear_AdwViewStackClass :: proc(_ptr: ^ViewStackClass) ---
-
-    @(link_name = "glib_autoptr_cleanup_AdwViewStackClass_wrapper")
-    autoptr_cleanup_AdwViewStackClass :: proc(_ptr: ^^ViewStackClass) ---
-
-    @(link_name = "glib_autoptr_destroy_AdwViewStackClass_wrapper")
-    autoptr_destroy_AdwViewStackClass :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_AdwViewStackClass_wrapper")
-    listautoptr_cleanup_AdwViewStackClass :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_AdwViewStackClass_wrapper")
-    slistautoptr_cleanup_AdwViewStackClass :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_AdwViewStackClass_wrapper")
-    queueautoptr_cleanup_AdwViewStackClass :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "ADW_VIEW_STACK_wrapper")
-    VIEW_STACK :: proc(ptr: glib.pointer) -> ^ViewStack ---
-
-    @(link_name = "ADW_IS_VIEW_STACK_wrapper")
-    IS_VIEW_STACK :: proc(ptr: glib.pointer) -> glib.boolean ---
-
-    @(link_name = "glib_autoptr_clear_AdwViewStackPages_wrapper")
-    autoptr_clear_AdwViewStackPages :: proc(_ptr: ^ViewStackPages) ---
-
-    @(link_name = "glib_autoptr_cleanup_AdwViewStackPages_wrapper")
-    autoptr_cleanup_AdwViewStackPages :: proc(_ptr: ^^ViewStackPages) ---
-
-    @(link_name = "glib_autoptr_destroy_AdwViewStackPages_wrapper")
-    autoptr_destroy_AdwViewStackPages :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_AdwViewStackPages_wrapper")
-    listautoptr_cleanup_AdwViewStackPages :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_AdwViewStackPages_wrapper")
-    slistautoptr_cleanup_AdwViewStackPages :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_AdwViewStackPages_wrapper")
-    queueautoptr_cleanup_AdwViewStackPages :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_AdwViewStackPagesClass_wrapper")
-    autoptr_clear_AdwViewStackPagesClass :: proc(_ptr: ^ViewStackPagesClass) ---
-
-    @(link_name = "glib_autoptr_cleanup_AdwViewStackPagesClass_wrapper")
-    autoptr_cleanup_AdwViewStackPagesClass :: proc(_ptr: ^^ViewStackPagesClass) ---
-
-    @(link_name = "glib_autoptr_destroy_AdwViewStackPagesClass_wrapper")
-    autoptr_destroy_AdwViewStackPagesClass :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_AdwViewStackPagesClass_wrapper")
-    listautoptr_cleanup_AdwViewStackPagesClass :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_AdwViewStackPagesClass_wrapper")
-    slistautoptr_cleanup_AdwViewStackPagesClass :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_AdwViewStackPagesClass_wrapper")
-    queueautoptr_cleanup_AdwViewStackPagesClass :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "ADW_VIEW_STACK_PAGES_wrapper")
-    VIEW_STACK_PAGES :: proc(ptr: glib.pointer) -> ^ViewStackPages ---
-
-    @(link_name = "ADW_IS_VIEW_STACK_PAGES_wrapper")
-    IS_VIEW_STACK_PAGES :: proc(ptr: glib.pointer) -> glib.boolean ---
 
     @(link_name = "glib_autoptr_clear_AdwViewSwitcher_wrapper")
     autoptr_clear_AdwViewSwitcher :: proc(_ptr: ^ViewSwitcher) ---
@@ -8186,6 +8795,90 @@ foreign adwaita_runic {
     @(link_name = "ADW_IS_WINDOW_TITLE_wrapper")
     IS_WINDOW_TITLE :: proc(ptr: glib.pointer) -> glib.boolean ---
 
+    @(link_name = "glib_autoptr_clear_AdwWrapLayout_wrapper")
+    autoptr_clear_AdwWrapLayout :: proc(_ptr: ^WrapLayout) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwWrapLayout_wrapper")
+    autoptr_cleanup_AdwWrapLayout :: proc(_ptr: ^^WrapLayout) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwWrapLayout_wrapper")
+    autoptr_destroy_AdwWrapLayout :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwWrapLayout_wrapper")
+    listautoptr_cleanup_AdwWrapLayout :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwWrapLayout_wrapper")
+    slistautoptr_cleanup_AdwWrapLayout :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwWrapLayout_wrapper")
+    queueautoptr_cleanup_AdwWrapLayout :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwWrapLayoutClass_wrapper")
+    autoptr_clear_AdwWrapLayoutClass :: proc(_ptr: ^WrapLayoutClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwWrapLayoutClass_wrapper")
+    autoptr_cleanup_AdwWrapLayoutClass :: proc(_ptr: ^^WrapLayoutClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwWrapLayoutClass_wrapper")
+    autoptr_destroy_AdwWrapLayoutClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwWrapLayoutClass_wrapper")
+    listautoptr_cleanup_AdwWrapLayoutClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwWrapLayoutClass_wrapper")
+    slistautoptr_cleanup_AdwWrapLayoutClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwWrapLayoutClass_wrapper")
+    queueautoptr_cleanup_AdwWrapLayoutClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_WRAP_LAYOUT_wrapper")
+    WRAP_LAYOUT :: proc(ptr: glib.pointer) -> ^WrapLayout ---
+
+    @(link_name = "ADW_IS_WRAP_LAYOUT_wrapper")
+    IS_WRAP_LAYOUT :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwWrapBox_wrapper")
+    autoptr_clear_AdwWrapBox :: proc(_ptr: ^WrapBox) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwWrapBox_wrapper")
+    autoptr_cleanup_AdwWrapBox :: proc(_ptr: ^^WrapBox) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwWrapBox_wrapper")
+    autoptr_destroy_AdwWrapBox :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwWrapBox_wrapper")
+    listautoptr_cleanup_AdwWrapBox :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwWrapBox_wrapper")
+    slistautoptr_cleanup_AdwWrapBox :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwWrapBox_wrapper")
+    queueautoptr_cleanup_AdwWrapBox :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwWrapBoxClass_wrapper")
+    autoptr_clear_AdwWrapBoxClass :: proc(_ptr: ^WrapBoxClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwWrapBoxClass_wrapper")
+    autoptr_cleanup_AdwWrapBoxClass :: proc(_ptr: ^^WrapBoxClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwWrapBoxClass_wrapper")
+    autoptr_destroy_AdwWrapBoxClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwWrapBoxClass_wrapper")
+    listautoptr_cleanup_AdwWrapBoxClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwWrapBoxClass_wrapper")
+    slistautoptr_cleanup_AdwWrapBoxClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwWrapBoxClass_wrapper")
+    queueautoptr_cleanup_AdwWrapBoxClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_WRAP_BOX_wrapper")
+    WRAP_BOX :: proc(ptr: glib.pointer) -> ^WrapBox ---
+
+    @(link_name = "ADW_IS_WRAP_BOX_wrapper")
+    IS_WRAP_BOX :: proc(ptr: glib.pointer) -> glib.boolean ---
+
 }
 
 when (ODIN_OS == .Linux) {
@@ -8198,11 +8891,13 @@ AccentColor :: enum u32 {BLUE = 0, TEAL = 1, GREEN = 2, YELLOW = 3, ORANGE = 4, 
 ResponseAppearance :: enum u32 {DEFAULT = 0, SUGGESTED = 1, DESTRUCTIVE = 2 }
 AnimationState :: enum u32 {IDLE = 0, PAUSED = 1, PLAYING = 2, FINISHED = 3 }
 ColorScheme :: enum u32 {DEFAULT = 0, FORCE_LIGHT = 1, PREFER_LIGHT = 2, PREFER_DARK = 3, FORCE_DARK = 4 }
-Easing :: enum u32 {LINEAR = 0, EASE_IN_QUAD = 1, EASE_OUT_QUAD = 2, EASE_IN_OUT_QUAD = 3, EASE_IN_CUBIC = 4, EASE_OUT_CUBIC = 5, EASE_IN_OUT_CUBIC = 6, EASE_IN_QUART = 7, EASE_OUT_QUART = 8, EASE_IN_OUT_QUART = 9, EASE_IN_QUINT = 10, EASE_OUT_QUINT = 11, EASE_IN_OUT_QUINT = 12, EASE_IN_SINE = 13, EASE_OUT_SINE = 14, EASE_IN_OUT_SINE = 15, EASE_IN_EXPO = 16, EASE_OUT_EXPO = 17, EASE_IN_OUT_EXPO = 18, EASE_IN_CIRC = 19, EASE_OUT_CIRC = 20, EASE_IN_OUT_CIRC = 21, EASE_IN_ELASTIC = 22, EASE_OUT_ELASTIC = 23, EASE_IN_OUT_ELASTIC = 24, EASE_IN_BACK = 25, EASE_OUT_BACK = 26, EASE_IN_OUT_BACK = 27, EASE_IN_BOUNCE = 28, EASE_OUT_BOUNCE = 29, EASE_IN_OUT_BOUNCE = 30 }
+BannerButtonStyle :: enum u32 {BANNER_BUTTON_DEFAULT = 0, BANNER_BUTTON_SUGGESTED = 1 }
+Easing :: enum u32 {LINEAR = 0, EASE_IN_QUAD = 1, EASE_OUT_QUAD = 2, EASE_IN_OUT_QUAD = 3, EASE_IN_CUBIC = 4, EASE_OUT_CUBIC = 5, EASE_IN_OUT_CUBIC = 6, EASE_IN_QUART = 7, EASE_OUT_QUART = 8, EASE_IN_OUT_QUART = 9, EASE_IN_QUINT = 10, EASE_OUT_QUINT = 11, EASE_IN_OUT_QUINT = 12, EASE_IN_SINE = 13, EASE_OUT_SINE = 14, EASE_IN_OUT_SINE = 15, EASE_IN_EXPO = 16, EASE_OUT_EXPO = 17, EASE_IN_OUT_EXPO = 18, EASE_IN_CIRC = 19, EASE_OUT_CIRC = 20, EASE_IN_OUT_CIRC = 21, EASE_IN_ELASTIC = 22, EASE_OUT_ELASTIC = 23, EASE_IN_OUT_ELASTIC = 24, EASE_IN_BACK = 25, EASE_OUT_BACK = 26, EASE_IN_OUT_BACK = 27, EASE_IN_BOUNCE = 28, EASE_OUT_BOUNCE = 29, EASE_IN_OUT_BOUNCE = 30, EASE = 31, EASE_IN = 32, EASE_OUT = 33, EASE_IN_OUT = 34 }
 FoldThresholdPolicy :: enum u32 {MINIMUM = 0, NATURAL = 1 }
 FlapFoldPolicy :: enum u32 {NEVER = 0, ALWAYS = 1, AUTO = 2 }
 FlapTransitionType :: enum u32 {OVER = 0, UNDER = 1, SLIDE = 2 }
 CenteringPolicy :: enum u32 {LOOSE = 0, STRICT = 1 }
+InlineViewSwitcherDisplayMode :: enum u32 {INLINE_VIEW_SWITCHER_LABELS = 0, INLINE_VIEW_SWITCHER_ICONS = 1, INLINE_VIEW_SWITCHER_BOTH = 2 }
 NavigationDirection :: enum u32 {BACK = 0, FORWARD = 1 }
 LeafletTransitionType :: enum u32 {OVER = 0, UNDER = 1, SLIDE = 2 }
 ToastPriority :: enum u32 {NORMAL = 0, HIGH = 1 }
@@ -8210,6 +8905,9 @@ SqueezerTransitionType :: enum u32 {NONE = 0, CROSSFADE = 1 }
 TabViewShortcuts :: enum u32 {NONE = 0, CONTROL_TAB = 1, CONTROL_SHIFT_TAB = 2, CONTROL_PAGE_UP = 4, CONTROL_PAGE_DOWN = 8, CONTROL_HOME = 16, CONTROL_END = 32, CONTROL_SHIFT_PAGE_UP = 64, CONTROL_SHIFT_PAGE_DOWN = 128, CONTROL_SHIFT_HOME = 256, CONTROL_SHIFT_END = 512, ALT_DIGITS = 1024, ALT_ZERO = 2048, ALL_SHORTCUTS = 4095 }
 ToolbarStyle :: enum u32 {FLAT = 0, RAISED = 1, RAISED_BORDER = 2 }
 ViewSwitcherPolicy :: enum u32 {NARROW = 0, WIDE = 1 }
+JustifyMode :: enum u32 {JUSTIFY_NONE = 0, JUSTIFY_FILL = 1, JUSTIFY_SPREAD = 2 }
+PackDirection :: enum u32 {PACK_START_TO_END = 0, PACK_END_TO_START = 1 }
+WrapPolicy :: enum u32 {WRAP_MINIMUM = 0, WRAP_NATURAL = 1 }
 
 }
 
@@ -8223,11 +8921,13 @@ AccentColor :: enum i32 {BLUE = 0, TEAL = 1, GREEN = 2, YELLOW = 3, ORANGE = 4, 
 ResponseAppearance :: enum i32 {DEFAULT = 0, SUGGESTED = 1, DESTRUCTIVE = 2 }
 AnimationState :: enum i32 {IDLE = 0, PAUSED = 1, PLAYING = 2, FINISHED = 3 }
 ColorScheme :: enum i32 {DEFAULT = 0, FORCE_LIGHT = 1, PREFER_LIGHT = 2, PREFER_DARK = 3, FORCE_DARK = 4 }
-Easing :: enum i32 {LINEAR = 0, EASE_IN_QUAD = 1, EASE_OUT_QUAD = 2, EASE_IN_OUT_QUAD = 3, EASE_IN_CUBIC = 4, EASE_OUT_CUBIC = 5, EASE_IN_OUT_CUBIC = 6, EASE_IN_QUART = 7, EASE_OUT_QUART = 8, EASE_IN_OUT_QUART = 9, EASE_IN_QUINT = 10, EASE_OUT_QUINT = 11, EASE_IN_OUT_QUINT = 12, EASE_IN_SINE = 13, EASE_OUT_SINE = 14, EASE_IN_OUT_SINE = 15, EASE_IN_EXPO = 16, EASE_OUT_EXPO = 17, EASE_IN_OUT_EXPO = 18, EASE_IN_CIRC = 19, EASE_OUT_CIRC = 20, EASE_IN_OUT_CIRC = 21, EASE_IN_ELASTIC = 22, EASE_OUT_ELASTIC = 23, EASE_IN_OUT_ELASTIC = 24, EASE_IN_BACK = 25, EASE_OUT_BACK = 26, EASE_IN_OUT_BACK = 27, EASE_IN_BOUNCE = 28, EASE_OUT_BOUNCE = 29, EASE_IN_OUT_BOUNCE = 30 }
+BannerButtonStyle :: enum i32 {BANNER_BUTTON_DEFAULT = 0, BANNER_BUTTON_SUGGESTED = 1 }
+Easing :: enum i32 {LINEAR = 0, EASE_IN_QUAD = 1, EASE_OUT_QUAD = 2, EASE_IN_OUT_QUAD = 3, EASE_IN_CUBIC = 4, EASE_OUT_CUBIC = 5, EASE_IN_OUT_CUBIC = 6, EASE_IN_QUART = 7, EASE_OUT_QUART = 8, EASE_IN_OUT_QUART = 9, EASE_IN_QUINT = 10, EASE_OUT_QUINT = 11, EASE_IN_OUT_QUINT = 12, EASE_IN_SINE = 13, EASE_OUT_SINE = 14, EASE_IN_OUT_SINE = 15, EASE_IN_EXPO = 16, EASE_OUT_EXPO = 17, EASE_IN_OUT_EXPO = 18, EASE_IN_CIRC = 19, EASE_OUT_CIRC = 20, EASE_IN_OUT_CIRC = 21, EASE_IN_ELASTIC = 22, EASE_OUT_ELASTIC = 23, EASE_IN_OUT_ELASTIC = 24, EASE_IN_BACK = 25, EASE_OUT_BACK = 26, EASE_IN_OUT_BACK = 27, EASE_IN_BOUNCE = 28, EASE_OUT_BOUNCE = 29, EASE_IN_OUT_BOUNCE = 30, EASE = 31, EASE_IN = 32, EASE_OUT = 33, EASE_IN_OUT = 34 }
 FoldThresholdPolicy :: enum i32 {MINIMUM = 0, NATURAL = 1 }
 FlapFoldPolicy :: enum i32 {NEVER = 0, ALWAYS = 1, AUTO = 2 }
 FlapTransitionType :: enum i32 {OVER = 0, UNDER = 1, SLIDE = 2 }
 CenteringPolicy :: enum i32 {LOOSE = 0, STRICT = 1 }
+InlineViewSwitcherDisplayMode :: enum i32 {INLINE_VIEW_SWITCHER_LABELS = 0, INLINE_VIEW_SWITCHER_ICONS = 1, INLINE_VIEW_SWITCHER_BOTH = 2 }
 NavigationDirection :: enum i32 {BACK = 0, FORWARD = 1 }
 LeafletTransitionType :: enum i32 {OVER = 0, UNDER = 1, SLIDE = 2 }
 ToastPriority :: enum i32 {NORMAL = 0, HIGH = 1 }
@@ -8235,6 +8935,9 @@ SqueezerTransitionType :: enum i32 {NONE = 0, CROSSFADE = 1 }
 TabViewShortcuts :: enum i32 {NONE = 0, CONTROL_TAB = 1, CONTROL_SHIFT_TAB = 2, CONTROL_PAGE_UP = 4, CONTROL_PAGE_DOWN = 8, CONTROL_HOME = 16, CONTROL_END = 32, CONTROL_SHIFT_PAGE_UP = 64, CONTROL_SHIFT_PAGE_DOWN = 128, CONTROL_SHIFT_HOME = 256, CONTROL_SHIFT_END = 512, ALT_DIGITS = 1024, ALT_ZERO = 2048, ALL_SHORTCUTS = 4095 }
 ToolbarStyle :: enum i32 {FLAT = 0, RAISED = 1, RAISED_BORDER = 2 }
 ViewSwitcherPolicy :: enum i32 {NARROW = 0, WIDE = 1 }
+JustifyMode :: enum i32 {JUSTIFY_NONE = 0, JUSTIFY_FILL = 1, JUSTIFY_SPREAD = 2 }
+PackDirection :: enum i32 {PACK_START_TO_END = 0, PACK_END_TO_START = 1 }
+WrapPolicy :: enum i32 {WRAP_MINIMUM = 0, WRAP_NATURAL = 1 }
 
 }
 

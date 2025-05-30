@@ -17,6 +17,7 @@ extern void g_rw_lock_reader_locker_free_wrapper(GRWLockReaderLocker * locker);
 extern gpointer g_steal_pointer_wrapper(gpointer pp);
 extern GMainContextPusher * g_main_context_pusher_new_wrapper(GMainContext * main_context);
 extern void g_main_context_pusher_free_wrapper(GMainContextPusher * pusher);
+extern unsigned int g_steal_handle_id_wrapper(unsigned int * handle_pointer);
 extern int g_steal_fd_wrapper(int * fd_ptr);
 extern gboolean g_set_str_wrapper(char ** str_pointer, const char * new_str);
 extern GString * g_string_append_c_inline_wrapper(GString * gstring, gchar c);

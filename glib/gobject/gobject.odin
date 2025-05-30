@@ -617,6 +617,9 @@ foreign gobject_runic {
     @(link_name = "g_type_is_a")
     type_is_a :: proc(type: Type, is_a_type: Type) -> glib.boolean ---
 
+    @(link_name = "g_type_class_get")
+    type_class_get :: proc(type: Type) -> glib.pointer ---
+
     @(link_name = "g_type_class_ref")
     type_class_ref :: proc(type: Type) -> glib.pointer ---
 
@@ -637,6 +640,9 @@ foreign gobject_runic {
 
     @(link_name = "g_type_interface_peek_parent")
     type_interface_peek_parent :: proc(g_iface: glib.pointer) -> glib.pointer ---
+
+    @(link_name = "g_type_default_interface_get")
+    type_default_interface_get :: proc(g_type: Type) -> glib.pointer ---
 
     @(link_name = "g_type_default_interface_ref")
     type_default_interface_ref :: proc(g_type: Type) -> glib.pointer ---

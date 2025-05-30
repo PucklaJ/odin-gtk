@@ -60,6 +60,10 @@ void g_main_context_pusher_free_wrapper(GMainContextPusher * pusher) {
     g_main_context_pusher_free(pusher);
 }
 
+unsigned int g_steal_handle_id_wrapper(unsigned int * handle_pointer) {
+    return g_steal_handle_id(handle_pointer);
+}
+
 int g_steal_fd_wrapper(int * fd_ptr) {
     return g_steal_fd(fd_ptr);
 }

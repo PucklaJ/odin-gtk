@@ -2200,6 +2200,230 @@ gboolean ADW_IS_HEADER_BAR_wrapper(gpointer ptr) {
     return ADW_IS_HEADER_BAR(ptr);
 }
 
+void glib_autoptr_clear_AdwViewStackPage_wrapper(AdwViewStackPage * _ptr) {
+    glib_autoptr_clear_AdwViewStackPage(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwViewStackPage_wrapper(AdwViewStackPage ** _ptr) {
+    glib_autoptr_cleanup_AdwViewStackPage(_ptr);
+}
+
+void glib_autoptr_destroy_AdwViewStackPage_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwViewStackPage(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwViewStackPage_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwViewStackPage(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwViewStackPage_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwViewStackPage(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwViewStackPage_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwViewStackPage(_q);
+}
+
+void glib_autoptr_clear_AdwViewStackPageClass_wrapper(AdwViewStackPageClass * _ptr) {
+    glib_autoptr_clear_AdwViewStackPageClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwViewStackPageClass_wrapper(AdwViewStackPageClass ** _ptr) {
+    glib_autoptr_cleanup_AdwViewStackPageClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwViewStackPageClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwViewStackPageClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwViewStackPageClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwViewStackPageClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwViewStackPageClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwViewStackPageClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwViewStackPageClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwViewStackPageClass(_q);
+}
+
+AdwViewStackPage * ADW_VIEW_STACK_PAGE_wrapper(gpointer ptr) {
+    return ADW_VIEW_STACK_PAGE(ptr);
+}
+
+gboolean ADW_IS_VIEW_STACK_PAGE_wrapper(gpointer ptr) {
+    return ADW_IS_VIEW_STACK_PAGE(ptr);
+}
+
+void glib_autoptr_clear_AdwViewStack_wrapper(AdwViewStack * _ptr) {
+    glib_autoptr_clear_AdwViewStack(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwViewStack_wrapper(AdwViewStack ** _ptr) {
+    glib_autoptr_cleanup_AdwViewStack(_ptr);
+}
+
+void glib_autoptr_destroy_AdwViewStack_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwViewStack(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwViewStack_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwViewStack(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwViewStack_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwViewStack(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwViewStack_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwViewStack(_q);
+}
+
+void glib_autoptr_clear_AdwViewStackClass_wrapper(AdwViewStackClass * _ptr) {
+    glib_autoptr_clear_AdwViewStackClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwViewStackClass_wrapper(AdwViewStackClass ** _ptr) {
+    glib_autoptr_cleanup_AdwViewStackClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwViewStackClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwViewStackClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwViewStackClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwViewStackClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwViewStackClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwViewStackClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwViewStackClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwViewStackClass(_q);
+}
+
+AdwViewStack * ADW_VIEW_STACK_wrapper(gpointer ptr) {
+    return ADW_VIEW_STACK(ptr);
+}
+
+gboolean ADW_IS_VIEW_STACK_wrapper(gpointer ptr) {
+    return ADW_IS_VIEW_STACK(ptr);
+}
+
+void glib_autoptr_clear_AdwViewStackPages_wrapper(AdwViewStackPages * _ptr) {
+    glib_autoptr_clear_AdwViewStackPages(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwViewStackPages_wrapper(AdwViewStackPages ** _ptr) {
+    glib_autoptr_cleanup_AdwViewStackPages(_ptr);
+}
+
+void glib_autoptr_destroy_AdwViewStackPages_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwViewStackPages(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwViewStackPages_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwViewStackPages(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwViewStackPages_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwViewStackPages(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwViewStackPages_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwViewStackPages(_q);
+}
+
+void glib_autoptr_clear_AdwViewStackPagesClass_wrapper(AdwViewStackPagesClass * _ptr) {
+    glib_autoptr_clear_AdwViewStackPagesClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwViewStackPagesClass_wrapper(AdwViewStackPagesClass ** _ptr) {
+    glib_autoptr_cleanup_AdwViewStackPagesClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwViewStackPagesClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwViewStackPagesClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwViewStackPagesClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwViewStackPagesClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwViewStackPagesClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwViewStackPagesClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwViewStackPagesClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwViewStackPagesClass(_q);
+}
+
+AdwViewStackPages * ADW_VIEW_STACK_PAGES_wrapper(gpointer ptr) {
+    return ADW_VIEW_STACK_PAGES(ptr);
+}
+
+gboolean ADW_IS_VIEW_STACK_PAGES_wrapper(gpointer ptr) {
+    return ADW_IS_VIEW_STACK_PAGES(ptr);
+}
+
+void glib_autoptr_clear_AdwInlineViewSwitcher_wrapper(AdwInlineViewSwitcher * _ptr) {
+    glib_autoptr_clear_AdwInlineViewSwitcher(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwInlineViewSwitcher_wrapper(AdwInlineViewSwitcher ** _ptr) {
+    glib_autoptr_cleanup_AdwInlineViewSwitcher(_ptr);
+}
+
+void glib_autoptr_destroy_AdwInlineViewSwitcher_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwInlineViewSwitcher(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwInlineViewSwitcher_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwInlineViewSwitcher(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwInlineViewSwitcher_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwInlineViewSwitcher(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwInlineViewSwitcher_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwInlineViewSwitcher(_q);
+}
+
+void glib_autoptr_clear_AdwInlineViewSwitcherClass_wrapper(AdwInlineViewSwitcherClass * _ptr) {
+    glib_autoptr_clear_AdwInlineViewSwitcherClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwInlineViewSwitcherClass_wrapper(AdwInlineViewSwitcherClass ** _ptr) {
+    glib_autoptr_cleanup_AdwInlineViewSwitcherClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwInlineViewSwitcherClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwInlineViewSwitcherClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwInlineViewSwitcherClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwInlineViewSwitcherClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwInlineViewSwitcherClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwInlineViewSwitcherClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwInlineViewSwitcherClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwInlineViewSwitcherClass(_q);
+}
+
+AdwInlineViewSwitcher * ADW_INLINE_VIEW_SWITCHER_wrapper(gpointer ptr) {
+    return ADW_INLINE_VIEW_SWITCHER(ptr);
+}
+
+gboolean ADW_IS_INLINE_VIEW_SWITCHER_wrapper(gpointer ptr) {
+    return ADW_IS_INLINE_VIEW_SWITCHER(ptr);
+}
+
 void glib_autoptr_clear_AdwLayout_wrapper(AdwLayout * _ptr) {
     glib_autoptr_clear_AdwLayout(_ptr);
 }
@@ -4180,6 +4404,118 @@ gboolean ADW_IS_TOAST_OVERLAY_wrapper(gpointer ptr) {
     return ADW_IS_TOAST_OVERLAY(ptr);
 }
 
+void glib_autoptr_clear_AdwToggle_wrapper(AdwToggle * _ptr) {
+    glib_autoptr_clear_AdwToggle(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwToggle_wrapper(AdwToggle ** _ptr) {
+    glib_autoptr_cleanup_AdwToggle(_ptr);
+}
+
+void glib_autoptr_destroy_AdwToggle_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwToggle(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwToggle_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwToggle(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwToggle_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwToggle(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwToggle_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwToggle(_q);
+}
+
+void glib_autoptr_clear_AdwToggleClass_wrapper(AdwToggleClass * _ptr) {
+    glib_autoptr_clear_AdwToggleClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwToggleClass_wrapper(AdwToggleClass ** _ptr) {
+    glib_autoptr_cleanup_AdwToggleClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwToggleClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwToggleClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwToggleClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwToggleClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwToggleClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwToggleClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwToggleClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwToggleClass(_q);
+}
+
+AdwToggle * ADW_TOGGLE_wrapper(gpointer ptr) {
+    return ADW_TOGGLE(ptr);
+}
+
+gboolean ADW_IS_TOGGLE_wrapper(gpointer ptr) {
+    return ADW_IS_TOGGLE(ptr);
+}
+
+void glib_autoptr_clear_AdwToggleGroup_wrapper(AdwToggleGroup * _ptr) {
+    glib_autoptr_clear_AdwToggleGroup(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwToggleGroup_wrapper(AdwToggleGroup ** _ptr) {
+    glib_autoptr_cleanup_AdwToggleGroup(_ptr);
+}
+
+void glib_autoptr_destroy_AdwToggleGroup_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwToggleGroup(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwToggleGroup_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwToggleGroup(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwToggleGroup_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwToggleGroup(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwToggleGroup_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwToggleGroup(_q);
+}
+
+void glib_autoptr_clear_AdwToggleGroupClass_wrapper(AdwToggleGroupClass * _ptr) {
+    glib_autoptr_clear_AdwToggleGroupClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwToggleGroupClass_wrapper(AdwToggleGroupClass ** _ptr) {
+    glib_autoptr_cleanup_AdwToggleGroupClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwToggleGroupClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwToggleGroupClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwToggleGroupClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwToggleGroupClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwToggleGroupClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwToggleGroupClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwToggleGroupClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwToggleGroupClass(_q);
+}
+
+AdwToggleGroup * ADW_TOGGLE_GROUP_wrapper(gpointer ptr) {
+    return ADW_TOGGLE_GROUP(ptr);
+}
+
+gboolean ADW_IS_TOGGLE_GROUP_wrapper(gpointer ptr) {
+    return ADW_IS_TOGGLE_GROUP(ptr);
+}
+
 void glib_autoptr_clear_AdwToolbarView_wrapper(AdwToolbarView * _ptr) {
     glib_autoptr_clear_AdwToolbarView(_ptr);
 }
@@ -4234,174 +4570,6 @@ AdwToolbarView * ADW_TOOLBAR_VIEW_wrapper(gpointer ptr) {
 
 gboolean ADW_IS_TOOLBAR_VIEW_wrapper(gpointer ptr) {
     return ADW_IS_TOOLBAR_VIEW(ptr);
-}
-
-void glib_autoptr_clear_AdwViewStackPage_wrapper(AdwViewStackPage * _ptr) {
-    glib_autoptr_clear_AdwViewStackPage(_ptr);
-}
-
-void glib_autoptr_cleanup_AdwViewStackPage_wrapper(AdwViewStackPage ** _ptr) {
-    glib_autoptr_cleanup_AdwViewStackPage(_ptr);
-}
-
-void glib_autoptr_destroy_AdwViewStackPage_wrapper(void * _ptr) {
-    glib_autoptr_destroy_AdwViewStackPage(_ptr);
-}
-
-void glib_listautoptr_cleanup_AdwViewStackPage_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_AdwViewStackPage(_l);
-}
-
-void glib_slistautoptr_cleanup_AdwViewStackPage_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_AdwViewStackPage(_l);
-}
-
-void glib_queueautoptr_cleanup_AdwViewStackPage_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_AdwViewStackPage(_q);
-}
-
-void glib_autoptr_clear_AdwViewStackPageClass_wrapper(AdwViewStackPageClass * _ptr) {
-    glib_autoptr_clear_AdwViewStackPageClass(_ptr);
-}
-
-void glib_autoptr_cleanup_AdwViewStackPageClass_wrapper(AdwViewStackPageClass ** _ptr) {
-    glib_autoptr_cleanup_AdwViewStackPageClass(_ptr);
-}
-
-void glib_autoptr_destroy_AdwViewStackPageClass_wrapper(void * _ptr) {
-    glib_autoptr_destroy_AdwViewStackPageClass(_ptr);
-}
-
-void glib_listautoptr_cleanup_AdwViewStackPageClass_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_AdwViewStackPageClass(_l);
-}
-
-void glib_slistautoptr_cleanup_AdwViewStackPageClass_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_AdwViewStackPageClass(_l);
-}
-
-void glib_queueautoptr_cleanup_AdwViewStackPageClass_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_AdwViewStackPageClass(_q);
-}
-
-AdwViewStackPage * ADW_VIEW_STACK_PAGE_wrapper(gpointer ptr) {
-    return ADW_VIEW_STACK_PAGE(ptr);
-}
-
-gboolean ADW_IS_VIEW_STACK_PAGE_wrapper(gpointer ptr) {
-    return ADW_IS_VIEW_STACK_PAGE(ptr);
-}
-
-void glib_autoptr_clear_AdwViewStack_wrapper(AdwViewStack * _ptr) {
-    glib_autoptr_clear_AdwViewStack(_ptr);
-}
-
-void glib_autoptr_cleanup_AdwViewStack_wrapper(AdwViewStack ** _ptr) {
-    glib_autoptr_cleanup_AdwViewStack(_ptr);
-}
-
-void glib_autoptr_destroy_AdwViewStack_wrapper(void * _ptr) {
-    glib_autoptr_destroy_AdwViewStack(_ptr);
-}
-
-void glib_listautoptr_cleanup_AdwViewStack_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_AdwViewStack(_l);
-}
-
-void glib_slistautoptr_cleanup_AdwViewStack_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_AdwViewStack(_l);
-}
-
-void glib_queueautoptr_cleanup_AdwViewStack_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_AdwViewStack(_q);
-}
-
-void glib_autoptr_clear_AdwViewStackClass_wrapper(AdwViewStackClass * _ptr) {
-    glib_autoptr_clear_AdwViewStackClass(_ptr);
-}
-
-void glib_autoptr_cleanup_AdwViewStackClass_wrapper(AdwViewStackClass ** _ptr) {
-    glib_autoptr_cleanup_AdwViewStackClass(_ptr);
-}
-
-void glib_autoptr_destroy_AdwViewStackClass_wrapper(void * _ptr) {
-    glib_autoptr_destroy_AdwViewStackClass(_ptr);
-}
-
-void glib_listautoptr_cleanup_AdwViewStackClass_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_AdwViewStackClass(_l);
-}
-
-void glib_slistautoptr_cleanup_AdwViewStackClass_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_AdwViewStackClass(_l);
-}
-
-void glib_queueautoptr_cleanup_AdwViewStackClass_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_AdwViewStackClass(_q);
-}
-
-AdwViewStack * ADW_VIEW_STACK_wrapper(gpointer ptr) {
-    return ADW_VIEW_STACK(ptr);
-}
-
-gboolean ADW_IS_VIEW_STACK_wrapper(gpointer ptr) {
-    return ADW_IS_VIEW_STACK(ptr);
-}
-
-void glib_autoptr_clear_AdwViewStackPages_wrapper(AdwViewStackPages * _ptr) {
-    glib_autoptr_clear_AdwViewStackPages(_ptr);
-}
-
-void glib_autoptr_cleanup_AdwViewStackPages_wrapper(AdwViewStackPages ** _ptr) {
-    glib_autoptr_cleanup_AdwViewStackPages(_ptr);
-}
-
-void glib_autoptr_destroy_AdwViewStackPages_wrapper(void * _ptr) {
-    glib_autoptr_destroy_AdwViewStackPages(_ptr);
-}
-
-void glib_listautoptr_cleanup_AdwViewStackPages_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_AdwViewStackPages(_l);
-}
-
-void glib_slistautoptr_cleanup_AdwViewStackPages_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_AdwViewStackPages(_l);
-}
-
-void glib_queueautoptr_cleanup_AdwViewStackPages_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_AdwViewStackPages(_q);
-}
-
-void glib_autoptr_clear_AdwViewStackPagesClass_wrapper(AdwViewStackPagesClass * _ptr) {
-    glib_autoptr_clear_AdwViewStackPagesClass(_ptr);
-}
-
-void glib_autoptr_cleanup_AdwViewStackPagesClass_wrapper(AdwViewStackPagesClass ** _ptr) {
-    glib_autoptr_cleanup_AdwViewStackPagesClass(_ptr);
-}
-
-void glib_autoptr_destroy_AdwViewStackPagesClass_wrapper(void * _ptr) {
-    glib_autoptr_destroy_AdwViewStackPagesClass(_ptr);
-}
-
-void glib_listautoptr_cleanup_AdwViewStackPagesClass_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_AdwViewStackPagesClass(_l);
-}
-
-void glib_slistautoptr_cleanup_AdwViewStackPagesClass_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_AdwViewStackPagesClass(_l);
-}
-
-void glib_queueautoptr_cleanup_AdwViewStackPagesClass_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_AdwViewStackPagesClass(_q);
-}
-
-AdwViewStackPages * ADW_VIEW_STACK_PAGES_wrapper(gpointer ptr) {
-    return ADW_VIEW_STACK_PAGES(ptr);
-}
-
-gboolean ADW_IS_VIEW_STACK_PAGES_wrapper(gpointer ptr) {
-    return ADW_IS_VIEW_STACK_PAGES(ptr);
 }
 
 void glib_autoptr_clear_AdwViewSwitcher_wrapper(AdwViewSwitcher * _ptr) {
@@ -4626,5 +4794,117 @@ AdwWindowTitle * ADW_WINDOW_TITLE_wrapper(gpointer ptr) {
 
 gboolean ADW_IS_WINDOW_TITLE_wrapper(gpointer ptr) {
     return ADW_IS_WINDOW_TITLE(ptr);
+}
+
+void glib_autoptr_clear_AdwWrapLayout_wrapper(AdwWrapLayout * _ptr) {
+    glib_autoptr_clear_AdwWrapLayout(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwWrapLayout_wrapper(AdwWrapLayout ** _ptr) {
+    glib_autoptr_cleanup_AdwWrapLayout(_ptr);
+}
+
+void glib_autoptr_destroy_AdwWrapLayout_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwWrapLayout(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwWrapLayout_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwWrapLayout(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwWrapLayout_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwWrapLayout(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwWrapLayout_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwWrapLayout(_q);
+}
+
+void glib_autoptr_clear_AdwWrapLayoutClass_wrapper(AdwWrapLayoutClass * _ptr) {
+    glib_autoptr_clear_AdwWrapLayoutClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwWrapLayoutClass_wrapper(AdwWrapLayoutClass ** _ptr) {
+    glib_autoptr_cleanup_AdwWrapLayoutClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwWrapLayoutClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwWrapLayoutClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwWrapLayoutClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwWrapLayoutClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwWrapLayoutClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwWrapLayoutClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwWrapLayoutClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwWrapLayoutClass(_q);
+}
+
+AdwWrapLayout * ADW_WRAP_LAYOUT_wrapper(gpointer ptr) {
+    return ADW_WRAP_LAYOUT(ptr);
+}
+
+gboolean ADW_IS_WRAP_LAYOUT_wrapper(gpointer ptr) {
+    return ADW_IS_WRAP_LAYOUT(ptr);
+}
+
+void glib_autoptr_clear_AdwWrapBox_wrapper(AdwWrapBox * _ptr) {
+    glib_autoptr_clear_AdwWrapBox(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwWrapBox_wrapper(AdwWrapBox ** _ptr) {
+    glib_autoptr_cleanup_AdwWrapBox(_ptr);
+}
+
+void glib_autoptr_destroy_AdwWrapBox_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwWrapBox(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwWrapBox_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwWrapBox(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwWrapBox_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwWrapBox(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwWrapBox_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwWrapBox(_q);
+}
+
+void glib_autoptr_clear_AdwWrapBoxClass_wrapper(AdwWrapBoxClass * _ptr) {
+    glib_autoptr_clear_AdwWrapBoxClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwWrapBoxClass_wrapper(AdwWrapBoxClass ** _ptr) {
+    glib_autoptr_cleanup_AdwWrapBoxClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwWrapBoxClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwWrapBoxClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwWrapBoxClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwWrapBoxClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwWrapBoxClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwWrapBoxClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwWrapBoxClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwWrapBoxClass(_q);
+}
+
+AdwWrapBox * ADW_WRAP_BOX_wrapper(gpointer ptr) {
+    return ADW_WRAP_BOX(ptr);
+}
+
+gboolean ADW_IS_WRAP_BOX_wrapper(gpointer ptr) {
+    return ADW_IS_WRAP_BOX(ptr);
 }
 

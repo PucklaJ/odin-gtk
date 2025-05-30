@@ -1,5 +1,9 @@
 #include "gio-wrapper.h"
 
+void g_clear_dbus_signal_subscription_wrapper(guint * subscription_id_pointer, GDBusConnection * connection) {
+    g_clear_dbus_signal_subscription(subscription_id_pointer, connection);
+}
+
 void glib_autoptr_clear_GDebugController_wrapper(GDebugController * _ptr) {
     glib_autoptr_clear_GDebugController(_ptr);
 }

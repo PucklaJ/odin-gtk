@@ -31,27 +31,15 @@ Direction :: enum u32 {IN = 0, OUT = 1, INOUT = 2 }
 ScopeType :: enum u32 {INVALID = 0, CALL = 1, ASYNC = 2, NOTIFIED = 3, FOREVER = 4 }
 TypeTag :: enum u32 {VOID = 0, BOOLEAN = 1, INT8 = 2, UINT8 = 3, INT16 = 4, UINT16 = 5, INT32 = 6, UINT32 = 7, INT64 = 8, UINT64 = 9, FLOAT = 10, DOUBLE = 11, GTYPE = 12, UTF8 = 13, FILENAME = 14, ARRAY = 15, INTERFACE = 16, GLIST = 17, GSLIST = 18, GHASH = 19, ERROR = 20, UNICHAR = 21 }
 ArrayType :: enum u32 {C = 0, ARRAY = 1, PTR_ARRAY = 2, BYTE_ARRAY = 3 }
-FieldInfoFlags :: enum u32 {FIELD_IS_READABLE = 1, FIELD_IS_WRITABLE = 2 }
-VFuncInfoFlags :: enum u32 {VFUNC_MUST_CHAIN_UP = 1, VFUNC_MUST_OVERRIDE = 2, VFUNC_MUST_NOT_OVERRIDE = 4 }
-FunctionInfoFlags :: enum u32 {FUNCTION_IS_METHOD = 1, FUNCTION_IS_CONSTRUCTOR = 2, FUNCTION_IS_GETTER = 4, FUNCTION_IS_SETTER = 8, FUNCTION_WRAPS_VFUNC = 16, FUNCTION_IS_ASYNC = 32 }
+FieldInfoFlags :: enum u32 {NONE = 0, FIELD_IS_READABLE = 1, FIELD_IS_WRITABLE = 2 }
+VFuncInfoFlags :: enum u32 {VFUNC_INFO_FLAGS_NONE = 0, VFUNC_MUST_CHAIN_UP = 1, VFUNC_MUST_OVERRIDE = 2, VFUNC_MUST_NOT_OVERRIDE = 4 }
+FunctionInfoFlags :: enum u32 {NONE = 0, FUNCTION_IS_METHOD = 1, FUNCTION_IS_CONSTRUCTOR = 2, FUNCTION_IS_GETTER = 4, FUNCTION_IS_SETTER = 8, FUNCTION_WRAPS_VFUNC = 16, FUNCTION_IS_ASYNC = 32 }
 InvokeError :: enum u32 {FAILED = 0, SYMBOL_NOT_FOUND = 1, ARGUMENT_MISMATCH = 2 }
 RepositoryLoadFlags :: enum u32 {NONE = 0, LAZY = 1 }
 RepositoryError :: enum u32 {TYPELIB_NOT_FOUND = 0, NAMESPACE_MISMATCH = 1, NAMESPACE_VERSION_CONFLICT = 2, LIBRARY_NOT_FOUND = 3 }
 
 @(default_calling_convention = "c")
 foreign girepository_runic {
-    @(link_name = "gi_callable_info_get_async_function")
-    callable_info_get_async_function :: proc(info: ^CallableInfo) -> ^CallableInfo ---
-
-    @(link_name = "gi_callable_info_get_sync_function")
-    callable_info_get_sync_function :: proc(info: ^CallableInfo) -> ^CallableInfo ---
-
-    @(link_name = "gi_callable_info_get_finish_function")
-    callable_info_get_finish_function :: proc(info: ^CallableInfo) -> ^CallableInfo ---
-
-    @(link_name = "gi_callable_info_is_async")
-    callable_info_is_async :: proc(info: ^CallableInfo) -> glib.boolean ---
-
     @(link_name = "glib_autoptr_clear_GIRepository_wrapper")
     autoptr_clear_GIRepository :: proc(_ptr: ^Repository) ---
 
