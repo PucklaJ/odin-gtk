@@ -183,7 +183,7 @@ create_context :: proc "contextless" () -> (ctx: runtime.Context) {
         proc_cstr := strings.clone_to_cstring(location.procedure)
 
         int_buf: [256]u8
-        line_str := strconv.append_uint(int_buf[:], u64(location.line), 10)
+        line_str := strconv.write_uint(int_buf[:], u64(location.line), 10)
         int_buf[len(line_str)] = 0
         line_cstr := cstring(&int_buf[0])
 
@@ -246,4 +246,3 @@ create_context :: proc "contextless" () -> (ctx: runtime.Context) {
     }
     return
 }
-
