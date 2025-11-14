@@ -365,8 +365,8 @@ _GHook :: struct {
 }
 PollFD :: _GPollFD
 PollFunc :: #type proc "c" (ufds: [^]PollFD, nfsd: uint_, timeout_: int_) -> int_
-SList :: _GSList
-_GSList :: struct {
+// SList :: _GSList
+SList :: struct {
     data: pointer,
     next: ^SList,
 }
@@ -7650,11 +7650,11 @@ when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
     foreign import glib_runic { "../lib/linux/x86_64/libglib-2.0.a", "../lib/linux/x86_64/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
-} 
+}
 } else {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
     foreign import glib_runic { "system:glib-2.0", "../lib/linux/x86_64/libglib-wrapper.a" }
-} 
+}
 }
 
 }
@@ -7664,11 +7664,11 @@ when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
     foreign import glib_runic { "../lib/linux/aarch64/libglib-2.0.a", "../lib/linux/aarch64/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
-} 
+}
 } else {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
     foreign import glib_runic { "system:glib-2.0", "../lib/linux/aarch64/libglib-wrapper.a" }
-} 
+}
 }
 
 }
@@ -7677,7 +7677,6 @@ when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
     foreign import glib_runic { "../lib/windows/x86_64/glib-2.0.lib", "../lib/windows/x86_64/glib-wrapper.lib" }
-} 
-
 }
 
+}

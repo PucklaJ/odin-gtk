@@ -1,0 +1,11 @@
+using Gtk 4.0;
+
+template $My_Box: Gtk.Box {
+    halign: center;
+    valign: center;
+
+    Button my_button {
+        label: _("Hi! Click me and look at the terminal!");
+        clicked => $my_button_clicked();
+    }
+}
