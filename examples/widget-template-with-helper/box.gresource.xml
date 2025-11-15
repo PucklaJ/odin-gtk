@@ -1,0 +1,5 @@
+<gresources>
+  <gresource prefix="/example">
+    <file>box.ui</file>
+  </gresource>
+</gresources>

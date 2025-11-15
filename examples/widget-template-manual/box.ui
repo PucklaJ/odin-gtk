@@ -10,7 +10,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
     <property name="halign">3</property>
     <property name="valign">3</property>
     <child>
-      <object class="GtkButton" id="my_button">
+      <object class="GtkButton" id="my-button">
         <property name="label" translatable="yes">Hi! Click me and look at the terminal!</property>
         <signal name="clicked" handler="my_button_clicked"/>
       </object>

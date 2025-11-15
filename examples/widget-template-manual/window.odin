@@ -9,11 +9,11 @@ package template
 @require import "../../gtk"
 
 // Return the GType of our widget, and register it if it isn't already.
-my_button_get_type :: proc "c" () -> (type: gobj.Type) {
-    @static static_type: gobj.Type
+my_box_get_type :: proc "c" () -> (g_type: gobj.Type) {
+    @static static_g_type: gobj.Type
 
     // If the type is already registered, we just return the type id.
-    if static_type != 0 { return static_type }
+    if static_g_type != 0 { return static_g_type }
 
     info := gobj.TypeInfo{
         class_size = size_of(My_Box_Class),
@@ -22,7 +22,9 @@ my_button_get_type :: proc "c" () -> (type: gobj.Type) {
         instance_size = size_of(My_Box),
         instance_init = instance_init,
     }
-    type = gobj.type_register_static(gtk.box_get_type(), "My_Box", &info, .NONE)
+    // We the type id so it sticks.
+    static_g_type = gobj.type_register_static(gtk.box_get_type(), "My_Box", &info, .NONE)
+    g_type = static_g_type
     return
 
     // Constructors
@@ -33,25 +35,23 @@ my_button_get_type :: proc "c" () -> (type: gobj.Type) {
         gtk.widget_class_set_template_from_resource(cast(^gtk.WidgetClass)class, "/example/box.ui")
 
         // We can set the click action here. See the blueprint `box.blp` for more information.
+        // Alternatively, we could set it in the `instance_init` proc as well.
         widget_class := cast(^gtk.WidgetClass)class
-        callback := cast(gobj.Callback)my_button_clicked
-        gtk.widget_class_bind_template_callback_full(widget_class, "my_button_clicked", callback)
-
-        // Rest of your class setup and virtual methods etc. go here as well.
-
-        /*
-        // Note: Normally, we could use this to bind children in the template too, but I can't get this to work.
-
         offset := cast(glib.ssize)offset_of(My_Box, button)
 
         gtk.widget_class_bind_template_child_full(
             widget_class,
-            name = "my_button",
-            internal_child = true,
-            struct_offset = offset,
+            name = "my-button",
+            internal_child = false, // I have no idea what this does. Both work (shrug).
+            struct_offset = offset, // This will automatically bind our button into our My_Box struct. How cool!
         )
-        */
 
+        // We set up our button's clicked action defined in the blueprint.
+        // Refer to the `instance_init` proc if you want to set it without blueprint.
+        clicked_callback := cast(gobj.Callback)my_button_clicked
+        gtk.widget_class_bind_template_callback_full(widget_class, "my_button_clicked", clicked_callback)
+
+        // Rest of your class setup and virtual methods etc. go here as well.
     }
 
     // This handles the individual instances of the widget.
@@ -59,30 +59,37 @@ my_button_get_type :: proc "c" () -> (type: gobj.Type) {
         gtk.widget_init_template(cast(^gtk.Widget)instance)
 
         /*
-        Similarly, this needs the binding from `class_init` to work.
-        If it did, we could set up our child button here too.
-        However, this currently segfaults and I have no idea why.
+        // We could also set up our child button here instead, if we wanted to.
 
         button := cast(^gtk.Button)(
-            gtk.widget_get_template_child(cast(^gtk.Widget)instance, gtk.button_get_type(), "my_button")
+            gtk.widget_get_template_child(cast(^gtk.Widget)instance, my_button_get_type(), "my-button")
         )
         my_box := cast(^My_Box)instance
         my_box.button = button
+
+        // It is, however, important to note that we would need to unset the `my_button_clicked` signal
+        // in the blueprint. It's either-or. Both cannot be true at once, GTK will yell at us otherwise.
+
+        clicked_callback := cast(gobj.Callback)my_button_clicked
+        gobj.signal_connect(button, "clicked", clicked_callback, nil)
         */
 
         // Rest of your instance overrides and setup go here as well.
     }
-}
 
-// This would get called when we click the button, if the above binding worked.
-my_button_clicked :: proc "c"(button: ^gtk.Button) {
-    parent := &button.parent_instance
-    my_box := cast(^My_Box)parent
+    // This will get called when we click the button.
+    my_button_clicked :: proc "c"(button: ^gtk.Button, data: glib.pointer) {
+        parent := &button.parent_instance
+        my_box := cast(^My_Box)parent
 
-    my_box.button_clicked += 1
+        my_box.button_clicked += 1
 
-    context = runtime.default_context()
-    fmt.printfln("Button clicked %d times!", my_box.button_clicked)
+        context = runtime.default_context()
+        fmt.printfln("Button clicked %d times!", my_box.button_clicked)
+
+        button_clicked_cstring := fmt.ctprintf("Clicked %d times!", my_box.button_clicked)
+        gtk.button_set_label(button, button_clicked_cstring)
+    }
 }
 
 // Needed by GTK internally.
@@ -95,7 +102,7 @@ My_Box_Class :: struct {
 My_Box :: struct {
     parent_instance: gtk.Box,
     button_clicked: int,
-    // button: ^gtk.Button, // Segfaults if you try to access this, with the other button stuff uncommented.
+    button: ^gtk.Button, // this field is set by us in the `class_init` proc.
 }
 
 main :: proc() {
@@ -106,6 +113,7 @@ main :: proc() {
 
     // We load the resource file that was compiled by `glib-compile-resources`
     // The `.ui` file was created by blueprint-compiler.
+    // use the `#load` directive for release builds, to bundle it into the app.
     resource := gio.resource_load("box.gresource", nil)
     gio.resources_register(resource)
 
@@ -128,9 +136,9 @@ show_window :: proc "c" (app: ^adw.Application) {
     window := cast(^adw.ApplicationWindow)_window
 
     // We create our custom box here, initialised as per its init function.
-    g_type := my_button_get_type()
-    _my_button := gobj.object_new(g_type, nil)
+    my_box_g_type := my_box_get_type()
+    _my_box := gobj.object_new(my_box_g_type, nil)
 
-    adw.application_window_set_content(window, cast(^gtk.Widget)_my_button)
+    adw.application_window_set_content(window, cast(^gtk.Widget)_my_box)
     gtk.window_present(cast(^gtk.Window)_window)
 }
