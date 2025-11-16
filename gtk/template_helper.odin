@@ -58,7 +58,8 @@ register_type :: proc(
         instance_init = instance_init_proc,
     }
 
-    my_type_name := fmt.ctprint(typeid_of(instance_type))
+    my_type_name := fmt.caprint(typeid_of(instance_type))
+    defer delete(my_type_name)
     registered_g_type := gobj.type_register_static(parent_g_type, my_type_name, &info, .NONE)
 
     static_g_type_ptr^ = registered_g_type
@@ -105,7 +106,9 @@ register_type_with_template :: proc(
         instance_init = instance_init_proc,
     }
 
-    my_type_name := fmt.ctprint(typeid_of(instance_type))
+    my_type_name := fmt.caprint(typeid_of(instance_type))
+    defer delete(my_type_name)
+
     registered_g_type := gobj.type_register_static(parent_g_type, my_type_name, &info, .NONE)
 
     static_g_type_ptr^ = registered_g_type
@@ -192,7 +195,9 @@ class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer
 
     create_param_spec :: proc(type: typeid, tag: string) -> (param_spec: ^gobj.ParamSpec, ok: bool) {
         ok = true
-        name := fmt.ctprint(tag)
+        name := fmt.caprint(tag)
+        defer delete(name)
+
         switch type {
         case string:
             param_spec = gobj.param_spec_string(

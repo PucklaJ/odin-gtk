@@ -87,7 +87,10 @@ my_box_get_type :: proc "c" () -> (g_type: gobj.Type) {
         context = runtime.default_context()
         fmt.printfln("Button clicked %d times!", my_box.button_clicked)
 
-        button_clicked_cstring := fmt.ctprintf("Clicked %d times!", my_box.button_clicked)
+        // GTK copies our string, so we are responsible for freeing the memory.
+        button_clicked_cstring := fmt.caprintf("Clicked %d times!", my_box.button_clicked)
+        defer delete(button_clicked_cstring)
+
         gtk.button_set_label(button, button_clicked_cstring)
     }
 }

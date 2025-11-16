@@ -132,9 +132,10 @@ my_button_clicked :: proc "c"(button: ^gtk.Button, data: glib.pointer) {
     context = runtime.default_context()
     fmt.printfln("Button clicked %d times!", my_box.button_clicked)
 
-    button_clicked_cstring := fmt.ctprintf("Clicked %d times!", my_box.button_clicked)
+    button_clicked_cstring := fmt.caprintf("Clicked %d times!", my_box.button_clicked)
 
     // We set the property of our box, and tell GTK that it changed, which will automatically update everything that depends on it.
+    delete(my_box.button_label)
     my_box.button_label = button_clicked_cstring
     gobj.object_notify(cast(^gobj.Object)my_box, "button-label")
 
