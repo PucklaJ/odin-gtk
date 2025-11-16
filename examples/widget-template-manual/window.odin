@@ -79,7 +79,7 @@ my_box_get_type :: proc "c" () -> (g_type: gobj.Type) {
 
     // This will get called when we click the button.
     my_button_clicked :: proc "c"(button: ^gtk.Button, data: glib.pointer) {
-        parent := &button.parent_instance
+        parent := gtk.widget_get_parent(cast(^gtk.Widget)button)
         my_box := cast(^My_Box)parent
 
         my_box.button_clicked += 1

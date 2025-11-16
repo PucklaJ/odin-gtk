@@ -11,11 +11,20 @@ Template_Data :: struct {
     // Must be registered in advance with `gio.resources_register`
     resource_path: cstring,
 
-    // A slice of template ids of the children you'd like registered.
-    children: []cstring,
+    // A slice of template children you'd like registered.
+    children:      []Template_Child,
 
     // The owning type.
-    type: typeid,
+    type:          typeid,
+}
+
+Template_Child :: struct {
+    // The id in the `.ui` file.
+    id:         cstring,
+
+    // The field name in our strict we want to bind it to.
+    // If empty, it won't be bound.
+    field_name: string,
 }
 
 /*
@@ -144,17 +153,17 @@ class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer
     widget_class := cast(^WidgetClass)class
     template_data := cast(^Template_Data)data
 
-    widget_class_set_template_from_resource(cast(^WidgetClass)class, template_data.resource_path)
+    widget_class_set_template_from_resource(widget_class, template_data.resource_path)
 
     // Required by `reflect`.
     context = runtime.default_context()
 
     for child in template_data.children {
-        field := reflect.struct_field_by_name(template_data.type, string(child))
+        field := reflect.struct_field_by_name(template_data.type, child.field_name)
 
         widget_class_bind_template_child_full(
             widget_class,
-            name = child,
+            name = child.id,
             internal_child = false,
             struct_offset = cast(glib.ssize)field.offset,
         )

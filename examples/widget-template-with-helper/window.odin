@@ -37,7 +37,6 @@ main :: proc() {
     if status != 0 {
         fmt.eprintfln("%#v", "oh no!")
     }
-
    }
 
 // We set up and show the main window here. This could be split up to multiple procs, obviously.
@@ -50,10 +49,18 @@ show_window :: proc "c" (app: ^adw.Application) {
     // Context is needed for reflection used by the setup.
     context = runtime.default_context()
 
+    // If we only care about registering the child, and don't want to bind it to our struct,
+    // we can leave `field_name` empty.
+    template_children := []gtk.Template_Child{
+        {
+            id         = "my-button",
+            field_name = "button",
+        },
+    }
     // See gtk.Template_Data for more information about what this is.
     template_data := gtk.Template_Data{
         resource_path = "/example/box.ui",
-        children = {"my-button"},
+        children = template_children,
         type = My_Box,
     }
     gtk.register_type_with_template(My_Box,
@@ -87,7 +94,7 @@ my_box_class_init :: proc "c" (class: glib.pointer, data: glib.pointer) {
 
 // This will get called when we click the button.
 my_button_clicked :: proc "c"(button: ^gtk.Button, data: glib.pointer) {
-    parent := &button.parent_instance
+    parent := gtk.widget_get_parent(cast(^gtk.Widget)button)
     my_box := cast(^My_Box)parent
 
     my_box.button_clicked += 1
