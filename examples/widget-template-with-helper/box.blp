@@ -5,7 +5,7 @@ template $My_Box: Gtk.Box {
     valign: center;
 
     Button my-button {
-        label: _("Hi! Click me and look at the terminal!");
+        label: bind template.button-label;
         clicked => $my_button_clicked();
     }
 }

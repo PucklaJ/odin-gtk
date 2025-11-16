@@ -1,5 +1,7 @@
 package gtk
 
+import "core:strconv"
+import "core:strings"
 import "base:runtime"
 import "core:reflect"
 @require import "core:fmt"
@@ -167,5 +169,166 @@ class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer
             internal_child = false,
             struct_offset = cast(glib.ssize)field.offset,
         )
+    }
+
+    object_class := cast(^gobj.ObjectClass)class
+    fields := reflect.struct_fields_zipped(template_data.type)
+    for field in fields {
+        // We need to get the id and the property name, in the format "3,my-property-name"
+        tag, ok := reflect.struct_tag_lookup(field.tag, "gproperty")
+        if ok {
+            sep_index := strings.index_rune(tag, ',')
+            if sep_index == -1 { continue }
+
+            param_spec, spec_ok := create_param_spec(field.type.id, tag[sep_index + 1:])
+            if !spec_ok { continue }
+
+            id, id_ok := strconv.parse_uint(tag[:sep_index])
+            if !id_ok { continue }
+
+            gobj.object_class_install_property(object_class, u32(id), param_spec)
+        }
+    }
+
+    create_param_spec :: proc(type: typeid, tag: string) -> (param_spec: ^gobj.ParamSpec, ok: bool) {
+        ok = true
+        name := fmt.ctprint(tag)
+        switch type {
+        case string:
+            param_spec = gobj.param_spec_string(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                default_value = nil,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case cstring:
+            param_spec = gobj.param_spec_string(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                default_value = nil,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case bool:
+            param_spec = gobj.param_spec_boolean(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                default_value = false,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case i8:
+            param_spec = gobj.param_spec_char(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                minimum = min(i8),
+                maximum = max(i8),
+                default_value = 0,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case u8:
+            param_spec = gobj.param_spec_uchar(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                minimum = min(u8),
+                maximum = max(u8),
+                default_value = 0,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case i32:
+            param_spec = gobj.param_spec_int(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                minimum = min(i32),
+                maximum = max(i32),
+                default_value = 0,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case u32:
+            param_spec = gobj.param_spec_uint(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                minimum = min(u32),
+                maximum = max(u32),
+                default_value = 0,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case i64:
+            param_spec = gobj.param_spec_int64(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                minimum = min(i64),
+                maximum = max(i64),
+                default_value = 0,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case int:
+            param_spec = gobj.param_spec_int64(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                minimum = min(i64),
+                maximum = max(i64),
+                default_value = 0,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case u64:
+            param_spec = gobj.param_spec_uint64(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                minimum = min(u64),
+                maximum = max(u64),
+                default_value = 0,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case uint:
+            param_spec = gobj.param_spec_uint64(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                minimum = min(u64),
+                maximum = max(u64),
+                default_value = 0,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case f32:
+            param_spec = gobj.param_spec_float(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                minimum = min(f32),
+                maximum = max(f32),
+                default_value = 0,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case f64:
+            param_spec = gobj.param_spec_double(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                minimum = min(f64),
+                maximum = max(f64),
+                default_value = 0,
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case gobj.Object:
+            param_spec = gobj.param_spec_object(
+                name = name,
+                nick = nil,
+                blurb = nil,
+                object_type = gobj.object_get_type(),
+                flags = gobj.ParamFlags.READWRITE,
+            )
+        case: ok = false
+        }
+
+        return
     }
 }
