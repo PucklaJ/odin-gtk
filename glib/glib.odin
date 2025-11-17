@@ -374,7 +374,7 @@ _GMainContext :: struct #packed {}
 MainContext :: _GMainContext
 _GMainLoop :: struct #packed {}
 MainLoop :: _GMainLoop
-Source :: _GSource
+// Source :: _GSource
 _GSourcePrivate :: struct #packed {}
 SourcePrivate :: _GSourcePrivate
 SourceCallbackFuncs :: _GSourceCallbackFuncs
@@ -383,7 +383,7 @@ SourceFunc :: #type proc "c" (user_data: pointer) -> boolean
 SourceOnceFunc :: #type proc "c" (user_data: pointer)
 ChildWatchFunc :: #type proc "c" (pid: Pid, wait_status: int_, user_data: pointer)
 SourceDisposeFunc :: #type proc "c" (source: ^Source)
-_GSource :: struct {
+Source :: struct {
     callback_data: pointer,
     callback_funcs: [^]SourceCallbackFuncs,
     source_funcs: [^]SourceFuncs,
