@@ -7,8 +7,8 @@ import strconv "core:strconv"
 import strings "core:strings"
 
 import gio     "../glib/gio"
-import glib     "../glib/"
-import gobj     "../glib/gobject"
+import glib    "../glib/"
+import gobj    "../glib/gobject"
 
 Template_Data :: struct {
     // URI of the `.ui` file in the gresource.
@@ -18,7 +18,7 @@ Template_Data :: struct {
     // A slice of template children you'd like registered.
     children:      []Template_Child,
 
-    // The owning type.
+    // The owning type. This is set by `register_type_with_template` automatically.
     type:          typeid,
 }
 
@@ -44,6 +44,7 @@ if load_err != nil {
 }
 ```
 */
+@(require_results)
 register_resource :: proc "contextless" (
     resource_bytes: []byte,
 ) -> (
