@@ -1,12 +1,14 @@
 package gtk
 
-import "core:strconv"
-import "core:strings"
-import "base:runtime"
-import "core:reflect"
-@require import "core:fmt"
-import gobj "../glib/gobject"
-import "../glib/"
+import fmt     "core:fmt"
+import reflect "core:reflect"
+import runtime "base:runtime"
+import strconv "core:strconv"
+import strings "core:strings"
+
+import gio     "../glib/gio"
+import glib     "../glib/"
+import gobj     "../glib/gobject"
 
 Template_Data :: struct {
     // URI of the `.ui` file in the gresource.
@@ -30,13 +32,43 @@ Template_Child :: struct {
 }
 
 /*
+Register a resource from loaded bytes, embedded into the executable.
+
+In case of an error, the caller must free it.
+
+Example:
+```odin
+_, load_err := register_resource(#load("../relative/path.gresource"))
+if load_err != nil {
+    glib.free(err)
+}
+```
+*/
+register_resource :: proc "contextless" (
+    resource_bytes: []byte,
+) -> (
+    resource: ^gio.Resource,
+    err: ^glib.Error,
+) {
+    blp_resource_bytes := glib.bytes_new_static(raw_data(resource_bytes), u64(len(resource_bytes)))
+    blp_resource := gio.resource_new_from_data(blp_resource_bytes, &err)
+    if err != nil {
+        resource = nil
+        return resource, err
+    }
+    gio.resources_register(blp_resource)
+
+    return
+}
+
+/*
 This must be called once before you do anything with your custom widget,
 otherwise it is not defined in the gobject typesystem!
 
 Default class and instance init procs don't do anything, so if you need subtype binding or some other setup,
 you need to supply them yourself.
 */
-register_type :: proc "c" (
+register_type :: proc "contextless" (
     $instance_type: typeid,
     $parent_class_type: typeid,
     parent_g_type: gobj.Type,
@@ -85,7 +117,7 @@ The default instance init proc does not depend on the template data, so it can s
 **Warning**: If your instance init proc depends on the template data, you must not free it while you
 keep making widgets of this type!
 */
-register_type_with_template :: proc "c" (
+register_type_with_template :: proc "contextless" (
     $instance_type: typeid,
     $parent_class_type: typeid,
     parent_g_type: gobj.Type,
@@ -130,7 +162,7 @@ register_type_with_template :: proc "c" (
 // Note: Widget must already be registered in the type system via `register_type` or
 // `register_type_from_template`.
 @(require_results)
-custom_type_get_type :: proc "c" ($instance_type: typeid) -> (g_type: gobj.Type) {
+custom_type_get_type :: proc "contextless" ($instance_type: typeid) -> (g_type: gobj.Type) {
     g_type_ptr := custom_type_get_type_ptr(instance_type)
     g_type = g_type_ptr^
     return
@@ -139,7 +171,7 @@ custom_type_get_type :: proc "c" ($instance_type: typeid) -> (g_type: gobj.Type)
 // Helper proc to store the internal `gobject.Type` for each custom type. Needs to be set from
 // one of the register procs.
 @(private, require_results)
-custom_type_get_type_ptr :: proc "c" ($instance_type: typeid) -> (g_type: ^gobj.Type) {
+custom_type_get_type_ptr :: proc "contextless" ($instance_type: typeid) -> (g_type: ^gobj.Type) {
     @static static_g_type: gobj.Type
     g_type = &static_g_type
     return

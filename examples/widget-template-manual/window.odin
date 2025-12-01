@@ -1,15 +1,16 @@
 package template
 
-@require import "base:runtime"
-@require import "core:fmt"
-@require import adw "../../adwaita"
-@require import "../../glib"
-@require import gobj "../../glib/gobject"
-@require import "../../glib/gio"
-@require import "../../gtk"
+import fmt     "core:fmt"
+import runtime "base:runtime"
+
+import adw     "../../adwaita"
+import gio     "../../glib/gio"
+import glib    "../../glib"
+import gobj    "../../glib/gobject"
+import gtk     "../../gtk"
 
 // Return the GType of our widget, and register it if it isn't already.
-my_box_get_type :: proc "c" () -> (g_type: gobj.Type) {
+my_box_get_type :: proc "contextless" () -> (g_type: gobj.Type) {
     @static static_g_type: gobj.Type
 
     // If the type is already registered, we just return the type id.
@@ -78,7 +79,7 @@ my_box_get_type :: proc "c" () -> (g_type: gobj.Type) {
     }
 
     // This will get called when we click the button.
-    my_button_clicked :: proc "c"(button: ^gtk.Button, data: glib.pointer) {
+    my_button_clicked :: proc "c" (button: ^gtk.Button, data: glib.pointer) {
         parent := gtk.widget_get_parent(cast(^gtk.Widget)button)
         my_box := cast(^My_Box)parent
 

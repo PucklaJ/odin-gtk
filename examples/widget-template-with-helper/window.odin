@@ -1,12 +1,13 @@
 package template
 
-@require import "base:runtime"
-@require import "core:fmt"
-@require import adw "../../adwaita"
-@require import "../../glib"
-@require import gobj "../../glib/gobject"
-@require import "../../glib/gio"
-@require import "../../gtk"
+import fmt     "core:fmt"
+import runtime "base:runtime"
+
+import adw     "../../adwaita"
+import gio     "../../glib/gio"
+import glib    "../../glib"
+import gobj    "../../glib/gobject"
+import gtk     "../../gtk"
 
 // The box instance.
 // Note: `parent` field has to be the first.
@@ -23,11 +24,23 @@ main :: proc() {
     // We must initialise GTK, otherwise our parent class, `gtk.Box` is not valid.
     gtk.init()
 
-    // We load the resource file that was compiled by `glib-compile-resources`
-    // The `.ui` file was created by blueprint-compiler.
-    // use the `#load` directive for release builds, to bundle it into the app.
+    /*
+    We load the resource file that was compiled by `glib-compile-resources`
+    The `.ui` file was created by blueprint-compiler.
+    Here, the resource is loaded from disk on every app start. Useful for development.
+
     resource := gio.resource_load(#directory + "box.gresource", nil)
     gio.resources_register(resource)
+    */
+
+    // Here, the resource is bundled into the application, useful for release builds.
+    _, resource_err := gtk.register_resource(#load("box.gresource"))
+    if resource_err != nil {
+        // log.fatalf("Could not load resource. Error: %s", resource_err.message)
+        glib.free(resource_err)
+        return
+    }
+
 
     app := adw.application_new("some.example", .NONE)
     defer gobj.object_unref(app)
