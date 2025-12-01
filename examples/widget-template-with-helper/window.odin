@@ -26,7 +26,7 @@ main :: proc() {
     // We load the resource file that was compiled by `glib-compile-resources`
     // The `.ui` file was created by blueprint-compiler.
     // use the `#load` directive for release builds, to bundle it into the app.
-    resource := gio.resource_load("box.gresource", nil)
+    resource := gio.resource_load(#directory + "box.gresource", nil)
     gio.resources_register(resource)
 
     app := adw.application_new("some.example", .NONE)
