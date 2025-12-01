@@ -36,7 +36,7 @@ otherwise it is not defined in the gobject typesystem!
 Default class and instance init procs don't do anything, so if you need subtype binding or some other setup,
 you need to supply them yourself.
 */
-register_type :: proc(
+register_type :: proc "c" (
     $instance_type: typeid,
     $parent_class_type: typeid,
     parent_g_type: gobj.Type,
@@ -49,6 +49,8 @@ register_type :: proc(
     static_g_type_ptr := custom_type_get_type_ptr(instance_type)
     static_g_type := static_g_type_ptr^
     if static_g_type != 0 { return static_g_type }
+
+    context = runtime.default_context()
 
     info := gobj.TypeInfo{
         class_size = size_of(Custom_Type_Class),
@@ -83,7 +85,7 @@ The default instance init proc does not depend on the template data, so it can s
 **Warning**: If your instance init proc depends on the template data, you must not free it while you
 keep making widgets of this type!
 */
-register_type_with_template :: proc(
+register_type_with_template :: proc "c" (
     $instance_type: typeid,
     $parent_class_type: typeid,
     parent_g_type: gobj.Type,
@@ -96,6 +98,9 @@ register_type_with_template :: proc(
     static_g_type_ptr := custom_type_get_type_ptr(instance_type)
     static_g_type := static_g_type_ptr^
     if static_g_type != 0 { return static_g_type }
+
+    template_data.type = instance_type
+    context = runtime.default_context()
 
     info := gobj.TypeInfo{
         class_size = size_of(Custom_Type_Class),
@@ -125,7 +130,7 @@ register_type_with_template :: proc(
 // Note: Widget must already be registered in the type system via `register_type` or
 // `register_type_from_template`.
 @(require_results)
-custom_type_get_type :: proc($instance_type: typeid) -> (g_type: gobj.Type) {
+custom_type_get_type :: proc "c" ($instance_type: typeid) -> (g_type: gobj.Type) {
     g_type_ptr := custom_type_get_type_ptr(instance_type)
     g_type = g_type_ptr^
     return
@@ -134,7 +139,7 @@ custom_type_get_type :: proc($instance_type: typeid) -> (g_type: gobj.Type) {
 // Helper proc to store the internal `gobject.Type` for each custom type. Needs to be set from
 // one of the register procs.
 @(private, require_results)
-custom_type_get_type_ptr :: proc($instance_type: typeid) -> (g_type: ^gobj.Type) {
+custom_type_get_type_ptr :: proc "c" ($instance_type: typeid) -> (g_type: ^gobj.Type) {
     @static static_g_type: gobj.Type
     g_type = &static_g_type
     return
@@ -193,7 +198,8 @@ class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer
         }
     }
 
-    create_param_spec :: proc(type: typeid, tag: string) -> (param_spec: ^gobj.ParamSpec, ok: bool) {
+    create_param_spec :: proc "c" (type: typeid, tag: string) -> (param_spec: ^gobj.ParamSpec, ok: bool) {
+        context = runtime.default_context()
         ok = true
         name := fmt.caprint(tag)
         defer delete(name)

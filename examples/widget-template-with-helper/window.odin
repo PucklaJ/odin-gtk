@@ -47,9 +47,6 @@ show_window :: proc "c" (app: ^adw.Application) {
     _window := adw.application_window_new(cast(^gtk.Application)(app))
     window := cast(^adw.ApplicationWindow)_window
 
-    // Context is needed for reflection used by the setup.
-    context = runtime.default_context()
-
     // If we only care about registering the child, and don't want to bind it to our struct,
     // we can leave `field_name` empty.
     template_children := []gtk.Template_Child{
@@ -62,7 +59,6 @@ show_window :: proc "c" (app: ^adw.Application) {
     template_data := gtk.Template_Data{
         resource_path = "/example/box.ui",
         children = template_children,
-        type = My_Box,
     }
     gtk.register_type_with_template(
         My_Box,
@@ -102,7 +98,7 @@ my_box_class_init :: proc "c" (class: glib.pointer, data: glib.pointer) {
 }
 
 // This is called by GTK whenever it wants to know the value of any of the registered properties.
-my_box_property_get :: proc "c"(object: ^gobj.Object, property_id: glib.uint_, value: ^gobj.Value, pspec: ^gobj.ParamSpec) {
+my_box_property_get :: proc "c" (object: ^gobj.Object, property_id: glib.uint_, value: ^gobj.Value, pspec: ^gobj.ParamSpec) {
     my_box := cast(^My_Box)object
     switch property_id {
     case 1: // We set the id of our property to 1.
@@ -120,10 +116,10 @@ my_box_instance_init :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib
 }
 
 // We can leave this empty for now because we don't plan on setting it through GTK.
-my_box_property_set :: proc "c"(object: ^gobj.Object, property_id: glib.uint_, value: ^gobj.Value, pspec: ^gobj.ParamSpec) {}
+my_box_property_set :: proc "c" (object: ^gobj.Object, property_id: glib.uint_, value: ^gobj.Value, pspec: ^gobj.ParamSpec) {}
 
 // This will get called when we click the button.
-my_button_clicked :: proc "c"(button: ^gtk.Button, data: glib.pointer) {
+my_button_clicked :: proc "c" (button: ^gtk.Button, data: glib.pointer) {
     parent := gtk.widget_get_parent(cast(^gtk.Widget)button)
     my_box := cast(^My_Box)parent
 
