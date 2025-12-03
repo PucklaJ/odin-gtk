@@ -10,6 +10,7 @@ import gio     "../glib/gio"
 import glib    "../glib/"
 import gobj    "../glib/gobject"
 
+// Type holding information requried to register and bind template children.
 Template_Data :: struct {
     // URI of the `.ui` file in the gresource.
     // Must be registered in advance with `gio.resources_register`
@@ -26,7 +27,7 @@ Template_Child :: struct {
     // The id in the `.ui` file.
     id:         cstring,
 
-    // The field name in our strict we want to bind it to.
+    // The field name in our struct we want to bind it to.
     // If empty, it won't be bound.
     field_name: string,
 }
@@ -169,29 +170,26 @@ custom_type_get_type :: proc "contextless" ($instance_type: typeid) -> (g_type: 
     return
 }
 
-// Helper proc to store the internal `gobject.Type` for each custom type. Needs to be set from
-// one of the register procs.
-@(private, require_results)
-custom_type_get_type_ptr :: proc "contextless" ($instance_type: typeid) -> (g_type: ^gobj.Type) {
-    @static static_g_type: gobj.Type
-    g_type = &static_g_type
-    return
-}
 
-@private
-instance_init_default :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {}
+/*
+Takes care of necessary **instance** initialisation, like registering signals and setting
+default property values.
 
-@private
-class_init_default :: proc "c" (class: glib.pointer, data: glib.pointer) {}
-
-// Takes care of necessary initialisation, like binding children and setting up the template.
-// You can safely call this at the beginning of your own implementation too.
+**Note**: It is recommended to call this at the beginning of your own implementation too, since this
+takes care of the widget initialisation, which is necessary in all cases.
+*/
 instance_init_default_template :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {
     widget_init_template(cast(^Widget)instance)
 }
 
-// Takes care of necessary initialisation, like binding children and setting up the template.
-// You can safely call this at the beginning of your own implementation too.
+/*
+Takes care of necessary **class** initialisation, like binding children and setting up the template.
+Everything class-related, such as registering callbacks or implementing virtual methods
+should be done here as well.
+
+**Note**: It is recommended to call this at the beginning of your own implementation too, since this
+takes care of all the necessary steps you'd need to do anyway.
+*/
 class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer) {
     widget_class := cast(^WidgetClass)class
     template_data := cast(^Template_Data)data
@@ -376,3 +374,18 @@ class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer
         return
     }
 }
+
+// Helper proc to store the internal `gobject.Type` for each custom type. Needs to be set from
+// one of the register procs.
+@(private, require_results)
+custom_type_get_type_ptr :: proc "contextless" ($instance_type: typeid) -> (g_type: ^gobj.Type) {
+    @static static_g_type: gobj.Type
+    g_type = &static_g_type
+    return
+}
+
+@private
+instance_init_default :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {}
+
+@private
+class_init_default :: proc "c" (class: glib.pointer, data: glib.pointer) {}
