@@ -8,6 +8,7 @@ import gio     "../../glib/gio"
 import glib    "../../glib"
 import gobj    "../../glib/gobject"
 import gtk     "../../gtk"
+import helper    "../../helper"
 
 // The box instance.
 // Note: `parent` field has to be the first.
@@ -34,7 +35,7 @@ main :: proc() {
     */
 
     // Here, the resource is bundled into the application, useful for release builds.
-    _, resource_err := gtk.register_resource(#load("box.gresource"))
+    _, resource_err := helper.register_resource(#load("box.gresource"))
     if resource_err != nil {
         // log.fatalf("Could not load resource. Error: %s", resource_err.message)
         glib.free(resource_err)
@@ -62,18 +63,18 @@ show_window :: proc "c" (app: ^adw.Application) {
 
     // If we only care about registering the child, and don't want to bind it to our struct,
     // we can leave `field_name` empty.
-    template_children := []gtk.Template_Child{
+    template_children := []helper.Template_Child{
         {
             id         = "my-button",
             field_name = "button",
         },
     }
     // See gtk.Template_Data for more information about what this is.
-    template_data := gtk.Template_Data{
+    template_data := helper.Template_Data{
         resource_path = "/example/box.ui",
         children = template_children,
     }
-    gtk.register_type_with_template(
+    helper.register_type_with_template(
         My_Box,
         gtk.BoxClass,
         gtk.box_get_type(),
@@ -85,7 +86,7 @@ show_window :: proc "c" (app: ^adw.Application) {
     )
 
     // We create our custom box here, initialised as per its init function.
-    my_box_g_type := gtk.custom_type_get_type(My_Box)
+    my_box_g_type := helper.custom_type_get_type(My_Box)
     _my_box := gobj.object_new(my_box_g_type, nil)
 
     adw.application_window_set_content(window, cast(^gtk.Widget)_my_box)
@@ -101,7 +102,7 @@ my_box_class_init :: proc "c" (class: glib.pointer, data: glib.pointer) {
 
     // We call the default init proc, so that we don't have to do the child binding and template setup ourselves.
     // This takes care of common use cases like registering children and annotated gproperties.
-    gtk.class_init_default_template(class, data)
+    helper.class_init_default_template(class, data)
 
     // We register our proc as a callback to the signal defined in the blueprint.
     // Alternatively, we could register the signal in the `instance_init` proc too.
@@ -121,7 +122,7 @@ my_box_property_get :: proc "c" (object: ^gobj.Object, property_id: glib.uint_, 
 
 my_box_instance_init :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {
     // We call the default template to do the setup.
-    gtk.instance_init_default_template(instance, class_data)
+    helper.instance_init_default_template(instance, class_data)
 
     // We set a default value for our label, since the binding sets none by itself.
     my_box := cast(^My_Box)instance

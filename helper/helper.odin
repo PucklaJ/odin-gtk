@@ -1,4 +1,4 @@
-package gtk
+package helper
 
 import fmt     "core:fmt"
 import reflect "core:reflect"
@@ -9,6 +9,7 @@ import strings "core:strings"
 import gio     "../glib/gio"
 import glib    "../glib/"
 import gobj    "../glib/gobject"
+import gtk     "../gtk"
 
 // Type holding information requried to register and bind template children.
 Template_Data :: struct {
@@ -179,7 +180,7 @@ default property values.
 takes care of the widget initialisation, which is necessary in all cases.
 */
 instance_init_default_template :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {
-    widget_init_template(cast(^Widget)instance)
+    gtk.widget_init_template(cast(^gtk.Widget)instance)
 }
 
 /*
@@ -191,10 +192,10 @@ should be done here as well.
 takes care of all the necessary steps you'd need to do anyway.
 */
 class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer) {
-    widget_class := cast(^WidgetClass)class
+    widget_class := cast(^gtk.WidgetClass)class
     template_data := cast(^Template_Data)data
 
-    widget_class_set_template_from_resource(widget_class, template_data.resource_path)
+    gtk.widget_class_set_template_from_resource(widget_class, template_data.resource_path)
 
     // Required by `reflect`.
     context = runtime.default_context()
@@ -202,7 +203,7 @@ class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer
     for child in template_data.children {
         field := reflect.struct_field_by_name(template_data.type, child.field_name)
 
-        widget_class_bind_template_child_full(
+        gtk.widget_class_bind_template_child_full(
             widget_class,
             name = child.id,
             internal_child = false,
