@@ -54,7 +54,11 @@ main :: proc() {
     }
    }
 
-// We set up and show the main window here. This could be split up to multiple procs, obviously.
+/* We set up and show the main window here. This could be split up to multiple procs, obviously.
+In that case, we would need to make sure that our template data remains valid and allocated.
+
+See `helper.Template_Data` for more information.
+*/
 show_window :: proc "c" (app: ^adw.Application) {
     // GTK is very cast heavy, unfortunately.
     // I like to prefix generic variables with `_` as a note to myself.
@@ -69,7 +73,7 @@ show_window :: proc "c" (app: ^adw.Application) {
             field_name = "button",
         },
     }
-    // See gtk.Template_Data for more information about what this is.
+    // See helper.Template_Data for more information about what this is.
     template_data := helper.Template_Data{
         resource_path = "/example/box.ui",
         children = template_children,
@@ -93,7 +97,11 @@ show_window :: proc "c" (app: ^adw.Application) {
     gtk.window_present(cast(^gtk.Window)_window)
 }
 
-// Our custom class init proc, since we want to set the `clicked` action on our button.
+/*
+Our custom class init proc, since we want to set the `clicked` action on our button.
+
+**Note**: This is called only once, when the first object is created.
+*/
 my_box_class_init :: proc "c" (class: glib.pointer, data: glib.pointer) {
     // We register the getter and setter procs for our box's custom gproperties.
     object_class := cast(^gobj.ObjectClass)class
@@ -111,6 +119,16 @@ my_box_class_init :: proc "c" (class: glib.pointer, data: glib.pointer) {
     gtk.widget_class_bind_template_callback_full(widget_class, "my_button_clicked", clicked_callback)
 }
 
+// This is called every time a new object instance is created.
+my_box_instance_init :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {
+    // We call the default template to do the setup.
+    helper.instance_init_default_template(instance, class_data)
+
+    // We set a default value for our label, since the binding sets none by itself.
+    my_box := cast(^My_Box)instance
+    gtk.button_set_label(my_box.button, "Click me!")
+}
+
 // This is called by GTK whenever it wants to know the value of any of the registered properties.
 my_box_property_get :: proc "c" (object: ^gobj.Object, property_id: glib.uint_, value: ^gobj.Value, pspec: ^gobj.ParamSpec) {
     my_box := cast(^My_Box)object
@@ -120,14 +138,6 @@ my_box_property_get :: proc "c" (object: ^gobj.Object, property_id: glib.uint_, 
     }
 }
 
-my_box_instance_init :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {
-    // We call the default template to do the setup.
-    helper.instance_init_default_template(instance, class_data)
-
-    // We set a default value for our label, since the binding sets none by itself.
-    my_box := cast(^My_Box)instance
-    gtk.button_set_label(my_box.button, "Click me!")
-}
 
 // We can leave this empty for now because we don't plan on setting it through GTK.
 my_box_property_set :: proc "c" (object: ^gobj.Object, property_id: glib.uint_, value: ^gobj.Value, pspec: ^gobj.ParamSpec) {}

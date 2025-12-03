@@ -11,7 +11,15 @@ import glib    "../glib/"
 import gobj    "../glib/gobject"
 import gtk     "../gtk"
 
-// Type holding information requried to register and bind template children.
+/*
+Type holding information requried to register and bind template children.
+
+**Note**: The data is **NOT** copied into Glib until the first call to `gobject.object_new()`,
+meaning that if you register your templates in a procedure separate from where you create the object,
+you **must** ensure that the data here remains valid until then. It can be safely freed after that.
+
+The recommended way is through an arena or global heap allocation.
+*/
 Template_Data :: struct {
     // URI of the `.ui` file in the gresource.
     // Must be registered in advance with `gio.resources_register`
@@ -170,7 +178,6 @@ custom_type_get_type :: proc "contextless" ($instance_type: typeid) -> (g_type: 
     g_type = g_type_ptr^
     return
 }
-
 
 /*
 Takes care of necessary **instance** initialisation, like registering signals and setting
@@ -385,8 +392,8 @@ custom_type_get_type_ptr :: proc "contextless" ($instance_type: typeid) -> (g_ty
     return
 }
 
-@private
+@(private)
 instance_init_default :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {}
 
-@private
+@(private)
 class_init_default :: proc "c" (class: glib.pointer, data: glib.pointer) {}
