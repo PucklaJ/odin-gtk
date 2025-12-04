@@ -35,52 +35,52 @@ PARAM_USER_SHIFT :: (8)
 FLAGS_MASK :: 511
 MATCH_MASK :: 63
 TYPE_STATIC_SCOPE :: (( (1 << 0)))
-TYPE_DATE :: date_get_type 
-TYPE_STRV :: strv_get_type 
-TYPE_GSTRING :: gstring_get_type 
-TYPE_HASH_TABLE :: hash_table_get_type 
-TYPE_REGEX :: regex_get_type 
-TYPE_MATCH_INFO :: match_info_get_type 
-TYPE_ARRAY :: array_get_type 
-TYPE_BYTE_ARRAY :: byte_array_get_type 
-TYPE_PTR_ARRAY :: ptr_array_get_type 
-TYPE_BYTES :: bytes_get_type 
-TYPE_VARIANT_TYPE :: variant_type_get_gtype 
-TYPE_ERROR :: error_get_type 
-TYPE_DATE_TIME :: date_time_get_type 
-TYPE_TIME_ZONE :: time_zone_get_type 
-TYPE_IO_CHANNEL :: io_channel_get_type 
-TYPE_IO_CONDITION :: io_condition_get_type 
-TYPE_VARIANT_BUILDER :: variant_builder_get_type 
-TYPE_VARIANT_DICT :: variant_dict_get_type 
-TYPE_MAIN_LOOP :: main_loop_get_type 
-TYPE_MAIN_CONTEXT :: main_context_get_type 
-TYPE_SOURCE :: source_get_type 
-TYPE_POLLFD :: pollfd_get_type 
-TYPE_MARKUP_PARSE_CONTEXT :: markup_parse_context_get_type 
-TYPE_KEY_FILE :: key_file_get_type 
-TYPE_MAPPED_FILE :: mapped_file_get_type 
-TYPE_THREAD :: thread_get_type 
-TYPE_CHECKSUM :: checksum_get_type 
-TYPE_OPTION_GROUP :: option_group_get_type 
-TYPE_URI :: uri_get_type 
-TYPE_TREE :: tree_get_type 
-TYPE_PATTERN_SPEC :: pattern_spec_get_type 
-TYPE_BOOKMARK_FILE :: bookmark_file_get_type 
-TYPE_HMAC :: hmac_get_type 
-TYPE_DIR :: dir_get_type 
-TYPE_RAND :: rand_get_type 
-TYPE_STRV_BUILDER :: strv_builder_get_type 
-TYPE_CLOSURE :: closure_get_type 
-TYPE_VALUE :: value_get_type 
+TYPE_DATE :: date_get_type
+TYPE_STRV :: strv_get_type
+TYPE_GSTRING :: gstring_get_type
+TYPE_HASH_TABLE :: hash_table_get_type
+TYPE_REGEX :: regex_get_type
+TYPE_MATCH_INFO :: match_info_get_type
+TYPE_ARRAY :: array_get_type
+TYPE_BYTE_ARRAY :: byte_array_get_type
+TYPE_PTR_ARRAY :: ptr_array_get_type
+TYPE_BYTES :: bytes_get_type
+TYPE_VARIANT_TYPE :: variant_type_get_gtype
+TYPE_ERROR :: error_get_type
+TYPE_DATE_TIME :: date_time_get_type
+TYPE_TIME_ZONE :: time_zone_get_type
+TYPE_IO_CHANNEL :: io_channel_get_type
+TYPE_IO_CONDITION :: io_condition_get_type
+TYPE_VARIANT_BUILDER :: variant_builder_get_type
+TYPE_VARIANT_DICT :: variant_dict_get_type
+TYPE_MAIN_LOOP :: main_loop_get_type
+TYPE_MAIN_CONTEXT :: main_context_get_type
+TYPE_SOURCE :: source_get_type
+TYPE_POLLFD :: pollfd_get_type
+TYPE_MARKUP_PARSE_CONTEXT :: markup_parse_context_get_type
+TYPE_KEY_FILE :: key_file_get_type
+TYPE_MAPPED_FILE :: mapped_file_get_type
+TYPE_THREAD :: thread_get_type
+TYPE_CHECKSUM :: checksum_get_type
+TYPE_OPTION_GROUP :: option_group_get_type
+TYPE_URI :: uri_get_type
+TYPE_TREE :: tree_get_type
+TYPE_PATTERN_SPEC :: pattern_spec_get_type
+TYPE_BOOKMARK_FILE :: bookmark_file_get_type
+TYPE_HMAC :: hmac_get_type
+TYPE_DIR :: dir_get_type
+TYPE_RAND :: rand_get_type
+TYPE_STRV_BUILDER :: strv_builder_get_type
+TYPE_CLOSURE :: closure_get_type
+TYPE_VALUE :: value_get_type
 TYPE_INITIALLY_UNOWNED :: initially_unowned_get_type
-TYPE_BINDING_FLAGS :: binding_flags_get_type 
-TYPE_BINDING :: binding_get_type 
+TYPE_BINDING_FLAGS :: binding_flags_get_type
+TYPE_BINDING :: binding_get_type
 TYPE_BINDING_GROUP :: binding_group_get_type
-TYPE_UNICODE_TYPE :: unicode_type_get_type 
-TYPE_UNICODE_BREAK_TYPE :: unicode_break_type_get_type 
-TYPE_UNICODE_SCRIPT :: unicode_script_get_type 
-TYPE_NORMALIZE_MODE :: normalize_mode_get_type 
+TYPE_UNICODE_TYPE :: unicode_type_get_type
+TYPE_UNICODE_BREAK_TYPE :: unicode_break_type_get_type
+TYPE_UNICODE_SCRIPT :: unicode_script_get_type
+TYPE_NORMALIZE_MODE :: normalize_mode_get_type
 TYPE_PARAM_CHAR :: #force_inline proc "c" () -> Type { return param_spec_types[0] }
 TYPE_PARAM_UCHAR :: #force_inline proc "c" () -> Type { return param_spec_types[1] }
 TYPE_PARAM_BOOLEAN :: #force_inline proc "c" () -> Type { return param_spec_types[2] }
@@ -105,9 +105,9 @@ TYPE_PARAM_OVERRIDE :: #force_inline proc "c" () -> Type { return param_spec_typ
 TYPE_PARAM_GTYPE :: #force_inline proc "c" () -> Type { return param_spec_types[21] }
 TYPE_PARAM_VARIANT :: #force_inline proc "c" () -> Type { return param_spec_types[22] }
 TYPE_SIGNAL_GROUP :: signal_group_get_type
-TYPE_TYPE_MODULE :: type_module_get_type 
-TYPE_TYPE_PLUGIN :: type_plugin_get_type 
-TYPE_VALUE_ARRAY :: value_array_get_type 
+TYPE_TYPE_MODULE :: type_module_get_type
+TYPE_TYPE_PLUGIN :: type_plugin_get_type
+TYPE_VALUE_ARRAY :: value_array_get_type
 TYPE_GTYPE :: gtype_get_type
 
 Type :: glib.size
@@ -146,7 +146,7 @@ _GTypeInstance :: struct {
 TypeInstance :: _GTypeInstance
 BaseInitFunc :: #type proc "c" (g_class: glib.pointer)
 BaseFinalizeFunc :: #type proc "c" (g_class: glib.pointer)
-ClassInitFunc :: #type proc "c" (g_class: glib.pointer, class_data: glib.pointer)
+ClassInitFunc :: #type proc "c" (g_class: ^TypeClass, class_data: glib.pointer)
 ClassFinalizeFunc :: #type proc "c" (g_class: glib.pointer, class_data: glib.pointer)
 InstanceInitFunc :: #type proc "c" (instance: ^TypeInstance, g_class: glib.pointer)
 TypeValueInitFunc :: #type proc "c" (value: ^Value)
@@ -2243,11 +2243,11 @@ when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 when #config(GOBJECT_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
     foreign import gobject_runic { "../../lib/linux/aarch64/libgobject-2.0.a", "../../lib/linux/aarch64/libgobject-wrapper.a", "system:ffi", "system:pcre2-8" }
-} 
+}
 } else {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
     foreign import gobject_runic { "system:gobject-2.0", "../../lib/linux/aarch64/libgobject-wrapper.a" }
-} 
+}
 }
 
 }
@@ -2256,7 +2256,6 @@ when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
     foreign import gobject_runic { "../../lib/windows/x86_64/gobject-2.0.lib", "../../lib/windows/x86_64/gobject-wrapper.lib" }
-} 
-
 }
 
+}

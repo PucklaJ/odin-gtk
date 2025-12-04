@@ -78,7 +78,7 @@ show_window :: proc "c" (app: ^adw.Application) {
         resource_path = "/example/box.ui",
         children = template_children,
     }
-    helper.register_type_with_template(
+    helper.register_type(
         My_Box,
         gtk.BoxClass,
         gtk.box_get_type(),
@@ -102,7 +102,7 @@ Our custom class init proc, since we want to set the `clicked` action on our but
 
 **Note**: This is called only once, when the first object is created.
 */
-my_box_class_init :: proc "c" (class: glib.pointer, data: glib.pointer) {
+my_box_class_init :: proc "c" (class: ^gobj.TypeClass, data: glib.pointer) {
     // We register the getter and setter procs for our box's custom gproperties.
     object_class := cast(^gobj.ObjectClass)class
     object_class.get_property = my_box_property_get
@@ -110,7 +110,7 @@ my_box_class_init :: proc "c" (class: glib.pointer, data: glib.pointer) {
 
     // We call the default init proc, so that we don't have to do the child binding and template setup ourselves.
     // This takes care of common use cases like registering children and annotated gproperties.
-    helper.class_init_default_template(class, data)
+    helper.class_init_default(class, data)
 
     // We register our proc as a callback to the signal defined in the blueprint.
     // Alternatively, we could register the signal in the `instance_init` proc too.
@@ -122,7 +122,7 @@ my_box_class_init :: proc "c" (class: glib.pointer, data: glib.pointer) {
 // This is called every time a new object instance is created.
 my_box_instance_init :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {
     // We call the default template to do the setup.
-    helper.instance_init_default_template(instance, class_data)
+    helper.instance_init_default(instance, class_data)
 
     // We set a default value for our label, since the binding sets none by itself.
     my_box := cast(^My_Box)instance

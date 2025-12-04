@@ -30,6 +30,9 @@ Template_Data :: struct {
 
     // The owning type. This is set by `register_type_with_template` automatically.
     type:          typeid,
+
+    // Anything else you'd like to pass.
+    user_ptr:      rawptr,
 }
 
 Template_Child :: struct {
@@ -76,65 +79,21 @@ register_resource :: proc "contextless" (
 This must be called once before you do anything with your custom widget,
 otherwise it is not defined in the gobject typesystem!
 
-Default class and instance init procs don't do anything, so if you need subtype binding or some other setup,
+Default class and instance init procs take care of the generic setup. If you need anything more than that,
 you need to supply them yourself.
+
+Take a look at `instance_init_default` and `class_init_default` for more information.
+
+**Warning**: If your instance init proc depends on the template data, you must not free it while you
+keep making widgets of this type!
 */
 register_type :: proc "contextless" (
     $instance_type: typeid,
     $parent_class_type: typeid,
     parent_g_type: gobj.Type,
+    template_data: ^Template_Data,
     instance_init_proc: gobj.InstanceInitFunc = instance_init_default,
     class_init_proc: gobj.ClassInitFunc = class_init_default,
-) -> (
-    g_type: gobj.Type,
-) {
-
-    static_g_type_ptr := custom_type_get_type_ptr(instance_type)
-    static_g_type := static_g_type_ptr^
-    if static_g_type != 0 { return static_g_type }
-
-    context = runtime.default_context()
-
-    info := gobj.TypeInfo{
-        class_size = size_of(Custom_Type_Class),
-        class_init = class_init_proc,
-
-        instance_size = size_of(instance_type),
-        instance_init = instance_init_proc,
-    }
-
-    my_type_name := fmt.caprint(typeid_of(instance_type))
-    defer delete(my_type_name)
-    registered_g_type := gobj.type_register_static(parent_g_type, my_type_name, &info, .NONE)
-
-    static_g_type_ptr^ = registered_g_type
-    g_type = registered_g_type
-    return
-
-    Custom_Type_Class :: struct {
-        parent_class: parent_class_type,
-    }
-}
-
-/*
-This must be called once before you do anything with your custom widget,
-otherwise it is not defined in the gobject typesystem!
-
-Default class and instance init procs don't do anything, so if you need subtype binding or some other setup,
-you need to supply them yourself.
-
-The default instance init proc does not depend on the template data, so it can safely be on the stack.
-
-**Warning**: If your instance init proc depends on the template data, you must not free it while you
-keep making widgets of this type!
-*/
-register_type_with_template :: proc "contextless" (
-    $instance_type: typeid,
-    $parent_class_type: typeid,
-    parent_g_type: gobj.Type,
-    template_data: ^Template_Data,
-    instance_init_proc: gobj.InstanceInitFunc = instance_init_default_template,
-    class_init_proc: gobj.ClassInitFunc = class_init_default_template,
 ) -> (
     g_type: gobj.Type,
 ) {
@@ -186,8 +145,12 @@ default property values.
 **Note**: It is recommended to call this at the beginning of your own implementation too, since this
 takes care of the widget initialisation, which is necessary in all cases.
 */
-instance_init_default_template :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {
-    gtk.widget_init_template(cast(^gtk.Widget)instance)
+instance_init_default :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {
+    is_widget := gobj.type_check_instance_is_a(instance, gtk.widget_get_type())
+
+    if is_widget {
+        gtk.widget_init_template(cast(^gtk.Widget)instance)
+    }
 }
 
 /*
@@ -198,24 +161,26 @@ should be done here as well.
 **Note**: It is recommended to call this at the beginning of your own implementation too, since this
 takes care of all the necessary steps you'd need to do anyway.
 */
-class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer) {
-    widget_class := cast(^gtk.WidgetClass)class
-    template_data := cast(^Template_Data)data
-
-    gtk.widget_class_set_template_from_resource(widget_class, template_data.resource_path)
-
-    // Required by `reflect`.
+class_init_default :: proc "c" (class: ^gobj.TypeClass, data: glib.pointer) {
     context = runtime.default_context()
 
-    for child in template_data.children {
-        field := reflect.struct_field_by_name(template_data.type, child.field_name)
+    template_data := cast(^Template_Data)data
+    is_widget := gobj.type_check_class_is_a(class, gtk.widget_get_type())
 
-        gtk.widget_class_bind_template_child_full(
-            widget_class,
-            name = child.id,
-            internal_child = false,
-            struct_offset = cast(glib.ssize)field.offset,
-        )
+    if is_widget {
+        widget_class := cast(^gtk.WidgetClass)class
+        gtk.widget_class_set_template_from_resource(widget_class, template_data.resource_path)
+
+        for child in template_data.children {
+            field := reflect.struct_field_by_name(template_data.type, child.field_name)
+
+            gtk.widget_class_bind_template_child_full(
+                widget_class,
+                name = child.id,
+                internal_child = false,
+                struct_offset = cast(glib.ssize)field.offset,
+            )
+        }
     }
 
     object_class := cast(^gobj.ObjectClass)class
@@ -227,8 +192,7 @@ class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer
             sep_index := strings.index_rune(tag, ',')
             if sep_index == -1 { continue }
 
-            param_spec, spec_ok := create_param_spec(field.type.id, tag[sep_index + 1:])
-            if !spec_ok { continue }
+            param_spec := create_param_spec(field.type.id, tag[sep_index + 1:])
 
             id, id_ok := strconv.parse_uint(tag[:sep_index])
             if !id_ok { continue }
@@ -237,9 +201,8 @@ class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer
         }
     }
 
-    create_param_spec :: proc "c" (type: typeid, tag: string) -> (param_spec: ^gobj.ParamSpec, ok: bool) {
+    create_param_spec :: proc "c" (type: typeid, tag: string) -> (param_spec: ^gobj.ParamSpec) {
         context = runtime.default_context()
-        ok = true
         name := fmt.caprint(tag)
         defer delete(name)
 
@@ -368,7 +331,7 @@ class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer
                 default_value = 0,
                 flags = gobj.ParamFlags.READWRITE,
             )
-        case gobj.Object:
+        case:
             param_spec = gobj.param_spec_object(
                 name = name,
                 nick = nil,
@@ -376,7 +339,6 @@ class_init_default_template :: proc "c" (class: glib.pointer, data: glib.pointer
                 object_type = gobj.object_get_type(),
                 flags = gobj.ParamFlags.READWRITE,
             )
-        case: ok = false
         }
 
         return
@@ -391,9 +353,3 @@ custom_type_get_type_ptr :: proc "contextless" ($instance_type: typeid) -> (g_ty
     g_type = &static_g_type
     return
 }
-
-@(private)
-instance_init_default :: proc "c" (instance: ^gobj.TypeInstance, class_data: glib.pointer) {}
-
-@(private)
-class_init_default :: proc "c" (class: glib.pointer, data: glib.pointer) {}

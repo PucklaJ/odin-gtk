@@ -32,7 +32,7 @@ my_box_get_type :: proc "contextless" () -> (g_type: gobj.Type) {
     // These could be defined outside of this proc too, but it's nicer to have them contained here.
 
     // This handles everything that's related to the overall widget class.
-    class_init :: proc "c" (class: glib.pointer, data: glib.pointer) {
+    class_init :: proc "c" (class: ^gobj.TypeClass, data: glib.pointer) {
         gtk.widget_class_set_template_from_resource(cast(^gtk.WidgetClass)class, "/example/box.ui")
 
         // We can set the click action here. See the blueprint `box.blp` for more information.
