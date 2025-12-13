@@ -29,15 +29,14 @@ startup :: proc "c" (app: ^adw.Application) {
     gtk.application_add_window(cast(^gtk.Application)app, cast(^gtk.Window)_app_window)
 
     // Load the file with glycin.
-    // `loader_new` spins up a sandbox, so if you intend to load multiple images,
-    // you should try to reuse the same loader.
+    // `loader_new` spins up a sandbox, so this is going to be significantly
+    // slower for small images.
 	file   := gio.file_new_for_path(#directory + "Odin.jxl")
 	loader := gly.loader_new(file)
 	image  := gly.loader_load(loader, nil)
 	frame  := gly.image_next_frame(image, nil)
 
 	// Clean up everything, since we only need the texture
-	// and don't intend to load anything else with this loader after this.
 	defer gobj.object_unref(file)
 	defer gobj.object_unref(loader)
 	defer gobj.object_unref(image)
