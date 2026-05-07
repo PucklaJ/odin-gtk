@@ -146,7 +146,7 @@ _GTypeInstance :: struct {
 TypeInstance :: _GTypeInstance
 BaseInitFunc :: #type proc "c" (g_class: glib.pointer)
 BaseFinalizeFunc :: #type proc "c" (g_class: glib.pointer)
-ClassInitFunc :: #type proc "c" (g_class: glib.pointer, class_data: glib.pointer)
+ClassInitFunc :: #type proc "c" (g_class: ^TypeClass, class_data: glib.pointer)
 ClassFinalizeFunc :: #type proc "c" (g_class: glib.pointer, class_data: glib.pointer)
 InstanceInitFunc :: #type proc "c" (instance: ^TypeInstance, g_class: glib.pointer)
 TypeValueInitFunc :: #type proc "c" (value: ^Value)

@@ -383,8 +383,8 @@ _GHook :: struct {
 }
 PollFD :: _GPollFD
 PollFunc :: #type proc "c" (ufds: [^]PollFD, nfsd: uint_, timeout_: int_) -> int_
-SList :: _GSList
-_GSList :: struct {
+
+SList :: struct {
     data: pointer,
     next: ^SList,
 }

@@ -99,7 +99,9 @@ glib:
         -e '/^VARIANT_TYPE_/s/(const GVariantType \*)//g' \
         -e '/^LOG_FATAL_MASK/s/G_LOG/LogLevelFlags.LOG/g' \
         -e '/^LOG_DOMAIN/s/(gchar\*)//g' \
-        -e '/^URI_/s/\\" \\"//g'\
+        -e '/^URI_/s/\\" \\"//g' \
+        -e '/^SList\s*::/ s/.*//' \
+        -e '/^_GSList\s*::/ s/_GSList/SList/' \
 
     rm glib/glib-wrapper-Linux_arm64.*
     mv glib/glib-wrapper-Linux_x86_64.h   glib/glib-wrapper-Linux.h
