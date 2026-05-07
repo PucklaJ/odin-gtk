@@ -1,0 +1,11 @@
+using Gtk 4.0;
+
+template $My_Box: Gtk.Box {
+    halign: center;
+    valign: center;
+
+    Button my-button {
+        label: bind template.button-label;
+        clicked => $my_button_clicked();
+    }
+}
