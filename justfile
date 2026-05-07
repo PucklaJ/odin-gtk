@@ -100,8 +100,8 @@ glib:
         -e '/^LOG_FATAL_MASK/s/G_LOG/LogLevelFlags.LOG/g' \
         -e '/^LOG_DOMAIN/s/(gchar\*)//g' \
         -e '/^URI_/s/\\" \\"//g' \
-        -e '/^SList\s*::/ s/.*//' \
-        -e '/^_GSList\s*::/ s/_GSList/SList/' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\^*_G\1$##' \
+        -e 's#^_G\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
 
     rm glib/glib-wrapper-Linux_arm64.*
     mv glib/glib-wrapper-Linux_x86_64.h   glib/glib-wrapper-Linux.h

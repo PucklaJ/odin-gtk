@@ -21,7 +21,7 @@ _PersonClass :: struct {
 
 person_parent_class: g.pointer = nil
 Person_private_offset: g.int_
-person_class_intern_init :: proc "c" (klass, klass_data: g.pointer) {
+person_class_intern_init :: proc "c" (klass: ^gobj.TypeClass, klass_data: g.pointer) {
     person_parent_class = gobj.type_class_peek_parent(klass)
     if (Person_private_offset != 0) do gobj.type_class_adjust_private_offset(klass, &Person_private_offset)
 

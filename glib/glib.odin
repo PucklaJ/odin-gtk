@@ -202,155 +202,155 @@ HFunc :: #type proc "c" (key: pointer, value: pointer, user_data: pointer)
 CopyFunc :: #type proc "c" (src: constpointer, data: pointer) -> pointer
 FreeFunc :: #type proc "c" (data: pointer)
 TranslateFunc :: #type proc "c" (str: cstring, data: pointer) -> cstring
-_GDoubleIEEE754 :: double
-DoubleIEEE754 :: _GDoubleIEEE754
-_GFloatIEEE754 :: float
-FloatIEEE754 :: _GFloatIEEE754
-_GTimeVal :: struct {
+DoubleIEEE754 :: double
+
+FloatIEEE754 :: float
+
+TimeVal :: struct {
     tv_sec: long,
     tv_usec: long,
 }
-TimeVal :: _GTimeVal
+
 refcount :: int_
 atomicrefcount :: int_
-_GBytes :: struct #packed {}
-Bytes :: _GBytes
-_GArray :: struct {
+Bytes :: struct #packed {}
+
+Array :: struct {
     data: ^byte,
     len: uint_,
 }
-Array :: _GArray
-_GByteArray :: struct {
+
+ByteArray :: struct {
     data: ^uint8,
     len: uint_,
 }
-ByteArray :: _GByteArray
-_GPtrArray :: struct {
+
+PtrArray :: struct {
     pdata: ^pointer,
     len: uint_,
 }
-PtrArray :: _GPtrArray
+
 Quark :: uint32
-_GError :: struct {
+Error :: struct {
     domain: Quark,
     code: int_,
     message: cstring,
 }
-Error :: _GError
+
 ErrorInitFunc :: #type proc "c" (error: ^Error)
 ErrorCopyFunc :: #type proc "c" (src_error: ^Error, dest_error: ^Error)
 ErrorClearFunc :: #type proc "c" (error: ^Error)
 UserDirectory :: enum u32 {DESKTOP = 0, DOCUMENTS = 1, DOWNLOAD = 2, MUSIC = 3, PICTURES = 4, PUBLIC_SHARE = 5, TEMPLATES = 6, VIDEOS = 7, USER_N_DIRECTORIES = 8 }
-_GDebugKey :: struct {
+DebugKey :: struct {
     key: cstring,
     value: uint_,
 }
-DebugKey :: _GDebugKey
+
 FormatSizeFlags :: enum u32 {FORMAT_SIZE_DEFAULT = 0, FORMAT_SIZE_LONG_FORMAT = 1, FORMAT_SIZE_IEC_UNITS = 2, FORMAT_SIZE_BITS = 4, FORMAT_SIZE_ONLY_VALUE = 8, FORMAT_SIZE_ONLY_UNIT = 16 }
 VoidFunc :: #type proc "c" ()
 ThreadError :: enum u32 {AGAIN = 0 }
 ThreadFunc :: #type proc "c" (data: pointer) -> pointer
 ThreadPriority :: enum u32 {LOW = 0, NORMAL = 1, HIGH = 2, URGENT = 3 }
-_GThread :: struct {
+Thread :: struct {
     func: ThreadFunc,
     data: pointer,
     joinable: boolean,
     priority: ThreadPriority,
 }
-Thread :: _GThread
-_GMutex :: struct #raw_union {
+
+Mutex :: struct #raw_union {
     p: pointer,
     i: [2]uint_,
 }
-Mutex :: _GMutex
-_GRecMutex :: struct {
+
+RecMutex :: struct {
     p: pointer,
     i: [2]uint_,
 }
-RecMutex :: _GRecMutex
-_GRWLock :: struct {
+
+RWLock :: struct {
     p: pointer,
     i: [2]uint_,
 }
-RWLock :: _GRWLock
-_GCond :: struct {
+
+Cond :: struct {
     p: pointer,
     i: [2]uint_,
 }
-Cond :: _GCond
-_GPrivate :: struct {
+
+Private :: struct {
     p: pointer,
     notify: DestroyNotify,
     future: [2]pointer,
 }
-Private :: _GPrivate
+
 OnceStatus :: enum u32 {NOTCALLED = 0, PROGRESS = 1, READY = 2 }
-_GOnce :: struct {
+Once :: struct {
     status: OnceStatus,
     retval: pointer,
 }
-Once :: _GOnce
+
 MutexLocker :: rawptr
 RecMutexLocker :: rawptr
 RWLockWriterLocker :: rawptr
 RWLockReaderLocker :: rawptr
-_GAsyncQueue :: struct #packed {}
-AsyncQueue :: _GAsyncQueue
-_GTimeZone :: struct #packed {}
-TimeZone :: _GTimeZone
+AsyncQueue :: struct #packed {}
+
+TimeZone :: struct #packed {}
+
 TimeType :: enum u32 {STANDARD = 0, DAYLIGHT = 1, UNIVERSAL = 2 }
 TimeSpan :: int64
-_GDateTime :: struct #packed {}
-DateTime :: _GDateTime
+DateTime :: struct #packed {}
+
 BookmarkFileError :: enum u32 {INVALID_URI = 0, INVALID_VALUE = 1, APP_NOT_REGISTERED = 2, URI_NOT_FOUND = 3, READ = 4, UNKNOWN_ENCODING = 5, WRITE = 6, FILE_NOT_FOUND = 7 }
-_GBookmarkFile :: struct #packed {}
-BookmarkFile :: _GBookmarkFile
+BookmarkFile :: struct #packed {}
+
 ChecksumType :: enum u32 {CHECKSUM_MD5 = 0, CHECKSUM_SHA1 = 1, CHECKSUM_SHA256 = 2, CHECKSUM_SHA512 = 3, CHECKSUM_SHA384 = 4 }
-_GChecksum :: struct #packed {}
-Checksum :: _GChecksum
+Checksum :: struct #packed {}
+
 ConvertError :: enum u32 {NO_CONVERSION = 0, ILLEGAL_SEQUENCE = 1, FAILED = 2, PARTIAL_INPUT = 3, BAD_URI = 4, NOT_ABSOLUTE_PATH = 5, NO_MEMORY = 6, EMBEDDED_NUL = 7 }
-_GIConv :: struct #packed {}
-IConv :: ^_GIConv
-_GData :: struct #packed {}
-Data :: _GData
+IConv :: struct #packed {}
+
+Data :: struct #packed {}
+
 DataForeachFunc :: #type proc "c" (key_id: Quark, data: pointer, user_data: pointer)
 DuplicateFunc :: #type proc "c" (data: pointer, user_data: pointer) -> pointer
 Time :: int32
 DateYear :: uint16
 DateDay :: uint8
-_GDate :: [8]u8
-Date :: _GDate
+Date :: [8]u8
+
 DateDMY :: enum u32 {DATE_DAY = 0, DATE_MONTH = 1, DATE_YEAR = 2 }
 DateWeekday :: enum u32 {DATE_BAD_WEEKDAY = 0, DATE_MONDAY = 1, DATE_TUESDAY = 2, DATE_WEDNESDAY = 3, DATE_THURSDAY = 4, DATE_FRIDAY = 5, DATE_SATURDAY = 6, DATE_SUNDAY = 7 }
 DateMonth :: enum u32 {DATE_BAD_MONTH = 0, DATE_JANUARY = 1, DATE_FEBRUARY = 2, DATE_MARCH = 3, DATE_APRIL = 4, DATE_MAY = 5, DATE_JUNE = 6, DATE_JULY = 7, DATE_AUGUST = 8, DATE_SEPTEMBER = 9, DATE_OCTOBER = 10, DATE_NOVEMBER = 11, DATE_DECEMBER = 12 }
-_GDir :: struct #packed {}
-Dir :: _GDir
+Dir :: struct #packed {}
+
 FileError :: enum u32 {EXIST = 0, ISDIR = 1, ACCES = 2, NAMETOOLONG = 3, NOENT = 4, NOTDIR = 5, NXIO = 6, NODEV = 7, ROFS = 8, TXTBSY = 9, FAULT = 10, LOOP = 11, NOSPC = 12, NOMEM = 13, MFILE = 14, NFILE = 15, BADF = 16, INVAL = 17, PIPE = 18, AGAIN = 19, INTR = 20, IO = 21, PERM = 22, NOSYS = 23, FAILED = 24 }
 FileTest :: enum u32 {IS_REGULAR = 1, IS_SYMLINK = 2, IS_DIR = 4, IS_EXECUTABLE = 8, EXISTS = 16 }
 FileSetContentsFlags :: enum u32 {FILE_SET_CONTENTS_NONE = 0, FILE_SET_CONTENTS_CONSISTENT = 1, FILE_SET_CONTENTS_DURABLE = 2, FILE_SET_CONTENTS_ONLY_EXISTING = 4 }
-MemVTable :: _GMemVTable
-Node :: _GNode
+
+
 TraverseFlags :: enum u32 {TRAVERSE_LEAVES = 1, TRAVERSE_NON_LEAVES = 2, TRAVERSE_ALL = 3, TRAVERSE_MASK = 3, TRAVERSE_LEAFS = 1, TRAVERSE_NON_LEAFS = 2 }
 TraverseType :: enum u32 {IN_ORDER = 0, PRE_ORDER = 1, POST_ORDER = 2, LEVEL_ORDER = 3 }
 NodeTraverseFunc :: #type proc "c" (node: ^Node, data: pointer) -> boolean
 NodeForeachFunc :: #type proc "c" (node: ^Node, data: pointer)
-_GNode :: struct {
+Node :: struct {
     data: pointer,
     next: ^Node,
     prev: ^Node,
     parent: ^Node,
     children: ^Node,
 }
-List :: _GList
-_GList :: struct {
+
+List :: struct {
     data: pointer,
     next: ^List,
     prev: ^List,
 }
-_GHashTable :: struct #packed {}
-HashTable :: _GHashTable
+HashTable :: struct #packed {}
+
 HRFunc :: #type proc "c" (key: pointer, value: pointer, user_data: pointer) -> boolean
-_GHashTableIter :: struct {
+HashTableIter :: struct {
     dummy1: pointer,
     dummy2: pointer,
     dummy3: pointer,
@@ -358,10 +358,10 @@ _GHashTableIter :: struct {
     dummy5: boolean,
     dummy6: pointer,
 }
-HashTableIter :: _GHashTableIter
-_GHmac :: struct #packed {}
-Hmac :: _GHmac
-Hook :: _GHook
+
+Hmac :: struct #packed {}
+
+
 HookList :: struct #packed {}
 HookCompareFunc :: #type proc "c" (new_hook: ^Hook, sibling: ^Hook) -> int_
 HookFindFunc :: #type proc "c" (hook: ^Hook, data: pointer) -> boolean
@@ -371,7 +371,7 @@ HookFunc :: #type proc "c" (data: pointer)
 HookCheckFunc :: #type proc "c" (data: pointer) -> boolean
 HookFinalizeFunc :: #type proc "c" (hook_list: ^HookList, hook: ^Hook)
 HookFlagMask :: enum u32 {HOOK_FLAG_ACTIVE = 1, HOOK_FLAG_IN_CALL = 2, HOOK_FLAG_MASK = 15 }
-_GHook :: struct {
+Hook :: struct {
     data: pointer,
     next: ^Hook,
     prev: ^Hook,
@@ -381,7 +381,7 @@ _GHook :: struct {
     func: pointer,
     destroy: DestroyNotify,
 }
-PollFD :: _GPollFD
+
 PollFunc :: #type proc "c" (ufds: [^]PollFD, nfsd: uint_, timeout_: int_) -> int_
 
 SList :: struct {
@@ -390,20 +390,20 @@ SList :: struct {
 }
 IOCondition :: enum u32 {IO_IN = 1, IO_OUT = 4, IO_PRI = 2, IO_ERR = 8, IO_HUP = 16, IO_NVAL = 32 }
 MainContextFlags :: enum u32 {NONE = 0, OWNERLESS_POLLING = 1 }
-_GMainContext :: struct #packed {}
-MainContext :: _GMainContext
-_GMainLoop :: struct #packed {}
-MainLoop :: _GMainLoop
-Source :: _GSource
-_GSourcePrivate :: struct #packed {}
-SourcePrivate :: _GSourcePrivate
-SourceCallbackFuncs :: _GSourceCallbackFuncs
-SourceFuncs :: _GSourceFuncs
+MainContext :: struct #packed {}
+
+MainLoop :: struct #packed {}
+
+
+SourcePrivate :: struct #packed {}
+
+
+
 SourceFunc :: #type proc "c" (user_data: pointer) -> boolean
 SourceOnceFunc :: #type proc "c" (user_data: pointer)
 ChildWatchFunc :: #type proc "c" (pid: Pid, wait_status: int_, user_data: pointer)
 SourceDisposeFunc :: #type proc "c" (source: ^Source)
-_GSource :: struct {
+Source :: struct {
     callback_data: pointer,
     callback_funcs: [^]SourceCallbackFuncs,
     source_funcs: [^]SourceFuncs,
@@ -423,7 +423,7 @@ SourceFuncsPrepareFunc :: #type proc "c" (source: ^Source, timeout_: ^int_) -> b
 SourceFuncsCheckFunc :: #type proc "c" (source: ^Source) -> boolean
 SourceFuncsDispatchFunc :: #type proc "c" (source: ^Source, callback: SourceFunc, user_data: pointer) -> boolean
 SourceFuncsFinalizeFunc :: #type proc "c" (source: ^Source)
-_GSourceFuncs :: struct {
+SourceFuncs :: struct {
     prepare: SourceFuncsPrepareFunc,
     check: SourceFuncsCheckFunc,
     dispatch: SourceFuncsDispatchFunc,
@@ -442,65 +442,65 @@ NormalizeMode :: enum u32 {NORMALIZE_DEFAULT = 0, NORMALIZE_NFD = 0, NORMALIZE_D
 AsciiType :: enum u32 {ASCII_ALNUM = 1, ASCII_ALPHA = 2, ASCII_CNTRL = 4, ASCII_DIGIT = 8, ASCII_GRAPH = 16, ASCII_LOWER = 32, ASCII_PRINT = 64, ASCII_PUNCT = 128, ASCII_SPACE = 256, ASCII_UPPER = 512, ASCII_XDIGIT = 1024 }
 Strv :: ^cstring
 NumberParserError :: enum u32 {INVALID = 0, OUT_OF_BOUNDS = 1 }
-_GString :: struct {
+String :: struct {
     str: cstring,
     len: size,
     allocated_len: size,
 }
-String :: _GString
+
 IOChannel :: struct #packed {}
 IOStatus :: enum u32 {ERROR = 0, NORMAL = 1, EOF = 2, AGAIN = 3 }
 SeekType :: enum u32 {SEEK_CUR = 0, SEEK_SET = 1, SEEK_END = 2 }
 IOFlags :: enum u32 {IO_FLAG_NONE = 0, IO_FLAG_APPEND = 1, IO_FLAG_NONBLOCK = 2, IO_FLAG_IS_READABLE = 4, IO_FLAG_IS_WRITABLE = 8, IO_FLAG_IS_WRITEABLE = 8, IO_FLAG_IS_SEEKABLE = 16, IO_FLAG_MASK = 31, IO_FLAG_GET_MASK = 31, IO_FLAG_SET_MASK = 3 }
-IOFuncs :: _GIOFuncs
+
 IOError :: enum u32 {NONE = 0, AGAIN = 1, INVAL = 2, UNKNOWN = 3 }
 IOChannelError :: enum u32 {FBIG = 0, INVAL = 1, IO = 2, ISDIR = 3, NOSPC = 4, NXIO = 5, OVERFLOW = 6, PIPE = 7, FAILED = 8 }
 IOFunc :: #type proc "c" (source: ^IOChannel, condition: IOCondition, data: pointer) -> boolean
 KeyFileError :: enum u32 {UNKNOWN_ENCODING = 0, PARSE = 1, NOT_FOUND = 2, KEY_NOT_FOUND = 3, GROUP_NOT_FOUND = 4, INVALID_VALUE = 5 }
-_GKeyFile :: struct #packed {}
-KeyFile :: _GKeyFile
+KeyFile :: struct #packed {}
+
 KeyFileFlags :: enum u32 {KEY_FILE_NONE = 0, KEY_FILE_KEEP_COMMENTS = 1, KEY_FILE_KEEP_TRANSLATIONS = 2 }
-_GMappedFile :: struct #packed {}
-MappedFile :: _GMappedFile
+MappedFile :: struct #packed {}
+
 MarkupError :: enum u32 {BAD_UTF8 = 0, EMPTY = 1, PARSE = 2, UNKNOWN_ELEMENT = 3, UNKNOWN_ATTRIBUTE = 4, INVALID_CONTENT = 5, MISSING_ATTRIBUTE = 6 }
 MarkupParseFlags :: enum u32 {MARKUP_DEFAULT_FLAGS = 0, MARKUP_DO_NOT_USE_THIS_UNSUPPORTED_FLAG = 1, MARKUP_TREAT_CDATA_AS_TEXT = 2, MARKUP_PREFIX_ERROR_POSITION = 4, MARKUP_IGNORE_QUALIFIED = 8 }
-_GMarkupParseContext :: struct #packed {}
-MarkupParseContext :: _GMarkupParseContext
-MarkupParser :: _GMarkupParser
+MarkupParseContext :: struct #packed {}
+
+
 MarkupCollectType :: enum u32 {MARKUP_COLLECT_INVALID = 0, MARKUP_COLLECT_STRING = 1, MARKUP_COLLECT_STRDUP = 2, MARKUP_COLLECT_BOOLEAN = 3, MARKUP_COLLECT_TRISTATE = 4, MARKUP_COLLECT_OPTIONAL = 65536 }
-_GVariantType :: struct #packed {}
-VariantType :: _GVariantType
-_GVariant :: struct #packed {}
-Variant :: _GVariant
+VariantType :: struct #packed {}
+
+Variant :: struct #packed {}
+
 VariantClass :: enum u32 {BOOLEAN = 98, BYTE = 121, INT16 = 110, UINT16 = 113, INT32 = 105, UINT32 = 117, INT64 = 120, UINT64 = 116, HANDLE = 104, DOUBLE = 100, STRING = 115, OBJECT_PATH = 111, SIGNATURE = 103, VARIANT = 118, MAYBE = 109, ARRAY = 97, TUPLE = 40, DICT_ENTRY = 123 }
-_GVariantIter :: struct {
+VariantIter :: struct {
     x: [16]uintptr_,
 }
-VariantIter :: _GVariantIter
-VariantBuilder :: _GVariantBuilder
+
+
 VariantParseError :: enum u32 {FAILED = 0, BASIC_TYPE_EXPECTED = 1, CANNOT_INFER_TYPE = 2, DEFINITE_TYPE_EXPECTED = 3, INPUT_NOT_AT_END = 4, INVALID_CHARACTER = 5, INVALID_FORMAT_STRING = 6, INVALID_OBJECT_PATH = 7, INVALID_SIGNATURE = 8, INVALID_TYPE_STRING = 9, NO_COMMON_TYPE = 10, NUMBER_OUT_OF_RANGE = 11, NUMBER_TOO_BIG = 12, TYPE_ERROR = 13, UNEXPECTED_TOKEN = 14, UNKNOWN_KEYWORD = 15, UNTERMINATED_STRING_CONSTANT = 16, VALUE_EXPECTED = 17, RECURSION = 18 }
 u_union_anon_25 :: struct #raw_union {
     s: s_struct_anon_24,
     x: [16]uintptr_,
 }
-VariantDict :: _GVariantDict
+
 LogLevelFlags :: enum i32 {LOG_FLAG_RECURSION = 1, LOG_FLAG_FATAL = 2, LOG_LEVEL_ERROR = 4, LOG_LEVEL_CRITICAL = 8, LOG_LEVEL_WARNING = 16, LOG_LEVEL_MESSAGE = 32, LOG_LEVEL_INFO = 64, LOG_LEVEL_DEBUG = 128, LOG_LEVEL_MASK = -4 }
 LogFunc :: #type proc "c" (log_domain: cstring, log_level: LogLevelFlags, message: cstring, user_data: pointer)
 LogWriterOutput :: enum u32 {LOG_WRITER_HANDLED = 1, LOG_WRITER_UNHANDLED = 0 }
-_GLogField :: struct {
+LogField :: struct {
     key: cstring,
     value: constpointer,
     length: ssize,
 }
-LogField :: _GLogField
+
 LogWriterFunc :: #type proc "c" (log_level: LogLevelFlags, fields: [^]LogField, n_fields: size, user_data: pointer) -> LogWriterOutput
 PrintFunc :: #type proc "c" (string_p: cstring)
-_GOptionContext :: struct #packed {}
-OptionContext :: _GOptionContext
-_GOptionGroup :: struct #packed {}
-OptionGroup :: _GOptionGroup
+OptionContext :: struct #packed {}
+
+OptionGroup :: struct #packed {}
+
 OptionArg :: enum u32 {NONE = 0, STRING = 1, INT = 2, CALLBACK = 3, FILENAME = 4, STRING_ARRAY = 5, FILENAME_ARRAY = 6, DOUBLE = 7, INT64 = 8 }
-_GOptionEntry :: struct {
+OptionEntry :: struct {
     long_name: cstring,
     short_name: char,
     flags: int_,
@@ -509,38 +509,38 @@ _GOptionEntry :: struct {
     description: cstring,
     arg_description: cstring,
 }
-OptionEntry :: _GOptionEntry
+
 OptionFlags :: enum u32 {OPTION_FLAG_NONE = 0, OPTION_FLAG_HIDDEN = 1, OPTION_FLAG_IN_MAIN = 2, OPTION_FLAG_REVERSE = 4, OPTION_FLAG_NO_ARG = 8, OPTION_FLAG_FILENAME = 16, OPTION_FLAG_OPTIONAL_ARG = 32, OPTION_FLAG_NOALIAS = 64, OPTION_FLAG_DEPRECATED = 128 }
 OptionArgFunc :: #type proc "c" (option_name: cstring, value: cstring, data: pointer, error: ^^Error) -> boolean
 OptionParseFunc :: #type proc "c" (context_p: ^OptionContext, group: ^OptionGroup, data: pointer, error: ^^Error) -> boolean
 OptionErrorFunc :: #type proc "c" (context_p: ^OptionContext, group: ^OptionGroup, data: pointer, error: ^^Error)
 OptionError :: enum u32 {UNKNOWN_OPTION = 0, BAD_VALUE = 1, FAILED = 2 }
-_GPathBuf :: struct {
+PathBuf :: struct {
     dummy: [8]pointer,
 }
-PathBuf :: _GPathBuf
-_GPatternSpec :: struct #packed {}
-PatternSpec :: _GPatternSpec
-_GQueue :: struct {
+
+PatternSpec :: struct #packed {}
+
+Queue :: struct {
     head: ^List,
     tail: ^List,
     length: uint_,
 }
-Queue :: _GQueue
-_GRand :: struct #packed {}
-Rand :: _GRand
+
+Rand :: struct #packed {}
+
 RefString :: char
 RegexError :: enum u32 {COMPILE = 0, OPTIMIZE = 1, REPLACE = 2, MATCH = 3, INTERNAL = 4, STRAY_BACKSLASH = 101, MISSING_CONTROL_CHAR = 102, UNRECOGNIZED_ESCAPE = 103, QUANTIFIERS_OUT_OF_ORDER = 104, QUANTIFIER_TOO_BIG = 105, UNTERMINATED_CHARACTER_CLASS = 106, INVALID_ESCAPE_IN_CHARACTER_CLASS = 107, RANGE_OUT_OF_ORDER = 108, NOTHING_TO_REPEAT = 109, UNRECOGNIZED_CHARACTER = 112, POSIX_NAMED_CLASS_OUTSIDE_CLASS = 113, UNMATCHED_PARENTHESIS = 114, INEXISTENT_SUBPATTERN_REFERENCE = 115, UNTERMINATED_COMMENT = 118, EXPRESSION_TOO_LARGE = 120, MEMORY_ERROR = 121, VARIABLE_LENGTH_LOOKBEHIND = 125, MALFORMED_CONDITION = 126, TOO_MANY_CONDITIONAL_BRANCHES = 127, ASSERTION_EXPECTED = 128, UNKNOWN_POSIX_CLASS_NAME = 130, POSIX_COLLATING_ELEMENTS_NOT_SUPPORTED = 131, HEX_CODE_TOO_LARGE = 134, INVALID_CONDITION = 135, SINGLE_BYTE_MATCH_IN_LOOKBEHIND = 136, INFINITE_LOOP = 140, MISSING_SUBPATTERN_NAME_TERMINATOR = 142, DUPLICATE_SUBPATTERN_NAME = 143, MALFORMED_PROPERTY = 146, UNKNOWN_PROPERTY = 147, SUBPATTERN_NAME_TOO_LONG = 148, TOO_MANY_SUBPATTERNS = 149, INVALID_OCTAL_VALUE = 151, TOO_MANY_BRANCHES_IN_DEFINE = 154, DEFINE_REPETION = 155, INCONSISTENT_NEWLINE_OPTIONS = 156, MISSING_BACK_REFERENCE = 157, INVALID_RELATIVE_REFERENCE = 158, BACKTRACKING_CONTROL_VERB_ARGUMENT_FORBIDDEN = 159, UNKNOWN_BACKTRACKING_CONTROL_VERB = 160, NUMBER_TOO_BIG = 161, MISSING_SUBPATTERN_NAME = 162, MISSING_DIGIT = 163, INVALID_DATA_CHARACTER = 164, EXTRA_SUBPATTERN_NAME = 165, BACKTRACKING_CONTROL_VERB_ARGUMENT_REQUIRED = 166, INVALID_CONTROL_CHAR = 168, MISSING_NAME = 169, NOT_SUPPORTED_IN_CLASS = 171, TOO_MANY_FORWARD_REFERENCES = 172, NAME_TOO_LONG = 175, CHARACTER_VALUE_TOO_LARGE = 176 }
 RegexCompileFlags :: enum u32 {REGEX_DEFAULT = 0, REGEX_CASELESS = 1, REGEX_MULTILINE = 2, REGEX_DOTALL = 4, REGEX_EXTENDED = 8, REGEX_ANCHORED = 16, REGEX_DOLLAR_ENDONLY = 32, REGEX_UNGREEDY = 512, REGEX_RAW = 2048, REGEX_NO_AUTO_CAPTURE = 4096, REGEX_OPTIMIZE = 8192, REGEX_FIRSTLINE = 262144, REGEX_DUPNAMES = 524288, REGEX_NEWLINE_CR = 1048576, REGEX_NEWLINE_LF = 2097152, REGEX_NEWLINE_CRLF = 3145728, REGEX_NEWLINE_ANYCRLF = 5242880, REGEX_BSR_ANYCRLF = 8388608, REGEX_JAVASCRIPT_COMPAT = 33554432 }
 RegexMatchFlags :: enum u32 {REGEX_MATCH_DEFAULT = 0, REGEX_MATCH_ANCHORED = 16, REGEX_MATCH_NOTBOL = 128, REGEX_MATCH_NOTEOL = 256, REGEX_MATCH_NOTEMPTY = 1024, REGEX_MATCH_PARTIAL = 32768, REGEX_MATCH_NEWLINE_CR = 1048576, REGEX_MATCH_NEWLINE_LF = 2097152, REGEX_MATCH_NEWLINE_CRLF = 3145728, REGEX_MATCH_NEWLINE_ANY = 4194304, REGEX_MATCH_NEWLINE_ANYCRLF = 5242880, REGEX_MATCH_BSR_ANYCRLF = 8388608, REGEX_MATCH_BSR_ANY = 16777216, REGEX_MATCH_PARTIAL_SOFT = 32768, REGEX_MATCH_PARTIAL_HARD = 134217728, REGEX_MATCH_NOTEMPTY_ATSTART = 268435456 }
-_GRegex :: struct #packed {}
-Regex :: _GRegex
-_GMatchInfo :: struct #packed {}
-MatchInfo :: _GMatchInfo
+Regex :: struct #packed {}
+
+MatchInfo :: struct #packed {}
+
 RegexEvalCallback :: #type proc "c" (match_info: ^MatchInfo, result: ^String, user_data: pointer) -> boolean
-Scanner :: _GScanner
+
 ScannerConfig :: struct #packed {}
-_GTokenValue :: struct #raw_union {
+TokenValue :: struct #raw_union {
     v_symbol: pointer,
     v_identifier: cstring,
     v_binary: ulong,
@@ -554,11 +554,11 @@ _GTokenValue :: struct #raw_union {
     v_char: uchar,
     v_error: uint_,
 }
-TokenValue :: _GTokenValue
+
 ScannerMsgFunc :: #type proc "c" (scanner: ^Scanner, message: cstring, error: boolean)
 ErrorType :: enum u32 {ERR_UNKNOWN = 0, ERR_UNEXP_EOF = 1, ERR_UNEXP_EOF_IN_STRING = 2, ERR_UNEXP_EOF_IN_COMMENT = 3, ERR_NON_DIGIT_IN_CONST = 4, ERR_DIGIT_RADIX = 5, ERR_FLOAT_RADIX = 6, ERR_FLOAT_MALFORMED = 7 }
 TokenType :: enum u32 {TOKEN_EOF = 0, TOKEN_LEFT_PAREN = 40, TOKEN_RIGHT_PAREN = 41, TOKEN_LEFT_CURLY = 123, TOKEN_RIGHT_CURLY = 125, TOKEN_LEFT_BRACE = 91, TOKEN_RIGHT_BRACE = 93, TOKEN_EQUAL_SIGN = 61, TOKEN_COMMA = 44, TOKEN_NONE = 256, TOKEN_ERROR = 257, TOKEN_CHAR = 258, TOKEN_BINARY = 259, TOKEN_OCTAL = 260, TOKEN_INT = 261, TOKEN_HEX = 262, TOKEN_FLOAT = 263, TOKEN_STRING = 264, TOKEN_SYMBOL = 265, TOKEN_IDENTIFIER = 266, TOKEN_IDENTIFIER_NULL = 267, TOKEN_COMMENT_SINGLE = 268, TOKEN_COMMENT_MULTI = 269, TOKEN_LAST = 270 }
-_GScanner :: struct {
+Scanner :: struct {
     user_data: pointer,
     max_parse_errors: uint_,
     parse_errors: uint_,
@@ -581,20 +581,19 @@ _GScanner :: struct {
     scope_id: uint_,
     msg_handler: ScannerMsgFunc,
 }
-_GSequence :: struct #packed {}
-Sequence :: _GSequence
-_GSequenceNode :: struct #packed {}
-SequenceIter :: _GSequenceNode
+Sequence :: struct #packed {}
+
+SequenceIter :: SequenceNode
 SequenceIterCompareFunc :: #type proc "c" (a: ^SequenceIter, b: ^SequenceIter, data: pointer) -> int_
 ShellError :: enum u32 {BAD_QUOTING = 0, EMPTY_STRING = 1, FAILED = 2 }
 SliceConfig :: enum u32 {ALWAYS_MALLOC = 1, BYPASS_MAGAZINES = 2, WORKING_SET_MSECS = 3, COLOR_INCREMENT = 4, CHUNK_SIZES = 5, CONTENTION_COUNTER = 6 }
 SpawnError :: enum u32 {FORK = 0, READ = 1, CHDIR = 2, ACCES = 3, PERM = 4, TOO_BIG = 5, _2BIG = 5, NOEXEC = 6, NAMETOOLONG = 7, NOENT = 8, NOMEM = 9, NOTDIR = 10, LOOP = 11, TXTBUSY = 12, IO = 13, NFILE = 14, MFILE = 15, INVAL = 16, ISDIR = 17, LIBBAD = 18, FAILED = 19 }
 SpawnChildSetupFunc :: #type proc "c" (data: pointer)
 SpawnFlags :: enum u32 {SPAWN_DEFAULT = 0, SPAWN_LEAVE_DESCRIPTORS_OPEN = 1, SPAWN_DO_NOT_REAP_CHILD = 2, SPAWN_SEARCH_PATH = 4, SPAWN_STDOUT_TO_DEV_NULL = 8, SPAWN_STDERR_TO_DEV_NULL = 16, SPAWN_CHILD_INHERITS_STDIN = 32, SPAWN_FILE_AND_ARGV_ZERO = 64, SPAWN_SEARCH_PATH_FROM_ENVP = 128, SPAWN_CLOEXEC_PIPES = 256, SPAWN_CHILD_INHERITS_STDOUT = 512, SPAWN_CHILD_INHERITS_STDERR = 1024, SPAWN_STDIN_FROM_DEV_NULL = 2048 }
-_GStringChunk :: struct #packed {}
-StringChunk :: _GStringChunk
-_GStrvBuilder :: struct #packed {}
-StrvBuilder :: _GStrvBuilder
+StringChunk :: struct #packed {}
+
+StrvBuilder :: struct #packed {}
+
 TestFunc :: #type proc "c" ()
 TestDataFunc :: #type proc "c" (user_data: constpointer)
 TestFixtureFunc :: #type proc "c" (fixture: pointer, user_data: constpointer)
@@ -616,65 +615,65 @@ TestLogBuffer :: struct {
 }
 TestLogFatalFunc :: #type proc "c" (log_domain: cstring, log_level: LogLevelFlags, message: cstring, user_data: pointer) -> boolean
 TestFileType :: enum u32 {TEST_DIST = 0, TEST_BUILT = 1 }
-_GThreadPool :: struct {
+ThreadPool :: struct {
     func: Func,
     user_data: pointer,
     exclusive: boolean,
 }
-ThreadPool :: _GThreadPool
-_GTimer :: struct #packed {}
-Timer :: _GTimer
-TrashStack :: _GTrashStack
-_GTrashStack :: struct {
+
+Timer :: struct #packed {}
+
+
+TrashStack :: struct {
     next: ^TrashStack,
 }
-_GTree :: struct #packed {}
-Tree :: _GTree
-_GTreeNode :: struct #packed {}
-TreeNode :: _GTreeNode
+Tree :: struct #packed {}
+
+TreeNode :: struct #packed {}
+
 TraverseFunc :: #type proc "c" (key: pointer, value: pointer, data: pointer) -> boolean
 TraverseNodeFunc :: #type proc "c" (node: ^TreeNode, data: pointer) -> boolean
-_GUri :: struct #packed {}
-Uri :: _GUri
+Uri :: struct #packed {}
+
 UriFlags :: enum u32 {NONE = 0, PARSE_RELAXED = 1, HAS_PASSWORD = 2, HAS_AUTH_PARAMS = 4, ENCODED = 8, NON_DNS = 16, ENCODED_QUERY = 32, ENCODED_PATH = 64, ENCODED_FRAGMENT = 128, SCHEME_NORMALIZE = 256 }
 UriHideFlags :: enum u32 {URI_HIDE_NONE = 0, URI_HIDE_USERINFO = 1, URI_HIDE_PASSWORD = 2, URI_HIDE_AUTH_PARAMS = 4, URI_HIDE_QUERY = 8, URI_HIDE_FRAGMENT = 16 }
 UriParamsFlags :: enum u32 {URI_PARAMS_NONE = 0, URI_PARAMS_CASE_INSENSITIVE = 1, URI_PARAMS_WWW_FORM = 2, URI_PARAMS_PARSE_RELAXED = 4 }
-_GUriParamsIter :: struct {
+UriParamsIter :: struct {
     dummy0: int_,
     dummy1: pointer,
     dummy2: pointer,
     dummy3: [256]uint8,
 }
-UriParamsIter :: _GUriParamsIter
+
 UriError :: enum u32 {FAILED = 0, BAD_SCHEME = 1, BAD_USER = 2, BAD_PASSWORD = 3, BAD_AUTH_PARAMS = 4, BAD_HOST = 5, BAD_PORT = 6, BAD_PATH = 7, BAD_QUERY = 8, BAD_FRAGMENT = 9 }
-_GAllocator :: struct #packed {}
-Allocator :: _GAllocator
-_GMemChunk :: struct #packed {}
-MemChunk :: _GMemChunk
-_GCache :: struct #packed {}
-Cache :: _GCache
+Allocator :: struct #packed {}
+
+MemChunk :: struct #packed {}
+
+Cache :: struct #packed {}
+
 CacheNewFunc :: #type proc "c" (key: pointer) -> pointer
 CacheDupFunc :: #type proc "c" (value: pointer) -> pointer
 CacheDestroyFunc :: #type proc "c" (value: pointer)
 CompletionFunc :: #type proc "c" (item: pointer) -> cstring
 CompletionStrncmpFunc :: #type proc "c" (s1: cstring, s2: cstring, n: size) -> int_
-_GCompletion :: struct {
+Completion :: struct {
     items: [^]List,
     func: CompletionFunc,
     prefix: cstring,
     cache: ^List,
     strncmp_func: CompletionStrncmpFunc,
 }
-Completion :: _GCompletion
-_GRelation :: struct #packed {}
-Relation :: _GRelation
-_GTuples :: struct {
+
+Relation :: struct #packed {}
+
+Tuples :: struct {
     len: uint_,
 }
-Tuples :: _GTuples
-ThreadFunctions :: _GThreadFunctions
-StaticRecMutex :: _GStaticRecMutex
-_GStaticRWLock :: struct {
+
+
+
+StaticRWLock :: struct {
     mutex: StaticMutex,
     read_cond: ^Cond,
     write_cond: ^Cond,
@@ -683,11 +682,11 @@ _GStaticRWLock :: struct {
     want_to_read: uint_,
     want_to_write: uint_,
 }
-StaticRWLock :: _GStaticRWLock
-_GStaticPrivate :: struct {
+
+StaticPrivate :: struct {
     index: uint_,
 }
-StaticPrivate :: _GStaticPrivate
+
 AsyncQueue_autoptr :: ^AsyncQueue
 AsyncQueue_listautoptr :: ^List
 AsyncQueue_slistautoptr :: ^SList
@@ -896,6 +895,7 @@ PathBuf_autoptr :: ^PathBuf
 PathBuf_listautoptr :: ^List
 PathBuf_slistautoptr :: ^SList
 PathBuf_queueautoptr :: ^Queue
+SequenceNode :: struct #packed {}
 TestCase :: struct #packed {}
 TestSuite :: struct #packed {}
 
@@ -7431,7 +7431,7 @@ free_func_ptr_anon_4 :: #type proc "c" (mem: pointer)
 calloc_func_ptr_anon_5 :: #type proc "c" (n_blocks: size, n_block_bytes: size) -> pointer
 try_malloc_func_ptr_anon_6 :: #type proc "c" (n_bytes: size) -> pointer
 try_realloc_func_ptr_anon_7 :: #type proc "c" (mem: pointer, n_bytes: size) -> pointer
-_GMemVTable :: struct {
+MemVTable :: struct {
     malloc: malloc_func_ptr_anon_2,
     realloc: realloc_func_ptr_anon_3,
     free: free_func_ptr_anon_4,
@@ -7439,7 +7439,7 @@ _GMemVTable :: struct {
     try_malloc: try_malloc_func_ptr_anon_6,
     try_realloc: try_realloc_func_ptr_anon_7,
 }
-_GPollFD :: struct {
+PollFD :: struct {
     fd: int64,
     events: ushort,
     revents: ushort,
@@ -7447,7 +7447,7 @@ _GPollFD :: struct {
 ref_func_ptr_anon_8 :: #type proc "c" (cb_data: pointer)
 unref_func_ptr_anon_9 :: #type proc "c" (cb_data: pointer)
 et_func_ptr_anon_10 :: #type proc "c" (cb_data: pointer, source: ^Source, func: ^SourceFunc, data: ^pointer)
-_GSourceCallbackFuncs :: struct {
+SourceCallbackFuncs :: struct {
     ref: ref_func_ptr_anon_8,
     unref: unref_func_ptr_anon_9,
     get: et_func_ptr_anon_10,
@@ -7460,7 +7460,7 @@ io_create_watch_func_ptr_anon_15 :: #type proc "c" (channel: ^IOChannel, conditi
 io_free_func_ptr_anon_16 :: #type proc "c" (channel: ^IOChannel)
 io_set_flags_func_ptr_anon_17 :: #type proc "c" (channel: ^IOChannel, flags: IOFlags, err: ^^Error) -> IOStatus
 io_get_flags_func_ptr_anon_18 :: #type proc "c" (channel: ^IOChannel) -> IOFlags
-_GIOFuncs :: struct {
+IOFuncs :: struct {
     io_read: io_read_func_ptr_anon_11,
     io_write: io_write_func_ptr_anon_12,
     io_seek: io_seek_func_ptr_anon_13,
@@ -7475,7 +7475,7 @@ end_element_func_ptr_anon_20 :: #type proc "c" (context_p: ^MarkupParseContext, 
 text_func_ptr_anon_21 :: #type proc "c" (context_p: ^MarkupParseContext, text: cstring, text_len: size, user_data: pointer, error: ^^Error)
 passthrough_func_ptr_anon_22 :: #type proc "c" (context_p: ^MarkupParseContext, passthrough_text: cstring, text_len: size, user_data: pointer, error: ^^Error)
 error_func_ptr_anon_23 :: #type proc "c" (context_p: ^MarkupParseContext, error: ^Error, user_data: pointer)
-_GMarkupParser :: struct {
+MarkupParser :: struct {
     start_element: start_element_func_ptr_anon_19,
     end_element: end_element_func_ptr_anon_20,
     text: text_func_ptr_anon_21,
@@ -7487,7 +7487,7 @@ s_struct_anon_24 :: struct {
     type: ^VariantType,
     y: [14]uintptr_,
 }
-_GVariantBuilder :: struct {
+VariantBuilder :: struct {
     u: u_union_anon_25,
 }
 s_struct_anon_26 :: struct {
@@ -7499,7 +7499,7 @@ u_union_anon_27 :: struct #raw_union {
     s: s_struct_anon_26,
     x: [16]uintptr_,
 }
-_GVariantDict :: struct {
+VariantDict :: struct {
     u: u_union_anon_27,
 }
 TestLogMsg :: struct {
@@ -7531,7 +7531,7 @@ thread_exit_func_ptr_anon_45 :: #type proc "c" ()
 thread_set_priority_func_ptr_anon_46 :: #type proc "c" (thread: pointer, priority: ThreadPriority)
 thread_self_func_ptr_anon_47 :: #type proc "c" (thread: pointer)
 thread_equal_func_ptr_anon_48 :: #type proc "c" (thread1: pointer, thread2: pointer) -> boolean
-_GThreadFunctions :: struct {
+ThreadFunctions :: struct {
     mutex_new: mutex_new_func_ptr_anon_28,
     mutex_lock: mutex_lock_func_ptr_anon_29,
     mutex_trylock: mutex_trylock_func_ptr_anon_30,
@@ -7561,7 +7561,7 @@ unused_union_anon_49 :: struct #raw_union {
     owner: rawptr,
     dummy: double,
 }
-_GStaticRecMutex :: struct {
+StaticRecMutex :: struct {
     mutex: StaticMutex,
     depth: uint_,
     unused: unused_union_anon_49,

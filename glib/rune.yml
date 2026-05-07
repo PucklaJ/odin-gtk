@@ -65,6 +65,8 @@ from:
       GIOChannel: '#Opaque'
       GHookList: '#Opaque'
       GScannerConfig: '#Opaque'
+
+      GSequenceIter: 'SequenceNode'
     constants: &any_constant_overwrites
       'FALSE': '0 #Untyped'
       'TRUE': '1 #Untyped'

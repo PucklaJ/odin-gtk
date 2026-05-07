@@ -37,7 +37,7 @@ free_func_ptr_anon_2 :: #type proc "c" (mem: pointer)
 calloc_func_ptr_anon_3 :: #type proc "c" (n_blocks: size, n_block_bytes: size) -> pointer
 try_malloc_func_ptr_anon_4 :: #type proc "c" (n_bytes: size) -> pointer
 try_realloc_func_ptr_anon_5 :: #type proc "c" (mem: pointer, n_bytes: size) -> pointer
-_GMemVTable :: struct {
+MemVTable :: struct {
     malloc: malloc_func_ptr_anon_0,
     realloc: realloc_func_ptr_anon_1,
     free: free_func_ptr_anon_2,
@@ -45,7 +45,7 @@ _GMemVTable :: struct {
     try_malloc: try_malloc_func_ptr_anon_4,
     try_realloc: try_realloc_func_ptr_anon_5,
 }
-_GPollFD :: struct {
+PollFD :: struct {
     fd: int_,
     events: ushort,
     revents: ushort,
@@ -53,7 +53,7 @@ _GPollFD :: struct {
 ref_func_ptr_anon_6 :: #type proc "c" (cb_data: pointer)
 unref_func_ptr_anon_7 :: #type proc "c" (cb_data: pointer)
 et_func_ptr_anon_8 :: #type proc "c" (cb_data: pointer, source: ^Source, func: ^SourceFunc, data: ^pointer)
-_GSourceCallbackFuncs :: struct {
+SourceCallbackFuncs :: struct {
     ref: ref_func_ptr_anon_6,
     unref: unref_func_ptr_anon_7,
     get: et_func_ptr_anon_8,
@@ -66,7 +66,7 @@ io_create_watch_func_ptr_anon_13 :: #type proc "c" (channel: ^IOChannel, conditi
 io_free_func_ptr_anon_14 :: #type proc "c" (channel: ^IOChannel)
 io_set_flags_func_ptr_anon_15 :: #type proc "c" (channel: ^IOChannel, flags: IOFlags, err: ^^Error) -> IOStatus
 io_get_flags_func_ptr_anon_16 :: #type proc "c" (channel: ^IOChannel) -> IOFlags
-_GIOFuncs :: struct {
+IOFuncs :: struct {
     io_read: io_read_func_ptr_anon_9,
     io_write: io_write_func_ptr_anon_10,
     io_seek: io_seek_func_ptr_anon_11,
@@ -81,7 +81,7 @@ end_element_func_ptr_anon_18 :: #type proc "c" (context_p: ^MarkupParseContext, 
 text_func_ptr_anon_19 :: #type proc "c" (context_p: ^MarkupParseContext, text: cstring, text_len: size, user_data: pointer, error: ^^Error)
 passthrough_func_ptr_anon_20 :: #type proc "c" (context_p: ^MarkupParseContext, passthrough_text: cstring, text_len: size, user_data: pointer, error: ^^Error)
 error_func_ptr_anon_21 :: #type proc "c" (context_p: ^MarkupParseContext, error: ^Error, user_data: pointer)
-_GMarkupParser :: struct {
+MarkupParser :: struct {
     start_element: start_element_func_ptr_anon_17,
     end_element: end_element_func_ptr_anon_18,
     text: text_func_ptr_anon_19,
@@ -97,7 +97,7 @@ u_union_anon_23 :: struct #raw_union {
     s: s_struct_anon_22,
     x: [16]uintptr_,
 }
-_GVariantBuilder :: struct {
+VariantBuilder :: struct {
     u: u_union_anon_23,
 }
 s_struct_anon_24 :: struct {
@@ -105,7 +105,7 @@ s_struct_anon_24 :: struct {
     partial_magic: size,
     y: [14]uintptr_,
 }
-_GVariantDict :: struct {
+VariantDict :: struct {
     u: u_union_anon_25,
 }
 TestLogMsg :: struct {
@@ -136,7 +136,7 @@ thread_exit_func_ptr_anon_43 :: #type proc "c" ()
 thread_set_priority_func_ptr_anon_44 :: #type proc "c" (thread: pointer, priority: ThreadPriority)
 thread_self_func_ptr_anon_45 :: #type proc "c" (thread: pointer)
 thread_equal_func_ptr_anon_46 :: #type proc "c" (thread1: pointer, thread2: pointer) -> boolean
-_GThreadFunctions :: struct {
+ThreadFunctions :: struct {
     mutex_new: mutex_new_func_ptr_anon_26,
     mutex_lock: mutex_lock_func_ptr_anon_27,
     mutex_trylock: mutex_trylock_func_ptr_anon_28,
@@ -167,7 +167,7 @@ unused_union_anon_47 :: struct #raw_union {
     owner: posix.pthread_t,
     dummy: double,
 }
-_GStaticRecMutex :: struct {
+StaticRecMutex :: struct {
     mutex: StaticMutex,
     depth: uint_,
     unused: unused_union_anon_47,
