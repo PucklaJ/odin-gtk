@@ -17,7 +17,7 @@ main :: proc() {
     )
     defer gobj.object_unref(app)
 
-    gobj.signal_connect(app, "activate", cast(gobj.Callback)activate, nil)
+    gobj.signal_connect(app, "activate", activate)
 
     argv := make([]cstring, len(os.args))
     for &arg, idx in argv {
@@ -76,7 +76,7 @@ Shell example!
     gobj.signal_connect(
         button,
         "clicked",
-        cast(gobj.Callback)button_clicked,
+        button_clicked,
         window,
     )
 

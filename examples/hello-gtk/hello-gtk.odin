@@ -27,8 +27,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     gobj.signal_connect(
         button,
         "clicked",
-        cast(gobj.Callback)on_button_clicked,
-        nil,
+        on_button_clicked,
     )
 
     gtk.window_present(window)
@@ -41,7 +40,7 @@ main :: proc() {
         "org.runic.hello-gtk",
         .APPLICATION_DEFAULT_FLAGS,
     )
-    gobj.signal_connect(app, "activate", cast(gobj.Callback)activate, nil)
+    gobj.signal_connect(app, "activate", activate)
 
     argv := make([]cstring, len(os.args))
     for &arg, idx in argv {

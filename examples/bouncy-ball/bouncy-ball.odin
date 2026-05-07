@@ -38,7 +38,7 @@ main :: proc() {
 	app := gtk.application_new("org.runic.bouncy-ball", .APPLICATION_DEFAULT_FLAGS)
 	defer gobj.object_unref(app)
 
-	gobj.signal_connect(app, "activate", cast(gobj.Callback)activate, &ctx)
+	gobj.signal_connect(app, "activate", activate, &ctx)
 
 	argv := make([]cstring, len(os.args))
 	for &arg, idx in argv {
@@ -78,14 +78,14 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
 
 	area := gobj.type_cast(gtk.DrawingArea, gtk.drawing_area_new(), gtk.TYPE_DRAWING_AREA())
 	gtk.drawing_area_set_draw_func(area, draw, user_data, nil)
-	gobj.signal_connect(area, "realize", cast(gobj.Callback)init, user_data)
+	gobj.signal_connect(area, "realize", init, user_data)
 
 	quit_btn := gobj.type_cast(gtk.Button, gtk.button_new_with_label("Quit"), gtk.TYPE_BUTTON())
 	data.quit_btn = quit_btn
 	gobj.signal_connect(
 		quit_btn,
 		"clicked",
-		cast(gobj.Callback)proc "c" (self: ^gtk.Button, user_data: glib.pointer) {
+		proc "c" (self: ^gtk.Button, user_data: glib.pointer) {
 			gtk.window_close(cast(^gtk.Window)user_data)
 		},
 		window,

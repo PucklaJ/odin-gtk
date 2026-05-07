@@ -35,7 +35,7 @@ activate_cb :: proc "c" (app: ^gtk.Application) {
     gobj.signal_connect(
         about_btn,
         "clicked",
-        cast(gobj.Callback)on_about,
+        on_about,
         window,
     )
 
@@ -83,7 +83,7 @@ main :: proc() {
 
     app := adw.application_new("runic.hello-adwaita", .NONE)
 
-    gobj.signal_connect(app, "activate", cast(gobj.Callback)activate_cb, nil)
+    gobj.signal_connect(app, "activate", activate_cb)
 
     argv := make([dynamic]cstring, len(os.args))
     argc := i32(len(os.args))

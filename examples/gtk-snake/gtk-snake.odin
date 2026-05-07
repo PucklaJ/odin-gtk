@@ -632,7 +632,7 @@ main :: proc() {
     app := gtk.application_new("org.snake", .APPLICATION_DEFAULT_FLAGS)
     defer gobj.object_unref(app)
 
-    gobj.signal_connect(app, "activate", cast(gobj.Callback)activate, nil)
+    gobj.signal_connect(app, "activate", activate)
 
     status := gio.application_run(
         gobj.type_cast(gio.Application, app, gio.TYPE_APPLICATION()),
@@ -658,7 +658,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     gobj.signal_connect(
         window,
         "close-request",
-        cast(gobj.Callback)proc "c" (
+        proc "c" (
             self: ^gtk.Window,
             user_data: glib.pointer,
         ) -> glib.boolean {
@@ -666,11 +666,10 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
             ctx.shutdown = true
             return false
         },
-        nil,
     )
 
     econ := gtk.event_controller_key_new()
-    gobj.signal_connect(econ, "key-pressed", cast(gobj.Callback)input, nil)
+    gobj.signal_connect(econ, "key-pressed", input)
     gtk.widget_add_controller(cast(^gtk.Widget)window, econ)
 
     drawing_area := gobj.type_cast(
@@ -679,7 +678,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
         gtk.TYPE_DRAWING_AREA(),
     )
     gtk.drawing_area_set_draw_func(drawing_area, draw, nil, nil)
-    gobj.signal_connect(drawing_area, "realize", cast(gobj.Callback)init, nil)
+    gobj.signal_connect(drawing_area, "realize", init)
 
     gtk.window_set_child(window, cast(^gtk.Widget)drawing_area)
     gtk.window_present(window)

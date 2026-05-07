@@ -1,17 +1,18 @@
 package gobject
 
 import glib ".."
+import "base:intrinsics"
 
 signal_connect :: #force_inline proc "c" (
     instance: glib.pointer,
     detailed_signal: cstring,
-    c_handler: Callback,
-    data: glib.pointer,
-) -> glib.ulong {
+    c_handler: $T,
+    data: glib.pointer = nil,
+) -> glib.ulong where intrinsics.type_is_proc(T) {
     return signal_connect_data(
         instance,
         detailed_signal,
-        c_handler,
+        cast(Callback)c_handler,
         data,
         nil,
         ConnectFlags(0),
@@ -21,13 +22,13 @@ signal_connect :: #force_inline proc "c" (
 signal_connect_after :: #force_inline proc "c" (
     instance: glib.pointer,
     detailed_signal: cstring,
-    c_handler: Callback,
-    data: glib.pointer,
-) -> glib.ulong {
+    c_handler: $T,
+    data: glib.pointer = nil,
+) -> glib.ulong where intrinsics.type_is_proc(T) {
     return signal_connect_data(
         instance,
         detailed_signal,
-        c_handler,
+        cast(Callback)c_handler,
         data,
         nil,
         .AFTER,
@@ -37,13 +38,13 @@ signal_connect_after :: #force_inline proc "c" (
 signal_connect_swapped :: #force_inline proc "c" (
     instance: glib.pointer,
     detailed_signal: cstring,
-    c_handler: Callback,
-    data: glib.pointer,
-) -> glib.ulong {
+    c_handler: $T,
+    data: glib.pointer = nil,
+) -> glib.ulong where intrinsics.type_is_proc(T) {
     return signal_connect_data(
         instance,
         detailed_signal,
-        c_handler,
+        cast(Callback)c_handler,
         data,
         nil,
         .SWAPPED,
