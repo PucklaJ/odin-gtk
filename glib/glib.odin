@@ -309,8 +309,7 @@ ChecksumType :: enum u32 {CHECKSUM_MD5 = 0, CHECKSUM_SHA1 = 1, CHECKSUM_SHA256 =
 Checksum :: struct #packed {}
 
 ConvertError :: enum u32 {NO_CONVERSION = 0, ILLEGAL_SEQUENCE = 1, FAILED = 2, PARTIAL_INPUT = 3, BAD_URI = 4, NOT_ABSOLUTE_PATH = 5, NO_MEMORY = 6, EMBEDDED_NUL = 7 }
-IConv :: struct #packed {}
-
+IConv :: ^struct #packed {}
 Data :: struct #packed {}
 
 DataForeachFunc :: #type proc "c" (key_id: Quark, data: pointer, user_data: pointer)
