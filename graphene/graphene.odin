@@ -103,6 +103,7 @@ _graphene_ray_t :: struct {
     __graphene_private_direction: vec3_t,
 }
 ray_t :: _graphene_ray_t
+ray_intersection_kind_t :: enum u32 {NONE = 0, ENTER = 1, LEAVE = 2 }
 
 @(default_calling_convention = "c")
 foreign graphene_runic {
@@ -1549,8 +1550,6 @@ when (ODIN_OS == .Linux) {
 
 SIMD_S :: "scalar"
 
-ray_intersection_kind_t :: enum u32 {NONE = 0, ENTER = 1, LEAVE = 2 }
-
 }
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
@@ -1565,7 +1564,6 @@ simd4f_uif_t :: struct #raw_union {
     ui: [4]u32,
     f: [4]f32,
 }
-ray_intersection_kind_t :: enum i32 {NONE = 0, ENTER = 1, LEAVE = 2 }
 
 }
 

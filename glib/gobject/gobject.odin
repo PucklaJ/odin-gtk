@@ -179,6 +179,7 @@ _GTypeInfo :: struct {
     value_table: ^TypeValueTable,
 }
 TypeInfo :: _GTypeInfo
+TypeFundamentalFlags :: enum u32 {CLASSED = 1, INSTANTIATABLE = 2, DERIVABLE = 4, DEEP_DERIVABLE = 8 }
 _GTypeFundamentalInfo :: struct {
     type_flags: TypeFundamentalFlags,
 }
@@ -198,8 +199,10 @@ _GTypeQuery :: struct {
     instance_size: glib.uint_,
 }
 TypeQuery :: _GTypeQuery
+TypeDebugFlags :: enum u32 {NONE = 0, OBJECTS = 1, SIGNALS = 2, INSTANCE_COUNT = 4, MASK = 7 }
 TypeClassCacheFunc :: #type proc "c" (cache_data: glib.pointer, g_class: ^TypeClass) -> glib.boolean
 TypeInterfaceCheckFunc :: #type proc "c" (check_data: glib.pointer, g_iface: glib.pointer)
+TypeFlags :: enum u32 {NONE = 0, ABSTRACT = 16, VALUE_ABSTRACT = 32, FINAL = 64, DEPRECATED = 128 }
 ValueTransform :: #type proc "c" (src_value: ^Value, dest_value: ^Value)
 ParamFlags :: enum i32 {READABLE = 1, WRITABLE = 2, READWRITE = 3, CONSTRUCT = 4, CONSTRUCT_ONLY = 8, LAX_VALIDATION = 16, STATIC_NAME = 32, PRIVATE = 32, STATIC_NICK = 64, STATIC_BLURB = 128, EXPLICIT_NOTIFY = 1073741824, DEPRECATED = -2147483648 }
 _GParamSpec :: struct {
@@ -270,6 +273,7 @@ _GCClosure :: struct {
     callback: glib.pointer,
 }
 CClosure :: _GCClosure
+SignalFlags :: enum u32 {RUN_FIRST = 1, RUN_LAST = 2, RUN_CLEANUP = 4, NO_RECURSE = 8, DETAILED = 16, ACTION = 32, NO_HOOKS = 64, MUST_COLLECT = 128, DEPRECATED = 256, ACCUMULATOR_FIRST_RUN = 131072 }
 _GSignalQuery :: struct {
     signal_id: glib.uint_,
     signal_name: cstring,
@@ -290,6 +294,8 @@ SignalCMarshaller :: ClosureMarshal
 SignalCVaMarshaller :: VaClosureMarshal
 SignalEmissionHook :: #type proc "c" (ihint: ^SignalInvocationHint, n_param_values: glib.uint_, param_values: [^]Value, data: glib.pointer) -> glib.boolean
 SignalAccumulator :: #type proc "c" (ihint: ^SignalInvocationHint, return_accu: ^Value, handler_return: ^Value, data: glib.pointer) -> glib.boolean
+ConnectFlags :: enum u32 {DEFAULT = 0, AFTER = 1, SWAPPED = 2 }
+SignalMatchType :: enum u32 {MATCH_ID = 1, MATCH_DETAIL = 2, MATCH_CLOSURE = 4, MATCH_FUNC = 8, MATCH_DATA = 16, MATCH_UNBLOCKED = 32 }
 BoxedCopyFunc :: #type proc "c" (boxed: glib.pointer) -> glib.pointer
 BoxedFreeFunc :: #type proc "c" (boxed: glib.pointer)
 _GObject :: struct {
@@ -345,6 +351,7 @@ WeakRef :: struct {
 _GBinding :: struct #packed {}
 Binding :: _GBinding
 BindingTransformFunc :: #type proc "c" (binding: ^Binding, from_value: ^Value, to_value: ^Value, user_data: glib.pointer) -> glib.boolean
+BindingFlags :: enum u32 {DEFAULT = 0, BIDIRECTIONAL = 1, SYNC_CREATE = 2, INVERT_BOOLEAN = 4 }
 _GBindingGroup :: struct #packed {}
 BindingGroup :: _GBindingGroup
 _GEnumValue :: struct {
@@ -2043,13 +2050,6 @@ when (ODIN_OS == .Linux) {
 
 pid_t :: i32
 uid_t :: i32
-TypeFundamentalFlags :: enum u32 {CLASSED = 1, INSTANTIATABLE = 2, DERIVABLE = 4, DEEP_DERIVABLE = 8 }
-TypeDebugFlags :: enum u32 {NONE = 0, OBJECTS = 1, SIGNALS = 2, INSTANCE_COUNT = 4, MASK = 7 }
-TypeFlags :: enum u32 {NONE = 0, ABSTRACT = 16, VALUE_ABSTRACT = 32, FINAL = 64, DEPRECATED = 128 }
-SignalFlags :: enum u32 {RUN_FIRST = 1, RUN_LAST = 2, RUN_CLEANUP = 4, NO_RECURSE = 8, DETAILED = 16, ACTION = 32, NO_HOOKS = 64, MUST_COLLECT = 128, DEPRECATED = 256, ACCUMULATOR_FIRST_RUN = 131072 }
-ConnectFlags :: enum u32 {DEFAULT = 0, AFTER = 1, SWAPPED = 2 }
-SignalMatchType :: enum u32 {MATCH_ID = 1, MATCH_DETAIL = 2, MATCH_CLOSURE = 4, MATCH_FUNC = 8, MATCH_DATA = 16, MATCH_UNBLOCKED = 32 }
-BindingFlags :: enum u32 {DEFAULT = 0, BIDIRECTIONAL = 1, SYNC_CREATE = 2, INVERT_BOOLEAN = 4 }
 
 @(default_calling_convention = "c")
 foreign gobject_runic {
@@ -2213,18 +2213,6 @@ foreign gobject_runic {
     glib_auto_cleanup_GValue :: proc(_ptr: ^Value) ---
 
 }
-
-}
-
-when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
-
-TypeFundamentalFlags :: enum i32 {CLASSED = 1, INSTANTIATABLE = 2, DERIVABLE = 4, DEEP_DERIVABLE = 8 }
-TypeDebugFlags :: enum i32 {NONE = 0, OBJECTS = 1, SIGNALS = 2, INSTANCE_COUNT = 4, MASK = 7 }
-TypeFlags :: enum i32 {NONE = 0, ABSTRACT = 16, VALUE_ABSTRACT = 32, FINAL = 64, DEPRECATED = 128 }
-SignalFlags :: enum i32 {RUN_FIRST = 1, RUN_LAST = 2, RUN_CLEANUP = 4, NO_RECURSE = 8, DETAILED = 16, ACTION = 32, NO_HOOKS = 64, MUST_COLLECT = 128, DEPRECATED = 256, ACCUMULATOR_FIRST_RUN = 131072 }
-ConnectFlags :: enum i32 {DEFAULT = 0, AFTER = 1, SWAPPED = 2 }
-SignalMatchType :: enum i32 {MATCH_ID = 1, MATCH_DETAIL = 2, MATCH_CLOSURE = 4, MATCH_FUNC = 8, MATCH_DATA = 16, MATCH_UNBLOCKED = 32 }
-BindingFlags :: enum i32 {DEFAULT = 0, BIDIRECTIONAL = 1, SYNC_CREATE = 2, INVERT_BOOLEAN = 4 }
 
 }
 

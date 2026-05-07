@@ -118,6 +118,9 @@ TYPE_WINDOW_TITLE :: window_title_get_type
 TYPE_WRAP_LAYOUT :: wrap_layout_get_type
 TYPE_WRAP_BOX :: wrap_box_get_type
 
+LengthUnit :: enum u32 {PX = 0, PT = 1, SP = 2 }
+BreakpointConditionLengthType :: enum u32 {MIN_WIDTH = 0, MAX_WIDTH = 1, MIN_HEIGHT = 2, MAX_HEIGHT = 3 }
+BreakpointConditionRatioType :: enum u32 {MIN_ASPECT_RATIO = 0, MAX_ASPECT_RATIO = 1 }
 _AdwBreakpointCondition :: struct #packed {}
 BreakpointCondition :: _AdwBreakpointCondition
 BreakpointCondition_autoptr :: ^BreakpointCondition
@@ -137,6 +140,7 @@ BreakpointClass_autoptr :: ^BreakpointClass
 BreakpointClass_listautoptr :: ^glib.List
 BreakpointClass_slistautoptr :: ^glib.SList
 BreakpointClass_queueautoptr :: ^glib.Queue
+DialogPresentationMode :: enum u32 {AUTO = 0, FLOATING = 1, BOTTOM_SHEET = 2 }
 _AdwDialog :: struct {
     parent_instance: gtk.Widget,
 }
@@ -201,6 +205,7 @@ AboutWindowClass_autoptr :: ^AboutWindowClass
 AboutWindowClass_listautoptr :: ^glib.List
 AboutWindowClass_slistautoptr :: ^glib.SList
 AboutWindowClass_queueautoptr :: ^glib.Queue
+AccentColor :: enum u32 {BLUE = 0, TEAL = 1, GREEN = 2, YELLOW = 3, ORANGE = 4, RED = 5, PINK = 6, PURPLE = 7, SLATE = 8 }
 _AdwPreferencesRow :: struct {
     parent_instance: gtk.ListBoxRow,
 }
@@ -237,6 +242,7 @@ ActionRowClass_autoptr :: ^ActionRowClass
 ActionRowClass_listautoptr :: ^glib.List
 ActionRowClass_slistautoptr :: ^glib.SList
 ActionRowClass_queueautoptr :: ^glib.Queue
+ResponseAppearance :: enum u32 {DEFAULT = 0, SUGGESTED = 1, DESTRUCTIVE = 2 }
 _AdwAlertDialog :: struct {
     parent_instance: Dialog,
 }
@@ -307,6 +313,8 @@ AnimationClass_autoptr :: ^AnimationClass
 AnimationClass_listautoptr :: ^glib.List
 AnimationClass_slistautoptr :: ^glib.SList
 AnimationClass_queueautoptr :: ^glib.Queue
+AnimationState :: enum u32 {IDLE = 0, PAUSED = 1, PLAYING = 2, FINISHED = 3 }
+ColorScheme :: enum u32 {DEFAULT = 0, FORCE_LIGHT = 1, PREFER_LIGHT = 2, PREFER_DARK = 3, FORCE_DARK = 4 }
 _AdwStyleManager :: struct #packed {}
 StyleManager :: _AdwStyleManager
 StyleManagerClass :: struct {
@@ -367,6 +375,7 @@ AvatarClass_autoptr :: ^AvatarClass
 AvatarClass_listautoptr :: ^glib.List
 AvatarClass_slistautoptr :: ^glib.SList
 AvatarClass_queueautoptr :: ^glib.Queue
+BannerButtonStyle :: enum u32 {BANNER_BUTTON_DEFAULT = 0, BANNER_BUTTON_SUGGESTED = 1 }
 _AdwBanner :: struct #packed {}
 Banner :: _AdwBanner
 BannerClass :: struct {
@@ -553,6 +562,7 @@ ComboRowClass_autoptr :: ^ComboRowClass
 ComboRowClass_listautoptr :: ^glib.List
 ComboRowClass_slistautoptr :: ^glib.SList
 ComboRowClass_queueautoptr :: ^glib.Queue
+Easing :: enum u32 {LINEAR = 0, EASE_IN_QUAD = 1, EASE_OUT_QUAD = 2, EASE_IN_OUT_QUAD = 3, EASE_IN_CUBIC = 4, EASE_OUT_CUBIC = 5, EASE_IN_OUT_CUBIC = 6, EASE_IN_QUART = 7, EASE_OUT_QUART = 8, EASE_IN_OUT_QUART = 9, EASE_IN_QUINT = 10, EASE_OUT_QUINT = 11, EASE_IN_OUT_QUINT = 12, EASE_IN_SINE = 13, EASE_OUT_SINE = 14, EASE_IN_OUT_SINE = 15, EASE_IN_EXPO = 16, EASE_OUT_EXPO = 17, EASE_IN_OUT_EXPO = 18, EASE_IN_CIRC = 19, EASE_OUT_CIRC = 20, EASE_IN_OUT_CIRC = 21, EASE_IN_ELASTIC = 22, EASE_OUT_ELASTIC = 23, EASE_IN_OUT_ELASTIC = 24, EASE_IN_BACK = 25, EASE_OUT_BACK = 26, EASE_IN_OUT_BACK = 27, EASE_IN_BOUNCE = 28, EASE_OUT_BOUNCE = 29, EASE_IN_OUT_BOUNCE = 30, EASE = 31, EASE_IN = 32, EASE_OUT = 33, EASE_IN_OUT = 34 }
 _AdwEntryRow :: struct {
     parent_instance: PreferencesRow,
 }
@@ -612,6 +622,7 @@ ExpanderRowClass_autoptr :: ^ExpanderRowClass
 ExpanderRowClass_listautoptr :: ^glib.List
 ExpanderRowClass_slistautoptr :: ^glib.SList
 ExpanderRowClass_queueautoptr :: ^glib.Queue
+FoldThresholdPolicy :: enum u32 {MINIMUM = 0, NATURAL = 1 }
 _AdwFlap :: struct #packed {}
 Flap :: _AdwFlap
 FlapClass :: struct {
@@ -625,6 +636,8 @@ FlapClass_autoptr :: ^FlapClass
 FlapClass_listautoptr :: ^glib.List
 FlapClass_slistautoptr :: ^glib.SList
 FlapClass_queueautoptr :: ^glib.Queue
+FlapFoldPolicy :: enum u32 {NEVER = 0, ALWAYS = 1, AUTO = 2 }
+FlapTransitionType :: enum u32 {OVER = 0, UNDER = 1, SLIDE = 2 }
 _AdwHeaderBar :: struct #packed {}
 HeaderBar :: _AdwHeaderBar
 HeaderBarClass :: struct {
@@ -638,6 +651,7 @@ HeaderBarClass_autoptr :: ^HeaderBarClass
 HeaderBarClass_listautoptr :: ^glib.List
 HeaderBarClass_slistautoptr :: ^glib.SList
 HeaderBarClass_queueautoptr :: ^glib.Queue
+CenteringPolicy :: enum u32 {LOOSE = 0, STRICT = 1 }
 _AdwViewStackPage :: struct #packed {}
 ViewStackPage :: _AdwViewStackPage
 ViewStackPageClass :: struct {
@@ -677,6 +691,7 @@ ViewStackPagesClass_autoptr :: ^ViewStackPagesClass
 ViewStackPagesClass_listautoptr :: ^glib.List
 ViewStackPagesClass_slistautoptr :: ^glib.SList
 ViewStackPagesClass_queueautoptr :: ^glib.Queue
+InlineViewSwitcherDisplayMode :: enum u32 {INLINE_VIEW_SWITCHER_LABELS = 0, INLINE_VIEW_SWITCHER_ICONS = 1, INLINE_VIEW_SWITCHER_BOTH = 2 }
 _AdwInlineViewSwitcher :: struct #packed {}
 InlineViewSwitcher :: _AdwInlineViewSwitcher
 InlineViewSwitcherClass :: struct {
@@ -716,6 +731,7 @@ LayoutSlotClass_autoptr :: ^LayoutSlotClass
 LayoutSlotClass_listautoptr :: ^glib.List
 LayoutSlotClass_slistautoptr :: ^glib.SList
 LayoutSlotClass_queueautoptr :: ^glib.Queue
+NavigationDirection :: enum u32 {BACK = 0, FORWARD = 1 }
 _AdwLeafletPage :: struct #packed {}
 LeafletPage :: _AdwLeafletPage
 LeafletPageClass :: struct {
@@ -742,6 +758,7 @@ LeafletClass_autoptr :: ^LeafletClass
 LeafletClass_listautoptr :: ^glib.List
 LeafletClass_slistautoptr :: ^glib.SList
 LeafletClass_queueautoptr :: ^glib.Queue
+LeafletTransitionType :: enum u32 {OVER = 0, UNDER = 1, SLIDE = 2 }
 _AdwMessageDialog :: struct {
     parent_instance: gtk.Window,
 }
@@ -885,6 +902,7 @@ PreferencesPageClass_autoptr :: ^PreferencesPageClass
 PreferencesPageClass_listautoptr :: ^glib.List
 PreferencesPageClass_slistautoptr :: ^glib.SList
 PreferencesPageClass_queueautoptr :: ^glib.Queue
+ToastPriority :: enum u32 {NORMAL = 0, HIGH = 1 }
 _AdwToast :: struct #packed {}
 Toast :: _AdwToast
 ToastClass :: struct {
@@ -1022,6 +1040,7 @@ SqueezerClass_autoptr :: ^SqueezerClass
 SqueezerClass_listautoptr :: ^glib.List
 SqueezerClass_slistautoptr :: ^glib.SList
 SqueezerClass_queueautoptr :: ^glib.Queue
+SqueezerTransitionType :: enum u32 {NONE = 0, CROSSFADE = 1 }
 _AdwStatusPage :: struct #packed {}
 StatusPage :: _AdwStatusPage
 StatusPageClass :: struct {
@@ -1082,6 +1101,7 @@ SwitchRowClass_autoptr :: ^SwitchRowClass
 SwitchRowClass_listautoptr :: ^glib.List
 SwitchRowClass_slistautoptr :: ^glib.SList
 SwitchRowClass_queueautoptr :: ^glib.Queue
+TabViewShortcuts :: enum u32 {NONE = 0, CONTROL_TAB = 1, CONTROL_SHIFT_TAB = 2, CONTROL_PAGE_UP = 4, CONTROL_PAGE_DOWN = 8, CONTROL_HOME = 16, CONTROL_END = 32, CONTROL_SHIFT_PAGE_UP = 64, CONTROL_SHIFT_PAGE_DOWN = 128, CONTROL_SHIFT_HOME = 256, CONTROL_SHIFT_END = 512, ALT_DIGITS = 1024, ALT_ZERO = 2048, ALL_SHORTCUTS = 4095 }
 _AdwTabPage :: struct #packed {}
 TabPage :: _AdwTabPage
 TabPageClass :: struct {
@@ -1198,6 +1218,7 @@ ToggleGroupClass_autoptr :: ^ToggleGroupClass
 ToggleGroupClass_listautoptr :: ^glib.List
 ToggleGroupClass_slistautoptr :: ^glib.SList
 ToggleGroupClass_queueautoptr :: ^glib.Queue
+ToolbarStyle :: enum u32 {FLAT = 0, RAISED = 1, RAISED_BORDER = 2 }
 _AdwToolbarView :: struct #packed {}
 ToolbarView :: _AdwToolbarView
 ToolbarViewClass :: struct {
@@ -1224,6 +1245,7 @@ ViewSwitcherClass_autoptr :: ^ViewSwitcherClass
 ViewSwitcherClass_listautoptr :: ^glib.List
 ViewSwitcherClass_slistautoptr :: ^glib.SList
 ViewSwitcherClass_queueautoptr :: ^glib.Queue
+ViewSwitcherPolicy :: enum u32 {NARROW = 0, WIDE = 1 }
 _AdwViewSwitcherBar :: struct #packed {}
 ViewSwitcherBar :: _AdwViewSwitcherBar
 ViewSwitcherBarClass :: struct {
@@ -1276,6 +1298,9 @@ WrapLayoutClass_autoptr :: ^WrapLayoutClass
 WrapLayoutClass_listautoptr :: ^glib.List
 WrapLayoutClass_slistautoptr :: ^glib.SList
 WrapLayoutClass_queueautoptr :: ^glib.Queue
+JustifyMode :: enum u32 {JUSTIFY_NONE = 0, JUSTIFY_FILL = 1, JUSTIFY_SPREAD = 2 }
+PackDirection :: enum u32 {PACK_START_TO_END = 0, PACK_END_TO_START = 1 }
+WrapPolicy :: enum u32 {WRAP_MINIMUM = 0, WRAP_NATURAL = 1 }
 _AdwWrapBox :: struct #packed {}
 WrapBox :: _AdwWrapBox
 WrapBoxClass :: struct {
@@ -8878,66 +8903,6 @@ foreign adwaita_runic {
 
     @(link_name = "ADW_IS_WRAP_BOX_wrapper")
     IS_WRAP_BOX :: proc(ptr: glib.pointer) -> glib.boolean ---
-
-}
-
-when (ODIN_OS == .Linux) {
-
-LengthUnit :: enum u32 {PX = 0, PT = 1, SP = 2 }
-BreakpointConditionLengthType :: enum u32 {MIN_WIDTH = 0, MAX_WIDTH = 1, MIN_HEIGHT = 2, MAX_HEIGHT = 3 }
-BreakpointConditionRatioType :: enum u32 {MIN_ASPECT_RATIO = 0, MAX_ASPECT_RATIO = 1 }
-DialogPresentationMode :: enum u32 {AUTO = 0, FLOATING = 1, BOTTOM_SHEET = 2 }
-AccentColor :: enum u32 {BLUE = 0, TEAL = 1, GREEN = 2, YELLOW = 3, ORANGE = 4, RED = 5, PINK = 6, PURPLE = 7, SLATE = 8 }
-ResponseAppearance :: enum u32 {DEFAULT = 0, SUGGESTED = 1, DESTRUCTIVE = 2 }
-AnimationState :: enum u32 {IDLE = 0, PAUSED = 1, PLAYING = 2, FINISHED = 3 }
-ColorScheme :: enum u32 {DEFAULT = 0, FORCE_LIGHT = 1, PREFER_LIGHT = 2, PREFER_DARK = 3, FORCE_DARK = 4 }
-BannerButtonStyle :: enum u32 {BANNER_BUTTON_DEFAULT = 0, BANNER_BUTTON_SUGGESTED = 1 }
-Easing :: enum u32 {LINEAR = 0, EASE_IN_QUAD = 1, EASE_OUT_QUAD = 2, EASE_IN_OUT_QUAD = 3, EASE_IN_CUBIC = 4, EASE_OUT_CUBIC = 5, EASE_IN_OUT_CUBIC = 6, EASE_IN_QUART = 7, EASE_OUT_QUART = 8, EASE_IN_OUT_QUART = 9, EASE_IN_QUINT = 10, EASE_OUT_QUINT = 11, EASE_IN_OUT_QUINT = 12, EASE_IN_SINE = 13, EASE_OUT_SINE = 14, EASE_IN_OUT_SINE = 15, EASE_IN_EXPO = 16, EASE_OUT_EXPO = 17, EASE_IN_OUT_EXPO = 18, EASE_IN_CIRC = 19, EASE_OUT_CIRC = 20, EASE_IN_OUT_CIRC = 21, EASE_IN_ELASTIC = 22, EASE_OUT_ELASTIC = 23, EASE_IN_OUT_ELASTIC = 24, EASE_IN_BACK = 25, EASE_OUT_BACK = 26, EASE_IN_OUT_BACK = 27, EASE_IN_BOUNCE = 28, EASE_OUT_BOUNCE = 29, EASE_IN_OUT_BOUNCE = 30, EASE = 31, EASE_IN = 32, EASE_OUT = 33, EASE_IN_OUT = 34 }
-FoldThresholdPolicy :: enum u32 {MINIMUM = 0, NATURAL = 1 }
-FlapFoldPolicy :: enum u32 {NEVER = 0, ALWAYS = 1, AUTO = 2 }
-FlapTransitionType :: enum u32 {OVER = 0, UNDER = 1, SLIDE = 2 }
-CenteringPolicy :: enum u32 {LOOSE = 0, STRICT = 1 }
-InlineViewSwitcherDisplayMode :: enum u32 {INLINE_VIEW_SWITCHER_LABELS = 0, INLINE_VIEW_SWITCHER_ICONS = 1, INLINE_VIEW_SWITCHER_BOTH = 2 }
-NavigationDirection :: enum u32 {BACK = 0, FORWARD = 1 }
-LeafletTransitionType :: enum u32 {OVER = 0, UNDER = 1, SLIDE = 2 }
-ToastPriority :: enum u32 {NORMAL = 0, HIGH = 1 }
-SqueezerTransitionType :: enum u32 {NONE = 0, CROSSFADE = 1 }
-TabViewShortcuts :: enum u32 {NONE = 0, CONTROL_TAB = 1, CONTROL_SHIFT_TAB = 2, CONTROL_PAGE_UP = 4, CONTROL_PAGE_DOWN = 8, CONTROL_HOME = 16, CONTROL_END = 32, CONTROL_SHIFT_PAGE_UP = 64, CONTROL_SHIFT_PAGE_DOWN = 128, CONTROL_SHIFT_HOME = 256, CONTROL_SHIFT_END = 512, ALT_DIGITS = 1024, ALT_ZERO = 2048, ALL_SHORTCUTS = 4095 }
-ToolbarStyle :: enum u32 {FLAT = 0, RAISED = 1, RAISED_BORDER = 2 }
-ViewSwitcherPolicy :: enum u32 {NARROW = 0, WIDE = 1 }
-JustifyMode :: enum u32 {JUSTIFY_NONE = 0, JUSTIFY_FILL = 1, JUSTIFY_SPREAD = 2 }
-PackDirection :: enum u32 {PACK_START_TO_END = 0, PACK_END_TO_START = 1 }
-WrapPolicy :: enum u32 {WRAP_MINIMUM = 0, WRAP_NATURAL = 1 }
-
-}
-
-when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
-
-LengthUnit :: enum i32 {PX = 0, PT = 1, SP = 2 }
-BreakpointConditionLengthType :: enum i32 {MIN_WIDTH = 0, MAX_WIDTH = 1, MIN_HEIGHT = 2, MAX_HEIGHT = 3 }
-BreakpointConditionRatioType :: enum i32 {MIN_ASPECT_RATIO = 0, MAX_ASPECT_RATIO = 1 }
-DialogPresentationMode :: enum i32 {AUTO = 0, FLOATING = 1, BOTTOM_SHEET = 2 }
-AccentColor :: enum i32 {BLUE = 0, TEAL = 1, GREEN = 2, YELLOW = 3, ORANGE = 4, RED = 5, PINK = 6, PURPLE = 7, SLATE = 8 }
-ResponseAppearance :: enum i32 {DEFAULT = 0, SUGGESTED = 1, DESTRUCTIVE = 2 }
-AnimationState :: enum i32 {IDLE = 0, PAUSED = 1, PLAYING = 2, FINISHED = 3 }
-ColorScheme :: enum i32 {DEFAULT = 0, FORCE_LIGHT = 1, PREFER_LIGHT = 2, PREFER_DARK = 3, FORCE_DARK = 4 }
-BannerButtonStyle :: enum i32 {BANNER_BUTTON_DEFAULT = 0, BANNER_BUTTON_SUGGESTED = 1 }
-Easing :: enum i32 {LINEAR = 0, EASE_IN_QUAD = 1, EASE_OUT_QUAD = 2, EASE_IN_OUT_QUAD = 3, EASE_IN_CUBIC = 4, EASE_OUT_CUBIC = 5, EASE_IN_OUT_CUBIC = 6, EASE_IN_QUART = 7, EASE_OUT_QUART = 8, EASE_IN_OUT_QUART = 9, EASE_IN_QUINT = 10, EASE_OUT_QUINT = 11, EASE_IN_OUT_QUINT = 12, EASE_IN_SINE = 13, EASE_OUT_SINE = 14, EASE_IN_OUT_SINE = 15, EASE_IN_EXPO = 16, EASE_OUT_EXPO = 17, EASE_IN_OUT_EXPO = 18, EASE_IN_CIRC = 19, EASE_OUT_CIRC = 20, EASE_IN_OUT_CIRC = 21, EASE_IN_ELASTIC = 22, EASE_OUT_ELASTIC = 23, EASE_IN_OUT_ELASTIC = 24, EASE_IN_BACK = 25, EASE_OUT_BACK = 26, EASE_IN_OUT_BACK = 27, EASE_IN_BOUNCE = 28, EASE_OUT_BOUNCE = 29, EASE_IN_OUT_BOUNCE = 30, EASE = 31, EASE_IN = 32, EASE_OUT = 33, EASE_IN_OUT = 34 }
-FoldThresholdPolicy :: enum i32 {MINIMUM = 0, NATURAL = 1 }
-FlapFoldPolicy :: enum i32 {NEVER = 0, ALWAYS = 1, AUTO = 2 }
-FlapTransitionType :: enum i32 {OVER = 0, UNDER = 1, SLIDE = 2 }
-CenteringPolicy :: enum i32 {LOOSE = 0, STRICT = 1 }
-InlineViewSwitcherDisplayMode :: enum i32 {INLINE_VIEW_SWITCHER_LABELS = 0, INLINE_VIEW_SWITCHER_ICONS = 1, INLINE_VIEW_SWITCHER_BOTH = 2 }
-NavigationDirection :: enum i32 {BACK = 0, FORWARD = 1 }
-LeafletTransitionType :: enum i32 {OVER = 0, UNDER = 1, SLIDE = 2 }
-ToastPriority :: enum i32 {NORMAL = 0, HIGH = 1 }
-SqueezerTransitionType :: enum i32 {NONE = 0, CROSSFADE = 1 }
-TabViewShortcuts :: enum i32 {NONE = 0, CONTROL_TAB = 1, CONTROL_SHIFT_TAB = 2, CONTROL_PAGE_UP = 4, CONTROL_PAGE_DOWN = 8, CONTROL_HOME = 16, CONTROL_END = 32, CONTROL_SHIFT_PAGE_UP = 64, CONTROL_SHIFT_PAGE_DOWN = 128, CONTROL_SHIFT_HOME = 256, CONTROL_SHIFT_END = 512, ALT_DIGITS = 1024, ALT_ZERO = 2048, ALL_SHORTCUTS = 4095 }
-ToolbarStyle :: enum i32 {FLAT = 0, RAISED = 1, RAISED_BORDER = 2 }
-ViewSwitcherPolicy :: enum i32 {NARROW = 0, WIDE = 1 }
-JustifyMode :: enum i32 {JUSTIFY_NONE = 0, JUSTIFY_FILL = 1, JUSTIFY_SPREAD = 2 }
-PackDirection :: enum i32 {PACK_START_TO_END = 0, PACK_END_TO_START = 1 }
-WrapPolicy :: enum i32 {WRAP_MINIMUM = 0, WRAP_NATURAL = 1 }
 
 }
 

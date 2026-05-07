@@ -84,12 +84,18 @@ TypeInfo :: struct {
 _GIUnresolvedInfo :: struct #packed {}
 UnresolvedInfo :: _GIUnresolvedInfo
 Argument :: _GIArgument
+Transfer :: enum u32 {NOTHING = 0, CONTAINER = 1, EVERYTHING = 2 }
+Direction :: enum u32 {IN = 0, OUT = 1, INOUT = 2 }
+ScopeType :: enum u32 {INVALID = 0, CALL = 1, ASYNC = 2, NOTIFIED = 3, FOREVER = 4 }
+TypeTag :: enum u32 {VOID = 0, BOOLEAN = 1, INT8 = 2, UINT8 = 3, INT16 = 4, UINT16 = 5, INT32 = 6, UINT32 = 7, INT64 = 8, UINT64 = 9, FLOAT = 10, DOUBLE = 11, GTYPE = 12, UTF8 = 13, FILENAME = 14, ARRAY = 15, INTERFACE = 16, GLIST = 17, GSLIST = 18, GHASH = 19, ERROR = 20, UNICHAR = 21 }
+ArrayType :: enum u32 {C = 0, ARRAY = 1, PTR_ARRAY = 2, BYTE_ARRAY = 3 }
 _GITypelib :: struct #packed {}
 Typelib :: _GITypelib
 AttributeIter :: struct {
     data: rawptr,
     _dummy: [4]rawptr,
 }
+InvokeError :: enum u32 {FAILED = 0, SYMBOL_NOT_FOUND = 1, ARGUMENT_MISMATCH = 2 }
 ObjectInfoRefFunction :: #type proc "c" (object: rawptr) -> rawptr
 ObjectInfoUnrefFunction :: #type proc "c" (object: rawptr)
 ObjectInfoSetValueFunction :: #type proc "c" (value: ^gobj.Value, object: rawptr)
@@ -107,6 +113,8 @@ RepositoryClass_autoptr :: ^RepositoryClass
 RepositoryClass_listautoptr :: ^glib.List
 RepositoryClass_slistautoptr :: ^glib.SList
 RepositoryClass_queueautoptr :: ^glib.Queue
+RepositoryLoadFlags :: enum u32 {NONE = 0, LAZY = 1 }
+RepositoryError :: enum u32 {TYPELIB_NOT_FOUND = 0, NAMESPACE_MISMATCH = 1, NAMESPACE_VERSION_CONFLICT = 2, LIBRARY_NOT_FOUND = 3 }
 Typelib_autoptr :: ^Typelib
 Typelib_listautoptr :: ^glib.List
 Typelib_slistautoptr :: ^glib.SList
@@ -378,7 +386,7 @@ foreign girepository_runic {
     callable_info_load_arg :: proc(info: ^CallableInfo, n: u32, arg: ^ArgInfo) ---
 
     @(link_name = "gi_callable_info_invoke")
-    callable_info_invoke :: proc(info: ^CallableInfo, function: rawptr, in_args: [^]Argument, n_in_args: u64, out_args: [^]Argument, n_out_args: u64, return_value: ^Argument, error: ^^glib.Error) -> glib.boolean ---
+    callable_info_invoke :: proc(info: ^CallableInfo, function: rawptr, in_args: [^]Argument, n_in_args: uint, out_args: [^]Argument, n_out_args: uint, return_value: ^Argument, error: ^^glib.Error) -> glib.boolean ---
 
     @(link_name = "gi_callable_info_get_instance_ownership_transfer")
     callable_info_get_instance_ownership_transfer :: proc(info: ^CallableInfo) -> Transfer ---
@@ -402,7 +410,7 @@ foreign girepository_runic {
     constant_info_free_value :: proc(info: ^ConstantInfo, value: ^Argument) ---
 
     @(link_name = "gi_constant_info_get_value")
-    constant_info_get_value :: proc(info: ^ConstantInfo, value: ^Argument) -> u64 ---
+    constant_info_get_value :: proc(info: ^ConstantInfo, value: ^Argument) -> uint ---
 
     @(link_name = "gi_enum_info_get_n_values")
     enum_info_get_n_values :: proc(info: ^EnumInfo) -> u32 ---
@@ -426,10 +434,10 @@ foreign girepository_runic {
     field_info_get_flags :: proc(info: ^FieldInfo) -> FieldInfoFlags ---
 
     @(link_name = "gi_field_info_get_size")
-    field_info_get_size :: proc(info: ^FieldInfo) -> u64 ---
+    field_info_get_size :: proc(info: ^FieldInfo) -> uint ---
 
     @(link_name = "gi_field_info_get_offset")
-    field_info_get_offset :: proc(info: ^FieldInfo) -> u64 ---
+    field_info_get_offset :: proc(info: ^FieldInfo) -> uint ---
 
     @(link_name = "gi_field_info_get_type_info")
     field_info_get_type_info :: proc(info: ^FieldInfo) -> ^TypeInfo ---
@@ -456,7 +464,7 @@ foreign girepository_runic {
     invoke_error_quark :: proc() -> glib.Quark ---
 
     @(link_name = "gi_function_info_invoke")
-    function_info_invoke :: proc(info: ^FunctionInfo, in_args: [^]Argument, n_in_args: u64, out_args: [^]Argument, n_out_args: u64, return_value: ^Argument, error: ^^glib.Error) -> glib.boolean ---
+    function_info_invoke :: proc(info: ^FunctionInfo, in_args: [^]Argument, n_in_args: uint, out_args: [^]Argument, n_out_args: uint, return_value: ^Argument, error: ^^glib.Error) -> glib.boolean ---
 
     @(link_name = "gi_interface_info_get_n_prerequisites")
     interface_info_get_n_prerequisites :: proc(info: ^InterfaceInfo) -> u32 ---
@@ -663,10 +671,10 @@ foreign girepository_runic {
     struct_info_find_method :: proc(info: ^StructInfo, name: cstring) -> ^FunctionInfo ---
 
     @(link_name = "gi_struct_info_get_size")
-    struct_info_get_size :: proc(info: ^StructInfo) -> u64 ---
+    struct_info_get_size :: proc(info: ^StructInfo) -> uint ---
 
     @(link_name = "gi_struct_info_get_alignment")
-    struct_info_get_alignment :: proc(info: ^StructInfo) -> u64 ---
+    struct_info_get_alignment :: proc(info: ^StructInfo) -> uint ---
 
     @(link_name = "gi_struct_info_is_gtype_struct")
     struct_info_is_gtype_struct :: proc(info: ^StructInfo) -> glib.boolean ---
@@ -699,7 +707,7 @@ foreign girepository_runic {
     type_info_get_array_length_index :: proc(info: ^TypeInfo, out_length_index: ^u32) -> glib.boolean ---
 
     @(link_name = "gi_type_info_get_array_fixed_size")
-    type_info_get_array_fixed_size :: proc(info: ^TypeInfo, out_size: ^u64) -> glib.boolean ---
+    type_info_get_array_fixed_size :: proc(info: ^TypeInfo, out_size: ^uint) -> glib.boolean ---
 
     @(link_name = "gi_type_info_is_zero_terminated")
     type_info_is_zero_terminated :: proc(info: ^TypeInfo) -> glib.boolean ---
@@ -738,22 +746,22 @@ foreign girepository_runic {
     union_info_is_discriminated :: proc(info: ^UnionInfo) -> glib.boolean ---
 
     @(link_name = "gi_union_info_get_discriminator_offset")
-    union_info_get_discriminator_offset :: proc(info: ^UnionInfo, out_offset: ^u64) -> glib.boolean ---
+    union_info_get_discriminator_offset :: proc(info: ^UnionInfo, out_offset: ^uint) -> glib.boolean ---
 
     @(link_name = "gi_union_info_get_discriminator_type")
     union_info_get_discriminator_type :: proc(info: ^UnionInfo) -> ^TypeInfo ---
 
     @(link_name = "gi_union_info_get_discriminator")
-    union_info_get_discriminator :: proc(info: ^UnionInfo, n: u64) -> ^ConstantInfo ---
+    union_info_get_discriminator :: proc(info: ^UnionInfo, n: uint) -> ^ConstantInfo ---
 
     @(link_name = "gi_union_info_find_method")
     union_info_find_method :: proc(info: ^UnionInfo, name: cstring) -> ^FunctionInfo ---
 
     @(link_name = "gi_union_info_get_size")
-    union_info_get_size :: proc(info: ^UnionInfo) -> u64 ---
+    union_info_get_size :: proc(info: ^UnionInfo) -> uint ---
 
     @(link_name = "gi_union_info_get_alignment")
-    union_info_get_alignment :: proc(info: ^UnionInfo) -> u64 ---
+    union_info_get_alignment :: proc(info: ^UnionInfo) -> uint ---
 
     @(link_name = "gi_union_info_get_copy_function_name")
     union_info_get_copy_function_name :: proc(info: ^UnionInfo) -> cstring ---
@@ -768,7 +776,7 @@ foreign girepository_runic {
     vfunc_info_get_flags :: proc(info: ^VFuncInfo) -> VFuncInfoFlags ---
 
     @(link_name = "gi_vfunc_info_get_offset")
-    vfunc_info_get_offset :: proc(info: ^VFuncInfo) -> u64 ---
+    vfunc_info_get_offset :: proc(info: ^VFuncInfo) -> uint ---
 
     @(link_name = "gi_vfunc_info_get_signal")
     vfunc_info_get_signal :: proc(info: ^VFuncInfo) -> ^SignalInfo ---
@@ -780,7 +788,7 @@ foreign girepository_runic {
     vfunc_info_get_address :: proc(info: ^VFuncInfo, implementor_gtype: gobj.Type, error: ^^glib.Error) -> rawptr ---
 
     @(link_name = "gi_vfunc_info_invoke")
-    vfunc_info_invoke :: proc(info: ^VFuncInfo, implementor: gobj.Type, in_args: [^]Argument, n_in_args: u64, out_args: [^]Argument, n_out_args: u64, return_value: ^Argument, error: ^^glib.Error) -> glib.boolean ---
+    vfunc_info_invoke :: proc(info: ^VFuncInfo, implementor: gobj.Type, in_args: [^]Argument, n_in_args: uint, out_args: [^]Argument, n_out_args: uint, return_value: ^Argument, error: ^^glib.Error) -> glib.boolean ---
 
     @(link_name = "gi_repository_get_type")
     repository_get_type :: proc() -> gobj.Type ---
@@ -795,10 +803,10 @@ foreign girepository_runic {
     repository_prepend_library_path :: proc(repository: ^Repository, directory: cstring) ---
 
     @(link_name = "gi_repository_get_search_path")
-    repository_get_search_path :: proc(repository: ^Repository, n_paths_out: ^u64) -> ^cstring ---
+    repository_get_search_path :: proc(repository: ^Repository, n_paths_out: ^uint) -> ^cstring ---
 
     @(link_name = "gi_repository_get_library_path")
-    repository_get_library_path :: proc(repository: ^Repository, n_paths_out: ^u64) -> ^cstring ---
+    repository_get_library_path :: proc(repository: ^Repository, n_paths_out: ^uint) -> ^cstring ---
 
     @(link_name = "gi_repository_load_typelib")
     repository_load_typelib :: proc(repository: ^Repository, typelib: ^Typelib, flags: RepositoryLoadFlags, error: ^^glib.Error) -> cstring ---
@@ -810,7 +818,7 @@ foreign girepository_runic {
     repository_find_by_name :: proc(repository: ^Repository, namespace_: cstring, name: cstring) -> ^BaseInfo ---
 
     @(link_name = "gi_repository_enumerate_versions")
-    repository_enumerate_versions :: proc(repository: ^Repository, namespace_: cstring, n_versions_out: ^u64) -> ^cstring ---
+    repository_enumerate_versions :: proc(repository: ^Repository, namespace_: cstring, n_versions_out: ^uint) -> ^cstring ---
 
     @(link_name = "gi_repository_require")
     repository_require :: proc(repository: ^Repository, namespace_: cstring, version: cstring, flags: RepositoryLoadFlags, error: ^^glib.Error) -> ^Typelib ---
@@ -819,19 +827,19 @@ foreign girepository_runic {
     repository_require_private :: proc(repository: ^Repository, typelib_dir: cstring, namespace_: cstring, version: cstring, flags: RepositoryLoadFlags, error: ^^glib.Error) -> ^Typelib ---
 
     @(link_name = "gi_repository_get_immediate_dependencies")
-    repository_get_immediate_dependencies :: proc(repository: ^Repository, namespace_: cstring, n_dependencies_out: ^u64) -> ^cstring ---
+    repository_get_immediate_dependencies :: proc(repository: ^Repository, namespace_: cstring, n_dependencies_out: ^uint) -> ^cstring ---
 
     @(link_name = "gi_repository_get_dependencies")
-    repository_get_dependencies :: proc(repository: ^Repository, namespace_: cstring, n_dependencies_out: ^u64) -> ^cstring ---
+    repository_get_dependencies :: proc(repository: ^Repository, namespace_: cstring, n_dependencies_out: ^uint) -> ^cstring ---
 
     @(link_name = "gi_repository_get_loaded_namespaces")
-    repository_get_loaded_namespaces :: proc(repository: ^Repository, n_namespaces_out: ^u64) -> ^cstring ---
+    repository_get_loaded_namespaces :: proc(repository: ^Repository, n_namespaces_out: ^uint) -> ^cstring ---
 
     @(link_name = "gi_repository_find_by_gtype")
     repository_find_by_gtype :: proc(repository: ^Repository, gtype: gobj.Type) -> ^BaseInfo ---
 
     @(link_name = "gi_repository_get_object_gtype_interfaces")
-    repository_get_object_gtype_interfaces :: proc(repository: ^Repository, gtype: gobj.Type, n_interfaces_out: ^u64, interfaces_out: ^^^InterfaceInfo) ---
+    repository_get_object_gtype_interfaces :: proc(repository: ^Repository, gtype: gobj.Type, n_interfaces_out: ^uint, interfaces_out: ^^^InterfaceInfo) ---
 
     @(link_name = "gi_repository_get_n_infos")
     repository_get_n_infos :: proc(repository: ^Repository, namespace_: cstring) -> u32 ---
@@ -846,7 +854,7 @@ foreign girepository_runic {
     repository_get_typelib_path :: proc(repository: ^Repository, namespace_: cstring) -> cstring ---
 
     @(link_name = "gi_repository_get_shared_libraries")
-    repository_get_shared_libraries :: proc(repository: ^Repository, namespace_: cstring, out_n_elements: [^]u64) -> ^cstring ---
+    repository_get_shared_libraries :: proc(repository: ^Repository, namespace_: cstring, out_n_elements: [^]uint) -> ^cstring ---
 
     @(link_name = "gi_repository_get_c_prefix")
     repository_get_c_prefix :: proc(repository: ^Repository, namespace_: cstring) -> cstring ---
