@@ -19,90 +19,90 @@ simd4x4f_t :: struct {
     z: simd4f_t,
     w: simd4f_t,
 }
-_graphene_vec2_t :: struct {
+vec2_t :: struct {
     __graphene_private_value: simd4f_t,
 }
-vec2_t :: _graphene_vec2_t
-_graphene_vec3_t :: struct {
+
+vec3_t :: struct {
     __graphene_private_value: simd4f_t,
 }
-vec3_t :: _graphene_vec3_t
-_graphene_vec4_t :: struct {
+
+vec4_t :: struct {
     __graphene_private_value: simd4f_t,
 }
-vec4_t :: _graphene_vec4_t
-_graphene_matrix_t :: struct {
+
+matrix_t :: struct {
     __graphene_private_value: simd4x4f_t,
 }
-matrix_t :: _graphene_matrix_t
-_graphene_point_t :: struct {
+
+point_t :: struct {
     x: f32,
     y: f32,
 }
-point_t :: _graphene_point_t
-_graphene_size_t :: struct {
+
+size_t :: struct {
     width: f32,
     height: f32,
 }
-size_t :: _graphene_size_t
-_graphene_rect_t :: struct {
+
+rect_t :: struct {
     origin: point_t,
     size: size_t,
 }
-rect_t :: _graphene_rect_t
-_graphene_point3d_t :: struct {
+
+point3d_t :: struct {
     x: f32,
     y: f32,
     z: f32,
 }
-point3d_t :: _graphene_point3d_t
-_graphene_quad_t :: struct {
+
+quad_t :: struct {
     __graphene_private_points: [4]point_t,
 }
-quad_t :: _graphene_quad_t
-_graphene_quaternion_t :: struct {
+
+quaternion_t :: struct {
     __graphene_private_x: f32,
     __graphene_private_y: f32,
     __graphene_private_z: f32,
     __graphene_private_w: f32,
 }
-quaternion_t :: _graphene_quaternion_t
+
 euler_order_t :: enum i32 {DEFAULT = -1, XYZ = 0, YZX = 1, ZXY = 2, XZY = 3, YXZ = 4, ZYX = 5, SXYZ = 6, SXYX = 7, SXZY = 8, SXZX = 9, SYZX = 10, SYZY = 11, SYXZ = 12, SYXY = 13, SZXY = 14, SZXZ = 15, SZYX = 16, SZYZ = 17, RZYX = 18, RXYX = 19, RYZX = 20, RXZX = 21, RXZY = 22, RYZY = 23, RZXY = 24, RYXY = 25, RYXZ = 26, RZXZ = 27, RXYZ = 28, RZYZ = 29 }
-_graphene_euler_t :: struct {
+euler_t :: struct {
     __graphene_private_angles: vec3_t,
     __graphene_private_order: euler_order_t,
 }
-euler_t :: _graphene_euler_t
-_graphene_plane_t :: struct {
+
+plane_t :: struct {
     __graphene_private_normal: vec3_t,
     __graphene_private_constant: f32,
 }
-plane_t :: _graphene_plane_t
-_graphene_frustum_t :: struct {
+
+frustum_t :: struct {
     __graphene_private_planes: [6]plane_t,
 }
-frustum_t :: _graphene_frustum_t
-_graphene_sphere_t :: struct {
+
+sphere_t :: struct {
     __graphene_private_center: vec3_t,
     __graphene_private_radius: f32,
 }
-sphere_t :: _graphene_sphere_t
-_graphene_box_t :: struct {
+
+box_t :: struct {
     __graphene_private_min: vec3_t,
     __graphene_private_max: vec3_t,
 }
-box_t :: _graphene_box_t
-_graphene_triangle_t :: struct {
+
+triangle_t :: struct {
     __graphene_private_a: vec3_t,
     __graphene_private_b: vec3_t,
     __graphene_private_c: vec3_t,
 }
-triangle_t :: _graphene_triangle_t
-_graphene_ray_t :: struct {
+
+ray_t :: struct {
     __graphene_private_origin: vec3_t,
     __graphene_private_direction: vec3_t,
 }
-ray_t :: _graphene_ray_t
+
 ray_intersection_kind_t :: enum u32 {NONE = 0, ENTER = 1, LEAVE = 2 }
 
 @(default_calling_convention = "c")
@@ -1543,27 +1543,6 @@ foreign graphene_runic {
 
     @(link_name = "graphene_simd4x4f_is_2d_wrapper")
     simd4x4f_is_2d :: proc(m: ^simd4x4f_t) -> b8 ---
-
-}
-
-when (ODIN_OS == .Linux) {
-
-SIMD_S :: "scalar"
-
-}
-
-when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
-
-SIMD_S :: "sse"
-
-simd4f_union_t :: struct #raw_union {
-    s: simd4f_t,
-    f: [4]f32,
-}
-simd4f_uif_t :: struct #raw_union {
-    ui: [4]u32,
-    f: [4]f32,
-}
 
 }
 

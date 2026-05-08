@@ -131,14 +131,14 @@ TYPE_WRAP_BOX :: wrap_box_get_type
 LengthUnit :: enum u32 {PX = 0, PT = 1, SP = 2 }
 BreakpointConditionLengthType :: enum u32 {MIN_WIDTH = 0, MAX_WIDTH = 1, MIN_HEIGHT = 2, MAX_HEIGHT = 3 }
 BreakpointConditionRatioType :: enum u32 {MIN_ASPECT_RATIO = 0, MAX_ASPECT_RATIO = 1 }
-_AdwBreakpointCondition :: struct #packed {}
-BreakpointCondition :: _AdwBreakpointCondition
+BreakpointCondition :: struct #packed {}
+
 BreakpointCondition_autoptr :: ^BreakpointCondition
 BreakpointCondition_listautoptr :: ^glib.List
 BreakpointCondition_slistautoptr :: ^glib.SList
 BreakpointCondition_queueautoptr :: ^glib.Queue
-_AdwBreakpoint :: struct #packed {}
-Breakpoint :: _AdwBreakpoint
+Breakpoint :: struct #packed {}
+
 BreakpointClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -151,19 +151,19 @@ BreakpointClass_listautoptr :: ^glib.List
 BreakpointClass_slistautoptr :: ^glib.SList
 BreakpointClass_queueautoptr :: ^glib.Queue
 DialogPresentationMode :: enum u32 {AUTO = 0, FLOATING = 1, BOTTOM_SHEET = 2 }
-_AdwDialog :: struct {
+Dialog :: struct {
     parent_instance: gtk.Widget,
 }
-Dialog :: _AdwDialog
+
 close_attempt_func_ptr_anon_0 :: #type proc "c" (dialog: ^Dialog)
 closed_func_ptr_anon_1 :: #type proc "c" (dialog: ^Dialog)
-_AdwDialogClass :: struct {
+DialogClass :: struct {
     parent_class: gtk.WidgetClass,
     close_attempt: close_attempt_func_ptr_anon_0,
     closed: closed_func_ptr_anon_1,
     padding: [4]glib.pointer,
 }
-DialogClass :: _AdwDialogClass
+
 Dialog_autoptr :: ^Dialog
 Dialog_listautoptr :: ^glib.List
 Dialog_slistautoptr :: ^glib.SList
@@ -172,8 +172,8 @@ DialogClass_autoptr :: ^DialogClass
 DialogClass_listautoptr :: ^glib.List
 DialogClass_slistautoptr :: ^glib.SList
 DialogClass_queueautoptr :: ^glib.Queue
-_AdwAboutDialog :: struct #packed {}
-AboutDialog :: _AdwAboutDialog
+AboutDialog :: struct #packed {}
+
 AboutDialogClass :: struct {
     parent_class: DialogClass,
 }
@@ -185,15 +185,15 @@ AboutDialogClass_autoptr :: ^AboutDialogClass
 AboutDialogClass_listautoptr :: ^glib.List
 AboutDialogClass_slistautoptr :: ^glib.SList
 AboutDialogClass_queueautoptr :: ^glib.Queue
-_AdwWindow :: struct {
+Window :: struct {
     parent_instance: gtk.Window,
 }
-Window :: _AdwWindow
-_AdwWindowClass :: struct {
+
+WindowClass :: struct {
     parent_class: gtk.WindowClass,
     padding: [4]glib.pointer,
 }
-WindowClass :: _AdwWindowClass
+
 Window_autoptr :: ^Window
 Window_listautoptr :: ^glib.List
 Window_slistautoptr :: ^glib.SList
@@ -202,8 +202,8 @@ WindowClass_autoptr :: ^WindowClass
 WindowClass_listautoptr :: ^glib.List
 WindowClass_slistautoptr :: ^glib.SList
 WindowClass_queueautoptr :: ^glib.Queue
-_AdwAboutWindow :: struct #packed {}
-AboutWindow :: _AdwAboutWindow
+AboutWindow :: struct #packed {}
+
 AboutWindowClass :: struct {
     parent_class: WindowClass,
 }
@@ -216,15 +216,15 @@ AboutWindowClass_listautoptr :: ^glib.List
 AboutWindowClass_slistautoptr :: ^glib.SList
 AboutWindowClass_queueautoptr :: ^glib.Queue
 AccentColor :: enum u32 {BLUE = 0, TEAL = 1, GREEN = 2, YELLOW = 3, ORANGE = 4, RED = 5, PINK = 6, PURPLE = 7, SLATE = 8 }
-_AdwPreferencesRow :: struct {
+PreferencesRow :: struct {
     parent_instance: gtk.ListBoxRow,
 }
-PreferencesRow :: _AdwPreferencesRow
-_AdwPreferencesRowClass :: struct {
+
+PreferencesRowClass :: struct {
     parent_class: gtk.ListBoxRowClass,
     padding: [4]glib.pointer,
 }
-PreferencesRowClass :: _AdwPreferencesRowClass
+
 PreferencesRow_autoptr :: ^PreferencesRow
 PreferencesRow_listautoptr :: ^glib.List
 PreferencesRow_slistautoptr :: ^glib.SList
@@ -233,17 +233,17 @@ PreferencesRowClass_autoptr :: ^PreferencesRowClass
 PreferencesRowClass_listautoptr :: ^glib.List
 PreferencesRowClass_slistautoptr :: ^glib.SList
 PreferencesRowClass_queueautoptr :: ^glib.Queue
-_AdwActionRow :: struct {
+ActionRow :: struct {
     parent_instance: PreferencesRow,
 }
-ActionRow :: _AdwActionRow
+
 activate_func_ptr_anon_2 :: #type proc "c" (self: ^ActionRow)
-_AdwActionRowClass :: struct {
+ActionRowClass :: struct {
     parent_class: PreferencesRowClass,
     activate: activate_func_ptr_anon_2,
     padding: [4]glib.pointer,
 }
-ActionRowClass :: _AdwActionRowClass
+
 ActionRow_autoptr :: ^ActionRow
 ActionRow_listautoptr :: ^glib.List
 ActionRow_slistautoptr :: ^glib.SList
@@ -253,17 +253,17 @@ ActionRowClass_listautoptr :: ^glib.List
 ActionRowClass_slistautoptr :: ^glib.SList
 ActionRowClass_queueautoptr :: ^glib.Queue
 ResponseAppearance :: enum u32 {DEFAULT = 0, SUGGESTED = 1, DESTRUCTIVE = 2 }
-_AdwAlertDialog :: struct {
+AlertDialog :: struct {
     parent_instance: Dialog,
 }
-AlertDialog :: _AdwAlertDialog
+
 response_func_ptr_anon_3 :: #type proc "c" (self: ^AlertDialog, response: cstring)
-_AdwAlertDialogClass :: struct {
+AlertDialogClass :: struct {
     parent_class: DialogClass,
     response: response_func_ptr_anon_3,
     padding: [4]glib.pointer,
 }
-AlertDialogClass :: _AdwAlertDialogClass
+
 AlertDialog_autoptr :: ^AlertDialog
 AlertDialog_listautoptr :: ^glib.List
 AlertDialog_slistautoptr :: ^glib.SList
@@ -272,10 +272,10 @@ AlertDialogClass_autoptr :: ^AlertDialogClass
 AlertDialogClass_listautoptr :: ^glib.List
 AlertDialogClass_slistautoptr :: ^glib.SList
 AlertDialogClass_queueautoptr :: ^glib.Queue
-_AdwAnimationTarget :: struct #packed {}
-AnimationTarget :: _AdwAnimationTarget
-_AdwAnimationTargetClass :: struct #packed {}
-AnimationTargetClass :: _AdwAnimationTargetClass
+AnimationTarget :: struct #packed {}
+
+AnimationTargetClass :: struct #packed {}
+
 AnimationTarget_autoptr :: ^AnimationTarget
 AnimationTarget_listautoptr :: ^glib.List
 AnimationTarget_slistautoptr :: ^glib.SList
@@ -284,10 +284,10 @@ AnimationTargetClass_autoptr :: ^AnimationTargetClass
 AnimationTargetClass_listautoptr :: ^glib.List
 AnimationTargetClass_slistautoptr :: ^glib.SList
 AnimationTargetClass_queueautoptr :: ^glib.Queue
-_AdwNoneAnimationTarget :: struct #packed {}
-NoneAnimationTarget :: _AdwNoneAnimationTarget
-_AdwNoneAnimationTargetClass :: struct #packed {}
-NoneAnimationTargetClass :: _AdwNoneAnimationTargetClass
+NoneAnimationTarget :: struct #packed {}
+
+NoneAnimationTargetClass :: struct #packed {}
+
 NoneAnimationTarget_autoptr :: ^NoneAnimationTarget
 NoneAnimationTarget_listautoptr :: ^glib.List
 NoneAnimationTarget_slistautoptr :: ^glib.SList
@@ -297,10 +297,10 @@ NoneAnimationTargetClass_listautoptr :: ^glib.List
 NoneAnimationTargetClass_slistautoptr :: ^glib.SList
 NoneAnimationTargetClass_queueautoptr :: ^glib.Queue
 AnimationTargetFunc :: #type proc "c" (value: f64, user_data: glib.pointer)
-_AdwCallbackAnimationTarget :: struct #packed {}
-CallbackAnimationTarget :: _AdwCallbackAnimationTarget
-_AdwCallbackAnimationTargetClass :: struct #packed {}
-CallbackAnimationTargetClass :: _AdwCallbackAnimationTargetClass
+CallbackAnimationTarget :: struct #packed {}
+
+CallbackAnimationTargetClass :: struct #packed {}
+
 CallbackAnimationTarget_autoptr :: ^CallbackAnimationTarget
 CallbackAnimationTarget_listautoptr :: ^glib.List
 CallbackAnimationTarget_slistautoptr :: ^glib.SList
@@ -309,10 +309,10 @@ CallbackAnimationTargetClass_autoptr :: ^CallbackAnimationTargetClass
 CallbackAnimationTargetClass_listautoptr :: ^glib.List
 CallbackAnimationTargetClass_slistautoptr :: ^glib.SList
 CallbackAnimationTargetClass_queueautoptr :: ^glib.Queue
-_AdwPropertyAnimationTarget :: struct #packed {}
-PropertyAnimationTarget :: _AdwPropertyAnimationTarget
-_AdwPropertyAnimationTargetClass :: struct #packed {}
-PropertyAnimationTargetClass :: _AdwPropertyAnimationTargetClass
+PropertyAnimationTarget :: struct #packed {}
+
+PropertyAnimationTargetClass :: struct #packed {}
+
 PropertyAnimationTarget_autoptr :: ^PropertyAnimationTarget
 PropertyAnimationTarget_listautoptr :: ^glib.List
 PropertyAnimationTarget_slistautoptr :: ^glib.SList
@@ -321,12 +321,12 @@ PropertyAnimationTargetClass_autoptr :: ^PropertyAnimationTargetClass
 PropertyAnimationTargetClass_listautoptr :: ^glib.List
 PropertyAnimationTargetClass_slistautoptr :: ^glib.SList
 PropertyAnimationTargetClass_queueautoptr :: ^glib.Queue
-_AdwAnimation :: struct {
+Animation :: struct {
     parent_instance: gobj.Object,
 }
-Animation :: _AdwAnimation
-_AdwAnimationClass :: struct #packed {}
-AnimationClass :: _AdwAnimationClass
+
+AnimationClass :: struct #packed {}
+
 Animation_autoptr :: ^Animation
 Animation_listautoptr :: ^glib.List
 Animation_slistautoptr :: ^glib.SList
@@ -337,8 +337,8 @@ AnimationClass_slistautoptr :: ^glib.SList
 AnimationClass_queueautoptr :: ^glib.Queue
 AnimationState :: enum u32 {IDLE = 0, PAUSED = 1, PLAYING = 2, FINISHED = 3 }
 ColorScheme :: enum u32 {DEFAULT = 0, FORCE_LIGHT = 1, PREFER_LIGHT = 2, PREFER_DARK = 3, FORCE_DARK = 4 }
-_AdwStyleManager :: struct #packed {}
-StyleManager :: _AdwStyleManager
+StyleManager :: struct #packed {}
+
 StyleManagerClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -350,15 +350,15 @@ StyleManagerClass_autoptr :: ^StyleManagerClass
 StyleManagerClass_listautoptr :: ^glib.List
 StyleManagerClass_slistautoptr :: ^glib.SList
 StyleManagerClass_queueautoptr :: ^glib.Queue
-_AdwApplication :: struct {
+Application :: struct {
     parent_instance: gtk.Application,
 }
-Application :: _AdwApplication
-_AdwApplicationClass :: struct {
+
+ApplicationClass :: struct {
     parent_class: gtk.ApplicationClass,
     padding: [4]glib.pointer,
 }
-ApplicationClass :: _AdwApplicationClass
+
 Application_autoptr :: ^Application
 Application_listautoptr :: ^glib.List
 Application_slistautoptr :: ^glib.SList
@@ -367,15 +367,15 @@ ApplicationClass_autoptr :: ^ApplicationClass
 ApplicationClass_listautoptr :: ^glib.List
 ApplicationClass_slistautoptr :: ^glib.SList
 ApplicationClass_queueautoptr :: ^glib.Queue
-_AdwApplicationWindow :: struct {
+ApplicationWindow :: struct {
     parent_instance: gtk.ApplicationWindow,
 }
-ApplicationWindow :: _AdwApplicationWindow
-_AdwApplicationWindowClass :: struct {
+
+ApplicationWindowClass :: struct {
     parent_class: gtk.ApplicationWindowClass,
     padding: [4]glib.pointer,
 }
-ApplicationWindowClass :: _AdwApplicationWindowClass
+
 ApplicationWindow_autoptr :: ^ApplicationWindow
 ApplicationWindow_listautoptr :: ^glib.List
 ApplicationWindow_slistautoptr :: ^glib.SList
@@ -384,8 +384,8 @@ ApplicationWindowClass_autoptr :: ^ApplicationWindowClass
 ApplicationWindowClass_listautoptr :: ^glib.List
 ApplicationWindowClass_slistautoptr :: ^glib.SList
 ApplicationWindowClass_queueautoptr :: ^glib.Queue
-_AdwAvatar :: struct #packed {}
-Avatar :: _AdwAvatar
+Avatar :: struct #packed {}
+
 AvatarClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -398,8 +398,8 @@ AvatarClass_listautoptr :: ^glib.List
 AvatarClass_slistautoptr :: ^glib.SList
 AvatarClass_queueautoptr :: ^glib.Queue
 BannerButtonStyle :: enum u32 {BANNER_BUTTON_DEFAULT = 0, BANNER_BUTTON_SUGGESTED = 1 }
-_AdwBanner :: struct #packed {}
-Banner :: _AdwBanner
+Banner :: struct #packed {}
+
 BannerClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -411,14 +411,14 @@ BannerClass_autoptr :: ^BannerClass
 BannerClass_listautoptr :: ^glib.List
 BannerClass_slistautoptr :: ^glib.SList
 BannerClass_queueautoptr :: ^glib.Queue
-_AdwBin :: struct {
+Bin :: struct {
     parent_instance: gtk.Widget,
 }
-Bin :: _AdwBin
-_AdwBinClass :: struct {
+
+BinClass :: struct {
     parent_class: gtk.WidgetClass,
 }
-BinClass :: _AdwBinClass
+
 Bin_autoptr :: ^Bin
 Bin_listautoptr :: ^glib.List
 Bin_slistautoptr :: ^glib.SList
@@ -427,8 +427,8 @@ BinClass_autoptr :: ^BinClass
 BinClass_listautoptr :: ^glib.List
 BinClass_slistautoptr :: ^glib.SList
 BinClass_queueautoptr :: ^glib.Queue
-_AdwBottomSheet :: struct #packed {}
-BottomSheet :: _AdwBottomSheet
+BottomSheet :: struct #packed {}
+
 BottomSheetClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -440,15 +440,15 @@ BottomSheetClass_autoptr :: ^BottomSheetClass
 BottomSheetClass_listautoptr :: ^glib.List
 BottomSheetClass_slistautoptr :: ^glib.SList
 BottomSheetClass_queueautoptr :: ^glib.Queue
-_AdwBreakpointBin :: struct {
+BreakpointBin :: struct {
     parent_instance: gtk.Widget,
 }
-BreakpointBin :: _AdwBreakpointBin
-_AdwBreakpointBinClass :: struct {
+
+BreakpointBinClass :: struct {
     parent_class: gtk.WidgetClass,
     padding: [4]glib.pointer,
 }
-BreakpointBinClass :: _AdwBreakpointBinClass
+
 BreakpointBin_autoptr :: ^BreakpointBin
 BreakpointBin_listautoptr :: ^glib.List
 BreakpointBin_slistautoptr :: ^glib.SList
@@ -457,8 +457,8 @@ BreakpointBinClass_autoptr :: ^BreakpointBinClass
 BreakpointBinClass_listautoptr :: ^glib.List
 BreakpointBinClass_slistautoptr :: ^glib.SList
 BreakpointBinClass_queueautoptr :: ^glib.Queue
-_AdwButtonContent :: struct #packed {}
-ButtonContent :: _AdwButtonContent
+ButtonContent :: struct #packed {}
+
 ButtonContentClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -470,8 +470,8 @@ ButtonContentClass_autoptr :: ^ButtonContentClass
 ButtonContentClass_listautoptr :: ^glib.List
 ButtonContentClass_slistautoptr :: ^glib.SList
 ButtonContentClass_queueautoptr :: ^glib.Queue
-_AdwButtonRow :: struct #packed {}
-ButtonRow :: _AdwButtonRow
+ButtonRow :: struct #packed {}
+
 ButtonRowClass :: struct {
     parent_class: PreferencesRowClass,
 }
@@ -483,14 +483,14 @@ ButtonRowClass_autoptr :: ^ButtonRowClass
 ButtonRowClass_listautoptr :: ^glib.List
 ButtonRowClass_slistautoptr :: ^glib.SList
 ButtonRowClass_queueautoptr :: ^glib.Queue
-_AdwSpringParams :: struct #packed {}
-SpringParams :: _AdwSpringParams
+SpringParams :: struct #packed {}
+
 SpringParams_autoptr :: ^SpringParams
 SpringParams_listautoptr :: ^glib.List
 SpringParams_slistautoptr :: ^glib.SList
 SpringParams_queueautoptr :: ^glib.Queue
-_AdwCarousel :: struct #packed {}
-Carousel :: _AdwCarousel
+Carousel :: struct #packed {}
+
 CarouselClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -502,8 +502,8 @@ CarouselClass_autoptr :: ^CarouselClass
 CarouselClass_listautoptr :: ^glib.List
 CarouselClass_slistautoptr :: ^glib.SList
 CarouselClass_queueautoptr :: ^glib.Queue
-_AdwCarouselIndicatorDots :: struct #packed {}
-CarouselIndicatorDots :: _AdwCarouselIndicatorDots
+CarouselIndicatorDots :: struct #packed {}
+
 CarouselIndicatorDotsClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -515,8 +515,8 @@ CarouselIndicatorDotsClass_autoptr :: ^CarouselIndicatorDotsClass
 CarouselIndicatorDotsClass_listautoptr :: ^glib.List
 CarouselIndicatorDotsClass_slistautoptr :: ^glib.SList
 CarouselIndicatorDotsClass_queueautoptr :: ^glib.Queue
-_AdwCarouselIndicatorLines :: struct #packed {}
-CarouselIndicatorLines :: _AdwCarouselIndicatorLines
+CarouselIndicatorLines :: struct #packed {}
+
 CarouselIndicatorLinesClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -528,8 +528,8 @@ CarouselIndicatorLinesClass_autoptr :: ^CarouselIndicatorLinesClass
 CarouselIndicatorLinesClass_listautoptr :: ^glib.List
 CarouselIndicatorLinesClass_slistautoptr :: ^glib.SList
 CarouselIndicatorLinesClass_queueautoptr :: ^glib.Queue
-_AdwClamp :: struct #packed {}
-Clamp :: _AdwClamp
+Clamp :: struct #packed {}
+
 ClampClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -541,8 +541,8 @@ ClampClass_autoptr :: ^ClampClass
 ClampClass_listautoptr :: ^glib.List
 ClampClass_slistautoptr :: ^glib.SList
 ClampClass_queueautoptr :: ^glib.Queue
-_AdwClampLayout :: struct #packed {}
-ClampLayout :: _AdwClampLayout
+ClampLayout :: struct #packed {}
+
 ClampLayoutClass :: struct {
     parent_class: gtk.LayoutManagerClass,
 }
@@ -554,8 +554,8 @@ ClampLayoutClass_autoptr :: ^ClampLayoutClass
 ClampLayoutClass_listautoptr :: ^glib.List
 ClampLayoutClass_slistautoptr :: ^glib.SList
 ClampLayoutClass_queueautoptr :: ^glib.Queue
-_AdwClampScrollable :: struct #packed {}
-ClampScrollable :: _AdwClampScrollable
+ClampScrollable :: struct #packed {}
+
 ClampScrollableClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -567,15 +567,15 @@ ClampScrollableClass_autoptr :: ^ClampScrollableClass
 ClampScrollableClass_listautoptr :: ^glib.List
 ClampScrollableClass_slistautoptr :: ^glib.SList
 ClampScrollableClass_queueautoptr :: ^glib.Queue
-_AdwComboRow :: struct {
+ComboRow :: struct {
     parent_instance: ActionRow,
 }
-ComboRow :: _AdwComboRow
-_AdwComboRowClass :: struct {
+
+ComboRowClass :: struct {
     parent_class: ActionRowClass,
     padding: [4]glib.pointer,
 }
-ComboRowClass :: _AdwComboRowClass
+
 ComboRow_autoptr :: ^ComboRow
 ComboRow_listautoptr :: ^glib.List
 ComboRow_slistautoptr :: ^glib.SList
@@ -585,14 +585,14 @@ ComboRowClass_listautoptr :: ^glib.List
 ComboRowClass_slistautoptr :: ^glib.SList
 ComboRowClass_queueautoptr :: ^glib.Queue
 Easing :: enum u32 {LINEAR = 0, EASE_IN_QUAD = 1, EASE_OUT_QUAD = 2, EASE_IN_OUT_QUAD = 3, EASE_IN_CUBIC = 4, EASE_OUT_CUBIC = 5, EASE_IN_OUT_CUBIC = 6, EASE_IN_QUART = 7, EASE_OUT_QUART = 8, EASE_IN_OUT_QUART = 9, EASE_IN_QUINT = 10, EASE_OUT_QUINT = 11, EASE_IN_OUT_QUINT = 12, EASE_IN_SINE = 13, EASE_OUT_SINE = 14, EASE_IN_OUT_SINE = 15, EASE_IN_EXPO = 16, EASE_OUT_EXPO = 17, EASE_IN_OUT_EXPO = 18, EASE_IN_CIRC = 19, EASE_OUT_CIRC = 20, EASE_IN_OUT_CIRC = 21, EASE_IN_ELASTIC = 22, EASE_OUT_ELASTIC = 23, EASE_IN_OUT_ELASTIC = 24, EASE_IN_BACK = 25, EASE_OUT_BACK = 26, EASE_IN_OUT_BACK = 27, EASE_IN_BOUNCE = 28, EASE_OUT_BOUNCE = 29, EASE_IN_OUT_BOUNCE = 30, EASE = 31, EASE_IN = 32, EASE_OUT = 33, EASE_IN_OUT = 34 }
-_AdwEntryRow :: struct {
+EntryRow :: struct {
     parent_instance: PreferencesRow,
 }
-EntryRow :: _AdwEntryRow
-_AdwEntryRowClass :: struct {
+
+EntryRowClass :: struct {
     parent_class: PreferencesRowClass,
 }
-EntryRowClass :: _AdwEntryRowClass
+
 EntryRow_autoptr :: ^EntryRow
 EntryRow_listautoptr :: ^glib.List
 EntryRow_slistautoptr :: ^glib.SList
@@ -601,8 +601,8 @@ EntryRowClass_autoptr :: ^EntryRowClass
 EntryRowClass_listautoptr :: ^glib.List
 EntryRowClass_slistautoptr :: ^glib.SList
 EntryRowClass_queueautoptr :: ^glib.Queue
-_AdwEnumListItem :: struct #packed {}
-EnumListItem :: _AdwEnumListItem
+EnumListItem :: struct #packed {}
+
 EnumListItemClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -614,8 +614,8 @@ EnumListItemClass_autoptr :: ^EnumListItemClass
 EnumListItemClass_listautoptr :: ^glib.List
 EnumListItemClass_slistautoptr :: ^glib.SList
 EnumListItemClass_queueautoptr :: ^glib.Queue
-_AdwEnumListModel :: struct #packed {}
-EnumListModel :: _AdwEnumListModel
+EnumListModel :: struct #packed {}
+
 EnumListModelClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -627,15 +627,15 @@ EnumListModelClass_autoptr :: ^EnumListModelClass
 EnumListModelClass_listautoptr :: ^glib.List
 EnumListModelClass_slistautoptr :: ^glib.SList
 EnumListModelClass_queueautoptr :: ^glib.Queue
-_AdwExpanderRow :: struct {
+ExpanderRow :: struct {
     parent_instance: PreferencesRow,
 }
-ExpanderRow :: _AdwExpanderRow
-_AdwExpanderRowClass :: struct {
+
+ExpanderRowClass :: struct {
     parent_class: PreferencesRowClass,
     padding: [4]glib.pointer,
 }
-ExpanderRowClass :: _AdwExpanderRowClass
+
 ExpanderRow_autoptr :: ^ExpanderRow
 ExpanderRow_listautoptr :: ^glib.List
 ExpanderRow_slistautoptr :: ^glib.SList
@@ -645,8 +645,8 @@ ExpanderRowClass_listautoptr :: ^glib.List
 ExpanderRowClass_slistautoptr :: ^glib.SList
 ExpanderRowClass_queueautoptr :: ^glib.Queue
 FoldThresholdPolicy :: enum u32 {MINIMUM = 0, NATURAL = 1 }
-_AdwFlap :: struct #packed {}
-Flap :: _AdwFlap
+Flap :: struct #packed {}
+
 FlapClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -660,8 +660,8 @@ FlapClass_slistautoptr :: ^glib.SList
 FlapClass_queueautoptr :: ^glib.Queue
 FlapFoldPolicy :: enum u32 {NEVER = 0, ALWAYS = 1, AUTO = 2 }
 FlapTransitionType :: enum u32 {OVER = 0, UNDER = 1, SLIDE = 2 }
-_AdwHeaderBar :: struct #packed {}
-HeaderBar :: _AdwHeaderBar
+HeaderBar :: struct #packed {}
+
 HeaderBarClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -674,8 +674,8 @@ HeaderBarClass_listautoptr :: ^glib.List
 HeaderBarClass_slistautoptr :: ^glib.SList
 HeaderBarClass_queueautoptr :: ^glib.Queue
 CenteringPolicy :: enum u32 {LOOSE = 0, STRICT = 1 }
-_AdwViewStackPage :: struct #packed {}
-ViewStackPage :: _AdwViewStackPage
+ViewStackPage :: struct #packed {}
+
 ViewStackPageClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -687,8 +687,8 @@ ViewStackPageClass_autoptr :: ^ViewStackPageClass
 ViewStackPageClass_listautoptr :: ^glib.List
 ViewStackPageClass_slistautoptr :: ^glib.SList
 ViewStackPageClass_queueautoptr :: ^glib.Queue
-_AdwViewStack :: struct #packed {}
-ViewStack :: _AdwViewStack
+ViewStack :: struct #packed {}
+
 ViewStackClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -700,8 +700,8 @@ ViewStackClass_autoptr :: ^ViewStackClass
 ViewStackClass_listautoptr :: ^glib.List
 ViewStackClass_slistautoptr :: ^glib.SList
 ViewStackClass_queueautoptr :: ^glib.Queue
-_AdwViewStackPages :: struct #packed {}
-ViewStackPages :: _AdwViewStackPages
+ViewStackPages :: struct #packed {}
+
 ViewStackPagesClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -714,8 +714,8 @@ ViewStackPagesClass_listautoptr :: ^glib.List
 ViewStackPagesClass_slistautoptr :: ^glib.SList
 ViewStackPagesClass_queueautoptr :: ^glib.Queue
 InlineViewSwitcherDisplayMode :: enum u32 {INLINE_VIEW_SWITCHER_LABELS = 0, INLINE_VIEW_SWITCHER_ICONS = 1, INLINE_VIEW_SWITCHER_BOTH = 2 }
-_AdwInlineViewSwitcher :: struct #packed {}
-InlineViewSwitcher :: _AdwInlineViewSwitcher
+InlineViewSwitcher :: struct #packed {}
+
 InlineViewSwitcherClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -727,8 +727,8 @@ InlineViewSwitcherClass_autoptr :: ^InlineViewSwitcherClass
 InlineViewSwitcherClass_listautoptr :: ^glib.List
 InlineViewSwitcherClass_slistautoptr :: ^glib.SList
 InlineViewSwitcherClass_queueautoptr :: ^glib.Queue
-_AdwLayout :: struct #packed {}
-Layout :: _AdwLayout
+Layout :: struct #packed {}
+
 LayoutClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -740,8 +740,8 @@ LayoutClass_autoptr :: ^LayoutClass
 LayoutClass_listautoptr :: ^glib.List
 LayoutClass_slistautoptr :: ^glib.SList
 LayoutClass_queueautoptr :: ^glib.Queue
-_AdwLayoutSlot :: struct #packed {}
-LayoutSlot :: _AdwLayoutSlot
+LayoutSlot :: struct #packed {}
+
 LayoutSlotClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -754,8 +754,8 @@ LayoutSlotClass_listautoptr :: ^glib.List
 LayoutSlotClass_slistautoptr :: ^glib.SList
 LayoutSlotClass_queueautoptr :: ^glib.Queue
 NavigationDirection :: enum u32 {BACK = 0, FORWARD = 1 }
-_AdwLeafletPage :: struct #packed {}
-LeafletPage :: _AdwLeafletPage
+LeafletPage :: struct #packed {}
+
 LeafletPageClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -767,8 +767,8 @@ LeafletPageClass_autoptr :: ^LeafletPageClass
 LeafletPageClass_listautoptr :: ^glib.List
 LeafletPageClass_slistautoptr :: ^glib.SList
 LeafletPageClass_queueautoptr :: ^glib.Queue
-_AdwLeaflet :: struct #packed {}
-Leaflet :: _AdwLeaflet
+Leaflet :: struct #packed {}
+
 LeafletClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -781,17 +781,17 @@ LeafletClass_listautoptr :: ^glib.List
 LeafletClass_slistautoptr :: ^glib.SList
 LeafletClass_queueautoptr :: ^glib.Queue
 LeafletTransitionType :: enum u32 {OVER = 0, UNDER = 1, SLIDE = 2 }
-_AdwMessageDialog :: struct {
+MessageDialog :: struct {
     parent_instance: gtk.Window,
 }
-MessageDialog :: _AdwMessageDialog
+
 response_func_ptr_anon_4 :: #type proc "c" (self: ^MessageDialog, response: cstring)
-_AdwMessageDialogClass :: struct {
+MessageDialogClass :: struct {
     parent_class: gtk.WindowClass,
     response: response_func_ptr_anon_4,
     padding: [4]glib.pointer,
 }
-MessageDialogClass :: _AdwMessageDialogClass
+
 MessageDialog_autoptr :: ^MessageDialog
 MessageDialog_listautoptr :: ^glib.List
 MessageDialog_slistautoptr :: ^glib.SList
@@ -800,8 +800,8 @@ MessageDialogClass_autoptr :: ^MessageDialogClass
 MessageDialogClass_listautoptr :: ^glib.List
 MessageDialogClass_slistautoptr :: ^glib.SList
 MessageDialogClass_queueautoptr :: ^glib.Queue
-_AdwMultiLayoutView :: struct #packed {}
-MultiLayoutView :: _AdwMultiLayoutView
+MultiLayoutView :: struct #packed {}
+
 MultiLayoutViewClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -813,15 +813,15 @@ MultiLayoutViewClass_autoptr :: ^MultiLayoutViewClass
 MultiLayoutViewClass_listautoptr :: ^glib.List
 MultiLayoutViewClass_slistautoptr :: ^glib.SList
 MultiLayoutViewClass_queueautoptr :: ^glib.Queue
-_AdwNavigationPage :: struct {
+NavigationPage :: struct {
     parent_instance: gtk.Widget,
 }
-NavigationPage :: _AdwNavigationPage
+
 showing_func_ptr_anon_5 :: #type proc "c" (self: ^NavigationPage)
 shown_func_ptr_anon_6 :: #type proc "c" (self: ^NavigationPage)
 hiding_func_ptr_anon_7 :: #type proc "c" (self: ^NavigationPage)
 hidden_func_ptr_anon_8 :: #type proc "c" (self: ^NavigationPage)
-_AdwNavigationPageClass :: struct {
+NavigationPageClass :: struct {
     parent_class: gtk.WidgetClass,
     showing: showing_func_ptr_anon_5,
     shown: shown_func_ptr_anon_6,
@@ -829,7 +829,7 @@ _AdwNavigationPageClass :: struct {
     hidden: hidden_func_ptr_anon_8,
     padding: [8]glib.pointer,
 }
-NavigationPageClass :: _AdwNavigationPageClass
+
 NavigationPage_autoptr :: ^NavigationPage
 NavigationPage_listautoptr :: ^glib.List
 NavigationPage_slistautoptr :: ^glib.SList
@@ -838,8 +838,8 @@ NavigationPageClass_autoptr :: ^NavigationPageClass
 NavigationPageClass_listautoptr :: ^glib.List
 NavigationPageClass_slistautoptr :: ^glib.SList
 NavigationPageClass_queueautoptr :: ^glib.Queue
-_AdwNavigationView :: struct #packed {}
-NavigationView :: _AdwNavigationView
+NavigationView :: struct #packed {}
+
 NavigationViewClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -851,8 +851,8 @@ NavigationViewClass_autoptr :: ^NavigationViewClass
 NavigationViewClass_listautoptr :: ^glib.List
 NavigationViewClass_slistautoptr :: ^glib.SList
 NavigationViewClass_queueautoptr :: ^glib.Queue
-_AdwNavigationSplitView :: struct #packed {}
-NavigationSplitView :: _AdwNavigationSplitView
+NavigationSplitView :: struct #packed {}
+
 NavigationSplitViewClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -864,8 +864,8 @@ NavigationSplitViewClass_autoptr :: ^NavigationSplitViewClass
 NavigationSplitViewClass_listautoptr :: ^glib.List
 NavigationSplitViewClass_slistautoptr :: ^glib.SList
 NavigationSplitViewClass_queueautoptr :: ^glib.Queue
-_AdwOverlaySplitView :: struct #packed {}
-OverlaySplitView :: _AdwOverlaySplitView
+OverlaySplitView :: struct #packed {}
+
 OverlaySplitViewClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -877,8 +877,8 @@ OverlaySplitViewClass_autoptr :: ^OverlaySplitViewClass
 OverlaySplitViewClass_listautoptr :: ^glib.List
 OverlaySplitViewClass_slistautoptr :: ^glib.SList
 OverlaySplitViewClass_queueautoptr :: ^glib.Queue
-_AdwPasswordEntryRow :: struct #packed {}
-PasswordEntryRow :: _AdwPasswordEntryRow
+PasswordEntryRow :: struct #packed {}
+
 PasswordEntryRowClass :: struct {
     parent_class: EntryRowClass,
 }
@@ -890,15 +890,15 @@ PasswordEntryRowClass_autoptr :: ^PasswordEntryRowClass
 PasswordEntryRowClass_listautoptr :: ^glib.List
 PasswordEntryRowClass_slistautoptr :: ^glib.SList
 PasswordEntryRowClass_queueautoptr :: ^glib.Queue
-_AdwPreferencesGroup :: struct {
+PreferencesGroup :: struct {
     parent_instance: gtk.Widget,
 }
-PreferencesGroup :: _AdwPreferencesGroup
-_AdwPreferencesGroupClass :: struct {
+
+PreferencesGroupClass :: struct {
     parent_class: gtk.WidgetClass,
     padding: [4]glib.pointer,
 }
-PreferencesGroupClass :: _AdwPreferencesGroupClass
+
 PreferencesGroup_autoptr :: ^PreferencesGroup
 PreferencesGroup_listautoptr :: ^glib.List
 PreferencesGroup_slistautoptr :: ^glib.SList
@@ -907,15 +907,15 @@ PreferencesGroupClass_autoptr :: ^PreferencesGroupClass
 PreferencesGroupClass_listautoptr :: ^glib.List
 PreferencesGroupClass_slistautoptr :: ^glib.SList
 PreferencesGroupClass_queueautoptr :: ^glib.Queue
-_AdwPreferencesPage :: struct {
+PreferencesPage :: struct {
     parent_instance: gtk.Widget,
 }
-PreferencesPage :: _AdwPreferencesPage
-_AdwPreferencesPageClass :: struct {
+
+PreferencesPageClass :: struct {
     parent_class: gtk.WidgetClass,
     padding: [4]glib.pointer,
 }
-PreferencesPageClass :: _AdwPreferencesPageClass
+
 PreferencesPage_autoptr :: ^PreferencesPage
 PreferencesPage_listautoptr :: ^glib.List
 PreferencesPage_slistautoptr :: ^glib.SList
@@ -925,8 +925,8 @@ PreferencesPageClass_listautoptr :: ^glib.List
 PreferencesPageClass_slistautoptr :: ^glib.SList
 PreferencesPageClass_queueautoptr :: ^glib.Queue
 ToastPriority :: enum u32 {NORMAL = 0, HIGH = 1 }
-_AdwToast :: struct #packed {}
-Toast :: _AdwToast
+Toast :: struct #packed {}
+
 ToastClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -938,15 +938,15 @@ ToastClass_autoptr :: ^ToastClass
 ToastClass_listautoptr :: ^glib.List
 ToastClass_slistautoptr :: ^glib.SList
 ToastClass_queueautoptr :: ^glib.Queue
-_AdwPreferencesDialog :: struct {
+PreferencesDialog :: struct {
     parent_instance: Dialog,
 }
-PreferencesDialog :: _AdwPreferencesDialog
-_AdwPreferencesDialogClass :: struct {
+
+PreferencesDialogClass :: struct {
     parent_class: DialogClass,
     padding: [4]glib.pointer,
 }
-PreferencesDialogClass :: _AdwPreferencesDialogClass
+
 PreferencesDialog_autoptr :: ^PreferencesDialog
 PreferencesDialog_listautoptr :: ^glib.List
 PreferencesDialog_slistautoptr :: ^glib.SList
@@ -955,15 +955,15 @@ PreferencesDialogClass_autoptr :: ^PreferencesDialogClass
 PreferencesDialogClass_listautoptr :: ^glib.List
 PreferencesDialogClass_slistautoptr :: ^glib.SList
 PreferencesDialogClass_queueautoptr :: ^glib.Queue
-_AdwPreferencesWindow :: struct {
+PreferencesWindow :: struct {
     parent_instance: Window,
 }
-PreferencesWindow :: _AdwPreferencesWindow
-_AdwPreferencesWindowClass :: struct {
+
+PreferencesWindowClass :: struct {
     parent_class: WindowClass,
     padding: [4]glib.pointer,
 }
-PreferencesWindowClass :: _AdwPreferencesWindowClass
+
 PreferencesWindow_autoptr :: ^PreferencesWindow
 PreferencesWindow_listautoptr :: ^glib.List
 PreferencesWindow_slistautoptr :: ^glib.SList
@@ -972,8 +972,8 @@ PreferencesWindowClass_autoptr :: ^PreferencesWindowClass
 PreferencesWindowClass_listautoptr :: ^glib.List
 PreferencesWindowClass_slistautoptr :: ^glib.SList
 PreferencesWindowClass_queueautoptr :: ^glib.Queue
-_AdwShortcutLabel :: struct #packed {}
-ShortcutLabel :: _AdwShortcutLabel
+ShortcutLabel :: struct #packed {}
+
 ShortcutLabelClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -985,8 +985,8 @@ ShortcutLabelClass_autoptr :: ^ShortcutLabelClass
 ShortcutLabelClass_listautoptr :: ^glib.List
 ShortcutLabelClass_slistautoptr :: ^glib.SList
 ShortcutLabelClass_queueautoptr :: ^glib.Queue
-_AdwShortcutsItem :: struct #packed {}
-ShortcutsItem :: _AdwShortcutsItem
+ShortcutsItem :: struct #packed {}
+
 ShortcutsItemClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -998,8 +998,8 @@ ShortcutsItemClass_autoptr :: ^ShortcutsItemClass
 ShortcutsItemClass_listautoptr :: ^glib.List
 ShortcutsItemClass_slistautoptr :: ^glib.SList
 ShortcutsItemClass_queueautoptr :: ^glib.Queue
-_AdwShortcutsSection :: struct #packed {}
-ShortcutsSection :: _AdwShortcutsSection
+ShortcutsSection :: struct #packed {}
+
 ShortcutsSectionClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -1011,8 +1011,8 @@ ShortcutsSectionClass_autoptr :: ^ShortcutsSectionClass
 ShortcutsSectionClass_listautoptr :: ^glib.List
 ShortcutsSectionClass_slistautoptr :: ^glib.SList
 ShortcutsSectionClass_queueautoptr :: ^glib.Queue
-_AdwShortcutsDialog :: struct #packed {}
-ShortcutsDialog :: _AdwShortcutsDialog
+ShortcutsDialog :: struct #packed {}
+
 ShortcutsDialogClass :: struct {
     parent_class: DialogClass,
 }
@@ -1024,17 +1024,17 @@ ShortcutsDialogClass_autoptr :: ^ShortcutsDialogClass
 ShortcutsDialogClass_listautoptr :: ^glib.List
 ShortcutsDialogClass_slistautoptr :: ^glib.SList
 ShortcutsDialogClass_queueautoptr :: ^glib.Queue
-_AdwSidebarSection :: struct #packed {}
-SidebarSection :: _AdwSidebarSection
-_AdwSidebarItem :: struct {
+SidebarSection :: struct #packed {}
+
+SidebarItem :: struct {
     parent_instance: gobj.Object,
 }
-SidebarItem :: _AdwSidebarItem
-_AdwSidebarItemClass :: struct {
+
+SidebarItemClass :: struct {
     parent_class: gobj.ObjectClass,
     padding: [4]glib.pointer,
 }
-SidebarItemClass :: _AdwSidebarItemClass
+
 SidebarItem_autoptr :: ^SidebarItem
 SidebarItem_listautoptr :: ^glib.List
 SidebarItem_slistautoptr :: ^glib.SList
@@ -1043,8 +1043,8 @@ SidebarItemClass_autoptr :: ^SidebarItemClass
 SidebarItemClass_listautoptr :: ^glib.List
 SidebarItemClass_slistautoptr :: ^glib.SList
 SidebarItemClass_queueautoptr :: ^glib.Queue
-_AdwSidebar :: struct #packed {}
-Sidebar :: _AdwSidebar
+Sidebar :: struct #packed {}
+
 SidebarSectionCreateItemFunc :: #type proc "c" (item: glib.pointer, user_data: glib.pointer) -> ^SidebarItem
 SidebarSectionClass :: struct {
     parent_class: gobj.ObjectClass,
@@ -1069,8 +1069,8 @@ SidebarClass_autoptr :: ^SidebarClass
 SidebarClass_listautoptr :: ^glib.List
 SidebarClass_slistautoptr :: ^glib.SList
 SidebarClass_queueautoptr :: ^glib.Queue
-_AdwSpinRow :: struct #packed {}
-SpinRow :: _AdwSpinRow
+SpinRow :: struct #packed {}
+
 SpinRowClass :: struct {
     parent_class: ActionRowClass,
 }
@@ -1082,8 +1082,8 @@ SpinRowClass_autoptr :: ^SpinRowClass
 SpinRowClass_listautoptr :: ^glib.List
 SpinRowClass_slistautoptr :: ^glib.SList
 SpinRowClass_queueautoptr :: ^glib.Queue
-_AdwSpinner :: struct #packed {}
-Spinner :: _AdwSpinner
+Spinner :: struct #packed {}
+
 SpinnerClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1095,8 +1095,8 @@ SpinnerClass_autoptr :: ^SpinnerClass
 SpinnerClass_listautoptr :: ^glib.List
 SpinnerClass_slistautoptr :: ^glib.SList
 SpinnerClass_queueautoptr :: ^glib.Queue
-_AdwSpinnerPaintable :: struct #packed {}
-SpinnerPaintable :: _AdwSpinnerPaintable
+SpinnerPaintable :: struct #packed {}
+
 SpinnerPaintableClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -1108,8 +1108,8 @@ SpinnerPaintableClass_autoptr :: ^SpinnerPaintableClass
 SpinnerPaintableClass_listautoptr :: ^glib.List
 SpinnerPaintableClass_slistautoptr :: ^glib.SList
 SpinnerPaintableClass_queueautoptr :: ^glib.Queue
-_AdwSplitButton :: struct #packed {}
-SplitButton :: _AdwSplitButton
+SplitButton :: struct #packed {}
+
 SplitButtonClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1121,10 +1121,10 @@ SplitButtonClass_autoptr :: ^SplitButtonClass
 SplitButtonClass_listautoptr :: ^glib.List
 SplitButtonClass_slistautoptr :: ^glib.SList
 SplitButtonClass_queueautoptr :: ^glib.Queue
-_AdwSpringAnimation :: struct #packed {}
-SpringAnimation :: _AdwSpringAnimation
-_AdwSpringAnimationClass :: struct #packed {}
-SpringAnimationClass :: _AdwSpringAnimationClass
+SpringAnimation :: struct #packed {}
+
+SpringAnimationClass :: struct #packed {}
+
 SpringAnimation_autoptr :: ^SpringAnimation
 SpringAnimation_listautoptr :: ^glib.List
 SpringAnimation_slistautoptr :: ^glib.SList
@@ -1133,8 +1133,8 @@ SpringAnimationClass_autoptr :: ^SpringAnimationClass
 SpringAnimationClass_listautoptr :: ^glib.List
 SpringAnimationClass_slistautoptr :: ^glib.SList
 SpringAnimationClass_queueautoptr :: ^glib.Queue
-_AdwSqueezerPage :: struct #packed {}
-SqueezerPage :: _AdwSqueezerPage
+SqueezerPage :: struct #packed {}
+
 SqueezerPageClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -1146,8 +1146,8 @@ SqueezerPageClass_autoptr :: ^SqueezerPageClass
 SqueezerPageClass_listautoptr :: ^glib.List
 SqueezerPageClass_slistautoptr :: ^glib.SList
 SqueezerPageClass_queueautoptr :: ^glib.Queue
-_AdwSqueezer :: struct #packed {}
-Squeezer :: _AdwSqueezer
+Squeezer :: struct #packed {}
+
 SqueezerClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1160,8 +1160,8 @@ SqueezerClass_listautoptr :: ^glib.List
 SqueezerClass_slistautoptr :: ^glib.SList
 SqueezerClass_queueautoptr :: ^glib.Queue
 SqueezerTransitionType :: enum u32 {NONE = 0, CROSSFADE = 1 }
-_AdwStatusPage :: struct #packed {}
-StatusPage :: _AdwStatusPage
+StatusPage :: struct #packed {}
+
 StatusPageClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1173,14 +1173,14 @@ StatusPageClass_autoptr :: ^StatusPageClass
 StatusPageClass_listautoptr :: ^glib.List
 StatusPageClass_slistautoptr :: ^glib.SList
 StatusPageClass_queueautoptr :: ^glib.Queue
-_AdwSwipeable :: struct #packed {}
-Swipeable :: _AdwSwipeable
+Swipeable :: struct #packed {}
+
 et_distance_func_ptr_anon_9 :: #type proc "c" (self: ^Swipeable) -> f64
 et_snap_points_func_ptr_anon_10 :: #type proc "c" (self: ^Swipeable, n_snap_points: [^]i32) -> ^f64
 et_progress_func_ptr_anon_11 :: #type proc "c" (self: ^Swipeable) -> f64
 et_cancel_progress_func_ptr_anon_12 :: #type proc "c" (self: ^Swipeable) -> f64
 et_swipe_area_func_ptr_anon_13 :: #type proc "c" (self: ^Swipeable, navigation_direction: NavigationDirection, is_drag: glib.boolean, rect: ^gtk.Rectangle)
-_AdwSwipeableInterface :: struct {
+SwipeableInterface :: struct {
     parent: gobj.TypeInterface,
     get_distance: et_distance_func_ptr_anon_9,
     get_snap_points: et_snap_points_func_ptr_anon_10,
@@ -1189,13 +1189,13 @@ _AdwSwipeableInterface :: struct {
     get_swipe_area: et_swipe_area_func_ptr_anon_13,
     padding: [4]glib.pointer,
 }
-SwipeableInterface :: _AdwSwipeableInterface
+
 Swipeable_autoptr :: ^Swipeable
 Swipeable_listautoptr :: ^glib.List
 Swipeable_slistautoptr :: ^glib.SList
 Swipeable_queueautoptr :: ^glib.Queue
-_AdwSwipeTracker :: struct #packed {}
-SwipeTracker :: _AdwSwipeTracker
+SwipeTracker :: struct #packed {}
+
 SwipeTrackerClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -1207,8 +1207,8 @@ SwipeTrackerClass_autoptr :: ^SwipeTrackerClass
 SwipeTrackerClass_listautoptr :: ^glib.List
 SwipeTrackerClass_slistautoptr :: ^glib.SList
 SwipeTrackerClass_queueautoptr :: ^glib.Queue
-_AdwSwitchRow :: struct #packed {}
-SwitchRow :: _AdwSwitchRow
+SwitchRow :: struct #packed {}
+
 SwitchRowClass :: struct {
     parent_class: ActionRowClass,
 }
@@ -1221,8 +1221,8 @@ SwitchRowClass_listautoptr :: ^glib.List
 SwitchRowClass_slistautoptr :: ^glib.SList
 SwitchRowClass_queueautoptr :: ^glib.Queue
 TabViewShortcuts :: enum u32 {NONE = 0, CONTROL_TAB = 1, CONTROL_SHIFT_TAB = 2, CONTROL_PAGE_UP = 4, CONTROL_PAGE_DOWN = 8, CONTROL_HOME = 16, CONTROL_END = 32, CONTROL_SHIFT_PAGE_UP = 64, CONTROL_SHIFT_PAGE_DOWN = 128, CONTROL_SHIFT_HOME = 256, CONTROL_SHIFT_END = 512, ALT_DIGITS = 1024, ALT_ZERO = 2048, ALL_SHORTCUTS = 4095 }
-_AdwTabPage :: struct #packed {}
-TabPage :: _AdwTabPage
+TabPage :: struct #packed {}
+
 TabPageClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -1234,8 +1234,8 @@ TabPageClass_autoptr :: ^TabPageClass
 TabPageClass_listautoptr :: ^glib.List
 TabPageClass_slistautoptr :: ^glib.SList
 TabPageClass_queueautoptr :: ^glib.Queue
-_AdwTabView :: struct #packed {}
-TabView :: _AdwTabView
+TabView :: struct #packed {}
+
 TabViewClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1247,8 +1247,8 @@ TabViewClass_autoptr :: ^TabViewClass
 TabViewClass_listautoptr :: ^glib.List
 TabViewClass_slistautoptr :: ^glib.SList
 TabViewClass_queueautoptr :: ^glib.Queue
-_AdwTabBar :: struct #packed {}
-TabBar :: _AdwTabBar
+TabBar :: struct #packed {}
+
 TabBarClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1260,8 +1260,8 @@ TabBarClass_autoptr :: ^TabBarClass
 TabBarClass_listautoptr :: ^glib.List
 TabBarClass_slistautoptr :: ^glib.SList
 TabBarClass_queueautoptr :: ^glib.Queue
-_AdwTabButton :: struct #packed {}
-TabButton :: _AdwTabButton
+TabButton :: struct #packed {}
+
 TabButtonClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1273,8 +1273,8 @@ TabButtonClass_autoptr :: ^TabButtonClass
 TabButtonClass_listautoptr :: ^glib.List
 TabButtonClass_slistautoptr :: ^glib.SList
 TabButtonClass_queueautoptr :: ^glib.Queue
-_AdwTabOverview :: struct #packed {}
-TabOverview :: _AdwTabOverview
+TabOverview :: struct #packed {}
+
 TabOverviewClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1286,10 +1286,10 @@ TabOverviewClass_autoptr :: ^TabOverviewClass
 TabOverviewClass_listautoptr :: ^glib.List
 TabOverviewClass_slistautoptr :: ^glib.SList
 TabOverviewClass_queueautoptr :: ^glib.Queue
-_AdwTimedAnimation :: struct #packed {}
-TimedAnimation :: _AdwTimedAnimation
-_AdwTimedAnimationClass :: struct #packed {}
-TimedAnimationClass :: _AdwTimedAnimationClass
+TimedAnimation :: struct #packed {}
+
+TimedAnimationClass :: struct #packed {}
+
 TimedAnimation_autoptr :: ^TimedAnimation
 TimedAnimation_listautoptr :: ^glib.List
 TimedAnimation_slistautoptr :: ^glib.SList
@@ -1298,8 +1298,8 @@ TimedAnimationClass_autoptr :: ^TimedAnimationClass
 TimedAnimationClass_listautoptr :: ^glib.List
 TimedAnimationClass_slistautoptr :: ^glib.SList
 TimedAnimationClass_queueautoptr :: ^glib.Queue
-_AdwToastOverlay :: struct #packed {}
-ToastOverlay :: _AdwToastOverlay
+ToastOverlay :: struct #packed {}
+
 ToastOverlayClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1311,8 +1311,8 @@ ToastOverlayClass_autoptr :: ^ToastOverlayClass
 ToastOverlayClass_listautoptr :: ^glib.List
 ToastOverlayClass_slistautoptr :: ^glib.SList
 ToastOverlayClass_queueautoptr :: ^glib.Queue
-_AdwToggle :: struct #packed {}
-Toggle :: _AdwToggle
+Toggle :: struct #packed {}
+
 ToggleClass :: struct {
     parent_class: gobj.ObjectClass,
 }
@@ -1324,8 +1324,8 @@ ToggleClass_autoptr :: ^ToggleClass
 ToggleClass_listautoptr :: ^glib.List
 ToggleClass_slistautoptr :: ^glib.SList
 ToggleClass_queueautoptr :: ^glib.Queue
-_AdwToggleGroup :: struct #packed {}
-ToggleGroup :: _AdwToggleGroup
+ToggleGroup :: struct #packed {}
+
 ToggleGroupClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1338,8 +1338,8 @@ ToggleGroupClass_listautoptr :: ^glib.List
 ToggleGroupClass_slistautoptr :: ^glib.SList
 ToggleGroupClass_queueautoptr :: ^glib.Queue
 ToolbarStyle :: enum u32 {FLAT = 0, RAISED = 1, RAISED_BORDER = 2 }
-_AdwToolbarView :: struct #packed {}
-ToolbarView :: _AdwToolbarView
+ToolbarView :: struct #packed {}
+
 ToolbarViewClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1351,8 +1351,8 @@ ToolbarViewClass_autoptr :: ^ToolbarViewClass
 ToolbarViewClass_listautoptr :: ^glib.List
 ToolbarViewClass_slistautoptr :: ^glib.SList
 ToolbarViewClass_queueautoptr :: ^glib.Queue
-_AdwViewSwitcher :: struct #packed {}
-ViewSwitcher :: _AdwViewSwitcher
+ViewSwitcher :: struct #packed {}
+
 ViewSwitcherClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1365,8 +1365,8 @@ ViewSwitcherClass_listautoptr :: ^glib.List
 ViewSwitcherClass_slistautoptr :: ^glib.SList
 ViewSwitcherClass_queueautoptr :: ^glib.Queue
 ViewSwitcherPolicy :: enum u32 {NARROW = 0, WIDE = 1 }
-_AdwViewSwitcherBar :: struct #packed {}
-ViewSwitcherBar :: _AdwViewSwitcherBar
+ViewSwitcherBar :: struct #packed {}
+
 ViewSwitcherBarClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1378,8 +1378,8 @@ ViewSwitcherBarClass_autoptr :: ^ViewSwitcherBarClass
 ViewSwitcherBarClass_listautoptr :: ^glib.List
 ViewSwitcherBarClass_slistautoptr :: ^glib.SList
 ViewSwitcherBarClass_queueautoptr :: ^glib.Queue
-_AdwViewSwitcherSidebar :: struct #packed {}
-ViewSwitcherSidebar :: _AdwViewSwitcherSidebar
+ViewSwitcherSidebar :: struct #packed {}
+
 ViewSwitcherSidebarClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1391,8 +1391,8 @@ ViewSwitcherSidebarClass_autoptr :: ^ViewSwitcherSidebarClass
 ViewSwitcherSidebarClass_listautoptr :: ^glib.List
 ViewSwitcherSidebarClass_slistautoptr :: ^glib.SList
 ViewSwitcherSidebarClass_queueautoptr :: ^glib.Queue
-_AdwViewSwitcherTitle :: struct #packed {}
-ViewSwitcherTitle :: _AdwViewSwitcherTitle
+ViewSwitcherTitle :: struct #packed {}
+
 ViewSwitcherTitleClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1404,8 +1404,8 @@ ViewSwitcherTitleClass_autoptr :: ^ViewSwitcherTitleClass
 ViewSwitcherTitleClass_listautoptr :: ^glib.List
 ViewSwitcherTitleClass_slistautoptr :: ^glib.SList
 ViewSwitcherTitleClass_queueautoptr :: ^glib.Queue
-_AdwWindowTitle :: struct #packed {}
-WindowTitle :: _AdwWindowTitle
+WindowTitle :: struct #packed {}
+
 WindowTitleClass :: struct {
     parent_class: gtk.WidgetClass,
 }
@@ -1417,8 +1417,8 @@ WindowTitleClass_autoptr :: ^WindowTitleClass
 WindowTitleClass_listautoptr :: ^glib.List
 WindowTitleClass_slistautoptr :: ^glib.SList
 WindowTitleClass_queueautoptr :: ^glib.Queue
-_AdwWrapLayout :: struct #packed {}
-WrapLayout :: _AdwWrapLayout
+WrapLayout :: struct #packed {}
+
 WrapLayoutClass :: struct {
     parent_class: gtk.LayoutManagerClass,
 }
@@ -1433,8 +1433,8 @@ WrapLayoutClass_queueautoptr :: ^glib.Queue
 JustifyMode :: enum u32 {JUSTIFY_NONE = 0, JUSTIFY_FILL = 1, JUSTIFY_SPREAD = 2 }
 PackDirection :: enum u32 {PACK_START_TO_END = 0, PACK_END_TO_START = 1 }
 WrapPolicy :: enum u32 {WRAP_MINIMUM = 0, WRAP_NATURAL = 1 }
-_AdwWrapBox :: struct #packed {}
-WrapBox :: _AdwWrapBox
+WrapBox :: struct #packed {}
+
 WrapBoxClass :: struct {
     parent_class: gtk.WidgetClass,
 }

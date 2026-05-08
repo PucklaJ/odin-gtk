@@ -19,8 +19,8 @@ TYPE_PIXBUF_ROTATION :: pixbuf_rotation_get_type
 
 PixbufAlphaMode :: enum u32 {BILEVEL = 0, FULL = 1 }
 Colorspace :: enum u32 {RGB = 0 }
-_GdkPixbuf :: struct #packed {}
-Pixbuf :: _GdkPixbuf
+Pixbuf :: struct #packed {}
+
 PixbufDestroyNotify :: #type proc "c" (pixels: [^]glib.uchar, data: glib.pointer)
 PixbufError :: enum u32 {CORRUPT_IMAGE = 0, INSUFFICIENT_MEMORY = 1, BAD_OPTION = 2, UNKNOWN_TYPE = 3, UNSUPPORTED_OPERATION = 4, FAILED = 5, INCOMPLETE_ANIMATION = 6 }
 PixbufSaveFunc :: #type proc "c" (buf: ^glib.char, count: glib.size, error: ^^glib.Error, data: glib.pointer) -> glib.boolean
@@ -30,10 +30,10 @@ Pixbuf_slistautoptr :: ^glib.SList
 Pixbuf_queueautoptr :: ^glib.Queue
 InterpType :: enum u32 {NEAREST = 0, TILES = 1, BILINEAR = 2, HYPER = 3 }
 PixbufRotation :: enum u32 {NONE = 0, COUNTERCLOCKWISE = 90, UPSIDEDOWN = 180, CLOCKWISE = 270 }
-_GdkPixbufAnimation :: struct #packed {}
-PixbufAnimation :: _GdkPixbufAnimation
-_GdkPixbufAnimationIter :: struct #packed {}
-PixbufAnimationIter :: _GdkPixbufAnimationIter
+PixbufAnimation :: struct #packed {}
+
+PixbufAnimationIter :: struct #packed {}
+
 PixbufAnimation_autoptr :: ^PixbufAnimation
 PixbufAnimation_listautoptr :: ^glib.List
 PixbufAnimation_slistautoptr :: ^glib.SList
@@ -42,33 +42,33 @@ PixbufAnimationIter_autoptr :: ^PixbufAnimationIter
 PixbufAnimationIter_listautoptr :: ^glib.List
 PixbufAnimationIter_slistautoptr :: ^glib.SList
 PixbufAnimationIter_queueautoptr :: ^glib.Queue
-_GdkPixbufSimpleAnim :: struct #packed {}
-PixbufSimpleAnim :: _GdkPixbufSimpleAnim
-_GdkPixbufSimpleAnimClass :: struct #packed {}
-PixbufSimpleAnimClass :: _GdkPixbufSimpleAnimClass
+PixbufSimpleAnim :: struct #packed {}
+
+PixbufSimpleAnimClass :: struct #packed {}
+
 PixbufSimpleAnim_autoptr :: ^PixbufSimpleAnim
 PixbufSimpleAnim_listautoptr :: ^glib.List
 PixbufSimpleAnim_slistautoptr :: ^glib.SList
 PixbufSimpleAnim_queueautoptr :: ^glib.Queue
-_GdkPixbufFormat :: struct #packed {}
-PixbufFormat :: _GdkPixbufFormat
-_GdkPixbufLoader :: struct {
+PixbufFormat :: struct #packed {}
+
+PixbufLoader :: struct {
     parent_instance: gobj.Object,
     priv: glib.pointer,
 }
-PixbufLoader :: _GdkPixbufLoader
+
 size_prepared_func_ptr_anon_0 :: #type proc "c" (loader: ^PixbufLoader, width: i32, height: i32)
 area_prepared_func_ptr_anon_1 :: #type proc "c" (loader: ^PixbufLoader)
 area_updated_func_ptr_anon_2 :: #type proc "c" (loader: ^PixbufLoader, x: i32, y: i32, width: i32, height: i32)
 closed_func_ptr_anon_3 :: #type proc "c" (loader: ^PixbufLoader)
-_GdkPixbufLoaderClass :: struct {
+PixbufLoaderClass :: struct {
     parent_class: gobj.ObjectClass,
     size_prepared: size_prepared_func_ptr_anon_0,
     area_prepared: area_prepared_func_ptr_anon_1,
     area_updated: area_updated_func_ptr_anon_2,
     closed: closed_func_ptr_anon_3,
 }
-PixbufLoaderClass :: _GdkPixbufLoaderClass
+
 PixbufLoader_autoptr :: ^PixbufLoader
 PixbufLoader_listautoptr :: ^glib.List
 PixbufLoader_slistautoptr :: ^glib.SList

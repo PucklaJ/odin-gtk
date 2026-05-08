@@ -3,7 +3,7 @@ package girepository
 
 import glib ".."
 
-_GIArgument :: struct #raw_union {
+Argument :: struct #raw_union {
     v_boolean: glib.boolean,
     v_int8: i8,
     v_uint8: u8,

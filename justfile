@@ -103,6 +103,7 @@ glib:
         -e '/^URI_/s/\\" \\"//g' \
         -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_G\1$##' \
         -e 's#^_G\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
+        -e '/^NSEC_PER_SEC/ {s#`##g; s#(##g; s#)##g; s#0[^0-9]\+#0#}' \
 
     rm glib/glib-wrapper-Linux_arm64.*
     mv glib/glib-wrapper-Linux_x86_64.h   glib/glib-wrapper-Linux.h
@@ -156,6 +157,8 @@ gobject:
         -e '/^TYPE_/s/\]/\] }/g' \
         -e 's/class: \[\^\]/class: ^/g' \
         -e '/^ParamFlags/s/PARAM_//g' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_G\1$##' \
+        -e 's#^_G\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
 
 [unix]
 gobject-wrapper CC='cc':
@@ -173,7 +176,9 @@ gobject-wrapper CC='clang':
 gmodule:
     {{ RUNIC }} glib/gmodule/rune.yml
     sed glib/gmodule/gmodule*.odin -i \
-        -e 's/\^glib.char/cstring/g'\
+        -e 's/\^glib.char/cstring/g' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_G\1$##' \
+        -e 's#^_G\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
 
 gio:
     {{ RUNIC }} glib/gio/rune.yml
@@ -186,6 +191,9 @@ gio:
         -e 's/`FALSE`/glib.FALSE/g' \
         -e '/^VOLUME_IDENTIFIER_KIND_HAL_UDI/s/GLIB_DEPRECATED_MACRO//g' \
         -e '/^TLS_CHANNEL_BINDING_ERROR/s/bindinerror/binding_error/g' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_G\1$##' \
+        -e 's#^_G\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
+
 [unix]
 gio-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
@@ -204,6 +212,9 @@ girepository:
     sed glib/girepository/girepository*.odin -i \
         -e '/^\(TYPE_\|[A-Z]\+_ERROR\|\)/ {s/`//g; s/(gi_//g; s/())//g}' \
         -e 's/\(TYPE_TAG_N_TYPES :: \).*/\1int(TypeTag.UNICHAR) + 1/g' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_GI\1$##' \
+        -e 's#^_GI\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
+
 [unix]
 girepository-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
@@ -239,7 +250,10 @@ gdk-pixbuf:
         -e '{s/\^glib.char/cstring/g; s/buf: cstring/buf: ^glib.char/g; s/data: ^cstring/data: ^^glib.char/g; s/buffer: ^cstring/buffer: ^^glib.char/g}' \
         -e '/^TYPE_/ {s/`//g; s/(gdk_//g; s/())//g}' \
         -e '/^ERROR/ {s/`//g; s/gdk_//g; s/()//g}' \
-        -e '0,/^pixbuf_save/ {s/^pixbuf_save.*//}'
+        -e '0,/^pixbuf_save/ {s/^pixbuf_save.*//}' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_Gdk\1$##' \
+        -e 's#^_Gdk\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
+
 [unix]
 gdk-pixbuf-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
@@ -276,8 +290,13 @@ cairo:
     {{ RUNIC }} cairo/rune.yml
     sed cairo/cairo.odin -i \
         -e '/^[A-Z_1-9]\+ :: / {s/`//g; s/\\//g; s/_CAIRO_//}' \
-        -e 's/^t ::/context_t ::/g' \
+        -e '/^_cairo\s*::\s*/ s#.*##' \
+        -e 's/^t\s*::\s*.*$/context_t :: struct #packed {}/g' \
         -e '/\^text/! s/\^t/\^context_t/g' \
+        -e '/^path_data_t\s*::\s*/ s#.*##' \
+        -e '/^_cairo_path_data_t\s*::\s*/ s#_t##' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)_t\s*::\s*_cairo_\1$##' \
+        -e 's#^_cairo_\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1_t :: \2#' \
 
 pango-setup:
     cd shared/pango && meson setup \
@@ -296,6 +315,9 @@ pango:
         -e '/^ATTR_/ {s/`//g; s/(guint)//g; s/UINT_MAX/glib.MAXUINT/g}' \
         -e '/^ANALYSIS_/ {s/`//g}' \
         -e '/^\(RENDER_TYPE\|ENGINE_TYPE\)/ {s/`//g; s/\\//g}' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_Pango\1$##' \
+        -e 's#^_Pango\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
+
 [unix]
 pango-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
@@ -313,6 +335,8 @@ pangocairo:
     {{ RUNIC }} pango/pangocairo/rune.yml
     sed pango/pangocairo/pangocairo.odin -i \
         -e '/^TYPE_/ {s/`//g; s/(//g; s/)//g; s/pango_cairo_//g}' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_PangoCairo\1$##' \
+        -e 's#^_PangoCairo\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
 
 graphene-setup:
     cd shared/graphene && meson setup \
@@ -330,6 +354,8 @@ graphene:
     sed graphene/graphene*.odin -i \
         -e '/^SIMD_S/ {s/`//g; s/\\//g}' \
         -e '/^PI/ {s/`//g; s/f//g}' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_graphene_\1$##' \
+        -e 's#^_graphene_\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
 [unix]
 graphene-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
@@ -378,11 +404,18 @@ gtk:
     {{ RUNIC }} gtk/rune.yml
     sed gtk/gtk.odin -i \
         -e 's/cairo.t/cairo.context_t/g' \
-        -e 's/^Snapshot :: Snapshot//g' \
-        -e 's/^SnapshotClass :: _GtkSnapshotClass//g' \
         -e '0,/Snapshot_queueautoptr/{s/Snapshot_.*//g}' \
         -e '/^\(TYPE_\|[A-Z_]\+ERROR\|ACCESSIBLE_LIST\)/ {s/`(//; s/())`//; s/ gtk_/ /}' \
-        -e '/^\(BINARY_AGE\)\|\(INTERFACE_AGE\)/ {s/`//g}'
+        -e '/^\(BINARY_AGE\)\|\(INTERFACE_AGE\)/ {s/`//g}' \
+        -e '/^_GdkSnapshotClass/ s#.*##' \
+        -e '/^SnapshotClass\s*::\s*_GdkSnapshotClass$/ s#.*##' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_Gtk\1$##' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_Gdk\1$##' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_Gsk\1$##' \
+        -e 's#^_Gtk\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
+        -e 's#^_Gdk\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
+        -e 's#^_Gsk\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
+
 [unix]
 gtk-wrapper CC='cc':
     @mkdir -p lib/{{ os() }}/{{ arch() }}
@@ -422,6 +455,8 @@ adwaita:
         -e 's/focus: \[\^\]/focus: ^/' \
         -e '/^TYPE/ {s/`(//; s/())`//; s/ adw_/ /}' \
         -e '/^DURATION_INFINITE/ {s/`//g; s/([a-zA-Z0-9_]\+)//g}' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_Adw\1$##' \
+        -e 's#^_Adw\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
 
 [unix]
 adwaita-wrapper CC='cc':

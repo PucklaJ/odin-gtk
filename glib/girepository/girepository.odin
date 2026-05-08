@@ -30,10 +30,10 @@ TYPE_VFUNC_INFO :: vfunc_info_get_type
 TYPE_REPOSITORY :: repository_get_type 
 REPOSITORY_ERROR :: repository_error_quark 
 
-_GIBaseInfo :: struct #packed {}
-BaseInfo :: _GIBaseInfo
-_GIBaseInfoClass :: struct #packed {}
-BaseInfoClass :: _GIBaseInfoClass
+BaseInfo :: struct #packed {}
+
+BaseInfoClass :: struct #packed {}
+
 BaseInfoStack :: struct {
     parent_instance: gobj.TypeInstance,
     dummy0: i32,
@@ -41,38 +41,38 @@ BaseInfoStack :: struct {
     dummy2: [2]u32,
     dummy3: [6]rawptr,
 }
-_GICallableInfo :: struct #packed {}
-CallableInfo :: _GICallableInfo
-_GIFunctionInfo :: struct #packed {}
-FunctionInfo :: _GIFunctionInfo
-_GICallbackInfo :: struct #packed {}
-CallbackInfo :: _GICallbackInfo
-_GIRegisteredTypeInfo :: struct #packed {}
-RegisteredTypeInfo :: _GIRegisteredTypeInfo
-_GIStructInfo :: struct #packed {}
-StructInfo :: _GIStructInfo
-_GIUnionInfo :: struct #packed {}
-UnionInfo :: _GIUnionInfo
-_GIEnumInfo :: struct #packed {}
-EnumInfo :: _GIEnumInfo
-_GIFlagsInfo :: struct #packed {}
-FlagsInfo :: _GIFlagsInfo
-_GIObjectInfo :: struct #packed {}
-ObjectInfo :: _GIObjectInfo
-_GIInterfaceInfo :: struct #packed {}
-InterfaceInfo :: _GIInterfaceInfo
-_GIConstantInfo :: struct #packed {}
-ConstantInfo :: _GIConstantInfo
-_GIValueInfo :: struct #packed {}
-ValueInfo :: _GIValueInfo
-_GISignalInfo :: struct #packed {}
-SignalInfo :: _GISignalInfo
-_GIVFuncInfo :: struct #packed {}
-VFuncInfo :: _GIVFuncInfo
-_GIPropertyInfo :: struct #packed {}
-PropertyInfo :: _GIPropertyInfo
-_GIFieldInfo :: struct #packed {}
-FieldInfo :: _GIFieldInfo
+CallableInfo :: struct #packed {}
+
+FunctionInfo :: struct #packed {}
+
+CallbackInfo :: struct #packed {}
+
+RegisteredTypeInfo :: struct #packed {}
+
+StructInfo :: struct #packed {}
+
+UnionInfo :: struct #packed {}
+
+EnumInfo :: struct #packed {}
+
+FlagsInfo :: struct #packed {}
+
+ObjectInfo :: struct #packed {}
+
+InterfaceInfo :: struct #packed {}
+
+ConstantInfo :: struct #packed {}
+
+ValueInfo :: struct #packed {}
+
+SignalInfo :: struct #packed {}
+
+VFuncInfo :: struct #packed {}
+
+PropertyInfo :: struct #packed {}
+
+FieldInfo :: struct #packed {}
+
 ArgInfo :: struct {
     parent: BaseInfoStack,
     padding: [6]rawptr,
@@ -81,9 +81,9 @@ TypeInfo :: struct {
     parent: BaseInfoStack,
     padding: [6]rawptr,
 }
-_GIUnresolvedInfo :: struct #packed {}
-UnresolvedInfo :: _GIUnresolvedInfo
-Argument :: _GIArgument
+UnresolvedInfo :: struct #packed {}
+
+
 Transfer :: enum u32 {NOTHING = 0, CONTAINER = 1, EVERYTHING = 2 }
 Direction :: enum u32 {IN = 0, OUT = 1, INOUT = 2 }
 ScopeType :: enum u32 {INVALID = 0, CALL = 1, ASYNC = 2, NOTIFIED = 3, FOREVER = 4 }
@@ -92,8 +92,8 @@ ArrayType :: enum u32 {C = 0, ARRAY = 1, PTR_ARRAY = 2, BYTE_ARRAY = 3 }
 FieldInfoFlags :: enum u32 {NONE = 0, FIELD_IS_READABLE = 1, FIELD_IS_WRITABLE = 2 }
 VFuncInfoFlags :: enum u32 {VFUNC_INFO_FLAGS_NONE = 0, VFUNC_MUST_CHAIN_UP = 1, VFUNC_MUST_OVERRIDE = 2, VFUNC_MUST_NOT_OVERRIDE = 4 }
 FunctionInfoFlags :: enum u32 {NONE = 0, FUNCTION_IS_METHOD = 1, FUNCTION_IS_CONSTRUCTOR = 2, FUNCTION_IS_GETTER = 4, FUNCTION_IS_SETTER = 8, FUNCTION_WRAPS_VFUNC = 16, FUNCTION_IS_ASYNC = 32 }
-_GITypelib :: struct #packed {}
-Typelib :: _GITypelib
+Typelib :: struct #packed {}
+
 AttributeIter :: struct {
     data: rawptr,
     _dummy: [4]rawptr,
@@ -103,8 +103,8 @@ ObjectInfoRefFunction :: #type proc "c" (object: rawptr) -> rawptr
 ObjectInfoUnrefFunction :: #type proc "c" (object: rawptr)
 ObjectInfoSetValueFunction :: #type proc "c" (value: ^gobj.Value, object: rawptr)
 ObjectInfoGetValueFunction :: #type proc "c" (value: ^gobj.Value) -> rawptr
-_GIRepository :: struct #packed {}
-Repository :: _GIRepository
+Repository :: struct #packed {}
+
 RepositoryClass :: struct {
     parent_class: gobj.ObjectClass,
 }

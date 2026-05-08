@@ -83,50 +83,50 @@ TYPE_RENDERER :: renderer_get_type
 
 hb_feature_t :: rawptr
 hb_font_t :: rawptr
-_PangoCoverage :: struct #packed {}
-Coverage :: _PangoCoverage
+Coverage :: struct #packed {}
+
 CoverageLevel :: enum u32 {COVERAGE_NONE = 0, COVERAGE_FALLBACK = 1, COVERAGE_APPROXIMATE = 2, COVERAGE_EXACT = 3 }
 Coverage_autoptr :: ^Coverage
 Coverage_listautoptr :: ^glib.List
 Coverage_slistautoptr :: ^glib.SList
 Coverage_queueautoptr :: ^glib.Queue
-_PangoLogAttr :: [4]i8
-LogAttr :: _PangoLogAttr
-_PangoEngine :: struct {
+LogAttr :: [4]i8
+
+Engine :: struct {
     parent_instance: gobj.Object,
 }
-Engine :: _PangoEngine
-_PangoEngineLang :: struct {
+
+EngineLang :: struct {
     parent_instance: Engine,
 }
-EngineLang :: _PangoEngineLang
-_PangoEngineShape :: struct {
+
+EngineShape :: struct {
     parent_instance: Engine,
 }
-EngineShape :: _PangoEngineShape
-_PangoFont :: struct {
+
+Font :: struct {
     parent_instance: gobj.Object,
 }
-Font :: _PangoFont
-_PangoFontMap :: struct {
+
+FontMap :: struct {
     parent_instance: gobj.Object,
 }
-FontMap :: _PangoFontMap
-_PangoRectangle :: struct {
+
+Rectangle :: struct {
     x: i32,
     y: i32,
     width: i32,
     height: i32,
 }
-Rectangle :: _PangoRectangle
-_PangoContext :: struct #packed {}
-Context :: _PangoContext
-_PangoLanguage :: struct #packed {}
-Language :: _PangoLanguage
+
+Context :: struct #packed {}
+
+Language :: struct #packed {}
+
 Glyph :: glib.uint32
 Gravity :: enum u32 {SOUTH = 0, EAST = 1, NORTH = 2, WEST = 3, AUTO = 4 }
 GravityHint :: enum u32 {NATURAL = 0, STRONG = 1, LINE = 2 }
-_PangoMatrix :: struct {
+Matrix :: struct {
     xx: f64,
     xy: f64,
     yx: f64,
@@ -134,9 +134,9 @@ _PangoMatrix :: struct {
     x0: f64,
     y0: f64,
 }
-Matrix :: _PangoMatrix
-_PangoScriptIter :: struct #packed {}
-ScriptIter :: _PangoScriptIter
+
+ScriptIter :: struct #packed {}
+
 Script :: enum i32 {INVALID_CODE = -1, COMMON = 0, INHERITED = 1, ARABIC = 2, ARMENIAN = 3, BENGALI = 4, BOPOMOFO = 5, CHEROKEE = 6, COPTIC = 7, CYRILLIC = 8, DESERET = 9, DEVANAGARI = 10, ETHIOPIC = 11, GEORGIAN = 12, GOTHIC = 13, GREEK = 14, GUJARATI = 15, GURMUKHI = 16, HAN = 17, HANGUL = 18, HEBREW = 19, HIRAGANA = 20, KANNADA = 21, KATAKANA = 22, KHMER = 23, LAO = 24, LATIN = 25, MALAYALAM = 26, MONGOLIAN = 27, MYANMAR = 28, OGHAM = 29, OLD_ITALIC = 30, ORIYA = 31, RUNIC = 32, SINHALA = 33, SYRIAC = 34, TAMIL = 35, TELUGU = 36, THAANA = 37, THAI = 38, TIBETAN = 39, CANADIAN_ABORIGINAL = 40, YI = 41, TAGALOG = 42, HANUNOO = 43, BUHID = 44, TAGBANWA = 45, BRAILLE = 46, CYPRIOT = 47, LIMBU = 48, OSMANYA = 49, SHAVIAN = 50, LINEAR_B = 51, TAI_LE = 52, UGARITIC = 53, NEW_TAI_LUE = 54, BUGINESE = 55, GLAGOLITIC = 56, TIFINAGH = 57, SYLOTI_NAGRI = 58, OLD_PERSIAN = 59, KHAROSHTHI = 60, UNKNOWN = 61, BALINESE = 62, CUNEIFORM = 63, PHOENICIAN = 64, PHAGS_PA = 65, NKO = 66, KAYAH_LI = 67, LEPCHA = 68, REJANG = 69, SUNDANESE = 70, SAURASHTRA = 71, CHAM = 72, OL_CHIKI = 73, VAI = 74, CARIAN = 75, LYCIAN = 76, LYDIAN = 77, BATAK = 78, BRAHMI = 79, MANDAIC = 80, CHAKMA = 81, MEROITIC_CURSIVE = 82, MEROITIC_HIEROGLYPHS = 83, MIAO = 84, SHARADA = 85, SORA_SOMPENG = 86, TAKRI = 87, BASSA_VAH = 88, CAUCASIAN_ALBANIAN = 89, DUPLOYAN = 90, ELBASAN = 91, GRANTHA = 92, KHOJKI = 93, KHUDAWADI = 94, LINEAR_A = 95, MAHAJANI = 96, MANICHAEAN = 97, MENDE_KIKAKUI = 98, MODI = 99, MRO = 100, NABATAEAN = 101, OLD_NORTH_ARABIAN = 102, OLD_PERMIC = 103, PAHAWH_HMONG = 104, PALMYRENE = 105, PAU_CIN_HAU = 106, PSALTER_PAHLAVI = 107, SIDDHAM = 108, TIRHUTA = 109, WARANG_CITI = 110, AHOM = 111, ANATOLIAN_HIEROGLYPHS = 112, HATRAN = 113, MULTANI = 114, OLD_HUNGARIAN = 115, SIGNWRITING = 116 }
 ScriptIter_autoptr :: ^ScriptIter
 ScriptIter_listautoptr :: ^glib.List
@@ -144,9 +144,9 @@ ScriptIter_slistautoptr :: ^glib.SList
 ScriptIter_queueautoptr :: ^glib.Queue
 Direction :: enum u32 {LTR = 0, RTL = 1, TTB_LTR = 2, TTB_RTL = 3, WEAK_LTR = 4, WEAK_RTL = 5, NEUTRAL = 6 }
 BidiType :: enum u32 {L = 0, LRE = 1, LRO = 2, R = 3, AL = 4, RLE = 5, RLO = 6, PDF = 7, EN = 8, ES = 9, ET = 10, AN = 11, CS = 12, NSM = 13, BN = 14, B = 15, S = 16, WS = 17, ON = 18, LRI = 19, RLI = 20, FSI = 21, PDI = 22 }
-_PangoFontDescription :: struct #packed {}
-FontDescription :: _PangoFontDescription
-_PangoFontMetrics :: struct {
+FontDescription :: struct #packed {}
+
+FontMetrics :: struct {
     ref_count: glib.uint_,
     ascent: i32,
     descent: i32,
@@ -158,28 +158,28 @@ _PangoFontMetrics :: struct {
     strikethrough_position: i32,
     strikethrough_thickness: i32,
 }
-FontMetrics :: _PangoFontMetrics
+
 Style :: enum u32 {NORMAL = 0, OBLIQUE = 1, ITALIC = 2 }
 Variant :: enum u32 {NORMAL = 0, SMALL_CAPS = 1, ALL_SMALL_CAPS = 2, PETITE_CAPS = 3, ALL_PETITE_CAPS = 4, UNICASE = 5, TITLE_CAPS = 6 }
 Weight :: enum u32 {THIN = 100, ULTRALIGHT = 200, LIGHT = 300, SEMILIGHT = 350, BOOK = 380, NORMAL = 400, MEDIUM = 500, SEMIBOLD = 600, BOLD = 700, ULTRABOLD = 800, HEAVY = 900, ULTRAHEAVY = 1000 }
 Stretch :: enum u32 {ULTRA_CONDENSED = 0, EXTRA_CONDENSED = 1, CONDENSED = 2, SEMI_CONDENSED = 3, NORMAL = 4, SEMI_EXPANDED = 5, EXPANDED = 6, EXTRA_EXPANDED = 7, ULTRA_EXPANDED = 8 }
 FontMask :: enum u32 {FAMILY = 1, STYLE = 2, VARIANT = 4, WEIGHT = 8, STRETCH = 16, SIZE = 32, GRAVITY = 64, VARIATIONS = 128, FEATURES = 256, COLOR = 512 }
 FontColor :: enum u32 {FORBIDDEN = 0, REQUIRED = 1, DONT_CARE = 2 }
-_PangoFontFace :: struct {
+FontFace :: struct {
     parent_instance: gobj.Object,
 }
-FontFace :: _PangoFontFace
-_PangoFontFamily :: struct {
+
+FontFamily :: struct {
     parent_instance: gobj.Object,
 }
-FontFamily :: _PangoFontFamily
+
 list_faces_func_ptr_anon_0 :: #type proc "c" (family: ^FontFamily, faces: [^]^^FontFace, n_faces: [^]i32)
 et_name_func_ptr_anon_1 :: #type proc "c" (family: ^FontFamily) -> cstring
 is_monospace_func_ptr_anon_2 :: #type proc "c" (family: ^FontFamily) -> glib.boolean
 is_variable_func_ptr_anon_3 :: #type proc "c" (family: ^FontFamily) -> glib.boolean
 et_face_func_ptr_anon_4 :: #type proc "c" (family: ^FontFamily, name: cstring) -> ^FontFace
 _pango_reserved2_func_ptr_anon_5 :: #type proc "c" ()
-_PangoFontFamilyClass :: struct {
+FontFamilyClass :: struct {
     parent_class: gobj.ObjectClass,
     list_faces: list_faces_func_ptr_anon_0,
     get_name: et_name_func_ptr_anon_1,
@@ -188,7 +188,7 @@ _PangoFontFamilyClass :: struct {
     get_face: et_face_func_ptr_anon_4,
     _pango_reserved2: _pango_reserved2_func_ptr_anon_5,
 }
-FontFamilyClass :: _PangoFontFamilyClass
+
 et_face_name_func_ptr_anon_6 :: #type proc "c" (face: ^FontFace) -> cstring
 describe_func_ptr_anon_7 :: #type proc "c" (face: ^FontFace) -> ^FontDescription
 list_sizes_func_ptr_anon_8 :: #type proc "c" (face: ^FontFace, sizes: [^]^i32, n_sizes: [^]i32)
@@ -196,7 +196,7 @@ is_synthesized_func_ptr_anon_9 :: #type proc "c" (face: ^FontFace) -> glib.boole
 et_family_func_ptr_anon_10 :: #type proc "c" (face: ^FontFace) -> ^FontFamily
 _pango_reserved3_func_ptr_anon_11 :: #type proc "c" ()
 _pango_reserved4_func_ptr_anon_12 :: #type proc "c" ()
-_PangoFontFaceClass :: struct {
+FontFaceClass :: struct {
     parent_class: gobj.ObjectClass,
     get_face_name: et_face_name_func_ptr_anon_6,
     describe: describe_func_ptr_anon_7,
@@ -206,7 +206,7 @@ _PangoFontFaceClass :: struct {
     _pango_reserved3: _pango_reserved3_func_ptr_anon_11,
     _pango_reserved4: _pango_reserved4_func_ptr_anon_12,
 }
-FontFaceClass :: _PangoFontFaceClass
+
 describe_func_ptr_anon_13 :: #type proc "c" (font: ^Font) -> ^FontDescription
 et_coverage_func_ptr_anon_14 :: #type proc "c" (font: ^Font, language: ^Language) -> ^Coverage
 et_glyph_extents_func_ptr_anon_15 :: #type proc "c" (font: ^Font, glyph: Glyph, ink_rect: ^Rectangle, logical_rect: ^Rectangle)
@@ -215,7 +215,7 @@ et_font_map_func_ptr_anon_17 :: #type proc "c" (font: ^Font) -> ^FontMap
 describe_absolute_func_ptr_anon_18 :: #type proc "c" (font: ^Font) -> ^FontDescription
 et_features_func_ptr_anon_19 :: #type proc "c" (font: ^Font, features: [^]hb_feature_t, len: glib.uint_, num_features: [^]glib.uint_)
 create_hb_font_func_ptr_anon_20 :: #type proc "c" (font: ^Font) -> ^hb_font_t
-_PangoFontClass :: struct {
+FontClass :: struct {
     parent_class: gobj.ObjectClass,
     describe: describe_func_ptr_anon_13,
     get_coverage: et_coverage_func_ptr_anon_14,
@@ -226,7 +226,7 @@ _PangoFontClass :: struct {
     get_features: et_features_func_ptr_anon_19,
     create_hb_font: create_hb_font_func_ptr_anon_20,
 }
-FontClass :: _PangoFontClass
+
 FontFamily_autoptr :: ^FontFamily
 FontFamily_listautoptr :: ^glib.List
 FontFamily_slistautoptr :: ^glib.SList
@@ -243,48 +243,48 @@ FontDescription_autoptr :: ^FontDescription
 FontDescription_listautoptr :: ^glib.List
 FontDescription_slistautoptr :: ^glib.SList
 FontDescription_queueautoptr :: ^glib.Queue
-_PangoColor :: struct {
+Color :: struct {
     red: glib.uint16,
     green: glib.uint16,
     blue: glib.uint16,
 }
-Color :: _PangoColor
-Attribute :: _PangoAttribute
-AttrClass :: _PangoAttrClass
-_PangoAttrString :: struct {
+
+
+
+AttrString :: struct {
     attr: Attribute,
     value: cstring,
 }
-AttrString :: _PangoAttrString
-_PangoAttrLanguage :: struct {
+
+AttrLanguage :: struct {
     attr: Attribute,
     value: ^Language,
 }
-AttrLanguage :: _PangoAttrLanguage
-_PangoAttrInt :: struct {
+
+AttrInt :: struct {
     attr: Attribute,
     value: i32,
 }
-AttrInt :: _PangoAttrInt
-_PangoAttrSize :: [24]i8
-AttrSize :: _PangoAttrSize
-_PangoAttrFloat :: struct {
+
+AttrSize :: [24]i8
+
+AttrFloat :: struct {
     attr: Attribute,
     value: f64,
 }
-AttrFloat :: _PangoAttrFloat
-_PangoAttrColor :: struct {
+
+AttrColor :: struct {
     attr: Attribute,
     color: Color,
 }
-AttrColor :: _PangoAttrColor
-_PangoAttrFontDesc :: struct {
+
+AttrFontDesc :: struct {
     attr: Attribute,
     desc: ^FontDescription,
 }
-AttrFontDesc :: _PangoAttrFontDesc
+
 AttrDataCopyFunc :: #type proc "c" (user_data: glib.constpointer) -> glib.pointer
-_PangoAttrShape :: struct {
+AttrShape :: struct {
     attr: Attribute,
     ink_rect: Rectangle,
     logical_rect: Rectangle,
@@ -292,12 +292,12 @@ _PangoAttrShape :: struct {
     copy_func: AttrDataCopyFunc,
     destroy_func: glib.DestroyNotify,
 }
-AttrShape :: _PangoAttrShape
-_PangoAttrFontFeatures :: struct {
+
+AttrFontFeatures :: struct {
     attr: Attribute,
     features: cstring,
 }
-AttrFontFeatures :: _PangoAttrFontFeatures
+
 AttrType :: enum u32 {ATTR_INVALID = 0, ATTR_LANGUAGE = 1, ATTR_FAMILY = 2, ATTR_STYLE = 3, ATTR_WEIGHT = 4, ATTR_VARIANT = 5, ATTR_STRETCH = 6, ATTR_SIZE = 7, ATTR_FONT_DESC = 8, ATTR_FOREGROUND = 9, ATTR_BACKGROUND = 10, ATTR_UNDERLINE = 11, ATTR_STRIKETHROUGH = 12, ATTR_RISE = 13, ATTR_SHAPE = 14, ATTR_SCALE = 15, ATTR_FALLBACK = 16, ATTR_LETTER_SPACING = 17, ATTR_UNDERLINE_COLOR = 18, ATTR_STRIKETHROUGH_COLOR = 19, ATTR_ABSOLUTE_SIZE = 20, ATTR_GRAVITY = 21, ATTR_GRAVITY_HINT = 22, ATTR_FONT_FEATURES = 23, ATTR_FOREGROUND_ALPHA = 24, ATTR_BACKGROUND_ALPHA = 25, ATTR_ALLOW_BREAKS = 26, ATTR_SHOW = 27, ATTR_INSERT_HYPHENS = 28, ATTR_OVERLINE = 29, ATTR_OVERLINE_COLOR = 30, ATTR_LINE_HEIGHT = 31, ATTR_ABSOLUTE_LINE_HEIGHT = 32, ATTR_TEXT_TRANSFORM = 33, ATTR_WORD = 34, ATTR_SENTENCE = 35, ATTR_BASELINE_SHIFT = 36, ATTR_FONT_SCALE = 37 }
 Underline :: enum u32 {NONE = 0, SINGLE = 1, DOUBLE = 2, LOW = 3, ERROR = 4, SINGLE_LINE = 5, DOUBLE_LINE = 6, ERROR_LINE = 7 }
 Overline :: enum u32 {NONE = 0, SINGLE = 1 }
@@ -305,7 +305,7 @@ ShowFlags :: enum u32 {NONE = 0, SPACES = 1, LINE_BREAKS = 2, IGNORABLES = 4 }
 TextTransform :: enum u32 {NONE = 0, LOWERCASE = 1, UPPERCASE = 2, CAPITALIZE = 3 }
 BaselineShift :: enum u32 {NONE = 0, SUPERSCRIPT = 1, SUBSCRIPT = 2 }
 FontScale :: enum u32 {NONE = 0, SUPERSCRIPT = 1, SUBSCRIPT = 2, SMALL_CAPS = 3 }
-_PangoAttribute :: struct {
+Attribute :: struct {
     klass: [^]AttrClass,
     start_index: glib.uint_,
     end_index: glib.uint_,
@@ -314,16 +314,16 @@ AttrFilterFunc :: #type proc "c" (attribute: ^Attribute, user_data: glib.pointer
 copy_func_ptr_anon_21 :: #type proc "c" (attr: ^Attribute) -> ^Attribute
 destroy_func_ptr_anon_22 :: #type proc "c" (attr: ^Attribute)
 equal_func_ptr_anon_23 :: #type proc "c" (attr1: ^Attribute, attr2: ^Attribute) -> glib.boolean
-_PangoAttrClass :: struct {
+AttrClass :: struct {
     type: AttrType,
     copy: copy_func_ptr_anon_21,
     destroy: destroy_func_ptr_anon_22,
     equal: equal_func_ptr_anon_23,
 }
-_PangoAttrList :: struct #packed {}
-AttrList :: _PangoAttrList
-_PangoAttrIterator :: struct #packed {}
-AttrIterator :: _PangoAttrIterator
+AttrList :: struct #packed {}
+
+AttrIterator :: struct #packed {}
+
 Attribute_autoptr :: ^Attribute
 Attribute_listautoptr :: ^glib.List
 Attribute_slistautoptr :: ^glib.SList
@@ -336,7 +336,7 @@ AttrIterator_autoptr :: ^AttrIterator
 AttrIterator_listautoptr :: ^glib.List
 AttrIterator_slistautoptr :: ^glib.SList
 AttrIterator_queueautoptr :: ^glib.Queue
-_PangoAnalysis :: struct {
+Analysis :: struct {
     shape_engine: ^EngineShape,
     lang_engine: ^EngineLang,
     font: ^Font,
@@ -347,18 +347,18 @@ _PangoAnalysis :: struct {
     language: ^Language,
     extra_attrs: [^]glib.SList,
 }
-Analysis :: _PangoAnalysis
-_PangoItem :: struct {
+
+Item :: struct {
     offset: i32,
     length: i32,
     num_chars: i32,
     analysis: Analysis,
 }
-Item :: _PangoItem
-_PangoFontset :: struct {
+
+Fontset :: struct {
     parent_instance: gobj.Object,
 }
-Fontset :: _PangoFontset
+
 et_font_func_ptr_anon_24 :: #type proc "c" (fontset: ^Fontset, wc: glib.uint_) -> ^Font
 et_metrics_func_ptr_anon_25 :: #type proc "c" (fontset: ^Fontset) -> ^FontMetrics
 et_language_func_ptr_anon_26 :: #type proc "c" (fontset: ^Fontset) -> ^Language
@@ -368,7 +368,7 @@ _pango_reserved1_func_ptr_anon_28 :: #type proc "c" ()
 _pango_reserved2_func_ptr_anon_29 :: #type proc "c" ()
 _pango_reserved3_func_ptr_anon_30 :: #type proc "c" ()
 _pango_reserved4_func_ptr_anon_31 :: #type proc "c" ()
-_PangoFontsetClass :: struct {
+FontsetClass :: struct {
     parent_class: gobj.ObjectClass,
     get_font: et_font_func_ptr_anon_24,
     get_metrics: et_metrics_func_ptr_anon_25,
@@ -379,7 +379,7 @@ _PangoFontsetClass :: struct {
     _pango_reserved3: _pango_reserved3_func_ptr_anon_30,
     _pango_reserved4: _pango_reserved4_func_ptr_anon_31,
 }
-FontsetClass :: _PangoFontsetClass
+
 load_font_func_ptr_anon_32 :: #type proc "c" (fontmap: ^FontMap, context_p: ^Context, desc: ^FontDescription) -> ^Font
 list_families_func_ptr_anon_33 :: #type proc "c" (fontmap: ^FontMap, families: [^]^^FontFamily, n_families: [^]i32)
 load_fontset_func_ptr_anon_34 :: #type proc "c" (fontmap: ^FontMap, context_p: ^Context, desc: ^FontDescription, language: ^Language) -> ^Fontset
@@ -387,7 +387,7 @@ et_serial_func_ptr_anon_35 :: #type proc "c" (fontmap: ^FontMap) -> glib.uint_
 changed_func_ptr_anon_36 :: #type proc "c" (fontmap: ^FontMap)
 et_family_func_ptr_anon_37 :: #type proc "c" (fontmap: ^FontMap, name: cstring) -> ^FontFamily
 et_face_func_ptr_anon_38 :: #type proc "c" (fontmap: ^FontMap, font: ^Font) -> ^FontFace
-_PangoFontMapClass :: struct {
+FontMapClass :: struct {
     parent_class: gobj.ObjectClass,
     load_font: load_font_func_ptr_anon_32,
     list_families: list_families_func_ptr_anon_33,
@@ -398,80 +398,80 @@ _PangoFontMapClass :: struct {
     get_family: et_family_func_ptr_anon_37,
     get_face: et_face_func_ptr_anon_38,
 }
-FontMapClass :: _PangoFontMapClass
+
 FontMap_autoptr :: ^FontMap
 FontMap_listautoptr :: ^glib.List
 FontMap_slistautoptr :: ^glib.SList
 FontMap_queueautoptr :: ^glib.Queue
-_PangoContextClass :: struct #packed {}
-ContextClass :: _PangoContextClass
+ContextClass :: struct #packed {}
+
 GlyphUnit :: glib.int32
-_PangoGlyphGeometry :: struct {
+GlyphGeometry :: struct {
     width: GlyphUnit,
     x_offset: GlyphUnit,
     y_offset: GlyphUnit,
 }
-GlyphGeometry :: _PangoGlyphGeometry
-_PangoGlyphVisAttr :: [4]i8
-GlyphVisAttr :: _PangoGlyphVisAttr
-_PangoGlyphInfo :: struct {
+
+GlyphVisAttr :: [4]i8
+
+GlyphInfo :: struct {
     glyph: Glyph,
     geometry: GlyphGeometry,
     attr: GlyphVisAttr,
 }
-GlyphInfo :: _PangoGlyphInfo
-_PangoGlyphString :: struct {
+
+GlyphString :: struct {
     num_glyphs: i32,
     glyphs: [^]GlyphInfo,
     log_clusters: [^]i32,
     space: i32,
 }
-GlyphString :: _PangoGlyphString
+
 ShapeFlags :: enum u32 {NONE = 0, ROUND_POSITIONS = 1 }
-_PangoEngineClass :: struct {
+EngineClass :: struct {
     parent_class: gobj.ObjectClass,
 }
-EngineClass :: _PangoEngineClass
+
 script_break_func_ptr_anon_39 :: #type proc "c" (engine: ^EngineLang, text: cstring, len: i32, analysis: [^]Analysis, attrs: [^]LogAttr, attrs_len: i32)
-_PangoEngineLangClass :: struct {
+EngineLangClass :: struct {
     parent_class: EngineClass,
     script_break: script_break_func_ptr_anon_39,
 }
-EngineLangClass :: _PangoEngineLangClass
+
 script_shape_func_ptr_anon_40 :: #type proc "c" (engine: ^EngineShape, font: ^Font, item_text: cstring, item_length: u32, analysis: [^]Analysis, glyphs: [^]GlyphString, paragraph_text: cstring, paragraph_length: u32)
 covers_func_ptr_anon_41 :: #type proc "c" (engine: ^EngineShape, font: ^Font, language: ^Language, wc: glib.unichar) -> CoverageLevel
-_PangoEngineShapeClass :: struct {
+EngineShapeClass :: struct {
     parent_class: EngineClass,
     script_shape: script_shape_func_ptr_anon_40,
     covers: covers_func_ptr_anon_41,
 }
-EngineShapeClass :: _PangoEngineShapeClass
-_PangoEngineScriptInfo :: struct {
+
+EngineScriptInfo :: struct {
     script: Script,
     langs: cstring,
 }
-EngineScriptInfo :: _PangoEngineScriptInfo
-_PangoEngineInfo :: struct {
+
+EngineInfo :: struct {
     id: cstring,
     engine_type: cstring,
     render_type: cstring,
     scripts: [^]EngineScriptInfo,
     n_scripts: glib.int_,
 }
-EngineInfo :: _PangoEngineInfo
-_PangoFontsetSimple :: struct #packed {}
-FontsetSimple :: _PangoFontsetSimple
-_PangoFontsetSimpleClass :: struct #packed {}
-FontsetSimpleClass :: _PangoFontsetSimpleClass
-_PangoGlyphItem :: struct {
+
+FontsetSimple :: struct #packed {}
+
+FontsetSimpleClass :: struct #packed {}
+
+GlyphItem :: struct {
     item: ^Item,
     glyphs: [^]GlyphString,
     y_offset: i32,
     start_x_offset: i32,
     end_x_offset: i32,
 }
-GlyphItem :: _PangoGlyphItem
-_PangoGlyphItemIter :: struct {
+
+GlyphItemIter :: struct {
     glyph_item: ^GlyphItem,
     text: cstring,
     start_glyph: i32,
@@ -481,20 +481,20 @@ _PangoGlyphItemIter :: struct {
     end_index: i32,
     end_char: i32,
 }
-GlyphItemIter :: _PangoGlyphItemIter
-_PangoTabArray :: struct #packed {}
-TabArray :: _PangoTabArray
+
+TabArray :: struct #packed {}
+
 TabAlign :: enum u32 {TAB_LEFT = 0, TAB_RIGHT = 1, TAB_CENTER = 2, TAB_DECIMAL = 3 }
 TabArray_autoptr :: ^TabArray
 TabArray_listautoptr :: ^glib.List
 TabArray_slistautoptr :: ^glib.SList
 TabArray_queueautoptr :: ^glib.Queue
-_PangoLayout :: struct #packed {}
-Layout :: _PangoLayout
-_PangoLayoutClass :: struct #packed {}
-LayoutClass :: _PangoLayoutClass
-_PangoLayoutLine :: [32]i8
-LayoutLine :: _PangoLayoutLine
+Layout :: struct #packed {}
+
+LayoutClass :: struct #packed {}
+
+LayoutLine :: [32]i8
+
 LayoutRun :: GlyphItem
 Alignment :: enum u32 {ALIGN_LEFT = 0, ALIGN_CENTER = 1, ALIGN_RIGHT = 2 }
 WrapMode :: enum u32 {WRAP_WORD = 0, WRAP_CHAR = 1, WRAP_WORD_CHAR = 2, WRAP_NONE = 3 }
@@ -502,8 +502,8 @@ EllipsizeMode :: enum u32 {ELLIPSIZE_NONE = 0, ELLIPSIZE_START = 1, ELLIPSIZE_MI
 LayoutSerializeFlags :: enum u32 {DEFAULT = 0, CONTEXT = 1, OUTPUT = 2 }
 LayoutDeserializeError :: enum u32 {INVALID = 0, INVALID_VALUE = 1, MISSING_VALUE = 2 }
 LayoutDeserializeFlags :: enum u32 {DEFAULT = 0, CONTEXT = 1 }
-_PangoLayoutIter :: struct #packed {}
-LayoutIter :: _PangoLayoutIter
+LayoutIter :: struct #packed {}
+
 Layout_autoptr :: ^Layout
 Layout_listautoptr :: ^glib.List
 Layout_slistautoptr :: ^glib.SList
@@ -512,9 +512,9 @@ LayoutIter_autoptr :: ^LayoutIter
 LayoutIter_listautoptr :: ^glib.List
 LayoutIter_slistautoptr :: ^glib.SList
 LayoutIter_queueautoptr :: ^glib.Queue
-_PangoRendererPrivate :: struct #packed {}
-RendererPrivate :: _PangoRendererPrivate
-_PangoRenderer :: struct {
+RendererPrivate :: struct #packed {}
+
+Renderer :: struct {
     parent_instance: gobj.Object,
     underline: Underline,
     strikethrough: glib.boolean,
@@ -522,7 +522,7 @@ _PangoRenderer :: struct {
     matrix_m: ^Matrix,
     priv: ^RendererPrivate,
 }
-Renderer :: _PangoRenderer
+
 draw_glyphs_func_ptr_anon_42 :: #type proc "c" (renderer: ^Renderer, font: ^Font, glyphs: [^]GlyphString, x: i32, y: i32)
 RenderPart :: enum u32 {FOREGROUND = 0, BACKGROUND = 1, UNDERLINE = 2, STRIKETHROUGH = 3, OVERLINE = 4 }
 draw_rectangle_func_ptr_anon_43 :: #type proc "c" (renderer: ^Renderer, part: RenderPart, x: i32, y: i32, width: i32, height: i32)
@@ -538,7 +538,7 @@ draw_glyph_item_func_ptr_anon_52 :: #type proc "c" (renderer: ^Renderer, text: c
 _pango_reserved2_func_ptr_anon_53 :: #type proc "c" ()
 _pango_reserved3_func_ptr_anon_54 :: #type proc "c" ()
 _pango_reserved4_func_ptr_anon_55 :: #type proc "c" ()
-_PangoRendererClass :: struct {
+RendererClass :: struct {
     parent_class: gobj.ObjectClass,
     draw_glyphs: draw_glyphs_func_ptr_anon_42,
     draw_rectangle: draw_rectangle_func_ptr_anon_43,
@@ -555,7 +555,7 @@ _PangoRendererClass :: struct {
     _pango_reserved3: _pango_reserved3_func_ptr_anon_54,
     _pango_reserved4: _pango_reserved4_func_ptr_anon_55,
 }
-RendererClass :: _PangoRendererClass
+
 
 @(default_calling_convention = "c")
 foreign pango_runic {

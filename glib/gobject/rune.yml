@@ -64,6 +64,8 @@ from:
       _GClosure: '#SInt8 #Attr Arr 32 #AttrEnd'
       _GParamSpecString: '#SInt8 #Attr Arr 104 #AttrEnd'
       GClassInitFunc.param.0.type: 'GTypeClass #Attr Ptr 1 #AttrEnd'
+      GInitiallyUnowned: 'GObject'
+      GInitiallyUnownedClass: 'GObjectClass'
   aliases:
     g_static_mutex_get_mutex_impl: g_static_mutex_get_mutex
 to:

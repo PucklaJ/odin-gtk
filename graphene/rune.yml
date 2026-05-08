@@ -40,6 +40,10 @@ from:
       - '_GRAPHENE*'
       - 'GRAPHENE_ALIGN16'
       - '*_INIT_ZERO'
+      - 'GRAPHENE_SIMD_S'
+    types:
+      - 'graphene_simd4f_union_t'
+      - 'graphene_simd4f_uif_t'
   overwrite:
     types:
       'graphene_simd4f_t': '#Struct x #Float32 y #Float32 z #Float32 w #Float32'
