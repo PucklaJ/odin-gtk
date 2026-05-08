@@ -58,6 +58,7 @@ TYPE_VARIANT :: variant_get_type
 TYPE_WEIGHT :: weight_get_type 
 TYPE_STRETCH :: stretch_get_type 
 TYPE_FONT_MASK :: font_mask_get_type 
+TYPE_FONT_COLOR :: font_color_get_type 
 TYPE_SHAPE_FLAGS :: shape_flags_get_type 
 TYPE_GRAVITY :: gravity_get_type 
 TYPE_GRAVITY_HINT :: gravity_hint_get_type 
@@ -137,6 +138,10 @@ Matrix :: _PangoMatrix
 _PangoScriptIter :: struct #packed {}
 ScriptIter :: _PangoScriptIter
 Script :: enum i32 {INVALID_CODE = -1, COMMON = 0, INHERITED = 1, ARABIC = 2, ARMENIAN = 3, BENGALI = 4, BOPOMOFO = 5, CHEROKEE = 6, COPTIC = 7, CYRILLIC = 8, DESERET = 9, DEVANAGARI = 10, ETHIOPIC = 11, GEORGIAN = 12, GOTHIC = 13, GREEK = 14, GUJARATI = 15, GURMUKHI = 16, HAN = 17, HANGUL = 18, HEBREW = 19, HIRAGANA = 20, KANNADA = 21, KATAKANA = 22, KHMER = 23, LAO = 24, LATIN = 25, MALAYALAM = 26, MONGOLIAN = 27, MYANMAR = 28, OGHAM = 29, OLD_ITALIC = 30, ORIYA = 31, RUNIC = 32, SINHALA = 33, SYRIAC = 34, TAMIL = 35, TELUGU = 36, THAANA = 37, THAI = 38, TIBETAN = 39, CANADIAN_ABORIGINAL = 40, YI = 41, TAGALOG = 42, HANUNOO = 43, BUHID = 44, TAGBANWA = 45, BRAILLE = 46, CYPRIOT = 47, LIMBU = 48, OSMANYA = 49, SHAVIAN = 50, LINEAR_B = 51, TAI_LE = 52, UGARITIC = 53, NEW_TAI_LUE = 54, BUGINESE = 55, GLAGOLITIC = 56, TIFINAGH = 57, SYLOTI_NAGRI = 58, OLD_PERSIAN = 59, KHAROSHTHI = 60, UNKNOWN = 61, BALINESE = 62, CUNEIFORM = 63, PHOENICIAN = 64, PHAGS_PA = 65, NKO = 66, KAYAH_LI = 67, LEPCHA = 68, REJANG = 69, SUNDANESE = 70, SAURASHTRA = 71, CHAM = 72, OL_CHIKI = 73, VAI = 74, CARIAN = 75, LYCIAN = 76, LYDIAN = 77, BATAK = 78, BRAHMI = 79, MANDAIC = 80, CHAKMA = 81, MEROITIC_CURSIVE = 82, MEROITIC_HIEROGLYPHS = 83, MIAO = 84, SHARADA = 85, SORA_SOMPENG = 86, TAKRI = 87, BASSA_VAH = 88, CAUCASIAN_ALBANIAN = 89, DUPLOYAN = 90, ELBASAN = 91, GRANTHA = 92, KHOJKI = 93, KHUDAWADI = 94, LINEAR_A = 95, MAHAJANI = 96, MANICHAEAN = 97, MENDE_KIKAKUI = 98, MODI = 99, MRO = 100, NABATAEAN = 101, OLD_NORTH_ARABIAN = 102, OLD_PERMIC = 103, PAHAWH_HMONG = 104, PALMYRENE = 105, PAU_CIN_HAU = 106, PSALTER_PAHLAVI = 107, SIDDHAM = 108, TIRHUTA = 109, WARANG_CITI = 110, AHOM = 111, ANATOLIAN_HIEROGLYPHS = 112, HATRAN = 113, MULTANI = 114, OLD_HUNGARIAN = 115, SIGNWRITING = 116 }
+ScriptIter_autoptr :: ^ScriptIter
+ScriptIter_listautoptr :: ^glib.List
+ScriptIter_slistautoptr :: ^glib.SList
+ScriptIter_queueautoptr :: ^glib.Queue
 Direction :: enum u32 {LTR = 0, RTL = 1, TTB_LTR = 2, TTB_RTL = 3, WEAK_LTR = 4, WEAK_RTL = 5, NEUTRAL = 6 }
 BidiType :: enum u32 {L = 0, LRE = 1, LRO = 2, R = 3, AL = 4, RLE = 5, RLO = 6, PDF = 7, EN = 8, ES = 9, ET = 10, AN = 11, CS = 12, NSM = 13, BN = 14, B = 15, S = 16, WS = 17, ON = 18, LRI = 19, RLI = 20, FSI = 21, PDI = 22 }
 _PangoFontDescription :: struct #packed {}
@@ -158,7 +163,8 @@ Style :: enum u32 {NORMAL = 0, OBLIQUE = 1, ITALIC = 2 }
 Variant :: enum u32 {NORMAL = 0, SMALL_CAPS = 1, ALL_SMALL_CAPS = 2, PETITE_CAPS = 3, ALL_PETITE_CAPS = 4, UNICASE = 5, TITLE_CAPS = 6 }
 Weight :: enum u32 {THIN = 100, ULTRALIGHT = 200, LIGHT = 300, SEMILIGHT = 350, BOOK = 380, NORMAL = 400, MEDIUM = 500, SEMIBOLD = 600, BOLD = 700, ULTRABOLD = 800, HEAVY = 900, ULTRAHEAVY = 1000 }
 Stretch :: enum u32 {ULTRA_CONDENSED = 0, EXTRA_CONDENSED = 1, CONDENSED = 2, SEMI_CONDENSED = 3, NORMAL = 4, SEMI_EXPANDED = 5, EXPANDED = 6, EXTRA_EXPANDED = 7, ULTRA_EXPANDED = 8 }
-FontMask :: enum u32 {FAMILY = 1, STYLE = 2, VARIANT = 4, WEIGHT = 8, STRETCH = 16, SIZE = 32, GRAVITY = 64, VARIATIONS = 128, FEATURES = 256 }
+FontMask :: enum u32 {FAMILY = 1, STYLE = 2, VARIANT = 4, WEIGHT = 8, STRETCH = 16, SIZE = 32, GRAVITY = 64, VARIATIONS = 128, FEATURES = 256, COLOR = 512 }
+FontColor :: enum u32 {FORBIDDEN = 0, REQUIRED = 1, DONT_CARE = 2 }
 _PangoFontFace :: struct {
     parent_instance: gobj.Object,
 }
@@ -789,6 +795,12 @@ foreign pango_runic {
 
     @(link_name = "pango_font_description_get_variations")
     font_description_get_variations :: proc(desc: ^FontDescription) -> cstring ---
+
+    @(link_name = "pango_font_description_set_color")
+    font_description_set_color :: proc(desc: ^FontDescription, color: FontColor) ---
+
+    @(link_name = "pango_font_description_get_color")
+    font_description_get_color :: proc(desc: ^FontDescription) -> FontColor ---
 
     @(link_name = "pango_font_description_get_set_fields")
     font_description_get_set_fields :: proc(desc: ^FontDescription) -> FontMask ---
@@ -1459,6 +1471,9 @@ foreign pango_runic {
     @(link_name = "pango_font_mask_get_type")
     font_mask_get_type :: proc() -> gobj.Type ---
 
+    @(link_name = "pango_font_color_get_type")
+    font_color_get_type :: proc() -> gobj.Type ---
+
     @(link_name = "pango_shape_flags_get_type")
     shape_flags_get_type :: proc() -> gobj.Type ---
 
@@ -2052,6 +2067,24 @@ foreign pango_runic {
 
     @(link_name = "glib_queueautoptr_cleanup_PangoCoverage_wrapper")
     queueautoptr_cleanup_PangoCoverage :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_PangoScriptIter_wrapper")
+    autoptr_clear_PangoScriptIter :: proc(_ptr: ^ScriptIter) ---
+
+    @(link_name = "glib_autoptr_cleanup_PangoScriptIter_wrapper")
+    autoptr_cleanup_PangoScriptIter :: proc(_ptr: ^^ScriptIter) ---
+
+    @(link_name = "glib_autoptr_destroy_PangoScriptIter_wrapper")
+    autoptr_destroy_PangoScriptIter :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_PangoScriptIter_wrapper")
+    listautoptr_cleanup_PangoScriptIter :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_PangoScriptIter_wrapper")
+    slistautoptr_cleanup_PangoScriptIter :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_PangoScriptIter_wrapper")
+    queueautoptr_cleanup_PangoScriptIter :: proc(_q: ^^glib.Queue) ---
 
     @(link_name = "glib_autoptr_clear_PangoFontFamily_wrapper")
     autoptr_clear_PangoFontFamily :: proc(_ptr: ^FontFamily) ---

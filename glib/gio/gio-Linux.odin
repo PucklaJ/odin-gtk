@@ -72,12 +72,6 @@ foreign gio_runic {
     @(link_name = "g_subprocess_launcher_set_child_setup")
     subprocess_launcher_set_child_setup :: proc(self: ^SubprocessLauncher, child_setup: glib.SpawnChildSetupFunc, user_data: glib.pointer, destroy_notify: glib.DestroyNotify) ---
 
-    @(link_name = "g_zlib_compressor_get_os")
-    zlib_compressor_get_os :: proc(compressor: ^ZlibCompressor) -> i32 ---
-
-    @(link_name = "g_zlib_compressor_set_os")
-    zlib_compressor_set_os :: proc(compressor: ^ZlibCompressor, os: i32) ---
-
     @(link_name = "g_clear_dbus_signal_subscription_wrapper")
     clear_dbus_signal_subscription :: proc(subscription_id_pointer: ^glib.uint_, connection: ^DBusConnection) ---
 
@@ -158,6 +152,108 @@ foreign gio_runic {
 
     @(link_name = "G_DEBUG_CONTROLLER_DBUS_GET_CLASS_wrapper")
     G_DEBUG_CONTROLLER_DBUS_GET_CLASS :: proc(ptr: glib.pointer) -> ^DebugControllerDBusClass ---
+
+    @(link_name = "glib_autoptr_clear_GSocketControlMessage_wrapper")
+    autoptr_clear_GSocketControlMessage :: proc(_ptr: ^SocketControlMessage) ---
+
+    @(link_name = "glib_autoptr_cleanup_GSocketControlMessage_wrapper")
+    autoptr_cleanup_GSocketControlMessage :: proc(_ptr: ^^SocketControlMessage) ---
+
+    @(link_name = "glib_autoptr_destroy_GSocketControlMessage_wrapper")
+    autoptr_destroy_GSocketControlMessage :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GSocketControlMessage_wrapper")
+    listautoptr_cleanup_GSocketControlMessage :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GSocketControlMessage_wrapper")
+    slistautoptr_cleanup_GSocketControlMessage :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GSocketControlMessage_wrapper")
+    queueautoptr_cleanup_GSocketControlMessage :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GIPTosMessage_wrapper")
+    autoptr_clear_GIPTosMessage :: proc(_ptr: ^IPTosMessage) ---
+
+    @(link_name = "glib_autoptr_cleanup_GIPTosMessage_wrapper")
+    autoptr_cleanup_GIPTosMessage :: proc(_ptr: ^^IPTosMessage) ---
+
+    @(link_name = "glib_autoptr_destroy_GIPTosMessage_wrapper")
+    autoptr_destroy_GIPTosMessage :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GIPTosMessage_wrapper")
+    listautoptr_cleanup_GIPTosMessage :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GIPTosMessage_wrapper")
+    slistautoptr_cleanup_GIPTosMessage :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GIPTosMessage_wrapper")
+    queueautoptr_cleanup_GIPTosMessage :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GIPTosMessageClass_wrapper")
+    autoptr_clear_GIPTosMessageClass :: proc(_ptr: ^IPTosMessageClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GIPTosMessageClass_wrapper")
+    autoptr_cleanup_GIPTosMessageClass :: proc(_ptr: ^^IPTosMessageClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GIPTosMessageClass_wrapper")
+    autoptr_destroy_GIPTosMessageClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GIPTosMessageClass_wrapper")
+    listautoptr_cleanup_GIPTosMessageClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GIPTosMessageClass_wrapper")
+    slistautoptr_cleanup_GIPTosMessageClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GIPTosMessageClass_wrapper")
+    queueautoptr_cleanup_GIPTosMessageClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "G_IP_TOS_MESSAGE_wrapper")
+    G_IP_TOS_MESSAGE :: proc(ptr: glib.pointer) -> ^IPTosMessage ---
+
+    @(link_name = "G_IS_IP_TOS_MESSAGE_wrapper")
+    G_IS_IP_TOS_MESSAGE :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_GIPv6TclassMessage_wrapper")
+    autoptr_clear_GIPv6TclassMessage :: proc(_ptr: ^IPv6TclassMessage) ---
+
+    @(link_name = "glib_autoptr_cleanup_GIPv6TclassMessage_wrapper")
+    autoptr_cleanup_GIPv6TclassMessage :: proc(_ptr: ^^IPv6TclassMessage) ---
+
+    @(link_name = "glib_autoptr_destroy_GIPv6TclassMessage_wrapper")
+    autoptr_destroy_GIPv6TclassMessage :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GIPv6TclassMessage_wrapper")
+    listautoptr_cleanup_GIPv6TclassMessage :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GIPv6TclassMessage_wrapper")
+    slistautoptr_cleanup_GIPv6TclassMessage :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GIPv6TclassMessage_wrapper")
+    queueautoptr_cleanup_GIPv6TclassMessage :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_GIPv6TclassMessageClass_wrapper")
+    autoptr_clear_GIPv6TclassMessageClass :: proc(_ptr: ^IPv6TclassMessageClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_GIPv6TclassMessageClass_wrapper")
+    autoptr_cleanup_GIPv6TclassMessageClass :: proc(_ptr: ^^IPv6TclassMessageClass) ---
+
+    @(link_name = "glib_autoptr_destroy_GIPv6TclassMessageClass_wrapper")
+    autoptr_destroy_GIPv6TclassMessageClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_GIPv6TclassMessageClass_wrapper")
+    listautoptr_cleanup_GIPv6TclassMessageClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_GIPv6TclassMessageClass_wrapper")
+    slistautoptr_cleanup_GIPv6TclassMessageClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_GIPv6TclassMessageClass_wrapper")
+    queueautoptr_cleanup_GIPv6TclassMessageClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "G_IPV6_TCLASS_MESSAGE_wrapper")
+    G_IPV6_TCLASS_MESSAGE :: proc(ptr: glib.pointer) -> ^IPv6TclassMessage ---
+
+    @(link_name = "G_IS_IPV6_TCLASS_MESSAGE_wrapper")
+    G_IS_IPV6_TCLASS_MESSAGE :: proc(ptr: glib.pointer) -> glib.boolean ---
 
     @(link_name = "glib_autoptr_clear_GListModel_wrapper")
     autoptr_clear_GListModel :: proc(_ptr: ^ListModel) ---
@@ -2225,24 +2321,6 @@ foreign gio_runic {
 
     @(link_name = "glib_queueautoptr_cleanup_GSocketConnection_wrapper")
     queueautoptr_cleanup_GSocketConnection :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GSocketControlMessage_wrapper")
-    autoptr_clear_GSocketControlMessage :: proc(_ptr: ^SocketControlMessage) ---
-
-    @(link_name = "glib_autoptr_cleanup_GSocketControlMessage_wrapper")
-    autoptr_cleanup_GSocketControlMessage :: proc(_ptr: ^^SocketControlMessage) ---
-
-    @(link_name = "glib_autoptr_destroy_GSocketControlMessage_wrapper")
-    autoptr_destroy_GSocketControlMessage :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GSocketControlMessage_wrapper")
-    listautoptr_cleanup_GSocketControlMessage :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GSocketControlMessage_wrapper")
-    slistautoptr_cleanup_GSocketControlMessage :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GSocketControlMessage_wrapper")
-    queueautoptr_cleanup_GSocketControlMessage :: proc(_q: ^^glib.Queue) ---
 
     @(link_name = "glib_autoptr_clear_GSocket_wrapper")
     autoptr_clear_GSocket :: proc(_ptr: ^Socket) ---

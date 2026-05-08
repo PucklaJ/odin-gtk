@@ -1136,6 +1136,110 @@ void glib_queueautoptr_cleanup_GdkVulkanContext_wrapper(GQueue ** _q) {
     glib_queueautoptr_cleanup_GdkVulkanContext(_q);
 }
 
+void glib_autoptr_clear_GskComponentTransfer_wrapper(GskComponentTransfer * _ptr) {
+    glib_autoptr_clear_GskComponentTransfer(_ptr);
+}
+
+void glib_autoptr_cleanup_GskComponentTransfer_wrapper(GskComponentTransfer ** _ptr) {
+    glib_autoptr_cleanup_GskComponentTransfer(_ptr);
+}
+
+void glib_autoptr_destroy_GskComponentTransfer_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GskComponentTransfer(_ptr);
+}
+
+void glib_listautoptr_cleanup_GskComponentTransfer_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GskComponentTransfer(_l);
+}
+
+void glib_slistautoptr_cleanup_GskComponentTransfer_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GskComponentTransfer(_l);
+}
+
+void glib_queueautoptr_cleanup_GskComponentTransfer_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GskComponentTransfer(_q);
+}
+
+void glib_autoptr_clear_GskRenderNode_wrapper(GskRenderNode * _ptr) {
+    glib_autoptr_clear_GskRenderNode(_ptr);
+}
+
+void glib_autoptr_cleanup_GskRenderNode_wrapper(GskRenderNode ** _ptr) {
+    glib_autoptr_cleanup_GskRenderNode(_ptr);
+}
+
+void glib_autoptr_destroy_GskRenderNode_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GskRenderNode(_ptr);
+}
+
+void glib_listautoptr_cleanup_GskRenderNode_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GskRenderNode(_l);
+}
+
+void glib_slistautoptr_cleanup_GskRenderNode_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GskRenderNode(_l);
+}
+
+void glib_queueautoptr_cleanup_GskRenderNode_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GskRenderNode(_q);
+}
+
+void glib_autoptr_clear_GskGLShader_wrapper(GskGLShader * _ptr) {
+    glib_autoptr_clear_GskGLShader(_ptr);
+}
+
+void glib_autoptr_cleanup_GskGLShader_wrapper(GskGLShader ** _ptr) {
+    glib_autoptr_cleanup_GskGLShader(_ptr);
+}
+
+void glib_autoptr_destroy_GskGLShader_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GskGLShader(_ptr);
+}
+
+void glib_listautoptr_cleanup_GskGLShader_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GskGLShader(_l);
+}
+
+void glib_slistautoptr_cleanup_GskGLShader_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GskGLShader(_l);
+}
+
+void glib_queueautoptr_cleanup_GskGLShader_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GskGLShader(_q);
+}
+
+void glib_autoptr_clear_GskGLShaderClass_wrapper(GskGLShaderClass * _ptr) {
+    glib_autoptr_clear_GskGLShaderClass(_ptr);
+}
+
+void glib_autoptr_cleanup_GskGLShaderClass_wrapper(GskGLShaderClass ** _ptr) {
+    glib_autoptr_cleanup_GskGLShaderClass(_ptr);
+}
+
+void glib_autoptr_destroy_GskGLShaderClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GskGLShaderClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_GskGLShaderClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GskGLShaderClass(_l);
+}
+
+void glib_slistautoptr_cleanup_GskGLShaderClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GskGLShaderClass(_l);
+}
+
+void glib_queueautoptr_cleanup_GskGLShaderClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GskGLShaderClass(_q);
+}
+
+GskGLShader * GSK_GL_SHADER_wrapper(gpointer ptr) {
+    return GSK_GL_SHADER(ptr);
+}
+
+gboolean GSK_IS_GL_SHADER_wrapper(gpointer ptr) {
+    return GSK_IS_GL_SHADER(ptr);
+}
+
 void glib_autoptr_clear_GskPath_wrapper(GskPath * _ptr) {
     glib_autoptr_clear_GskPath(_ptr);
 }
@@ -1208,86 +1312,6 @@ void glib_queueautoptr_cleanup_GskPathMeasure_wrapper(GQueue ** _q) {
     glib_queueautoptr_cleanup_GskPathMeasure(_q);
 }
 
-void glib_autoptr_clear_GskGLShader_wrapper(GskGLShader * _ptr) {
-    glib_autoptr_clear_GskGLShader(_ptr);
-}
-
-void glib_autoptr_cleanup_GskGLShader_wrapper(GskGLShader ** _ptr) {
-    glib_autoptr_cleanup_GskGLShader(_ptr);
-}
-
-void glib_autoptr_destroy_GskGLShader_wrapper(void * _ptr) {
-    glib_autoptr_destroy_GskGLShader(_ptr);
-}
-
-void glib_listautoptr_cleanup_GskGLShader_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_GskGLShader(_l);
-}
-
-void glib_slistautoptr_cleanup_GskGLShader_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_GskGLShader(_l);
-}
-
-void glib_queueautoptr_cleanup_GskGLShader_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_GskGLShader(_q);
-}
-
-void glib_autoptr_clear_GskGLShaderClass_wrapper(GskGLShaderClass * _ptr) {
-    glib_autoptr_clear_GskGLShaderClass(_ptr);
-}
-
-void glib_autoptr_cleanup_GskGLShaderClass_wrapper(GskGLShaderClass ** _ptr) {
-    glib_autoptr_cleanup_GskGLShaderClass(_ptr);
-}
-
-void glib_autoptr_destroy_GskGLShaderClass_wrapper(void * _ptr) {
-    glib_autoptr_destroy_GskGLShaderClass(_ptr);
-}
-
-void glib_listautoptr_cleanup_GskGLShaderClass_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_GskGLShaderClass(_l);
-}
-
-void glib_slistautoptr_cleanup_GskGLShaderClass_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_GskGLShaderClass(_l);
-}
-
-void glib_queueautoptr_cleanup_GskGLShaderClass_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_GskGLShaderClass(_q);
-}
-
-GskGLShader * GSK_GL_SHADER_wrapper(gpointer ptr) {
-    return GSK_GL_SHADER(ptr);
-}
-
-gboolean GSK_IS_GL_SHADER_wrapper(gpointer ptr) {
-    return GSK_IS_GL_SHADER(ptr);
-}
-
-void glib_autoptr_clear_GskRenderNode_wrapper(GskRenderNode * _ptr) {
-    glib_autoptr_clear_GskRenderNode(_ptr);
-}
-
-void glib_autoptr_cleanup_GskRenderNode_wrapper(GskRenderNode ** _ptr) {
-    glib_autoptr_cleanup_GskRenderNode(_ptr);
-}
-
-void glib_autoptr_destroy_GskRenderNode_wrapper(void * _ptr) {
-    glib_autoptr_destroy_GskRenderNode(_ptr);
-}
-
-void glib_listautoptr_cleanup_GskRenderNode_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_GskRenderNode(_l);
-}
-
-void glib_slistautoptr_cleanup_GskRenderNode_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_GskRenderNode(_l);
-}
-
-void glib_queueautoptr_cleanup_GskRenderNode_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_GskRenderNode(_q);
-}
-
 void glib_autoptr_clear_GskRenderer_wrapper(GskRenderer * _ptr) {
     glib_autoptr_clear_GskRenderer(_ptr);
 }
@@ -1310,6 +1334,30 @@ void glib_slistautoptr_cleanup_GskRenderer_wrapper(GSList ** _l) {
 
 void glib_queueautoptr_cleanup_GskRenderer_wrapper(GQueue ** _q) {
     glib_queueautoptr_cleanup_GskRenderer(_q);
+}
+
+void glib_autoptr_clear_GskRenderReplay_wrapper(GskRenderReplay * _ptr) {
+    glib_autoptr_clear_GskRenderReplay(_ptr);
+}
+
+void glib_autoptr_cleanup_GskRenderReplay_wrapper(GskRenderReplay ** _ptr) {
+    glib_autoptr_cleanup_GskRenderReplay(_ptr);
+}
+
+void glib_autoptr_destroy_GskRenderReplay_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GskRenderReplay(_ptr);
+}
+
+void glib_listautoptr_cleanup_GskRenderReplay_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GskRenderReplay(_l);
+}
+
+void glib_slistautoptr_cleanup_GskRenderReplay_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GskRenderReplay(_l);
+}
+
+void glib_queueautoptr_cleanup_GskRenderReplay_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GskRenderReplay(_q);
 }
 
 void glib_autoptr_clear_GskStroke_wrapper(GskStroke * _ptr) {
@@ -2100,42 +2148,6 @@ GtkAccessibleInterface * GTK_ACCESSIBLE_GET_IFACE_wrapper(gpointer ptr) {
     return GTK_ACCESSIBLE_GET_IFACE(ptr);
 }
 
-void glib_autoptr_clear_GtkAccessibleRange_wrapper(GtkAccessibleRange * _ptr) {
-    glib_autoptr_clear_GtkAccessibleRange(_ptr);
-}
-
-void glib_autoptr_cleanup_GtkAccessibleRange_wrapper(GtkAccessibleRange ** _ptr) {
-    glib_autoptr_cleanup_GtkAccessibleRange(_ptr);
-}
-
-void glib_autoptr_destroy_GtkAccessibleRange_wrapper(void * _ptr) {
-    glib_autoptr_destroy_GtkAccessibleRange(_ptr);
-}
-
-void glib_listautoptr_cleanup_GtkAccessibleRange_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_GtkAccessibleRange(_l);
-}
-
-void glib_slistautoptr_cleanup_GtkAccessibleRange_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_GtkAccessibleRange(_l);
-}
-
-void glib_queueautoptr_cleanup_GtkAccessibleRange_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_GtkAccessibleRange(_q);
-}
-
-GtkAccessibleRange * GTK_ACCESSIBLE_RANGE_wrapper(gpointer ptr) {
-    return GTK_ACCESSIBLE_RANGE(ptr);
-}
-
-gboolean GTK_IS_ACCESSIBLE_RANGE_wrapper(gpointer ptr) {
-    return GTK_IS_ACCESSIBLE_RANGE(ptr);
-}
-
-GtkAccessibleRangeInterface * GTK_ACCESSIBLE_RANGE_GET_IFACE_wrapper(gpointer ptr) {
-    return GTK_ACCESSIBLE_RANGE_GET_IFACE(ptr);
-}
-
 void glib_autoptr_clear_GtkAccessibleText_wrapper(GtkAccessibleText * _ptr) {
     glib_autoptr_clear_GtkAccessibleText(_ptr);
 }
@@ -2170,6 +2182,134 @@ gboolean GTK_IS_ACCESSIBLE_TEXT_wrapper(gpointer ptr) {
 
 GtkAccessibleTextInterface * GTK_ACCESSIBLE_TEXT_GET_IFACE_wrapper(gpointer ptr) {
     return GTK_ACCESSIBLE_TEXT_GET_IFACE(ptr);
+}
+
+void glib_autoptr_clear_GtkAccessibleHyperlink_wrapper(GtkAccessibleHyperlink * _ptr) {
+    glib_autoptr_clear_GtkAccessibleHyperlink(_ptr);
+}
+
+void glib_autoptr_cleanup_GtkAccessibleHyperlink_wrapper(GtkAccessibleHyperlink ** _ptr) {
+    glib_autoptr_cleanup_GtkAccessibleHyperlink(_ptr);
+}
+
+void glib_autoptr_destroy_GtkAccessibleHyperlink_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GtkAccessibleHyperlink(_ptr);
+}
+
+void glib_listautoptr_cleanup_GtkAccessibleHyperlink_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GtkAccessibleHyperlink(_l);
+}
+
+void glib_slistautoptr_cleanup_GtkAccessibleHyperlink_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GtkAccessibleHyperlink(_l);
+}
+
+void glib_queueautoptr_cleanup_GtkAccessibleHyperlink_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GtkAccessibleHyperlink(_q);
+}
+
+void glib_autoptr_clear_GtkAccessibleHyperlinkClass_wrapper(GtkAccessibleHyperlinkClass * _ptr) {
+    glib_autoptr_clear_GtkAccessibleHyperlinkClass(_ptr);
+}
+
+void glib_autoptr_cleanup_GtkAccessibleHyperlinkClass_wrapper(GtkAccessibleHyperlinkClass ** _ptr) {
+    glib_autoptr_cleanup_GtkAccessibleHyperlinkClass(_ptr);
+}
+
+void glib_autoptr_destroy_GtkAccessibleHyperlinkClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GtkAccessibleHyperlinkClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_GtkAccessibleHyperlinkClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GtkAccessibleHyperlinkClass(_l);
+}
+
+void glib_slistautoptr_cleanup_GtkAccessibleHyperlinkClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GtkAccessibleHyperlinkClass(_l);
+}
+
+void glib_queueautoptr_cleanup_GtkAccessibleHyperlinkClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GtkAccessibleHyperlinkClass(_q);
+}
+
+GtkAccessibleHyperlink * GTK_ACCESSIBLE_HYPERLINK_wrapper(gpointer ptr) {
+    return GTK_ACCESSIBLE_HYPERLINK(ptr);
+}
+
+gboolean GTK_IS_ACCESSIBLE_HYPERLINK_wrapper(gpointer ptr) {
+    return GTK_IS_ACCESSIBLE_HYPERLINK(ptr);
+}
+
+void glib_autoptr_clear_GtkAccessibleHypertext_wrapper(GtkAccessibleHypertext * _ptr) {
+    glib_autoptr_clear_GtkAccessibleHypertext(_ptr);
+}
+
+void glib_autoptr_cleanup_GtkAccessibleHypertext_wrapper(GtkAccessibleHypertext ** _ptr) {
+    glib_autoptr_cleanup_GtkAccessibleHypertext(_ptr);
+}
+
+void glib_autoptr_destroy_GtkAccessibleHypertext_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GtkAccessibleHypertext(_ptr);
+}
+
+void glib_listautoptr_cleanup_GtkAccessibleHypertext_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GtkAccessibleHypertext(_l);
+}
+
+void glib_slistautoptr_cleanup_GtkAccessibleHypertext_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GtkAccessibleHypertext(_l);
+}
+
+void glib_queueautoptr_cleanup_GtkAccessibleHypertext_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GtkAccessibleHypertext(_q);
+}
+
+GtkAccessibleHypertext * GTK_ACCESSIBLE_HYPERTEXT_wrapper(gpointer ptr) {
+    return GTK_ACCESSIBLE_HYPERTEXT(ptr);
+}
+
+gboolean GTK_IS_ACCESSIBLE_HYPERTEXT_wrapper(gpointer ptr) {
+    return GTK_IS_ACCESSIBLE_HYPERTEXT(ptr);
+}
+
+GtkAccessibleHypertextInterface * GTK_ACCESSIBLE_HYPERTEXT_GET_IFACE_wrapper(gpointer ptr) {
+    return GTK_ACCESSIBLE_HYPERTEXT_GET_IFACE(ptr);
+}
+
+void glib_autoptr_clear_GtkAccessibleRange_wrapper(GtkAccessibleRange * _ptr) {
+    glib_autoptr_clear_GtkAccessibleRange(_ptr);
+}
+
+void glib_autoptr_cleanup_GtkAccessibleRange_wrapper(GtkAccessibleRange ** _ptr) {
+    glib_autoptr_cleanup_GtkAccessibleRange(_ptr);
+}
+
+void glib_autoptr_destroy_GtkAccessibleRange_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GtkAccessibleRange(_ptr);
+}
+
+void glib_listautoptr_cleanup_GtkAccessibleRange_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GtkAccessibleRange(_l);
+}
+
+void glib_slistautoptr_cleanup_GtkAccessibleRange_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GtkAccessibleRange(_l);
+}
+
+void glib_queueautoptr_cleanup_GtkAccessibleRange_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GtkAccessibleRange(_q);
+}
+
+GtkAccessibleRange * GTK_ACCESSIBLE_RANGE_wrapper(gpointer ptr) {
+    return GTK_ACCESSIBLE_RANGE(ptr);
+}
+
+gboolean GTK_IS_ACCESSIBLE_RANGE_wrapper(gpointer ptr) {
+    return GTK_IS_ACCESSIBLE_RANGE(ptr);
+}
+
+GtkAccessibleRangeInterface * GTK_ACCESSIBLE_RANGE_GET_IFACE_wrapper(gpointer ptr) {
+    return GTK_ACCESSIBLE_RANGE_GET_IFACE(ptr);
 }
 
 void glib_autoptr_clear_GtkActionable_wrapper(GtkActionable * _ptr) {
@@ -7000,6 +7140,38 @@ void glib_queueautoptr_cleanup_GtkIconPaintable_wrapper(GQueue ** _q) {
     glib_queueautoptr_cleanup_GtkIconPaintable(_q);
 }
 
+void glib_autoptr_clear_GtkIconPaintableClass_wrapper(GtkIconPaintableClass * _ptr) {
+    glib_autoptr_clear_GtkIconPaintableClass(_ptr);
+}
+
+void glib_autoptr_cleanup_GtkIconPaintableClass_wrapper(GtkIconPaintableClass ** _ptr) {
+    glib_autoptr_cleanup_GtkIconPaintableClass(_ptr);
+}
+
+void glib_autoptr_destroy_GtkIconPaintableClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GtkIconPaintableClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_GtkIconPaintableClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GtkIconPaintableClass(_l);
+}
+
+void glib_slistautoptr_cleanup_GtkIconPaintableClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GtkIconPaintableClass(_l);
+}
+
+void glib_queueautoptr_cleanup_GtkIconPaintableClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GtkIconPaintableClass(_q);
+}
+
+GtkIconPaintable * GTK_ICON_PAINTABLE_wrapper(gpointer ptr) {
+    return GTK_ICON_PAINTABLE(ptr);
+}
+
+gboolean GTK_IS_ICON_PAINTABLE_wrapper(gpointer ptr) {
+    return GTK_IS_ICON_PAINTABLE(ptr);
+}
+
 void glib_autoptr_clear_GtkIconTheme_wrapper(GtkIconTheme * _ptr) {
     glib_autoptr_clear_GtkIconTheme(_ptr);
 }
@@ -8612,6 +8784,62 @@ gboolean GTK_IS_PICTURE_wrapper(gpointer ptr) {
     return GTK_IS_PICTURE(ptr);
 }
 
+void glib_autoptr_clear_GtkPopoverBin_wrapper(GtkPopoverBin * _ptr) {
+    glib_autoptr_clear_GtkPopoverBin(_ptr);
+}
+
+void glib_autoptr_cleanup_GtkPopoverBin_wrapper(GtkPopoverBin ** _ptr) {
+    glib_autoptr_cleanup_GtkPopoverBin(_ptr);
+}
+
+void glib_autoptr_destroy_GtkPopoverBin_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GtkPopoverBin(_ptr);
+}
+
+void glib_listautoptr_cleanup_GtkPopoverBin_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GtkPopoverBin(_l);
+}
+
+void glib_slistautoptr_cleanup_GtkPopoverBin_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GtkPopoverBin(_l);
+}
+
+void glib_queueautoptr_cleanup_GtkPopoverBin_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GtkPopoverBin(_q);
+}
+
+void glib_autoptr_clear_GtkPopoverBinClass_wrapper(GtkPopoverBinClass * _ptr) {
+    glib_autoptr_clear_GtkPopoverBinClass(_ptr);
+}
+
+void glib_autoptr_cleanup_GtkPopoverBinClass_wrapper(GtkPopoverBinClass ** _ptr) {
+    glib_autoptr_cleanup_GtkPopoverBinClass(_ptr);
+}
+
+void glib_autoptr_destroy_GtkPopoverBinClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GtkPopoverBinClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_GtkPopoverBinClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GtkPopoverBinClass(_l);
+}
+
+void glib_slistautoptr_cleanup_GtkPopoverBinClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GtkPopoverBinClass(_l);
+}
+
+void glib_queueautoptr_cleanup_GtkPopoverBinClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GtkPopoverBinClass(_q);
+}
+
+GtkPopoverBin * GTK_POPOVER_BIN_wrapper(gpointer ptr) {
+    return GTK_POPOVER_BIN(ptr);
+}
+
+gboolean GTK_IS_POPOVER_BIN_wrapper(gpointer ptr) {
+    return GTK_IS_POPOVER_BIN(ptr);
+}
+
 void glib_autoptr_clear_GtkPopoverMenu_wrapper(GtkPopoverMenu * _ptr) {
     glib_autoptr_clear_GtkPopoverMenu(_ptr);
 }
@@ -10218,6 +10446,62 @@ void glib_slistautoptr_cleanup_GtkStyleContext_wrapper(GSList ** _l) {
 
 void glib_queueautoptr_cleanup_GtkStyleContext_wrapper(GQueue ** _q) {
     glib_queueautoptr_cleanup_GtkStyleContext(_q);
+}
+
+void glib_autoptr_clear_GtkSvg_wrapper(GtkSvg * _ptr) {
+    glib_autoptr_clear_GtkSvg(_ptr);
+}
+
+void glib_autoptr_cleanup_GtkSvg_wrapper(GtkSvg ** _ptr) {
+    glib_autoptr_cleanup_GtkSvg(_ptr);
+}
+
+void glib_autoptr_destroy_GtkSvg_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GtkSvg(_ptr);
+}
+
+void glib_listautoptr_cleanup_GtkSvg_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GtkSvg(_l);
+}
+
+void glib_slistautoptr_cleanup_GtkSvg_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GtkSvg(_l);
+}
+
+void glib_queueautoptr_cleanup_GtkSvg_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GtkSvg(_q);
+}
+
+void glib_autoptr_clear_GtkSvgClass_wrapper(GtkSvgClass * _ptr) {
+    glib_autoptr_clear_GtkSvgClass(_ptr);
+}
+
+void glib_autoptr_cleanup_GtkSvgClass_wrapper(GtkSvgClass ** _ptr) {
+    glib_autoptr_cleanup_GtkSvgClass(_ptr);
+}
+
+void glib_autoptr_destroy_GtkSvgClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GtkSvgClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_GtkSvgClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GtkSvgClass(_l);
+}
+
+void glib_slistautoptr_cleanup_GtkSvgClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GtkSvgClass(_l);
+}
+
+void glib_queueautoptr_cleanup_GtkSvgClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GtkSvgClass(_q);
+}
+
+GtkSvg * GTK_SVG_wrapper(gpointer ptr) {
+    return GTK_SVG(ptr);
+}
+
+gboolean GTK_IS_SVG_wrapper(gpointer ptr) {
+    return GTK_IS_SVG(ptr);
 }
 
 void glib_autoptr_clear_GtkSwitch_wrapper(GtkSwitch * _ptr) {

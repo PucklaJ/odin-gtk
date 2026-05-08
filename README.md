@@ -62,7 +62,7 @@ The build dependencies are:
 To install them on archlinux:
 
 ```
-sudo pacman -S --needed base-devel just meson ninja python harfbuzz vulkan-headers gtk4 gtk4-layer-shell libadwaita glib2-devel shaderc
+sudo pacman -S --needed base-devel just meson ninja python harfbuzz vulkan-headers gtk4 gtk4-layer-shell libadwaita glib2-devel shaderc wayland-protocols
 ```
 
 on ubuntu:

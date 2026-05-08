@@ -12,7 +12,7 @@ wrapper CC='cc':  (glib-wrapper-all CC) (gdk-pixbuf-wrapper CC) (pango-wrapper C
 glib-wrapper-all CC='cc': (glib-wrapper CC) (gobject-wrapper CC) (gio-wrapper CC) (girepository-wrapper CC)
 build: glib-build cairo-build gtk-build
 
-clean: glib-clean cairo-clean gtk-clean adwaita-clean
+clean: glib-clean gdk-pixbuf-clean gtk-clean adwaita-clean
 
 check-all: (check 'glib') (check 'glib/gobject') (check 'glib/gmodule') (check 'glib/gio') (check 'glib/girepository') (check 'gdk-pixbuf') (check 'cairo') (check 'pango') (check 'pango/pangocairo') (check 'graphene') (check 'gtk') (check 'gtk/layer-shell') (check 'adwaita')
 
@@ -21,6 +21,7 @@ WINDOWS_GVSBUILD_RELEASE := '2026.4.1'
 
 glib-setup:
     cd shared/glib && meson setup \
+         --reconfigure \
          --default-library static \
          -Dman-pages=disabled \
          -Ddtrace=disabled \
@@ -218,8 +219,8 @@ girepository-wrapper CC='clang':
 
 gdk-pixbuf-setup:
     cd shared/gdk-pixbuf && meson setup \
+        --reconfigure \
         -Dgtk_doc=false \
-        -Ddocs=false \
         -Dintrospection=disabled \
         -Dman=false \
         -Dtests=false \
@@ -227,6 +228,10 @@ gdk-pixbuf-setup:
         _build
     ninja -C shared/gdk-pixbuf/_build \
         'gdk-pixbuf/gdk-pixbuf-enum-types.h' \
+
+[unix]
+gdk-pixbuf-clean:
+    rm -rf shared/gdk-pixbuf/_build
 
 gdk-pixbuf:
     {{ RUNIC }} gdk-pixbuf/rune.yml
@@ -251,6 +256,7 @@ gdk-pixbuf-wrapper CC='clang':
 cairo-setup:
     cd shared/cairo && meson setup \
         --default-library static \
+         --reconfigure \
         -Dxcb=disabled \
         -Dxlib=disabled \
         -Dxlib-xcb=disabled \
@@ -274,7 +280,9 @@ cairo:
         -e '/\^text/! s/\^t/\^context_t/g' \
 
 pango-setup:
-    cd shared/pango && meson setup _build
+    cd shared/pango && meson setup \
+         --reconfigure \
+         _build
     ninja -C shared/pango/_build \
       'pango/pango-enum-types.h' \
 
@@ -308,6 +316,7 @@ pangocairo:
 
 graphene-setup:
     cd shared/graphene && meson setup \
+       --reconfigure \
        -Dsse2=false \
        -Darm_neon=false \
        -Dgcc_vector=false \
@@ -336,6 +345,7 @@ graphene-wrapper CC='clang':
 
 gtk-setup:
   cd shared/gtk && meson setup \
+     --reconfigure \
      -Ddefault_library=static \
      -Dvulkan=enabled \
      -Dintrospection=disabled \
@@ -353,6 +363,8 @@ gtk-setup:
       'gdk/gdkenumtypes.h' \
       'gsk/gskenumtypes.h' \
       'gtk/gtktypebuiltins.h' \
+
+  rm -rf shared/gtk/subprojects/.wraplock
 
 gtk-build:
     meson compile -C shared/gtk/_build -j{{ num_cpus() }}
@@ -389,6 +401,7 @@ gtk-layer-shell:
 
 adwaita-setup:
     cd shared/adwaita && meson setup \
+          --reconfigure \
           -Dprofiling=false \
           -Dintrospection=disabled \
           -Dvapi=false \
@@ -396,9 +409,12 @@ adwaita-setup:
           -Dtests=false \
           -Dexamples=false \
           _build
+
     ninja -C shared/adwaita/_build \
              src/adw-version.h \
              src/adw-enums.h
+
+    rm -rf shared/adwaita/subprojects/.wraplock shared/adwaita/subprojects/libsass.wrap
 
 adwaita:
     {{ RUNIC }} adwaita/rune.yml

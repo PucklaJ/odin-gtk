@@ -24,6 +24,30 @@ void glib_queueautoptr_cleanup_PangoCoverage_wrapper(GQueue ** _q) {
     glib_queueautoptr_cleanup_PangoCoverage(_q);
 }
 
+void glib_autoptr_clear_PangoScriptIter_wrapper(PangoScriptIter * _ptr) {
+    glib_autoptr_clear_PangoScriptIter(_ptr);
+}
+
+void glib_autoptr_cleanup_PangoScriptIter_wrapper(PangoScriptIter ** _ptr) {
+    glib_autoptr_cleanup_PangoScriptIter(_ptr);
+}
+
+void glib_autoptr_destroy_PangoScriptIter_wrapper(void * _ptr) {
+    glib_autoptr_destroy_PangoScriptIter(_ptr);
+}
+
+void glib_listautoptr_cleanup_PangoScriptIter_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_PangoScriptIter(_l);
+}
+
+void glib_slistautoptr_cleanup_PangoScriptIter_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_PangoScriptIter(_l);
+}
+
+void glib_queueautoptr_cleanup_PangoScriptIter_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_PangoScriptIter(_q);
+}
+
 void glib_autoptr_clear_PangoFontFamily_wrapper(PangoFontFamily * _ptr) {
     glib_autoptr_clear_PangoFontFamily(_ptr);
 }

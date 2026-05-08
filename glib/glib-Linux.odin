@@ -27,6 +27,7 @@ TIME_SPAN_HOR :: ((3600000000))
 TIME_SPAN_MINTE :: ((60000000))
 TIME_SPAN_SECOND :: ((1000000))
 TIME_SPAN_MIISECOND :: ((1000))
+NSEC_PER_SEC :: `(1000000000UL)`
 
 Pid :: i32
 long :: i64
@@ -175,21 +176,6 @@ StaticRecMutex :: struct {
 
 @(default_calling_convention = "c")
 foreign glib_runic {
-    @(link_name = "g_bit_lock_and_get")
-    bit_lock_and_get :: proc(address: [^]int_, lock_bit: uint_, out_val: ^int_) ---
-
-    @(link_name = "g_bit_unlock_and_set")
-    bit_unlock_and_set :: proc(address: [^]int_, lock_bit: uint_, new_val: int_, preserve_mask: int_) ---
-
-    @(link_name = "g_date_get_week_of_year")
-    date_get_week_of_year :: proc(date: ^Date, first_day_of_week: DateWeekday) -> uint_ ---
-
-    @(link_name = "g_date_get_weeks_in_year")
-    date_get_weeks_in_year :: proc(year: DateYear, first_day_of_week: DateWeekday) -> uint8 ---
-
-    @(link_name = "g_source_dup_context")
-    source_dup_context :: proc(source: ^Source) -> ^MainContext ---
-
     @(link_name = "g_source_add_unix_fd")
     source_add_unix_fd :: proc(source: ^Source, fd: int_, events: IOCondition) -> pointer ---
 
@@ -207,12 +193,6 @@ foreign glib_runic {
 
     @(link_name = "g_unix_fd_source_funcs")
     g_unix_fd_source_funcs: SourceFuncs
-
-    @(link_name = "g_string_copy")
-    string_copy :: proc(string_p: ^String) -> ^String ---
-
-    @(link_name = "g_log_get_always_fatal")
-    log_get_always_fatal :: proc() -> LogLevelFlags ---
 
     @(link_name = "g_assertion_message_cmpnum")
     assertion_message_cmpnum :: proc(domain: cstring, file: cstring, line: i32, func: cstring, expr: cstring, arg1: [16]byte, cmp: cstring, arg2: [16]byte, numtype: char) ---

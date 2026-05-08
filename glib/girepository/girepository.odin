@@ -89,6 +89,9 @@ Direction :: enum u32 {IN = 0, OUT = 1, INOUT = 2 }
 ScopeType :: enum u32 {INVALID = 0, CALL = 1, ASYNC = 2, NOTIFIED = 3, FOREVER = 4 }
 TypeTag :: enum u32 {VOID = 0, BOOLEAN = 1, INT8 = 2, UINT8 = 3, INT16 = 4, UINT16 = 5, INT32 = 6, UINT32 = 7, INT64 = 8, UINT64 = 9, FLOAT = 10, DOUBLE = 11, GTYPE = 12, UTF8 = 13, FILENAME = 14, ARRAY = 15, INTERFACE = 16, GLIST = 17, GSLIST = 18, GHASH = 19, ERROR = 20, UNICHAR = 21 }
 ArrayType :: enum u32 {C = 0, ARRAY = 1, PTR_ARRAY = 2, BYTE_ARRAY = 3 }
+FieldInfoFlags :: enum u32 {NONE = 0, FIELD_IS_READABLE = 1, FIELD_IS_WRITABLE = 2 }
+VFuncInfoFlags :: enum u32 {VFUNC_INFO_FLAGS_NONE = 0, VFUNC_MUST_CHAIN_UP = 1, VFUNC_MUST_OVERRIDE = 2, VFUNC_MUST_NOT_OVERRIDE = 4 }
+FunctionInfoFlags :: enum u32 {NONE = 0, FUNCTION_IS_METHOD = 1, FUNCTION_IS_CONSTRUCTOR = 2, FUNCTION_IS_GETTER = 4, FUNCTION_IS_SETTER = 8, FUNCTION_WRAPS_VFUNC = 16, FUNCTION_IS_ASYNC = 32 }
 _GITypelib :: struct #packed {}
 Typelib :: _GITypelib
 AttributeIter :: struct {
@@ -873,6 +876,9 @@ foreign girepository_runic {
 
     @(link_name = "gi_cclosure_marshal_generic")
     cclosure_marshal_generic :: proc(closure: ^gobj.Closure, return_gvalue: ^gobj.Value, n_param_values: u32, param_values: [^]gobj.Value, invocation_hint: rawptr, marshal_data: rawptr) ---
+
+    @(link_name = "gi_repository_dup_default")
+    repository_dup_default :: proc() -> ^Repository ---
 
 }
 

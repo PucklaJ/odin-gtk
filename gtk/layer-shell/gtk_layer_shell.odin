@@ -82,6 +82,12 @@ foreign gtk_layer_shell_runic {
     @(link_name = "gtk_layer_get_keyboard_mode")
     get_keyboard_mode :: proc(window: ^gtk.Window) -> KeyboardMode ---
 
+    @(link_name = "gtk_layer_set_respect_close")
+    set_respect_close :: proc(window: ^gtk.Window, respect_close: glib.boolean) ---
+
+    @(link_name = "gtk_layer_get_respect_close")
+    get_respect_close :: proc(window: ^gtk.Window) -> glib.boolean ---
+
 }
 
 when (ODIN_ARCH == .amd64) {

@@ -25,6 +25,7 @@ TYPE_INLINE_VIEW_SWITCHER_DISPLAY_MODE :: inline_view_switcher_display_mode_get_
 TYPE_LEAFLET_TRANSITION_TYPE :: leaflet_transition_type_get_type
 TYPE_LENGTH_UNIT :: length_unit_get_type
 TYPE_NAVIGATION_DIRECTION :: navigation_direction_get_type
+TYPE_SIDEBAR_MODE :: sidebar_mode_get_type
 TYPE_SQUEEZER_TRANSITION_TYPE :: squeezer_transition_type_get_type
 TYPE_COLOR_SCHEME :: color_scheme_get_type
 TYPE_TAB_VIEW_SHORTCUTS :: tab_view_shortcuts_get_type
@@ -42,6 +43,7 @@ TYPE_PREFERENCES_ROW :: preferences_row_get_type
 TYPE_ACTION_ROW :: action_row_get_type
 TYPE_ALERT_DIALOG :: alert_dialog_get_type
 TYPE_ANIMATION_TARGET :: animation_target_get_type
+TYPE_NONE_ANIMATION_TARGET :: none_animation_target_get_type
 TYPE_CALLBACK_ANIMATION_TARGET :: callback_animation_target_get_type
 TYPE_PROPERTY_ANIMATION_TARGET :: property_animation_target_get_type
 DURATION_INFINITE :: ( 0xffffffff)
@@ -90,6 +92,13 @@ TYPE_PREFERENCES_PAGE :: preferences_page_get_type
 TYPE_TOAST :: toast_get_type
 TYPE_PREFERENCES_DIALOG :: preferences_dialog_get_type
 TYPE_PREFERENCES_WINDOW :: preferences_window_get_type
+TYPE_SHORTCUT_LABEL :: shortcut_label_get_type
+TYPE_SHORTCUTS_ITEM :: shortcuts_item_get_type
+TYPE_SHORTCUTS_SECTION :: shortcuts_section_get_type
+TYPE_SHORTCUTS_DIALOG :: shortcuts_dialog_get_type
+TYPE_SIDEBAR_ITEM :: sidebar_item_get_type 
+TYPE_SIDEBAR_SECTION :: sidebar_section_get_type 
+TYPE_SIDEBAR :: sidebar_get_type 
 TYPE_SPIN_ROW :: spin_row_get_type 
 TYPE_SPINNER :: spinner_get_type 
 TYPE_SPINNER_PAINTABLE :: spinner_paintable_get_type 
@@ -113,6 +122,7 @@ TYPE_TOGGLE_GROUP :: toggle_group_get_type
 TYPE_TOOLBAR_VIEW :: toolbar_view_get_type
 TYPE_VIEW_SWITCHER :: view_switcher_get_type
 TYPE_VIEW_SWITCHER_BAR :: view_switcher_bar_get_type
+TYPE_VIEW_SWITCHER_SIDEBAR :: view_switcher_sidebar_get_type
 TYPE_VIEW_SWITCHER_TITLE :: view_switcher_title_get_type
 TYPE_WINDOW_TITLE :: window_title_get_type
 TYPE_WRAP_LAYOUT :: wrap_layout_get_type
@@ -274,6 +284,18 @@ AnimationTargetClass_autoptr :: ^AnimationTargetClass
 AnimationTargetClass_listautoptr :: ^glib.List
 AnimationTargetClass_slistautoptr :: ^glib.SList
 AnimationTargetClass_queueautoptr :: ^glib.Queue
+_AdwNoneAnimationTarget :: struct #packed {}
+NoneAnimationTarget :: _AdwNoneAnimationTarget
+_AdwNoneAnimationTargetClass :: struct #packed {}
+NoneAnimationTargetClass :: _AdwNoneAnimationTargetClass
+NoneAnimationTarget_autoptr :: ^NoneAnimationTarget
+NoneAnimationTarget_listautoptr :: ^glib.List
+NoneAnimationTarget_slistautoptr :: ^glib.SList
+NoneAnimationTarget_queueautoptr :: ^glib.Queue
+NoneAnimationTargetClass_autoptr :: ^NoneAnimationTargetClass
+NoneAnimationTargetClass_listautoptr :: ^glib.List
+NoneAnimationTargetClass_slistautoptr :: ^glib.SList
+NoneAnimationTargetClass_queueautoptr :: ^glib.Queue
 AnimationTargetFunc :: #type proc "c" (value: f64, user_data: glib.pointer)
 _AdwCallbackAnimationTarget :: struct #packed {}
 CallbackAnimationTarget :: _AdwCallbackAnimationTarget
@@ -950,6 +972,103 @@ PreferencesWindowClass_autoptr :: ^PreferencesWindowClass
 PreferencesWindowClass_listautoptr :: ^glib.List
 PreferencesWindowClass_slistautoptr :: ^glib.SList
 PreferencesWindowClass_queueautoptr :: ^glib.Queue
+_AdwShortcutLabel :: struct #packed {}
+ShortcutLabel :: _AdwShortcutLabel
+ShortcutLabelClass :: struct {
+    parent_class: gtk.WidgetClass,
+}
+ShortcutLabel_autoptr :: ^ShortcutLabel
+ShortcutLabel_listautoptr :: ^glib.List
+ShortcutLabel_slistautoptr :: ^glib.SList
+ShortcutLabel_queueautoptr :: ^glib.Queue
+ShortcutLabelClass_autoptr :: ^ShortcutLabelClass
+ShortcutLabelClass_listautoptr :: ^glib.List
+ShortcutLabelClass_slistautoptr :: ^glib.SList
+ShortcutLabelClass_queueautoptr :: ^glib.Queue
+_AdwShortcutsItem :: struct #packed {}
+ShortcutsItem :: _AdwShortcutsItem
+ShortcutsItemClass :: struct {
+    parent_class: gobj.ObjectClass,
+}
+ShortcutsItem_autoptr :: ^ShortcutsItem
+ShortcutsItem_listautoptr :: ^glib.List
+ShortcutsItem_slistautoptr :: ^glib.SList
+ShortcutsItem_queueautoptr :: ^glib.Queue
+ShortcutsItemClass_autoptr :: ^ShortcutsItemClass
+ShortcutsItemClass_listautoptr :: ^glib.List
+ShortcutsItemClass_slistautoptr :: ^glib.SList
+ShortcutsItemClass_queueautoptr :: ^glib.Queue
+_AdwShortcutsSection :: struct #packed {}
+ShortcutsSection :: _AdwShortcutsSection
+ShortcutsSectionClass :: struct {
+    parent_class: gobj.ObjectClass,
+}
+ShortcutsSection_autoptr :: ^ShortcutsSection
+ShortcutsSection_listautoptr :: ^glib.List
+ShortcutsSection_slistautoptr :: ^glib.SList
+ShortcutsSection_queueautoptr :: ^glib.Queue
+ShortcutsSectionClass_autoptr :: ^ShortcutsSectionClass
+ShortcutsSectionClass_listautoptr :: ^glib.List
+ShortcutsSectionClass_slistautoptr :: ^glib.SList
+ShortcutsSectionClass_queueautoptr :: ^glib.Queue
+_AdwShortcutsDialog :: struct #packed {}
+ShortcutsDialog :: _AdwShortcutsDialog
+ShortcutsDialogClass :: struct {
+    parent_class: DialogClass,
+}
+ShortcutsDialog_autoptr :: ^ShortcutsDialog
+ShortcutsDialog_listautoptr :: ^glib.List
+ShortcutsDialog_slistautoptr :: ^glib.SList
+ShortcutsDialog_queueautoptr :: ^glib.Queue
+ShortcutsDialogClass_autoptr :: ^ShortcutsDialogClass
+ShortcutsDialogClass_listautoptr :: ^glib.List
+ShortcutsDialogClass_slistautoptr :: ^glib.SList
+ShortcutsDialogClass_queueautoptr :: ^glib.Queue
+_AdwSidebarSection :: struct #packed {}
+SidebarSection :: _AdwSidebarSection
+_AdwSidebarItem :: struct {
+    parent_instance: gobj.Object,
+}
+SidebarItem :: _AdwSidebarItem
+_AdwSidebarItemClass :: struct {
+    parent_class: gobj.ObjectClass,
+    padding: [4]glib.pointer,
+}
+SidebarItemClass :: _AdwSidebarItemClass
+SidebarItem_autoptr :: ^SidebarItem
+SidebarItem_listautoptr :: ^glib.List
+SidebarItem_slistautoptr :: ^glib.SList
+SidebarItem_queueautoptr :: ^glib.Queue
+SidebarItemClass_autoptr :: ^SidebarItemClass
+SidebarItemClass_listautoptr :: ^glib.List
+SidebarItemClass_slistautoptr :: ^glib.SList
+SidebarItemClass_queueautoptr :: ^glib.Queue
+_AdwSidebar :: struct #packed {}
+Sidebar :: _AdwSidebar
+SidebarSectionCreateItemFunc :: #type proc "c" (item: glib.pointer, user_data: glib.pointer) -> ^SidebarItem
+SidebarSectionClass :: struct {
+    parent_class: gobj.ObjectClass,
+}
+SidebarSection_autoptr :: ^SidebarSection
+SidebarSection_listautoptr :: ^glib.List
+SidebarSection_slistautoptr :: ^glib.SList
+SidebarSection_queueautoptr :: ^glib.Queue
+SidebarSectionClass_autoptr :: ^SidebarSectionClass
+SidebarSectionClass_listautoptr :: ^glib.List
+SidebarSectionClass_slistautoptr :: ^glib.SList
+SidebarSectionClass_queueautoptr :: ^glib.Queue
+SidebarMode :: enum u32 {SIDEBAR = 0, PAGE = 1 }
+SidebarClass :: struct {
+    parent_class: gtk.WidgetClass,
+}
+Sidebar_autoptr :: ^Sidebar
+Sidebar_listautoptr :: ^glib.List
+Sidebar_slistautoptr :: ^glib.SList
+Sidebar_queueautoptr :: ^glib.Queue
+SidebarClass_autoptr :: ^SidebarClass
+SidebarClass_listautoptr :: ^glib.List
+SidebarClass_slistautoptr :: ^glib.SList
+SidebarClass_queueautoptr :: ^glib.Queue
 _AdwSpinRow :: struct #packed {}
 SpinRow :: _AdwSpinRow
 SpinRowClass :: struct {
@@ -1259,6 +1378,19 @@ ViewSwitcherBarClass_autoptr :: ^ViewSwitcherBarClass
 ViewSwitcherBarClass_listautoptr :: ^glib.List
 ViewSwitcherBarClass_slistautoptr :: ^glib.SList
 ViewSwitcherBarClass_queueautoptr :: ^glib.Queue
+_AdwViewSwitcherSidebar :: struct #packed {}
+ViewSwitcherSidebar :: _AdwViewSwitcherSidebar
+ViewSwitcherSidebarClass :: struct {
+    parent_class: gtk.WidgetClass,
+}
+ViewSwitcherSidebar_autoptr :: ^ViewSwitcherSidebar
+ViewSwitcherSidebar_listautoptr :: ^glib.List
+ViewSwitcherSidebar_slistautoptr :: ^glib.SList
+ViewSwitcherSidebar_queueautoptr :: ^glib.Queue
+ViewSwitcherSidebarClass_autoptr :: ^ViewSwitcherSidebarClass
+ViewSwitcherSidebarClass_listautoptr :: ^glib.List
+ViewSwitcherSidebarClass_slistautoptr :: ^glib.SList
+ViewSwitcherSidebarClass_queueautoptr :: ^glib.Queue
 _AdwViewSwitcherTitle :: struct #packed {}
 ViewSwitcherTitle :: _AdwViewSwitcherTitle
 ViewSwitcherTitleClass :: struct {
@@ -1431,6 +1563,9 @@ foreign adwaita_runic {
     @(link_name = "adw_navigation_direction_get_type")
     navigation_direction_get_type :: proc() -> gobj.Type ---
 
+    @(link_name = "adw_sidebar_mode_get_type")
+    sidebar_mode_get_type :: proc() -> gobj.Type ---
+
     @(link_name = "adw_squeezer_transition_type_get_type")
     squeezer_transition_type_get_type :: proc() -> gobj.Type ---
 
@@ -1541,6 +1676,9 @@ foreign adwaita_runic {
 
     @(link_name = "adw_about_dialog_new_from_appdata")
     about_dialog_new_from_appdata :: proc(resource_path: cstring, release_notes_version: cstring) -> ^Dialog ---
+
+    @(link_name = "adw_about_dialog_get_appdata_resource_path")
+    about_dialog_get_appdata_resource_path :: proc(self: ^AboutDialog) -> cstring ---
 
     @(link_name = "adw_about_dialog_get_application_name")
     about_dialog_get_application_name :: proc(self: ^AboutDialog) -> cstring ---
@@ -2057,6 +2195,12 @@ foreign adwaita_runic {
 
     @(link_name = "adw_animation_target_get_type")
     animation_target_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_none_animation_target_get_type")
+    none_animation_target_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_none_animation_target_new")
+    none_animation_target_new :: proc() -> ^AnimationTarget ---
 
     @(link_name = "adw_callback_animation_target_get_type")
     callback_animation_target_get_type :: proc() -> gobj.Type ---
@@ -3066,6 +3210,18 @@ foreign adwaita_runic {
     @(link_name = "adw_view_stack_page_set_visible")
     view_stack_page_set_visible :: proc(self: ^ViewStackPage, visible: glib.boolean) ---
 
+    @(link_name = "adw_view_stack_page_get_starts_section")
+    view_stack_page_get_starts_section :: proc(self: ^ViewStackPage) -> glib.boolean ---
+
+    @(link_name = "adw_view_stack_page_set_starts_section")
+    view_stack_page_set_starts_section :: proc(self: ^ViewStackPage, starts_section: glib.boolean) ---
+
+    @(link_name = "adw_view_stack_page_get_section_title")
+    view_stack_page_get_section_title :: proc(self: ^ViewStackPage) -> cstring ---
+
+    @(link_name = "adw_view_stack_page_set_section_title")
+    view_stack_page_set_section_title :: proc(self: ^ViewStackPage, section_title: cstring) ---
+
     @(link_name = "adw_view_stack_get_type")
     view_stack_get_type :: proc() -> gobj.Type ---
 
@@ -3717,6 +3873,9 @@ foreign adwaita_runic {
     @(link_name = "adw_preferences_group_remove")
     preferences_group_remove :: proc(self: ^PreferencesGroup, child: ^gtk.Widget) ---
 
+    @(link_name = "adw_preferences_group_get_row")
+    preferences_group_get_row :: proc(self: ^PreferencesGroup, index: glib.uint_) -> ^gtk.Widget ---
+
     @(link_name = "adw_preferences_group_get_title")
     preferences_group_get_title :: proc(self: ^PreferencesGroup) -> cstring ---
 
@@ -3741,6 +3900,9 @@ foreign adwaita_runic {
     @(link_name = "adw_preferences_group_set_separate_rows")
     preferences_group_set_separate_rows :: proc(self: ^PreferencesGroup, separate_rows: glib.boolean) ---
 
+    @(link_name = "adw_preferences_group_bind_model")
+    preferences_group_bind_model :: proc(self: ^PreferencesGroup, model: ^gio.ListModel, create_row_func: gtk.ListBoxCreateWidgetFunc, user_data: glib.pointer, user_data_free_func: glib.DestroyNotify) ---
+
     @(link_name = "adw_preferences_page_get_type")
     preferences_page_get_type :: proc() -> gobj.Type ---
 
@@ -3752,6 +3914,12 @@ foreign adwaita_runic {
 
     @(link_name = "adw_preferences_page_remove")
     preferences_page_remove :: proc(self: ^PreferencesPage, group: ^PreferencesGroup) ---
+
+    @(link_name = "adw_preferences_page_insert")
+    preferences_page_insert :: proc(self: ^PreferencesPage, group: ^PreferencesGroup, index: i32) ---
+
+    @(link_name = "adw_preferences_page_get_group")
+    preferences_page_get_group :: proc(self: ^PreferencesPage, index: glib.uint_) -> ^PreferencesGroup ---
 
     @(link_name = "adw_preferences_page_get_icon_name")
     preferences_page_get_icon_name :: proc(self: ^PreferencesPage) -> cstring ---
@@ -3953,6 +4121,282 @@ foreign adwaita_runic {
 
     @(link_name = "adw_preferences_window_add_toast")
     preferences_window_add_toast :: proc(self: ^PreferencesWindow, toast: ^Toast) ---
+
+    @(link_name = "adw_shortcut_label_get_type")
+    shortcut_label_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_shortcut_label_new")
+    shortcut_label_new :: proc(accelerator: cstring) -> ^gtk.Widget ---
+
+    @(link_name = "adw_shortcut_label_get_accelerator")
+    shortcut_label_get_accelerator :: proc(self: ^ShortcutLabel) -> cstring ---
+
+    @(link_name = "adw_shortcut_label_set_accelerator")
+    shortcut_label_set_accelerator :: proc(self: ^ShortcutLabel, accelerator: cstring) ---
+
+    @(link_name = "adw_shortcut_label_get_disabled_text")
+    shortcut_label_get_disabled_text :: proc(self: ^ShortcutLabel) -> cstring ---
+
+    @(link_name = "adw_shortcut_label_set_disabled_text")
+    shortcut_label_set_disabled_text :: proc(self: ^ShortcutLabel, disabled_text: cstring) ---
+
+    @(link_name = "adw_shortcuts_item_get_type")
+    shortcuts_item_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_shortcuts_item_new")
+    shortcuts_item_new :: proc(title: cstring, accelerator: cstring) -> ^ShortcutsItem ---
+
+    @(link_name = "adw_shortcuts_item_new_from_action")
+    shortcuts_item_new_from_action :: proc(title: cstring, action_name: cstring) -> ^ShortcutsItem ---
+
+    @(link_name = "adw_shortcuts_item_get_title")
+    shortcuts_item_get_title :: proc(self: ^ShortcutsItem) -> cstring ---
+
+    @(link_name = "adw_shortcuts_item_set_title")
+    shortcuts_item_set_title :: proc(self: ^ShortcutsItem, title: cstring) ---
+
+    @(link_name = "adw_shortcuts_item_get_subtitle")
+    shortcuts_item_get_subtitle :: proc(self: ^ShortcutsItem) -> cstring ---
+
+    @(link_name = "adw_shortcuts_item_set_subtitle")
+    shortcuts_item_set_subtitle :: proc(self: ^ShortcutsItem, subtitle: cstring) ---
+
+    @(link_name = "adw_shortcuts_item_get_accelerator")
+    shortcuts_item_get_accelerator :: proc(self: ^ShortcutsItem) -> cstring ---
+
+    @(link_name = "adw_shortcuts_item_set_accelerator")
+    shortcuts_item_set_accelerator :: proc(self: ^ShortcutsItem, accelerator: cstring) ---
+
+    @(link_name = "adw_shortcuts_item_get_action_name")
+    shortcuts_item_get_action_name :: proc(self: ^ShortcutsItem) -> cstring ---
+
+    @(link_name = "adw_shortcuts_item_set_action_name")
+    shortcuts_item_set_action_name :: proc(self: ^ShortcutsItem, action_name: cstring) ---
+
+    @(link_name = "adw_shortcuts_item_get_direction")
+    shortcuts_item_get_direction :: proc(self: ^ShortcutsItem) -> gtk.TextDirection ---
+
+    @(link_name = "adw_shortcuts_item_set_direction")
+    shortcuts_item_set_direction :: proc(self: ^ShortcutsItem, direction: gtk.TextDirection) ---
+
+    @(link_name = "adw_shortcuts_section_get_type")
+    shortcuts_section_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_shortcuts_section_new")
+    shortcuts_section_new :: proc(title: cstring) -> ^ShortcutsSection ---
+
+    @(link_name = "adw_shortcuts_section_get_title")
+    shortcuts_section_get_title :: proc(self: ^ShortcutsSection) -> cstring ---
+
+    @(link_name = "adw_shortcuts_section_set_title")
+    shortcuts_section_set_title :: proc(self: ^ShortcutsSection, title: cstring) ---
+
+    @(link_name = "adw_shortcuts_section_add")
+    shortcuts_section_add :: proc(self: ^ShortcutsSection, item: ^ShortcutsItem) ---
+
+    @(link_name = "adw_shortcuts_dialog_get_type")
+    shortcuts_dialog_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_shortcuts_dialog_new")
+    shortcuts_dialog_new :: proc() -> ^Dialog ---
+
+    @(link_name = "adw_shortcuts_dialog_add")
+    shortcuts_dialog_add :: proc(self: ^ShortcutsDialog, section: ^ShortcutsSection) ---
+
+    @(link_name = "adw_sidebar_item_get_type")
+    sidebar_item_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_sidebar_item_new")
+    sidebar_item_new :: proc(title: cstring) -> ^SidebarItem ---
+
+    @(link_name = "adw_sidebar_item_get_title")
+    sidebar_item_get_title :: proc(self: ^SidebarItem) -> cstring ---
+
+    @(link_name = "adw_sidebar_item_set_title")
+    sidebar_item_set_title :: proc(self: ^SidebarItem, title: cstring) ---
+
+    @(link_name = "adw_sidebar_item_get_subtitle")
+    sidebar_item_get_subtitle :: proc(self: ^SidebarItem) -> cstring ---
+
+    @(link_name = "adw_sidebar_item_set_subtitle")
+    sidebar_item_set_subtitle :: proc(self: ^SidebarItem, subtitle: cstring) ---
+
+    @(link_name = "adw_sidebar_item_get_use_underline")
+    sidebar_item_get_use_underline :: proc(self: ^SidebarItem) -> glib.boolean ---
+
+    @(link_name = "adw_sidebar_item_set_use_underline")
+    sidebar_item_set_use_underline :: proc(self: ^SidebarItem, use_underline: glib.boolean) ---
+
+    @(link_name = "adw_sidebar_item_get_icon_name")
+    sidebar_item_get_icon_name :: proc(self: ^SidebarItem) -> cstring ---
+
+    @(link_name = "adw_sidebar_item_set_icon_name")
+    sidebar_item_set_icon_name :: proc(self: ^SidebarItem, icon_name: cstring) ---
+
+    @(link_name = "adw_sidebar_item_get_icon_paintable")
+    sidebar_item_get_icon_paintable :: proc(self: ^SidebarItem) -> ^gtk.Paintable ---
+
+    @(link_name = "adw_sidebar_item_set_icon_paintable")
+    sidebar_item_set_icon_paintable :: proc(self: ^SidebarItem, paintable: ^gtk.Paintable) ---
+
+    @(link_name = "adw_sidebar_item_get_tooltip")
+    sidebar_item_get_tooltip :: proc(self: ^SidebarItem) -> cstring ---
+
+    @(link_name = "adw_sidebar_item_set_tooltip")
+    sidebar_item_set_tooltip :: proc(self: ^SidebarItem, tooltip: cstring) ---
+
+    @(link_name = "adw_sidebar_item_get_suffix")
+    sidebar_item_get_suffix :: proc(self: ^SidebarItem) -> ^gtk.Widget ---
+
+    @(link_name = "adw_sidebar_item_set_suffix")
+    sidebar_item_set_suffix :: proc(self: ^SidebarItem, suffix: ^gtk.Widget) ---
+
+    @(link_name = "adw_sidebar_item_get_visible")
+    sidebar_item_get_visible :: proc(self: ^SidebarItem) -> glib.boolean ---
+
+    @(link_name = "adw_sidebar_item_set_visible")
+    sidebar_item_set_visible :: proc(self: ^SidebarItem, visible: glib.boolean) ---
+
+    @(link_name = "adw_sidebar_item_get_enabled")
+    sidebar_item_get_enabled :: proc(self: ^SidebarItem) -> glib.boolean ---
+
+    @(link_name = "adw_sidebar_item_set_enabled")
+    sidebar_item_set_enabled :: proc(self: ^SidebarItem, enabled: glib.boolean) ---
+
+    @(link_name = "adw_sidebar_item_get_drag_motion_activate")
+    sidebar_item_get_drag_motion_activate :: proc(self: ^SidebarItem) -> glib.boolean ---
+
+    @(link_name = "adw_sidebar_item_set_drag_motion_activate")
+    sidebar_item_set_drag_motion_activate :: proc(self: ^SidebarItem, drag_motion_activate: glib.boolean) ---
+
+    @(link_name = "adw_sidebar_item_get_section")
+    sidebar_item_get_section :: proc(self: ^SidebarItem) -> ^SidebarSection ---
+
+    @(link_name = "adw_sidebar_item_get_index")
+    sidebar_item_get_index :: proc(self: ^SidebarItem) -> glib.uint_ ---
+
+    @(link_name = "adw_sidebar_item_get_section_index")
+    sidebar_item_get_section_index :: proc(self: ^SidebarItem) -> glib.uint_ ---
+
+    @(link_name = "adw_sidebar_section_get_type")
+    sidebar_section_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_sidebar_section_new")
+    sidebar_section_new :: proc() -> ^SidebarSection ---
+
+    @(link_name = "adw_sidebar_section_get_title")
+    sidebar_section_get_title :: proc(self: ^SidebarSection) -> cstring ---
+
+    @(link_name = "adw_sidebar_section_set_title")
+    sidebar_section_set_title :: proc(self: ^SidebarSection, title: cstring) ---
+
+    @(link_name = "adw_sidebar_section_get_menu_model")
+    sidebar_section_get_menu_model :: proc(self: ^SidebarSection) -> ^gio.MenuModel ---
+
+    @(link_name = "adw_sidebar_section_set_menu_model")
+    sidebar_section_set_menu_model :: proc(self: ^SidebarSection, menu_model: ^gio.MenuModel) ---
+
+    @(link_name = "adw_sidebar_section_get_items")
+    sidebar_section_get_items :: proc(self: ^SidebarSection) -> ^gio.ListModel ---
+
+    @(link_name = "adw_sidebar_section_get_item")
+    sidebar_section_get_item :: proc(self: ^SidebarSection, index: glib.uint_) -> ^SidebarItem ---
+
+    @(link_name = "adw_sidebar_section_append")
+    sidebar_section_append :: proc(self: ^SidebarSection, item: ^SidebarItem) ---
+
+    @(link_name = "adw_sidebar_section_prepend")
+    sidebar_section_prepend :: proc(self: ^SidebarSection, item: ^SidebarItem) ---
+
+    @(link_name = "adw_sidebar_section_insert")
+    sidebar_section_insert :: proc(self: ^SidebarSection, item: ^SidebarItem, position: i32) ---
+
+    @(link_name = "adw_sidebar_section_remove")
+    sidebar_section_remove :: proc(self: ^SidebarSection, item: ^SidebarItem) ---
+
+    @(link_name = "adw_sidebar_section_remove_all")
+    sidebar_section_remove_all :: proc(self: ^SidebarSection) ---
+
+    @(link_name = "adw_sidebar_section_bind_model")
+    sidebar_section_bind_model :: proc(self: ^SidebarSection, model: ^gio.ListModel, create_item_func: SidebarSectionCreateItemFunc, user_data: glib.pointer, user_data_free_func: glib.DestroyNotify) ---
+
+    @(link_name = "adw_sidebar_section_get_sidebar")
+    sidebar_section_get_sidebar :: proc(self: ^SidebarSection) -> ^Sidebar ---
+
+    @(link_name = "adw_sidebar_get_type")
+    sidebar_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_sidebar_new")
+    sidebar_new :: proc() -> ^gtk.Widget ---
+
+    @(link_name = "adw_sidebar_get_mode")
+    sidebar_get_mode :: proc(self: ^Sidebar) -> SidebarMode ---
+
+    @(link_name = "adw_sidebar_set_mode")
+    sidebar_set_mode :: proc(self: ^Sidebar, mode: SidebarMode) ---
+
+    @(link_name = "adw_sidebar_get_selected")
+    sidebar_get_selected :: proc(self: ^Sidebar) -> glib.uint_ ---
+
+    @(link_name = "adw_sidebar_set_selected")
+    sidebar_set_selected :: proc(self: ^Sidebar, selected: glib.uint_) ---
+
+    @(link_name = "adw_sidebar_get_selected_item")
+    sidebar_get_selected_item :: proc(self: ^Sidebar) -> ^SidebarItem ---
+
+    @(link_name = "adw_sidebar_get_filter")
+    sidebar_get_filter :: proc(self: ^Sidebar) -> ^gtk.Filter ---
+
+    @(link_name = "adw_sidebar_set_filter")
+    sidebar_set_filter :: proc(self: ^Sidebar, filter: ^gtk.Filter) ---
+
+    @(link_name = "adw_sidebar_get_placeholder")
+    sidebar_get_placeholder :: proc(self: ^Sidebar) -> ^gtk.Widget ---
+
+    @(link_name = "adw_sidebar_set_placeholder")
+    sidebar_set_placeholder :: proc(self: ^Sidebar, placeholder: ^gtk.Widget) ---
+
+    @(link_name = "adw_sidebar_get_items")
+    sidebar_get_items :: proc(self: ^Sidebar) -> ^gtk.SelectionModel ---
+
+    @(link_name = "adw_sidebar_get_sections")
+    sidebar_get_sections :: proc(self: ^Sidebar) -> ^gio.ListModel ---
+
+    @(link_name = "adw_sidebar_get_item")
+    sidebar_get_item :: proc(self: ^Sidebar, index: glib.uint_) -> ^SidebarItem ---
+
+    @(link_name = "adw_sidebar_get_section")
+    sidebar_get_section :: proc(self: ^Sidebar, index: glib.uint_) -> ^SidebarSection ---
+
+    @(link_name = "adw_sidebar_append")
+    sidebar_append :: proc(self: ^Sidebar, section: ^SidebarSection) ---
+
+    @(link_name = "adw_sidebar_prepend")
+    sidebar_prepend :: proc(self: ^Sidebar, section: ^SidebarSection) ---
+
+    @(link_name = "adw_sidebar_insert")
+    sidebar_insert :: proc(self: ^Sidebar, section: ^SidebarSection, position: i32) ---
+
+    @(link_name = "adw_sidebar_remove")
+    sidebar_remove :: proc(self: ^Sidebar, section: ^SidebarSection) ---
+
+    @(link_name = "adw_sidebar_remove_all")
+    sidebar_remove_all :: proc(self: ^Sidebar) ---
+
+    @(link_name = "adw_sidebar_setup_drop_target")
+    sidebar_setup_drop_target :: proc(self: ^Sidebar, actions: gtk.DragAction, types: [^]gobj.Type, n_types: glib.size) ---
+
+    @(link_name = "adw_sidebar_get_drop_preload")
+    sidebar_get_drop_preload :: proc(self: ^Sidebar) -> glib.boolean ---
+
+    @(link_name = "adw_sidebar_set_drop_preload")
+    sidebar_set_drop_preload :: proc(self: ^Sidebar, preload: glib.boolean) ---
+
+    @(link_name = "adw_sidebar_get_menu_model")
+    sidebar_get_menu_model :: proc(self: ^Sidebar) -> ^gio.MenuModel ---
+
+    @(link_name = "adw_sidebar_set_menu_model")
+    sidebar_set_menu_model :: proc(self: ^Sidebar, menu_model: ^gio.MenuModel) ---
 
     @(link_name = "adw_spin_row_get_type")
     spin_row_get_type :: proc() -> gobj.Type ---
@@ -4824,6 +5268,12 @@ foreign adwaita_runic {
     @(link_name = "adw_toggle_set_tooltip")
     toggle_set_tooltip :: proc(self: ^Toggle, tooltip: cstring) ---
 
+    @(link_name = "adw_toggle_get_description")
+    toggle_get_description :: proc(self: ^Toggle) -> cstring ---
+
+    @(link_name = "adw_toggle_set_description")
+    toggle_set_description :: proc(self: ^Toggle, description: cstring) ---
+
     @(link_name = "adw_toggle_get_child")
     toggle_get_child :: proc(self: ^Toggle) -> ^gtk.Widget ---
 
@@ -4988,6 +5438,36 @@ foreign adwaita_runic {
 
     @(link_name = "adw_view_switcher_bar_set_reveal")
     view_switcher_bar_set_reveal :: proc(self: ^ViewSwitcherBar, reveal: glib.boolean) ---
+
+    @(link_name = "adw_view_switcher_sidebar_get_type")
+    view_switcher_sidebar_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "adw_view_switcher_sidebar_new")
+    view_switcher_sidebar_new :: proc() -> ^gtk.Widget ---
+
+    @(link_name = "adw_view_switcher_sidebar_get_stack")
+    view_switcher_sidebar_get_stack :: proc(self: ^ViewSwitcherSidebar) -> ^ViewStack ---
+
+    @(link_name = "adw_view_switcher_sidebar_set_stack")
+    view_switcher_sidebar_set_stack :: proc(self: ^ViewSwitcherSidebar, stack: ^ViewStack) ---
+
+    @(link_name = "adw_view_switcher_sidebar_get_mode")
+    view_switcher_sidebar_get_mode :: proc(self: ^ViewSwitcherSidebar) -> SidebarMode ---
+
+    @(link_name = "adw_view_switcher_sidebar_set_mode")
+    view_switcher_sidebar_set_mode :: proc(self: ^ViewSwitcherSidebar, mode: SidebarMode) ---
+
+    @(link_name = "adw_view_switcher_sidebar_get_filter")
+    view_switcher_sidebar_get_filter :: proc(self: ^ViewSwitcherSidebar) -> ^gtk.Filter ---
+
+    @(link_name = "adw_view_switcher_sidebar_set_filter")
+    view_switcher_sidebar_set_filter :: proc(self: ^ViewSwitcherSidebar, filter: ^gtk.Filter) ---
+
+    @(link_name = "adw_view_switcher_sidebar_get_placeholder")
+    view_switcher_sidebar_get_placeholder :: proc(self: ^ViewSwitcherSidebar) -> ^gtk.Widget ---
+
+    @(link_name = "adw_view_switcher_sidebar_set_placeholder")
+    view_switcher_sidebar_set_placeholder :: proc(self: ^ViewSwitcherSidebar, placeholder: ^gtk.Widget) ---
 
     @(link_name = "adw_view_switcher_title_get_type")
     view_switcher_title_get_type :: proc() -> gobj.Type ---
@@ -5222,6 +5702,9 @@ foreign adwaita_runic {
 
     @(link_name = "adw_wrap_box_remove")
     wrap_box_remove :: proc(self: ^WrapBox, child: ^gtk.Widget) ---
+
+    @(link_name = "adw_wrap_box_remove_all")
+    wrap_box_remove_all :: proc(self: ^WrapBox) ---
 
     @(link_name = "glib_autoptr_clear_AdwBreakpointCondition_wrapper")
     autoptr_clear_AdwBreakpointCondition :: proc(_ptr: ^BreakpointCondition) ---
@@ -5672,6 +6155,57 @@ foreign adwaita_runic {
 
     @(link_name = "ADW_ANIMATION_TARGET_GET_CLASS_wrapper")
     ANIMATION_TARGET_GET_CLASS :: proc(ptr: glib.pointer) -> ^AnimationTargetClass ---
+
+    @(link_name = "glib_autoptr_clear_AdwNoneAnimationTarget_wrapper")
+    autoptr_clear_AdwNoneAnimationTarget :: proc(_ptr: ^NoneAnimationTarget) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwNoneAnimationTarget_wrapper")
+    autoptr_cleanup_AdwNoneAnimationTarget :: proc(_ptr: ^^NoneAnimationTarget) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwNoneAnimationTarget_wrapper")
+    autoptr_destroy_AdwNoneAnimationTarget :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwNoneAnimationTarget_wrapper")
+    listautoptr_cleanup_AdwNoneAnimationTarget :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwNoneAnimationTarget_wrapper")
+    slistautoptr_cleanup_AdwNoneAnimationTarget :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwNoneAnimationTarget_wrapper")
+    queueautoptr_cleanup_AdwNoneAnimationTarget :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwNoneAnimationTargetClass_wrapper")
+    autoptr_clear_AdwNoneAnimationTargetClass :: proc(_ptr: ^NoneAnimationTargetClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwNoneAnimationTargetClass_wrapper")
+    autoptr_cleanup_AdwNoneAnimationTargetClass :: proc(_ptr: ^^NoneAnimationTargetClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwNoneAnimationTargetClass_wrapper")
+    autoptr_destroy_AdwNoneAnimationTargetClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwNoneAnimationTargetClass_wrapper")
+    listautoptr_cleanup_AdwNoneAnimationTargetClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwNoneAnimationTargetClass_wrapper")
+    slistautoptr_cleanup_AdwNoneAnimationTargetClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwNoneAnimationTargetClass_wrapper")
+    queueautoptr_cleanup_AdwNoneAnimationTargetClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_NONE_ANIMATION_TARGET_wrapper")
+    NONE_ANIMATION_TARGET :: proc(ptr: glib.pointer) -> ^NoneAnimationTarget ---
+
+    @(link_name = "ADW_NONE_ANIMATION_TARGET_CLASS_wrapper")
+    NONE_ANIMATION_TARGET_CLASS :: proc(ptr: glib.pointer) -> ^NoneAnimationTargetClass ---
+
+    @(link_name = "ADW_IS_NONE_ANIMATION_TARGET_wrapper")
+    IS_NONE_ANIMATION_TARGET :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "ADW_IS_NONE_ANIMATION_TARGET_CLASS_wrapper")
+    IS_NONE_ANIMATION_TARGET_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "ADW_NONE_ANIMATION_TARGET_GET_CLASS_wrapper")
+    NONE_ANIMATION_TARGET_GET_CLASS :: proc(ptr: glib.pointer) -> ^NoneAnimationTargetClass ---
 
     @(link_name = "glib_autoptr_clear_AdwCallbackAnimationTarget_wrapper")
     autoptr_clear_AdwCallbackAnimationTarget :: proc(_ptr: ^CallbackAnimationTarget) ---
@@ -7767,6 +8301,309 @@ foreign adwaita_runic {
     @(link_name = "ADW_PREFERENCES_WINDOW_GET_CLASS_wrapper")
     PREFERENCES_WINDOW_GET_CLASS :: proc(ptr: glib.pointer) -> ^PreferencesWindowClass ---
 
+    @(link_name = "glib_autoptr_clear_AdwShortcutLabel_wrapper")
+    autoptr_clear_AdwShortcutLabel :: proc(_ptr: ^ShortcutLabel) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwShortcutLabel_wrapper")
+    autoptr_cleanup_AdwShortcutLabel :: proc(_ptr: ^^ShortcutLabel) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwShortcutLabel_wrapper")
+    autoptr_destroy_AdwShortcutLabel :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwShortcutLabel_wrapper")
+    listautoptr_cleanup_AdwShortcutLabel :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwShortcutLabel_wrapper")
+    slistautoptr_cleanup_AdwShortcutLabel :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwShortcutLabel_wrapper")
+    queueautoptr_cleanup_AdwShortcutLabel :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwShortcutLabelClass_wrapper")
+    autoptr_clear_AdwShortcutLabelClass :: proc(_ptr: ^ShortcutLabelClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwShortcutLabelClass_wrapper")
+    autoptr_cleanup_AdwShortcutLabelClass :: proc(_ptr: ^^ShortcutLabelClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwShortcutLabelClass_wrapper")
+    autoptr_destroy_AdwShortcutLabelClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwShortcutLabelClass_wrapper")
+    listautoptr_cleanup_AdwShortcutLabelClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwShortcutLabelClass_wrapper")
+    slistautoptr_cleanup_AdwShortcutLabelClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwShortcutLabelClass_wrapper")
+    queueautoptr_cleanup_AdwShortcutLabelClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_SHORTCUT_LABEL_wrapper")
+    SHORTCUT_LABEL :: proc(ptr: glib.pointer) -> ^ShortcutLabel ---
+
+    @(link_name = "ADW_IS_SHORTCUT_LABEL_wrapper")
+    IS_SHORTCUT_LABEL :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwShortcutsItem_wrapper")
+    autoptr_clear_AdwShortcutsItem :: proc(_ptr: ^ShortcutsItem) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwShortcutsItem_wrapper")
+    autoptr_cleanup_AdwShortcutsItem :: proc(_ptr: ^^ShortcutsItem) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwShortcutsItem_wrapper")
+    autoptr_destroy_AdwShortcutsItem :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwShortcutsItem_wrapper")
+    listautoptr_cleanup_AdwShortcutsItem :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwShortcutsItem_wrapper")
+    slistautoptr_cleanup_AdwShortcutsItem :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwShortcutsItem_wrapper")
+    queueautoptr_cleanup_AdwShortcutsItem :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwShortcutsItemClass_wrapper")
+    autoptr_clear_AdwShortcutsItemClass :: proc(_ptr: ^ShortcutsItemClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwShortcutsItemClass_wrapper")
+    autoptr_cleanup_AdwShortcutsItemClass :: proc(_ptr: ^^ShortcutsItemClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwShortcutsItemClass_wrapper")
+    autoptr_destroy_AdwShortcutsItemClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwShortcutsItemClass_wrapper")
+    listautoptr_cleanup_AdwShortcutsItemClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwShortcutsItemClass_wrapper")
+    slistautoptr_cleanup_AdwShortcutsItemClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwShortcutsItemClass_wrapper")
+    queueautoptr_cleanup_AdwShortcutsItemClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_SHORTCUTS_ITEM_wrapper")
+    SHORTCUTS_ITEM :: proc(ptr: glib.pointer) -> ^ShortcutsItem ---
+
+    @(link_name = "ADW_IS_SHORTCUTS_ITEM_wrapper")
+    IS_SHORTCUTS_ITEM :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwShortcutsSection_wrapper")
+    autoptr_clear_AdwShortcutsSection :: proc(_ptr: ^ShortcutsSection) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwShortcutsSection_wrapper")
+    autoptr_cleanup_AdwShortcutsSection :: proc(_ptr: ^^ShortcutsSection) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwShortcutsSection_wrapper")
+    autoptr_destroy_AdwShortcutsSection :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwShortcutsSection_wrapper")
+    listautoptr_cleanup_AdwShortcutsSection :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwShortcutsSection_wrapper")
+    slistautoptr_cleanup_AdwShortcutsSection :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwShortcutsSection_wrapper")
+    queueautoptr_cleanup_AdwShortcutsSection :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwShortcutsSectionClass_wrapper")
+    autoptr_clear_AdwShortcutsSectionClass :: proc(_ptr: ^ShortcutsSectionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwShortcutsSectionClass_wrapper")
+    autoptr_cleanup_AdwShortcutsSectionClass :: proc(_ptr: ^^ShortcutsSectionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwShortcutsSectionClass_wrapper")
+    autoptr_destroy_AdwShortcutsSectionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwShortcutsSectionClass_wrapper")
+    listautoptr_cleanup_AdwShortcutsSectionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwShortcutsSectionClass_wrapper")
+    slistautoptr_cleanup_AdwShortcutsSectionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwShortcutsSectionClass_wrapper")
+    queueautoptr_cleanup_AdwShortcutsSectionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_SHORTCUTS_SECTION_wrapper")
+    SHORTCUTS_SECTION :: proc(ptr: glib.pointer) -> ^ShortcutsSection ---
+
+    @(link_name = "ADW_IS_SHORTCUTS_SECTION_wrapper")
+    IS_SHORTCUTS_SECTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwShortcutsDialog_wrapper")
+    autoptr_clear_AdwShortcutsDialog :: proc(_ptr: ^ShortcutsDialog) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwShortcutsDialog_wrapper")
+    autoptr_cleanup_AdwShortcutsDialog :: proc(_ptr: ^^ShortcutsDialog) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwShortcutsDialog_wrapper")
+    autoptr_destroy_AdwShortcutsDialog :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwShortcutsDialog_wrapper")
+    listautoptr_cleanup_AdwShortcutsDialog :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwShortcutsDialog_wrapper")
+    slistautoptr_cleanup_AdwShortcutsDialog :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwShortcutsDialog_wrapper")
+    queueautoptr_cleanup_AdwShortcutsDialog :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwShortcutsDialogClass_wrapper")
+    autoptr_clear_AdwShortcutsDialogClass :: proc(_ptr: ^ShortcutsDialogClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwShortcutsDialogClass_wrapper")
+    autoptr_cleanup_AdwShortcutsDialogClass :: proc(_ptr: ^^ShortcutsDialogClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwShortcutsDialogClass_wrapper")
+    autoptr_destroy_AdwShortcutsDialogClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwShortcutsDialogClass_wrapper")
+    listautoptr_cleanup_AdwShortcutsDialogClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwShortcutsDialogClass_wrapper")
+    slistautoptr_cleanup_AdwShortcutsDialogClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwShortcutsDialogClass_wrapper")
+    queueautoptr_cleanup_AdwShortcutsDialogClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_SHORTCUTS_DIALOG_wrapper")
+    SHORTCUTS_DIALOG :: proc(ptr: glib.pointer) -> ^ShortcutsDialog ---
+
+    @(link_name = "ADW_IS_SHORTCUTS_DIALOG_wrapper")
+    IS_SHORTCUTS_DIALOG :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwSidebarItem_wrapper")
+    autoptr_clear_AdwSidebarItem :: proc(_ptr: ^SidebarItem) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwSidebarItem_wrapper")
+    autoptr_cleanup_AdwSidebarItem :: proc(_ptr: ^^SidebarItem) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwSidebarItem_wrapper")
+    autoptr_destroy_AdwSidebarItem :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwSidebarItem_wrapper")
+    listautoptr_cleanup_AdwSidebarItem :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwSidebarItem_wrapper")
+    slistautoptr_cleanup_AdwSidebarItem :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwSidebarItem_wrapper")
+    queueautoptr_cleanup_AdwSidebarItem :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwSidebarItemClass_wrapper")
+    autoptr_clear_AdwSidebarItemClass :: proc(_ptr: ^SidebarItemClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwSidebarItemClass_wrapper")
+    autoptr_cleanup_AdwSidebarItemClass :: proc(_ptr: ^^SidebarItemClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwSidebarItemClass_wrapper")
+    autoptr_destroy_AdwSidebarItemClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwSidebarItemClass_wrapper")
+    listautoptr_cleanup_AdwSidebarItemClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwSidebarItemClass_wrapper")
+    slistautoptr_cleanup_AdwSidebarItemClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwSidebarItemClass_wrapper")
+    queueautoptr_cleanup_AdwSidebarItemClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_SIDEBAR_ITEM_wrapper")
+    SIDEBAR_ITEM :: proc(ptr: glib.pointer) -> ^SidebarItem ---
+
+    @(link_name = "ADW_SIDEBAR_ITEM_CLASS_wrapper")
+    SIDEBAR_ITEM_CLASS :: proc(ptr: glib.pointer) -> ^SidebarItemClass ---
+
+    @(link_name = "ADW_IS_SIDEBAR_ITEM_wrapper")
+    IS_SIDEBAR_ITEM :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "ADW_IS_SIDEBAR_ITEM_CLASS_wrapper")
+    IS_SIDEBAR_ITEM_CLASS :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "ADW_SIDEBAR_ITEM_GET_CLASS_wrapper")
+    SIDEBAR_ITEM_GET_CLASS :: proc(ptr: glib.pointer) -> ^SidebarItemClass ---
+
+    @(link_name = "glib_autoptr_clear_AdwSidebarSection_wrapper")
+    autoptr_clear_AdwSidebarSection :: proc(_ptr: ^SidebarSection) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwSidebarSection_wrapper")
+    autoptr_cleanup_AdwSidebarSection :: proc(_ptr: ^^SidebarSection) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwSidebarSection_wrapper")
+    autoptr_destroy_AdwSidebarSection :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwSidebarSection_wrapper")
+    listautoptr_cleanup_AdwSidebarSection :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwSidebarSection_wrapper")
+    slistautoptr_cleanup_AdwSidebarSection :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwSidebarSection_wrapper")
+    queueautoptr_cleanup_AdwSidebarSection :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwSidebarSectionClass_wrapper")
+    autoptr_clear_AdwSidebarSectionClass :: proc(_ptr: ^SidebarSectionClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwSidebarSectionClass_wrapper")
+    autoptr_cleanup_AdwSidebarSectionClass :: proc(_ptr: ^^SidebarSectionClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwSidebarSectionClass_wrapper")
+    autoptr_destroy_AdwSidebarSectionClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwSidebarSectionClass_wrapper")
+    listautoptr_cleanup_AdwSidebarSectionClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwSidebarSectionClass_wrapper")
+    slistautoptr_cleanup_AdwSidebarSectionClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwSidebarSectionClass_wrapper")
+    queueautoptr_cleanup_AdwSidebarSectionClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_SIDEBAR_SECTION_wrapper")
+    SIDEBAR_SECTION :: proc(ptr: glib.pointer) -> ^SidebarSection ---
+
+    @(link_name = "ADW_IS_SIDEBAR_SECTION_wrapper")
+    IS_SIDEBAR_SECTION :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwSidebar_wrapper")
+    autoptr_clear_AdwSidebar :: proc(_ptr: ^Sidebar) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwSidebar_wrapper")
+    autoptr_cleanup_AdwSidebar :: proc(_ptr: ^^Sidebar) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwSidebar_wrapper")
+    autoptr_destroy_AdwSidebar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwSidebar_wrapper")
+    listautoptr_cleanup_AdwSidebar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwSidebar_wrapper")
+    slistautoptr_cleanup_AdwSidebar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwSidebar_wrapper")
+    queueautoptr_cleanup_AdwSidebar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwSidebarClass_wrapper")
+    autoptr_clear_AdwSidebarClass :: proc(_ptr: ^SidebarClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwSidebarClass_wrapper")
+    autoptr_cleanup_AdwSidebarClass :: proc(_ptr: ^^SidebarClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwSidebarClass_wrapper")
+    autoptr_destroy_AdwSidebarClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwSidebarClass_wrapper")
+    listautoptr_cleanup_AdwSidebarClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwSidebarClass_wrapper")
+    slistautoptr_cleanup_AdwSidebarClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwSidebarClass_wrapper")
+    queueautoptr_cleanup_AdwSidebarClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_SIDEBAR_wrapper")
+    SIDEBAR :: proc(ptr: glib.pointer) -> ^Sidebar ---
+
+    @(link_name = "ADW_IS_SIDEBAR_wrapper")
+    IS_SIDEBAR :: proc(ptr: glib.pointer) -> glib.boolean ---
+
     @(link_name = "glib_autoptr_clear_AdwSpinRow_wrapper")
     autoptr_clear_AdwSpinRow :: proc(_ptr: ^SpinRow) ---
 
@@ -8735,6 +9572,48 @@ foreign adwaita_runic {
 
     @(link_name = "ADW_IS_VIEW_SWITCHER_BAR_wrapper")
     IS_VIEW_SWITCHER_BAR :: proc(ptr: glib.pointer) -> glib.boolean ---
+
+    @(link_name = "glib_autoptr_clear_AdwViewSwitcherSidebar_wrapper")
+    autoptr_clear_AdwViewSwitcherSidebar :: proc(_ptr: ^ViewSwitcherSidebar) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwViewSwitcherSidebar_wrapper")
+    autoptr_cleanup_AdwViewSwitcherSidebar :: proc(_ptr: ^^ViewSwitcherSidebar) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwViewSwitcherSidebar_wrapper")
+    autoptr_destroy_AdwViewSwitcherSidebar :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwViewSwitcherSidebar_wrapper")
+    listautoptr_cleanup_AdwViewSwitcherSidebar :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwViewSwitcherSidebar_wrapper")
+    slistautoptr_cleanup_AdwViewSwitcherSidebar :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwViewSwitcherSidebar_wrapper")
+    queueautoptr_cleanup_AdwViewSwitcherSidebar :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "glib_autoptr_clear_AdwViewSwitcherSidebarClass_wrapper")
+    autoptr_clear_AdwViewSwitcherSidebarClass :: proc(_ptr: ^ViewSwitcherSidebarClass) ---
+
+    @(link_name = "glib_autoptr_cleanup_AdwViewSwitcherSidebarClass_wrapper")
+    autoptr_cleanup_AdwViewSwitcherSidebarClass :: proc(_ptr: ^^ViewSwitcherSidebarClass) ---
+
+    @(link_name = "glib_autoptr_destroy_AdwViewSwitcherSidebarClass_wrapper")
+    autoptr_destroy_AdwViewSwitcherSidebarClass :: proc(_ptr: rawptr) ---
+
+    @(link_name = "glib_listautoptr_cleanup_AdwViewSwitcherSidebarClass_wrapper")
+    listautoptr_cleanup_AdwViewSwitcherSidebarClass :: proc(_l: ^^glib.List) ---
+
+    @(link_name = "glib_slistautoptr_cleanup_AdwViewSwitcherSidebarClass_wrapper")
+    slistautoptr_cleanup_AdwViewSwitcherSidebarClass :: proc(_l: ^^glib.SList) ---
+
+    @(link_name = "glib_queueautoptr_cleanup_AdwViewSwitcherSidebarClass_wrapper")
+    queueautoptr_cleanup_AdwViewSwitcherSidebarClass :: proc(_q: ^^glib.Queue) ---
+
+    @(link_name = "ADW_VIEW_SWITCHER_SIDEBAR_wrapper")
+    VIEW_SWITCHER_SIDEBAR :: proc(ptr: glib.pointer) -> ^ViewSwitcherSidebar ---
+
+    @(link_name = "ADW_IS_VIEW_SWITCHER_SIDEBAR_wrapper")
+    IS_VIEW_SWITCHER_SIDEBAR :: proc(ptr: glib.pointer) -> glib.boolean ---
 
     @(link_name = "glib_autoptr_clear_AdwViewSwitcherTitle_wrapper")
     autoptr_clear_AdwViewSwitcherTitle :: proc(_ptr: ^ViewSwitcherTitle) ---

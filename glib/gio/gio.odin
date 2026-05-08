@@ -265,9 +265,13 @@ TYPE_NOTIFICATION_PRIORITY :: notification_priority_get_type
 TYPE_NETWORK_CONNECTIVITY :: network_connectivity_get_type 
 TYPE_POLLABLE_RETURN :: pollable_return_get_type 
 TYPE_MEMORY_MONITOR_WARNING_LEVEL :: memory_monitor_warning_level_get_type 
+TYPE_ECN_CODE_POINT :: ecn_code_point_get_type 
 TYPE_RESOLVER_NAME_LOOKUP_FLAGS :: resolver_name_lookup_flags_get_type 
 TYPE_SETTINGS_BIND_FLAGS :: settings_bind_flags_get_type 
 IO_TYPE_MODULE :: io_module_get_type 
+TYPE_SOCKET_CONTROL_MESSAGE :: socket_control_message_get_type 
+TYPE_IP_TOS_MESSAGE :: ip_tos_message_get_type 
+TYPE_IPV6_TCLASS_MESSAGE :: ipv6_tclass_message_get_type 
 TYPE_LIST_MODEL :: list_model_get_type 
 TYPE_LIST_STORE :: list_store_get_type 
 TYPE_LOADABLE_ICON :: loadable_icon_get_type 
@@ -333,7 +337,6 @@ TYPE_SOCKET :: socket_get_type
 TYPE_SOCKET_CLIENT :: socket_client_get_type 
 TYPE_SOCKET_CONNECTABLE :: socket_connectable_get_type 
 TYPE_SOCKET_CONNECTION :: socket_connection_get_type 
-TYPE_SOCKET_CONTROL_MESSAGE :: socket_control_message_get_type 
 TYPE_SOCKET_LISTENER :: socket_listener_get_type 
 TYPE_SOCKET_SERVICE :: socket_service_get_type 
 TYPE_SRV_TARGET :: srv_target_get_type 
@@ -456,6 +459,7 @@ NotificationPriority :: enum u32 {NORMAL = 0, LOW = 1, HIGH = 2, URGENT = 3 }
 NetworkConnectivity :: enum u32 {LOCAL = 1, LIMITED = 2, PORTAL = 3, FULL = 4 }
 PollableReturn :: enum i32 {FAILED = 0, OK = 1, WOULD_BLOCK = -27 }
 MemoryMonitorWarningLevel :: enum u32 {LOW = 50, MEDIUM = 100, CRITICAL = 255 }
+EcnCodePoint :: enum u32 {ECN_NO_ECN = 0, ECN_ECT_1 = 1, ECN_ECT_0 = 2, ECN_ECT_CE = 3 }
 _GAppLaunchContextPrivate :: struct #packed {}
 AppLaunchContextPrivate :: _GAppLaunchContextPrivate
 _GAppLaunchContext :: struct {
@@ -1587,15 +1591,17 @@ et_info_func_ptr_anon_172 :: #type proc "c" (interface_: ^DBusInterfaceSkeleton)
 et_vtable_func_ptr_anon_173 :: #type proc "c" (interface_: ^DBusInterfaceSkeleton) -> ^DBusInterfaceVTable
 et_properties_func_ptr_anon_174 :: #type proc "c" (interface_: ^DBusInterfaceSkeleton) -> ^glib.Variant
 flush_func_ptr_anon_175 :: #type proc "c" (interface_: ^DBusInterfaceSkeleton)
-_authorize_method_func_ptr_anon_176 :: #type proc "c" (interface_: ^DBusInterfaceSkeleton, invocation: ^DBusMethodInvocation) -> glib.boolean
+method_dispatch_func_ptr_anon_176 :: #type proc "c" (interface_: ^DBusInterfaceSkeleton, method_call_func: DBusInterfaceMethodCallFunc, invocation: ^DBusMethodInvocation, flags: DBusInterfaceSkeletonFlags, object: ^DBusObject)
+_authorize_method_func_ptr_anon_177 :: #type proc "c" (interface_: ^DBusInterfaceSkeleton, invocation: ^DBusMethodInvocation) -> glib.boolean
 _GDBusInterfaceSkeletonClass :: struct {
     parent_class: gobj.ObjectClass,
     get_info: et_info_func_ptr_anon_172,
     get_vtable: et_vtable_func_ptr_anon_173,
     get_properties: et_properties_func_ptr_anon_174,
     flush: flush_func_ptr_anon_175,
-    vfunc_padding: [8]glib.pointer,
-    g_authorize_method: _authorize_method_func_ptr_anon_176,
+    method_dispatch: method_dispatch_func_ptr_anon_176,
+    vfunc_padding: [7]glib.pointer,
+    g_authorize_method: _authorize_method_func_ptr_anon_177,
     signal_padding: [8]glib.pointer,
 }
 DBusInterfaceSkeletonClass :: _GDBusInterfaceSkeletonClass
@@ -1619,46 +1625,46 @@ BusNameAcquiredCallback :: #type proc "c" (connection: ^DBusConnection, name: cs
 BusNameLostCallback :: #type proc "c" (connection: ^DBusConnection, name: cstring, user_data: glib.pointer)
 BusNameAppearedCallback :: #type proc "c" (connection: ^DBusConnection, name: cstring, name_owner: cstring, user_data: glib.pointer)
 BusNameVanishedCallback :: #type proc "c" (connection: ^DBusConnection, name: cstring, user_data: glib.pointer)
-et_object_path_func_ptr_anon_177 :: #type proc "c" (object: ^DBusObject) -> cstring
-et_interfaces_func_ptr_anon_178 :: #type proc "c" (object: ^DBusObject) -> ^glib.List
-et_interface_func_ptr_anon_179 :: #type proc "c" (object: ^DBusObject, interface_name: cstring) -> ^DBusInterface
-interface_added_func_ptr_anon_180 :: #type proc "c" (object: ^DBusObject, interface_: ^DBusInterface)
-interface_removed_func_ptr_anon_181 :: #type proc "c" (object: ^DBusObject, interface_: ^DBusInterface)
+et_object_path_func_ptr_anon_178 :: #type proc "c" (object: ^DBusObject) -> cstring
+et_interfaces_func_ptr_anon_179 :: #type proc "c" (object: ^DBusObject) -> ^glib.List
+et_interface_func_ptr_anon_180 :: #type proc "c" (object: ^DBusObject, interface_name: cstring) -> ^DBusInterface
+interface_added_func_ptr_anon_181 :: #type proc "c" (object: ^DBusObject, interface_: ^DBusInterface)
+interface_removed_func_ptr_anon_182 :: #type proc "c" (object: ^DBusObject, interface_: ^DBusInterface)
 _GDBusObjectIface :: struct {
     parent_iface: gobj.TypeInterface,
-    get_object_path: et_object_path_func_ptr_anon_177,
-    get_interfaces: et_interfaces_func_ptr_anon_178,
-    get_interface: et_interface_func_ptr_anon_179,
-    interface_added: interface_added_func_ptr_anon_180,
-    interface_removed: interface_removed_func_ptr_anon_181,
+    get_object_path: et_object_path_func_ptr_anon_178,
+    get_interfaces: et_interfaces_func_ptr_anon_179,
+    get_interface: et_interface_func_ptr_anon_180,
+    interface_added: interface_added_func_ptr_anon_181,
+    interface_removed: interface_removed_func_ptr_anon_182,
 }
 DBusObjectIface :: _GDBusObjectIface
-et_object_path_func_ptr_anon_182 :: #type proc "c" (manager: ^DBusObjectManager) -> cstring
-et_objects_func_ptr_anon_183 :: #type proc "c" (manager: ^DBusObjectManager) -> ^glib.List
-et_object_func_ptr_anon_184 :: #type proc "c" (manager: ^DBusObjectManager, object_path: cstring) -> ^DBusObject
-et_interface_func_ptr_anon_185 :: #type proc "c" (manager: ^DBusObjectManager, object_path: cstring, interface_name: cstring) -> ^DBusInterface
-object_added_func_ptr_anon_186 :: #type proc "c" (manager: ^DBusObjectManager, object: ^DBusObject)
-object_removed_func_ptr_anon_187 :: #type proc "c" (manager: ^DBusObjectManager, object: ^DBusObject)
-interface_added_func_ptr_anon_188 :: #type proc "c" (manager: ^DBusObjectManager, object: ^DBusObject, interface_: ^DBusInterface)
-interface_removed_func_ptr_anon_189 :: #type proc "c" (manager: ^DBusObjectManager, object: ^DBusObject, interface_: ^DBusInterface)
+et_object_path_func_ptr_anon_183 :: #type proc "c" (manager: ^DBusObjectManager) -> cstring
+et_objects_func_ptr_anon_184 :: #type proc "c" (manager: ^DBusObjectManager) -> ^glib.List
+et_object_func_ptr_anon_185 :: #type proc "c" (manager: ^DBusObjectManager, object_path: cstring) -> ^DBusObject
+et_interface_func_ptr_anon_186 :: #type proc "c" (manager: ^DBusObjectManager, object_path: cstring, interface_name: cstring) -> ^DBusInterface
+object_added_func_ptr_anon_187 :: #type proc "c" (manager: ^DBusObjectManager, object: ^DBusObject)
+object_removed_func_ptr_anon_188 :: #type proc "c" (manager: ^DBusObjectManager, object: ^DBusObject)
+interface_added_func_ptr_anon_189 :: #type proc "c" (manager: ^DBusObjectManager, object: ^DBusObject, interface_: ^DBusInterface)
+interface_removed_func_ptr_anon_190 :: #type proc "c" (manager: ^DBusObjectManager, object: ^DBusObject, interface_: ^DBusInterface)
 _GDBusObjectManagerIface :: struct {
     parent_iface: gobj.TypeInterface,
-    get_object_path: et_object_path_func_ptr_anon_182,
-    get_objects: et_objects_func_ptr_anon_183,
-    get_object: et_object_func_ptr_anon_184,
-    get_interface: et_interface_func_ptr_anon_185,
-    object_added: object_added_func_ptr_anon_186,
-    object_removed: object_removed_func_ptr_anon_187,
-    interface_added: interface_added_func_ptr_anon_188,
-    interface_removed: interface_removed_func_ptr_anon_189,
+    get_object_path: et_object_path_func_ptr_anon_183,
+    get_objects: et_objects_func_ptr_anon_184,
+    get_object: et_object_func_ptr_anon_185,
+    get_interface: et_interface_func_ptr_anon_186,
+    object_added: object_added_func_ptr_anon_187,
+    object_removed: object_removed_func_ptr_anon_188,
+    interface_added: interface_added_func_ptr_anon_189,
+    interface_removed: interface_removed_func_ptr_anon_190,
 }
 DBusObjectManagerIface :: _GDBusObjectManagerIface
-interface_proxy_signal_func_ptr_anon_190 :: #type proc "c" (manager: ^DBusObjectManagerClient, object_proxy: ^DBusObjectProxy, interface_proxy: ^DBusProxy, sender_name: cstring, signal_name: cstring, parameters: [^]glib.Variant)
-interface_proxy_properties_changed_func_ptr_anon_191 :: #type proc "c" (manager: ^DBusObjectManagerClient, object_proxy: ^DBusObjectProxy, interface_proxy: ^DBusProxy, changed_properties: [^]glib.Variant, invalidated_properties: [^]cstring)
+interface_proxy_signal_func_ptr_anon_191 :: #type proc "c" (manager: ^DBusObjectManagerClient, object_proxy: ^DBusObjectProxy, interface_proxy: ^DBusProxy, sender_name: cstring, signal_name: cstring, parameters: [^]glib.Variant)
+interface_proxy_properties_changed_func_ptr_anon_192 :: #type proc "c" (manager: ^DBusObjectManagerClient, object_proxy: ^DBusObjectProxy, interface_proxy: ^DBusProxy, changed_properties: [^]glib.Variant, invalidated_properties: [^]cstring)
 _GDBusObjectManagerClientClass :: struct {
     parent_class: gobj.ObjectClass,
-    interface_proxy_signal: interface_proxy_signal_func_ptr_anon_190,
-    interface_proxy_properties_changed: interface_proxy_properties_changed_func_ptr_anon_191,
+    interface_proxy_signal: interface_proxy_signal_func_ptr_anon_191,
+    interface_proxy_properties_changed: interface_proxy_properties_changed_func_ptr_anon_192,
     padding: [8]glib.pointer,
 }
 DBusObjectManagerClientClass :: _GDBusObjectManagerClientClass
@@ -1672,19 +1678,19 @@ _GDBusObjectProxyClass :: struct {
     padding: [8]glib.pointer,
 }
 DBusObjectProxyClass :: _GDBusObjectProxyClass
-authorize_method_func_ptr_anon_192 :: #type proc "c" (object: ^DBusObjectSkeleton, interface_: ^DBusInterfaceSkeleton, invocation: ^DBusMethodInvocation) -> glib.boolean
+authorize_method_func_ptr_anon_193 :: #type proc "c" (object: ^DBusObjectSkeleton, interface_: ^DBusInterfaceSkeleton, invocation: ^DBusMethodInvocation) -> glib.boolean
 _GDBusObjectSkeletonClass :: struct {
     parent_class: gobj.ObjectClass,
-    authorize_method: authorize_method_func_ptr_anon_192,
+    authorize_method: authorize_method_func_ptr_anon_193,
     padding: [8]glib.pointer,
 }
 DBusObjectSkeletonClass :: _GDBusObjectSkeletonClass
-_properties_changed_func_ptr_anon_193 :: #type proc "c" (proxy: ^DBusProxy, changed_properties: [^]glib.Variant, invalidated_properties: [^]cstring)
-_signal_func_ptr_anon_194 :: #type proc "c" (proxy: ^DBusProxy, sender_name: cstring, signal_name: cstring, parameters: [^]glib.Variant)
+_properties_changed_func_ptr_anon_194 :: #type proc "c" (proxy: ^DBusProxy, changed_properties: [^]glib.Variant, invalidated_properties: [^]cstring)
+_signal_func_ptr_anon_195 :: #type proc "c" (proxy: ^DBusProxy, sender_name: cstring, signal_name: cstring, parameters: [^]glib.Variant)
 _GDBusProxyClass :: struct {
     parent_class: gobj.ObjectClass,
-    g_properties_changed: _properties_changed_func_ptr_anon_193,
-    g_signal: _signal_func_ptr_anon_194,
+    g_properties_changed: _properties_changed_func_ptr_anon_194,
+    g_signal: _signal_func_ptr_anon_195,
     padding: [32]glib.pointer,
 }
 DBusProxyClass :: _GDBusProxyClass
@@ -1702,10 +1708,10 @@ _GDebugControllerDBus :: struct {
     parent_instance: gobj.Object,
 }
 DebugControllerDBus :: _GDebugControllerDBus
-authorize_func_ptr_anon_195 :: #type proc "c" (controller: ^DebugControllerDBus, invocation: ^DBusMethodInvocation) -> glib.boolean
+authorize_func_ptr_anon_196 :: #type proc "c" (controller: ^DebugControllerDBus, invocation: ^DBusMethodInvocation) -> glib.boolean
 _GDebugControllerDBusClass :: struct {
     parent_class: gobj.ObjectClass,
-    authorize: authorize_func_ptr_anon_195,
+    authorize: authorize_func_ptr_anon_196,
     padding: [12]glib.pointer,
 }
 DebugControllerDBusClass :: _GDebugControllerDBusClass
@@ -1717,96 +1723,96 @@ DebugControllerDBusClass_autoptr :: ^DebugControllerDBusClass
 DebugControllerDBusClass_listautoptr :: ^glib.List
 DebugControllerDBusClass_slistautoptr :: ^glib.SList
 DebugControllerDBusClass_queueautoptr :: ^glib.Queue
-changed_func_ptr_anon_196 :: #type proc "c" (drive: ^Drive)
-disconnected_func_ptr_anon_197 :: #type proc "c" (drive: ^Drive)
-eject_button_func_ptr_anon_198 :: #type proc "c" (drive: ^Drive)
-et_name_func_ptr_anon_199 :: #type proc "c" (drive: ^Drive) -> cstring
-et_icon_func_ptr_anon_200 :: #type proc "c" (drive: ^Drive) -> ^Icon
-has_volumes_func_ptr_anon_201 :: #type proc "c" (drive: ^Drive) -> glib.boolean
-et_volumes_func_ptr_anon_202 :: #type proc "c" (drive: ^Drive) -> ^glib.List
-is_media_removable_func_ptr_anon_203 :: #type proc "c" (drive: ^Drive) -> glib.boolean
-has_media_func_ptr_anon_204 :: #type proc "c" (drive: ^Drive) -> glib.boolean
-is_media_check_automatic_func_ptr_anon_205 :: #type proc "c" (drive: ^Drive) -> glib.boolean
-can_eject_func_ptr_anon_206 :: #type proc "c" (drive: ^Drive) -> glib.boolean
-can_poll_for_media_func_ptr_anon_207 :: #type proc "c" (drive: ^Drive) -> glib.boolean
-eject_func_ptr_anon_208 :: #type proc "c" (drive: ^Drive, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-eject_finish_func_ptr_anon_209 :: #type proc "c" (drive: ^Drive, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-poll_for_media_func_ptr_anon_210 :: #type proc "c" (drive: ^Drive, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-poll_for_media_finish_func_ptr_anon_211 :: #type proc "c" (drive: ^Drive, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-et_identifier_func_ptr_anon_212 :: #type proc "c" (drive: ^Drive, kind: cstring) -> cstring
-enumerate_identifiers_func_ptr_anon_213 :: #type proc "c" (drive: ^Drive) -> ^cstring
-et_start_stop_type_func_ptr_anon_214 :: #type proc "c" (drive: ^Drive) -> DriveStartStopType
-can_start_func_ptr_anon_215 :: #type proc "c" (drive: ^Drive) -> glib.boolean
-can_start_degraded_func_ptr_anon_216 :: #type proc "c" (drive: ^Drive) -> glib.boolean
-start_func_ptr_anon_217 :: #type proc "c" (drive: ^Drive, flags: DriveStartFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-start_finish_func_ptr_anon_218 :: #type proc "c" (drive: ^Drive, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-can_stop_func_ptr_anon_219 :: #type proc "c" (drive: ^Drive) -> glib.boolean
-stop_func_ptr_anon_220 :: #type proc "c" (drive: ^Drive, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-stop_finish_func_ptr_anon_221 :: #type proc "c" (drive: ^Drive, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-stop_button_func_ptr_anon_222 :: #type proc "c" (drive: ^Drive)
-eject_with_operation_func_ptr_anon_223 :: #type proc "c" (drive: ^Drive, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-eject_with_operation_finish_func_ptr_anon_224 :: #type proc "c" (drive: ^Drive, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-et_sort_key_func_ptr_anon_225 :: #type proc "c" (drive: ^Drive) -> cstring
-et_symbolic_icon_func_ptr_anon_226 :: #type proc "c" (drive: ^Drive) -> ^Icon
-is_removable_func_ptr_anon_227 :: #type proc "c" (drive: ^Drive) -> glib.boolean
+changed_func_ptr_anon_197 :: #type proc "c" (drive: ^Drive)
+disconnected_func_ptr_anon_198 :: #type proc "c" (drive: ^Drive)
+eject_button_func_ptr_anon_199 :: #type proc "c" (drive: ^Drive)
+et_name_func_ptr_anon_200 :: #type proc "c" (drive: ^Drive) -> cstring
+et_icon_func_ptr_anon_201 :: #type proc "c" (drive: ^Drive) -> ^Icon
+has_volumes_func_ptr_anon_202 :: #type proc "c" (drive: ^Drive) -> glib.boolean
+et_volumes_func_ptr_anon_203 :: #type proc "c" (drive: ^Drive) -> ^glib.List
+is_media_removable_func_ptr_anon_204 :: #type proc "c" (drive: ^Drive) -> glib.boolean
+has_media_func_ptr_anon_205 :: #type proc "c" (drive: ^Drive) -> glib.boolean
+is_media_check_automatic_func_ptr_anon_206 :: #type proc "c" (drive: ^Drive) -> glib.boolean
+can_eject_func_ptr_anon_207 :: #type proc "c" (drive: ^Drive) -> glib.boolean
+can_poll_for_media_func_ptr_anon_208 :: #type proc "c" (drive: ^Drive) -> glib.boolean
+eject_func_ptr_anon_209 :: #type proc "c" (drive: ^Drive, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+eject_finish_func_ptr_anon_210 :: #type proc "c" (drive: ^Drive, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+poll_for_media_func_ptr_anon_211 :: #type proc "c" (drive: ^Drive, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+poll_for_media_finish_func_ptr_anon_212 :: #type proc "c" (drive: ^Drive, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+et_identifier_func_ptr_anon_213 :: #type proc "c" (drive: ^Drive, kind: cstring) -> cstring
+enumerate_identifiers_func_ptr_anon_214 :: #type proc "c" (drive: ^Drive) -> ^cstring
+et_start_stop_type_func_ptr_anon_215 :: #type proc "c" (drive: ^Drive) -> DriveStartStopType
+can_start_func_ptr_anon_216 :: #type proc "c" (drive: ^Drive) -> glib.boolean
+can_start_degraded_func_ptr_anon_217 :: #type proc "c" (drive: ^Drive) -> glib.boolean
+start_func_ptr_anon_218 :: #type proc "c" (drive: ^Drive, flags: DriveStartFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+start_finish_func_ptr_anon_219 :: #type proc "c" (drive: ^Drive, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+can_stop_func_ptr_anon_220 :: #type proc "c" (drive: ^Drive) -> glib.boolean
+stop_func_ptr_anon_221 :: #type proc "c" (drive: ^Drive, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+stop_finish_func_ptr_anon_222 :: #type proc "c" (drive: ^Drive, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+stop_button_func_ptr_anon_223 :: #type proc "c" (drive: ^Drive)
+eject_with_operation_func_ptr_anon_224 :: #type proc "c" (drive: ^Drive, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+eject_with_operation_finish_func_ptr_anon_225 :: #type proc "c" (drive: ^Drive, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+et_sort_key_func_ptr_anon_226 :: #type proc "c" (drive: ^Drive) -> cstring
+et_symbolic_icon_func_ptr_anon_227 :: #type proc "c" (drive: ^Drive) -> ^Icon
+is_removable_func_ptr_anon_228 :: #type proc "c" (drive: ^Drive) -> glib.boolean
 _GDriveIface :: struct {
     g_iface: gobj.TypeInterface,
-    changed: changed_func_ptr_anon_196,
-    disconnected: disconnected_func_ptr_anon_197,
-    eject_button: eject_button_func_ptr_anon_198,
-    get_name: et_name_func_ptr_anon_199,
-    get_icon: et_icon_func_ptr_anon_200,
-    has_volumes: has_volumes_func_ptr_anon_201,
-    get_volumes: et_volumes_func_ptr_anon_202,
-    is_media_removable: is_media_removable_func_ptr_anon_203,
-    has_media: has_media_func_ptr_anon_204,
-    is_media_check_automatic: is_media_check_automatic_func_ptr_anon_205,
-    can_eject: can_eject_func_ptr_anon_206,
-    can_poll_for_media: can_poll_for_media_func_ptr_anon_207,
-    eject: eject_func_ptr_anon_208,
-    eject_finish: eject_finish_func_ptr_anon_209,
-    poll_for_media: poll_for_media_func_ptr_anon_210,
-    poll_for_media_finish: poll_for_media_finish_func_ptr_anon_211,
-    get_identifier: et_identifier_func_ptr_anon_212,
-    enumerate_identifiers: enumerate_identifiers_func_ptr_anon_213,
-    get_start_stop_type: et_start_stop_type_func_ptr_anon_214,
-    can_start: can_start_func_ptr_anon_215,
-    can_start_degraded: can_start_degraded_func_ptr_anon_216,
-    start: start_func_ptr_anon_217,
-    start_finish: start_finish_func_ptr_anon_218,
-    can_stop: can_stop_func_ptr_anon_219,
-    stop: stop_func_ptr_anon_220,
-    stop_finish: stop_finish_func_ptr_anon_221,
-    stop_button: stop_button_func_ptr_anon_222,
-    eject_with_operation: eject_with_operation_func_ptr_anon_223,
-    eject_with_operation_finish: eject_with_operation_finish_func_ptr_anon_224,
-    get_sort_key: et_sort_key_func_ptr_anon_225,
-    get_symbolic_icon: et_symbolic_icon_func_ptr_anon_226,
-    is_removable: is_removable_func_ptr_anon_227,
+    changed: changed_func_ptr_anon_197,
+    disconnected: disconnected_func_ptr_anon_198,
+    eject_button: eject_button_func_ptr_anon_199,
+    get_name: et_name_func_ptr_anon_200,
+    get_icon: et_icon_func_ptr_anon_201,
+    has_volumes: has_volumes_func_ptr_anon_202,
+    get_volumes: et_volumes_func_ptr_anon_203,
+    is_media_removable: is_media_removable_func_ptr_anon_204,
+    has_media: has_media_func_ptr_anon_205,
+    is_media_check_automatic: is_media_check_automatic_func_ptr_anon_206,
+    can_eject: can_eject_func_ptr_anon_207,
+    can_poll_for_media: can_poll_for_media_func_ptr_anon_208,
+    eject: eject_func_ptr_anon_209,
+    eject_finish: eject_finish_func_ptr_anon_210,
+    poll_for_media: poll_for_media_func_ptr_anon_211,
+    poll_for_media_finish: poll_for_media_finish_func_ptr_anon_212,
+    get_identifier: et_identifier_func_ptr_anon_213,
+    enumerate_identifiers: enumerate_identifiers_func_ptr_anon_214,
+    get_start_stop_type: et_start_stop_type_func_ptr_anon_215,
+    can_start: can_start_func_ptr_anon_216,
+    can_start_degraded: can_start_degraded_func_ptr_anon_217,
+    start: start_func_ptr_anon_218,
+    start_finish: start_finish_func_ptr_anon_219,
+    can_stop: can_stop_func_ptr_anon_220,
+    stop: stop_func_ptr_anon_221,
+    stop_finish: stop_finish_func_ptr_anon_222,
+    stop_button: stop_button_func_ptr_anon_223,
+    eject_with_operation: eject_with_operation_func_ptr_anon_224,
+    eject_with_operation_finish: eject_with_operation_finish_func_ptr_anon_225,
+    get_sort_key: et_sort_key_func_ptr_anon_226,
+    get_symbolic_icon: et_symbolic_icon_func_ptr_anon_227,
+    is_removable: is_removable_func_ptr_anon_228,
 }
 DriveIface :: _GDriveIface
-accept_certificate_func_ptr_anon_228 :: #type proc "c" (connection: ^DtlsConnection, peer_cert: ^TlsCertificate, errors: TlsCertificateFlags) -> glib.boolean
-handshake_func_ptr_anon_229 :: #type proc "c" (conn: ^DtlsConnection, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-handshake_async_func_ptr_anon_230 :: #type proc "c" (conn: ^DtlsConnection, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-handshake_finish_func_ptr_anon_231 :: #type proc "c" (conn: ^DtlsConnection, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-shutdown_func_ptr_anon_232 :: #type proc "c" (conn: ^DtlsConnection, shutdown_read: glib.boolean, shutdown_write: glib.boolean, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-shutdown_async_func_ptr_anon_233 :: #type proc "c" (conn: ^DtlsConnection, shutdown_read: glib.boolean, shutdown_write: glib.boolean, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-shutdown_finish_func_ptr_anon_234 :: #type proc "c" (conn: ^DtlsConnection, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-set_advertised_protocols_func_ptr_anon_235 :: #type proc "c" (conn: ^DtlsConnection, protocols: [^]cstring)
-et_negotiated_protocol_func_ptr_anon_236 :: #type proc "c" (conn: ^DtlsConnection) -> cstring
-et_binding_data_func_ptr_anon_237 :: #type proc "c" (conn: ^DtlsConnection, type: TlsChannelBindingType, data: ^glib.ByteArray, error: ^^glib.Error) -> glib.boolean
+accept_certificate_func_ptr_anon_229 :: #type proc "c" (connection: ^DtlsConnection, peer_cert: ^TlsCertificate, errors: TlsCertificateFlags) -> glib.boolean
+handshake_func_ptr_anon_230 :: #type proc "c" (conn: ^DtlsConnection, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+handshake_async_func_ptr_anon_231 :: #type proc "c" (conn: ^DtlsConnection, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+handshake_finish_func_ptr_anon_232 :: #type proc "c" (conn: ^DtlsConnection, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+shutdown_func_ptr_anon_233 :: #type proc "c" (conn: ^DtlsConnection, shutdown_read: glib.boolean, shutdown_write: glib.boolean, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+shutdown_async_func_ptr_anon_234 :: #type proc "c" (conn: ^DtlsConnection, shutdown_read: glib.boolean, shutdown_write: glib.boolean, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+shutdown_finish_func_ptr_anon_235 :: #type proc "c" (conn: ^DtlsConnection, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+set_advertised_protocols_func_ptr_anon_236 :: #type proc "c" (conn: ^DtlsConnection, protocols: [^]cstring)
+et_negotiated_protocol_func_ptr_anon_237 :: #type proc "c" (conn: ^DtlsConnection) -> cstring
+et_binding_data_func_ptr_anon_238 :: #type proc "c" (conn: ^DtlsConnection, type: TlsChannelBindingType, data: ^glib.ByteArray, error: ^^glib.Error) -> glib.boolean
 _GDtlsConnectionInterface :: struct {
     g_iface: gobj.TypeInterface,
-    accept_certificate: accept_certificate_func_ptr_anon_228,
-    handshake: handshake_func_ptr_anon_229,
-    handshake_async: handshake_async_func_ptr_anon_230,
-    handshake_finish: handshake_finish_func_ptr_anon_231,
-    shutdown: shutdown_func_ptr_anon_232,
-    shutdown_async: shutdown_async_func_ptr_anon_233,
-    shutdown_finish: shutdown_finish_func_ptr_anon_234,
-    set_advertised_protocols: set_advertised_protocols_func_ptr_anon_235,
-    get_negotiated_protocol: et_negotiated_protocol_func_ptr_anon_236,
-    get_binding_data: et_binding_data_func_ptr_anon_237,
+    accept_certificate: accept_certificate_func_ptr_anon_229,
+    handshake: handshake_func_ptr_anon_230,
+    handshake_async: handshake_async_func_ptr_anon_231,
+    handshake_finish: handshake_finish_func_ptr_anon_232,
+    shutdown: shutdown_func_ptr_anon_233,
+    shutdown_async: shutdown_async_func_ptr_anon_234,
+    shutdown_finish: shutdown_finish_func_ptr_anon_235,
+    set_advertised_protocols: set_advertised_protocols_func_ptr_anon_236,
+    get_negotiated_protocol: et_negotiated_protocol_func_ptr_anon_237,
+    get_binding_data: et_binding_data_func_ptr_anon_238,
 }
 DtlsConnectionInterface :: _GDtlsConnectionInterface
 _GDtlsClientConnectionInterface :: struct {
@@ -1817,18 +1823,18 @@ _GDtlsServerConnectionInterface :: struct {
     g_iface: gobj.TypeInterface,
 }
 DtlsServerConnectionInterface :: _GDtlsServerConnectionInterface
-hash_func_ptr_anon_238 :: #type proc "c" (icon: ^Icon) -> glib.uint_
-equal_func_ptr_anon_239 :: #type proc "c" (icon1: ^Icon, icon2: ^Icon) -> glib.boolean
-to_tokens_func_ptr_anon_240 :: #type proc "c" (icon: ^Icon, tokens: [^]glib.PtrArray, out_version: ^glib.int_) -> glib.boolean
-from_tokens_func_ptr_anon_241 :: #type proc "c" (tokens: [^]cstring, num_tokens: glib.int_, version: glib.int_, error: ^^glib.Error) -> ^Icon
-serialize_func_ptr_anon_242 :: #type proc "c" (icon: ^Icon) -> ^glib.Variant
+hash_func_ptr_anon_239 :: #type proc "c" (icon: ^Icon) -> glib.uint_
+equal_func_ptr_anon_240 :: #type proc "c" (icon1: ^Icon, icon2: ^Icon) -> glib.boolean
+to_tokens_func_ptr_anon_241 :: #type proc "c" (icon: ^Icon, tokens: [^]glib.PtrArray, out_version: ^glib.int_) -> glib.boolean
+from_tokens_func_ptr_anon_242 :: #type proc "c" (tokens: [^]cstring, num_tokens: glib.int_, version: glib.int_, error: ^^glib.Error) -> ^Icon
+serialize_func_ptr_anon_243 :: #type proc "c" (icon: ^Icon) -> ^glib.Variant
 _GIconIface :: struct {
     g_iface: gobj.TypeInterface,
-    hash: hash_func_ptr_anon_238,
-    equal: equal_func_ptr_anon_239,
-    to_tokens: to_tokens_func_ptr_anon_240,
-    from_tokens: from_tokens_func_ptr_anon_241,
-    serialize: serialize_func_ptr_anon_242,
+    hash: hash_func_ptr_anon_239,
+    equal: equal_func_ptr_anon_240,
+    to_tokens: to_tokens_func_ptr_anon_241,
+    from_tokens: from_tokens_func_ptr_anon_242,
+    serialize: serialize_func_ptr_anon_243,
 }
 IconIface :: _GIconIface
 _GEmblem :: struct #packed {}
@@ -1846,425 +1852,425 @@ _GEmblemedIconClass :: struct {
     parent_class: gobj.ObjectClass,
 }
 EmblemedIconClass :: _GEmblemedIconClass
-dup_func_ptr_anon_243 :: #type proc "c" (file: ^File) -> ^File
-hash_func_ptr_anon_244 :: #type proc "c" (file: ^File) -> glib.uint_
-equal_func_ptr_anon_245 :: #type proc "c" (file1: ^File, file2: ^File) -> glib.boolean
-is_native_func_ptr_anon_246 :: #type proc "c" (file: ^File) -> glib.boolean
-has_uri_scheme_func_ptr_anon_247 :: #type proc "c" (file: ^File, uri_scheme: cstring) -> glib.boolean
-et_uri_scheme_func_ptr_anon_248 :: #type proc "c" (file: ^File) -> cstring
-et_basename_func_ptr_anon_249 :: #type proc "c" (file: ^File) -> cstring
-et_path_func_ptr_anon_250 :: #type proc "c" (file: ^File) -> cstring
-et_uri_func_ptr_anon_251 :: #type proc "c" (file: ^File) -> cstring
-et_parse_name_func_ptr_anon_252 :: #type proc "c" (file: ^File) -> cstring
-et_parent_func_ptr_anon_253 :: #type proc "c" (file: ^File) -> ^File
-prefix_matches_func_ptr_anon_254 :: #type proc "c" (prefix: ^File, file: ^File) -> glib.boolean
-et_relative_path_func_ptr_anon_255 :: #type proc "c" (parent: ^File, descendant: ^File) -> cstring
-resolve_relative_path_func_ptr_anon_256 :: #type proc "c" (file: ^File, relative_path: cstring) -> ^File
-et_child_for_display_name_func_ptr_anon_257 :: #type proc "c" (file: ^File, display_name: cstring, error: ^^glib.Error) -> ^File
-enumerate_children_func_ptr_anon_258 :: #type proc "c" (file: ^File, attributes: cstring, flags: FileQueryInfoFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileEnumerator
-enumerate_children_async_func_ptr_anon_259 :: #type proc "c" (file: ^File, attributes: cstring, flags: FileQueryInfoFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-enumerate_children_finish_func_ptr_anon_260 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileEnumerator
-query_info_func_ptr_anon_261 :: #type proc "c" (file: ^File, attributes: cstring, flags: FileQueryInfoFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
-query_info_async_func_ptr_anon_262 :: #type proc "c" (file: ^File, attributes: cstring, flags: FileQueryInfoFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-query_info_finish_func_ptr_anon_263 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileInfo
-query_filesystem_info_func_ptr_anon_264 :: #type proc "c" (file: ^File, attributes: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
-query_filesystem_info_async_func_ptr_anon_265 :: #type proc "c" (file: ^File, attributes: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-query_filesystem_info_finish_func_ptr_anon_266 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileInfo
-find_enclosing_mount_func_ptr_anon_267 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> ^Mount
-find_enclosing_mount_async_func_ptr_anon_268 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-find_enclosing_mount_finish_func_ptr_anon_269 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^Mount
-set_display_name_func_ptr_anon_270 :: #type proc "c" (file: ^File, display_name: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^File
-set_display_name_async_func_ptr_anon_271 :: #type proc "c" (file: ^File, display_name: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-set_display_name_finish_func_ptr_anon_272 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^File
-query_settable_attributes_func_ptr_anon_273 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileAttributeInfoList
-_query_settable_attributes_async_func_ptr_anon_274 :: #type proc "c" ()
-_query_settable_attributes_finish_func_ptr_anon_275 :: #type proc "c" ()
-query_writable_namespaces_func_ptr_anon_276 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileAttributeInfoList
-_query_writable_namespaces_async_func_ptr_anon_277 :: #type proc "c" ()
-_query_writable_namespaces_finish_func_ptr_anon_278 :: #type proc "c" ()
-set_attribute_func_ptr_anon_279 :: #type proc "c" (file: ^File, attribute: cstring, type: FileAttributeType, value_p: glib.pointer, flags: FileQueryInfoFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-set_attributes_from_info_func_ptr_anon_280 :: #type proc "c" (file: ^File, info: ^FileInfo, flags: FileQueryInfoFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-set_attributes_async_func_ptr_anon_281 :: #type proc "c" (file: ^File, info: ^FileInfo, flags: FileQueryInfoFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-set_attributes_finish_func_ptr_anon_282 :: #type proc "c" (file: ^File, result: ^AsyncResult, info: ^^FileInfo, error: ^^glib.Error) -> glib.boolean
-read_fn_func_ptr_anon_283 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInputStream
-read_async_func_ptr_anon_284 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-read_finish_func_ptr_anon_285 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileInputStream
-append_to_func_ptr_anon_286 :: #type proc "c" (file: ^File, flags: FileCreateFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileOutputStream
-append_to_async_func_ptr_anon_287 :: #type proc "c" (file: ^File, flags: FileCreateFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-append_to_finish_func_ptr_anon_288 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileOutputStream
-create_func_ptr_anon_289 :: #type proc "c" (file: ^File, flags: FileCreateFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileOutputStream
-create_async_func_ptr_anon_290 :: #type proc "c" (file: ^File, flags: FileCreateFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-create_finish_func_ptr_anon_291 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileOutputStream
-replace_func_ptr_anon_292 :: #type proc "c" (file: ^File, etag: cstring, make_backup: glib.boolean, flags: FileCreateFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileOutputStream
-replace_async_func_ptr_anon_293 :: #type proc "c" (file: ^File, etag: cstring, make_backup: glib.boolean, flags: FileCreateFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-replace_finish_func_ptr_anon_294 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileOutputStream
-delete_file_func_ptr_anon_295 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-delete_file_async_func_ptr_anon_296 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-delete_file_finish_func_ptr_anon_297 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-trash_func_ptr_anon_298 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-trash_async_func_ptr_anon_299 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-trash_finish_func_ptr_anon_300 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-make_directory_func_ptr_anon_301 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-make_directory_async_func_ptr_anon_302 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-make_directory_finish_func_ptr_anon_303 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-make_symbolic_link_func_ptr_anon_304 :: #type proc "c" (file: ^File, symlink_value: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-make_symbolic_link_async_func_ptr_anon_305 :: #type proc "c" (file: ^File, symlink_value: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-make_symbolic_link_finish_func_ptr_anon_306 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-copy_func_ptr_anon_307 :: #type proc "c" (source: ^File, destination: ^File, flags: FileCopyFlags, cancellable: ^Cancellable, progress_callback: FileProgressCallback, progress_callback_data: glib.pointer, error: ^^glib.Error) -> glib.boolean
-copy_async_func_ptr_anon_308 :: #type proc "c" (source: ^File, destination: ^File, flags: FileCopyFlags, io_priority: i32, cancellable: ^Cancellable, progress_callback: FileProgressCallback, progress_callback_data: glib.pointer, callback: AsyncReadyCallback, user_data: glib.pointer)
-copy_finish_func_ptr_anon_309 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> glib.boolean
-move_func_ptr_anon_310 :: #type proc "c" (source: ^File, destination: ^File, flags: FileCopyFlags, cancellable: ^Cancellable, progress_callback: FileProgressCallback, progress_callback_data: glib.pointer, error: ^^glib.Error) -> glib.boolean
-move_async_func_ptr_anon_311 :: #type proc "c" (source: ^File, destination: ^File, flags: FileCopyFlags, io_priority: i32, cancellable: ^Cancellable, progress_callback: FileProgressCallback, progress_callback_data: glib.pointer, callback: AsyncReadyCallback, user_data: glib.pointer)
-move_finish_func_ptr_anon_312 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-mount_mountable_func_ptr_anon_313 :: #type proc "c" (file: ^File, flags: MountMountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-mount_mountable_finish_func_ptr_anon_314 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> ^File
-unmount_mountable_func_ptr_anon_315 :: #type proc "c" (file: ^File, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-unmount_mountable_finish_func_ptr_anon_316 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-eject_mountable_func_ptr_anon_317 :: #type proc "c" (file: ^File, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-eject_mountable_finish_func_ptr_anon_318 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-mount_enclosing_volume_func_ptr_anon_319 :: #type proc "c" (location: ^File, flags: MountMountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-mount_enclosing_volume_finish_func_ptr_anon_320 :: #type proc "c" (location: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-monitor_dir_func_ptr_anon_321 :: #type proc "c" (file: ^File, flags: FileMonitorFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileMonitor
-monitor_file_func_ptr_anon_322 :: #type proc "c" (file: ^File, flags: FileMonitorFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileMonitor
-open_readwrite_func_ptr_anon_323 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileIOStream
-open_readwrite_async_func_ptr_anon_324 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-open_readwrite_finish_func_ptr_anon_325 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileIOStream
-create_readwrite_func_ptr_anon_326 :: #type proc "c" (file: ^File, flags: FileCreateFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileIOStream
-create_readwrite_async_func_ptr_anon_327 :: #type proc "c" (file: ^File, flags: FileCreateFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-create_readwrite_finish_func_ptr_anon_328 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileIOStream
-replace_readwrite_func_ptr_anon_329 :: #type proc "c" (file: ^File, etag: cstring, make_backup: glib.boolean, flags: FileCreateFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileIOStream
-replace_readwrite_async_func_ptr_anon_330 :: #type proc "c" (file: ^File, etag: cstring, make_backup: glib.boolean, flags: FileCreateFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-replace_readwrite_finish_func_ptr_anon_331 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileIOStream
-start_mountable_func_ptr_anon_332 :: #type proc "c" (file: ^File, flags: DriveStartFlags, start_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-start_mountable_finish_func_ptr_anon_333 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-stop_mountable_func_ptr_anon_334 :: #type proc "c" (file: ^File, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-stop_mountable_finish_func_ptr_anon_335 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-unmount_mountable_with_operation_func_ptr_anon_336 :: #type proc "c" (file: ^File, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-unmount_mountable_with_operation_finish_func_ptr_anon_337 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-eject_mountable_with_operation_func_ptr_anon_338 :: #type proc "c" (file: ^File, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-eject_mountable_with_operation_finish_func_ptr_anon_339 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-poll_mountable_func_ptr_anon_340 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-poll_mountable_finish_func_ptr_anon_341 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-measure_disk_usage_func_ptr_anon_342 :: #type proc "c" (file: ^File, flags: FileMeasureFlags, cancellable: ^Cancellable, progress_callback: FileMeasureProgressCallback, progress_data: glib.pointer, disk_usage: ^glib.uint64, num_dirs: [^]glib.uint64, num_files: [^]glib.uint64, error: ^^glib.Error) -> glib.boolean
-measure_disk_usage_async_func_ptr_anon_343 :: #type proc "c" (file: ^File, flags: FileMeasureFlags, io_priority: glib.int_, cancellable: ^Cancellable, progress_callback: FileMeasureProgressCallback, progress_data: glib.pointer, callback: AsyncReadyCallback, user_data: glib.pointer)
-measure_disk_usage_finish_func_ptr_anon_344 :: #type proc "c" (file: ^File, result: ^AsyncResult, disk_usage: ^glib.uint64, num_dirs: [^]glib.uint64, num_files: [^]glib.uint64, error: ^^glib.Error) -> glib.boolean
-query_exists_func_ptr_anon_345 :: #type proc "c" (file: ^File, cancellable: ^Cancellable) -> glib.boolean
+dup_func_ptr_anon_244 :: #type proc "c" (file: ^File) -> ^File
+hash_func_ptr_anon_245 :: #type proc "c" (file: ^File) -> glib.uint_
+equal_func_ptr_anon_246 :: #type proc "c" (file1: ^File, file2: ^File) -> glib.boolean
+is_native_func_ptr_anon_247 :: #type proc "c" (file: ^File) -> glib.boolean
+has_uri_scheme_func_ptr_anon_248 :: #type proc "c" (file: ^File, uri_scheme: cstring) -> glib.boolean
+et_uri_scheme_func_ptr_anon_249 :: #type proc "c" (file: ^File) -> cstring
+et_basename_func_ptr_anon_250 :: #type proc "c" (file: ^File) -> cstring
+et_path_func_ptr_anon_251 :: #type proc "c" (file: ^File) -> cstring
+et_uri_func_ptr_anon_252 :: #type proc "c" (file: ^File) -> cstring
+et_parse_name_func_ptr_anon_253 :: #type proc "c" (file: ^File) -> cstring
+et_parent_func_ptr_anon_254 :: #type proc "c" (file: ^File) -> ^File
+prefix_matches_func_ptr_anon_255 :: #type proc "c" (prefix: ^File, file: ^File) -> glib.boolean
+et_relative_path_func_ptr_anon_256 :: #type proc "c" (parent: ^File, descendant: ^File) -> cstring
+resolve_relative_path_func_ptr_anon_257 :: #type proc "c" (file: ^File, relative_path: cstring) -> ^File
+et_child_for_display_name_func_ptr_anon_258 :: #type proc "c" (file: ^File, display_name: cstring, error: ^^glib.Error) -> ^File
+enumerate_children_func_ptr_anon_259 :: #type proc "c" (file: ^File, attributes: cstring, flags: FileQueryInfoFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileEnumerator
+enumerate_children_async_func_ptr_anon_260 :: #type proc "c" (file: ^File, attributes: cstring, flags: FileQueryInfoFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+enumerate_children_finish_func_ptr_anon_261 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileEnumerator
+query_info_func_ptr_anon_262 :: #type proc "c" (file: ^File, attributes: cstring, flags: FileQueryInfoFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
+query_info_async_func_ptr_anon_263 :: #type proc "c" (file: ^File, attributes: cstring, flags: FileQueryInfoFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+query_info_finish_func_ptr_anon_264 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileInfo
+query_filesystem_info_func_ptr_anon_265 :: #type proc "c" (file: ^File, attributes: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
+query_filesystem_info_async_func_ptr_anon_266 :: #type proc "c" (file: ^File, attributes: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+query_filesystem_info_finish_func_ptr_anon_267 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileInfo
+find_enclosing_mount_func_ptr_anon_268 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> ^Mount
+find_enclosing_mount_async_func_ptr_anon_269 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+find_enclosing_mount_finish_func_ptr_anon_270 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^Mount
+set_display_name_func_ptr_anon_271 :: #type proc "c" (file: ^File, display_name: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^File
+set_display_name_async_func_ptr_anon_272 :: #type proc "c" (file: ^File, display_name: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+set_display_name_finish_func_ptr_anon_273 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^File
+query_settable_attributes_func_ptr_anon_274 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileAttributeInfoList
+_query_settable_attributes_async_func_ptr_anon_275 :: #type proc "c" ()
+_query_settable_attributes_finish_func_ptr_anon_276 :: #type proc "c" ()
+query_writable_namespaces_func_ptr_anon_277 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileAttributeInfoList
+_query_writable_namespaces_async_func_ptr_anon_278 :: #type proc "c" ()
+_query_writable_namespaces_finish_func_ptr_anon_279 :: #type proc "c" ()
+set_attribute_func_ptr_anon_280 :: #type proc "c" (file: ^File, attribute: cstring, type: FileAttributeType, value_p: glib.pointer, flags: FileQueryInfoFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+set_attributes_from_info_func_ptr_anon_281 :: #type proc "c" (file: ^File, info: ^FileInfo, flags: FileQueryInfoFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+set_attributes_async_func_ptr_anon_282 :: #type proc "c" (file: ^File, info: ^FileInfo, flags: FileQueryInfoFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+set_attributes_finish_func_ptr_anon_283 :: #type proc "c" (file: ^File, result: ^AsyncResult, info: ^^FileInfo, error: ^^glib.Error) -> glib.boolean
+read_fn_func_ptr_anon_284 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInputStream
+read_async_func_ptr_anon_285 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+read_finish_func_ptr_anon_286 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileInputStream
+append_to_func_ptr_anon_287 :: #type proc "c" (file: ^File, flags: FileCreateFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileOutputStream
+append_to_async_func_ptr_anon_288 :: #type proc "c" (file: ^File, flags: FileCreateFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+append_to_finish_func_ptr_anon_289 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileOutputStream
+create_func_ptr_anon_290 :: #type proc "c" (file: ^File, flags: FileCreateFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileOutputStream
+create_async_func_ptr_anon_291 :: #type proc "c" (file: ^File, flags: FileCreateFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+create_finish_func_ptr_anon_292 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileOutputStream
+replace_func_ptr_anon_293 :: #type proc "c" (file: ^File, etag: cstring, make_backup: glib.boolean, flags: FileCreateFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileOutputStream
+replace_async_func_ptr_anon_294 :: #type proc "c" (file: ^File, etag: cstring, make_backup: glib.boolean, flags: FileCreateFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+replace_finish_func_ptr_anon_295 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileOutputStream
+delete_file_func_ptr_anon_296 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+delete_file_async_func_ptr_anon_297 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+delete_file_finish_func_ptr_anon_298 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+trash_func_ptr_anon_299 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+trash_async_func_ptr_anon_300 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+trash_finish_func_ptr_anon_301 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+make_directory_func_ptr_anon_302 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+make_directory_async_func_ptr_anon_303 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+make_directory_finish_func_ptr_anon_304 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+make_symbolic_link_func_ptr_anon_305 :: #type proc "c" (file: ^File, symlink_value: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+make_symbolic_link_async_func_ptr_anon_306 :: #type proc "c" (file: ^File, symlink_value: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+make_symbolic_link_finish_func_ptr_anon_307 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+copy_func_ptr_anon_308 :: #type proc "c" (source: ^File, destination: ^File, flags: FileCopyFlags, cancellable: ^Cancellable, progress_callback: FileProgressCallback, progress_callback_data: glib.pointer, error: ^^glib.Error) -> glib.boolean
+copy_async_func_ptr_anon_309 :: #type proc "c" (source: ^File, destination: ^File, flags: FileCopyFlags, io_priority: i32, cancellable: ^Cancellable, progress_callback: FileProgressCallback, progress_callback_data: glib.pointer, callback: AsyncReadyCallback, user_data: glib.pointer)
+copy_finish_func_ptr_anon_310 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> glib.boolean
+move_func_ptr_anon_311 :: #type proc "c" (source: ^File, destination: ^File, flags: FileCopyFlags, cancellable: ^Cancellable, progress_callback: FileProgressCallback, progress_callback_data: glib.pointer, error: ^^glib.Error) -> glib.boolean
+move_async_func_ptr_anon_312 :: #type proc "c" (source: ^File, destination: ^File, flags: FileCopyFlags, io_priority: i32, cancellable: ^Cancellable, progress_callback: FileProgressCallback, progress_callback_data: glib.pointer, callback: AsyncReadyCallback, user_data: glib.pointer)
+move_finish_func_ptr_anon_313 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+mount_mountable_func_ptr_anon_314 :: #type proc "c" (file: ^File, flags: MountMountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+mount_mountable_finish_func_ptr_anon_315 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> ^File
+unmount_mountable_func_ptr_anon_316 :: #type proc "c" (file: ^File, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+unmount_mountable_finish_func_ptr_anon_317 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+eject_mountable_func_ptr_anon_318 :: #type proc "c" (file: ^File, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+eject_mountable_finish_func_ptr_anon_319 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+mount_enclosing_volume_func_ptr_anon_320 :: #type proc "c" (location: ^File, flags: MountMountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+mount_enclosing_volume_finish_func_ptr_anon_321 :: #type proc "c" (location: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+monitor_dir_func_ptr_anon_322 :: #type proc "c" (file: ^File, flags: FileMonitorFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileMonitor
+monitor_file_func_ptr_anon_323 :: #type proc "c" (file: ^File, flags: FileMonitorFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileMonitor
+open_readwrite_func_ptr_anon_324 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileIOStream
+open_readwrite_async_func_ptr_anon_325 :: #type proc "c" (file: ^File, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+open_readwrite_finish_func_ptr_anon_326 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileIOStream
+create_readwrite_func_ptr_anon_327 :: #type proc "c" (file: ^File, flags: FileCreateFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileIOStream
+create_readwrite_async_func_ptr_anon_328 :: #type proc "c" (file: ^File, flags: FileCreateFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+create_readwrite_finish_func_ptr_anon_329 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileIOStream
+replace_readwrite_func_ptr_anon_330 :: #type proc "c" (file: ^File, etag: cstring, make_backup: glib.boolean, flags: FileCreateFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileIOStream
+replace_readwrite_async_func_ptr_anon_331 :: #type proc "c" (file: ^File, etag: cstring, make_backup: glib.boolean, flags: FileCreateFlags, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+replace_readwrite_finish_func_ptr_anon_332 :: #type proc "c" (file: ^File, res: [^]AsyncResult, error: ^^glib.Error) -> ^FileIOStream
+start_mountable_func_ptr_anon_333 :: #type proc "c" (file: ^File, flags: DriveStartFlags, start_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+start_mountable_finish_func_ptr_anon_334 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+stop_mountable_func_ptr_anon_335 :: #type proc "c" (file: ^File, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+stop_mountable_finish_func_ptr_anon_336 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+unmount_mountable_with_operation_func_ptr_anon_337 :: #type proc "c" (file: ^File, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+unmount_mountable_with_operation_finish_func_ptr_anon_338 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+eject_mountable_with_operation_func_ptr_anon_339 :: #type proc "c" (file: ^File, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+eject_mountable_with_operation_finish_func_ptr_anon_340 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+poll_mountable_func_ptr_anon_341 :: #type proc "c" (file: ^File, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+poll_mountable_finish_func_ptr_anon_342 :: #type proc "c" (file: ^File, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+measure_disk_usage_func_ptr_anon_343 :: #type proc "c" (file: ^File, flags: FileMeasureFlags, cancellable: ^Cancellable, progress_callback: FileMeasureProgressCallback, progress_data: glib.pointer, disk_usage: ^glib.uint64, num_dirs: [^]glib.uint64, num_files: [^]glib.uint64, error: ^^glib.Error) -> glib.boolean
+measure_disk_usage_async_func_ptr_anon_344 :: #type proc "c" (file: ^File, flags: FileMeasureFlags, io_priority: glib.int_, cancellable: ^Cancellable, progress_callback: FileMeasureProgressCallback, progress_data: glib.pointer, callback: AsyncReadyCallback, user_data: glib.pointer)
+measure_disk_usage_finish_func_ptr_anon_345 :: #type proc "c" (file: ^File, result: ^AsyncResult, disk_usage: ^glib.uint64, num_dirs: [^]glib.uint64, num_files: [^]glib.uint64, error: ^^glib.Error) -> glib.boolean
+query_exists_func_ptr_anon_346 :: #type proc "c" (file: ^File, cancellable: ^Cancellable) -> glib.boolean
 _GFileIface :: struct {
     g_iface: gobj.TypeInterface,
-    dup: dup_func_ptr_anon_243,
-    hash: hash_func_ptr_anon_244,
-    equal: equal_func_ptr_anon_245,
-    is_native: is_native_func_ptr_anon_246,
-    has_uri_scheme: has_uri_scheme_func_ptr_anon_247,
-    get_uri_scheme: et_uri_scheme_func_ptr_anon_248,
-    get_basename: et_basename_func_ptr_anon_249,
-    get_path: et_path_func_ptr_anon_250,
-    get_uri: et_uri_func_ptr_anon_251,
-    get_parse_name: et_parse_name_func_ptr_anon_252,
-    get_parent: et_parent_func_ptr_anon_253,
-    prefix_matches: prefix_matches_func_ptr_anon_254,
-    get_relative_path: et_relative_path_func_ptr_anon_255,
-    resolve_relative_path: resolve_relative_path_func_ptr_anon_256,
-    get_child_for_display_name: et_child_for_display_name_func_ptr_anon_257,
-    enumerate_children: enumerate_children_func_ptr_anon_258,
-    enumerate_children_async: enumerate_children_async_func_ptr_anon_259,
-    enumerate_children_finish: enumerate_children_finish_func_ptr_anon_260,
-    query_info: query_info_func_ptr_anon_261,
-    query_info_async: query_info_async_func_ptr_anon_262,
-    query_info_finish: query_info_finish_func_ptr_anon_263,
-    query_filesystem_info: query_filesystem_info_func_ptr_anon_264,
-    query_filesystem_info_async: query_filesystem_info_async_func_ptr_anon_265,
-    query_filesystem_info_finish: query_filesystem_info_finish_func_ptr_anon_266,
-    find_enclosing_mount: find_enclosing_mount_func_ptr_anon_267,
-    find_enclosing_mount_async: find_enclosing_mount_async_func_ptr_anon_268,
-    find_enclosing_mount_finish: find_enclosing_mount_finish_func_ptr_anon_269,
-    set_display_name: set_display_name_func_ptr_anon_270,
-    set_display_name_async: set_display_name_async_func_ptr_anon_271,
-    set_display_name_finish: set_display_name_finish_func_ptr_anon_272,
-    query_settable_attributes: query_settable_attributes_func_ptr_anon_273,
-    _query_settable_attributes_async: _query_settable_attributes_async_func_ptr_anon_274,
-    _query_settable_attributes_finish: _query_settable_attributes_finish_func_ptr_anon_275,
-    query_writable_namespaces: query_writable_namespaces_func_ptr_anon_276,
-    _query_writable_namespaces_async: _query_writable_namespaces_async_func_ptr_anon_277,
-    _query_writable_namespaces_finish: _query_writable_namespaces_finish_func_ptr_anon_278,
-    set_attribute: set_attribute_func_ptr_anon_279,
-    set_attributes_from_info: set_attributes_from_info_func_ptr_anon_280,
-    set_attributes_async: set_attributes_async_func_ptr_anon_281,
-    set_attributes_finish: set_attributes_finish_func_ptr_anon_282,
-    read_fn: read_fn_func_ptr_anon_283,
-    read_async: read_async_func_ptr_anon_284,
-    read_finish: read_finish_func_ptr_anon_285,
-    append_to: append_to_func_ptr_anon_286,
-    append_to_async: append_to_async_func_ptr_anon_287,
-    append_to_finish: append_to_finish_func_ptr_anon_288,
-    create: create_func_ptr_anon_289,
-    create_async: create_async_func_ptr_anon_290,
-    create_finish: create_finish_func_ptr_anon_291,
-    replace: replace_func_ptr_anon_292,
-    replace_async: replace_async_func_ptr_anon_293,
-    replace_finish: replace_finish_func_ptr_anon_294,
-    delete_file: delete_file_func_ptr_anon_295,
-    delete_file_async: delete_file_async_func_ptr_anon_296,
-    delete_file_finish: delete_file_finish_func_ptr_anon_297,
-    trash: trash_func_ptr_anon_298,
-    trash_async: trash_async_func_ptr_anon_299,
-    trash_finish: trash_finish_func_ptr_anon_300,
-    make_directory: make_directory_func_ptr_anon_301,
-    make_directory_async: make_directory_async_func_ptr_anon_302,
-    make_directory_finish: make_directory_finish_func_ptr_anon_303,
-    make_symbolic_link: make_symbolic_link_func_ptr_anon_304,
-    make_symbolic_link_async: make_symbolic_link_async_func_ptr_anon_305,
-    make_symbolic_link_finish: make_symbolic_link_finish_func_ptr_anon_306,
-    copy: copy_func_ptr_anon_307,
-    copy_async: copy_async_func_ptr_anon_308,
-    copy_finish: copy_finish_func_ptr_anon_309,
-    move: move_func_ptr_anon_310,
-    move_async: move_async_func_ptr_anon_311,
-    move_finish: move_finish_func_ptr_anon_312,
-    mount_mountable: mount_mountable_func_ptr_anon_313,
-    mount_mountable_finish: mount_mountable_finish_func_ptr_anon_314,
-    unmount_mountable: unmount_mountable_func_ptr_anon_315,
-    unmount_mountable_finish: unmount_mountable_finish_func_ptr_anon_316,
-    eject_mountable: eject_mountable_func_ptr_anon_317,
-    eject_mountable_finish: eject_mountable_finish_func_ptr_anon_318,
-    mount_enclosing_volume: mount_enclosing_volume_func_ptr_anon_319,
-    mount_enclosing_volume_finish: mount_enclosing_volume_finish_func_ptr_anon_320,
-    monitor_dir: monitor_dir_func_ptr_anon_321,
-    monitor_file: monitor_file_func_ptr_anon_322,
-    open_readwrite: open_readwrite_func_ptr_anon_323,
-    open_readwrite_async: open_readwrite_async_func_ptr_anon_324,
-    open_readwrite_finish: open_readwrite_finish_func_ptr_anon_325,
-    create_readwrite: create_readwrite_func_ptr_anon_326,
-    create_readwrite_async: create_readwrite_async_func_ptr_anon_327,
-    create_readwrite_finish: create_readwrite_finish_func_ptr_anon_328,
-    replace_readwrite: replace_readwrite_func_ptr_anon_329,
-    replace_readwrite_async: replace_readwrite_async_func_ptr_anon_330,
-    replace_readwrite_finish: replace_readwrite_finish_func_ptr_anon_331,
-    start_mountable: start_mountable_func_ptr_anon_332,
-    start_mountable_finish: start_mountable_finish_func_ptr_anon_333,
-    stop_mountable: stop_mountable_func_ptr_anon_334,
-    stop_mountable_finish: stop_mountable_finish_func_ptr_anon_335,
+    dup: dup_func_ptr_anon_244,
+    hash: hash_func_ptr_anon_245,
+    equal: equal_func_ptr_anon_246,
+    is_native: is_native_func_ptr_anon_247,
+    has_uri_scheme: has_uri_scheme_func_ptr_anon_248,
+    get_uri_scheme: et_uri_scheme_func_ptr_anon_249,
+    get_basename: et_basename_func_ptr_anon_250,
+    get_path: et_path_func_ptr_anon_251,
+    get_uri: et_uri_func_ptr_anon_252,
+    get_parse_name: et_parse_name_func_ptr_anon_253,
+    get_parent: et_parent_func_ptr_anon_254,
+    prefix_matches: prefix_matches_func_ptr_anon_255,
+    get_relative_path: et_relative_path_func_ptr_anon_256,
+    resolve_relative_path: resolve_relative_path_func_ptr_anon_257,
+    get_child_for_display_name: et_child_for_display_name_func_ptr_anon_258,
+    enumerate_children: enumerate_children_func_ptr_anon_259,
+    enumerate_children_async: enumerate_children_async_func_ptr_anon_260,
+    enumerate_children_finish: enumerate_children_finish_func_ptr_anon_261,
+    query_info: query_info_func_ptr_anon_262,
+    query_info_async: query_info_async_func_ptr_anon_263,
+    query_info_finish: query_info_finish_func_ptr_anon_264,
+    query_filesystem_info: query_filesystem_info_func_ptr_anon_265,
+    query_filesystem_info_async: query_filesystem_info_async_func_ptr_anon_266,
+    query_filesystem_info_finish: query_filesystem_info_finish_func_ptr_anon_267,
+    find_enclosing_mount: find_enclosing_mount_func_ptr_anon_268,
+    find_enclosing_mount_async: find_enclosing_mount_async_func_ptr_anon_269,
+    find_enclosing_mount_finish: find_enclosing_mount_finish_func_ptr_anon_270,
+    set_display_name: set_display_name_func_ptr_anon_271,
+    set_display_name_async: set_display_name_async_func_ptr_anon_272,
+    set_display_name_finish: set_display_name_finish_func_ptr_anon_273,
+    query_settable_attributes: query_settable_attributes_func_ptr_anon_274,
+    _query_settable_attributes_async: _query_settable_attributes_async_func_ptr_anon_275,
+    _query_settable_attributes_finish: _query_settable_attributes_finish_func_ptr_anon_276,
+    query_writable_namespaces: query_writable_namespaces_func_ptr_anon_277,
+    _query_writable_namespaces_async: _query_writable_namespaces_async_func_ptr_anon_278,
+    _query_writable_namespaces_finish: _query_writable_namespaces_finish_func_ptr_anon_279,
+    set_attribute: set_attribute_func_ptr_anon_280,
+    set_attributes_from_info: set_attributes_from_info_func_ptr_anon_281,
+    set_attributes_async: set_attributes_async_func_ptr_anon_282,
+    set_attributes_finish: set_attributes_finish_func_ptr_anon_283,
+    read_fn: read_fn_func_ptr_anon_284,
+    read_async: read_async_func_ptr_anon_285,
+    read_finish: read_finish_func_ptr_anon_286,
+    append_to: append_to_func_ptr_anon_287,
+    append_to_async: append_to_async_func_ptr_anon_288,
+    append_to_finish: append_to_finish_func_ptr_anon_289,
+    create: create_func_ptr_anon_290,
+    create_async: create_async_func_ptr_anon_291,
+    create_finish: create_finish_func_ptr_anon_292,
+    replace: replace_func_ptr_anon_293,
+    replace_async: replace_async_func_ptr_anon_294,
+    replace_finish: replace_finish_func_ptr_anon_295,
+    delete_file: delete_file_func_ptr_anon_296,
+    delete_file_async: delete_file_async_func_ptr_anon_297,
+    delete_file_finish: delete_file_finish_func_ptr_anon_298,
+    trash: trash_func_ptr_anon_299,
+    trash_async: trash_async_func_ptr_anon_300,
+    trash_finish: trash_finish_func_ptr_anon_301,
+    make_directory: make_directory_func_ptr_anon_302,
+    make_directory_async: make_directory_async_func_ptr_anon_303,
+    make_directory_finish: make_directory_finish_func_ptr_anon_304,
+    make_symbolic_link: make_symbolic_link_func_ptr_anon_305,
+    make_symbolic_link_async: make_symbolic_link_async_func_ptr_anon_306,
+    make_symbolic_link_finish: make_symbolic_link_finish_func_ptr_anon_307,
+    copy: copy_func_ptr_anon_308,
+    copy_async: copy_async_func_ptr_anon_309,
+    copy_finish: copy_finish_func_ptr_anon_310,
+    move: move_func_ptr_anon_311,
+    move_async: move_async_func_ptr_anon_312,
+    move_finish: move_finish_func_ptr_anon_313,
+    mount_mountable: mount_mountable_func_ptr_anon_314,
+    mount_mountable_finish: mount_mountable_finish_func_ptr_anon_315,
+    unmount_mountable: unmount_mountable_func_ptr_anon_316,
+    unmount_mountable_finish: unmount_mountable_finish_func_ptr_anon_317,
+    eject_mountable: eject_mountable_func_ptr_anon_318,
+    eject_mountable_finish: eject_mountable_finish_func_ptr_anon_319,
+    mount_enclosing_volume: mount_enclosing_volume_func_ptr_anon_320,
+    mount_enclosing_volume_finish: mount_enclosing_volume_finish_func_ptr_anon_321,
+    monitor_dir: monitor_dir_func_ptr_anon_322,
+    monitor_file: monitor_file_func_ptr_anon_323,
+    open_readwrite: open_readwrite_func_ptr_anon_324,
+    open_readwrite_async: open_readwrite_async_func_ptr_anon_325,
+    open_readwrite_finish: open_readwrite_finish_func_ptr_anon_326,
+    create_readwrite: create_readwrite_func_ptr_anon_327,
+    create_readwrite_async: create_readwrite_async_func_ptr_anon_328,
+    create_readwrite_finish: create_readwrite_finish_func_ptr_anon_329,
+    replace_readwrite: replace_readwrite_func_ptr_anon_330,
+    replace_readwrite_async: replace_readwrite_async_func_ptr_anon_331,
+    replace_readwrite_finish: replace_readwrite_finish_func_ptr_anon_332,
+    start_mountable: start_mountable_func_ptr_anon_333,
+    start_mountable_finish: start_mountable_finish_func_ptr_anon_334,
+    stop_mountable: stop_mountable_func_ptr_anon_335,
+    stop_mountable_finish: stop_mountable_finish_func_ptr_anon_336,
     supports_thread_contexts: glib.boolean,
-    unmount_mountable_with_operation: unmount_mountable_with_operation_func_ptr_anon_336,
-    unmount_mountable_with_operation_finish: unmount_mountable_with_operation_finish_func_ptr_anon_337,
-    eject_mountable_with_operation: eject_mountable_with_operation_func_ptr_anon_338,
-    eject_mountable_with_operation_finish: eject_mountable_with_operation_finish_func_ptr_anon_339,
-    poll_mountable: poll_mountable_func_ptr_anon_340,
-    poll_mountable_finish: poll_mountable_finish_func_ptr_anon_341,
-    measure_disk_usage: measure_disk_usage_func_ptr_anon_342,
-    measure_disk_usage_async: measure_disk_usage_async_func_ptr_anon_343,
-    measure_disk_usage_finish: measure_disk_usage_finish_func_ptr_anon_344,
-    query_exists: query_exists_func_ptr_anon_345,
+    unmount_mountable_with_operation: unmount_mountable_with_operation_func_ptr_anon_337,
+    unmount_mountable_with_operation_finish: unmount_mountable_with_operation_finish_func_ptr_anon_338,
+    eject_mountable_with_operation: eject_mountable_with_operation_func_ptr_anon_339,
+    eject_mountable_with_operation_finish: eject_mountable_with_operation_finish_func_ptr_anon_340,
+    poll_mountable: poll_mountable_func_ptr_anon_341,
+    poll_mountable_finish: poll_mountable_finish_func_ptr_anon_342,
+    measure_disk_usage: measure_disk_usage_func_ptr_anon_343,
+    measure_disk_usage_async: measure_disk_usage_async_func_ptr_anon_344,
+    measure_disk_usage_finish: measure_disk_usage_finish_func_ptr_anon_345,
+    query_exists: query_exists_func_ptr_anon_346,
 }
 FileIface :: _GFileIface
-next_file_func_ptr_anon_346 :: #type proc "c" (enumerator: ^FileEnumerator, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
-close_fn_func_ptr_anon_347 :: #type proc "c" (enumerator: ^FileEnumerator, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-next_files_async_func_ptr_anon_348 :: #type proc "c" (enumerator: ^FileEnumerator, num_files: i32, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-next_files_finish_func_ptr_anon_349 :: #type proc "c" (enumerator: ^FileEnumerator, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
-close_async_func_ptr_anon_350 :: #type proc "c" (enumerator: ^FileEnumerator, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-close_finish_func_ptr_anon_351 :: #type proc "c" (enumerator: ^FileEnumerator, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-_g_reserved1_func_ptr_anon_352 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_353 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_354 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_355 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_356 :: #type proc "c" ()
-_g_reserved6_func_ptr_anon_357 :: #type proc "c" ()
-_g_reserved7_func_ptr_anon_358 :: #type proc "c" ()
+next_file_func_ptr_anon_347 :: #type proc "c" (enumerator: ^FileEnumerator, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
+close_fn_func_ptr_anon_348 :: #type proc "c" (enumerator: ^FileEnumerator, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+next_files_async_func_ptr_anon_349 :: #type proc "c" (enumerator: ^FileEnumerator, num_files: i32, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+next_files_finish_func_ptr_anon_350 :: #type proc "c" (enumerator: ^FileEnumerator, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
+close_async_func_ptr_anon_351 :: #type proc "c" (enumerator: ^FileEnumerator, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+close_finish_func_ptr_anon_352 :: #type proc "c" (enumerator: ^FileEnumerator, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+_g_reserved1_func_ptr_anon_353 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_354 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_355 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_356 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_357 :: #type proc "c" ()
+_g_reserved6_func_ptr_anon_358 :: #type proc "c" ()
+_g_reserved7_func_ptr_anon_359 :: #type proc "c" ()
 _GFileEnumeratorClass :: struct {
     parent_class: gobj.ObjectClass,
-    next_file: next_file_func_ptr_anon_346,
-    close_fn: close_fn_func_ptr_anon_347,
-    next_files_async: next_files_async_func_ptr_anon_348,
-    next_files_finish: next_files_finish_func_ptr_anon_349,
-    close_async: close_async_func_ptr_anon_350,
-    close_finish: close_finish_func_ptr_anon_351,
-    _g_reserved1: _g_reserved1_func_ptr_anon_352,
-    _g_reserved2: _g_reserved2_func_ptr_anon_353,
-    _g_reserved3: _g_reserved3_func_ptr_anon_354,
-    _g_reserved4: _g_reserved4_func_ptr_anon_355,
-    _g_reserved5: _g_reserved5_func_ptr_anon_356,
-    _g_reserved6: _g_reserved6_func_ptr_anon_357,
-    _g_reserved7: _g_reserved7_func_ptr_anon_358,
+    next_file: next_file_func_ptr_anon_347,
+    close_fn: close_fn_func_ptr_anon_348,
+    next_files_async: next_files_async_func_ptr_anon_349,
+    next_files_finish: next_files_finish_func_ptr_anon_350,
+    close_async: close_async_func_ptr_anon_351,
+    close_finish: close_finish_func_ptr_anon_352,
+    _g_reserved1: _g_reserved1_func_ptr_anon_353,
+    _g_reserved2: _g_reserved2_func_ptr_anon_354,
+    _g_reserved3: _g_reserved3_func_ptr_anon_355,
+    _g_reserved4: _g_reserved4_func_ptr_anon_356,
+    _g_reserved5: _g_reserved5_func_ptr_anon_357,
+    _g_reserved6: _g_reserved6_func_ptr_anon_358,
+    _g_reserved7: _g_reserved7_func_ptr_anon_359,
 }
 FileEnumeratorClass :: _GFileEnumeratorClass
 _GFileIconClass :: struct #packed {}
 FileIconClass :: _GFileIconClass
 _GFileInfoClass :: struct #packed {}
 FileInfoClass :: _GFileInfoClass
-tell_func_ptr_anon_359 :: #type proc "c" (stream: ^FileInputStream) -> glib.offset
-can_seek_func_ptr_anon_360 :: #type proc "c" (stream: ^FileInputStream) -> glib.boolean
-seek_func_ptr_anon_361 :: #type proc "c" (stream: ^FileInputStream, offset_p: glib.offset, type: glib.SeekType, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-query_info_func_ptr_anon_362 :: #type proc "c" (stream: ^FileInputStream, attributes: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
-query_info_async_func_ptr_anon_363 :: #type proc "c" (stream: ^FileInputStream, attributes: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-query_info_finish_func_ptr_anon_364 :: #type proc "c" (stream: ^FileInputStream, result: ^AsyncResult, error: ^^glib.Error) -> ^FileInfo
-_g_reserved1_func_ptr_anon_365 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_366 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_367 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_368 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_369 :: #type proc "c" ()
+tell_func_ptr_anon_360 :: #type proc "c" (stream: ^FileInputStream) -> glib.offset
+can_seek_func_ptr_anon_361 :: #type proc "c" (stream: ^FileInputStream) -> glib.boolean
+seek_func_ptr_anon_362 :: #type proc "c" (stream: ^FileInputStream, offset_p: glib.offset, type: glib.SeekType, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+query_info_func_ptr_anon_363 :: #type proc "c" (stream: ^FileInputStream, attributes: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
+query_info_async_func_ptr_anon_364 :: #type proc "c" (stream: ^FileInputStream, attributes: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+query_info_finish_func_ptr_anon_365 :: #type proc "c" (stream: ^FileInputStream, result: ^AsyncResult, error: ^^glib.Error) -> ^FileInfo
+_g_reserved1_func_ptr_anon_366 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_367 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_368 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_369 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_370 :: #type proc "c" ()
 _GFileInputStreamClass :: struct {
     parent_class: InputStreamClass,
-    tell: tell_func_ptr_anon_359,
-    can_seek: can_seek_func_ptr_anon_360,
-    seek: seek_func_ptr_anon_361,
-    query_info: query_info_func_ptr_anon_362,
-    query_info_async: query_info_async_func_ptr_anon_363,
-    query_info_finish: query_info_finish_func_ptr_anon_364,
-    _g_reserved1: _g_reserved1_func_ptr_anon_365,
-    _g_reserved2: _g_reserved2_func_ptr_anon_366,
-    _g_reserved3: _g_reserved3_func_ptr_anon_367,
-    _g_reserved4: _g_reserved4_func_ptr_anon_368,
-    _g_reserved5: _g_reserved5_func_ptr_anon_369,
+    tell: tell_func_ptr_anon_360,
+    can_seek: can_seek_func_ptr_anon_361,
+    seek: seek_func_ptr_anon_362,
+    query_info: query_info_func_ptr_anon_363,
+    query_info_async: query_info_async_func_ptr_anon_364,
+    query_info_finish: query_info_finish_func_ptr_anon_365,
+    _g_reserved1: _g_reserved1_func_ptr_anon_366,
+    _g_reserved2: _g_reserved2_func_ptr_anon_367,
+    _g_reserved3: _g_reserved3_func_ptr_anon_368,
+    _g_reserved4: _g_reserved4_func_ptr_anon_369,
+    _g_reserved5: _g_reserved5_func_ptr_anon_370,
 }
 FileInputStreamClass :: _GFileInputStreamClass
-et_input_stream_func_ptr_anon_370 :: #type proc "c" (stream: ^IOStream) -> ^InputStream
-et_output_stream_func_ptr_anon_371 :: #type proc "c" (stream: ^IOStream) -> ^OutputStream
-close_fn_func_ptr_anon_372 :: #type proc "c" (stream: ^IOStream, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-close_async_func_ptr_anon_373 :: #type proc "c" (stream: ^IOStream, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-close_finish_func_ptr_anon_374 :: #type proc "c" (stream: ^IOStream, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-_g_reserved1_func_ptr_anon_375 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_376 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_377 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_378 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_379 :: #type proc "c" ()
-_g_reserved6_func_ptr_anon_380 :: #type proc "c" ()
-_g_reserved7_func_ptr_anon_381 :: #type proc "c" ()
-_g_reserved8_func_ptr_anon_382 :: #type proc "c" ()
-_g_reserved9_func_ptr_anon_383 :: #type proc "c" ()
-_g_reserved10_func_ptr_anon_384 :: #type proc "c" ()
+et_input_stream_func_ptr_anon_371 :: #type proc "c" (stream: ^IOStream) -> ^InputStream
+et_output_stream_func_ptr_anon_372 :: #type proc "c" (stream: ^IOStream) -> ^OutputStream
+close_fn_func_ptr_anon_373 :: #type proc "c" (stream: ^IOStream, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+close_async_func_ptr_anon_374 :: #type proc "c" (stream: ^IOStream, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+close_finish_func_ptr_anon_375 :: #type proc "c" (stream: ^IOStream, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+_g_reserved1_func_ptr_anon_376 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_377 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_378 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_379 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_380 :: #type proc "c" ()
+_g_reserved6_func_ptr_anon_381 :: #type proc "c" ()
+_g_reserved7_func_ptr_anon_382 :: #type proc "c" ()
+_g_reserved8_func_ptr_anon_383 :: #type proc "c" ()
+_g_reserved9_func_ptr_anon_384 :: #type proc "c" ()
+_g_reserved10_func_ptr_anon_385 :: #type proc "c" ()
 _GIOStreamClass :: struct {
     parent_class: gobj.ObjectClass,
-    get_input_stream: et_input_stream_func_ptr_anon_370,
-    get_output_stream: et_output_stream_func_ptr_anon_371,
-    close_fn: close_fn_func_ptr_anon_372,
-    close_async: close_async_func_ptr_anon_373,
-    close_finish: close_finish_func_ptr_anon_374,
-    _g_reserved1: _g_reserved1_func_ptr_anon_375,
-    _g_reserved2: _g_reserved2_func_ptr_anon_376,
-    _g_reserved3: _g_reserved3_func_ptr_anon_377,
-    _g_reserved4: _g_reserved4_func_ptr_anon_378,
-    _g_reserved5: _g_reserved5_func_ptr_anon_379,
-    _g_reserved6: _g_reserved6_func_ptr_anon_380,
-    _g_reserved7: _g_reserved7_func_ptr_anon_381,
-    _g_reserved8: _g_reserved8_func_ptr_anon_382,
-    _g_reserved9: _g_reserved9_func_ptr_anon_383,
-    _g_reserved10: _g_reserved10_func_ptr_anon_384,
+    get_input_stream: et_input_stream_func_ptr_anon_371,
+    get_output_stream: et_output_stream_func_ptr_anon_372,
+    close_fn: close_fn_func_ptr_anon_373,
+    close_async: close_async_func_ptr_anon_374,
+    close_finish: close_finish_func_ptr_anon_375,
+    _g_reserved1: _g_reserved1_func_ptr_anon_376,
+    _g_reserved2: _g_reserved2_func_ptr_anon_377,
+    _g_reserved3: _g_reserved3_func_ptr_anon_378,
+    _g_reserved4: _g_reserved4_func_ptr_anon_379,
+    _g_reserved5: _g_reserved5_func_ptr_anon_380,
+    _g_reserved6: _g_reserved6_func_ptr_anon_381,
+    _g_reserved7: _g_reserved7_func_ptr_anon_382,
+    _g_reserved8: _g_reserved8_func_ptr_anon_383,
+    _g_reserved9: _g_reserved9_func_ptr_anon_384,
+    _g_reserved10: _g_reserved10_func_ptr_anon_385,
 }
 IOStreamClass :: _GIOStreamClass
-tell_func_ptr_anon_385 :: #type proc "c" (stream: ^FileIOStream) -> glib.offset
-can_seek_func_ptr_anon_386 :: #type proc "c" (stream: ^FileIOStream) -> glib.boolean
-seek_func_ptr_anon_387 :: #type proc "c" (stream: ^FileIOStream, offset_p: glib.offset, type: glib.SeekType, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-can_truncate_func_ptr_anon_388 :: #type proc "c" (stream: ^FileIOStream) -> glib.boolean
-truncate_fn_func_ptr_anon_389 :: #type proc "c" (stream: ^FileIOStream, size_p: glib.offset, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-query_info_func_ptr_anon_390 :: #type proc "c" (stream: ^FileIOStream, attributes: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
-query_info_async_func_ptr_anon_391 :: #type proc "c" (stream: ^FileIOStream, attributes: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-query_info_finish_func_ptr_anon_392 :: #type proc "c" (stream: ^FileIOStream, result: ^AsyncResult, error: ^^glib.Error) -> ^FileInfo
-et_etag_func_ptr_anon_393 :: #type proc "c" (stream: ^FileIOStream) -> cstring
-_g_reserved1_func_ptr_anon_394 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_395 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_396 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_397 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_398 :: #type proc "c" ()
+tell_func_ptr_anon_386 :: #type proc "c" (stream: ^FileIOStream) -> glib.offset
+can_seek_func_ptr_anon_387 :: #type proc "c" (stream: ^FileIOStream) -> glib.boolean
+seek_func_ptr_anon_388 :: #type proc "c" (stream: ^FileIOStream, offset_p: glib.offset, type: glib.SeekType, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+can_truncate_func_ptr_anon_389 :: #type proc "c" (stream: ^FileIOStream) -> glib.boolean
+truncate_fn_func_ptr_anon_390 :: #type proc "c" (stream: ^FileIOStream, size_p: glib.offset, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+query_info_func_ptr_anon_391 :: #type proc "c" (stream: ^FileIOStream, attributes: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
+query_info_async_func_ptr_anon_392 :: #type proc "c" (stream: ^FileIOStream, attributes: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+query_info_finish_func_ptr_anon_393 :: #type proc "c" (stream: ^FileIOStream, result: ^AsyncResult, error: ^^glib.Error) -> ^FileInfo
+et_etag_func_ptr_anon_394 :: #type proc "c" (stream: ^FileIOStream) -> cstring
+_g_reserved1_func_ptr_anon_395 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_396 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_397 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_398 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_399 :: #type proc "c" ()
 _GFileIOStreamClass :: struct {
     parent_class: IOStreamClass,
-    tell: tell_func_ptr_anon_385,
-    can_seek: can_seek_func_ptr_anon_386,
-    seek: seek_func_ptr_anon_387,
-    can_truncate: can_truncate_func_ptr_anon_388,
-    truncate_fn: truncate_fn_func_ptr_anon_389,
-    query_info: query_info_func_ptr_anon_390,
-    query_info_async: query_info_async_func_ptr_anon_391,
-    query_info_finish: query_info_finish_func_ptr_anon_392,
-    get_etag: et_etag_func_ptr_anon_393,
-    _g_reserved1: _g_reserved1_func_ptr_anon_394,
-    _g_reserved2: _g_reserved2_func_ptr_anon_395,
-    _g_reserved3: _g_reserved3_func_ptr_anon_396,
-    _g_reserved4: _g_reserved4_func_ptr_anon_397,
-    _g_reserved5: _g_reserved5_func_ptr_anon_398,
+    tell: tell_func_ptr_anon_386,
+    can_seek: can_seek_func_ptr_anon_387,
+    seek: seek_func_ptr_anon_388,
+    can_truncate: can_truncate_func_ptr_anon_389,
+    truncate_fn: truncate_fn_func_ptr_anon_390,
+    query_info: query_info_func_ptr_anon_391,
+    query_info_async: query_info_async_func_ptr_anon_392,
+    query_info_finish: query_info_finish_func_ptr_anon_393,
+    get_etag: et_etag_func_ptr_anon_394,
+    _g_reserved1: _g_reserved1_func_ptr_anon_395,
+    _g_reserved2: _g_reserved2_func_ptr_anon_396,
+    _g_reserved3: _g_reserved3_func_ptr_anon_397,
+    _g_reserved4: _g_reserved4_func_ptr_anon_398,
+    _g_reserved5: _g_reserved5_func_ptr_anon_399,
 }
 FileIOStreamClass :: _GFileIOStreamClass
-changed_func_ptr_anon_399 :: #type proc "c" (monitor: ^FileMonitor, file: ^File, other_file: ^File, event_type: FileMonitorEvent)
-cancel_func_ptr_anon_400 :: #type proc "c" (monitor: ^FileMonitor) -> glib.boolean
-_g_reserved1_func_ptr_anon_401 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_402 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_403 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_404 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_405 :: #type proc "c" ()
+changed_func_ptr_anon_400 :: #type proc "c" (monitor: ^FileMonitor, file: ^File, other_file: ^File, event_type: FileMonitorEvent)
+cancel_func_ptr_anon_401 :: #type proc "c" (monitor: ^FileMonitor) -> glib.boolean
+_g_reserved1_func_ptr_anon_402 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_403 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_404 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_405 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_406 :: #type proc "c" ()
 _GFileMonitorClass :: struct {
     parent_class: gobj.ObjectClass,
-    changed: changed_func_ptr_anon_399,
-    cancel: cancel_func_ptr_anon_400,
-    _g_reserved1: _g_reserved1_func_ptr_anon_401,
-    _g_reserved2: _g_reserved2_func_ptr_anon_402,
-    _g_reserved3: _g_reserved3_func_ptr_anon_403,
-    _g_reserved4: _g_reserved4_func_ptr_anon_404,
-    _g_reserved5: _g_reserved5_func_ptr_anon_405,
+    changed: changed_func_ptr_anon_400,
+    cancel: cancel_func_ptr_anon_401,
+    _g_reserved1: _g_reserved1_func_ptr_anon_402,
+    _g_reserved2: _g_reserved2_func_ptr_anon_403,
+    _g_reserved3: _g_reserved3_func_ptr_anon_404,
+    _g_reserved4: _g_reserved4_func_ptr_anon_405,
+    _g_reserved5: _g_reserved5_func_ptr_anon_406,
 }
 FileMonitorClass :: _GFileMonitorClass
-ot_completion_data_func_ptr_anon_406 :: #type proc "c" (filename_completer: ^FilenameCompleter)
-_g_reserved1_func_ptr_anon_407 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_408 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_409 :: #type proc "c" ()
+ot_completion_data_func_ptr_anon_407 :: #type proc "c" (filename_completer: ^FilenameCompleter)
+_g_reserved1_func_ptr_anon_408 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_409 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_410 :: #type proc "c" ()
 _GFilenameCompleterClass :: struct {
     parent_class: gobj.ObjectClass,
-    got_completion_data: ot_completion_data_func_ptr_anon_406,
-    _g_reserved1: _g_reserved1_func_ptr_anon_407,
-    _g_reserved2: _g_reserved2_func_ptr_anon_408,
-    _g_reserved3: _g_reserved3_func_ptr_anon_409,
+    got_completion_data: ot_completion_data_func_ptr_anon_407,
+    _g_reserved1: _g_reserved1_func_ptr_anon_408,
+    _g_reserved2: _g_reserved2_func_ptr_anon_409,
+    _g_reserved3: _g_reserved3_func_ptr_anon_410,
 }
 FilenameCompleterClass :: _GFilenameCompleterClass
-tell_func_ptr_anon_410 :: #type proc "c" (stream: ^FileOutputStream) -> glib.offset
-can_seek_func_ptr_anon_411 :: #type proc "c" (stream: ^FileOutputStream) -> glib.boolean
-seek_func_ptr_anon_412 :: #type proc "c" (stream: ^FileOutputStream, offset_p: glib.offset, type: glib.SeekType, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-can_truncate_func_ptr_anon_413 :: #type proc "c" (stream: ^FileOutputStream) -> glib.boolean
-truncate_fn_func_ptr_anon_414 :: #type proc "c" (stream: ^FileOutputStream, size_p: glib.offset, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-query_info_func_ptr_anon_415 :: #type proc "c" (stream: ^FileOutputStream, attributes: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
-query_info_async_func_ptr_anon_416 :: #type proc "c" (stream: ^FileOutputStream, attributes: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-query_info_finish_func_ptr_anon_417 :: #type proc "c" (stream: ^FileOutputStream, result: ^AsyncResult, error: ^^glib.Error) -> ^FileInfo
-et_etag_func_ptr_anon_418 :: #type proc "c" (stream: ^FileOutputStream) -> cstring
-_g_reserved1_func_ptr_anon_419 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_420 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_421 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_422 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_423 :: #type proc "c" ()
+tell_func_ptr_anon_411 :: #type proc "c" (stream: ^FileOutputStream) -> glib.offset
+can_seek_func_ptr_anon_412 :: #type proc "c" (stream: ^FileOutputStream) -> glib.boolean
+seek_func_ptr_anon_413 :: #type proc "c" (stream: ^FileOutputStream, offset_p: glib.offset, type: glib.SeekType, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+can_truncate_func_ptr_anon_414 :: #type proc "c" (stream: ^FileOutputStream) -> glib.boolean
+truncate_fn_func_ptr_anon_415 :: #type proc "c" (stream: ^FileOutputStream, size_p: glib.offset, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+query_info_func_ptr_anon_416 :: #type proc "c" (stream: ^FileOutputStream, attributes: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^FileInfo
+query_info_async_func_ptr_anon_417 :: #type proc "c" (stream: ^FileOutputStream, attributes: cstring, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+query_info_finish_func_ptr_anon_418 :: #type proc "c" (stream: ^FileOutputStream, result: ^AsyncResult, error: ^^glib.Error) -> ^FileInfo
+et_etag_func_ptr_anon_419 :: #type proc "c" (stream: ^FileOutputStream) -> cstring
+_g_reserved1_func_ptr_anon_420 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_421 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_422 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_423 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_424 :: #type proc "c" ()
 _GFileOutputStreamClass :: struct {
     parent_class: OutputStreamClass,
-    tell: tell_func_ptr_anon_410,
-    can_seek: can_seek_func_ptr_anon_411,
-    seek: seek_func_ptr_anon_412,
-    can_truncate: can_truncate_func_ptr_anon_413,
-    truncate_fn: truncate_fn_func_ptr_anon_414,
-    query_info: query_info_func_ptr_anon_415,
-    query_info_async: query_info_async_func_ptr_anon_416,
-    query_info_finish: query_info_finish_func_ptr_anon_417,
-    get_etag: et_etag_func_ptr_anon_418,
-    _g_reserved1: _g_reserved1_func_ptr_anon_419,
-    _g_reserved2: _g_reserved2_func_ptr_anon_420,
-    _g_reserved3: _g_reserved3_func_ptr_anon_421,
-    _g_reserved4: _g_reserved4_func_ptr_anon_422,
-    _g_reserved5: _g_reserved5_func_ptr_anon_423,
+    tell: tell_func_ptr_anon_411,
+    can_seek: can_seek_func_ptr_anon_412,
+    seek: seek_func_ptr_anon_413,
+    can_truncate: can_truncate_func_ptr_anon_414,
+    truncate_fn: truncate_fn_func_ptr_anon_415,
+    query_info: query_info_func_ptr_anon_416,
+    query_info_async: query_info_async_func_ptr_anon_417,
+    query_info_finish: query_info_finish_func_ptr_anon_418,
+    get_etag: et_etag_func_ptr_anon_419,
+    _g_reserved1: _g_reserved1_func_ptr_anon_420,
+    _g_reserved2: _g_reserved2_func_ptr_anon_421,
+    _g_reserved3: _g_reserved3_func_ptr_anon_422,
+    _g_reserved4: _g_reserved4_func_ptr_anon_423,
+    _g_reserved5: _g_reserved5_func_ptr_anon_424,
 }
 FileOutputStreamClass :: _GFileOutputStreamClass
-to_string_func_ptr_anon_424 :: #type proc "c" (address: [^]InetAddress) -> cstring
-to_bytes_func_ptr_anon_425 :: #type proc "c" (address: [^]InetAddress) -> ^glib.uint8
+to_string_func_ptr_anon_425 :: #type proc "c" (address: [^]InetAddress) -> cstring
+to_bytes_func_ptr_anon_426 :: #type proc "c" (address: [^]InetAddress) -> ^glib.uint8
 _GInetAddressClass :: struct {
     parent_class: gobj.ObjectClass,
-    to_string: to_string_func_ptr_anon_424,
-    to_bytes: to_bytes_func_ptr_anon_425,
+    to_string: to_string_func_ptr_anon_425,
+    to_bytes: to_bytes_func_ptr_anon_426,
 }
 InetAddressClass :: _GInetAddressClass
 _GInetAddressMaskClass :: struct {
     parent_class: gobj.ObjectClass,
 }
 InetAddressMaskClass :: _GInetAddressMaskClass
-et_family_func_ptr_anon_426 :: #type proc "c" (address: [^]SocketAddress) -> SocketFamily
-et_native_size_func_ptr_anon_427 :: #type proc "c" (address: [^]SocketAddress) -> glib.ssize
-to_native_func_ptr_anon_428 :: #type proc "c" (address: [^]SocketAddress, dest: glib.pointer, destlen: glib.size, error: ^^glib.Error) -> glib.boolean
+et_family_func_ptr_anon_427 :: #type proc "c" (address: [^]SocketAddress) -> SocketFamily
+et_native_size_func_ptr_anon_428 :: #type proc "c" (address: [^]SocketAddress) -> glib.ssize
+to_native_func_ptr_anon_429 :: #type proc "c" (address: [^]SocketAddress, dest: glib.pointer, destlen: glib.size, error: ^^glib.Error) -> glib.boolean
 _GSocketAddressClass :: struct {
     parent_class: gobj.ObjectClass,
-    get_family: et_family_func_ptr_anon_426,
-    get_native_size: et_native_size_func_ptr_anon_427,
-    to_native: to_native_func_ptr_anon_428,
+    get_family: et_family_func_ptr_anon_427,
+    get_native_size: et_native_size_func_ptr_anon_428,
+    to_native: to_native_func_ptr_anon_429,
 }
 SocketAddressClass :: _GSocketAddressClass
 _GInetSocketAddressClass :: struct {
@@ -2275,16 +2281,70 @@ _GIOModuleScope :: struct #packed {}
 IOModuleScope :: _GIOModuleScope
 _GIOModuleClass :: struct #packed {}
 IOModuleClass :: _GIOModuleClass
+et_size_func_ptr_anon_430 :: #type proc "c" (message: ^SocketControlMessage) -> glib.size
+et_level_func_ptr_anon_431 :: #type proc "c" (message: ^SocketControlMessage) -> i32
+et_type_func_ptr_anon_432 :: #type proc "c" (message: ^SocketControlMessage) -> i32
+serialize_func_ptr_anon_433 :: #type proc "c" (message: ^SocketControlMessage, data: glib.pointer)
+deserialize_func_ptr_anon_434 :: #type proc "c" (level: i32, type: i32, size_p: glib.size, data: glib.pointer) -> ^SocketControlMessage
+_g_reserved1_func_ptr_anon_435 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_436 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_437 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_438 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_439 :: #type proc "c" ()
+_GSocketControlMessageClass :: struct {
+    parent_class: gobj.ObjectClass,
+    get_size: et_size_func_ptr_anon_430,
+    get_level: et_level_func_ptr_anon_431,
+    get_type: et_type_func_ptr_anon_432,
+    serialize: serialize_func_ptr_anon_433,
+    deserialize: deserialize_func_ptr_anon_434,
+    _g_reserved1: _g_reserved1_func_ptr_anon_435,
+    _g_reserved2: _g_reserved2_func_ptr_anon_436,
+    _g_reserved3: _g_reserved3_func_ptr_anon_437,
+    _g_reserved4: _g_reserved4_func_ptr_anon_438,
+    _g_reserved5: _g_reserved5_func_ptr_anon_439,
+}
+SocketControlMessageClass :: _GSocketControlMessageClass
+SocketControlMessage_autoptr :: ^SocketControlMessage
+SocketControlMessage_listautoptr :: ^glib.List
+SocketControlMessage_slistautoptr :: ^glib.SList
+SocketControlMessage_queueautoptr :: ^glib.Queue
+_GIPTosMessage :: struct #packed {}
+IPTosMessage :: _GIPTosMessage
+IPTosMessageClass :: struct {
+    parent_class: SocketControlMessageClass,
+}
+IPTosMessage_autoptr :: ^IPTosMessage
+IPTosMessage_listautoptr :: ^glib.List
+IPTosMessage_slistautoptr :: ^glib.SList
+IPTosMessage_queueautoptr :: ^glib.Queue
+IPTosMessageClass_autoptr :: ^IPTosMessageClass
+IPTosMessageClass_listautoptr :: ^glib.List
+IPTosMessageClass_slistautoptr :: ^glib.SList
+IPTosMessageClass_queueautoptr :: ^glib.Queue
+_GIPv6TclassMessage :: struct #packed {}
+IPv6TclassMessage :: _GIPv6TclassMessage
+IPv6TclassMessageClass :: struct {
+    parent_class: SocketControlMessageClass,
+}
+IPv6TclassMessage_autoptr :: ^IPv6TclassMessage
+IPv6TclassMessage_listautoptr :: ^glib.List
+IPv6TclassMessage_slistautoptr :: ^glib.SList
+IPv6TclassMessage_queueautoptr :: ^glib.Queue
+IPv6TclassMessageClass_autoptr :: ^IPv6TclassMessageClass
+IPv6TclassMessageClass_listautoptr :: ^glib.List
+IPv6TclassMessageClass_slistautoptr :: ^glib.SList
+IPv6TclassMessageClass_queueautoptr :: ^glib.Queue
 _GListModel :: struct #packed {}
 ListModel :: _GListModel
-et_item_type_func_ptr_anon_429 :: #type proc "c" (list: ^ListModel) -> gobj.Type
-et_n_items_func_ptr_anon_430 :: #type proc "c" (list: ^ListModel) -> glib.uint_
-et_item_func_ptr_anon_431 :: #type proc "c" (list: ^ListModel, position: glib.uint_) -> glib.pointer
+et_item_type_func_ptr_anon_440 :: #type proc "c" (list: ^ListModel) -> gobj.Type
+et_n_items_func_ptr_anon_441 :: #type proc "c" (list: ^ListModel) -> glib.uint_
+et_item_func_ptr_anon_442 :: #type proc "c" (list: ^ListModel, position: glib.uint_) -> glib.pointer
 _GListModelInterface :: struct {
     g_iface: gobj.TypeInterface,
-    get_item_type: et_item_type_func_ptr_anon_429,
-    get_n_items: et_n_items_func_ptr_anon_430,
-    get_item: et_item_func_ptr_anon_431,
+    get_item_type: et_item_type_func_ptr_anon_440,
+    get_n_items: et_n_items_func_ptr_anon_441,
+    get_item: et_item_func_ptr_anon_442,
 }
 ListModelInterface :: _GListModelInterface
 ListModel_autoptr :: ^ListModel
@@ -2304,60 +2364,60 @@ ListStoreClass_autoptr :: ^ListStoreClass
 ListStoreClass_listautoptr :: ^glib.List
 ListStoreClass_slistautoptr :: ^glib.SList
 ListStoreClass_queueautoptr :: ^glib.Queue
-load_func_ptr_anon_432 :: #type proc "c" (icon: ^LoadableIcon, size_p: i32, type: ^cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^InputStream
-load_async_func_ptr_anon_433 :: #type proc "c" (icon: ^LoadableIcon, size_p: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-load_finish_func_ptr_anon_434 :: #type proc "c" (icon: ^LoadableIcon, res: [^]AsyncResult, type: ^cstring, error: ^^glib.Error) -> ^InputStream
+load_func_ptr_anon_443 :: #type proc "c" (icon: ^LoadableIcon, size_p: i32, type: ^cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^InputStream
+load_async_func_ptr_anon_444 :: #type proc "c" (icon: ^LoadableIcon, size_p: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+load_finish_func_ptr_anon_445 :: #type proc "c" (icon: ^LoadableIcon, res: [^]AsyncResult, type: ^cstring, error: ^^glib.Error) -> ^InputStream
 _GLoadableIconIface :: struct {
     g_iface: gobj.TypeInterface,
-    load: load_func_ptr_anon_432,
-    load_async: load_async_func_ptr_anon_433,
-    load_finish: load_finish_func_ptr_anon_434,
+    load: load_func_ptr_anon_443,
+    load_async: load_async_func_ptr_anon_444,
+    load_finish: load_finish_func_ptr_anon_445,
 }
 LoadableIconIface :: _GLoadableIconIface
-_g_reserved1_func_ptr_anon_435 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_436 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_437 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_438 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_439 :: #type proc "c" ()
+_g_reserved1_func_ptr_anon_446 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_447 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_448 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_449 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_450 :: #type proc "c" ()
 _GMemoryInputStreamClass :: struct {
     parent_class: InputStreamClass,
-    _g_reserved1: _g_reserved1_func_ptr_anon_435,
-    _g_reserved2: _g_reserved2_func_ptr_anon_436,
-    _g_reserved3: _g_reserved3_func_ptr_anon_437,
-    _g_reserved4: _g_reserved4_func_ptr_anon_438,
-    _g_reserved5: _g_reserved5_func_ptr_anon_439,
+    _g_reserved1: _g_reserved1_func_ptr_anon_446,
+    _g_reserved2: _g_reserved2_func_ptr_anon_447,
+    _g_reserved3: _g_reserved3_func_ptr_anon_448,
+    _g_reserved4: _g_reserved4_func_ptr_anon_449,
+    _g_reserved5: _g_reserved5_func_ptr_anon_450,
 }
 MemoryInputStreamClass :: _GMemoryInputStreamClass
 _GMemoryMonitor :: struct #packed {}
 MemoryMonitor :: _GMemoryMonitor
-low_memory_warning_func_ptr_anon_440 :: #type proc "c" (monitor: ^MemoryMonitor, level: MemoryMonitorWarningLevel)
+low_memory_warning_func_ptr_anon_451 :: #type proc "c" (monitor: ^MemoryMonitor, level: MemoryMonitorWarningLevel)
 _GMemoryMonitorInterface :: struct {
     g_iface: gobj.TypeInterface,
-    low_memory_warning: low_memory_warning_func_ptr_anon_440,
+    low_memory_warning: low_memory_warning_func_ptr_anon_451,
 }
 MemoryMonitorInterface :: _GMemoryMonitorInterface
 MemoryMonitor_autoptr :: ^MemoryMonitor
 MemoryMonitor_listautoptr :: ^glib.List
 MemoryMonitor_slistautoptr :: ^glib.SList
 MemoryMonitor_queueautoptr :: ^glib.Queue
-_g_reserved1_func_ptr_anon_441 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_442 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_443 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_444 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_445 :: #type proc "c" ()
+_g_reserved1_func_ptr_anon_452 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_453 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_454 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_455 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_456 :: #type proc "c" ()
 _GMemoryOutputStreamClass :: struct {
     parent_class: OutputStreamClass,
-    _g_reserved1: _g_reserved1_func_ptr_anon_441,
-    _g_reserved2: _g_reserved2_func_ptr_anon_442,
-    _g_reserved3: _g_reserved3_func_ptr_anon_443,
-    _g_reserved4: _g_reserved4_func_ptr_anon_444,
-    _g_reserved5: _g_reserved5_func_ptr_anon_445,
+    _g_reserved1: _g_reserved1_func_ptr_anon_452,
+    _g_reserved2: _g_reserved2_func_ptr_anon_453,
+    _g_reserved3: _g_reserved3_func_ptr_anon_454,
+    _g_reserved4: _g_reserved4_func_ptr_anon_455,
+    _g_reserved5: _g_reserved5_func_ptr_anon_456,
 }
 MemoryOutputStreamClass :: _GMemoryOutputStreamClass
 ReallocFunc :: #type proc "c" (data: glib.pointer, size_p: glib.size) -> glib.pointer
-is_mutable_func_ptr_anon_446 :: #type proc "c" (model: ^MenuModel) -> glib.boolean
-et_n_items_func_ptr_anon_447 :: #type proc "c" (model: ^MenuModel) -> glib.int_
-et_item_attributes_func_ptr_anon_448 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, attributes: [^]^glib.HashTable)
+is_mutable_func_ptr_anon_457 :: #type proc "c" (model: ^MenuModel) -> glib.boolean
+et_n_items_func_ptr_anon_458 :: #type proc "c" (model: ^MenuModel) -> glib.int_
+et_item_attributes_func_ptr_anon_459 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, attributes: [^]^glib.HashTable)
 _GMenuAttributeIterPrivate :: struct #packed {}
 MenuAttributeIterPrivate :: _GMenuAttributeIterPrivate
 _GMenuAttributeIter :: struct {
@@ -2365,9 +2425,9 @@ _GMenuAttributeIter :: struct {
     priv: ^MenuAttributeIterPrivate,
 }
 MenuAttributeIter :: _GMenuAttributeIter
-iterate_item_attributes_func_ptr_anon_449 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_) -> ^MenuAttributeIter
-et_item_attribute_value_func_ptr_anon_450 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, attribute: cstring, expected_type: ^glib.VariantType) -> ^glib.Variant
-et_item_links_func_ptr_anon_451 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, links: [^]^glib.HashTable)
+iterate_item_attributes_func_ptr_anon_460 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_) -> ^MenuAttributeIter
+et_item_attribute_value_func_ptr_anon_461 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, attribute: cstring, expected_type: ^glib.VariantType) -> ^glib.Variant
+et_item_links_func_ptr_anon_462 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, links: [^]^glib.HashTable)
 _GMenuLinkIterPrivate :: struct #packed {}
 MenuLinkIterPrivate :: _GMenuLinkIterPrivate
 _GMenuLinkIter :: struct {
@@ -2375,257 +2435,257 @@ _GMenuLinkIter :: struct {
     priv: ^MenuLinkIterPrivate,
 }
 MenuLinkIter :: _GMenuLinkIter
-iterate_item_links_func_ptr_anon_452 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_) -> ^MenuLinkIter
-et_item_link_func_ptr_anon_453 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, link: cstring) -> ^MenuModel
+iterate_item_links_func_ptr_anon_463 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_) -> ^MenuLinkIter
+et_item_link_func_ptr_anon_464 :: #type proc "c" (model: ^MenuModel, item_index: glib.int_, link: cstring) -> ^MenuModel
 _GMenuModelClass :: struct {
     parent_class: gobj.ObjectClass,
-    is_mutable: is_mutable_func_ptr_anon_446,
-    get_n_items: et_n_items_func_ptr_anon_447,
-    get_item_attributes: et_item_attributes_func_ptr_anon_448,
-    iterate_item_attributes: iterate_item_attributes_func_ptr_anon_449,
-    get_item_attribute_value: et_item_attribute_value_func_ptr_anon_450,
-    get_item_links: et_item_links_func_ptr_anon_451,
-    iterate_item_links: iterate_item_links_func_ptr_anon_452,
-    get_item_link: et_item_link_func_ptr_anon_453,
+    is_mutable: is_mutable_func_ptr_anon_457,
+    get_n_items: et_n_items_func_ptr_anon_458,
+    get_item_attributes: et_item_attributes_func_ptr_anon_459,
+    iterate_item_attributes: iterate_item_attributes_func_ptr_anon_460,
+    get_item_attribute_value: et_item_attribute_value_func_ptr_anon_461,
+    get_item_links: et_item_links_func_ptr_anon_462,
+    iterate_item_links: iterate_item_links_func_ptr_anon_463,
+    get_item_link: et_item_link_func_ptr_anon_464,
 }
 MenuModelClass :: _GMenuModelClass
-et_next_func_ptr_anon_454 :: #type proc "c" (iter: ^MenuAttributeIter, out_name: ^cstring, value: ^^glib.Variant) -> glib.boolean
+et_next_func_ptr_anon_465 :: #type proc "c" (iter: ^MenuAttributeIter, out_name: ^cstring, value: ^^glib.Variant) -> glib.boolean
 _GMenuAttributeIterClass :: struct {
     parent_class: gobj.ObjectClass,
-    get_next: et_next_func_ptr_anon_454,
+    get_next: et_next_func_ptr_anon_465,
 }
 MenuAttributeIterClass :: _GMenuAttributeIterClass
-et_next_func_ptr_anon_455 :: #type proc "c" (iter: ^MenuLinkIter, out_link: ^cstring, value: ^^MenuModel) -> glib.boolean
+et_next_func_ptr_anon_466 :: #type proc "c" (iter: ^MenuLinkIter, out_link: ^cstring, value: ^^MenuModel) -> glib.boolean
 _GMenuLinkIterClass :: struct {
     parent_class: gobj.ObjectClass,
-    get_next: et_next_func_ptr_anon_455,
+    get_next: et_next_func_ptr_anon_466,
 }
 MenuLinkIterClass :: _GMenuLinkIterClass
 _GMenuItem :: struct #packed {}
 MenuItem :: _GMenuItem
 _GMenu :: struct #packed {}
 Menu :: _GMenu
-changed_func_ptr_anon_456 :: #type proc "c" (mount: ^Mount)
-unmounted_func_ptr_anon_457 :: #type proc "c" (mount: ^Mount)
-et_root_func_ptr_anon_458 :: #type proc "c" (mount: ^Mount) -> ^File
-et_name_func_ptr_anon_459 :: #type proc "c" (mount: ^Mount) -> cstring
-et_icon_func_ptr_anon_460 :: #type proc "c" (mount: ^Mount) -> ^Icon
-et_uuid_func_ptr_anon_461 :: #type proc "c" (mount: ^Mount) -> cstring
-et_volume_func_ptr_anon_462 :: #type proc "c" (mount: ^Mount) -> ^Volume
-et_drive_func_ptr_anon_463 :: #type proc "c" (mount: ^Mount) -> ^Drive
-can_unmount_func_ptr_anon_464 :: #type proc "c" (mount: ^Mount) -> glib.boolean
-can_eject_func_ptr_anon_465 :: #type proc "c" (mount: ^Mount) -> glib.boolean
-unmount_func_ptr_anon_466 :: #type proc "c" (mount: ^Mount, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-unmount_finish_func_ptr_anon_467 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-eject_func_ptr_anon_468 :: #type proc "c" (mount: ^Mount, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-eject_finish_func_ptr_anon_469 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-remount_func_ptr_anon_470 :: #type proc "c" (mount: ^Mount, flags: MountMountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-remount_finish_func_ptr_anon_471 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-uess_content_type_func_ptr_anon_472 :: #type proc "c" (mount: ^Mount, force_rescan: glib.boolean, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-uess_content_type_finish_func_ptr_anon_473 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> ^cstring
-uess_content_type_sync_func_ptr_anon_474 :: #type proc "c" (mount: ^Mount, force_rescan: glib.boolean, cancellable: ^Cancellable, error: ^^glib.Error) -> ^cstring
-pre_unmount_func_ptr_anon_475 :: #type proc "c" (mount: ^Mount)
-unmount_with_operation_func_ptr_anon_476 :: #type proc "c" (mount: ^Mount, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-unmount_with_operation_finish_func_ptr_anon_477 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-eject_with_operation_func_ptr_anon_478 :: #type proc "c" (mount: ^Mount, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-eject_with_operation_finish_func_ptr_anon_479 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-et_default_location_func_ptr_anon_480 :: #type proc "c" (mount: ^Mount) -> ^File
-et_sort_key_func_ptr_anon_481 :: #type proc "c" (mount: ^Mount) -> cstring
-et_symbolic_icon_func_ptr_anon_482 :: #type proc "c" (mount: ^Mount) -> ^Icon
+changed_func_ptr_anon_467 :: #type proc "c" (mount: ^Mount)
+unmounted_func_ptr_anon_468 :: #type proc "c" (mount: ^Mount)
+et_root_func_ptr_anon_469 :: #type proc "c" (mount: ^Mount) -> ^File
+et_name_func_ptr_anon_470 :: #type proc "c" (mount: ^Mount) -> cstring
+et_icon_func_ptr_anon_471 :: #type proc "c" (mount: ^Mount) -> ^Icon
+et_uuid_func_ptr_anon_472 :: #type proc "c" (mount: ^Mount) -> cstring
+et_volume_func_ptr_anon_473 :: #type proc "c" (mount: ^Mount) -> ^Volume
+et_drive_func_ptr_anon_474 :: #type proc "c" (mount: ^Mount) -> ^Drive
+can_unmount_func_ptr_anon_475 :: #type proc "c" (mount: ^Mount) -> glib.boolean
+can_eject_func_ptr_anon_476 :: #type proc "c" (mount: ^Mount) -> glib.boolean
+unmount_func_ptr_anon_477 :: #type proc "c" (mount: ^Mount, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+unmount_finish_func_ptr_anon_478 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+eject_func_ptr_anon_479 :: #type proc "c" (mount: ^Mount, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+eject_finish_func_ptr_anon_480 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+remount_func_ptr_anon_481 :: #type proc "c" (mount: ^Mount, flags: MountMountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+remount_finish_func_ptr_anon_482 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+uess_content_type_func_ptr_anon_483 :: #type proc "c" (mount: ^Mount, force_rescan: glib.boolean, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+uess_content_type_finish_func_ptr_anon_484 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> ^cstring
+uess_content_type_sync_func_ptr_anon_485 :: #type proc "c" (mount: ^Mount, force_rescan: glib.boolean, cancellable: ^Cancellable, error: ^^glib.Error) -> ^cstring
+pre_unmount_func_ptr_anon_486 :: #type proc "c" (mount: ^Mount)
+unmount_with_operation_func_ptr_anon_487 :: #type proc "c" (mount: ^Mount, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+unmount_with_operation_finish_func_ptr_anon_488 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+eject_with_operation_func_ptr_anon_489 :: #type proc "c" (mount: ^Mount, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+eject_with_operation_finish_func_ptr_anon_490 :: #type proc "c" (mount: ^Mount, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+et_default_location_func_ptr_anon_491 :: #type proc "c" (mount: ^Mount) -> ^File
+et_sort_key_func_ptr_anon_492 :: #type proc "c" (mount: ^Mount) -> cstring
+et_symbolic_icon_func_ptr_anon_493 :: #type proc "c" (mount: ^Mount) -> ^Icon
 _GMountIface :: struct {
     g_iface: gobj.TypeInterface,
-    changed: changed_func_ptr_anon_456,
-    unmounted: unmounted_func_ptr_anon_457,
-    get_root: et_root_func_ptr_anon_458,
-    get_name: et_name_func_ptr_anon_459,
-    get_icon: et_icon_func_ptr_anon_460,
-    get_uuid: et_uuid_func_ptr_anon_461,
-    get_volume: et_volume_func_ptr_anon_462,
-    get_drive: et_drive_func_ptr_anon_463,
-    can_unmount: can_unmount_func_ptr_anon_464,
-    can_eject: can_eject_func_ptr_anon_465,
-    unmount: unmount_func_ptr_anon_466,
-    unmount_finish: unmount_finish_func_ptr_anon_467,
-    eject: eject_func_ptr_anon_468,
-    eject_finish: eject_finish_func_ptr_anon_469,
-    remount: remount_func_ptr_anon_470,
-    remount_finish: remount_finish_func_ptr_anon_471,
-    guess_content_type: uess_content_type_func_ptr_anon_472,
-    guess_content_type_finish: uess_content_type_finish_func_ptr_anon_473,
-    guess_content_type_sync: uess_content_type_sync_func_ptr_anon_474,
-    pre_unmount: pre_unmount_func_ptr_anon_475,
-    unmount_with_operation: unmount_with_operation_func_ptr_anon_476,
-    unmount_with_operation_finish: unmount_with_operation_finish_func_ptr_anon_477,
-    eject_with_operation: eject_with_operation_func_ptr_anon_478,
-    eject_with_operation_finish: eject_with_operation_finish_func_ptr_anon_479,
-    get_default_location: et_default_location_func_ptr_anon_480,
-    get_sort_key: et_sort_key_func_ptr_anon_481,
-    get_symbolic_icon: et_symbolic_icon_func_ptr_anon_482,
+    changed: changed_func_ptr_anon_467,
+    unmounted: unmounted_func_ptr_anon_468,
+    get_root: et_root_func_ptr_anon_469,
+    get_name: et_name_func_ptr_anon_470,
+    get_icon: et_icon_func_ptr_anon_471,
+    get_uuid: et_uuid_func_ptr_anon_472,
+    get_volume: et_volume_func_ptr_anon_473,
+    get_drive: et_drive_func_ptr_anon_474,
+    can_unmount: can_unmount_func_ptr_anon_475,
+    can_eject: can_eject_func_ptr_anon_476,
+    unmount: unmount_func_ptr_anon_477,
+    unmount_finish: unmount_finish_func_ptr_anon_478,
+    eject: eject_func_ptr_anon_479,
+    eject_finish: eject_finish_func_ptr_anon_480,
+    remount: remount_func_ptr_anon_481,
+    remount_finish: remount_finish_func_ptr_anon_482,
+    guess_content_type: uess_content_type_func_ptr_anon_483,
+    guess_content_type_finish: uess_content_type_finish_func_ptr_anon_484,
+    guess_content_type_sync: uess_content_type_sync_func_ptr_anon_485,
+    pre_unmount: pre_unmount_func_ptr_anon_486,
+    unmount_with_operation: unmount_with_operation_func_ptr_anon_487,
+    unmount_with_operation_finish: unmount_with_operation_finish_func_ptr_anon_488,
+    eject_with_operation: eject_with_operation_func_ptr_anon_489,
+    eject_with_operation_finish: eject_with_operation_finish_func_ptr_anon_490,
+    get_default_location: et_default_location_func_ptr_anon_491,
+    get_sort_key: et_sort_key_func_ptr_anon_492,
+    get_symbolic_icon: et_symbolic_icon_func_ptr_anon_493,
 }
 MountIface :: _GMountIface
-ask_password_func_ptr_anon_483 :: #type proc "c" (op: ^MountOperation, message: cstring, default_user: cstring, default_domain: cstring, flags: AskPasswordFlags)
-ask_question_func_ptr_anon_484 :: #type proc "c" (op: ^MountOperation, message: cstring, choices: [^]cstring)
-reply_func_ptr_anon_485 :: #type proc "c" (op: ^MountOperation, result: MountOperationResult)
-aborted_func_ptr_anon_486 :: #type proc "c" (op: ^MountOperation)
-show_processes_func_ptr_anon_487 :: #type proc "c" (op: ^MountOperation, message: cstring, processes: [^]glib.Array, choices: [^]cstring)
-show_unmount_progress_func_ptr_anon_488 :: #type proc "c" (op: ^MountOperation, message: cstring, time_left: glib.int64, bytes_left: glib.int64)
-_g_reserved1_func_ptr_anon_489 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_490 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_491 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_492 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_493 :: #type proc "c" ()
-_g_reserved6_func_ptr_anon_494 :: #type proc "c" ()
-_g_reserved7_func_ptr_anon_495 :: #type proc "c" ()
-_g_reserved8_func_ptr_anon_496 :: #type proc "c" ()
-_g_reserved9_func_ptr_anon_497 :: #type proc "c" ()
+ask_password_func_ptr_anon_494 :: #type proc "c" (op: ^MountOperation, message: cstring, default_user: cstring, default_domain: cstring, flags: AskPasswordFlags)
+ask_question_func_ptr_anon_495 :: #type proc "c" (op: ^MountOperation, message: cstring, choices: [^]cstring)
+reply_func_ptr_anon_496 :: #type proc "c" (op: ^MountOperation, result: MountOperationResult)
+aborted_func_ptr_anon_497 :: #type proc "c" (op: ^MountOperation)
+show_processes_func_ptr_anon_498 :: #type proc "c" (op: ^MountOperation, message: cstring, processes: [^]glib.Array, choices: [^]cstring)
+show_unmount_progress_func_ptr_anon_499 :: #type proc "c" (op: ^MountOperation, message: cstring, time_left: glib.int64, bytes_left: glib.int64)
+_g_reserved1_func_ptr_anon_500 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_501 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_502 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_503 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_504 :: #type proc "c" ()
+_g_reserved6_func_ptr_anon_505 :: #type proc "c" ()
+_g_reserved7_func_ptr_anon_506 :: #type proc "c" ()
+_g_reserved8_func_ptr_anon_507 :: #type proc "c" ()
+_g_reserved9_func_ptr_anon_508 :: #type proc "c" ()
 _GMountOperationClass :: struct {
     parent_class: gobj.ObjectClass,
-    ask_password: ask_password_func_ptr_anon_483,
-    ask_question: ask_question_func_ptr_anon_484,
-    reply: reply_func_ptr_anon_485,
-    aborted: aborted_func_ptr_anon_486,
-    show_processes: show_processes_func_ptr_anon_487,
-    show_unmount_progress: show_unmount_progress_func_ptr_anon_488,
-    _g_reserved1: _g_reserved1_func_ptr_anon_489,
-    _g_reserved2: _g_reserved2_func_ptr_anon_490,
-    _g_reserved3: _g_reserved3_func_ptr_anon_491,
-    _g_reserved4: _g_reserved4_func_ptr_anon_492,
-    _g_reserved5: _g_reserved5_func_ptr_anon_493,
-    _g_reserved6: _g_reserved6_func_ptr_anon_494,
-    _g_reserved7: _g_reserved7_func_ptr_anon_495,
-    _g_reserved8: _g_reserved8_func_ptr_anon_496,
-    _g_reserved9: _g_reserved9_func_ptr_anon_497,
+    ask_password: ask_password_func_ptr_anon_494,
+    ask_question: ask_question_func_ptr_anon_495,
+    reply: reply_func_ptr_anon_496,
+    aborted: aborted_func_ptr_anon_497,
+    show_processes: show_processes_func_ptr_anon_498,
+    show_unmount_progress: show_unmount_progress_func_ptr_anon_499,
+    _g_reserved1: _g_reserved1_func_ptr_anon_500,
+    _g_reserved2: _g_reserved2_func_ptr_anon_501,
+    _g_reserved3: _g_reserved3_func_ptr_anon_502,
+    _g_reserved4: _g_reserved4_func_ptr_anon_503,
+    _g_reserved5: _g_reserved5_func_ptr_anon_504,
+    _g_reserved6: _g_reserved6_func_ptr_anon_505,
+    _g_reserved7: _g_reserved7_func_ptr_anon_506,
+    _g_reserved8: _g_reserved8_func_ptr_anon_507,
+    _g_reserved9: _g_reserved9_func_ptr_anon_508,
 }
 MountOperationClass :: _GMountOperationClass
 _GNativeSocketAddressClass :: struct {
     parent_class: SocketAddressClass,
 }
 NativeSocketAddressClass :: _GNativeSocketAddressClass
-volume_added_func_ptr_anon_498 :: #type proc "c" (volume_monitor: ^VolumeMonitor, volume: ^Volume)
-volume_removed_func_ptr_anon_499 :: #type proc "c" (volume_monitor: ^VolumeMonitor, volume: ^Volume)
-volume_changed_func_ptr_anon_500 :: #type proc "c" (volume_monitor: ^VolumeMonitor, volume: ^Volume)
-mount_added_func_ptr_anon_501 :: #type proc "c" (volume_monitor: ^VolumeMonitor, mount: ^Mount)
-mount_removed_func_ptr_anon_502 :: #type proc "c" (volume_monitor: ^VolumeMonitor, mount: ^Mount)
-mount_pre_unmount_func_ptr_anon_503 :: #type proc "c" (volume_monitor: ^VolumeMonitor, mount: ^Mount)
-mount_changed_func_ptr_anon_504 :: #type proc "c" (volume_monitor: ^VolumeMonitor, mount: ^Mount)
-drive_connected_func_ptr_anon_505 :: #type proc "c" (volume_monitor: ^VolumeMonitor, drive: ^Drive)
-drive_disconnected_func_ptr_anon_506 :: #type proc "c" (volume_monitor: ^VolumeMonitor, drive: ^Drive)
-drive_changed_func_ptr_anon_507 :: #type proc "c" (volume_monitor: ^VolumeMonitor, drive: ^Drive)
-is_supported_func_ptr_anon_508 :: #type proc "c" () -> glib.boolean
-et_connected_drives_func_ptr_anon_509 :: #type proc "c" (volume_monitor: ^VolumeMonitor) -> ^glib.List
-et_volumes_func_ptr_anon_510 :: #type proc "c" (volume_monitor: ^VolumeMonitor) -> ^glib.List
-et_mounts_func_ptr_anon_511 :: #type proc "c" (volume_monitor: ^VolumeMonitor) -> ^glib.List
-et_volume_for_uuid_func_ptr_anon_512 :: #type proc "c" (volume_monitor: ^VolumeMonitor, uuid: cstring) -> ^Volume
-et_mount_for_uuid_func_ptr_anon_513 :: #type proc "c" (volume_monitor: ^VolumeMonitor, uuid: cstring) -> ^Mount
-adopt_orphan_mount_func_ptr_anon_514 :: #type proc "c" (mount: ^Mount, volume_monitor: ^VolumeMonitor) -> ^Volume
-drive_eject_button_func_ptr_anon_515 :: #type proc "c" (volume_monitor: ^VolumeMonitor, drive: ^Drive)
-drive_stop_button_func_ptr_anon_516 :: #type proc "c" (volume_monitor: ^VolumeMonitor, drive: ^Drive)
-_g_reserved1_func_ptr_anon_517 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_518 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_519 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_520 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_521 :: #type proc "c" ()
-_g_reserved6_func_ptr_anon_522 :: #type proc "c" ()
+volume_added_func_ptr_anon_509 :: #type proc "c" (volume_monitor: ^VolumeMonitor, volume: ^Volume)
+volume_removed_func_ptr_anon_510 :: #type proc "c" (volume_monitor: ^VolumeMonitor, volume: ^Volume)
+volume_changed_func_ptr_anon_511 :: #type proc "c" (volume_monitor: ^VolumeMonitor, volume: ^Volume)
+mount_added_func_ptr_anon_512 :: #type proc "c" (volume_monitor: ^VolumeMonitor, mount: ^Mount)
+mount_removed_func_ptr_anon_513 :: #type proc "c" (volume_monitor: ^VolumeMonitor, mount: ^Mount)
+mount_pre_unmount_func_ptr_anon_514 :: #type proc "c" (volume_monitor: ^VolumeMonitor, mount: ^Mount)
+mount_changed_func_ptr_anon_515 :: #type proc "c" (volume_monitor: ^VolumeMonitor, mount: ^Mount)
+drive_connected_func_ptr_anon_516 :: #type proc "c" (volume_monitor: ^VolumeMonitor, drive: ^Drive)
+drive_disconnected_func_ptr_anon_517 :: #type proc "c" (volume_monitor: ^VolumeMonitor, drive: ^Drive)
+drive_changed_func_ptr_anon_518 :: #type proc "c" (volume_monitor: ^VolumeMonitor, drive: ^Drive)
+is_supported_func_ptr_anon_519 :: #type proc "c" () -> glib.boolean
+et_connected_drives_func_ptr_anon_520 :: #type proc "c" (volume_monitor: ^VolumeMonitor) -> ^glib.List
+et_volumes_func_ptr_anon_521 :: #type proc "c" (volume_monitor: ^VolumeMonitor) -> ^glib.List
+et_mounts_func_ptr_anon_522 :: #type proc "c" (volume_monitor: ^VolumeMonitor) -> ^glib.List
+et_volume_for_uuid_func_ptr_anon_523 :: #type proc "c" (volume_monitor: ^VolumeMonitor, uuid: cstring) -> ^Volume
+et_mount_for_uuid_func_ptr_anon_524 :: #type proc "c" (volume_monitor: ^VolumeMonitor, uuid: cstring) -> ^Mount
+adopt_orphan_mount_func_ptr_anon_525 :: #type proc "c" (mount: ^Mount, volume_monitor: ^VolumeMonitor) -> ^Volume
+drive_eject_button_func_ptr_anon_526 :: #type proc "c" (volume_monitor: ^VolumeMonitor, drive: ^Drive)
+drive_stop_button_func_ptr_anon_527 :: #type proc "c" (volume_monitor: ^VolumeMonitor, drive: ^Drive)
+_g_reserved1_func_ptr_anon_528 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_529 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_530 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_531 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_532 :: #type proc "c" ()
+_g_reserved6_func_ptr_anon_533 :: #type proc "c" ()
 _GVolumeMonitorClass :: struct {
     parent_class: gobj.ObjectClass,
-    volume_added: volume_added_func_ptr_anon_498,
-    volume_removed: volume_removed_func_ptr_anon_499,
-    volume_changed: volume_changed_func_ptr_anon_500,
-    mount_added: mount_added_func_ptr_anon_501,
-    mount_removed: mount_removed_func_ptr_anon_502,
-    mount_pre_unmount: mount_pre_unmount_func_ptr_anon_503,
-    mount_changed: mount_changed_func_ptr_anon_504,
-    drive_connected: drive_connected_func_ptr_anon_505,
-    drive_disconnected: drive_disconnected_func_ptr_anon_506,
-    drive_changed: drive_changed_func_ptr_anon_507,
-    is_supported: is_supported_func_ptr_anon_508,
-    get_connected_drives: et_connected_drives_func_ptr_anon_509,
-    get_volumes: et_volumes_func_ptr_anon_510,
-    get_mounts: et_mounts_func_ptr_anon_511,
-    get_volume_for_uuid: et_volume_for_uuid_func_ptr_anon_512,
-    get_mount_for_uuid: et_mount_for_uuid_func_ptr_anon_513,
-    adopt_orphan_mount: adopt_orphan_mount_func_ptr_anon_514,
-    drive_eject_button: drive_eject_button_func_ptr_anon_515,
-    drive_stop_button: drive_stop_button_func_ptr_anon_516,
-    _g_reserved1: _g_reserved1_func_ptr_anon_517,
-    _g_reserved2: _g_reserved2_func_ptr_anon_518,
-    _g_reserved3: _g_reserved3_func_ptr_anon_519,
-    _g_reserved4: _g_reserved4_func_ptr_anon_520,
-    _g_reserved5: _g_reserved5_func_ptr_anon_521,
-    _g_reserved6: _g_reserved6_func_ptr_anon_522,
+    volume_added: volume_added_func_ptr_anon_509,
+    volume_removed: volume_removed_func_ptr_anon_510,
+    volume_changed: volume_changed_func_ptr_anon_511,
+    mount_added: mount_added_func_ptr_anon_512,
+    mount_removed: mount_removed_func_ptr_anon_513,
+    mount_pre_unmount: mount_pre_unmount_func_ptr_anon_514,
+    mount_changed: mount_changed_func_ptr_anon_515,
+    drive_connected: drive_connected_func_ptr_anon_516,
+    drive_disconnected: drive_disconnected_func_ptr_anon_517,
+    drive_changed: drive_changed_func_ptr_anon_518,
+    is_supported: is_supported_func_ptr_anon_519,
+    get_connected_drives: et_connected_drives_func_ptr_anon_520,
+    get_volumes: et_volumes_func_ptr_anon_521,
+    get_mounts: et_mounts_func_ptr_anon_522,
+    get_volume_for_uuid: et_volume_for_uuid_func_ptr_anon_523,
+    get_mount_for_uuid: et_mount_for_uuid_func_ptr_anon_524,
+    adopt_orphan_mount: adopt_orphan_mount_func_ptr_anon_525,
+    drive_eject_button: drive_eject_button_func_ptr_anon_526,
+    drive_stop_button: drive_stop_button_func_ptr_anon_527,
+    _g_reserved1: _g_reserved1_func_ptr_anon_528,
+    _g_reserved2: _g_reserved2_func_ptr_anon_529,
+    _g_reserved3: _g_reserved3_func_ptr_anon_530,
+    _g_reserved4: _g_reserved4_func_ptr_anon_531,
+    _g_reserved5: _g_reserved5_func_ptr_anon_532,
+    _g_reserved6: _g_reserved6_func_ptr_anon_533,
 }
 VolumeMonitorClass :: _GVolumeMonitorClass
 _GNativeVolumeMonitor :: struct {
     parent_instance: VolumeMonitor,
 }
 NativeVolumeMonitor :: _GNativeVolumeMonitor
-et_mount_for_mount_path_func_ptr_anon_523 :: #type proc "c" (mount_path: cstring, cancellable: ^Cancellable) -> ^Mount
+et_mount_for_mount_path_func_ptr_anon_534 :: #type proc "c" (mount_path: cstring, cancellable: ^Cancellable) -> ^Mount
 _GNativeVolumeMonitorClass :: struct {
     parent_class: VolumeMonitorClass,
-    get_mount_for_mount_path: et_mount_for_mount_path_func_ptr_anon_523,
+    get_mount_for_mount_path: et_mount_for_mount_path_func_ptr_anon_534,
 }
 NativeVolumeMonitorClass :: _GNativeVolumeMonitorClass
 _GNetworkAddressClass :: struct {
     parent_class: gobj.ObjectClass,
 }
 NetworkAddressClass :: _GNetworkAddressClass
-network_changed_func_ptr_anon_524 :: #type proc "c" (monitor: ^NetworkMonitor, network_available: glib.boolean)
-can_reach_func_ptr_anon_525 :: #type proc "c" (monitor: ^NetworkMonitor, connectable: ^SocketConnectable, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-can_reach_async_func_ptr_anon_526 :: #type proc "c" (monitor: ^NetworkMonitor, connectable: ^SocketConnectable, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-can_reach_finish_func_ptr_anon_527 :: #type proc "c" (monitor: ^NetworkMonitor, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+network_changed_func_ptr_anon_535 :: #type proc "c" (monitor: ^NetworkMonitor, network_available: glib.boolean)
+can_reach_func_ptr_anon_536 :: #type proc "c" (monitor: ^NetworkMonitor, connectable: ^SocketConnectable, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+can_reach_async_func_ptr_anon_537 :: #type proc "c" (monitor: ^NetworkMonitor, connectable: ^SocketConnectable, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+can_reach_finish_func_ptr_anon_538 :: #type proc "c" (monitor: ^NetworkMonitor, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
 _GNetworkMonitorInterface :: struct {
     g_iface: gobj.TypeInterface,
-    network_changed: network_changed_func_ptr_anon_524,
-    can_reach: can_reach_func_ptr_anon_525,
-    can_reach_async: can_reach_async_func_ptr_anon_526,
-    can_reach_finish: can_reach_finish_func_ptr_anon_527,
+    network_changed: network_changed_func_ptr_anon_535,
+    can_reach: can_reach_func_ptr_anon_536,
+    can_reach_async: can_reach_async_func_ptr_anon_537,
+    can_reach_finish: can_reach_finish_func_ptr_anon_538,
 }
 NetworkMonitorInterface :: _GNetworkMonitorInterface
 _GNetworkServiceClass :: struct {
     parent_class: gobj.ObjectClass,
 }
 NetworkServiceClass :: _GNetworkServiceClass
-acquire_func_ptr_anon_528 :: #type proc "c" (permission: ^Permission, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-acquire_async_func_ptr_anon_529 :: #type proc "c" (permission: ^Permission, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-acquire_finish_func_ptr_anon_530 :: #type proc "c" (permission: ^Permission, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-release_func_ptr_anon_531 :: #type proc "c" (permission: ^Permission, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-release_async_func_ptr_anon_532 :: #type proc "c" (permission: ^Permission, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-release_finish_func_ptr_anon_533 :: #type proc "c" (permission: ^Permission, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+acquire_func_ptr_anon_539 :: #type proc "c" (permission: ^Permission, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+acquire_async_func_ptr_anon_540 :: #type proc "c" (permission: ^Permission, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+acquire_finish_func_ptr_anon_541 :: #type proc "c" (permission: ^Permission, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+release_func_ptr_anon_542 :: #type proc "c" (permission: ^Permission, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+release_async_func_ptr_anon_543 :: #type proc "c" (permission: ^Permission, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+release_finish_func_ptr_anon_544 :: #type proc "c" (permission: ^Permission, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
 _GPermissionClass :: struct {
     parent_class: gobj.ObjectClass,
-    acquire: acquire_func_ptr_anon_528,
-    acquire_async: acquire_async_func_ptr_anon_529,
-    acquire_finish: acquire_finish_func_ptr_anon_530,
-    release: release_func_ptr_anon_531,
-    release_async: release_async_func_ptr_anon_532,
-    release_finish: release_finish_func_ptr_anon_533,
+    acquire: acquire_func_ptr_anon_539,
+    acquire_async: acquire_async_func_ptr_anon_540,
+    acquire_finish: acquire_finish_func_ptr_anon_541,
+    release: release_func_ptr_anon_542,
+    release_async: release_async_func_ptr_anon_543,
+    release_finish: release_finish_func_ptr_anon_544,
     reserved: [16]glib.pointer,
 }
 PermissionClass :: _GPermissionClass
-can_poll_func_ptr_anon_534 :: #type proc "c" (stream: ^PollableInputStream) -> glib.boolean
-is_readable_func_ptr_anon_535 :: #type proc "c" (stream: ^PollableInputStream) -> glib.boolean
-create_source_func_ptr_anon_536 :: #type proc "c" (stream: ^PollableInputStream, cancellable: ^Cancellable) -> ^glib.Source
-read_nonblocking_func_ptr_anon_537 :: #type proc "c" (stream: ^PollableInputStream, buffer: rawptr, count: glib.size, error: ^^glib.Error) -> glib.ssize
+can_poll_func_ptr_anon_545 :: #type proc "c" (stream: ^PollableInputStream) -> glib.boolean
+is_readable_func_ptr_anon_546 :: #type proc "c" (stream: ^PollableInputStream) -> glib.boolean
+create_source_func_ptr_anon_547 :: #type proc "c" (stream: ^PollableInputStream, cancellable: ^Cancellable) -> ^glib.Source
+read_nonblocking_func_ptr_anon_548 :: #type proc "c" (stream: ^PollableInputStream, buffer: rawptr, count: glib.size, error: ^^glib.Error) -> glib.ssize
 _GPollableInputStreamInterface :: struct {
     g_iface: gobj.TypeInterface,
-    can_poll: can_poll_func_ptr_anon_534,
-    is_readable: is_readable_func_ptr_anon_535,
-    create_source: create_source_func_ptr_anon_536,
-    read_nonblocking: read_nonblocking_func_ptr_anon_537,
+    can_poll: can_poll_func_ptr_anon_545,
+    is_readable: is_readable_func_ptr_anon_546,
+    create_source: create_source_func_ptr_anon_547,
+    read_nonblocking: read_nonblocking_func_ptr_anon_548,
 }
 PollableInputStreamInterface :: _GPollableInputStreamInterface
-can_poll_func_ptr_anon_538 :: #type proc "c" (stream: ^PollableOutputStream) -> glib.boolean
-is_writable_func_ptr_anon_539 :: #type proc "c" (stream: ^PollableOutputStream) -> glib.boolean
-create_source_func_ptr_anon_540 :: #type proc "c" (stream: ^PollableOutputStream, cancellable: ^Cancellable) -> ^glib.Source
-write_nonblocking_func_ptr_anon_541 :: #type proc "c" (stream: ^PollableOutputStream, buffer: rawptr, count: glib.size, error: ^^glib.Error) -> glib.ssize
-writev_nonblocking_func_ptr_anon_542 :: #type proc "c" (stream: ^PollableOutputStream, vectors: [^]OutputVector, n_vectors: glib.size, bytes_written: ^glib.size, error: ^^glib.Error) -> PollableReturn
+can_poll_func_ptr_anon_549 :: #type proc "c" (stream: ^PollableOutputStream) -> glib.boolean
+is_writable_func_ptr_anon_550 :: #type proc "c" (stream: ^PollableOutputStream) -> glib.boolean
+create_source_func_ptr_anon_551 :: #type proc "c" (stream: ^PollableOutputStream, cancellable: ^Cancellable) -> ^glib.Source
+write_nonblocking_func_ptr_anon_552 :: #type proc "c" (stream: ^PollableOutputStream, buffer: rawptr, count: glib.size, error: ^^glib.Error) -> glib.ssize
+writev_nonblocking_func_ptr_anon_553 :: #type proc "c" (stream: ^PollableOutputStream, vectors: [^]OutputVector, n_vectors: glib.size, bytes_written: ^glib.size, error: ^^glib.Error) -> PollableReturn
 _GPollableOutputStreamInterface :: struct {
     g_iface: gobj.TypeInterface,
-    can_poll: can_poll_func_ptr_anon_538,
-    is_writable: is_writable_func_ptr_anon_539,
-    create_source: create_source_func_ptr_anon_540,
-    write_nonblocking: write_nonblocking_func_ptr_anon_541,
-    writev_nonblocking: writev_nonblocking_func_ptr_anon_542,
+    can_poll: can_poll_func_ptr_anon_549,
+    is_writable: is_writable_func_ptr_anon_550,
+    create_source: create_source_func_ptr_anon_551,
+    write_nonblocking: write_nonblocking_func_ptr_anon_552,
+    writev_nonblocking: writev_nonblocking_func_ptr_anon_553,
 }
 PollableOutputStreamInterface :: _GPollableOutputStreamInterface
 _GPowerProfileMonitor :: struct #packed {}
@@ -2638,105 +2698,105 @@ PowerProfileMonitor_autoptr :: ^PowerProfileMonitor
 PowerProfileMonitor_listautoptr :: ^glib.List
 PowerProfileMonitor_slistautoptr :: ^glib.SList
 PowerProfileMonitor_queueautoptr :: ^glib.Queue
-connect_func_ptr_anon_543 :: #type proc "c" (proxy: ^Proxy, connection: ^IOStream, proxy_address: [^]ProxyAddress, cancellable: ^Cancellable, error: ^^glib.Error) -> ^IOStream
-connect_async_func_ptr_anon_544 :: #type proc "c" (proxy: ^Proxy, connection: ^IOStream, proxy_address: [^]ProxyAddress, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-connect_finish_func_ptr_anon_545 :: #type proc "c" (proxy: ^Proxy, result: ^AsyncResult, error: ^^glib.Error) -> ^IOStream
-supports_hostname_func_ptr_anon_546 :: #type proc "c" (proxy: ^Proxy) -> glib.boolean
+connect_func_ptr_anon_554 :: #type proc "c" (proxy: ^Proxy, connection: ^IOStream, proxy_address: [^]ProxyAddress, cancellable: ^Cancellable, error: ^^glib.Error) -> ^IOStream
+connect_async_func_ptr_anon_555 :: #type proc "c" (proxy: ^Proxy, connection: ^IOStream, proxy_address: [^]ProxyAddress, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+connect_finish_func_ptr_anon_556 :: #type proc "c" (proxy: ^Proxy, result: ^AsyncResult, error: ^^glib.Error) -> ^IOStream
+supports_hostname_func_ptr_anon_557 :: #type proc "c" (proxy: ^Proxy) -> glib.boolean
 _GProxyInterface :: struct {
     g_iface: gobj.TypeInterface,
-    connect: connect_func_ptr_anon_543,
-    connect_async: connect_async_func_ptr_anon_544,
-    connect_finish: connect_finish_func_ptr_anon_545,
-    supports_hostname: supports_hostname_func_ptr_anon_546,
+    connect: connect_func_ptr_anon_554,
+    connect_async: connect_async_func_ptr_anon_555,
+    connect_finish: connect_finish_func_ptr_anon_556,
+    supports_hostname: supports_hostname_func_ptr_anon_557,
 }
 ProxyInterface :: _GProxyInterface
 _GProxyAddressClass :: struct {
     parent_class: InetSocketAddressClass,
 }
 ProxyAddressClass :: _GProxyAddressClass
-next_func_ptr_anon_547 :: #type proc "c" (enumerator: ^SocketAddressEnumerator, cancellable: ^Cancellable, error: ^^glib.Error) -> ^SocketAddress
-next_async_func_ptr_anon_548 :: #type proc "c" (enumerator: ^SocketAddressEnumerator, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-next_finish_func_ptr_anon_549 :: #type proc "c" (enumerator: ^SocketAddressEnumerator, result: ^AsyncResult, error: ^^glib.Error) -> ^SocketAddress
+next_func_ptr_anon_558 :: #type proc "c" (enumerator: ^SocketAddressEnumerator, cancellable: ^Cancellable, error: ^^glib.Error) -> ^SocketAddress
+next_async_func_ptr_anon_559 :: #type proc "c" (enumerator: ^SocketAddressEnumerator, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+next_finish_func_ptr_anon_560 :: #type proc "c" (enumerator: ^SocketAddressEnumerator, result: ^AsyncResult, error: ^^glib.Error) -> ^SocketAddress
 _GSocketAddressEnumeratorClass :: struct {
     parent_class: gobj.ObjectClass,
-    next: next_func_ptr_anon_547,
-    next_async: next_async_func_ptr_anon_548,
-    next_finish: next_finish_func_ptr_anon_549,
+    next: next_func_ptr_anon_558,
+    next_async: next_async_func_ptr_anon_559,
+    next_finish: next_finish_func_ptr_anon_560,
 }
 SocketAddressEnumeratorClass :: _GSocketAddressEnumeratorClass
-_g_reserved1_func_ptr_anon_550 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_551 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_552 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_553 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_554 :: #type proc "c" ()
-_g_reserved6_func_ptr_anon_555 :: #type proc "c" ()
-_g_reserved7_func_ptr_anon_556 :: #type proc "c" ()
+_g_reserved1_func_ptr_anon_561 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_562 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_563 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_564 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_565 :: #type proc "c" ()
+_g_reserved6_func_ptr_anon_566 :: #type proc "c" ()
+_g_reserved7_func_ptr_anon_567 :: #type proc "c" ()
 _GProxyAddressEnumeratorClass :: struct {
     parent_class: SocketAddressEnumeratorClass,
-    _g_reserved1: _g_reserved1_func_ptr_anon_550,
-    _g_reserved2: _g_reserved2_func_ptr_anon_551,
-    _g_reserved3: _g_reserved3_func_ptr_anon_552,
-    _g_reserved4: _g_reserved4_func_ptr_anon_553,
-    _g_reserved5: _g_reserved5_func_ptr_anon_554,
-    _g_reserved6: _g_reserved6_func_ptr_anon_555,
-    _g_reserved7: _g_reserved7_func_ptr_anon_556,
+    _g_reserved1: _g_reserved1_func_ptr_anon_561,
+    _g_reserved2: _g_reserved2_func_ptr_anon_562,
+    _g_reserved3: _g_reserved3_func_ptr_anon_563,
+    _g_reserved4: _g_reserved4_func_ptr_anon_564,
+    _g_reserved5: _g_reserved5_func_ptr_anon_565,
+    _g_reserved6: _g_reserved6_func_ptr_anon_566,
+    _g_reserved7: _g_reserved7_func_ptr_anon_567,
 }
 ProxyAddressEnumeratorClass :: _GProxyAddressEnumeratorClass
-is_supported_func_ptr_anon_557 :: #type proc "c" (resolver: ^ProxyResolver) -> glib.boolean
-lookup_func_ptr_anon_558 :: #type proc "c" (resolver: ^ProxyResolver, uri: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^cstring
-lookup_async_func_ptr_anon_559 :: #type proc "c" (resolver: ^ProxyResolver, uri: cstring, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-lookup_finish_func_ptr_anon_560 :: #type proc "c" (resolver: ^ProxyResolver, result: ^AsyncResult, error: ^^glib.Error) -> ^cstring
+is_supported_func_ptr_anon_568 :: #type proc "c" (resolver: ^ProxyResolver) -> glib.boolean
+lookup_func_ptr_anon_569 :: #type proc "c" (resolver: ^ProxyResolver, uri: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^cstring
+lookup_async_func_ptr_anon_570 :: #type proc "c" (resolver: ^ProxyResolver, uri: cstring, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+lookup_finish_func_ptr_anon_571 :: #type proc "c" (resolver: ^ProxyResolver, result: ^AsyncResult, error: ^^glib.Error) -> ^cstring
 _GProxyResolverInterface :: struct {
     g_iface: gobj.TypeInterface,
-    is_supported: is_supported_func_ptr_anon_557,
-    lookup: lookup_func_ptr_anon_558,
-    lookup_async: lookup_async_func_ptr_anon_559,
-    lookup_finish: lookup_finish_func_ptr_anon_560,
+    is_supported: is_supported_func_ptr_anon_568,
+    lookup: lookup_func_ptr_anon_569,
+    lookup_async: lookup_async_func_ptr_anon_570,
+    lookup_finish: lookup_finish_func_ptr_anon_571,
 }
 ProxyResolverInterface :: _GProxyResolverInterface
-activate_action_full_func_ptr_anon_561 :: #type proc "c" (remote: ^RemoteActionGroup, action_name: cstring, parameter: ^glib.Variant, platform_data: ^glib.Variant)
-change_action_state_full_func_ptr_anon_562 :: #type proc "c" (remote: ^RemoteActionGroup, action_name: cstring, value: ^glib.Variant, platform_data: ^glib.Variant)
+activate_action_full_func_ptr_anon_572 :: #type proc "c" (remote: ^RemoteActionGroup, action_name: cstring, parameter: ^glib.Variant, platform_data: ^glib.Variant)
+change_action_state_full_func_ptr_anon_573 :: #type proc "c" (remote: ^RemoteActionGroup, action_name: cstring, value: ^glib.Variant, platform_data: ^glib.Variant)
 _GRemoteActionGroupInterface :: struct {
     g_iface: gobj.TypeInterface,
-    activate_action_full: activate_action_full_func_ptr_anon_561,
-    change_action_state_full: change_action_state_full_func_ptr_anon_562,
+    activate_action_full: activate_action_full_func_ptr_anon_572,
+    change_action_state_full: change_action_state_full_func_ptr_anon_573,
 }
 RemoteActionGroupInterface :: _GRemoteActionGroupInterface
-reload_func_ptr_anon_563 :: #type proc "c" (resolver: ^Resolver)
-lookup_by_name_func_ptr_anon_564 :: #type proc "c" (resolver: ^Resolver, hostname: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^glib.List
-lookup_by_name_async_func_ptr_anon_565 :: #type proc "c" (resolver: ^Resolver, hostname: cstring, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-lookup_by_name_finish_func_ptr_anon_566 :: #type proc "c" (resolver: ^Resolver, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
-lookup_by_address_func_ptr_anon_567 :: #type proc "c" (resolver: ^Resolver, address: [^]InetAddress, cancellable: ^Cancellable, error: ^^glib.Error) -> cstring
-lookup_by_address_async_func_ptr_anon_568 :: #type proc "c" (resolver: ^Resolver, address: [^]InetAddress, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-lookup_by_address_finish_func_ptr_anon_569 :: #type proc "c" (resolver: ^Resolver, result: ^AsyncResult, error: ^^glib.Error) -> cstring
-lookup_service_func_ptr_anon_570 :: #type proc "c" (resolver: ^Resolver, rrname: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^glib.List
-lookup_service_async_func_ptr_anon_571 :: #type proc "c" (resolver: ^Resolver, rrname: cstring, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-lookup_service_finish_func_ptr_anon_572 :: #type proc "c" (resolver: ^Resolver, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
-lookup_records_func_ptr_anon_573 :: #type proc "c" (resolver: ^Resolver, rrname: cstring, record_type: ResolverRecordType, cancellable: ^Cancellable, error: ^^glib.Error) -> ^glib.List
-lookup_records_async_func_ptr_anon_574 :: #type proc "c" (resolver: ^Resolver, rrname: cstring, record_type: ResolverRecordType, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-lookup_records_finish_func_ptr_anon_575 :: #type proc "c" (resolver: ^Resolver, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
+reload_func_ptr_anon_574 :: #type proc "c" (resolver: ^Resolver)
+lookup_by_name_func_ptr_anon_575 :: #type proc "c" (resolver: ^Resolver, hostname: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^glib.List
+lookup_by_name_async_func_ptr_anon_576 :: #type proc "c" (resolver: ^Resolver, hostname: cstring, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+lookup_by_name_finish_func_ptr_anon_577 :: #type proc "c" (resolver: ^Resolver, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
+lookup_by_address_func_ptr_anon_578 :: #type proc "c" (resolver: ^Resolver, address: [^]InetAddress, cancellable: ^Cancellable, error: ^^glib.Error) -> cstring
+lookup_by_address_async_func_ptr_anon_579 :: #type proc "c" (resolver: ^Resolver, address: [^]InetAddress, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+lookup_by_address_finish_func_ptr_anon_580 :: #type proc "c" (resolver: ^Resolver, result: ^AsyncResult, error: ^^glib.Error) -> cstring
+lookup_service_func_ptr_anon_581 :: #type proc "c" (resolver: ^Resolver, rrname: cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^glib.List
+lookup_service_async_func_ptr_anon_582 :: #type proc "c" (resolver: ^Resolver, rrname: cstring, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+lookup_service_finish_func_ptr_anon_583 :: #type proc "c" (resolver: ^Resolver, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
+lookup_records_func_ptr_anon_584 :: #type proc "c" (resolver: ^Resolver, rrname: cstring, record_type: ResolverRecordType, cancellable: ^Cancellable, error: ^^glib.Error) -> ^glib.List
+lookup_records_async_func_ptr_anon_585 :: #type proc "c" (resolver: ^Resolver, rrname: cstring, record_type: ResolverRecordType, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+lookup_records_finish_func_ptr_anon_586 :: #type proc "c" (resolver: ^Resolver, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
 ResolverNameLookupFlags :: enum u32 {DEFAULT = 0, IPV4_ONLY = 1, IPV6_ONLY = 2 }
-lookup_by_name_with_flags_async_func_ptr_anon_576 :: #type proc "c" (resolver: ^Resolver, hostname: cstring, flags: ResolverNameLookupFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-lookup_by_name_with_flags_finish_func_ptr_anon_577 :: #type proc "c" (resolver: ^Resolver, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
-lookup_by_name_with_flags_func_ptr_anon_578 :: #type proc "c" (resolver: ^Resolver, hostname: cstring, flags: ResolverNameLookupFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^glib.List
+lookup_by_name_with_flags_async_func_ptr_anon_587 :: #type proc "c" (resolver: ^Resolver, hostname: cstring, flags: ResolverNameLookupFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+lookup_by_name_with_flags_finish_func_ptr_anon_588 :: #type proc "c" (resolver: ^Resolver, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
+lookup_by_name_with_flags_func_ptr_anon_589 :: #type proc "c" (resolver: ^Resolver, hostname: cstring, flags: ResolverNameLookupFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^glib.List
 _GResolverClass :: struct {
     parent_class: gobj.ObjectClass,
-    reload: reload_func_ptr_anon_563,
-    lookup_by_name: lookup_by_name_func_ptr_anon_564,
-    lookup_by_name_async: lookup_by_name_async_func_ptr_anon_565,
-    lookup_by_name_finish: lookup_by_name_finish_func_ptr_anon_566,
-    lookup_by_address: lookup_by_address_func_ptr_anon_567,
-    lookup_by_address_async: lookup_by_address_async_func_ptr_anon_568,
-    lookup_by_address_finish: lookup_by_address_finish_func_ptr_anon_569,
-    lookup_service: lookup_service_func_ptr_anon_570,
-    lookup_service_async: lookup_service_async_func_ptr_anon_571,
-    lookup_service_finish: lookup_service_finish_func_ptr_anon_572,
-    lookup_records: lookup_records_func_ptr_anon_573,
-    lookup_records_async: lookup_records_async_func_ptr_anon_574,
-    lookup_records_finish: lookup_records_finish_func_ptr_anon_575,
-    lookup_by_name_with_flags_async: lookup_by_name_with_flags_async_func_ptr_anon_576,
-    lookup_by_name_with_flags_finish: lookup_by_name_with_flags_finish_func_ptr_anon_577,
-    lookup_by_name_with_flags: lookup_by_name_with_flags_func_ptr_anon_578,
+    reload: reload_func_ptr_anon_574,
+    lookup_by_name: lookup_by_name_func_ptr_anon_575,
+    lookup_by_name_async: lookup_by_name_async_func_ptr_anon_576,
+    lookup_by_name_finish: lookup_by_name_finish_func_ptr_anon_577,
+    lookup_by_address: lookup_by_address_func_ptr_anon_578,
+    lookup_by_address_async: lookup_by_address_async_func_ptr_anon_579,
+    lookup_by_address_finish: lookup_by_address_finish_func_ptr_anon_580,
+    lookup_service: lookup_service_func_ptr_anon_581,
+    lookup_service_async: lookup_service_async_func_ptr_anon_582,
+    lookup_service_finish: lookup_service_finish_func_ptr_anon_583,
+    lookup_records: lookup_records_func_ptr_anon_584,
+    lookup_records_async: lookup_records_async_func_ptr_anon_585,
+    lookup_records_finish: lookup_records_finish_func_ptr_anon_586,
+    lookup_by_name_with_flags_async: lookup_by_name_with_flags_async_func_ptr_anon_587,
+    lookup_by_name_with_flags_finish: lookup_by_name_with_flags_finish_func_ptr_anon_588,
+    lookup_by_name_with_flags: lookup_by_name_with_flags_func_ptr_anon_589,
 }
 ResolverClass :: _GResolverClass
 StaticResource :: _GStaticResource
@@ -2747,18 +2807,18 @@ _GStaticResource :: struct {
     next: ^StaticResource,
     padding: glib.pointer,
 }
-tell_func_ptr_anon_579 :: #type proc "c" (seekable: ^Seekable) -> glib.offset
-can_seek_func_ptr_anon_580 :: #type proc "c" (seekable: ^Seekable) -> glib.boolean
-seek_func_ptr_anon_581 :: #type proc "c" (seekable: ^Seekable, offset_p: glib.offset, type: glib.SeekType, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-can_truncate_func_ptr_anon_582 :: #type proc "c" (seekable: ^Seekable) -> glib.boolean
-truncate_fn_func_ptr_anon_583 :: #type proc "c" (seekable: ^Seekable, offset_p: glib.offset, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+tell_func_ptr_anon_590 :: #type proc "c" (seekable: ^Seekable) -> glib.offset
+can_seek_func_ptr_anon_591 :: #type proc "c" (seekable: ^Seekable) -> glib.boolean
+seek_func_ptr_anon_592 :: #type proc "c" (seekable: ^Seekable, offset_p: glib.offset, type: glib.SeekType, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+can_truncate_func_ptr_anon_593 :: #type proc "c" (seekable: ^Seekable) -> glib.boolean
+truncate_fn_func_ptr_anon_594 :: #type proc "c" (seekable: ^Seekable, offset_p: glib.offset, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
 _GSeekableIface :: struct {
     g_iface: gobj.TypeInterface,
-    tell: tell_func_ptr_anon_579,
-    can_seek: can_seek_func_ptr_anon_580,
-    seek: seek_func_ptr_anon_581,
-    can_truncate: can_truncate_func_ptr_anon_582,
-    truncate_fn: truncate_fn_func_ptr_anon_583,
+    tell: tell_func_ptr_anon_590,
+    can_seek: can_seek_func_ptr_anon_591,
+    seek: seek_func_ptr_anon_592,
+    can_truncate: can_truncate_func_ptr_anon_593,
+    truncate_fn: truncate_fn_func_ptr_anon_594,
 }
 SeekableIface :: _GSeekableIface
 _GSettingsSchemaSource :: struct #packed {}
@@ -2767,16 +2827,16 @@ _GSettingsSchema :: struct #packed {}
 SettingsSchema :: _GSettingsSchema
 _GSettingsSchemaKey :: struct #packed {}
 SettingsSchemaKey :: _GSettingsSchemaKey
-writable_changed_func_ptr_anon_584 :: #type proc "c" (settings: [^]Settings, key: cstring)
-changed_func_ptr_anon_585 :: #type proc "c" (settings: [^]Settings, key: cstring)
-writable_change_event_func_ptr_anon_586 :: #type proc "c" (settings: [^]Settings, key: glib.Quark) -> glib.boolean
-change_event_func_ptr_anon_587 :: #type proc "c" (settings: [^]Settings, keys: [^]glib.Quark, n_keys: glib.int_) -> glib.boolean
+writable_changed_func_ptr_anon_595 :: #type proc "c" (settings: [^]Settings, key: cstring)
+changed_func_ptr_anon_596 :: #type proc "c" (settings: [^]Settings, key: cstring)
+writable_change_event_func_ptr_anon_597 :: #type proc "c" (settings: [^]Settings, key: glib.Quark) -> glib.boolean
+change_event_func_ptr_anon_598 :: #type proc "c" (settings: [^]Settings, keys: [^]glib.Quark, n_keys: glib.int_) -> glib.boolean
 _GSettingsClass :: struct {
     parent_class: gobj.ObjectClass,
-    writable_changed: writable_changed_func_ptr_anon_584,
-    changed: changed_func_ptr_anon_585,
-    writable_change_event: writable_change_event_func_ptr_anon_586,
-    change_event: change_event_func_ptr_anon_587,
+    writable_changed: writable_changed_func_ptr_anon_595,
+    changed: changed_func_ptr_anon_596,
+    writable_change_event: writable_change_event_func_ptr_anon_597,
+    change_event: change_event_func_ptr_anon_598,
     padding: [20]glib.pointer,
 }
 SettingsClass :: _GSettingsClass
@@ -2798,142 +2858,118 @@ _GSimpleProxyResolver :: struct {
     priv: ^SimpleProxyResolverPrivate,
 }
 SimpleProxyResolver :: _GSimpleProxyResolver
-_g_reserved1_func_ptr_anon_588 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_589 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_590 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_591 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_592 :: #type proc "c" ()
+_g_reserved1_func_ptr_anon_599 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_600 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_601 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_602 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_603 :: #type proc "c" ()
 _GSimpleProxyResolverClass :: struct {
     parent_class: gobj.ObjectClass,
-    _g_reserved1: _g_reserved1_func_ptr_anon_588,
-    _g_reserved2: _g_reserved2_func_ptr_anon_589,
-    _g_reserved3: _g_reserved3_func_ptr_anon_590,
-    _g_reserved4: _g_reserved4_func_ptr_anon_591,
-    _g_reserved5: _g_reserved5_func_ptr_anon_592,
+    _g_reserved1: _g_reserved1_func_ptr_anon_599,
+    _g_reserved2: _g_reserved2_func_ptr_anon_600,
+    _g_reserved3: _g_reserved3_func_ptr_anon_601,
+    _g_reserved4: _g_reserved4_func_ptr_anon_602,
+    _g_reserved5: _g_reserved5_func_ptr_anon_603,
 }
 SimpleProxyResolverClass :: _GSimpleProxyResolverClass
-_g_reserved1_func_ptr_anon_593 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_594 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_595 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_596 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_597 :: #type proc "c" ()
-_g_reserved6_func_ptr_anon_598 :: #type proc "c" ()
-_g_reserved7_func_ptr_anon_599 :: #type proc "c" ()
-_g_reserved8_func_ptr_anon_600 :: #type proc "c" ()
-_g_reserved9_func_ptr_anon_601 :: #type proc "c" ()
-_g_reserved10_func_ptr_anon_602 :: #type proc "c" ()
-_GSocketClass :: struct {
-    parent_class: gobj.ObjectClass,
-    _g_reserved1: _g_reserved1_func_ptr_anon_593,
-    _g_reserved2: _g_reserved2_func_ptr_anon_594,
-    _g_reserved3: _g_reserved3_func_ptr_anon_595,
-    _g_reserved4: _g_reserved4_func_ptr_anon_596,
-    _g_reserved5: _g_reserved5_func_ptr_anon_597,
-    _g_reserved6: _g_reserved6_func_ptr_anon_598,
-    _g_reserved7: _g_reserved7_func_ptr_anon_599,
-    _g_reserved8: _g_reserved8_func_ptr_anon_600,
-    _g_reserved9: _g_reserved9_func_ptr_anon_601,
-    _g_reserved10: _g_reserved10_func_ptr_anon_602,
-}
-SocketClass :: _GSocketClass
-event_func_ptr_anon_603 :: #type proc "c" (client: ^SocketClient, event: SocketClientEvent, connectable: ^SocketConnectable, connection: ^IOStream)
 _g_reserved1_func_ptr_anon_604 :: #type proc "c" ()
 _g_reserved2_func_ptr_anon_605 :: #type proc "c" ()
 _g_reserved3_func_ptr_anon_606 :: #type proc "c" ()
 _g_reserved4_func_ptr_anon_607 :: #type proc "c" ()
-_GSocketClientClass :: struct {
+_g_reserved5_func_ptr_anon_608 :: #type proc "c" ()
+_g_reserved6_func_ptr_anon_609 :: #type proc "c" ()
+_g_reserved7_func_ptr_anon_610 :: #type proc "c" ()
+_g_reserved8_func_ptr_anon_611 :: #type proc "c" ()
+_g_reserved9_func_ptr_anon_612 :: #type proc "c" ()
+_g_reserved10_func_ptr_anon_613 :: #type proc "c" ()
+_GSocketClass :: struct {
     parent_class: gobj.ObjectClass,
-    event: event_func_ptr_anon_603,
     _g_reserved1: _g_reserved1_func_ptr_anon_604,
     _g_reserved2: _g_reserved2_func_ptr_anon_605,
     _g_reserved3: _g_reserved3_func_ptr_anon_606,
     _g_reserved4: _g_reserved4_func_ptr_anon_607,
+    _g_reserved5: _g_reserved5_func_ptr_anon_608,
+    _g_reserved6: _g_reserved6_func_ptr_anon_609,
+    _g_reserved7: _g_reserved7_func_ptr_anon_610,
+    _g_reserved8: _g_reserved8_func_ptr_anon_611,
+    _g_reserved9: _g_reserved9_func_ptr_anon_612,
+    _g_reserved10: _g_reserved10_func_ptr_anon_613,
+}
+SocketClass :: _GSocketClass
+event_func_ptr_anon_614 :: #type proc "c" (client: ^SocketClient, event: SocketClientEvent, connectable: ^SocketConnectable, connection: ^IOStream)
+_g_reserved1_func_ptr_anon_615 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_616 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_617 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_618 :: #type proc "c" ()
+_GSocketClientClass :: struct {
+    parent_class: gobj.ObjectClass,
+    event: event_func_ptr_anon_614,
+    _g_reserved1: _g_reserved1_func_ptr_anon_615,
+    _g_reserved2: _g_reserved2_func_ptr_anon_616,
+    _g_reserved3: _g_reserved3_func_ptr_anon_617,
+    _g_reserved4: _g_reserved4_func_ptr_anon_618,
 }
 SocketClientClass :: _GSocketClientClass
-enumerate_func_ptr_anon_608 :: #type proc "c" (connectable: ^SocketConnectable) -> ^SocketAddressEnumerator
-proxy_enumerate_func_ptr_anon_609 :: #type proc "c" (connectable: ^SocketConnectable) -> ^SocketAddressEnumerator
-to_string_func_ptr_anon_610 :: #type proc "c" (connectable: ^SocketConnectable) -> cstring
+enumerate_func_ptr_anon_619 :: #type proc "c" (connectable: ^SocketConnectable) -> ^SocketAddressEnumerator
+proxy_enumerate_func_ptr_anon_620 :: #type proc "c" (connectable: ^SocketConnectable) -> ^SocketAddressEnumerator
+to_string_func_ptr_anon_621 :: #type proc "c" (connectable: ^SocketConnectable) -> cstring
 _GSocketConnectableIface :: struct {
     g_iface: gobj.TypeInterface,
-    enumerate: enumerate_func_ptr_anon_608,
-    proxy_enumerate: proxy_enumerate_func_ptr_anon_609,
-    to_string: to_string_func_ptr_anon_610,
+    enumerate: enumerate_func_ptr_anon_619,
+    proxy_enumerate: proxy_enumerate_func_ptr_anon_620,
+    to_string: to_string_func_ptr_anon_621,
 }
 SocketConnectableIface :: _GSocketConnectableIface
-_g_reserved1_func_ptr_anon_611 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_612 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_613 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_614 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_615 :: #type proc "c" ()
-_g_reserved6_func_ptr_anon_616 :: #type proc "c" ()
-_GSocketConnectionClass :: struct {
-    parent_class: IOStreamClass,
-    _g_reserved1: _g_reserved1_func_ptr_anon_611,
-    _g_reserved2: _g_reserved2_func_ptr_anon_612,
-    _g_reserved3: _g_reserved3_func_ptr_anon_613,
-    _g_reserved4: _g_reserved4_func_ptr_anon_614,
-    _g_reserved5: _g_reserved5_func_ptr_anon_615,
-    _g_reserved6: _g_reserved6_func_ptr_anon_616,
-}
-SocketConnectionClass :: _GSocketConnectionClass
-et_size_func_ptr_anon_617 :: #type proc "c" (message: ^SocketControlMessage) -> glib.size
-et_level_func_ptr_anon_618 :: #type proc "c" (message: ^SocketControlMessage) -> i32
-et_type_func_ptr_anon_619 :: #type proc "c" (message: ^SocketControlMessage) -> i32
-serialize_func_ptr_anon_620 :: #type proc "c" (message: ^SocketControlMessage, data: glib.pointer)
-deserialize_func_ptr_anon_621 :: #type proc "c" (level: i32, type: i32, size_p: glib.size, data: glib.pointer) -> ^SocketControlMessage
 _g_reserved1_func_ptr_anon_622 :: #type proc "c" ()
 _g_reserved2_func_ptr_anon_623 :: #type proc "c" ()
 _g_reserved3_func_ptr_anon_624 :: #type proc "c" ()
 _g_reserved4_func_ptr_anon_625 :: #type proc "c" ()
 _g_reserved5_func_ptr_anon_626 :: #type proc "c" ()
-_GSocketControlMessageClass :: struct {
-    parent_class: gobj.ObjectClass,
-    get_size: et_size_func_ptr_anon_617,
-    get_level: et_level_func_ptr_anon_618,
-    get_type: et_type_func_ptr_anon_619,
-    serialize: serialize_func_ptr_anon_620,
-    deserialize: deserialize_func_ptr_anon_621,
+_g_reserved6_func_ptr_anon_627 :: #type proc "c" ()
+_GSocketConnectionClass :: struct {
+    parent_class: IOStreamClass,
     _g_reserved1: _g_reserved1_func_ptr_anon_622,
     _g_reserved2: _g_reserved2_func_ptr_anon_623,
     _g_reserved3: _g_reserved3_func_ptr_anon_624,
     _g_reserved4: _g_reserved4_func_ptr_anon_625,
     _g_reserved5: _g_reserved5_func_ptr_anon_626,
+    _g_reserved6: _g_reserved6_func_ptr_anon_627,
 }
-SocketControlMessageClass :: _GSocketControlMessageClass
-changed_func_ptr_anon_627 :: #type proc "c" (listener: ^SocketListener)
-event_func_ptr_anon_628 :: #type proc "c" (listener: ^SocketListener, event: SocketListenerEvent, socket: ^Socket)
-_g_reserved2_func_ptr_anon_629 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_630 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_631 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_632 :: #type proc "c" ()
-_g_reserved6_func_ptr_anon_633 :: #type proc "c" ()
+SocketConnectionClass :: _GSocketConnectionClass
+changed_func_ptr_anon_628 :: #type proc "c" (listener: ^SocketListener)
+event_func_ptr_anon_629 :: #type proc "c" (listener: ^SocketListener, event: SocketListenerEvent, socket: ^Socket)
+_g_reserved2_func_ptr_anon_630 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_631 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_632 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_633 :: #type proc "c" ()
+_g_reserved6_func_ptr_anon_634 :: #type proc "c" ()
 _GSocketListenerClass :: struct {
     parent_class: gobj.ObjectClass,
-    changed: changed_func_ptr_anon_627,
-    event: event_func_ptr_anon_628,
-    _g_reserved2: _g_reserved2_func_ptr_anon_629,
-    _g_reserved3: _g_reserved3_func_ptr_anon_630,
-    _g_reserved4: _g_reserved4_func_ptr_anon_631,
-    _g_reserved5: _g_reserved5_func_ptr_anon_632,
-    _g_reserved6: _g_reserved6_func_ptr_anon_633,
+    changed: changed_func_ptr_anon_628,
+    event: event_func_ptr_anon_629,
+    _g_reserved2: _g_reserved2_func_ptr_anon_630,
+    _g_reserved3: _g_reserved3_func_ptr_anon_631,
+    _g_reserved4: _g_reserved4_func_ptr_anon_632,
+    _g_reserved5: _g_reserved5_func_ptr_anon_633,
+    _g_reserved6: _g_reserved6_func_ptr_anon_634,
 }
 SocketListenerClass :: _GSocketListenerClass
-incoming_func_ptr_anon_634 :: #type proc "c" (service: ^SocketService, connection: ^SocketConnection, source_object: ^gobj.Object) -> glib.boolean
-_g_reserved1_func_ptr_anon_635 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_636 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_637 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_638 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_639 :: #type proc "c" ()
-_g_reserved6_func_ptr_anon_640 :: #type proc "c" ()
+incoming_func_ptr_anon_635 :: #type proc "c" (service: ^SocketService, connection: ^SocketConnection, source_object: ^gobj.Object) -> glib.boolean
+_g_reserved1_func_ptr_anon_636 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_637 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_638 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_639 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_640 :: #type proc "c" ()
+_g_reserved6_func_ptr_anon_641 :: #type proc "c" ()
 _GSocketServiceClass :: struct {
     parent_class: SocketListenerClass,
-    incoming: incoming_func_ptr_anon_634,
-    _g_reserved1: _g_reserved1_func_ptr_anon_635,
-    _g_reserved2: _g_reserved2_func_ptr_anon_636,
-    _g_reserved3: _g_reserved3_func_ptr_anon_637,
-    _g_reserved4: _g_reserved4_func_ptr_anon_638,
-    _g_reserved5: _g_reserved5_func_ptr_anon_639,
-    _g_reserved6: _g_reserved6_func_ptr_anon_640,
+    incoming: incoming_func_ptr_anon_635,
+    _g_reserved1: _g_reserved1_func_ptr_anon_636,
+    _g_reserved2: _g_reserved2_func_ptr_anon_637,
+    _g_reserved3: _g_reserved3_func_ptr_anon_638,
+    _g_reserved4: _g_reserved4_func_ptr_anon_639,
+    _g_reserved5: _g_reserved5_func_ptr_anon_640,
+    _g_reserved6: _g_reserved6_func_ptr_anon_641,
 }
 SocketServiceClass :: _GSocketServiceClass
 _GTaskClass :: struct #packed {}
@@ -2949,104 +2985,104 @@ _GTcpWrapperConnectionClass :: struct {
 TcpWrapperConnectionClass :: _GTcpWrapperConnectionClass
 _GThemedIconClass :: struct #packed {}
 ThemedIconClass :: _GThemedIconClass
-run_func_ptr_anon_641 :: #type proc "c" (service: ^ThreadedSocketService, connection: ^SocketConnection, source_object: ^gobj.Object) -> glib.boolean
-_g_reserved1_func_ptr_anon_642 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_643 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_644 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_645 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_646 :: #type proc "c" ()
+run_func_ptr_anon_642 :: #type proc "c" (service: ^ThreadedSocketService, connection: ^SocketConnection, source_object: ^gobj.Object) -> glib.boolean
+_g_reserved1_func_ptr_anon_643 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_644 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_645 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_646 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_647 :: #type proc "c" ()
 _GThreadedSocketServiceClass :: struct {
     parent_class: SocketServiceClass,
-    run: run_func_ptr_anon_641,
-    _g_reserved1: _g_reserved1_func_ptr_anon_642,
-    _g_reserved2: _g_reserved2_func_ptr_anon_643,
-    _g_reserved3: _g_reserved3_func_ptr_anon_644,
-    _g_reserved4: _g_reserved4_func_ptr_anon_645,
-    _g_reserved5: _g_reserved5_func_ptr_anon_646,
+    run: run_func_ptr_anon_642,
+    _g_reserved1: _g_reserved1_func_ptr_anon_643,
+    _g_reserved2: _g_reserved2_func_ptr_anon_644,
+    _g_reserved3: _g_reserved3_func_ptr_anon_645,
+    _g_reserved4: _g_reserved4_func_ptr_anon_646,
+    _g_reserved5: _g_reserved5_func_ptr_anon_647,
 }
 ThreadedSocketServiceClass :: _GThreadedSocketServiceClass
 _GTlsBackend :: struct #packed {}
 TlsBackend :: _GTlsBackend
-supports_tls_func_ptr_anon_647 :: #type proc "c" (backend: ^TlsBackend) -> glib.boolean
-et_certificate_type_func_ptr_anon_648 :: #type proc "c" () -> gobj.Type
-et_client_connection_type_func_ptr_anon_649 :: #type proc "c" () -> gobj.Type
-et_server_connection_type_func_ptr_anon_650 :: #type proc "c" () -> gobj.Type
-et_file_database_type_func_ptr_anon_651 :: #type proc "c" () -> gobj.Type
-et_default_database_func_ptr_anon_652 :: #type proc "c" (backend: ^TlsBackend) -> ^TlsDatabase
-supports_dtls_func_ptr_anon_653 :: #type proc "c" (backend: ^TlsBackend) -> glib.boolean
-et_dtls_client_connection_type_func_ptr_anon_654 :: #type proc "c" () -> gobj.Type
-et_dtls_server_connection_type_func_ptr_anon_655 :: #type proc "c" () -> gobj.Type
+supports_tls_func_ptr_anon_648 :: #type proc "c" (backend: ^TlsBackend) -> glib.boolean
+et_certificate_type_func_ptr_anon_649 :: #type proc "c" () -> gobj.Type
+et_client_connection_type_func_ptr_anon_650 :: #type proc "c" () -> gobj.Type
+et_server_connection_type_func_ptr_anon_651 :: #type proc "c" () -> gobj.Type
+et_file_database_type_func_ptr_anon_652 :: #type proc "c" () -> gobj.Type
+et_default_database_func_ptr_anon_653 :: #type proc "c" (backend: ^TlsBackend) -> ^TlsDatabase
+supports_dtls_func_ptr_anon_654 :: #type proc "c" (backend: ^TlsBackend) -> glib.boolean
+et_dtls_client_connection_type_func_ptr_anon_655 :: #type proc "c" () -> gobj.Type
+et_dtls_server_connection_type_func_ptr_anon_656 :: #type proc "c" () -> gobj.Type
 _GTlsBackendInterface :: struct {
     g_iface: gobj.TypeInterface,
-    supports_tls: supports_tls_func_ptr_anon_647,
-    get_certificate_type: et_certificate_type_func_ptr_anon_648,
-    get_client_connection_type: et_client_connection_type_func_ptr_anon_649,
-    get_server_connection_type: et_server_connection_type_func_ptr_anon_650,
-    get_file_database_type: et_file_database_type_func_ptr_anon_651,
-    get_default_database: et_default_database_func_ptr_anon_652,
-    supports_dtls: supports_dtls_func_ptr_anon_653,
-    get_dtls_client_connection_type: et_dtls_client_connection_type_func_ptr_anon_654,
-    get_dtls_server_connection_type: et_dtls_server_connection_type_func_ptr_anon_655,
+    supports_tls: supports_tls_func_ptr_anon_648,
+    get_certificate_type: et_certificate_type_func_ptr_anon_649,
+    get_client_connection_type: et_client_connection_type_func_ptr_anon_650,
+    get_server_connection_type: et_server_connection_type_func_ptr_anon_651,
+    get_file_database_type: et_file_database_type_func_ptr_anon_652,
+    get_default_database: et_default_database_func_ptr_anon_653,
+    supports_dtls: supports_dtls_func_ptr_anon_654,
+    get_dtls_client_connection_type: et_dtls_client_connection_type_func_ptr_anon_655,
+    get_dtls_server_connection_type: et_dtls_server_connection_type_func_ptr_anon_656,
 }
 TlsBackendInterface :: _GTlsBackendInterface
-verify_func_ptr_anon_656 :: #type proc "c" (cert: ^TlsCertificate, identity: ^SocketConnectable, trusted_ca: ^TlsCertificate) -> TlsCertificateFlags
+verify_func_ptr_anon_657 :: #type proc "c" (cert: ^TlsCertificate, identity: ^SocketConnectable, trusted_ca: ^TlsCertificate) -> TlsCertificateFlags
 _GTlsCertificateClass :: struct {
     parent_class: gobj.ObjectClass,
-    verify: verify_func_ptr_anon_656,
+    verify: verify_func_ptr_anon_657,
     padding: [8]glib.pointer,
 }
 TlsCertificateClass :: _GTlsCertificateClass
-accept_certificate_func_ptr_anon_657 :: #type proc "c" (connection: ^TlsConnection, peer_cert: ^TlsCertificate, errors: TlsCertificateFlags) -> glib.boolean
-handshake_func_ptr_anon_658 :: #type proc "c" (conn: ^TlsConnection, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-handshake_async_func_ptr_anon_659 :: #type proc "c" (conn: ^TlsConnection, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-handshake_finish_func_ptr_anon_660 :: #type proc "c" (conn: ^TlsConnection, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-et_binding_data_func_ptr_anon_661 :: #type proc "c" (conn: ^TlsConnection, type: TlsChannelBindingType, data: ^glib.ByteArray, error: ^^glib.Error) -> glib.boolean
-et_negotiated_protocol_func_ptr_anon_662 :: #type proc "c" (conn: ^TlsConnection) -> cstring
+accept_certificate_func_ptr_anon_658 :: #type proc "c" (connection: ^TlsConnection, peer_cert: ^TlsCertificate, errors: TlsCertificateFlags) -> glib.boolean
+handshake_func_ptr_anon_659 :: #type proc "c" (conn: ^TlsConnection, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+handshake_async_func_ptr_anon_660 :: #type proc "c" (conn: ^TlsConnection, io_priority: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+handshake_finish_func_ptr_anon_661 :: #type proc "c" (conn: ^TlsConnection, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+et_binding_data_func_ptr_anon_662 :: #type proc "c" (conn: ^TlsConnection, type: TlsChannelBindingType, data: ^glib.ByteArray, error: ^^glib.Error) -> glib.boolean
+et_negotiated_protocol_func_ptr_anon_663 :: #type proc "c" (conn: ^TlsConnection) -> cstring
 _GTlsConnectionClass :: struct {
     parent_class: IOStreamClass,
-    accept_certificate: accept_certificate_func_ptr_anon_657,
-    handshake: handshake_func_ptr_anon_658,
-    handshake_async: handshake_async_func_ptr_anon_659,
-    handshake_finish: handshake_finish_func_ptr_anon_660,
-    get_binding_data: et_binding_data_func_ptr_anon_661,
-    get_negotiated_protocol: et_negotiated_protocol_func_ptr_anon_662,
+    accept_certificate: accept_certificate_func_ptr_anon_658,
+    handshake: handshake_func_ptr_anon_659,
+    handshake_async: handshake_async_func_ptr_anon_660,
+    handshake_finish: handshake_finish_func_ptr_anon_661,
+    get_binding_data: et_binding_data_func_ptr_anon_662,
+    get_negotiated_protocol: et_negotiated_protocol_func_ptr_anon_663,
     padding: [6]glib.pointer,
 }
 TlsConnectionClass :: _GTlsConnectionClass
-copy_session_state_func_ptr_anon_663 :: #type proc "c" (conn: ^TlsClientConnection, source: ^TlsClientConnection)
+copy_session_state_func_ptr_anon_664 :: #type proc "c" (conn: ^TlsClientConnection, source: ^TlsClientConnection)
 _GTlsClientConnectionInterface :: struct {
     g_iface: gobj.TypeInterface,
-    copy_session_state: copy_session_state_func_ptr_anon_663,
+    copy_session_state: copy_session_state_func_ptr_anon_664,
 }
 TlsClientConnectionInterface :: _GTlsClientConnectionInterface
-verify_chain_func_ptr_anon_664 :: #type proc "c" (self: ^TlsDatabase, chain: ^TlsCertificate, purpose: cstring, identity: ^SocketConnectable, interaction: ^TlsInteraction, flags: TlsDatabaseVerifyFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> TlsCertificateFlags
-verify_chain_async_func_ptr_anon_665 :: #type proc "c" (self: ^TlsDatabase, chain: ^TlsCertificate, purpose: cstring, identity: ^SocketConnectable, interaction: ^TlsInteraction, flags: TlsDatabaseVerifyFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-verify_chain_finish_func_ptr_anon_666 :: #type proc "c" (self: ^TlsDatabase, result: ^AsyncResult, error: ^^glib.Error) -> TlsCertificateFlags
-create_certificate_handle_func_ptr_anon_667 :: #type proc "c" (self: ^TlsDatabase, certificate: ^TlsCertificate) -> cstring
-lookup_certificate_for_handle_func_ptr_anon_668 :: #type proc "c" (self: ^TlsDatabase, handle: cstring, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^TlsCertificate
-lookup_certificate_for_handle_async_func_ptr_anon_669 :: #type proc "c" (self: ^TlsDatabase, handle: cstring, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-lookup_certificate_for_handle_finish_func_ptr_anon_670 :: #type proc "c" (self: ^TlsDatabase, result: ^AsyncResult, error: ^^glib.Error) -> ^TlsCertificate
-lookup_certificate_issuer_func_ptr_anon_671 :: #type proc "c" (self: ^TlsDatabase, certificate: ^TlsCertificate, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^TlsCertificate
-lookup_certificate_issuer_async_func_ptr_anon_672 :: #type proc "c" (self: ^TlsDatabase, certificate: ^TlsCertificate, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-lookup_certificate_issuer_finish_func_ptr_anon_673 :: #type proc "c" (self: ^TlsDatabase, result: ^AsyncResult, error: ^^glib.Error) -> ^TlsCertificate
-lookup_certificates_issued_by_func_ptr_anon_674 :: #type proc "c" (self: ^TlsDatabase, issuer_raw_dn: ^glib.ByteArray, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^glib.List
-lookup_certificates_issued_by_async_func_ptr_anon_675 :: #type proc "c" (self: ^TlsDatabase, issuer_raw_dn: ^glib.ByteArray, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-lookup_certificates_issued_by_finish_func_ptr_anon_676 :: #type proc "c" (self: ^TlsDatabase, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
+verify_chain_func_ptr_anon_665 :: #type proc "c" (self: ^TlsDatabase, chain: ^TlsCertificate, purpose: cstring, identity: ^SocketConnectable, interaction: ^TlsInteraction, flags: TlsDatabaseVerifyFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> TlsCertificateFlags
+verify_chain_async_func_ptr_anon_666 :: #type proc "c" (self: ^TlsDatabase, chain: ^TlsCertificate, purpose: cstring, identity: ^SocketConnectable, interaction: ^TlsInteraction, flags: TlsDatabaseVerifyFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+verify_chain_finish_func_ptr_anon_667 :: #type proc "c" (self: ^TlsDatabase, result: ^AsyncResult, error: ^^glib.Error) -> TlsCertificateFlags
+create_certificate_handle_func_ptr_anon_668 :: #type proc "c" (self: ^TlsDatabase, certificate: ^TlsCertificate) -> cstring
+lookup_certificate_for_handle_func_ptr_anon_669 :: #type proc "c" (self: ^TlsDatabase, handle: cstring, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^TlsCertificate
+lookup_certificate_for_handle_async_func_ptr_anon_670 :: #type proc "c" (self: ^TlsDatabase, handle: cstring, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+lookup_certificate_for_handle_finish_func_ptr_anon_671 :: #type proc "c" (self: ^TlsDatabase, result: ^AsyncResult, error: ^^glib.Error) -> ^TlsCertificate
+lookup_certificate_issuer_func_ptr_anon_672 :: #type proc "c" (self: ^TlsDatabase, certificate: ^TlsCertificate, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^TlsCertificate
+lookup_certificate_issuer_async_func_ptr_anon_673 :: #type proc "c" (self: ^TlsDatabase, certificate: ^TlsCertificate, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+lookup_certificate_issuer_finish_func_ptr_anon_674 :: #type proc "c" (self: ^TlsDatabase, result: ^AsyncResult, error: ^^glib.Error) -> ^TlsCertificate
+lookup_certificates_issued_by_func_ptr_anon_675 :: #type proc "c" (self: ^TlsDatabase, issuer_raw_dn: ^glib.ByteArray, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> ^glib.List
+lookup_certificates_issued_by_async_func_ptr_anon_676 :: #type proc "c" (self: ^TlsDatabase, issuer_raw_dn: ^glib.ByteArray, interaction: ^TlsInteraction, flags: TlsDatabaseLookupFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+lookup_certificates_issued_by_finish_func_ptr_anon_677 :: #type proc "c" (self: ^TlsDatabase, result: ^AsyncResult, error: ^^glib.Error) -> ^glib.List
 _GTlsDatabaseClass :: struct {
     parent_class: gobj.ObjectClass,
-    verify_chain: verify_chain_func_ptr_anon_664,
-    verify_chain_async: verify_chain_async_func_ptr_anon_665,
-    verify_chain_finish: verify_chain_finish_func_ptr_anon_666,
-    create_certificate_handle: create_certificate_handle_func_ptr_anon_667,
-    lookup_certificate_for_handle: lookup_certificate_for_handle_func_ptr_anon_668,
-    lookup_certificate_for_handle_async: lookup_certificate_for_handle_async_func_ptr_anon_669,
-    lookup_certificate_for_handle_finish: lookup_certificate_for_handle_finish_func_ptr_anon_670,
-    lookup_certificate_issuer: lookup_certificate_issuer_func_ptr_anon_671,
-    lookup_certificate_issuer_async: lookup_certificate_issuer_async_func_ptr_anon_672,
-    lookup_certificate_issuer_finish: lookup_certificate_issuer_finish_func_ptr_anon_673,
-    lookup_certificates_issued_by: lookup_certificates_issued_by_func_ptr_anon_674,
-    lookup_certificates_issued_by_async: lookup_certificates_issued_by_async_func_ptr_anon_675,
-    lookup_certificates_issued_by_finish: lookup_certificates_issued_by_finish_func_ptr_anon_676,
+    verify_chain: verify_chain_func_ptr_anon_665,
+    verify_chain_async: verify_chain_async_func_ptr_anon_666,
+    verify_chain_finish: verify_chain_finish_func_ptr_anon_667,
+    create_certificate_handle: create_certificate_handle_func_ptr_anon_668,
+    lookup_certificate_for_handle: lookup_certificate_for_handle_func_ptr_anon_669,
+    lookup_certificate_for_handle_async: lookup_certificate_for_handle_async_func_ptr_anon_670,
+    lookup_certificate_for_handle_finish: lookup_certificate_for_handle_finish_func_ptr_anon_671,
+    lookup_certificate_issuer: lookup_certificate_issuer_func_ptr_anon_672,
+    lookup_certificate_issuer_async: lookup_certificate_issuer_async_func_ptr_anon_673,
+    lookup_certificate_issuer_finish: lookup_certificate_issuer_finish_func_ptr_anon_674,
+    lookup_certificates_issued_by: lookup_certificates_issued_by_func_ptr_anon_675,
+    lookup_certificates_issued_by_async: lookup_certificates_issued_by_async_func_ptr_anon_676,
+    lookup_certificates_issued_by_finish: lookup_certificates_issued_by_finish_func_ptr_anon_677,
     padding: [16]glib.pointer,
 }
 TlsDatabaseClass :: _GTlsDatabaseClass
@@ -3055,31 +3091,31 @@ _GTlsFileDatabaseInterface :: struct {
     padding: [8]glib.pointer,
 }
 TlsFileDatabaseInterface :: _GTlsFileDatabaseInterface
-ask_password_func_ptr_anon_677 :: #type proc "c" (interaction: ^TlsInteraction, password: ^TlsPassword, cancellable: ^Cancellable, error: ^^glib.Error) -> TlsInteractionResult
-ask_password_async_func_ptr_anon_678 :: #type proc "c" (interaction: ^TlsInteraction, password: ^TlsPassword, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-ask_password_finish_func_ptr_anon_679 :: #type proc "c" (interaction: ^TlsInteraction, result: ^AsyncResult, error: ^^glib.Error) -> TlsInteractionResult
-request_certificate_func_ptr_anon_680 :: #type proc "c" (interaction: ^TlsInteraction, connection: ^TlsConnection, flags: TlsCertificateRequestFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> TlsInteractionResult
-request_certificate_async_func_ptr_anon_681 :: #type proc "c" (interaction: ^TlsInteraction, connection: ^TlsConnection, flags: TlsCertificateRequestFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-request_certificate_finish_func_ptr_anon_682 :: #type proc "c" (interaction: ^TlsInteraction, result: ^AsyncResult, error: ^^glib.Error) -> TlsInteractionResult
+ask_password_func_ptr_anon_678 :: #type proc "c" (interaction: ^TlsInteraction, password: ^TlsPassword, cancellable: ^Cancellable, error: ^^glib.Error) -> TlsInteractionResult
+ask_password_async_func_ptr_anon_679 :: #type proc "c" (interaction: ^TlsInteraction, password: ^TlsPassword, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+ask_password_finish_func_ptr_anon_680 :: #type proc "c" (interaction: ^TlsInteraction, result: ^AsyncResult, error: ^^glib.Error) -> TlsInteractionResult
+request_certificate_func_ptr_anon_681 :: #type proc "c" (interaction: ^TlsInteraction, connection: ^TlsConnection, flags: TlsCertificateRequestFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> TlsInteractionResult
+request_certificate_async_func_ptr_anon_682 :: #type proc "c" (interaction: ^TlsInteraction, connection: ^TlsConnection, flags: TlsCertificateRequestFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+request_certificate_finish_func_ptr_anon_683 :: #type proc "c" (interaction: ^TlsInteraction, result: ^AsyncResult, error: ^^glib.Error) -> TlsInteractionResult
 _GTlsInteractionClass :: struct {
     parent_class: gobj.ObjectClass,
-    ask_password: ask_password_func_ptr_anon_677,
-    ask_password_async: ask_password_async_func_ptr_anon_678,
-    ask_password_finish: ask_password_finish_func_ptr_anon_679,
-    request_certificate: request_certificate_func_ptr_anon_680,
-    request_certificate_async: request_certificate_async_func_ptr_anon_681,
-    request_certificate_finish: request_certificate_finish_func_ptr_anon_682,
+    ask_password: ask_password_func_ptr_anon_678,
+    ask_password_async: ask_password_async_func_ptr_anon_679,
+    ask_password_finish: ask_password_finish_func_ptr_anon_680,
+    request_certificate: request_certificate_func_ptr_anon_681,
+    request_certificate_async: request_certificate_async_func_ptr_anon_682,
+    request_certificate_finish: request_certificate_finish_func_ptr_anon_683,
     padding: [21]glib.pointer,
 }
 TlsInteractionClass :: _GTlsInteractionClass
-et_value_func_ptr_anon_683 :: #type proc "c" (password: ^TlsPassword, length: ^glib.size) -> ^glib.uchar
-set_value_func_ptr_anon_684 :: #type proc "c" (password: ^TlsPassword, value: ^glib.uchar, length: glib.ssize, destroy: glib.DestroyNotify)
-et_default_warning_func_ptr_anon_685 :: #type proc "c" (password: ^TlsPassword) -> cstring
+et_value_func_ptr_anon_684 :: #type proc "c" (password: ^TlsPassword, length: ^glib.size) -> ^glib.uchar
+set_value_func_ptr_anon_685 :: #type proc "c" (password: ^TlsPassword, value: ^glib.uchar, length: glib.ssize, destroy: glib.DestroyNotify)
+et_default_warning_func_ptr_anon_686 :: #type proc "c" (password: ^TlsPassword) -> cstring
 _GTlsPasswordClass :: struct {
     parent_class: gobj.ObjectClass,
-    get_value: et_value_func_ptr_anon_683,
-    set_value: set_value_func_ptr_anon_684,
-    get_default_warning: et_default_warning_func_ptr_anon_685,
+    get_value: et_value_func_ptr_anon_684,
+    set_value: set_value_func_ptr_anon_685,
+    get_default_warning: et_default_warning_func_ptr_anon_686,
     padding: [4]glib.pointer,
 }
 TlsPasswordClass :: _GTlsPasswordClass
@@ -3102,12 +3138,12 @@ UnixConnection_autoptr :: ^UnixConnection
 UnixConnection_listautoptr :: ^glib.List
 UnixConnection_slistautoptr :: ^glib.SList
 UnixConnection_queueautoptr :: ^glib.Queue
-_g_reserved1_func_ptr_anon_686 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_687 :: #type proc "c" ()
+_g_reserved1_func_ptr_anon_687 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_688 :: #type proc "c" ()
 _GUnixCredentialsMessageClass :: struct {
     parent_class: SocketControlMessageClass,
-    _g_reserved1: _g_reserved1_func_ptr_anon_686,
-    _g_reserved2: _g_reserved2_func_ptr_anon_687,
+    _g_reserved1: _g_reserved1_func_ptr_anon_687,
+    _g_reserved2: _g_reserved2_func_ptr_anon_688,
 }
 UnixCredentialsMessageClass :: _GUnixCredentialsMessageClass
 UnixCredentialsMessage_autoptr :: ^UnixCredentialsMessage
@@ -3118,18 +3154,18 @@ UnixFDList_autoptr :: ^UnixFDList
 UnixFDList_listautoptr :: ^glib.List
 UnixFDList_slistautoptr :: ^glib.SList
 UnixFDList_queueautoptr :: ^glib.Queue
-_g_reserved1_func_ptr_anon_688 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_689 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_690 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_691 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_692 :: #type proc "c" ()
+_g_reserved1_func_ptr_anon_689 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_690 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_691 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_692 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_693 :: #type proc "c" ()
 _GUnixFDListClass :: struct {
     parent_class: gobj.ObjectClass,
-    _g_reserved1: _g_reserved1_func_ptr_anon_688,
-    _g_reserved2: _g_reserved2_func_ptr_anon_689,
-    _g_reserved3: _g_reserved3_func_ptr_anon_690,
-    _g_reserved4: _g_reserved4_func_ptr_anon_691,
-    _g_reserved5: _g_reserved5_func_ptr_anon_692,
+    _g_reserved1: _g_reserved1_func_ptr_anon_689,
+    _g_reserved2: _g_reserved2_func_ptr_anon_690,
+    _g_reserved3: _g_reserved3_func_ptr_anon_691,
+    _g_reserved4: _g_reserved4_func_ptr_anon_692,
+    _g_reserved5: _g_reserved5_func_ptr_anon_693,
 }
 UnixFDListClass :: _GUnixFDListClass
 _GUnixSocketAddressPrivate :: struct #packed {}
@@ -3148,88 +3184,88 @@ UnixSocketAddress_listautoptr :: ^glib.List
 UnixSocketAddress_slistautoptr :: ^glib.SList
 UnixSocketAddress_queueautoptr :: ^glib.Queue
 VfsFileLookupFunc :: #type proc "c" (vfs: [^]Vfs, identifier: cstring, user_data: glib.pointer) -> ^File
-is_active_func_ptr_anon_693 :: #type proc "c" (vfs: [^]Vfs) -> glib.boolean
-et_file_for_path_func_ptr_anon_694 :: #type proc "c" (vfs: [^]Vfs, path: cstring) -> ^File
-et_file_for_uri_func_ptr_anon_695 :: #type proc "c" (vfs: [^]Vfs, uri: cstring) -> ^File
-et_supported_uri_schemes_func_ptr_anon_696 :: #type proc "c" (vfs: [^]Vfs) -> ^cstring
-parse_name_func_ptr_anon_697 :: #type proc "c" (vfs: [^]Vfs, parse_name: cstring) -> ^File
-local_file_add_info_func_ptr_anon_698 :: #type proc "c" (vfs: [^]Vfs, filename: cstring, device: glib.uint64, attribute_matcher: ^FileAttributeMatcher, info: ^FileInfo, cancellable: ^Cancellable, extra_data: ^glib.pointer, free_extra_data: ^glib.DestroyNotify)
-add_writable_namespaces_func_ptr_anon_699 :: #type proc "c" (vfs: [^]Vfs, list: ^FileAttributeInfoList)
-local_file_set_attributes_func_ptr_anon_700 :: #type proc "c" (vfs: [^]Vfs, filename: cstring, info: ^FileInfo, flags: FileQueryInfoFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
-local_file_removed_func_ptr_anon_701 :: #type proc "c" (vfs: [^]Vfs, filename: cstring)
-local_file_moved_func_ptr_anon_702 :: #type proc "c" (vfs: [^]Vfs, source: cstring, dest: cstring)
-deserialize_icon_func_ptr_anon_703 :: #type proc "c" (vfs: [^]Vfs, value: ^glib.Variant) -> ^Icon
-_g_reserved1_func_ptr_anon_704 :: #type proc "c" ()
-_g_reserved2_func_ptr_anon_705 :: #type proc "c" ()
-_g_reserved3_func_ptr_anon_706 :: #type proc "c" ()
-_g_reserved4_func_ptr_anon_707 :: #type proc "c" ()
-_g_reserved5_func_ptr_anon_708 :: #type proc "c" ()
-_g_reserved6_func_ptr_anon_709 :: #type proc "c" ()
+is_active_func_ptr_anon_694 :: #type proc "c" (vfs: [^]Vfs) -> glib.boolean
+et_file_for_path_func_ptr_anon_695 :: #type proc "c" (vfs: [^]Vfs, path: cstring) -> ^File
+et_file_for_uri_func_ptr_anon_696 :: #type proc "c" (vfs: [^]Vfs, uri: cstring) -> ^File
+et_supported_uri_schemes_func_ptr_anon_697 :: #type proc "c" (vfs: [^]Vfs) -> ^cstring
+parse_name_func_ptr_anon_698 :: #type proc "c" (vfs: [^]Vfs, parse_name: cstring) -> ^File
+local_file_add_info_func_ptr_anon_699 :: #type proc "c" (vfs: [^]Vfs, filename: cstring, device: glib.uint64, attribute_matcher: ^FileAttributeMatcher, info: ^FileInfo, cancellable: ^Cancellable, extra_data: ^glib.pointer, free_extra_data: ^glib.DestroyNotify)
+add_writable_namespaces_func_ptr_anon_700 :: #type proc "c" (vfs: [^]Vfs, list: ^FileAttributeInfoList)
+local_file_set_attributes_func_ptr_anon_701 :: #type proc "c" (vfs: [^]Vfs, filename: cstring, info: ^FileInfo, flags: FileQueryInfoFlags, cancellable: ^Cancellable, error: ^^glib.Error) -> glib.boolean
+local_file_removed_func_ptr_anon_702 :: #type proc "c" (vfs: [^]Vfs, filename: cstring)
+local_file_moved_func_ptr_anon_703 :: #type proc "c" (vfs: [^]Vfs, source: cstring, dest: cstring)
+deserialize_icon_func_ptr_anon_704 :: #type proc "c" (vfs: [^]Vfs, value: ^glib.Variant) -> ^Icon
+_g_reserved1_func_ptr_anon_705 :: #type proc "c" ()
+_g_reserved2_func_ptr_anon_706 :: #type proc "c" ()
+_g_reserved3_func_ptr_anon_707 :: #type proc "c" ()
+_g_reserved4_func_ptr_anon_708 :: #type proc "c" ()
+_g_reserved5_func_ptr_anon_709 :: #type proc "c" ()
+_g_reserved6_func_ptr_anon_710 :: #type proc "c" ()
 _GVfsClass :: struct {
     parent_class: gobj.ObjectClass,
-    is_active: is_active_func_ptr_anon_693,
-    get_file_for_path: et_file_for_path_func_ptr_anon_694,
-    get_file_for_uri: et_file_for_uri_func_ptr_anon_695,
-    get_supported_uri_schemes: et_supported_uri_schemes_func_ptr_anon_696,
-    parse_name: parse_name_func_ptr_anon_697,
-    local_file_add_info: local_file_add_info_func_ptr_anon_698,
-    add_writable_namespaces: add_writable_namespaces_func_ptr_anon_699,
-    local_file_set_attributes: local_file_set_attributes_func_ptr_anon_700,
-    local_file_removed: local_file_removed_func_ptr_anon_701,
-    local_file_moved: local_file_moved_func_ptr_anon_702,
-    deserialize_icon: deserialize_icon_func_ptr_anon_703,
-    _g_reserved1: _g_reserved1_func_ptr_anon_704,
-    _g_reserved2: _g_reserved2_func_ptr_anon_705,
-    _g_reserved3: _g_reserved3_func_ptr_anon_706,
-    _g_reserved4: _g_reserved4_func_ptr_anon_707,
-    _g_reserved5: _g_reserved5_func_ptr_anon_708,
-    _g_reserved6: _g_reserved6_func_ptr_anon_709,
+    is_active: is_active_func_ptr_anon_694,
+    get_file_for_path: et_file_for_path_func_ptr_anon_695,
+    get_file_for_uri: et_file_for_uri_func_ptr_anon_696,
+    get_supported_uri_schemes: et_supported_uri_schemes_func_ptr_anon_697,
+    parse_name: parse_name_func_ptr_anon_698,
+    local_file_add_info: local_file_add_info_func_ptr_anon_699,
+    add_writable_namespaces: add_writable_namespaces_func_ptr_anon_700,
+    local_file_set_attributes: local_file_set_attributes_func_ptr_anon_701,
+    local_file_removed: local_file_removed_func_ptr_anon_702,
+    local_file_moved: local_file_moved_func_ptr_anon_703,
+    deserialize_icon: deserialize_icon_func_ptr_anon_704,
+    _g_reserved1: _g_reserved1_func_ptr_anon_705,
+    _g_reserved2: _g_reserved2_func_ptr_anon_706,
+    _g_reserved3: _g_reserved3_func_ptr_anon_707,
+    _g_reserved4: _g_reserved4_func_ptr_anon_708,
+    _g_reserved5: _g_reserved5_func_ptr_anon_709,
+    _g_reserved6: _g_reserved6_func_ptr_anon_710,
 }
 VfsClass :: _GVfsClass
-changed_func_ptr_anon_710 :: #type proc "c" (volume: ^Volume)
-removed_func_ptr_anon_711 :: #type proc "c" (volume: ^Volume)
-et_name_func_ptr_anon_712 :: #type proc "c" (volume: ^Volume) -> cstring
-et_icon_func_ptr_anon_713 :: #type proc "c" (volume: ^Volume) -> ^Icon
-et_uuid_func_ptr_anon_714 :: #type proc "c" (volume: ^Volume) -> cstring
-et_drive_func_ptr_anon_715 :: #type proc "c" (volume: ^Volume) -> ^Drive
-et_mount_func_ptr_anon_716 :: #type proc "c" (volume: ^Volume) -> ^Mount
-can_mount_func_ptr_anon_717 :: #type proc "c" (volume: ^Volume) -> glib.boolean
-can_eject_func_ptr_anon_718 :: #type proc "c" (volume: ^Volume) -> glib.boolean
-mount_fn_func_ptr_anon_719 :: #type proc "c" (volume: ^Volume, flags: MountMountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-mount_finish_func_ptr_anon_720 :: #type proc "c" (volume: ^Volume, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-eject_func_ptr_anon_721 :: #type proc "c" (volume: ^Volume, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-eject_finish_func_ptr_anon_722 :: #type proc "c" (volume: ^Volume, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-et_identifier_func_ptr_anon_723 :: #type proc "c" (volume: ^Volume, kind: cstring) -> cstring
-enumerate_identifiers_func_ptr_anon_724 :: #type proc "c" (volume: ^Volume) -> ^cstring
-should_automount_func_ptr_anon_725 :: #type proc "c" (volume: ^Volume) -> glib.boolean
-et_activation_root_func_ptr_anon_726 :: #type proc "c" (volume: ^Volume) -> ^File
-eject_with_operation_func_ptr_anon_727 :: #type proc "c" (volume: ^Volume, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
-eject_with_operation_finish_func_ptr_anon_728 :: #type proc "c" (volume: ^Volume, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
-et_sort_key_func_ptr_anon_729 :: #type proc "c" (volume: ^Volume) -> cstring
-et_symbolic_icon_func_ptr_anon_730 :: #type proc "c" (volume: ^Volume) -> ^Icon
+changed_func_ptr_anon_711 :: #type proc "c" (volume: ^Volume)
+removed_func_ptr_anon_712 :: #type proc "c" (volume: ^Volume)
+et_name_func_ptr_anon_713 :: #type proc "c" (volume: ^Volume) -> cstring
+et_icon_func_ptr_anon_714 :: #type proc "c" (volume: ^Volume) -> ^Icon
+et_uuid_func_ptr_anon_715 :: #type proc "c" (volume: ^Volume) -> cstring
+et_drive_func_ptr_anon_716 :: #type proc "c" (volume: ^Volume) -> ^Drive
+et_mount_func_ptr_anon_717 :: #type proc "c" (volume: ^Volume) -> ^Mount
+can_mount_func_ptr_anon_718 :: #type proc "c" (volume: ^Volume) -> glib.boolean
+can_eject_func_ptr_anon_719 :: #type proc "c" (volume: ^Volume) -> glib.boolean
+mount_fn_func_ptr_anon_720 :: #type proc "c" (volume: ^Volume, flags: MountMountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+mount_finish_func_ptr_anon_721 :: #type proc "c" (volume: ^Volume, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+eject_func_ptr_anon_722 :: #type proc "c" (volume: ^Volume, flags: MountUnmountFlags, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+eject_finish_func_ptr_anon_723 :: #type proc "c" (volume: ^Volume, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+et_identifier_func_ptr_anon_724 :: #type proc "c" (volume: ^Volume, kind: cstring) -> cstring
+enumerate_identifiers_func_ptr_anon_725 :: #type proc "c" (volume: ^Volume) -> ^cstring
+should_automount_func_ptr_anon_726 :: #type proc "c" (volume: ^Volume) -> glib.boolean
+et_activation_root_func_ptr_anon_727 :: #type proc "c" (volume: ^Volume) -> ^File
+eject_with_operation_func_ptr_anon_728 :: #type proc "c" (volume: ^Volume, flags: MountUnmountFlags, mount_operation: ^MountOperation, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
+eject_with_operation_finish_func_ptr_anon_729 :: #type proc "c" (volume: ^Volume, result: ^AsyncResult, error: ^^glib.Error) -> glib.boolean
+et_sort_key_func_ptr_anon_730 :: #type proc "c" (volume: ^Volume) -> cstring
+et_symbolic_icon_func_ptr_anon_731 :: #type proc "c" (volume: ^Volume) -> ^Icon
 _GVolumeIface :: struct {
     g_iface: gobj.TypeInterface,
-    changed: changed_func_ptr_anon_710,
-    removed: removed_func_ptr_anon_711,
-    get_name: et_name_func_ptr_anon_712,
-    get_icon: et_icon_func_ptr_anon_713,
-    get_uuid: et_uuid_func_ptr_anon_714,
-    get_drive: et_drive_func_ptr_anon_715,
-    get_mount: et_mount_func_ptr_anon_716,
-    can_mount: can_mount_func_ptr_anon_717,
-    can_eject: can_eject_func_ptr_anon_718,
-    mount_fn: mount_fn_func_ptr_anon_719,
-    mount_finish: mount_finish_func_ptr_anon_720,
-    eject: eject_func_ptr_anon_721,
-    eject_finish: eject_finish_func_ptr_anon_722,
-    get_identifier: et_identifier_func_ptr_anon_723,
-    enumerate_identifiers: enumerate_identifiers_func_ptr_anon_724,
-    should_automount: should_automount_func_ptr_anon_725,
-    get_activation_root: et_activation_root_func_ptr_anon_726,
-    eject_with_operation: eject_with_operation_func_ptr_anon_727,
-    eject_with_operation_finish: eject_with_operation_finish_func_ptr_anon_728,
-    get_sort_key: et_sort_key_func_ptr_anon_729,
-    get_symbolic_icon: et_symbolic_icon_func_ptr_anon_730,
+    changed: changed_func_ptr_anon_711,
+    removed: removed_func_ptr_anon_712,
+    get_name: et_name_func_ptr_anon_713,
+    get_icon: et_icon_func_ptr_anon_714,
+    get_uuid: et_uuid_func_ptr_anon_715,
+    get_drive: et_drive_func_ptr_anon_716,
+    get_mount: et_mount_func_ptr_anon_717,
+    can_mount: can_mount_func_ptr_anon_718,
+    can_eject: can_eject_func_ptr_anon_719,
+    mount_fn: mount_fn_func_ptr_anon_720,
+    mount_finish: mount_finish_func_ptr_anon_721,
+    eject: eject_func_ptr_anon_722,
+    eject_finish: eject_finish_func_ptr_anon_723,
+    get_identifier: et_identifier_func_ptr_anon_724,
+    enumerate_identifiers: enumerate_identifiers_func_ptr_anon_725,
+    should_automount: should_automount_func_ptr_anon_726,
+    get_activation_root: et_activation_root_func_ptr_anon_727,
+    eject_with_operation: eject_with_operation_func_ptr_anon_728,
+    eject_with_operation_finish: eject_with_operation_finish_func_ptr_anon_729,
+    get_sort_key: et_sort_key_func_ptr_anon_730,
+    get_symbolic_icon: et_symbolic_icon_func_ptr_anon_731,
 }
 VolumeIface :: _GVolumeIface
 _GZlibCompressorClass :: struct {
@@ -3656,10 +3692,6 @@ SocketConnection_autoptr :: ^SocketConnection
 SocketConnection_listautoptr :: ^glib.List
 SocketConnection_slistautoptr :: ^glib.SList
 SocketConnection_queueautoptr :: ^glib.Queue
-SocketControlMessage_autoptr :: ^SocketControlMessage
-SocketControlMessage_listautoptr :: ^glib.List
-SocketControlMessage_slistautoptr :: ^glib.SList
-SocketControlMessage_queueautoptr :: ^glib.Queue
 Socket_autoptr :: ^Socket
 Socket_listautoptr :: ^glib.List
 Socket_slistautoptr :: ^glib.SList
@@ -6754,6 +6786,9 @@ foreign gio_runic {
     @(link_name = "g_inet_address_new_loopback")
     inet_address_new_loopback :: proc(family: SocketFamily) -> ^InetAddress ---
 
+    @(link_name = "g_inet_address_new_from_bytes_with_ipv6_info")
+    inet_address_new_from_bytes_with_ipv6_info :: proc(bytes: [^]glib.uint8, family: SocketFamily, flowinfo: glib.uint32, scope_id: glib.uint32) -> ^InetAddress ---
+
     @(link_name = "g_inet_address_new_any")
     inet_address_new_any :: proc(family: SocketFamily) -> ^InetAddress ---
 
@@ -6801,6 +6836,12 @@ foreign gio_runic {
 
     @(link_name = "g_inet_address_get_is_mc_site_local")
     inet_address_get_is_mc_site_local :: proc(address: [^]InetAddress) -> glib.boolean ---
+
+    @(link_name = "g_inet_address_get_scope_id")
+    inet_address_get_scope_id :: proc(address: [^]InetAddress) -> glib.uint32 ---
+
+    @(link_name = "g_inet_address_get_flowinfo")
+    inet_address_get_flowinfo :: proc(address: [^]InetAddress) -> glib.uint32 ---
 
     @(link_name = "g_inet_address_mask_get_type")
     inet_address_mask_get_type :: proc() -> gobj.Type ---
@@ -7105,6 +7146,9 @@ foreign gio_runic {
     @(link_name = "g_memory_monitor_warning_level_get_type")
     memory_monitor_warning_level_get_type :: proc() -> gobj.Type ---
 
+    @(link_name = "g_ecn_code_point_get_type")
+    ecn_code_point_get_type :: proc() -> gobj.Type ---
+
     @(link_name = "g_resolver_name_lookup_flags_get_type")
     resolver_name_lookup_flags_get_type :: proc() -> gobj.Type ---
 
@@ -7191,6 +7235,48 @@ foreign gio_runic {
 
     @(link_name = "g_io_scheduler_job_send_to_mainloop_async")
     io_scheduler_job_send_to_mainloop_async :: proc(job: ^IOSchedulerJob, func: glib.SourceFunc, user_data: glib.pointer, notify: glib.DestroyNotify) ---
+
+    @(link_name = "g_socket_control_message_get_type")
+    socket_control_message_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "g_socket_control_message_get_size")
+    socket_control_message_get_size :: proc(message: ^SocketControlMessage) -> glib.size ---
+
+    @(link_name = "g_socket_control_message_get_level")
+    socket_control_message_get_level :: proc(message: ^SocketControlMessage) -> i32 ---
+
+    @(link_name = "g_socket_control_message_get_msg_type")
+    socket_control_message_get_msg_type :: proc(message: ^SocketControlMessage) -> i32 ---
+
+    @(link_name = "g_socket_control_message_serialize")
+    socket_control_message_serialize :: proc(message: ^SocketControlMessage, data: glib.pointer) ---
+
+    @(link_name = "g_socket_control_message_deserialize")
+    socket_control_message_deserialize :: proc(level: i32, type: i32, size_p: glib.size, data: glib.pointer) -> ^SocketControlMessage ---
+
+    @(link_name = "g_ip_tos_message_get_type")
+    ip_tos_message_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "g_ip_tos_message_new")
+    ip_tos_message_new :: proc(dscp: glib.uint8, ecn: EcnCodePoint) -> ^SocketControlMessage ---
+
+    @(link_name = "g_ip_tos_message_get_dscp")
+    ip_tos_message_get_dscp :: proc(message: ^IPTosMessage) -> glib.uint8 ---
+
+    @(link_name = "g_ip_tos_message_get_ecn")
+    ip_tos_message_get_ecn :: proc(message: ^IPTosMessage) -> EcnCodePoint ---
+
+    @(link_name = "g_ipv6_tclass_message_get_type")
+    ipv6_tclass_message_get_type :: proc() -> gobj.Type ---
+
+    @(link_name = "g_ipv6_tclass_message_new")
+    ipv6_tclass_message_new :: proc(dscp: glib.uint8, ecn: EcnCodePoint) -> ^SocketControlMessage ---
+
+    @(link_name = "g_ipv6_tclass_message_get_dscp")
+    ipv6_tclass_message_get_dscp :: proc(message: ^IPv6TclassMessage) -> glib.uint8 ---
+
+    @(link_name = "g_ipv6_tclass_message_get_ecn")
+    ipv6_tclass_message_get_ecn :: proc(message: ^IPv6TclassMessage) -> EcnCodePoint ---
 
     @(link_name = "g_list_model_get_type")
     list_model_get_type :: proc() -> gobj.Type ---
@@ -8800,24 +8886,6 @@ foreign gio_runic {
     @(link_name = "g_socket_connection_factory_create_connection")
     socket_connection_factory_create_connection :: proc(socket: ^Socket) -> ^SocketConnection ---
 
-    @(link_name = "g_socket_control_message_get_type")
-    socket_control_message_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "g_socket_control_message_get_size")
-    socket_control_message_get_size :: proc(message: ^SocketControlMessage) -> glib.size ---
-
-    @(link_name = "g_socket_control_message_get_level")
-    socket_control_message_get_level :: proc(message: ^SocketControlMessage) -> i32 ---
-
-    @(link_name = "g_socket_control_message_get_msg_type")
-    socket_control_message_get_msg_type :: proc(message: ^SocketControlMessage) -> i32 ---
-
-    @(link_name = "g_socket_control_message_serialize")
-    socket_control_message_serialize :: proc(message: ^SocketControlMessage, data: glib.pointer) ---
-
-    @(link_name = "g_socket_control_message_deserialize")
-    socket_control_message_deserialize :: proc(level: i32, type: i32, size_p: glib.size, data: glib.pointer) -> ^SocketControlMessage ---
-
     @(link_name = "g_socket_listener_get_type")
     socket_listener_get_type :: proc() -> gobj.Type ---
 
@@ -9705,6 +9773,12 @@ foreign gio_runic {
 
     @(link_name = "g_zlib_compressor_set_file_info")
     zlib_compressor_set_file_info :: proc(compressor: ^ZlibCompressor, file_info: ^FileInfo) ---
+
+    @(link_name = "g_zlib_compressor_get_os")
+    zlib_compressor_get_os :: proc(compressor: ^ZlibCompressor) -> i32 ---
+
+    @(link_name = "g_zlib_compressor_set_os")
+    zlib_compressor_set_os :: proc(compressor: ^ZlibCompressor, os: i32) ---
 
     @(link_name = "g_zlib_decompressor_get_type")
     zlib_decompressor_get_type :: proc() -> gobj.Type ---

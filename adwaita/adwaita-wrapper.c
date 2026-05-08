@@ -600,6 +600,74 @@ AdwAnimationTargetClass * ADW_ANIMATION_TARGET_GET_CLASS_wrapper(gpointer ptr) {
     return ADW_ANIMATION_TARGET_GET_CLASS(ptr);
 }
 
+void glib_autoptr_clear_AdwNoneAnimationTarget_wrapper(AdwNoneAnimationTarget * _ptr) {
+    glib_autoptr_clear_AdwNoneAnimationTarget(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwNoneAnimationTarget_wrapper(AdwNoneAnimationTarget ** _ptr) {
+    glib_autoptr_cleanup_AdwNoneAnimationTarget(_ptr);
+}
+
+void glib_autoptr_destroy_AdwNoneAnimationTarget_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwNoneAnimationTarget(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwNoneAnimationTarget_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwNoneAnimationTarget(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwNoneAnimationTarget_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwNoneAnimationTarget(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwNoneAnimationTarget_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwNoneAnimationTarget(_q);
+}
+
+void glib_autoptr_clear_AdwNoneAnimationTargetClass_wrapper(AdwNoneAnimationTargetClass * _ptr) {
+    glib_autoptr_clear_AdwNoneAnimationTargetClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwNoneAnimationTargetClass_wrapper(AdwNoneAnimationTargetClass ** _ptr) {
+    glib_autoptr_cleanup_AdwNoneAnimationTargetClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwNoneAnimationTargetClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwNoneAnimationTargetClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwNoneAnimationTargetClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwNoneAnimationTargetClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwNoneAnimationTargetClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwNoneAnimationTargetClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwNoneAnimationTargetClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwNoneAnimationTargetClass(_q);
+}
+
+AdwNoneAnimationTarget * ADW_NONE_ANIMATION_TARGET_wrapper(gpointer ptr) {
+    return ADW_NONE_ANIMATION_TARGET(ptr);
+}
+
+AdwNoneAnimationTargetClass * ADW_NONE_ANIMATION_TARGET_CLASS_wrapper(gpointer ptr) {
+    return ADW_NONE_ANIMATION_TARGET_CLASS(ptr);
+}
+
+gboolean ADW_IS_NONE_ANIMATION_TARGET_wrapper(gpointer ptr) {
+    return ADW_IS_NONE_ANIMATION_TARGET(ptr);
+}
+
+gboolean ADW_IS_NONE_ANIMATION_TARGET_CLASS_wrapper(gpointer ptr) {
+    return ADW_IS_NONE_ANIMATION_TARGET_CLASS(ptr);
+}
+
+AdwNoneAnimationTargetClass * ADW_NONE_ANIMATION_TARGET_GET_CLASS_wrapper(gpointer ptr) {
+    return ADW_NONE_ANIMATION_TARGET_GET_CLASS(ptr);
+}
+
 void glib_autoptr_clear_AdwCallbackAnimationTarget_wrapper(AdwCallbackAnimationTarget * _ptr) {
     glib_autoptr_clear_AdwCallbackAnimationTarget(_ptr);
 }
@@ -3392,6 +3460,410 @@ AdwPreferencesWindowClass * ADW_PREFERENCES_WINDOW_GET_CLASS_wrapper(gpointer pt
     return ADW_PREFERENCES_WINDOW_GET_CLASS(ptr);
 }
 
+void glib_autoptr_clear_AdwShortcutLabel_wrapper(AdwShortcutLabel * _ptr) {
+    glib_autoptr_clear_AdwShortcutLabel(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwShortcutLabel_wrapper(AdwShortcutLabel ** _ptr) {
+    glib_autoptr_cleanup_AdwShortcutLabel(_ptr);
+}
+
+void glib_autoptr_destroy_AdwShortcutLabel_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwShortcutLabel(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwShortcutLabel_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwShortcutLabel(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwShortcutLabel_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwShortcutLabel(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwShortcutLabel_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwShortcutLabel(_q);
+}
+
+void glib_autoptr_clear_AdwShortcutLabelClass_wrapper(AdwShortcutLabelClass * _ptr) {
+    glib_autoptr_clear_AdwShortcutLabelClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwShortcutLabelClass_wrapper(AdwShortcutLabelClass ** _ptr) {
+    glib_autoptr_cleanup_AdwShortcutLabelClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwShortcutLabelClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwShortcutLabelClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwShortcutLabelClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwShortcutLabelClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwShortcutLabelClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwShortcutLabelClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwShortcutLabelClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwShortcutLabelClass(_q);
+}
+
+AdwShortcutLabel * ADW_SHORTCUT_LABEL_wrapper(gpointer ptr) {
+    return ADW_SHORTCUT_LABEL(ptr);
+}
+
+gboolean ADW_IS_SHORTCUT_LABEL_wrapper(gpointer ptr) {
+    return ADW_IS_SHORTCUT_LABEL(ptr);
+}
+
+void glib_autoptr_clear_AdwShortcutsItem_wrapper(AdwShortcutsItem * _ptr) {
+    glib_autoptr_clear_AdwShortcutsItem(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwShortcutsItem_wrapper(AdwShortcutsItem ** _ptr) {
+    glib_autoptr_cleanup_AdwShortcutsItem(_ptr);
+}
+
+void glib_autoptr_destroy_AdwShortcutsItem_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwShortcutsItem(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwShortcutsItem_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwShortcutsItem(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwShortcutsItem_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwShortcutsItem(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwShortcutsItem_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwShortcutsItem(_q);
+}
+
+void glib_autoptr_clear_AdwShortcutsItemClass_wrapper(AdwShortcutsItemClass * _ptr) {
+    glib_autoptr_clear_AdwShortcutsItemClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwShortcutsItemClass_wrapper(AdwShortcutsItemClass ** _ptr) {
+    glib_autoptr_cleanup_AdwShortcutsItemClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwShortcutsItemClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwShortcutsItemClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwShortcutsItemClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwShortcutsItemClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwShortcutsItemClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwShortcutsItemClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwShortcutsItemClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwShortcutsItemClass(_q);
+}
+
+AdwShortcutsItem * ADW_SHORTCUTS_ITEM_wrapper(gpointer ptr) {
+    return ADW_SHORTCUTS_ITEM(ptr);
+}
+
+gboolean ADW_IS_SHORTCUTS_ITEM_wrapper(gpointer ptr) {
+    return ADW_IS_SHORTCUTS_ITEM(ptr);
+}
+
+void glib_autoptr_clear_AdwShortcutsSection_wrapper(AdwShortcutsSection * _ptr) {
+    glib_autoptr_clear_AdwShortcutsSection(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwShortcutsSection_wrapper(AdwShortcutsSection ** _ptr) {
+    glib_autoptr_cleanup_AdwShortcutsSection(_ptr);
+}
+
+void glib_autoptr_destroy_AdwShortcutsSection_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwShortcutsSection(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwShortcutsSection_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwShortcutsSection(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwShortcutsSection_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwShortcutsSection(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwShortcutsSection_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwShortcutsSection(_q);
+}
+
+void glib_autoptr_clear_AdwShortcutsSectionClass_wrapper(AdwShortcutsSectionClass * _ptr) {
+    glib_autoptr_clear_AdwShortcutsSectionClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwShortcutsSectionClass_wrapper(AdwShortcutsSectionClass ** _ptr) {
+    glib_autoptr_cleanup_AdwShortcutsSectionClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwShortcutsSectionClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwShortcutsSectionClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwShortcutsSectionClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwShortcutsSectionClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwShortcutsSectionClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwShortcutsSectionClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwShortcutsSectionClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwShortcutsSectionClass(_q);
+}
+
+AdwShortcutsSection * ADW_SHORTCUTS_SECTION_wrapper(gpointer ptr) {
+    return ADW_SHORTCUTS_SECTION(ptr);
+}
+
+gboolean ADW_IS_SHORTCUTS_SECTION_wrapper(gpointer ptr) {
+    return ADW_IS_SHORTCUTS_SECTION(ptr);
+}
+
+void glib_autoptr_clear_AdwShortcutsDialog_wrapper(AdwShortcutsDialog * _ptr) {
+    glib_autoptr_clear_AdwShortcutsDialog(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwShortcutsDialog_wrapper(AdwShortcutsDialog ** _ptr) {
+    glib_autoptr_cleanup_AdwShortcutsDialog(_ptr);
+}
+
+void glib_autoptr_destroy_AdwShortcutsDialog_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwShortcutsDialog(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwShortcutsDialog_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwShortcutsDialog(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwShortcutsDialog_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwShortcutsDialog(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwShortcutsDialog_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwShortcutsDialog(_q);
+}
+
+void glib_autoptr_clear_AdwShortcutsDialogClass_wrapper(AdwShortcutsDialogClass * _ptr) {
+    glib_autoptr_clear_AdwShortcutsDialogClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwShortcutsDialogClass_wrapper(AdwShortcutsDialogClass ** _ptr) {
+    glib_autoptr_cleanup_AdwShortcutsDialogClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwShortcutsDialogClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwShortcutsDialogClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwShortcutsDialogClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwShortcutsDialogClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwShortcutsDialogClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwShortcutsDialogClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwShortcutsDialogClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwShortcutsDialogClass(_q);
+}
+
+AdwShortcutsDialog * ADW_SHORTCUTS_DIALOG_wrapper(gpointer ptr) {
+    return ADW_SHORTCUTS_DIALOG(ptr);
+}
+
+gboolean ADW_IS_SHORTCUTS_DIALOG_wrapper(gpointer ptr) {
+    return ADW_IS_SHORTCUTS_DIALOG(ptr);
+}
+
+void glib_autoptr_clear_AdwSidebarItem_wrapper(AdwSidebarItem * _ptr) {
+    glib_autoptr_clear_AdwSidebarItem(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwSidebarItem_wrapper(AdwSidebarItem ** _ptr) {
+    glib_autoptr_cleanup_AdwSidebarItem(_ptr);
+}
+
+void glib_autoptr_destroy_AdwSidebarItem_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwSidebarItem(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwSidebarItem_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwSidebarItem(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwSidebarItem_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwSidebarItem(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwSidebarItem_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwSidebarItem(_q);
+}
+
+void glib_autoptr_clear_AdwSidebarItemClass_wrapper(AdwSidebarItemClass * _ptr) {
+    glib_autoptr_clear_AdwSidebarItemClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwSidebarItemClass_wrapper(AdwSidebarItemClass ** _ptr) {
+    glib_autoptr_cleanup_AdwSidebarItemClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwSidebarItemClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwSidebarItemClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwSidebarItemClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwSidebarItemClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwSidebarItemClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwSidebarItemClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwSidebarItemClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwSidebarItemClass(_q);
+}
+
+AdwSidebarItem * ADW_SIDEBAR_ITEM_wrapper(gpointer ptr) {
+    return ADW_SIDEBAR_ITEM(ptr);
+}
+
+AdwSidebarItemClass * ADW_SIDEBAR_ITEM_CLASS_wrapper(gpointer ptr) {
+    return ADW_SIDEBAR_ITEM_CLASS(ptr);
+}
+
+gboolean ADW_IS_SIDEBAR_ITEM_wrapper(gpointer ptr) {
+    return ADW_IS_SIDEBAR_ITEM(ptr);
+}
+
+gboolean ADW_IS_SIDEBAR_ITEM_CLASS_wrapper(gpointer ptr) {
+    return ADW_IS_SIDEBAR_ITEM_CLASS(ptr);
+}
+
+AdwSidebarItemClass * ADW_SIDEBAR_ITEM_GET_CLASS_wrapper(gpointer ptr) {
+    return ADW_SIDEBAR_ITEM_GET_CLASS(ptr);
+}
+
+void glib_autoptr_clear_AdwSidebarSection_wrapper(AdwSidebarSection * _ptr) {
+    glib_autoptr_clear_AdwSidebarSection(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwSidebarSection_wrapper(AdwSidebarSection ** _ptr) {
+    glib_autoptr_cleanup_AdwSidebarSection(_ptr);
+}
+
+void glib_autoptr_destroy_AdwSidebarSection_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwSidebarSection(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwSidebarSection_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwSidebarSection(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwSidebarSection_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwSidebarSection(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwSidebarSection_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwSidebarSection(_q);
+}
+
+void glib_autoptr_clear_AdwSidebarSectionClass_wrapper(AdwSidebarSectionClass * _ptr) {
+    glib_autoptr_clear_AdwSidebarSectionClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwSidebarSectionClass_wrapper(AdwSidebarSectionClass ** _ptr) {
+    glib_autoptr_cleanup_AdwSidebarSectionClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwSidebarSectionClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwSidebarSectionClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwSidebarSectionClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwSidebarSectionClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwSidebarSectionClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwSidebarSectionClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwSidebarSectionClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwSidebarSectionClass(_q);
+}
+
+AdwSidebarSection * ADW_SIDEBAR_SECTION_wrapper(gpointer ptr) {
+    return ADW_SIDEBAR_SECTION(ptr);
+}
+
+gboolean ADW_IS_SIDEBAR_SECTION_wrapper(gpointer ptr) {
+    return ADW_IS_SIDEBAR_SECTION(ptr);
+}
+
+void glib_autoptr_clear_AdwSidebar_wrapper(AdwSidebar * _ptr) {
+    glib_autoptr_clear_AdwSidebar(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwSidebar_wrapper(AdwSidebar ** _ptr) {
+    glib_autoptr_cleanup_AdwSidebar(_ptr);
+}
+
+void glib_autoptr_destroy_AdwSidebar_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwSidebar(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwSidebar_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwSidebar(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwSidebar_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwSidebar(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwSidebar_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwSidebar(_q);
+}
+
+void glib_autoptr_clear_AdwSidebarClass_wrapper(AdwSidebarClass * _ptr) {
+    glib_autoptr_clear_AdwSidebarClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwSidebarClass_wrapper(AdwSidebarClass ** _ptr) {
+    glib_autoptr_cleanup_AdwSidebarClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwSidebarClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwSidebarClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwSidebarClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwSidebarClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwSidebarClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwSidebarClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwSidebarClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwSidebarClass(_q);
+}
+
+AdwSidebar * ADW_SIDEBAR_wrapper(gpointer ptr) {
+    return ADW_SIDEBAR(ptr);
+}
+
+gboolean ADW_IS_SIDEBAR_wrapper(gpointer ptr) {
+    return ADW_IS_SIDEBAR(ptr);
+}
+
 void glib_autoptr_clear_AdwSpinRow_wrapper(AdwSpinRow * _ptr) {
     glib_autoptr_clear_AdwSpinRow(_ptr);
 }
@@ -4682,6 +5154,62 @@ AdwViewSwitcherBar * ADW_VIEW_SWITCHER_BAR_wrapper(gpointer ptr) {
 
 gboolean ADW_IS_VIEW_SWITCHER_BAR_wrapper(gpointer ptr) {
     return ADW_IS_VIEW_SWITCHER_BAR(ptr);
+}
+
+void glib_autoptr_clear_AdwViewSwitcherSidebar_wrapper(AdwViewSwitcherSidebar * _ptr) {
+    glib_autoptr_clear_AdwViewSwitcherSidebar(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwViewSwitcherSidebar_wrapper(AdwViewSwitcherSidebar ** _ptr) {
+    glib_autoptr_cleanup_AdwViewSwitcherSidebar(_ptr);
+}
+
+void glib_autoptr_destroy_AdwViewSwitcherSidebar_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwViewSwitcherSidebar(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwViewSwitcherSidebar_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwViewSwitcherSidebar(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwViewSwitcherSidebar_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwViewSwitcherSidebar(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwViewSwitcherSidebar_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwViewSwitcherSidebar(_q);
+}
+
+void glib_autoptr_clear_AdwViewSwitcherSidebarClass_wrapper(AdwViewSwitcherSidebarClass * _ptr) {
+    glib_autoptr_clear_AdwViewSwitcherSidebarClass(_ptr);
+}
+
+void glib_autoptr_cleanup_AdwViewSwitcherSidebarClass_wrapper(AdwViewSwitcherSidebarClass ** _ptr) {
+    glib_autoptr_cleanup_AdwViewSwitcherSidebarClass(_ptr);
+}
+
+void glib_autoptr_destroy_AdwViewSwitcherSidebarClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_AdwViewSwitcherSidebarClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_AdwViewSwitcherSidebarClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_AdwViewSwitcherSidebarClass(_l);
+}
+
+void glib_slistautoptr_cleanup_AdwViewSwitcherSidebarClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_AdwViewSwitcherSidebarClass(_l);
+}
+
+void glib_queueautoptr_cleanup_AdwViewSwitcherSidebarClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_AdwViewSwitcherSidebarClass(_q);
+}
+
+AdwViewSwitcherSidebar * ADW_VIEW_SWITCHER_SIDEBAR_wrapper(gpointer ptr) {
+    return ADW_VIEW_SWITCHER_SIDEBAR(ptr);
+}
+
+gboolean ADW_IS_VIEW_SWITCHER_SIDEBAR_wrapper(gpointer ptr) {
+    return ADW_IS_VIEW_SWITCHER_SIDEBAR(ptr);
 }
 
 void glib_autoptr_clear_AdwViewSwitcherTitle_wrapper(AdwViewSwitcherTitle * _ptr) {

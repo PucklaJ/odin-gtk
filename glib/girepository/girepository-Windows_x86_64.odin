@@ -26,7 +26,4 @@ _GIArgument :: struct #raw_union {
     v_string: cstring,
     v_pointer: rawptr,
 }
-FieldInfoFlags :: enum u32 {FIELD_IS_READABLE = 1, FIELD_IS_WRITABLE = 2 }
-VFuncInfoFlags :: enum u32 {VFUNC_MUST_CHAIN_UP = 1, VFUNC_MUST_OVERRIDE = 2, VFUNC_MUST_NOT_OVERRIDE = 4 }
-FunctionInfoFlags :: enum u32 {FUNCTION_IS_METHOD = 1, FUNCTION_IS_CONSTRUCTOR = 2, FUNCTION_IS_GETTER = 4, FUNCTION_IS_SETTER = 8, FUNCTION_WRAPS_VFUNC = 16, FUNCTION_IS_ASYNC = 32 }
 

@@ -108,6 +108,142 @@ GDebugControllerDBusClass * G_DEBUG_CONTROLLER_DBUS_GET_CLASS_wrapper(gpointer p
     return G_DEBUG_CONTROLLER_DBUS_GET_CLASS(ptr);
 }
 
+void glib_autoptr_clear_GSocketControlMessage_wrapper(GSocketControlMessage * _ptr) {
+    glib_autoptr_clear_GSocketControlMessage(_ptr);
+}
+
+void glib_autoptr_cleanup_GSocketControlMessage_wrapper(GSocketControlMessage ** _ptr) {
+    glib_autoptr_cleanup_GSocketControlMessage(_ptr);
+}
+
+void glib_autoptr_destroy_GSocketControlMessage_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GSocketControlMessage(_ptr);
+}
+
+void glib_listautoptr_cleanup_GSocketControlMessage_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GSocketControlMessage(_l);
+}
+
+void glib_slistautoptr_cleanup_GSocketControlMessage_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GSocketControlMessage(_l);
+}
+
+void glib_queueautoptr_cleanup_GSocketControlMessage_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GSocketControlMessage(_q);
+}
+
+void glib_autoptr_clear_GIPTosMessage_wrapper(GIPTosMessage * _ptr) {
+    glib_autoptr_clear_GIPTosMessage(_ptr);
+}
+
+void glib_autoptr_cleanup_GIPTosMessage_wrapper(GIPTosMessage ** _ptr) {
+    glib_autoptr_cleanup_GIPTosMessage(_ptr);
+}
+
+void glib_autoptr_destroy_GIPTosMessage_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GIPTosMessage(_ptr);
+}
+
+void glib_listautoptr_cleanup_GIPTosMessage_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GIPTosMessage(_l);
+}
+
+void glib_slistautoptr_cleanup_GIPTosMessage_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GIPTosMessage(_l);
+}
+
+void glib_queueautoptr_cleanup_GIPTosMessage_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GIPTosMessage(_q);
+}
+
+void glib_autoptr_clear_GIPTosMessageClass_wrapper(GIPTosMessageClass * _ptr) {
+    glib_autoptr_clear_GIPTosMessageClass(_ptr);
+}
+
+void glib_autoptr_cleanup_GIPTosMessageClass_wrapper(GIPTosMessageClass ** _ptr) {
+    glib_autoptr_cleanup_GIPTosMessageClass(_ptr);
+}
+
+void glib_autoptr_destroy_GIPTosMessageClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GIPTosMessageClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_GIPTosMessageClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GIPTosMessageClass(_l);
+}
+
+void glib_slistautoptr_cleanup_GIPTosMessageClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GIPTosMessageClass(_l);
+}
+
+void glib_queueautoptr_cleanup_GIPTosMessageClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GIPTosMessageClass(_q);
+}
+
+GIPTosMessage * G_IP_TOS_MESSAGE_wrapper(gpointer ptr) {
+    return G_IP_TOS_MESSAGE(ptr);
+}
+
+gboolean G_IS_IP_TOS_MESSAGE_wrapper(gpointer ptr) {
+    return G_IS_IP_TOS_MESSAGE(ptr);
+}
+
+void glib_autoptr_clear_GIPv6TclassMessage_wrapper(GIPv6TclassMessage * _ptr) {
+    glib_autoptr_clear_GIPv6TclassMessage(_ptr);
+}
+
+void glib_autoptr_cleanup_GIPv6TclassMessage_wrapper(GIPv6TclassMessage ** _ptr) {
+    glib_autoptr_cleanup_GIPv6TclassMessage(_ptr);
+}
+
+void glib_autoptr_destroy_GIPv6TclassMessage_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GIPv6TclassMessage(_ptr);
+}
+
+void glib_listautoptr_cleanup_GIPv6TclassMessage_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GIPv6TclassMessage(_l);
+}
+
+void glib_slistautoptr_cleanup_GIPv6TclassMessage_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GIPv6TclassMessage(_l);
+}
+
+void glib_queueautoptr_cleanup_GIPv6TclassMessage_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GIPv6TclassMessage(_q);
+}
+
+void glib_autoptr_clear_GIPv6TclassMessageClass_wrapper(GIPv6TclassMessageClass * _ptr) {
+    glib_autoptr_clear_GIPv6TclassMessageClass(_ptr);
+}
+
+void glib_autoptr_cleanup_GIPv6TclassMessageClass_wrapper(GIPv6TclassMessageClass ** _ptr) {
+    glib_autoptr_cleanup_GIPv6TclassMessageClass(_ptr);
+}
+
+void glib_autoptr_destroy_GIPv6TclassMessageClass_wrapper(void * _ptr) {
+    glib_autoptr_destroy_GIPv6TclassMessageClass(_ptr);
+}
+
+void glib_listautoptr_cleanup_GIPv6TclassMessageClass_wrapper(GList ** _l) {
+    glib_listautoptr_cleanup_GIPv6TclassMessageClass(_l);
+}
+
+void glib_slistautoptr_cleanup_GIPv6TclassMessageClass_wrapper(GSList ** _l) {
+    glib_slistautoptr_cleanup_GIPv6TclassMessageClass(_l);
+}
+
+void glib_queueautoptr_cleanup_GIPv6TclassMessageClass_wrapper(GQueue ** _q) {
+    glib_queueautoptr_cleanup_GIPv6TclassMessageClass(_q);
+}
+
+GIPv6TclassMessage * G_IPV6_TCLASS_MESSAGE_wrapper(gpointer ptr) {
+    return G_IPV6_TCLASS_MESSAGE(ptr);
+}
+
+gboolean G_IS_IPV6_TCLASS_MESSAGE_wrapper(gpointer ptr) {
+    return G_IS_IPV6_TCLASS_MESSAGE(ptr);
+}
+
 void glib_autoptr_clear_GListModel_wrapper(GListModel * _ptr) {
     glib_autoptr_clear_GListModel(_ptr);
 }
@@ -2862,30 +2998,6 @@ void glib_slistautoptr_cleanup_GSocketConnection_wrapper(GSList ** _l) {
 
 void glib_queueautoptr_cleanup_GSocketConnection_wrapper(GQueue ** _q) {
     glib_queueautoptr_cleanup_GSocketConnection(_q);
-}
-
-void glib_autoptr_clear_GSocketControlMessage_wrapper(GSocketControlMessage * _ptr) {
-    glib_autoptr_clear_GSocketControlMessage(_ptr);
-}
-
-void glib_autoptr_cleanup_GSocketControlMessage_wrapper(GSocketControlMessage ** _ptr) {
-    glib_autoptr_cleanup_GSocketControlMessage(_ptr);
-}
-
-void glib_autoptr_destroy_GSocketControlMessage_wrapper(void * _ptr) {
-    glib_autoptr_destroy_GSocketControlMessage(_ptr);
-}
-
-void glib_listautoptr_cleanup_GSocketControlMessage_wrapper(GList ** _l) {
-    glib_listautoptr_cleanup_GSocketControlMessage(_l);
-}
-
-void glib_slistautoptr_cleanup_GSocketControlMessage_wrapper(GSList ** _l) {
-    glib_slistautoptr_cleanup_GSocketControlMessage(_l);
-}
-
-void glib_queueautoptr_cleanup_GSocketControlMessage_wrapper(GQueue ** _q) {
-    glib_queueautoptr_cleanup_GSocketControlMessage(_q);
 }
 
 void glib_autoptr_clear_GSocket_wrapper(GSocket * _ptr) {
