@@ -17,7 +17,7 @@ clean: glib-clean cairo-clean gtk-clean adwaita-clean
 check-all: (check 'glib') (check 'glib/gobject') (check 'glib/gmodule') (check 'glib/gio') (check 'glib/girepository') (check 'gdk-pixbuf') (check 'cairo') (check 'pango') (check 'pango/pangocairo') (check 'graphene') (check 'gtk') (check 'gtk/layer-shell') (check 'adwaita')
 
 RUNIC := 'runic'
-WINDOWS_GVSBUILD_RELEASE := '2025.5.0'
+WINDOWS_GVSBUILD_RELEASE := '2026.4.1'
 
 glib-setup:
     cd shared/glib && meson setup \
@@ -459,12 +459,12 @@ download-and-extract-gvsbuild GVSBUILD_RELEASE:
     VERSION_FILE="shared/gvsbuild/extract/VERSION_{{ GVSBUILD_RELEASE }}"
     ZIP_FILE="shared/gvsbuild/{{ GVSBUILD_RELEASE }}.zip"
 
-    if [[ ! -f $VERSION_FILE ]]
+    if [ ! -f $VERSION_FILE ]
     then
         rm -rf shared/gvsbuild/extract
         mkdir -p shared/gvsbuild/extract
 
-        if [[ ! -f $ZIP_FILE ]]
+        if [ ! -f $ZIP_FILE ]
         then
             curl -SL https://github.com/wingtk/gvsbuild/releases/download/{{ GVSBUILD_RELEASE }}/GTK4_Gvsbuild_{{ GVSBUILD_RELEASE }}_x64.zip --output $ZIP_FILE
         fi
