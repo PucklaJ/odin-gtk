@@ -58,14 +58,14 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
 	context = (cast(^runtime.Context)user_data)^
 	data := cast(^Data)context.user_ptr
 
-	window := gobj.type_cast(gtk.Window, gtk.application_window_new(app), gtk.window_get_type())
+	window := gobj.type_cast(gtk.Window, gtk.application_window_new(app), gtk.window_get_type)
 
 	css := gtk.css_provider_new()
 	gtk.css_provider_load_from_string(css, "window.background {background: unset;}")
 	display := gtk.gdk_display_get_default()
 	gtk.style_context_add_provider_for_display(
 		display,
-		gobj.type_cast(gtk.StyleProvider, css, gtk.style_provider_get_type()),
+		gobj.type_cast(gtk.StyleProvider, css, gtk.style_provider_get_type),
 		600,
 	)
 
@@ -76,11 +76,11 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
 	gtk_layer.set_anchor(window, .TOP, true)
 	gtk_layer.set_anchor(window, .BOTTOM, true)
 
-	area := gobj.type_cast(gtk.DrawingArea, gtk.drawing_area_new(), gtk.TYPE_DRAWING_AREA())
+	area := gobj.type_cast(gtk.DrawingArea, gtk.drawing_area_new(), gtk.TYPE_DRAWING_AREA)
 	gtk.drawing_area_set_draw_func(area, draw, user_data, nil)
 	gobj.signal_connect(area, "realize", init, user_data)
 
-	quit_btn := gobj.type_cast(gtk.Button, gtk.button_new_with_label("Quit"), gtk.TYPE_BUTTON())
+	quit_btn := gobj.type_cast(gtk.Button, gtk.button_new_with_label("Quit"), gtk.TYPE_BUTTON)
 	data.quit_btn = quit_btn
 	gobj.signal_connect(
 		quit_btn,
@@ -90,14 +90,14 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
 		},
 		window,
 	)
-	fixed := gobj.type_cast(gtk.Fixed, gtk.fixed_new(), gtk.TYPE_FIXED())
+	fixed := gobj.type_cast(gtk.Fixed, gtk.fixed_new(), gtk.TYPE_FIXED)
 	data.fixed = fixed
 	gtk.widget_set_hexpand(auto_cast fixed, true)
 	gtk.widget_set_vexpand(auto_cast fixed, true)
 	gtk.widget_set_halign(auto_cast fixed, .FILL)
 	gtk.widget_set_valign(auto_cast fixed, .FILL)
 
-	overlay := gobj.type_cast(gtk.Overlay, gtk.overlay_new(), gtk.TYPE_OVERLAY())
+	overlay := gobj.type_cast(gtk.Overlay, gtk.overlay_new(), gtk.TYPE_OVERLAY)
 	gtk.overlay_set_child(overlay, auto_cast area)
 	gtk.overlay_add_overlay(overlay, auto_cast fixed)
 
@@ -117,8 +117,8 @@ init :: proc "c" (area: ^gtk.DrawingArea, user_data: glib.pointer) {
 	glib.timeout_add(1, proc "c" (user_data: glib.pointer) -> glib.boolean {
 			area := gobj.type_cast(
 				gtk.DrawingArea,
-				cast(^gtk.DrawingArea)user_data,
-				gtk.TYPE_DRAWING_AREA(),
+				user_data,
+				gtk.TYPE_DRAWING_AREA,
 			)
 
 			gtk.widget_queue_draw(auto_cast area)

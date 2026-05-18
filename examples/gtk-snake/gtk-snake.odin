@@ -55,10 +55,12 @@ init :: proc "c" (area: ^gtk.DrawingArea, user_data: glib.pointer) {
 
     gobj.object_ref(area)
     glib.timeout_add(1, proc "c" (user_data: glib.pointer) -> glib.boolean {
+            if !gobj.type_is(user_data, gtk.TYPE_DRAWING_AREA) do return true
+
             area := gobj.type_cast(
                 gtk.DrawingArea,
-                cast(^gtk.DrawingArea)user_data,
-                gtk.TYPE_DRAWING_AREA(),
+                user_data,
+                gtk.TYPE_DRAWING_AREA,
             )
 
             if ctx.shutdown {
@@ -635,7 +637,7 @@ main :: proc() {
     gobj.signal_connect(app, "activate", activate)
 
     status := gio.application_run(
-        gobj.type_cast(gio.Application, app, gio.TYPE_APPLICATION()),
+        gobj.type_cast(gio.Application, app, gio.TYPE_APPLICATION),
         0,
         nil,
     )
@@ -647,7 +649,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     window := gobj.type_cast(
         gtk.Window,
         gtk.application_window_new(app),
-        gtk.TYPE_WINDOW(),
+        gtk.TYPE_WINDOW,
     )
 
     gtk.window_set_default_size(
@@ -675,7 +677,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     drawing_area := gobj.type_cast(
         gtk.DrawingArea,
         gtk.drawing_area_new(),
-        gtk.TYPE_DRAWING_AREA(),
+        gtk.TYPE_DRAWING_AREA,
     )
     gtk.drawing_area_set_draw_func(drawing_area, draw, nil, nil)
     gobj.signal_connect(drawing_area, "realize", init)

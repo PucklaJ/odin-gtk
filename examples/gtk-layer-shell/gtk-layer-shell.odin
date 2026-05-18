@@ -41,7 +41,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     window := gobj.type_cast(
         gtk.Window,
         gtk.application_window_new(app),
-        gtk.window_get_type(),
+        gtk.window_get_type,
     )
 
     css := gtk.css_provider_new()
@@ -52,7 +52,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     display := gtk.gdk_display_get_default()
     gtk.style_context_add_provider_for_display(
         display,
-        gobj.type_cast(gtk.StyleProvider, css, gtk.style_provider_get_type()),
+        gobj.type_cast(gtk.StyleProvider, css, gtk.style_provider_get_type),
         600,
     )
 
@@ -65,7 +65,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
 
     label := gtk.label_new("")
     gtk.label_set_markup(
-        gobj.type_cast(gtk.Label, label, gtk.label_get_type()),
+        gobj.type_cast(gtk.Label, label, gtk.label_get_type),
         `<span font_desc="100.0" color="white">
 GTK Layer
 Shell example!
@@ -83,7 +83,7 @@ Shell example!
     box := gobj.type_cast(
         gtk.Box,
         gtk.box_new(.VERTICAL, 10),
-        gtk.box_get_type(),
+        gtk.box_get_type,
     )
     gtk.box_append(box, label)
     gtk.box_append(box, button)
@@ -95,8 +95,8 @@ Shell example!
 button_clicked :: proc "c" (button: ^gtk.Button, user_data: glib.pointer) {
     window := gobj.type_cast(
         gtk.Window,
-        cast(^gtk.Widget)user_data,
-        gtk.window_get_type(),
+        user_data,
+        gtk.window_get_type,
     )
     gtk.window_close(window)
 }

@@ -53,14 +53,17 @@ signal_connect_swapped :: #force_inline proc "c" (
 
 type_cast :: #force_inline proc "contextless" (
     $T: typeid,
-    instance: ^$Ptr,
-    g_type: Type,
-) -> ^T {
+    instance: $Ptr,
+    g_type: $TypeProc,
+) -> ^T where intrinsics.type_is_pointer(Ptr),
+    intrinsics.type_is_proc(TypeProc) &&
+    intrinsics.type_proc_return_count(TypeProc) == 1 &&
+    intrinsics.type_proc_return_type(TypeProc, 0) == Type {
     when #config(GTK_SAFE_CAST, true) {
         return(
             cast(^T)type_check_instance_cast(
                 cast(^TypeInstance)instance,
-                g_type,
+                g_type(),
             ) \
         )
     } else {
@@ -68,3 +71,12 @@ type_cast :: #force_inline proc "contextless" (
     }
 }
 
+type_is :: #force_inline proc "contextless" (
+    instance: $Ptr,
+    g_type: $TypeProc,
+) -> glib.boolean where intrinsics.type_is_pointer(Ptr),
+    intrinsics.type_is_proc(TypeProc) &&
+    intrinsics.type_proc_return_count(TypeProc) == 1 &&
+    intrinsics.type_proc_return_type(TypeProc, 0) == Type {
+    return type_check_instance_is_a(cast(^TypeInstance)instance, g_type())
+}

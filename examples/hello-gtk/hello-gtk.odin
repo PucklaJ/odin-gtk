@@ -15,7 +15,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     window := gobj.type_cast(
         gtk.Window,
         gtk.application_window_new(app),
-        gtk.TYPE_WINDOW(),
+        gtk.TYPE_WINDOW,
     )
     gtk.window_set_title(window, "Window")
     gtk.window_set_default_size(window, 640, 480)
@@ -50,7 +50,7 @@ main :: proc() {
     defer for arg in argv do delete(arg)
 
     status := gio.application_run(
-        gobj.type_cast(gio.Application, app, gio.TYPE_APPLICATION()),
+        gobj.type_cast(gio.Application, app, gio.TYPE_APPLICATION),
         i32(len(argv)),
         raw_data(argv),
     )

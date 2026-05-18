@@ -25,7 +25,7 @@ test_log :: proc(t: ^ts.T) {
     )
 
     gio.application_run(
-        gobj.type_cast(gio.Application, app, gio.TYPE_APPLICATION()),
+        gobj.type_cast(gio.Application, app, gio.TYPE_APPLICATION),
         0,
         nil,
     )
