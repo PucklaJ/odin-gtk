@@ -118,12 +118,15 @@ from:
   ignore:
     functions:
       - 'atexit'
+      - '*autoptr*'
+      - '*auto_cleanup*'
     types:
       - _GHookList
       - _GIOChannel
       - _GScannerConfig
       - _GIConv
       - va_list
+      - '*autoptr'
     constants:
       - '*GNUC*'
       - 'G_C_STD_VERSION'

@@ -45,6 +45,8 @@ from:
     - "../../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*"
     - "../../shared/gvsbuild/extract/lib/glib-2.0/include/*"
   ignore:
+    types:
+      - '*autoptr*'
     constants:
       - 'G_STATIC_*'
       - '_GOBJECT_*'
@@ -58,6 +60,8 @@ from:
       - '_g_type_*'
     functions:
       - 'g_object_set'
+      - '*autoptr*'
+      - '*auto_cleanup*'
   overwrite:
     types:
       # !!!!This is 64-Bit only!!!!!

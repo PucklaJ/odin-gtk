@@ -1700,10 +1700,6 @@ DebugControllerInterface :: struct {
     g_iface: gobj.TypeInterface,
 }
 
-DebugController_autoptr :: ^DebugController
-DebugController_listautoptr :: ^glib.List
-DebugController_slistautoptr :: ^glib.SList
-DebugController_queueautoptr :: ^glib.Queue
 DebugControllerDBus :: struct {
     parent_instance: gobj.Object,
 }
@@ -1715,14 +1711,6 @@ DebugControllerDBusClass :: struct {
     padding: [12]glib.pointer,
 }
 
-DebugControllerDBus_autoptr :: ^DebugControllerDBus
-DebugControllerDBus_listautoptr :: ^glib.List
-DebugControllerDBus_slistautoptr :: ^glib.SList
-DebugControllerDBus_queueautoptr :: ^glib.Queue
-DebugControllerDBusClass_autoptr :: ^DebugControllerDBusClass
-DebugControllerDBusClass_listautoptr :: ^glib.List
-DebugControllerDBusClass_slistautoptr :: ^glib.SList
-DebugControllerDBusClass_queueautoptr :: ^glib.Queue
 changed_func_ptr_anon_197 :: #type proc "c" (drive: ^Drive)
 disconnected_func_ptr_anon_198 :: #type proc "c" (drive: ^Drive)
 eject_button_func_ptr_anon_199 :: #type proc "c" (drive: ^Drive)
@@ -2305,36 +2293,16 @@ SocketControlMessageClass :: struct {
     _g_reserved5: _g_reserved5_func_ptr_anon_439,
 }
 
-SocketControlMessage_autoptr :: ^SocketControlMessage
-SocketControlMessage_listautoptr :: ^glib.List
-SocketControlMessage_slistautoptr :: ^glib.SList
-SocketControlMessage_queueautoptr :: ^glib.Queue
 IPTosMessage :: struct #packed {}
 
 IPTosMessageClass :: struct {
     parent_class: SocketControlMessageClass,
 }
-IPTosMessage_autoptr :: ^IPTosMessage
-IPTosMessage_listautoptr :: ^glib.List
-IPTosMessage_slistautoptr :: ^glib.SList
-IPTosMessage_queueautoptr :: ^glib.Queue
-IPTosMessageClass_autoptr :: ^IPTosMessageClass
-IPTosMessageClass_listautoptr :: ^glib.List
-IPTosMessageClass_slistautoptr :: ^glib.SList
-IPTosMessageClass_queueautoptr :: ^glib.Queue
 IPv6TclassMessage :: struct #packed {}
 
 IPv6TclassMessageClass :: struct {
     parent_class: SocketControlMessageClass,
 }
-IPv6TclassMessage_autoptr :: ^IPv6TclassMessage
-IPv6TclassMessage_listautoptr :: ^glib.List
-IPv6TclassMessage_slistautoptr :: ^glib.SList
-IPv6TclassMessage_queueautoptr :: ^glib.Queue
-IPv6TclassMessageClass_autoptr :: ^IPv6TclassMessageClass
-IPv6TclassMessageClass_listautoptr :: ^glib.List
-IPv6TclassMessageClass_slistautoptr :: ^glib.SList
-IPv6TclassMessageClass_queueautoptr :: ^glib.Queue
 ListModel :: struct #packed {}
 
 et_item_type_func_ptr_anon_440 :: #type proc "c" (list: ^ListModel) -> gobj.Type
@@ -2347,23 +2315,11 @@ ListModelInterface :: struct {
     get_item: et_item_func_ptr_anon_442,
 }
 
-ListModel_autoptr :: ^ListModel
-ListModel_listautoptr :: ^glib.List
-ListModel_slistautoptr :: ^glib.SList
-ListModel_queueautoptr :: ^glib.Queue
 ListStore :: struct #packed {}
 
 ListStoreClass :: struct {
     parent_class: gobj.ObjectClass,
 }
-ListStore_autoptr :: ^ListStore
-ListStore_listautoptr :: ^glib.List
-ListStore_slistautoptr :: ^glib.SList
-ListStore_queueautoptr :: ^glib.Queue
-ListStoreClass_autoptr :: ^ListStoreClass
-ListStoreClass_listautoptr :: ^glib.List
-ListStoreClass_slistautoptr :: ^glib.SList
-ListStoreClass_queueautoptr :: ^glib.Queue
 load_func_ptr_anon_443 :: #type proc "c" (icon: ^LoadableIcon, size_p: i32, type: ^cstring, cancellable: ^Cancellable, error: ^^glib.Error) -> ^InputStream
 load_async_func_ptr_anon_444 :: #type proc "c" (icon: ^LoadableIcon, size_p: i32, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
 load_finish_func_ptr_anon_445 :: #type proc "c" (icon: ^LoadableIcon, res: [^]AsyncResult, type: ^cstring, error: ^^glib.Error) -> ^InputStream
@@ -2396,10 +2352,6 @@ MemoryMonitorInterface :: struct {
     low_memory_warning: low_memory_warning_func_ptr_anon_451,
 }
 
-MemoryMonitor_autoptr :: ^MemoryMonitor
-MemoryMonitor_listautoptr :: ^glib.List
-MemoryMonitor_slistautoptr :: ^glib.SList
-MemoryMonitor_queueautoptr :: ^glib.Queue
 _g_reserved1_func_ptr_anon_452 :: #type proc "c" ()
 _g_reserved2_func_ptr_anon_453 :: #type proc "c" ()
 _g_reserved3_func_ptr_anon_454 :: #type proc "c" ()
@@ -2694,10 +2646,6 @@ PowerProfileMonitorInterface :: struct {
     g_iface: gobj.TypeInterface,
 }
 
-PowerProfileMonitor_autoptr :: ^PowerProfileMonitor
-PowerProfileMonitor_listautoptr :: ^glib.List
-PowerProfileMonitor_slistautoptr :: ^glib.SList
-PowerProfileMonitor_queueautoptr :: ^glib.Queue
 connect_func_ptr_anon_554 :: #type proc "c" (proxy: ^Proxy, connection: ^IOStream, proxy_address: [^]ProxyAddress, cancellable: ^Cancellable, error: ^^glib.Error) -> ^IOStream
 connect_async_func_ptr_anon_555 :: #type proc "c" (proxy: ^Proxy, connection: ^IOStream, proxy_address: [^]ProxyAddress, cancellable: ^Cancellable, callback: AsyncReadyCallback, user_data: glib.pointer)
 connect_finish_func_ptr_anon_556 :: #type proc "c" (proxy: ^Proxy, result: ^AsyncResult, error: ^^glib.Error) -> ^IOStream
@@ -3134,10 +3082,6 @@ UnixConnectionClass :: struct {
     parent_class: SocketConnectionClass,
 }
 
-UnixConnection_autoptr :: ^UnixConnection
-UnixConnection_listautoptr :: ^glib.List
-UnixConnection_slistautoptr :: ^glib.SList
-UnixConnection_queueautoptr :: ^glib.Queue
 _g_reserved1_func_ptr_anon_687 :: #type proc "c" ()
 _g_reserved2_func_ptr_anon_688 :: #type proc "c" ()
 UnixCredentialsMessageClass :: struct {
@@ -3146,14 +3090,6 @@ UnixCredentialsMessageClass :: struct {
     _g_reserved2: _g_reserved2_func_ptr_anon_688,
 }
 
-UnixCredentialsMessage_autoptr :: ^UnixCredentialsMessage
-UnixCredentialsMessage_listautoptr :: ^glib.List
-UnixCredentialsMessage_slistautoptr :: ^glib.SList
-UnixCredentialsMessage_queueautoptr :: ^glib.Queue
-UnixFDList_autoptr :: ^UnixFDList
-UnixFDList_listautoptr :: ^glib.List
-UnixFDList_slistautoptr :: ^glib.SList
-UnixFDList_queueautoptr :: ^glib.Queue
 _g_reserved1_func_ptr_anon_689 :: #type proc "c" ()
 _g_reserved2_func_ptr_anon_690 :: #type proc "c" ()
 _g_reserved3_func_ptr_anon_691 :: #type proc "c" ()
@@ -3179,10 +3115,6 @@ UnixSocketAddressClass :: struct {
     parent_class: SocketAddressClass,
 }
 
-UnixSocketAddress_autoptr :: ^UnixSocketAddress
-UnixSocketAddress_listautoptr :: ^glib.List
-UnixSocketAddress_slistautoptr :: ^glib.SList
-UnixSocketAddress_queueautoptr :: ^glib.Queue
 VfsFileLookupFunc :: #type proc "c" (vfs: [^]Vfs, identifier: cstring, user_data: glib.pointer) -> ^File
 is_active_func_ptr_anon_694 :: #type proc "c" (vfs: [^]Vfs) -> glib.boolean
 et_file_for_path_func_ptr_anon_695 :: #type proc "c" (vfs: [^]Vfs, path: cstring) -> ^File
@@ -3276,522 +3208,6 @@ ZlibDecompressorClass :: struct {
     parent_class: gobj.ObjectClass,
 }
 
-Action_autoptr :: ^Action
-Action_listautoptr :: ^glib.List
-Action_slistautoptr :: ^glib.SList
-Action_queueautoptr :: ^glib.Queue
-ActionMap_autoptr :: ^ActionMap
-ActionMap_listautoptr :: ^glib.List
-ActionMap_slistautoptr :: ^glib.SList
-ActionMap_queueautoptr :: ^glib.Queue
-AppInfo_autoptr :: ^AppInfo
-AppInfo_listautoptr :: ^glib.List
-AppInfo_slistautoptr :: ^glib.SList
-AppInfo_queueautoptr :: ^glib.Queue
-AppLaunchContext_autoptr :: ^AppLaunchContext
-AppLaunchContext_listautoptr :: ^glib.List
-AppLaunchContext_slistautoptr :: ^glib.SList
-AppLaunchContext_queueautoptr :: ^glib.Queue
-AppInfoMonitor_autoptr :: ^AppInfoMonitor
-AppInfoMonitor_listautoptr :: ^glib.List
-AppInfoMonitor_slistautoptr :: ^glib.SList
-AppInfoMonitor_queueautoptr :: ^glib.Queue
-ApplicationCommandLine_autoptr :: ^ApplicationCommandLine
-ApplicationCommandLine_listautoptr :: ^glib.List
-ApplicationCommandLine_slistautoptr :: ^glib.SList
-ApplicationCommandLine_queueautoptr :: ^glib.Queue
-Application_autoptr :: ^Application
-Application_listautoptr :: ^glib.List
-Application_slistautoptr :: ^glib.SList
-Application_queueautoptr :: ^glib.Queue
-AsyncInitable_autoptr :: ^AsyncInitable
-AsyncInitable_listautoptr :: ^glib.List
-AsyncInitable_slistautoptr :: ^glib.SList
-AsyncInitable_queueautoptr :: ^glib.Queue
-AsyncResult_autoptr :: ^AsyncResult
-AsyncResult_listautoptr :: ^glib.List
-AsyncResult_slistautoptr :: ^glib.SList
-AsyncResult_queueautoptr :: ^glib.Queue
-BufferedInputStream_autoptr :: ^BufferedInputStream
-BufferedInputStream_listautoptr :: ^glib.List
-BufferedInputStream_slistautoptr :: ^glib.SList
-BufferedInputStream_queueautoptr :: ^glib.Queue
-BufferedOutputStream_autoptr :: ^BufferedOutputStream
-BufferedOutputStream_listautoptr :: ^glib.List
-BufferedOutputStream_slistautoptr :: ^glib.SList
-BufferedOutputStream_queueautoptr :: ^glib.Queue
-BytesIcon_autoptr :: ^BytesIcon
-BytesIcon_listautoptr :: ^glib.List
-BytesIcon_slistautoptr :: ^glib.SList
-BytesIcon_queueautoptr :: ^glib.Queue
-Cancellable_autoptr :: ^Cancellable
-Cancellable_listautoptr :: ^glib.List
-Cancellable_slistautoptr :: ^glib.SList
-Cancellable_queueautoptr :: ^glib.Queue
-CharsetConverter_autoptr :: ^CharsetConverter
-CharsetConverter_listautoptr :: ^glib.List
-CharsetConverter_slistautoptr :: ^glib.SList
-CharsetConverter_queueautoptr :: ^glib.Queue
-Converter_autoptr :: ^Converter
-Converter_listautoptr :: ^glib.List
-Converter_slistautoptr :: ^glib.SList
-Converter_queueautoptr :: ^glib.Queue
-ConverterInputStream_autoptr :: ^ConverterInputStream
-ConverterInputStream_listautoptr :: ^glib.List
-ConverterInputStream_slistautoptr :: ^glib.SList
-ConverterInputStream_queueautoptr :: ^glib.Queue
-ConverterOutputStream_autoptr :: ^ConverterOutputStream
-ConverterOutputStream_listautoptr :: ^glib.List
-ConverterOutputStream_slistautoptr :: ^glib.SList
-ConverterOutputStream_queueautoptr :: ^glib.Queue
-Credentials_autoptr :: ^Credentials
-Credentials_listautoptr :: ^glib.List
-Credentials_slistautoptr :: ^glib.SList
-Credentials_queueautoptr :: ^glib.Queue
-DatagramBased_autoptr :: ^DatagramBased
-DatagramBased_listautoptr :: ^glib.List
-DatagramBased_slistautoptr :: ^glib.SList
-DatagramBased_queueautoptr :: ^glib.Queue
-DataInputStream_autoptr :: ^DataInputStream
-DataInputStream_listautoptr :: ^glib.List
-DataInputStream_slistautoptr :: ^glib.SList
-DataInputStream_queueautoptr :: ^glib.Queue
-DataOutputStream_autoptr :: ^DataOutputStream
-DataOutputStream_listautoptr :: ^glib.List
-DataOutputStream_slistautoptr :: ^glib.SList
-DataOutputStream_queueautoptr :: ^glib.Queue
-DBusActionGroup_autoptr :: ^DBusActionGroup
-DBusActionGroup_listautoptr :: ^glib.List
-DBusActionGroup_slistautoptr :: ^glib.SList
-DBusActionGroup_queueautoptr :: ^glib.Queue
-DBusAuthObserver_autoptr :: ^DBusAuthObserver
-DBusAuthObserver_listautoptr :: ^glib.List
-DBusAuthObserver_slistautoptr :: ^glib.SList
-DBusAuthObserver_queueautoptr :: ^glib.Queue
-DBusConnection_autoptr :: ^DBusConnection
-DBusConnection_listautoptr :: ^glib.List
-DBusConnection_slistautoptr :: ^glib.SList
-DBusConnection_queueautoptr :: ^glib.Queue
-DBusInterface_autoptr :: ^DBusInterface
-DBusInterface_listautoptr :: ^glib.List
-DBusInterface_slistautoptr :: ^glib.SList
-DBusInterface_queueautoptr :: ^glib.Queue
-DBusInterfaceSkeleton_autoptr :: ^DBusInterfaceSkeleton
-DBusInterfaceSkeleton_listautoptr :: ^glib.List
-DBusInterfaceSkeleton_slistautoptr :: ^glib.SList
-DBusInterfaceSkeleton_queueautoptr :: ^glib.Queue
-DBusMenuModel_autoptr :: ^DBusMenuModel
-DBusMenuModel_listautoptr :: ^glib.List
-DBusMenuModel_slistautoptr :: ^glib.SList
-DBusMenuModel_queueautoptr :: ^glib.Queue
-DBusMessage_autoptr :: ^DBusMessage
-DBusMessage_listautoptr :: ^glib.List
-DBusMessage_slistautoptr :: ^glib.SList
-DBusMessage_queueautoptr :: ^glib.Queue
-DBusMethodInvocation_autoptr :: ^DBusMethodInvocation
-DBusMethodInvocation_listautoptr :: ^glib.List
-DBusMethodInvocation_slistautoptr :: ^glib.SList
-DBusMethodInvocation_queueautoptr :: ^glib.Queue
-DBusNodeInfo_autoptr :: ^DBusNodeInfo
-DBusNodeInfo_listautoptr :: ^glib.List
-DBusNodeInfo_slistautoptr :: ^glib.SList
-DBusNodeInfo_queueautoptr :: ^glib.Queue
-DBusObject_autoptr :: ^DBusObject
-DBusObject_listautoptr :: ^glib.List
-DBusObject_slistautoptr :: ^glib.SList
-DBusObject_queueautoptr :: ^glib.Queue
-DBusObjectManagerClient_autoptr :: ^DBusObjectManagerClient
-DBusObjectManagerClient_listautoptr :: ^glib.List
-DBusObjectManagerClient_slistautoptr :: ^glib.SList
-DBusObjectManagerClient_queueautoptr :: ^glib.Queue
-DBusObjectManager_autoptr :: ^DBusObjectManager
-DBusObjectManager_listautoptr :: ^glib.List
-DBusObjectManager_slistautoptr :: ^glib.SList
-DBusObjectManager_queueautoptr :: ^glib.Queue
-DBusObjectManagerServer_autoptr :: ^DBusObjectManagerServer
-DBusObjectManagerServer_listautoptr :: ^glib.List
-DBusObjectManagerServer_slistautoptr :: ^glib.SList
-DBusObjectManagerServer_queueautoptr :: ^glib.Queue
-DBusObjectProxy_autoptr :: ^DBusObjectProxy
-DBusObjectProxy_listautoptr :: ^glib.List
-DBusObjectProxy_slistautoptr :: ^glib.SList
-DBusObjectProxy_queueautoptr :: ^glib.Queue
-DBusObjectSkeleton_autoptr :: ^DBusObjectSkeleton
-DBusObjectSkeleton_listautoptr :: ^glib.List
-DBusObjectSkeleton_slistautoptr :: ^glib.SList
-DBusObjectSkeleton_queueautoptr :: ^glib.Queue
-DBusProxy_autoptr :: ^DBusProxy
-DBusProxy_listautoptr :: ^glib.List
-DBusProxy_slistautoptr :: ^glib.SList
-DBusProxy_queueautoptr :: ^glib.Queue
-DBusServer_autoptr :: ^DBusServer
-DBusServer_listautoptr :: ^glib.List
-DBusServer_slistautoptr :: ^glib.SList
-DBusServer_queueautoptr :: ^glib.Queue
-Drive_autoptr :: ^Drive
-Drive_listautoptr :: ^glib.List
-Drive_slistautoptr :: ^glib.SList
-Drive_queueautoptr :: ^glib.Queue
-EmblemedIcon_autoptr :: ^EmblemedIcon
-EmblemedIcon_listautoptr :: ^glib.List
-EmblemedIcon_slistautoptr :: ^glib.SList
-EmblemedIcon_queueautoptr :: ^glib.Queue
-Emblem_autoptr :: ^Emblem
-Emblem_listautoptr :: ^glib.List
-Emblem_slistautoptr :: ^glib.SList
-Emblem_queueautoptr :: ^glib.Queue
-FileEnumerator_autoptr :: ^FileEnumerator
-FileEnumerator_listautoptr :: ^glib.List
-FileEnumerator_slistautoptr :: ^glib.SList
-FileEnumerator_queueautoptr :: ^glib.Queue
-File_autoptr :: ^File
-File_listautoptr :: ^glib.List
-File_slistautoptr :: ^glib.SList
-File_queueautoptr :: ^glib.Queue
-FileAttributeInfoList_autoptr :: ^FileAttributeInfoList
-FileAttributeInfoList_listautoptr :: ^glib.List
-FileAttributeInfoList_slistautoptr :: ^glib.SList
-FileAttributeInfoList_queueautoptr :: ^glib.Queue
-FileIcon_autoptr :: ^FileIcon
-FileIcon_listautoptr :: ^glib.List
-FileIcon_slistautoptr :: ^glib.SList
-FileIcon_queueautoptr :: ^glib.Queue
-FileInfo_autoptr :: ^FileInfo
-FileInfo_listautoptr :: ^glib.List
-FileInfo_slistautoptr :: ^glib.SList
-FileInfo_queueautoptr :: ^glib.Queue
-FileInputStream_autoptr :: ^FileInputStream
-FileInputStream_listautoptr :: ^glib.List
-FileInputStream_slistautoptr :: ^glib.SList
-FileInputStream_queueautoptr :: ^glib.Queue
-FileIOStream_autoptr :: ^FileIOStream
-FileIOStream_listautoptr :: ^glib.List
-FileIOStream_slistautoptr :: ^glib.SList
-FileIOStream_queueautoptr :: ^glib.Queue
-FileMonitor_autoptr :: ^FileMonitor
-FileMonitor_listautoptr :: ^glib.List
-FileMonitor_slistautoptr :: ^glib.SList
-FileMonitor_queueautoptr :: ^glib.Queue
-FilenameCompleter_autoptr :: ^FilenameCompleter
-FilenameCompleter_listautoptr :: ^glib.List
-FilenameCompleter_slistautoptr :: ^glib.SList
-FilenameCompleter_queueautoptr :: ^glib.Queue
-FileOutputStream_autoptr :: ^FileOutputStream
-FileOutputStream_listautoptr :: ^glib.List
-FileOutputStream_slistautoptr :: ^glib.SList
-FileOutputStream_queueautoptr :: ^glib.Queue
-FilterInputStream_autoptr :: ^FilterInputStream
-FilterInputStream_listautoptr :: ^glib.List
-FilterInputStream_slistautoptr :: ^glib.SList
-FilterInputStream_queueautoptr :: ^glib.Queue
-FilterOutputStream_autoptr :: ^FilterOutputStream
-FilterOutputStream_listautoptr :: ^glib.List
-FilterOutputStream_slistautoptr :: ^glib.SList
-FilterOutputStream_queueautoptr :: ^glib.Queue
-Icon_autoptr :: ^Icon
-Icon_listautoptr :: ^glib.List
-Icon_slistautoptr :: ^glib.SList
-Icon_queueautoptr :: ^glib.Queue
-InetAddress_autoptr :: ^InetAddress
-InetAddress_listautoptr :: ^glib.List
-InetAddress_slistautoptr :: ^glib.SList
-InetAddress_queueautoptr :: ^glib.Queue
-InetAddressMask_autoptr :: ^InetAddressMask
-InetAddressMask_listautoptr :: ^glib.List
-InetAddressMask_slistautoptr :: ^glib.SList
-InetAddressMask_queueautoptr :: ^glib.Queue
-InetSocketAddress_autoptr :: ^InetSocketAddress
-InetSocketAddress_listautoptr :: ^glib.List
-InetSocketAddress_slistautoptr :: ^glib.SList
-InetSocketAddress_queueautoptr :: ^glib.Queue
-Initable_autoptr :: ^Initable
-Initable_listautoptr :: ^glib.List
-Initable_slistautoptr :: ^glib.SList
-Initable_queueautoptr :: ^glib.Queue
-InputStream_autoptr :: ^InputStream
-InputStream_listautoptr :: ^glib.List
-InputStream_slistautoptr :: ^glib.SList
-InputStream_queueautoptr :: ^glib.Queue
-IOModule_autoptr :: ^IOModule
-IOModule_listautoptr :: ^glib.List
-IOModule_slistautoptr :: ^glib.SList
-IOModule_queueautoptr :: ^glib.Queue
-IOStream_autoptr :: ^IOStream
-IOStream_listautoptr :: ^glib.List
-IOStream_slistautoptr :: ^glib.SList
-IOStream_queueautoptr :: ^glib.Queue
-LoadableIcon_autoptr :: ^LoadableIcon
-LoadableIcon_listautoptr :: ^glib.List
-LoadableIcon_slistautoptr :: ^glib.SList
-LoadableIcon_queueautoptr :: ^glib.Queue
-MemoryInputStream_autoptr :: ^MemoryInputStream
-MemoryInputStream_listautoptr :: ^glib.List
-MemoryInputStream_slistautoptr :: ^glib.SList
-MemoryInputStream_queueautoptr :: ^glib.Queue
-MemoryOutputStream_autoptr :: ^MemoryOutputStream
-MemoryOutputStream_listautoptr :: ^glib.List
-MemoryOutputStream_slistautoptr :: ^glib.SList
-MemoryOutputStream_queueautoptr :: ^glib.Queue
-Menu_autoptr :: ^Menu
-Menu_listautoptr :: ^glib.List
-Menu_slistautoptr :: ^glib.SList
-Menu_queueautoptr :: ^glib.Queue
-MenuItem_autoptr :: ^MenuItem
-MenuItem_listautoptr :: ^glib.List
-MenuItem_slistautoptr :: ^glib.SList
-MenuItem_queueautoptr :: ^glib.Queue
-MenuModel_autoptr :: ^MenuModel
-MenuModel_listautoptr :: ^glib.List
-MenuModel_slistautoptr :: ^glib.SList
-MenuModel_queueautoptr :: ^glib.Queue
-MenuAttributeIter_autoptr :: ^MenuAttributeIter
-MenuAttributeIter_listautoptr :: ^glib.List
-MenuAttributeIter_slistautoptr :: ^glib.SList
-MenuAttributeIter_queueautoptr :: ^glib.Queue
-MenuLinkIter_autoptr :: ^MenuLinkIter
-MenuLinkIter_listautoptr :: ^glib.List
-MenuLinkIter_slistautoptr :: ^glib.SList
-MenuLinkIter_queueautoptr :: ^glib.Queue
-Mount_autoptr :: ^Mount
-Mount_listautoptr :: ^glib.List
-Mount_slistautoptr :: ^glib.SList
-Mount_queueautoptr :: ^glib.Queue
-MountOperation_autoptr :: ^MountOperation
-MountOperation_listautoptr :: ^glib.List
-MountOperation_slistautoptr :: ^glib.SList
-MountOperation_queueautoptr :: ^glib.Queue
-NativeVolumeMonitor_autoptr :: ^NativeVolumeMonitor
-NativeVolumeMonitor_listautoptr :: ^glib.List
-NativeVolumeMonitor_slistautoptr :: ^glib.SList
-NativeVolumeMonitor_queueautoptr :: ^glib.Queue
-NetworkAddress_autoptr :: ^NetworkAddress
-NetworkAddress_listautoptr :: ^glib.List
-NetworkAddress_slistautoptr :: ^glib.SList
-NetworkAddress_queueautoptr :: ^glib.Queue
-NetworkMonitor_autoptr :: ^NetworkMonitor
-NetworkMonitor_listautoptr :: ^glib.List
-NetworkMonitor_slistautoptr :: ^glib.SList
-NetworkMonitor_queueautoptr :: ^glib.Queue
-NetworkService_autoptr :: ^NetworkService
-NetworkService_listautoptr :: ^glib.List
-NetworkService_slistautoptr :: ^glib.SList
-NetworkService_queueautoptr :: ^glib.Queue
-Notification_autoptr :: ^Notification
-Notification_listautoptr :: ^glib.List
-Notification_slistautoptr :: ^glib.SList
-Notification_queueautoptr :: ^glib.Queue
-OutputStream_autoptr :: ^OutputStream
-OutputStream_listautoptr :: ^glib.List
-OutputStream_slistautoptr :: ^glib.SList
-OutputStream_queueautoptr :: ^glib.Queue
-Permission_autoptr :: ^Permission
-Permission_listautoptr :: ^glib.List
-Permission_slistautoptr :: ^glib.SList
-Permission_queueautoptr :: ^glib.Queue
-PollableInputStream_autoptr :: ^PollableInputStream
-PollableInputStream_listautoptr :: ^glib.List
-PollableInputStream_slistautoptr :: ^glib.SList
-PollableInputStream_queueautoptr :: ^glib.Queue
-PollableOutputStream_autoptr :: ^PollableOutputStream
-PollableOutputStream_listautoptr :: ^glib.List
-PollableOutputStream_slistautoptr :: ^glib.SList
-PollableOutputStream_queueautoptr :: ^glib.Queue
-PropertyAction_autoptr :: ^PropertyAction
-PropertyAction_listautoptr :: ^glib.List
-PropertyAction_slistautoptr :: ^glib.SList
-PropertyAction_queueautoptr :: ^glib.Queue
-ProxyAddressEnumerator_autoptr :: ^ProxyAddressEnumerator
-ProxyAddressEnumerator_listautoptr :: ^glib.List
-ProxyAddressEnumerator_slistautoptr :: ^glib.SList
-ProxyAddressEnumerator_queueautoptr :: ^glib.Queue
-ProxyAddress_autoptr :: ^ProxyAddress
-ProxyAddress_listautoptr :: ^glib.List
-ProxyAddress_slistautoptr :: ^glib.SList
-ProxyAddress_queueautoptr :: ^glib.Queue
-Proxy_autoptr :: ^Proxy
-Proxy_listautoptr :: ^glib.List
-Proxy_slistautoptr :: ^glib.SList
-Proxy_queueautoptr :: ^glib.Queue
-ProxyResolver_autoptr :: ^ProxyResolver
-ProxyResolver_listautoptr :: ^glib.List
-ProxyResolver_slistautoptr :: ^glib.SList
-ProxyResolver_queueautoptr :: ^glib.Queue
-RemoteActionGroup_autoptr :: ^RemoteActionGroup
-RemoteActionGroup_listautoptr :: ^glib.List
-RemoteActionGroup_slistautoptr :: ^glib.SList
-RemoteActionGroup_queueautoptr :: ^glib.Queue
-Resolver_autoptr :: ^Resolver
-Resolver_listautoptr :: ^glib.List
-Resolver_slistautoptr :: ^glib.SList
-Resolver_queueautoptr :: ^glib.Queue
-Resource_autoptr :: ^Resource
-Resource_listautoptr :: ^glib.List
-Resource_slistautoptr :: ^glib.SList
-Resource_queueautoptr :: ^glib.Queue
-Seekable_autoptr :: ^Seekable
-Seekable_listautoptr :: ^glib.List
-Seekable_slistautoptr :: ^glib.SList
-Seekable_queueautoptr :: ^glib.Queue
-SettingsBackend_autoptr :: ^SettingsBackend
-SettingsBackend_listautoptr :: ^glib.List
-SettingsBackend_slistautoptr :: ^glib.SList
-SettingsBackend_queueautoptr :: ^glib.Queue
-SettingsSchema_autoptr :: ^SettingsSchema
-SettingsSchema_listautoptr :: ^glib.List
-SettingsSchema_slistautoptr :: ^glib.SList
-SettingsSchema_queueautoptr :: ^glib.Queue
-SettingsSchemaKey_autoptr :: ^SettingsSchemaKey
-SettingsSchemaKey_listautoptr :: ^glib.List
-SettingsSchemaKey_slistautoptr :: ^glib.SList
-SettingsSchemaKey_queueautoptr :: ^glib.Queue
-SettingsSchemaSource_autoptr :: ^SettingsSchemaSource
-SettingsSchemaSource_listautoptr :: ^glib.List
-SettingsSchemaSource_slistautoptr :: ^glib.SList
-SettingsSchemaSource_queueautoptr :: ^glib.Queue
-Settings_autoptr :: ^Settings
-Settings_listautoptr :: ^glib.List
-Settings_slistautoptr :: ^glib.SList
-Settings_queueautoptr :: ^glib.Queue
-SimpleActionGroup_autoptr :: ^SimpleActionGroup
-SimpleActionGroup_listautoptr :: ^glib.List
-SimpleActionGroup_slistautoptr :: ^glib.SList
-SimpleActionGroup_queueautoptr :: ^glib.Queue
-SimpleAction_autoptr :: ^SimpleAction
-SimpleAction_listautoptr :: ^glib.List
-SimpleAction_slistautoptr :: ^glib.SList
-SimpleAction_queueautoptr :: ^glib.Queue
-SimpleAsyncResult_autoptr :: ^SimpleAsyncResult
-SimpleAsyncResult_listautoptr :: ^glib.List
-SimpleAsyncResult_slistautoptr :: ^glib.SList
-SimpleAsyncResult_queueautoptr :: ^glib.Queue
-SimplePermission_autoptr :: ^SimplePermission
-SimplePermission_listautoptr :: ^glib.List
-SimplePermission_slistautoptr :: ^glib.SList
-SimplePermission_queueautoptr :: ^glib.Queue
-SimpleProxyResolver_autoptr :: ^SimpleProxyResolver
-SimpleProxyResolver_listautoptr :: ^glib.List
-SimpleProxyResolver_slistautoptr :: ^glib.SList
-SimpleProxyResolver_queueautoptr :: ^glib.Queue
-SocketAddressEnumerator_autoptr :: ^SocketAddressEnumerator
-SocketAddressEnumerator_listautoptr :: ^glib.List
-SocketAddressEnumerator_slistautoptr :: ^glib.SList
-SocketAddressEnumerator_queueautoptr :: ^glib.Queue
-SocketAddress_autoptr :: ^SocketAddress
-SocketAddress_listautoptr :: ^glib.List
-SocketAddress_slistautoptr :: ^glib.SList
-SocketAddress_queueautoptr :: ^glib.Queue
-SocketClient_autoptr :: ^SocketClient
-SocketClient_listautoptr :: ^glib.List
-SocketClient_slistautoptr :: ^glib.SList
-SocketClient_queueautoptr :: ^glib.Queue
-SocketConnectable_autoptr :: ^SocketConnectable
-SocketConnectable_listautoptr :: ^glib.List
-SocketConnectable_slistautoptr :: ^glib.SList
-SocketConnectable_queueautoptr :: ^glib.Queue
-SocketConnection_autoptr :: ^SocketConnection
-SocketConnection_listautoptr :: ^glib.List
-SocketConnection_slistautoptr :: ^glib.SList
-SocketConnection_queueautoptr :: ^glib.Queue
-Socket_autoptr :: ^Socket
-Socket_listautoptr :: ^glib.List
-Socket_slistautoptr :: ^glib.SList
-Socket_queueautoptr :: ^glib.Queue
-SocketListener_autoptr :: ^SocketListener
-SocketListener_listautoptr :: ^glib.List
-SocketListener_slistautoptr :: ^glib.SList
-SocketListener_queueautoptr :: ^glib.Queue
-SocketService_autoptr :: ^SocketService
-SocketService_listautoptr :: ^glib.List
-SocketService_slistautoptr :: ^glib.SList
-SocketService_queueautoptr :: ^glib.Queue
-Subprocess_autoptr :: ^Subprocess
-Subprocess_listautoptr :: ^glib.List
-Subprocess_slistautoptr :: ^glib.SList
-Subprocess_queueautoptr :: ^glib.Queue
-SubprocessLauncher_autoptr :: ^SubprocessLauncher
-SubprocessLauncher_listautoptr :: ^glib.List
-SubprocessLauncher_slistautoptr :: ^glib.SList
-SubprocessLauncher_queueautoptr :: ^glib.Queue
-Task_autoptr :: ^Task
-Task_listautoptr :: ^glib.List
-Task_slistautoptr :: ^glib.SList
-Task_queueautoptr :: ^glib.Queue
-TcpConnection_autoptr :: ^TcpConnection
-TcpConnection_listautoptr :: ^glib.List
-TcpConnection_slistautoptr :: ^glib.SList
-TcpConnection_queueautoptr :: ^glib.Queue
-TcpWrapperConnection_autoptr :: ^TcpWrapperConnection
-TcpWrapperConnection_listautoptr :: ^glib.List
-TcpWrapperConnection_slistautoptr :: ^glib.SList
-TcpWrapperConnection_queueautoptr :: ^glib.Queue
-TestDBus_autoptr :: ^TestDBus
-TestDBus_listautoptr :: ^glib.List
-TestDBus_slistautoptr :: ^glib.SList
-TestDBus_queueautoptr :: ^glib.Queue
-ThemedIcon_autoptr :: ^ThemedIcon
-ThemedIcon_listautoptr :: ^glib.List
-ThemedIcon_slistautoptr :: ^glib.SList
-ThemedIcon_queueautoptr :: ^glib.Queue
-ThreadedSocketService_autoptr :: ^ThreadedSocketService
-ThreadedSocketService_listautoptr :: ^glib.List
-ThreadedSocketService_slistautoptr :: ^glib.SList
-ThreadedSocketService_queueautoptr :: ^glib.Queue
-TlsBackend_autoptr :: ^TlsBackend
-TlsBackend_listautoptr :: ^glib.List
-TlsBackend_slistautoptr :: ^glib.SList
-TlsBackend_queueautoptr :: ^glib.Queue
-TlsCertificate_autoptr :: ^TlsCertificate
-TlsCertificate_listautoptr :: ^glib.List
-TlsCertificate_slistautoptr :: ^glib.SList
-TlsCertificate_queueautoptr :: ^glib.Queue
-TlsClientConnection_autoptr :: ^TlsClientConnection
-TlsClientConnection_listautoptr :: ^glib.List
-TlsClientConnection_slistautoptr :: ^glib.SList
-TlsClientConnection_queueautoptr :: ^glib.Queue
-TlsConnection_autoptr :: ^TlsConnection
-TlsConnection_listautoptr :: ^glib.List
-TlsConnection_slistautoptr :: ^glib.SList
-TlsConnection_queueautoptr :: ^glib.Queue
-TlsDatabase_autoptr :: ^TlsDatabase
-TlsDatabase_listautoptr :: ^glib.List
-TlsDatabase_slistautoptr :: ^glib.SList
-TlsDatabase_queueautoptr :: ^glib.Queue
-TlsFileDatabase_autoptr :: ^TlsFileDatabase
-TlsFileDatabase_listautoptr :: ^glib.List
-TlsFileDatabase_slistautoptr :: ^glib.SList
-TlsFileDatabase_queueautoptr :: ^glib.Queue
-TlsInteraction_autoptr :: ^TlsInteraction
-TlsInteraction_listautoptr :: ^glib.List
-TlsInteraction_slistautoptr :: ^glib.SList
-TlsInteraction_queueautoptr :: ^glib.Queue
-TlsPassword_autoptr :: ^TlsPassword
-TlsPassword_listautoptr :: ^glib.List
-TlsPassword_slistautoptr :: ^glib.SList
-TlsPassword_queueautoptr :: ^glib.Queue
-TlsServerConnection_autoptr :: ^TlsServerConnection
-TlsServerConnection_listautoptr :: ^glib.List
-TlsServerConnection_slistautoptr :: ^glib.SList
-TlsServerConnection_queueautoptr :: ^glib.Queue
-Vfs_autoptr :: ^Vfs
-Vfs_listautoptr :: ^glib.List
-Vfs_slistautoptr :: ^glib.SList
-Vfs_queueautoptr :: ^glib.Queue
-Volume_autoptr :: ^Volume
-Volume_listautoptr :: ^glib.List
-Volume_slistautoptr :: ^glib.SList
-Volume_queueautoptr :: ^glib.Queue
-VolumeMonitor_autoptr :: ^VolumeMonitor
-VolumeMonitor_listautoptr :: ^glib.List
-VolumeMonitor_slistautoptr :: ^glib.SList
-VolumeMonitor_queueautoptr :: ^glib.Queue
-ZlibCompressor_autoptr :: ^ZlibCompressor
-ZlibCompressor_listautoptr :: ^glib.List
-ZlibCompressor_slistautoptr :: ^glib.SList
-ZlibCompressor_queueautoptr :: ^glib.Queue
-ZlibDecompressor_autoptr :: ^ZlibDecompressor
-ZlibDecompressor_listautoptr :: ^glib.List
-ZlibDecompressor_slistautoptr :: ^glib.SList
-ZlibDecompressor_queueautoptr :: ^glib.Queue
 
 @(default_calling_convention = "c")
 foreign gio_runic {

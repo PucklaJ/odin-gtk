@@ -542,10 +542,6 @@ TypeModuleClass :: struct {
     reserved4: reserved4_func_ptr_anon_25,
 }
 
-TypeModule_autoptr :: ^TypeModule
-TypeModule_listautoptr :: ^glib.List
-TypeModule_slistautoptr :: ^glib.SList
-TypeModule_queueautoptr :: ^glib.Queue
 TypePluginUse :: #type proc "c" (plugin: ^TypePlugin)
 TypePluginUnuse :: #type proc "c" (plugin: ^TypePlugin)
 TypePluginCompleteTypeInfo :: #type proc "c" (plugin: ^TypePlugin, g_type: Type, info: ^TypeInfo, value_table: ^TypeValueTable)
@@ -565,34 +561,6 @@ ValueArray :: struct {
 }
 
 chararray :: cstring
-Closure_autoptr :: ^Closure
-Closure_listautoptr :: ^glib.List
-Closure_slistautoptr :: ^glib.SList
-Closure_queueautoptr :: ^glib.Queue
-EnumClass_autoptr :: ^EnumClass
-EnumClass_listautoptr :: ^glib.List
-EnumClass_slistautoptr :: ^glib.SList
-EnumClass_queueautoptr :: ^glib.Queue
-FlagsClass_autoptr :: ^FlagsClass
-FlagsClass_listautoptr :: ^glib.List
-FlagsClass_slistautoptr :: ^glib.SList
-FlagsClass_queueautoptr :: ^glib.Queue
-Object_autoptr :: ^Object
-Object_listautoptr :: ^glib.List
-Object_slistautoptr :: ^glib.SList
-Object_queueautoptr :: ^glib.Queue
-InitiallyUnowned_autoptr :: ^InitiallyUnowned
-InitiallyUnowned_listautoptr :: ^glib.List
-InitiallyUnowned_slistautoptr :: ^glib.SList
-InitiallyUnowned_queueautoptr :: ^glib.Queue
-ParamSpec_autoptr :: ^ParamSpec
-ParamSpec_listautoptr :: ^glib.List
-ParamSpec_slistautoptr :: ^glib.SList
-ParamSpec_queueautoptr :: ^glib.Queue
-TypeClass_autoptr :: ^TypeClass
-TypeClass_listautoptr :: ^glib.List
-TypeClass_slistautoptr :: ^glib.SList
-TypeClass_queueautoptr :: ^glib.Queue
 _g_type_once_init_type :: Type
 
 @(default_calling_convention = "c")
@@ -2064,153 +2032,6 @@ foreign gobject_runic {
 
     @(link_name = "g_set_weak_pointer_wrapper")
     set_weak_pointer :: proc(weak_pointer_location: ^glib.pointer, new_object: ^Object) -> glib.boolean ---
-
-    @(link_name = "glib_autoptr_clear_GTypeModule_wrapper")
-    glib_autoptr_clear_GTypeModule :: proc(_ptr: ^TypeModule) ---
-
-    @(link_name = "glib_autoptr_cleanup_GTypeModule_wrapper")
-    glib_autoptr_cleanup_GTypeModule :: proc(_ptr: ^^TypeModule) ---
-
-    @(link_name = "glib_autoptr_destroy_GTypeModule_wrapper")
-    glib_autoptr_destroy_GTypeModule :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GTypeModule_wrapper")
-    glib_listautoptr_cleanup_GTypeModule :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GTypeModule_wrapper")
-    glib_slistautoptr_cleanup_GTypeModule :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GTypeModule_wrapper")
-    glib_queueautoptr_cleanup_GTypeModule :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GClosure_wrapper")
-    glib_autoptr_clear_GClosure :: proc(_ptr: ^Closure) ---
-
-    @(link_name = "glib_autoptr_cleanup_GClosure_wrapper")
-    glib_autoptr_cleanup_GClosure :: proc(_ptr: ^^Closure) ---
-
-    @(link_name = "glib_autoptr_destroy_GClosure_wrapper")
-    glib_autoptr_destroy_GClosure :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GClosure_wrapper")
-    glib_listautoptr_cleanup_GClosure :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GClosure_wrapper")
-    glib_slistautoptr_cleanup_GClosure :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GClosure_wrapper")
-    glib_queueautoptr_cleanup_GClosure :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GEnumClass_wrapper")
-    glib_autoptr_clear_GEnumClass :: proc(_ptr: ^EnumClass) ---
-
-    @(link_name = "glib_autoptr_cleanup_GEnumClass_wrapper")
-    glib_autoptr_cleanup_GEnumClass :: proc(_ptr: ^^EnumClass) ---
-
-    @(link_name = "glib_autoptr_destroy_GEnumClass_wrapper")
-    glib_autoptr_destroy_GEnumClass :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GEnumClass_wrapper")
-    glib_listautoptr_cleanup_GEnumClass :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GEnumClass_wrapper")
-    glib_slistautoptr_cleanup_GEnumClass :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GEnumClass_wrapper")
-    glib_queueautoptr_cleanup_GEnumClass :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GFlagsClass_wrapper")
-    glib_autoptr_clear_GFlagsClass :: proc(_ptr: ^FlagsClass) ---
-
-    @(link_name = "glib_autoptr_cleanup_GFlagsClass_wrapper")
-    glib_autoptr_cleanup_GFlagsClass :: proc(_ptr: ^^FlagsClass) ---
-
-    @(link_name = "glib_autoptr_destroy_GFlagsClass_wrapper")
-    glib_autoptr_destroy_GFlagsClass :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GFlagsClass_wrapper")
-    glib_listautoptr_cleanup_GFlagsClass :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GFlagsClass_wrapper")
-    glib_slistautoptr_cleanup_GFlagsClass :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GFlagsClass_wrapper")
-    glib_queueautoptr_cleanup_GFlagsClass :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GObject_wrapper")
-    glib_autoptr_clear_GObject :: proc(_ptr: ^Object) ---
-
-    @(link_name = "glib_autoptr_cleanup_GObject_wrapper")
-    glib_autoptr_cleanup_GObject :: proc(_ptr: ^^Object) ---
-
-    @(link_name = "glib_autoptr_destroy_GObject_wrapper")
-    glib_autoptr_destroy_GObject :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GObject_wrapper")
-    glib_listautoptr_cleanup_GObject :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GObject_wrapper")
-    glib_slistautoptr_cleanup_GObject :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GObject_wrapper")
-    glib_queueautoptr_cleanup_GObject :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GInitiallyUnowned_wrapper")
-    glib_autoptr_clear_GInitiallyUnowned :: proc(_ptr: ^InitiallyUnowned) ---
-
-    @(link_name = "glib_autoptr_cleanup_GInitiallyUnowned_wrapper")
-    glib_autoptr_cleanup_GInitiallyUnowned :: proc(_ptr: ^^InitiallyUnowned) ---
-
-    @(link_name = "glib_autoptr_destroy_GInitiallyUnowned_wrapper")
-    glib_autoptr_destroy_GInitiallyUnowned :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GInitiallyUnowned_wrapper")
-    glib_listautoptr_cleanup_GInitiallyUnowned :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GInitiallyUnowned_wrapper")
-    glib_slistautoptr_cleanup_GInitiallyUnowned :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GInitiallyUnowned_wrapper")
-    glib_queueautoptr_cleanup_GInitiallyUnowned :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GParamSpec_wrapper")
-    glib_autoptr_clear_GParamSpec :: proc(_ptr: ^ParamSpec) ---
-
-    @(link_name = "glib_autoptr_cleanup_GParamSpec_wrapper")
-    glib_autoptr_cleanup_GParamSpec :: proc(_ptr: ^^ParamSpec) ---
-
-    @(link_name = "glib_autoptr_destroy_GParamSpec_wrapper")
-    glib_autoptr_destroy_GParamSpec :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GParamSpec_wrapper")
-    glib_listautoptr_cleanup_GParamSpec :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GParamSpec_wrapper")
-    glib_slistautoptr_cleanup_GParamSpec :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GParamSpec_wrapper")
-    glib_queueautoptr_cleanup_GParamSpec :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GTypeClass_wrapper")
-    glib_autoptr_clear_GTypeClass :: proc(_ptr: ^TypeClass) ---
-
-    @(link_name = "glib_autoptr_cleanup_GTypeClass_wrapper")
-    glib_autoptr_cleanup_GTypeClass :: proc(_ptr: ^^TypeClass) ---
-
-    @(link_name = "glib_autoptr_destroy_GTypeClass_wrapper")
-    glib_autoptr_destroy_GTypeClass :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GTypeClass_wrapper")
-    glib_listautoptr_cleanup_GTypeClass :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GTypeClass_wrapper")
-    glib_slistautoptr_cleanup_GTypeClass :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GTypeClass_wrapper")
-    glib_queueautoptr_cleanup_GTypeClass :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_auto_cleanup_GValue_wrapper")
-    glib_auto_cleanup_GValue :: proc(_ptr: ^Value) ---
 
 }
 

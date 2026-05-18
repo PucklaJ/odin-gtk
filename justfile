@@ -208,6 +208,8 @@ gio-wrapper CC='clang':
     @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\gio-wrapper.obj
 
 girepository:
+    rm -f glib/girepository/girepository*.odin
+
     {{ RUNIC }} glib/girepository/rune.yml
     sed glib/girepository/girepository*.odin -i \
         -e '/^\(TYPE_\|[A-Z]\+_ERROR\|\)/ {s/`//g; s/(gi_//g; s/())//g}' \

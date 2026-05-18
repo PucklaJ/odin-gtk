@@ -60,9 +60,13 @@ from:
   ignore:
     types:
       - va_list
+      - '*autoptr*'
     constants:
       - '_GIO_*'
       - 'GIO_*'
+    functions:
+      - '*autoptr*'
+      - '*auto_cleanup*'
 to:
   language: odin
   package: gio

@@ -50,12 +50,17 @@ from:
     - '../shared/gvsbuild/extract/lib/glib-2.0/include/*'
     - '../shared/gvsbuild/extract/include/glib-2.0/gobject/*'
   ignore: &ignore_any
+    types:
+      - '*autoptr*'
     constants:
       - '*_INIT'
       - '_PANGO*'
       - 'PANGO_VERSION*'
       - 'PANGO_DEPRECATED*'
       - 'PANGO_AVAILABLE*'
+    functions:
+      - '*autoptr*'
+      - '*auto_cleanup*'
   overwrite:
     # !! This only works on 64-Bit !!
     types:
@@ -63,13 +68,6 @@ from:
       _PangoAttrSize: '#SInt8 #Attr Arr 24 #AttrEnd'
       _PangoGlyphVisAttr: '#SInt8 #Attr Arr 4 #AttrEnd'
       _PangoLayoutLine: '#SInt8 #Attr Arr 32 #AttrEnd'
-  # The windows headers are based on a newer version of pango
-  ignore.windows.x86_64:
-    functions:
-      - 'pango_font_description_set_features_static'
-      - 'pango_font_description_set_features'
-      - 'pango_font_description_get_features'
-    <<: *ignore_any
 
 to:
   language: odin

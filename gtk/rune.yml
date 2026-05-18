@@ -88,6 +88,8 @@ from:
     - '../shared/gvsbuild/extract/include/graphene-1.0/*'
     - '../shared/gvsbuild/extract/lib/graphene-1.0/include/*'
   ignore:
+    types:
+      - '*autoptr*'
     constants:
       - '*VERSION*'
       - 'GDK_DEPRECATED*'
@@ -100,6 +102,8 @@ from:
     functions:
       - 'gtk_init_abi_check'
       - 'gtk_init_check_abi_check'
+      - '*autoptr*'
+      - '*auto_cleanup*'
   overwrite:
     types:
       'GtkSnapshot': '_GdkSnapshot'

@@ -86,10 +86,6 @@ hb_font_t :: rawptr
 Coverage :: struct #packed {}
 
 CoverageLevel :: enum u32 {COVERAGE_NONE = 0, COVERAGE_FALLBACK = 1, COVERAGE_APPROXIMATE = 2, COVERAGE_EXACT = 3 }
-Coverage_autoptr :: ^Coverage
-Coverage_listautoptr :: ^glib.List
-Coverage_slistautoptr :: ^glib.SList
-Coverage_queueautoptr :: ^glib.Queue
 LogAttr :: [4]i8
 
 Engine :: struct {
@@ -138,10 +134,6 @@ Matrix :: struct {
 ScriptIter :: struct #packed {}
 
 Script :: enum i32 {INVALID_CODE = -1, COMMON = 0, INHERITED = 1, ARABIC = 2, ARMENIAN = 3, BENGALI = 4, BOPOMOFO = 5, CHEROKEE = 6, COPTIC = 7, CYRILLIC = 8, DESERET = 9, DEVANAGARI = 10, ETHIOPIC = 11, GEORGIAN = 12, GOTHIC = 13, GREEK = 14, GUJARATI = 15, GURMUKHI = 16, HAN = 17, HANGUL = 18, HEBREW = 19, HIRAGANA = 20, KANNADA = 21, KATAKANA = 22, KHMER = 23, LAO = 24, LATIN = 25, MALAYALAM = 26, MONGOLIAN = 27, MYANMAR = 28, OGHAM = 29, OLD_ITALIC = 30, ORIYA = 31, RUNIC = 32, SINHALA = 33, SYRIAC = 34, TAMIL = 35, TELUGU = 36, THAANA = 37, THAI = 38, TIBETAN = 39, CANADIAN_ABORIGINAL = 40, YI = 41, TAGALOG = 42, HANUNOO = 43, BUHID = 44, TAGBANWA = 45, BRAILLE = 46, CYPRIOT = 47, LIMBU = 48, OSMANYA = 49, SHAVIAN = 50, LINEAR_B = 51, TAI_LE = 52, UGARITIC = 53, NEW_TAI_LUE = 54, BUGINESE = 55, GLAGOLITIC = 56, TIFINAGH = 57, SYLOTI_NAGRI = 58, OLD_PERSIAN = 59, KHAROSHTHI = 60, UNKNOWN = 61, BALINESE = 62, CUNEIFORM = 63, PHOENICIAN = 64, PHAGS_PA = 65, NKO = 66, KAYAH_LI = 67, LEPCHA = 68, REJANG = 69, SUNDANESE = 70, SAURASHTRA = 71, CHAM = 72, OL_CHIKI = 73, VAI = 74, CARIAN = 75, LYCIAN = 76, LYDIAN = 77, BATAK = 78, BRAHMI = 79, MANDAIC = 80, CHAKMA = 81, MEROITIC_CURSIVE = 82, MEROITIC_HIEROGLYPHS = 83, MIAO = 84, SHARADA = 85, SORA_SOMPENG = 86, TAKRI = 87, BASSA_VAH = 88, CAUCASIAN_ALBANIAN = 89, DUPLOYAN = 90, ELBASAN = 91, GRANTHA = 92, KHOJKI = 93, KHUDAWADI = 94, LINEAR_A = 95, MAHAJANI = 96, MANICHAEAN = 97, MENDE_KIKAKUI = 98, MODI = 99, MRO = 100, NABATAEAN = 101, OLD_NORTH_ARABIAN = 102, OLD_PERMIC = 103, PAHAWH_HMONG = 104, PALMYRENE = 105, PAU_CIN_HAU = 106, PSALTER_PAHLAVI = 107, SIDDHAM = 108, TIRHUTA = 109, WARANG_CITI = 110, AHOM = 111, ANATOLIAN_HIEROGLYPHS = 112, HATRAN = 113, MULTANI = 114, OLD_HUNGARIAN = 115, SIGNWRITING = 116 }
-ScriptIter_autoptr :: ^ScriptIter
-ScriptIter_listautoptr :: ^glib.List
-ScriptIter_slistautoptr :: ^glib.SList
-ScriptIter_queueautoptr :: ^glib.Queue
 Direction :: enum u32 {LTR = 0, RTL = 1, TTB_LTR = 2, TTB_RTL = 3, WEAK_LTR = 4, WEAK_RTL = 5, NEUTRAL = 6 }
 BidiType :: enum u32 {L = 0, LRE = 1, LRO = 2, R = 3, AL = 4, RLE = 5, RLO = 6, PDF = 7, EN = 8, ES = 9, ET = 10, AN = 11, CS = 12, NSM = 13, BN = 14, B = 15, S = 16, WS = 17, ON = 18, LRI = 19, RLI = 20, FSI = 21, PDI = 22 }
 FontDescription :: struct #packed {}
@@ -227,22 +219,6 @@ FontClass :: struct {
     create_hb_font: create_hb_font_func_ptr_anon_20,
 }
 
-FontFamily_autoptr :: ^FontFamily
-FontFamily_listautoptr :: ^glib.List
-FontFamily_slistautoptr :: ^glib.SList
-FontFamily_queueautoptr :: ^glib.Queue
-FontFace_autoptr :: ^FontFace
-FontFace_listautoptr :: ^glib.List
-FontFace_slistautoptr :: ^glib.SList
-FontFace_queueautoptr :: ^glib.Queue
-Font_autoptr :: ^Font
-Font_listautoptr :: ^glib.List
-Font_slistautoptr :: ^glib.SList
-Font_queueautoptr :: ^glib.Queue
-FontDescription_autoptr :: ^FontDescription
-FontDescription_listautoptr :: ^glib.List
-FontDescription_slistautoptr :: ^glib.SList
-FontDescription_queueautoptr :: ^glib.Queue
 Color :: struct {
     red: glib.uint16,
     green: glib.uint16,
@@ -324,18 +300,6 @@ AttrList :: struct #packed {}
 
 AttrIterator :: struct #packed {}
 
-Attribute_autoptr :: ^Attribute
-Attribute_listautoptr :: ^glib.List
-Attribute_slistautoptr :: ^glib.SList
-Attribute_queueautoptr :: ^glib.Queue
-AttrList_autoptr :: ^AttrList
-AttrList_listautoptr :: ^glib.List
-AttrList_slistautoptr :: ^glib.SList
-AttrList_queueautoptr :: ^glib.Queue
-AttrIterator_autoptr :: ^AttrIterator
-AttrIterator_listautoptr :: ^glib.List
-AttrIterator_slistautoptr :: ^glib.SList
-AttrIterator_queueautoptr :: ^glib.Queue
 Analysis :: struct {
     shape_engine: ^EngineShape,
     lang_engine: ^EngineLang,
@@ -399,10 +363,6 @@ FontMapClass :: struct {
     get_face: et_face_func_ptr_anon_38,
 }
 
-FontMap_autoptr :: ^FontMap
-FontMap_listautoptr :: ^glib.List
-FontMap_slistautoptr :: ^glib.SList
-FontMap_queueautoptr :: ^glib.Queue
 ContextClass :: struct #packed {}
 
 GlyphUnit :: glib.int32
@@ -485,10 +445,6 @@ GlyphItemIter :: struct {
 TabArray :: struct #packed {}
 
 TabAlign :: enum u32 {TAB_LEFT = 0, TAB_RIGHT = 1, TAB_CENTER = 2, TAB_DECIMAL = 3 }
-TabArray_autoptr :: ^TabArray
-TabArray_listautoptr :: ^glib.List
-TabArray_slistautoptr :: ^glib.SList
-TabArray_queueautoptr :: ^glib.Queue
 Layout :: struct #packed {}
 
 LayoutClass :: struct #packed {}
@@ -504,14 +460,6 @@ LayoutDeserializeError :: enum u32 {INVALID = 0, INVALID_VALUE = 1, MISSING_VALU
 LayoutDeserializeFlags :: enum u32 {DEFAULT = 0, CONTEXT = 1 }
 LayoutIter :: struct #packed {}
 
-Layout_autoptr :: ^Layout
-Layout_listautoptr :: ^glib.List
-Layout_slistautoptr :: ^glib.SList
-Layout_queueautoptr :: ^glib.Queue
-LayoutIter_autoptr :: ^LayoutIter
-LayoutIter_listautoptr :: ^glib.List
-LayoutIter_slistautoptr :: ^glib.SList
-LayoutIter_queueautoptr :: ^glib.Queue
 RendererPrivate :: struct #packed {}
 
 Renderer :: struct {
@@ -795,6 +743,15 @@ foreign pango_runic {
 
     @(link_name = "pango_font_description_get_variations")
     font_description_get_variations :: proc(desc: ^FontDescription) -> cstring ---
+
+    @(link_name = "pango_font_description_set_features_static")
+    font_description_set_features_static :: proc(desc: ^FontDescription, features: cstring) ---
+
+    @(link_name = "pango_font_description_set_features")
+    font_description_set_features :: proc(desc: ^FontDescription, features: cstring) ---
+
+    @(link_name = "pango_font_description_get_features")
+    font_description_get_features :: proc(desc: ^FontDescription) -> cstring ---
 
     @(link_name = "pango_font_description_set_color")
     font_description_set_color :: proc(desc: ^FontDescription, color: FontColor) ---
@@ -2049,257 +2006,6 @@ foreign pango_runic {
 
     @(link_name = "pango_version_check")
     version_check :: proc(required_major: i32, required_minor: i32, required_micro: i32) -> cstring ---
-
-    @(link_name = "glib_autoptr_clear_PangoCoverage_wrapper")
-    autoptr_clear_PangoCoverage :: proc(_ptr: ^Coverage) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoCoverage_wrapper")
-    autoptr_cleanup_PangoCoverage :: proc(_ptr: ^^Coverage) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoCoverage_wrapper")
-    autoptr_destroy_PangoCoverage :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoCoverage_wrapper")
-    listautoptr_cleanup_PangoCoverage :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoCoverage_wrapper")
-    slistautoptr_cleanup_PangoCoverage :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoCoverage_wrapper")
-    queueautoptr_cleanup_PangoCoverage :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoScriptIter_wrapper")
-    autoptr_clear_PangoScriptIter :: proc(_ptr: ^ScriptIter) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoScriptIter_wrapper")
-    autoptr_cleanup_PangoScriptIter :: proc(_ptr: ^^ScriptIter) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoScriptIter_wrapper")
-    autoptr_destroy_PangoScriptIter :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoScriptIter_wrapper")
-    listautoptr_cleanup_PangoScriptIter :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoScriptIter_wrapper")
-    slistautoptr_cleanup_PangoScriptIter :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoScriptIter_wrapper")
-    queueautoptr_cleanup_PangoScriptIter :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoFontFamily_wrapper")
-    autoptr_clear_PangoFontFamily :: proc(_ptr: ^FontFamily) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoFontFamily_wrapper")
-    autoptr_cleanup_PangoFontFamily :: proc(_ptr: ^^FontFamily) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoFontFamily_wrapper")
-    autoptr_destroy_PangoFontFamily :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoFontFamily_wrapper")
-    listautoptr_cleanup_PangoFontFamily :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoFontFamily_wrapper")
-    slistautoptr_cleanup_PangoFontFamily :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoFontFamily_wrapper")
-    queueautoptr_cleanup_PangoFontFamily :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoFontFace_wrapper")
-    autoptr_clear_PangoFontFace :: proc(_ptr: ^FontFace) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoFontFace_wrapper")
-    autoptr_cleanup_PangoFontFace :: proc(_ptr: ^^FontFace) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoFontFace_wrapper")
-    autoptr_destroy_PangoFontFace :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoFontFace_wrapper")
-    listautoptr_cleanup_PangoFontFace :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoFontFace_wrapper")
-    slistautoptr_cleanup_PangoFontFace :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoFontFace_wrapper")
-    queueautoptr_cleanup_PangoFontFace :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoFont_wrapper")
-    autoptr_clear_PangoFont :: proc(_ptr: ^Font) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoFont_wrapper")
-    autoptr_cleanup_PangoFont :: proc(_ptr: ^^Font) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoFont_wrapper")
-    autoptr_destroy_PangoFont :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoFont_wrapper")
-    listautoptr_cleanup_PangoFont :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoFont_wrapper")
-    slistautoptr_cleanup_PangoFont :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoFont_wrapper")
-    queueautoptr_cleanup_PangoFont :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoFontDescription_wrapper")
-    autoptr_clear_PangoFontDescription :: proc(_ptr: ^FontDescription) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoFontDescription_wrapper")
-    autoptr_cleanup_PangoFontDescription :: proc(_ptr: ^^FontDescription) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoFontDescription_wrapper")
-    autoptr_destroy_PangoFontDescription :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoFontDescription_wrapper")
-    listautoptr_cleanup_PangoFontDescription :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoFontDescription_wrapper")
-    slistautoptr_cleanup_PangoFontDescription :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoFontDescription_wrapper")
-    queueautoptr_cleanup_PangoFontDescription :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoAttribute_wrapper")
-    autoptr_clear_PangoAttribute :: proc(_ptr: ^Attribute) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoAttribute_wrapper")
-    autoptr_cleanup_PangoAttribute :: proc(_ptr: ^^Attribute) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoAttribute_wrapper")
-    autoptr_destroy_PangoAttribute :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoAttribute_wrapper")
-    listautoptr_cleanup_PangoAttribute :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoAttribute_wrapper")
-    slistautoptr_cleanup_PangoAttribute :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoAttribute_wrapper")
-    queueautoptr_cleanup_PangoAttribute :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoAttrList_wrapper")
-    autoptr_clear_PangoAttrList :: proc(_ptr: ^AttrList) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoAttrList_wrapper")
-    autoptr_cleanup_PangoAttrList :: proc(_ptr: ^^AttrList) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoAttrList_wrapper")
-    autoptr_destroy_PangoAttrList :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoAttrList_wrapper")
-    listautoptr_cleanup_PangoAttrList :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoAttrList_wrapper")
-    slistautoptr_cleanup_PangoAttrList :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoAttrList_wrapper")
-    queueautoptr_cleanup_PangoAttrList :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoAttrIterator_wrapper")
-    autoptr_clear_PangoAttrIterator :: proc(_ptr: ^AttrIterator) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoAttrIterator_wrapper")
-    autoptr_cleanup_PangoAttrIterator :: proc(_ptr: ^^AttrIterator) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoAttrIterator_wrapper")
-    autoptr_destroy_PangoAttrIterator :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoAttrIterator_wrapper")
-    listautoptr_cleanup_PangoAttrIterator :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoAttrIterator_wrapper")
-    slistautoptr_cleanup_PangoAttrIterator :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoAttrIterator_wrapper")
-    queueautoptr_cleanup_PangoAttrIterator :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoFontMap_wrapper")
-    autoptr_clear_PangoFontMap :: proc(_ptr: ^FontMap) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoFontMap_wrapper")
-    autoptr_cleanup_PangoFontMap :: proc(_ptr: ^^FontMap) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoFontMap_wrapper")
-    autoptr_destroy_PangoFontMap :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoFontMap_wrapper")
-    listautoptr_cleanup_PangoFontMap :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoFontMap_wrapper")
-    slistautoptr_cleanup_PangoFontMap :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoFontMap_wrapper")
-    queueautoptr_cleanup_PangoFontMap :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoTabArray_wrapper")
-    autoptr_clear_PangoTabArray :: proc(_ptr: ^TabArray) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoTabArray_wrapper")
-    autoptr_cleanup_PangoTabArray :: proc(_ptr: ^^TabArray) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoTabArray_wrapper")
-    autoptr_destroy_PangoTabArray :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoTabArray_wrapper")
-    listautoptr_cleanup_PangoTabArray :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoTabArray_wrapper")
-    slistautoptr_cleanup_PangoTabArray :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoTabArray_wrapper")
-    queueautoptr_cleanup_PangoTabArray :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoLayout_wrapper")
-    autoptr_clear_PangoLayout :: proc(_ptr: ^Layout) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoLayout_wrapper")
-    autoptr_cleanup_PangoLayout :: proc(_ptr: ^^Layout) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoLayout_wrapper")
-    autoptr_destroy_PangoLayout :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoLayout_wrapper")
-    listautoptr_cleanup_PangoLayout :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoLayout_wrapper")
-    slistautoptr_cleanup_PangoLayout :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoLayout_wrapper")
-    queueautoptr_cleanup_PangoLayout :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_PangoLayoutIter_wrapper")
-    autoptr_clear_PangoLayoutIter :: proc(_ptr: ^LayoutIter) ---
-
-    @(link_name = "glib_autoptr_cleanup_PangoLayoutIter_wrapper")
-    autoptr_cleanup_PangoLayoutIter :: proc(_ptr: ^^LayoutIter) ---
-
-    @(link_name = "glib_autoptr_destroy_PangoLayoutIter_wrapper")
-    autoptr_destroy_PangoLayoutIter :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_PangoLayoutIter_wrapper")
-    listautoptr_cleanup_PangoLayoutIter :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_PangoLayoutIter_wrapper")
-    slistautoptr_cleanup_PangoLayoutIter :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_PangoLayoutIter_wrapper")
-    queueautoptr_cleanup_PangoLayoutIter :: proc(_q: ^^glib.Queue) ---
-
-}
-
-when (ODIN_OS == .Linux) {
-
-@(default_calling_convention = "c")
-foreign pango_runic {
-    @(link_name = "pango_font_description_set_features_static")
-    font_description_set_features_static :: proc(desc: ^FontDescription, features: cstring) ---
-
-    @(link_name = "pango_font_description_set_features")
-    font_description_set_features :: proc(desc: ^FontDescription, features: cstring) ---
-
-    @(link_name = "pango_font_description_get_features")
-    font_description_get_features :: proc(desc: ^FontDescription) -> cstring ---
-
-}
 
 }
 

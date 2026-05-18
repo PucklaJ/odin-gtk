@@ -24,32 +24,16 @@ Pixbuf :: struct #packed {}
 PixbufDestroyNotify :: #type proc "c" (pixels: [^]glib.uchar, data: glib.pointer)
 PixbufError :: enum u32 {CORRUPT_IMAGE = 0, INSUFFICIENT_MEMORY = 1, BAD_OPTION = 2, UNKNOWN_TYPE = 3, UNSUPPORTED_OPERATION = 4, FAILED = 5, INCOMPLETE_ANIMATION = 6 }
 PixbufSaveFunc :: #type proc "c" (buf: ^glib.char, count: glib.size, error: ^^glib.Error, data: glib.pointer) -> glib.boolean
-Pixbuf_autoptr :: ^Pixbuf
-Pixbuf_listautoptr :: ^glib.List
-Pixbuf_slistautoptr :: ^glib.SList
-Pixbuf_queueautoptr :: ^glib.Queue
 InterpType :: enum u32 {NEAREST = 0, TILES = 1, BILINEAR = 2, HYPER = 3 }
 PixbufRotation :: enum u32 {NONE = 0, COUNTERCLOCKWISE = 90, UPSIDEDOWN = 180, CLOCKWISE = 270 }
 PixbufAnimation :: struct #packed {}
 
 PixbufAnimationIter :: struct #packed {}
 
-PixbufAnimation_autoptr :: ^PixbufAnimation
-PixbufAnimation_listautoptr :: ^glib.List
-PixbufAnimation_slistautoptr :: ^glib.SList
-PixbufAnimation_queueautoptr :: ^glib.Queue
-PixbufAnimationIter_autoptr :: ^PixbufAnimationIter
-PixbufAnimationIter_listautoptr :: ^glib.List
-PixbufAnimationIter_slistautoptr :: ^glib.SList
-PixbufAnimationIter_queueautoptr :: ^glib.Queue
 PixbufSimpleAnim :: struct #packed {}
 
 PixbufSimpleAnimClass :: struct #packed {}
 
-PixbufSimpleAnim_autoptr :: ^PixbufSimpleAnim
-PixbufSimpleAnim_listautoptr :: ^glib.List
-PixbufSimpleAnim_slistautoptr :: ^glib.SList
-PixbufSimpleAnim_queueautoptr :: ^glib.Queue
 PixbufFormat :: struct #packed {}
 
 PixbufLoader :: struct {
@@ -69,10 +53,6 @@ PixbufLoaderClass :: struct {
     closed: closed_func_ptr_anon_3,
 }
 
-PixbufLoader_autoptr :: ^PixbufLoader
-PixbufLoader_listautoptr :: ^glib.List
-PixbufLoader_slistautoptr :: ^glib.SList
-PixbufLoader_queueautoptr :: ^glib.Queue
 
 @(default_calling_convention = "c")
 foreign gdkpixbuf_runic {
@@ -432,96 +412,6 @@ foreign gdkpixbuf_runic {
 
     @(link_name = "gdk_pixbuf_rotation_get_type")
     pixbuf_rotation_get_type :: proc() -> gobj.Type ---
-
-    @(link_name = "glib_autoptr_clear_GdkPixbuf_wrapper")
-    autoptr_clear_GdkPixbuf :: proc(_ptr: ^Pixbuf) ---
-
-    @(link_name = "glib_autoptr_cleanup_GdkPixbuf_wrapper")
-    autoptr_cleanup_GdkPixbuf :: proc(_ptr: ^^Pixbuf) ---
-
-    @(link_name = "glib_autoptr_destroy_GdkPixbuf_wrapper")
-    autoptr_destroy_GdkPixbuf :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GdkPixbuf_wrapper")
-    listautoptr_cleanup_GdkPixbuf :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GdkPixbuf_wrapper")
-    slistautoptr_cleanup_GdkPixbuf :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GdkPixbuf_wrapper")
-    queueautoptr_cleanup_GdkPixbuf :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GdkPixbufAnimation_wrapper")
-    autoptr_clear_GdkPixbufAnimation :: proc(_ptr: ^PixbufAnimation) ---
-
-    @(link_name = "glib_autoptr_cleanup_GdkPixbufAnimation_wrapper")
-    autoptr_cleanup_GdkPixbufAnimation :: proc(_ptr: ^^PixbufAnimation) ---
-
-    @(link_name = "glib_autoptr_destroy_GdkPixbufAnimation_wrapper")
-    autoptr_destroy_GdkPixbufAnimation :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GdkPixbufAnimation_wrapper")
-    listautoptr_cleanup_GdkPixbufAnimation :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GdkPixbufAnimation_wrapper")
-    slistautoptr_cleanup_GdkPixbufAnimation :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GdkPixbufAnimation_wrapper")
-    queueautoptr_cleanup_GdkPixbufAnimation :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GdkPixbufAnimationIter_wrapper")
-    autoptr_clear_GdkPixbufAnimationIter :: proc(_ptr: ^PixbufAnimationIter) ---
-
-    @(link_name = "glib_autoptr_cleanup_GdkPixbufAnimationIter_wrapper")
-    autoptr_cleanup_GdkPixbufAnimationIter :: proc(_ptr: ^^PixbufAnimationIter) ---
-
-    @(link_name = "glib_autoptr_destroy_GdkPixbufAnimationIter_wrapper")
-    autoptr_destroy_GdkPixbufAnimationIter :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GdkPixbufAnimationIter_wrapper")
-    listautoptr_cleanup_GdkPixbufAnimationIter :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GdkPixbufAnimationIter_wrapper")
-    slistautoptr_cleanup_GdkPixbufAnimationIter :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GdkPixbufAnimationIter_wrapper")
-    queueautoptr_cleanup_GdkPixbufAnimationIter :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GdkPixbufSimpleAnim_wrapper")
-    autoptr_clear_GdkPixbufSimpleAnim :: proc(_ptr: ^PixbufSimpleAnim) ---
-
-    @(link_name = "glib_autoptr_cleanup_GdkPixbufSimpleAnim_wrapper")
-    autoptr_cleanup_GdkPixbufSimpleAnim :: proc(_ptr: ^^PixbufSimpleAnim) ---
-
-    @(link_name = "glib_autoptr_destroy_GdkPixbufSimpleAnim_wrapper")
-    autoptr_destroy_GdkPixbufSimpleAnim :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GdkPixbufSimpleAnim_wrapper")
-    listautoptr_cleanup_GdkPixbufSimpleAnim :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GdkPixbufSimpleAnim_wrapper")
-    slistautoptr_cleanup_GdkPixbufSimpleAnim :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GdkPixbufSimpleAnim_wrapper")
-    queueautoptr_cleanup_GdkPixbufSimpleAnim :: proc(_q: ^^glib.Queue) ---
-
-    @(link_name = "glib_autoptr_clear_GdkPixbufLoader_wrapper")
-    autoptr_clear_GdkPixbufLoader :: proc(_ptr: ^PixbufLoader) ---
-
-    @(link_name = "glib_autoptr_cleanup_GdkPixbufLoader_wrapper")
-    autoptr_cleanup_GdkPixbufLoader :: proc(_ptr: ^^PixbufLoader) ---
-
-    @(link_name = "glib_autoptr_destroy_GdkPixbufLoader_wrapper")
-    autoptr_destroy_GdkPixbufLoader :: proc(_ptr: rawptr) ---
-
-    @(link_name = "glib_listautoptr_cleanup_GdkPixbufLoader_wrapper")
-    listautoptr_cleanup_GdkPixbufLoader :: proc(_l: ^^glib.List) ---
-
-    @(link_name = "glib_slistautoptr_cleanup_GdkPixbufLoader_wrapper")
-    slistautoptr_cleanup_GdkPixbufLoader :: proc(_l: ^^glib.SList) ---
-
-    @(link_name = "glib_queueautoptr_cleanup_GdkPixbufLoader_wrapper")
-    queueautoptr_cleanup_GdkPixbufLoader :: proc(_q: ^^glib.Queue) ---
 
 }
 

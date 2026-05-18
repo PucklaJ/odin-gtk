@@ -59,12 +59,18 @@ from:
   ignore:
     types:
       - va_list
+      - '*autoptr*'
     constants:
       - '_GI_*'
       - 'GI_DEPRECATED*'
       - 'GI_AVAILABLE_*'
       - 'GI_VAR'
       - '*_INIT'
+    functions:
+      - '*autoptr*'
+      - '*auto_cleanup*'
+      - 'GI_REPOSITORY*'
+      - 'GI_IS_REPOSITORY*'
 to:
   language: odin
   package: girepository

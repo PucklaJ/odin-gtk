@@ -61,6 +61,8 @@ from:
     - '../shared/gvsbuild/extract/lib/glib-2.0/include/*'
     - '../shared/gvsbuild/extract/include/glib-2.0/glib/deprecated/*'
   ignore: &ignore_any
+    types:
+      - '*autoptr*'
     constants:
       - 'GDK_PIXBUF_MAJOR'
       - 'GDK_PIXBUF_MINOR'
@@ -70,6 +72,9 @@ from:
       - 'GDK_PIXBUF_DEPRECATED*'
       - 'GDK_PIXBUF_AVAILABLE*'
       - '_GDK*'
+    functions:
+      - '*autoptr*'
+      - '*auto_cleanup*'
   ignore.windows.x86_64:
     variables:
       - 'gdk_pixbuf_*version'

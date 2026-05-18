@@ -146,12 +146,17 @@ from:
     - '../shared/gvsbuild/extract/include/gtk-4.0/gsk/gl/*'
     - '../shared/gvsbuild/extract/include/gtk-4.0/gsk/gpu/*'
   ignore:
+    types:
+      - '*autoptr*'
     constants:
       - 'GDK_*'
       - '_*'
       - '*VERSION*'
       - '*DEPRECATED*'
       - '*AVAILABLE*'
+    functions:
+      - '*autoptr*'
+      - '*auto_cleanup*'
 to:
   language: odin
   package: adwaita
