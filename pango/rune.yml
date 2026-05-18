@@ -3,13 +3,6 @@ platforms:
   - Linux x86_64
   - Linux arm64
   - Windows x86_64
-wrapper:
-  language: c
-  in_headers: ../shared/pango/pango/pango.h
-  out_header: pango-wrapper.h
-  out_source: pango-wrapper.c
-  load_all_includes: true
-  multi_platform: false
 from:
   language: c
   shared.linux: 'libpango-1.0.so'
@@ -17,9 +10,7 @@ from:
   static.linux.arm64: '../lib/linux/aarch64/libpango-1.0.a'
   static.linux.x86_64: '../lib/linux/x86_64/libpango-1.0.a'
   headers: ../shared/pango/pango/pango.h
-  headers.windows.x86_64:
-    - ../shared/gvsbuild/extract/include/pango-1.0/pango/pango.h
-    - pango-wrapper.h
+  headers.windows.x86_64: ../shared/gvsbuild/extract/include/pango-1.0/pango/pango.h
   includedirs:
     - ../stdinc/
     - ../shared/pango/
@@ -90,9 +81,6 @@ to:
       - 'LAYOUT_SERIALIZE_'
       - 'LAYOUT_DESERIALIZE_'
     enum_type_name: true
-  trim_suffix:
-    functions:
-      - '_wrapper'
   extern:
     sources:
       '../stdinc/stdio.h': 'core:c/libc'
@@ -106,6 +94,4 @@ to:
       '../shared/gvsbuild/extract/lib/glib-2.0/include/*': '../glib'
       '../shared/gvsbuild/extract/include/glib-2.0/gobject/*': 'gobj ../glib/gobject'
     trim_prefix: true
-  add_libs.linux.arm64: ../lib/linux/aarch64/libpango-wrapper.a
-  add_libs.linux.x86_64: ../lib/linux/x86_64/libpango-wrapper.a
-  add_libs.windows.x86_64: ../lib/windows/x86_64/pango-wrapper.lib
+

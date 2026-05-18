@@ -56,6 +56,18 @@ PixbufLoaderClass :: struct {
 
 @(default_calling_convention = "c")
 foreign gdkpixbuf_runic {
+    @(link_name = "gdk_pixbuf_major_version")
+    pixbuf_major_version: glib.uint_
+
+    @(link_name = "gdk_pixbuf_minor_version")
+    pixbuf_minor_version: glib.uint_
+
+    @(link_name = "gdk_pixbuf_micro_version")
+    pixbuf_micro_version: glib.uint_
+
+    @(link_name = "gdk_pixbuf_version")
+    pixbuf_version: cstring
+
     @(link_name = "gdk_pixbuf_error_quark")
     pixbuf_error_quark :: proc() -> glib.Quark ---
 
@@ -419,18 +431,6 @@ when (ODIN_OS == .Linux) {
 
 @(default_calling_convention = "c")
 foreign gdkpixbuf_runic {
-    @(link_name = "gdk_pixbuf_major_version")
-    pixbuf_major_version: glib.uint_
-
-    @(link_name = "gdk_pixbuf_minor_version")
-    pixbuf_minor_version: glib.uint_
-
-    @(link_name = "gdk_pixbuf_micro_version")
-    pixbuf_micro_version: glib.uint_
-
-    @(link_name = "gdk_pixbuf_version")
-    pixbuf_version: cstring
-
     @(link_name = "gdk_pixbuf_save")
     pixbuf_save :: proc(pixbuf: ^Pixbuf, filename: cstring, type: cstring, error: ^^glib.Error, #c_vararg var_args: ..any) -> glib.boolean ---
 
@@ -471,13 +471,9 @@ pixbuf_save :: pixbuf_save_utf8
 when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 
 when #config(GDKPIXBUF_STATIC, false) {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import gdkpixbuf_runic { "../lib/linux/x86_64/libgdk_pixbuf-2.0.a", "../lib/linux/x86_64/libgdk-pixbuf-wrapper.a" }
-} 
+    foreign import gdkpixbuf_runic "../lib/linux/x86_64/libgdk_pixbuf-2.0.a"
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import gdkpixbuf_runic { "system:gdk_pixbuf-2.0", "../lib/linux/x86_64/libgdk-pixbuf-wrapper.a" }
-} 
+    foreign import gdkpixbuf_runic "system:gdk_pixbuf-2.0"
 }
 
 }
@@ -485,22 +481,16 @@ when #config(GDKPIXBUF_STATIC, false) {
 when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(GDKPIXBUF_STATIC, false) {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import gdkpixbuf_runic { "../lib/linux/aarch64/libgdk_pixbuf-2.0.a", "../lib/linux/aarch64/libgdk-pixbuf-wrapper.a" }
-} 
+    foreign import gdkpixbuf_runic "../lib/linux/aarch64/libgdk_pixbuf-2.0.a"
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import gdkpixbuf_runic { "system:gdk_pixbuf-2.0", "../lib/linux/aarch64/libgdk-pixbuf-wrapper.a" }
-} 
+    foreign import gdkpixbuf_runic "system:gdk_pixbuf-2.0"
 }
 
 }
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
 
-when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
-    foreign import gdkpixbuf_runic { "../lib/windows/x86_64/gdk_pixbuf-2.0.lib", "../lib/windows/x86_64/gdk-pixbuf-wrapper.lib" }
-} 
+foreign import gdkpixbuf_runic "../lib/windows/x86_64/gdk_pixbuf-2.0.lib"
 
 }
 

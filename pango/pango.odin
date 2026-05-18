@@ -2012,13 +2012,9 @@ foreign pango_runic {
 when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 
 when #config(PANGO_STATIC, false) {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import pango_runic { "../lib/linux/x86_64/libpango-1.0.a", "../lib/linux/x86_64/libpango-wrapper.a" }
-} 
+    foreign import pango_runic "../lib/linux/x86_64/libpango-1.0.a"
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import pango_runic { "system:pango-1.0", "../lib/linux/x86_64/libpango-wrapper.a" }
-} 
+    foreign import pango_runic "system:pango-1.0"
 }
 
 }
@@ -2026,22 +2022,16 @@ when #config(PANGO_STATIC, false) {
 when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(PANGO_STATIC, false) {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import pango_runic { "../lib/linux/aarch64/libpango-1.0.a", "../lib/linux/aarch64/libpango-wrapper.a" }
-} 
+    foreign import pango_runic "../lib/linux/aarch64/libpango-1.0.a"
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import pango_runic { "system:pango-1.0", "../lib/linux/aarch64/libpango-wrapper.a" }
-} 
+    foreign import pango_runic "system:pango-1.0"
 }
 
 }
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
 
-when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
-    foreign import pango_runic { "../lib/windows/x86_64/pango-1.0.lib", "../lib/windows/x86_64/pango-wrapper.lib" }
-} 
+foreign import pango_runic "../lib/windows/x86_64/pango-1.0.lib"
 
 }
 

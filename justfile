@@ -8,8 +8,8 @@ bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell adwai
 glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
-wrapper CC='cc':  (glib-wrapper-all CC) (gdk-pixbuf-wrapper CC) (pango-wrapper CC) (graphene-wrapper CC) (gtk-wrapper CC) (adwaita-wrapper CC)
-glib-wrapper-all CC='cc': (glib-wrapper CC) (gobject-wrapper CC) (gio-wrapper CC) (girepository-wrapper CC)
+wrapper CC='cc':  (glib-wrapper-all CC) (graphene-wrapper CC) (gtk-wrapper CC) (adwaita-wrapper CC)
+glib-wrapper-all CC='cc': (glib-wrapper CC) (gobject-wrapper CC)
 build: glib-build cairo-build gtk-build
 
 clean: glib-clean gdk-pixbuf-clean gtk-clean adwaita-clean
@@ -181,6 +181,8 @@ gmodule:
         -e 's#^_G\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
 
 gio:
+    rm -f glib/gio/gio*.odin
+
     {{ RUNIC }} glib/gio/rune.yml
     sed glib/gio/gio*.odin -i \
         -e 's/\^glib.char/cstring/g' \
@@ -192,20 +194,10 @@ gio:
         -e '/^VOLUME_IDENTIFIER_KIND_HAL_UDI/s/GLIB_DEPRECATED_MACRO//g' \
         -e '/^TLS_CHANNEL_BINDING_ERROR/s/bindinerror/binding_error/g' \
         -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_G\1$##' \
-        -e 's#^_G\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
+        -e 's#^_G\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#'
 
-[unix]
-gio-wrapper CC='cc':
-    @mkdir -p lib/{{ os() }}/{{ arch() }}
-    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/gio-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule glib/gio/gio-wrapper.c
-    ar rs lib/{{ os() }}/{{ arch() }}/libgio-wrapper.a lib/{{ os() }}/{{ arch() }}/gio-wrapper.o
-    @rm lib/{{ os() }}/{{ arch() }}/gio-wrapper.o
-
-[windows]
-gio-wrapper CC='clang':
-    clang -c -O2 '-Ishared/gvsbuild/extract/include/glib-2.0/' '-Ishared/gvsbuild/extract/include/glib-2.0/glib/' '-Ishared/gvsbuild/extract/lib/glib-2.0/include/' '-Ishared/gvsbuild/extract/include/glib-2.0/gmodule/' -o lib/{{ os() }}/{{ arch() }}/gio-wrapper.obj glib/gio/gio-wrapper.c
-    lib /out:lib\{{ os() }}\{{ arch() }}\gio-wrapper.lib lib\{{ os() }}\{{ arch() }}\gio-wrapper.obj
-    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\gio-wrapper.obj
+    sed glib/gio/gio-Linux.odin -i \
+        -e '0,/.*gio_runic "system:gio-2\.0"/ s#.*gio_runic "system:gio-2\.0".*##'
 
 girepository:
     rm -f glib/girepository/girepository*.odin
@@ -216,19 +208,6 @@ girepository:
         -e 's/\(TYPE_TAG_N_TYPES :: \).*/\1int(TypeTag.UNICHAR) + 1/g' \
         -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_GI\1$##' \
         -e 's#^_GI\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
-
-[unix]
-girepository-wrapper CC='cc':
-    @mkdir -p lib/{{ os() }}/{{ arch() }}
-    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/glib/_build/girepository glib/girepository/girepository-wrapper.c
-    ar rs lib/{{ os() }}/{{ arch() }}/libgirepository-wrapper.a lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o
-    @rm lib/{{ os() }}/{{ arch() }}/girepository-wrapper.o
-
-[windows]
-girepository-wrapper CC='clang':
-    clang -c -O2 '-Ishared/gvsbuild/extract/include/glib-2.0/' '-Ishared/gvsbuild/extract/include/glib-2.0/glib/' '-Ishared/gvsbuild/extract/lib/glib-2.0/include/' -o lib\{{ os() }}\{{ arch() }}\girepository-wrapper.obj glib/girepository/girepository-wrapper.c
-    lib /out:lib\{{ os() }}\{{ arch() }}\girepository-wrapper.lib lib\{{ os() }}\{{ arch() }}\girepository-wrapper.obj
-    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\girepository-wrapper.obj
 
 gdk-pixbuf-setup:
     cd shared/gdk-pixbuf && meson setup \
@@ -255,19 +234,6 @@ gdk-pixbuf:
         -e '0,/^pixbuf_save/ {s/^pixbuf_save.*//}' \
         -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_Gdk\1$##' \
         -e 's#^_Gdk\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
-
-[unix]
-gdk-pixbuf-wrapper CC='cc':
-    @mkdir -p lib/{{ os() }}/{{ arch() }}
-    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build -Ishared/glib/gmodule -Ishared/gdk-pixbuf -Ishared/gdk-pixbuf/_build gdk-pixbuf/gdk-pixbuf-wrapper.c
-    ar rs lib/{{ os() }}/{{ arch() }}/libgdk-pixbuf-wrapper.a lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o
-    @rm lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.o
-
-[windows]
-gdk-pixbuf-wrapper CC='clang':
-    clang -c -O2 '-Ishared/gvsbuild/extract/include/glib-2.0' '-Ishared/gvsbuild/extract/include/glib-2.0/glib' '-Ishared/gvsbuild/extract/lib/glib-2.0/include' '-Ishared/gvsbuild/extract/include/glib-2.0/gmodule' '-Ishared/gvsbuild/extract/include/gdk-pixbuf-2.0' '-Ishared/gvsbuild/extract/include/gdk-pixbuf-2.0/gdk-pixbuf' -o lib/{{ os() }}/{{ arch() }}/gdk-pixbuf-wrapper.obj gdk-pixbuf/gdk-pixbuf-wrapper.c
-    lib /out:lib\{{ os() }}\{{ arch() }}\gdk-pixbuf-wrapper.lib lib\{{ os() }}\{{ arch() }}\gdk-pixbuf-wrapper.obj
-    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\gdk-pixbuf-wrapper.obj
 
 cairo-setup:
     cd shared/cairo && meson setup \
@@ -308,6 +274,8 @@ pango-setup:
       'pango/pango-enum-types.h' \
 
 pango:
+    rm -f pango/pango*.odin
+
     {{ RUNIC }} pango/rune.yml
     sed pango/pango.odin -i \
         -e '{s/\^glib\.char/cstring/g; s/\[\^\]glib.char/cstring/g}' \
@@ -319,19 +287,6 @@ pango:
         -e '/^\(RENDER_TYPE\|ENGINE_TYPE\)/ {s/`//g; s/\\//g}' \
         -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_Pango\1$##' \
         -e 's#^_Pango\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
-
-[unix]
-pango-wrapper CC='cc':
-    @mkdir -p lib/{{ os() }}/{{ arch() }}
-    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/pango-wrapper.o -Ishared/pango -Ishared/pango/_build -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build -Ishared/glib/_build/glib -I/usr/include/harfbuzz pango/pango-wrapper.c
-    ar rs lib/{{ os() }}/{{ arch() }}/libpango-wrapper.a lib/{{ os() }}/{{ arch() }}/pango-wrapper.o
-    @rm lib/{{ os() }}/{{ arch() }}/pango-wrapper.o
-
-[windows]
-pango-wrapper CC='clang':
-    clang -c -O2 '-Ishared/gvsbuild/extract/include/pango-1.0' '-Ishared/gvsbuild/extract/include/pango-1.0/pango' '-Ishared/gvsbuild/extract/include/glib-2.0' '-Ishared/gvsbuild/extract/include/glib-2.0/glib' '-Ishared/gvsbuild/extract/lib/glib-2.0/include' '-Ishared/gvsbuild/extract/include/harfbuzz' -o lib/{{ os() }}/{{ arch() }}/pango-wrapper.obj pango/pango-wrapper.c
-    lib /out:lib\{{ os() }}\{{ arch() }}\pango-wrapper.lib lib\{{ os() }}\{{ arch() }}\pango-wrapper.obj
-    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\pango-wrapper.obj
 
 pangocairo:
     {{ RUNIC }} pango/pangocairo/rune.yml

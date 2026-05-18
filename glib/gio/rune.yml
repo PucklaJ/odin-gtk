@@ -3,13 +3,6 @@ platforms:
   - Linux x86_64
   - Linux arm64
   - Windows x86_64
-wrapper:
-  language: c
-  in_headers: ../../shared/glib/gio/gio.h
-  out_header: gio-wrapper.h
-  out_source: gio-wrapper.c
-  load_all_includes: true
-  multi_platform: false
 from:
   language: c
   shared.linux: 'libgio-2.0.so'
@@ -119,9 +112,6 @@ to:
       - TEST_DBUS_
       - SETTINGS_BIND_
     enum_type_name: true
-  trim_suffix:
-    functions:
-      - _wrapper
   extern:
     sources:
       '../../stdinc/stdarg.h': 'core:c/libc'
@@ -147,21 +137,13 @@ to:
       uid_t: Uid
     trim_prefix: true
   add_libs.static.linux.arm64:
-    - ../../lib/linux/aarch64/libgio-wrapper.a
     - libffi.so
     - libpcre2-8.so
     - libmount.so
     - libz.so
-  add_libs.shared.linux.arm64: 
-    - ../../lib/linux/aarch64/libgio-wrapper.a
   add_libs.static.linux.x86_64:
-    - ../../lib/linux/x86_64/libgio-wrapper.a
     - libffi.so
     - libpcre2-8.so
     - libmount.so
     - libz.so
-  add_libs.shared.linux.x86_64: 
-    - ../../lib/linux/x86_64/libgio-wrapper.a
-  add_libs.windows.x86_64:
-    - ../../lib/windows/x86_64/gio-wrapper.lib
   static_switch: 'GLIB_STATIC'

@@ -3,13 +3,6 @@ platforms:
   - Linux x86_64
   - Linux arm64
   - Windows x86_64
-wrapper:
-  language: c
-  in_headers: ../../shared/glib/girepository/girepository.h
-  out_header: girepository-wrapper.h
-  out_source: girepository-wrapper.c
-  load_all_includes: true
-  multi_platform: false
 from:
   language: c
   shared.linux: 'libgirepository-2.0.so'
@@ -92,9 +85,6 @@ to:
       - GI_
       - REPOSITORY_LOAD_FLAG_
     enum_type_name: true
-  trim_suffix:
-    functions:
-      - _wrapper
   extern:
     sources:
       '../../shared/glib/glib/*': 'glib ..'
@@ -116,17 +106,9 @@ to:
       uid_t: Uid
     trim_prefix: true
   add_libs.static.linux.arm64:
-    - ../../lib/linux/aarch64/libgirepository-wrapper.a
     - libffi.so
     - libpcre2-8.so
-  add_libs.shared.linux.arm64:
-    - ../../lib/linux/aarch64/libgirepository-wrapper.a
   add_libs.static.linux.x86_64:
-    - ../../lib/linux/x86_64/libgirepository-wrapper.a
     - libffi.so
     - libpcre2-8.so
-  add_libs.shared.linux.x86_64:
-    - ../../lib/linux/x86_64/libgirepository-wrapper.a
-  add_libs.windows.x86_64:
-    - ../../lib/windows/x86_64/girepository-wrapper.lib
   static_switch: 'GLIB_STATIC'

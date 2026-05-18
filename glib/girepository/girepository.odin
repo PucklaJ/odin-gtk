@@ -794,12 +794,10 @@ when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import girepository_runic { "../../lib/linux/x86_64/libgirepository-2.0.a", "../../lib/linux/x86_64/libgirepository-wrapper.a", "system:ffi", "system:pcre2-8" }
+    foreign import girepository_runic { "../../lib/linux/x86_64/libgirepository-2.0.a", "system:ffi", "system:pcre2-8" }
 } 
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import girepository_runic { "system:girepository-2.0", "../../lib/linux/x86_64/libgirepository-wrapper.a" }
-} 
+    foreign import girepository_runic "system:girepository-2.0"
 }
 
 }
@@ -808,21 +806,17 @@ when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import girepository_runic { "../../lib/linux/aarch64/libgirepository-2.0.a", "../../lib/linux/aarch64/libgirepository-wrapper.a", "system:ffi", "system:pcre2-8" }
+    foreign import girepository_runic { "../../lib/linux/aarch64/libgirepository-2.0.a", "system:ffi", "system:pcre2-8" }
 } 
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import girepository_runic { "system:girepository-2.0", "../../lib/linux/aarch64/libgirepository-wrapper.a" }
-} 
+    foreign import girepository_runic "system:girepository-2.0"
 }
 
 }
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
 
-when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
-    foreign import girepository_runic { "../../lib/windows/x86_64/girepository-2.0.lib", "../../lib/windows/x86_64/girepository-wrapper.lib" }
-} 
+foreign import girepository_runic "../../lib/windows/x86_64/girepository-2.0.lib"
 
 }
 
