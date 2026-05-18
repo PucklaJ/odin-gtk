@@ -3,13 +3,6 @@ platforms:
   - Linux x86_64
   - Linux arm64
   - Windows x86_64
-wrapper:
-  language: c
-  in_headers: ../../shared/glib/glib/glib-object.h
-  out_header: gobject-wrapper.h
-  out_source: gobject-wrapper.c
-  load_all_includes: true
-  multi_platform: false
 from:
   language: c
   shared.linux: 'libgobject-2.0.so'
@@ -106,17 +99,9 @@ to:
       "../../shared/gvsbuild/extract/lib/glib-2.0/include/*": "glib .."
     trim_prefix: true
   add_libs.static.linux.arm64:
-    - '../../lib/linux/aarch64/libgobject-wrapper.a'
     - libffi.so
     - libpcre2-8.so
-  add_libs.shared.linux.arm64:
-    - '../../lib/linux/aarch64/libgobject-wrapper.a'
-  add_libs.windows.x86_64:
-    - '../../lib/windows/x86_64/gobject-wrapper.lib'
 #   add_libs.static.linux.x86_64:
-#     - '../../lib/linux/x86_64/libgobject-wrapper.a'
 #     - libffi.so
 #     - libpcre2-8.so
-#   add_libs.shared.linux.x86_64:
-#     - '../../lib/linux/x86_64/libgobject-wrapper.a'
 #   static_switch: 'GLIB_STATIC'

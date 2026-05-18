@@ -2019,22 +2019,6 @@ when (ODIN_OS == .Linux) {
 pid_t :: i32
 uid_t :: i32
 
-@(default_calling_convention = "c")
-foreign gobject_runic {
-    @(link_name = "g_set_object_wrapper")
-    set_object :: proc(object_ptr: ^^Object, new_object: ^Object) -> glib.boolean ---
-
-    @(link_name = "g_assert_finalize_object_wrapper")
-    assert_finalize_object :: proc(object: ^Object) ---
-
-    @(link_name = "g_clear_weak_pointer_wrapper")
-    clear_weak_pointer :: proc(weak_pointer_location: ^glib.pointer) ---
-
-    @(link_name = "g_set_weak_pointer_wrapper")
-    set_weak_pointer :: proc(weak_pointer_location: ^glib.pointer, new_object: ^Object) -> glib.boolean ---
-
-}
-
 }
 
 when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
@@ -2051,21 +2035,17 @@ when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(GOBJECT_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import gobject_runic { "../../lib/linux/aarch64/libgobject-2.0.a", "../../lib/linux/aarch64/libgobject-wrapper.a", "system:ffi", "system:pcre2-8" }
+    foreign import gobject_runic { "../../lib/linux/aarch64/libgobject-2.0.a", "system:ffi", "system:pcre2-8" }
 } 
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import gobject_runic { "system:gobject-2.0", "../../lib/linux/aarch64/libgobject-wrapper.a" }
-} 
+    foreign import gobject_runic "system:gobject-2.0"
 }
 
 }
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
 
-when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
-    foreign import gobject_runic { "../../lib/windows/x86_64/gobject-2.0.lib", "../../lib/windows/x86_64/gobject-wrapper.lib" }
-} 
+foreign import gobject_runic "../../lib/windows/x86_64/gobject-2.0.lib"
 
 }
 
