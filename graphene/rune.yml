@@ -3,13 +3,6 @@ platforms:
   - Linux x86_64
   - Linux arm64
   - Windows x86_64
-wrapper:
-  language: c
-  in_headers: ../shared/graphene/include/graphene.h
-  out_header: graphene-wrapper.h
-  out_source: graphene-wrapper.c
-  load_all_includes: true
-  multi_platform: false
 from:
   language: c
   shared.linux: 'libgraphene-1.0.so'
@@ -17,9 +10,7 @@ from:
   static.linux.arm64: '../lib/linux/aarch64/libgraphene-1.0.a'
   static.linux.x86_64: '../lib/linux/x86_64/libgraphene-1.0.a'
   headers: ../shared/graphene/include/graphene.h
-  headers.windows.x86_64:
-    - ../shared/gvsbuild/extract/include/graphene-1.0/graphene.h
-    - graphene-wrapper.h
+  headers.windows.x86_64: ../shared/gvsbuild/extract/include/graphene-1.0/graphene.h
   includedirs:
     - ../shared/graphene/_build/include/
   includedirs.windows.x86_64:
@@ -56,12 +47,6 @@ to:
     - 'graphene_'
     - 'EULER_ORDER_'
     - 'RAY_INTERSECTION_KIND_'
-  trim_suffix:
-    functions:
-      - '_wrapper'
   extern:
     sources:
       '../stdinc/windows/*': 'core:c/libc'
-  add_libs.linux.arm64: ../lib/linux/aarch64/libgraphene-wrapper.a
-  add_libs.linux.x86_64: ../lib/linux/x86_64/libgraphene-wrapper.a
-  add_libs.windows.x86_64: ../lib/windows/x86_64/graphene-wrapper.lib

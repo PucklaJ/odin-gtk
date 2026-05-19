@@ -1403,159 +1403,14 @@ foreign graphene_runic {
     @(link_name = "graphene_ray_intersects_triangle")
     ray_intersects_triangle :: proc(r: ^ray_t, t: ^triangle_t) -> b8 ---
 
-    @(link_name = "graphene_simd4f_madd_wrapper")
-    simd4f_madd :: proc(m1: simd4f_t, m2: simd4f_t, a: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_sum_wrapper")
-    simd4f_sum :: proc(v: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_sum_scalar_wrapper")
-    simd4f_sum_scalar :: proc(v: simd4f_t) -> f32 ---
-
-    @(link_name = "graphene_simd4f_dot4_wrapper")
-    simd4f_dot4 :: proc(a: simd4f_t, b: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_dot2_wrapper")
-    simd4f_dot2 :: proc(a: simd4f_t, b: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_length4_wrapper")
-    simd4f_length4 :: proc(v: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_length3_wrapper")
-    simd4f_length3 :: proc(v: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_length2_wrapper")
-    simd4f_length2 :: proc(v: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_normalize4_wrapper")
-    simd4f_normalize4 :: proc(v: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_normalize3_wrapper")
-    simd4f_normalize3 :: proc(v: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_normalize2_wrapper")
-    simd4f_normalize2 :: proc(v: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_is_zero4_wrapper")
-    simd4f_is_zero4 :: proc(v: simd4f_t) -> b8 ---
-
-    @(link_name = "graphene_simd4f_is_zero3_wrapper")
-    simd4f_is_zero3 :: proc(v: simd4f_t) -> b8 ---
-
-    @(link_name = "graphene_simd4f_is_zero2_wrapper")
-    simd4f_is_zero2 :: proc(v: simd4f_t) -> b8 ---
-
-    @(link_name = "graphene_simd4f_interpolate_wrapper")
-    simd4f_interpolate :: proc(a: simd4f_t, b: simd4f_t, f: f32) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_clamp_wrapper")
-    simd4f_clamp :: proc(v: simd4f_t, min: simd4f_t, max: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_clamp_scalar_wrapper")
-    simd4f_clamp_scalar :: proc(v: simd4f_t, min: f32, max: f32) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_min_val_wrapper")
-    simd4f_min_val :: proc(v: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4f_max_val_wrapper")
-    simd4f_max_val :: proc(v: simd4f_t) -> simd4f_t ---
-
-    @(link_name = "graphene_simd4x4f_init_wrapper")
-    simd4x4f_init :: proc(x: simd4f_t, y: simd4f_t, z: simd4f_t, w: simd4f_t) -> simd4x4f_t ---
-
-    @(link_name = "graphene_simd4x4f_init_identity_wrapper")
-    simd4x4f_init_identity :: proc(m: ^simd4x4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_init_from_float_wrapper")
-    simd4x4f_init_from_float :: proc(m: ^simd4x4f_t, f: ^f32) ---
-
-    @(link_name = "graphene_simd4x4f_to_float_wrapper")
-    simd4x4f_to_float :: proc(m: ^simd4x4f_t, v: ^f32) ---
-
-    @(link_name = "graphene_simd4x4f_sum_wrapper")
-    simd4x4f_sum :: proc(a: ^simd4x4f_t, res: [^]simd4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_vec4_mul_wrapper")
-    simd4x4f_vec4_mul :: proc(a: ^simd4x4f_t, b: ^simd4f_t, res: [^]simd4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_vec3_mul_wrapper")
-    simd4x4f_vec3_mul :: proc(m: ^simd4x4f_t, v: ^simd4f_t, res: [^]simd4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_point3_mul_wrapper")
-    simd4x4f_point3_mul :: proc(m: ^simd4x4f_t, p: ^simd4f_t, res: [^]simd4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_transpose_wrapper")
-    simd4x4f_transpose :: proc(s: ^simd4x4f_t, res: [^]simd4x4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_inv_ortho_vec3_mul_wrapper")
-    simd4x4f_inv_ortho_vec3_mul :: proc(a: ^simd4x4f_t, b: ^simd4f_t, res: [^]simd4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_inv_ortho_point3_mul_wrapper")
-    simd4x4f_inv_ortho_point3_mul :: proc(a: ^simd4x4f_t, b: ^simd4f_t, res: [^]simd4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_matrix_mul_wrapper")
-    simd4x4f_matrix_mul :: proc(a: ^simd4x4f_t, b: ^simd4x4f_t, res: [^]simd4x4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_init_perspective_wrapper")
-    simd4x4f_init_perspective :: proc(m: ^simd4x4f_t, fovy_rad: f32, aspect: f32, z_near: f32, z_far: f32) ---
-
-    @(link_name = "graphene_simd4x4f_init_ortho_wrapper")
-    simd4x4f_init_ortho :: proc(m: ^simd4x4f_t, left: f32, right: f32, bottom: f32, top: f32, z_near: f32, z_far: f32) ---
-
-    @(link_name = "graphene_simd4x4f_init_look_at_wrapper")
-    simd4x4f_init_look_at :: proc(m: ^simd4x4f_t, eye: simd4f_t, center: simd4f_t, up: simd4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_init_frustum_wrapper")
-    simd4x4f_init_frustum :: proc(m: ^simd4x4f_t, left: f32, right: f32, bottom: f32, top: f32, z_near: f32, z_far: f32) ---
-
-    @(link_name = "graphene_simd4x4f_perspective_wrapper")
-    simd4x4f_perspective :: proc(m: ^simd4x4f_t, depth: f32) ---
-
-    @(link_name = "graphene_simd4x4f_translation_wrapper")
-    simd4x4f_translation :: proc(m: ^simd4x4f_t, x: f32, y: f32, z: f32) ---
-
-    @(link_name = "graphene_simd4x4f_scale_wrapper")
-    simd4x4f_scale :: proc(m: ^simd4x4f_t, x: f32, y: f32, z: f32) ---
-
-    @(link_name = "graphene_simd4x4f_rotation_wrapper")
-    simd4x4f_rotation :: proc(m: ^simd4x4f_t, rad: f32, axis: simd4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_add_wrapper")
-    simd4x4f_add :: proc(a: ^simd4x4f_t, b: ^simd4x4f_t, res: [^]simd4x4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_sub_wrapper")
-    simd4x4f_sub :: proc(a: ^simd4x4f_t, b: ^simd4x4f_t, res: [^]simd4x4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_mul_wrapper")
-    simd4x4f_mul :: proc(a: ^simd4x4f_t, b: ^simd4x4f_t, res: [^]simd4x4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_div_wrapper")
-    simd4x4f_div :: proc(a: ^simd4x4f_t, b: ^simd4x4f_t, res: [^]simd4x4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_inverse_wrapper")
-    simd4x4f_inverse :: proc(m: ^simd4x4f_t, res: [^]simd4x4f_t) -> b8 ---
-
-    @(link_name = "graphene_simd4x4f_determinant_wrapper")
-    simd4x4f_determinant :: proc(m: ^simd4x4f_t, det_r: ^simd4f_t, invdet_r: ^simd4f_t) ---
-
-    @(link_name = "graphene_simd4x4f_is_identity_wrapper")
-    simd4x4f_is_identity :: proc(m: ^simd4x4f_t) -> b8 ---
-
-    @(link_name = "graphene_simd4x4f_is_2d_wrapper")
-    simd4x4f_is_2d :: proc(m: ^simd4x4f_t) -> b8 ---
-
 }
 
 when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 
 when #config(GRAPHENE_STATIC, false) {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import graphene_runic { "../lib/linux/x86_64/libgraphene-1.0.a", "../lib/linux/x86_64/libgraphene-wrapper.a" }
-} 
+    foreign import graphene_runic "../lib/linux/x86_64/libgraphene-1.0.a"
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import graphene_runic { "system:graphene-1.0", "../lib/linux/x86_64/libgraphene-wrapper.a" }
-} 
+    foreign import graphene_runic "system:graphene-1.0"
 }
 
 }
@@ -1563,22 +1418,16 @@ when #config(GRAPHENE_STATIC, false) {
 when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(GRAPHENE_STATIC, false) {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import graphene_runic { "../lib/linux/aarch64/libgraphene-1.0.a", "../lib/linux/aarch64/libgraphene-wrapper.a" }
-} 
+    foreign import graphene_runic "../lib/linux/aarch64/libgraphene-1.0.a"
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import graphene_runic { "system:graphene-1.0", "../lib/linux/aarch64/libgraphene-wrapper.a" }
-} 
+    foreign import graphene_runic "system:graphene-1.0"
 }
 
 }
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
 
-when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
-    foreign import graphene_runic { "../lib/windows/x86_64/graphene-1.0.lib", "../lib/windows/x86_64/graphene-wrapper.lib" }
-} 
+foreign import graphene_runic "../lib/windows/x86_64/graphene-1.0.lib"
 
 }
 

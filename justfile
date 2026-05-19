@@ -8,7 +8,7 @@ bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell adwai
 glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
-wrapper CC='cc':  (graphene-wrapper CC) (gtk-wrapper CC) (adwaita-wrapper CC)
+wrapper CC='cc': (gtk-wrapper CC) (adwaita-wrapper CC)
 build: glib-build cairo-build gtk-build
 
 clean: glib-clean gdk-pixbuf-clean gtk-clean adwaita-clean
@@ -278,19 +278,7 @@ graphene:
         -e '/^SIMD_S/ {s/`//g; s/\\//g}' \
         -e '/^PI/ {s/`//g; s/f//g}' \
         -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_graphene_\1$##' \
-        -e 's#^_graphene_\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
-[unix]
-graphene-wrapper CC='cc':
-    @mkdir -p lib/{{ os() }}/{{ arch() }}
-    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o -Ishared/graphene/_build/include graphene/graphene-wrapper.c
-    ar rs lib/{{ os() }}/{{ arch() }}/libgraphene-wrapper.a lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o
-    @rm lib/{{ os() }}/{{ arch() }}/graphene-wrapper.o
-
-[windows]
-graphene-wrapper CC='clang':
-    clang '-msse4.1' -c -O2 '-Ishared/gvsbuild/extract/lib/graphene-1.0/include/' '-Ishared/gvsbuild/extract/include/graphene-1.0/' -o lib/{{ os() }}/{{ arch() }}/graphene-wrapper.obj graphene/graphene-wrapper.c
-    lib /out:lib\{{ os() }}\{{ arch() }}\graphene-wrapper.lib lib\{{ os() }}\{{ arch() }}\graphene-wrapper.obj
-    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\graphene-wrapper.obj
+        -e 's#^_graphene_\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#'
 
 gtk-setup:
   cd shared/gtk && meson setup \
