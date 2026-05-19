@@ -12,11 +12,7 @@ on_button_clicked :: proc "c" (button: ^gtk.Button, user_data: glib.pointer) {
 }
 
 activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
-    window := gobj.type_cast(
-        gtk.Window,
-        gtk.application_window_new(app),
-        gtk.TYPE_WINDOW,
-    )
+    window := gtk.WINDOW(gtk.application_window_new(app))
     gtk.window_set_title(window, "Window")
     gtk.window_set_default_size(window, 640, 480)
     gtk.window_set_title(window, "Hello, GTK4!")
@@ -24,11 +20,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     button := gtk.button_new_with_label("Click me! >///<")
     gtk.window_set_child(window, button)
 
-    gobj.signal_connect(
-        button,
-        "clicked",
-        on_button_clicked,
-    )
+    gobj.signal_connect(button, "clicked", on_button_clicked)
 
     gtk.window_present(window)
 }
@@ -60,4 +52,3 @@ main :: proc() {
         os.exit(int(status))
     }
 }
-

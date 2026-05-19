@@ -55,20 +55,15 @@ init :: proc "c" (area: ^gtk.DrawingArea, user_data: glib.pointer) {
 
     gobj.object_ref(area)
     glib.timeout_add(1, proc "c" (user_data: glib.pointer) -> glib.boolean {
-            if !gobj.type_is(user_data, gtk.TYPE_DRAWING_AREA) do return true
-
-            area := gobj.type_cast(
-                gtk.DrawingArea,
-                user_data,
-                gtk.TYPE_DRAWING_AREA,
-            )
+            if !gtk.IS_DRAWING_AREA(user_data) do return true
+            area := gtk.DRAWING_AREA(user_data)
 
             if ctx.shutdown {
                 gobj.object_unref(area)
                 return false
             }
 
-            gtk.widget_queue_draw(cast(^gtk.Widget)area)
+            gtk.widget_queue_draw(gtk.WIDGET(area))
 
             return true
         }, area)
@@ -114,8 +109,8 @@ draw :: proc "c" (
     anim_time := SNAKE_TIME / ctx.time_multiplier
 
     // Get Size of the window
-    window_width := gtk.widget_get_width(cast(^gtk.Widget)area)
-    window_height := gtk.widget_get_height(cast(^gtk.Widget)area)
+    window_width := gtk.widget_get_width(gtk.WIDGET(area))
+    window_height := gtk.widget_get_height(gtk.WIDGET(area))
 
     // Update game
     if !ctx.paused {
@@ -171,7 +166,7 @@ draw :: proc "c" (
     }
 
     if !gtk.widget_contains(
-        cast(^gtk.Widget)area,
+        gtk.WIDGET(area),
         f64(ctx.food[0] * TILE_SIZE),
         f64(ctx.food[1] * TILE_SIZE),
     ) {
@@ -646,11 +641,7 @@ main :: proc() {
 }
 
 activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
-    window := gobj.type_cast(
-        gtk.Window,
-        gtk.application_window_new(app),
-        gtk.TYPE_WINDOW,
-    )
+    window := gtk.WINDOW(gtk.application_window_new(app))
 
     gtk.window_set_default_size(
         window,
@@ -660,10 +651,7 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
     gobj.signal_connect(
         window,
         "close-request",
-        proc "c" (
-            self: ^gtk.Window,
-            user_data: glib.pointer,
-        ) -> glib.boolean {
+        proc "c" (self: ^gtk.Window, user_data: glib.pointer) -> glib.boolean {
             glib.print("---- Bye Snake ----\n")
             ctx.shutdown = true
             return false
@@ -672,17 +660,12 @@ activate :: proc "c" (app: ^gtk.Application, user_data: glib.pointer) {
 
     econ := gtk.event_controller_key_new()
     gobj.signal_connect(econ, "key-pressed", input)
-    gtk.widget_add_controller(cast(^gtk.Widget)window, econ)
+    gtk.widget_add_controller(gtk.WIDGET(window), econ)
 
-    drawing_area := gobj.type_cast(
-        gtk.DrawingArea,
-        gtk.drawing_area_new(),
-        gtk.TYPE_DRAWING_AREA,
-    )
+    drawing_area := gtk.DRAWING_AREA(gtk.drawing_area_new())
     gtk.drawing_area_set_draw_func(drawing_area, draw, nil, nil)
     gobj.signal_connect(drawing_area, "realize", init)
 
-    gtk.window_set_child(window, cast(^gtk.Widget)drawing_area)
+    gtk.window_set_child(window, gtk.WIDGET(drawing_area))
     gtk.window_present(window)
 }
-
