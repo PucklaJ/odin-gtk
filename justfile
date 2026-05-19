@@ -311,6 +311,7 @@ gtk-build:
 gtk-clean:
     rm -rf shared/gtk/_build
 
+[unix]
 gtk:
     {{ RUNIC }} gtk/rune.yml
     sed gtk/gtk.odin -i \
@@ -325,7 +326,91 @@ gtk:
         -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_Gsk\1$##' \
         -e 's#^_Gtk\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
         -e 's#^_Gdk\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
-        -e 's#^_Gsk\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
+        -e 's#^_Gsk\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#'
+    
+    just -f "{{ justfile() }}" gtk-generate-type-casts
+
+[unix]
+gtk-generate-type-casts:
+    #! /bin/bash
+
+    OUTPUT_FILE="./gtk/type_casts.odin"
+
+    cat > "$OUTPUT_FILE" << 'EOF'
+    package gtk
+
+    import "base:intrinsics"
+    import glib "../glib"
+    import gobj "../glib/gobject"
+
+    EOF
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        if [[ "$line" =~ ^TYPE_([A-Z0-9_]+)[[:space:]]*::[[:space:]]*(gdk_)*(gsk_)*(.+)_get_type[[:space:]]*$ ]]; then
+            UPPER_NAME="${BASH_REMATCH[1]}"
+            GDK_PREFIX="${BASH_REMATCH[2]}"
+            GSK_PREFIX="${BASH_REMATCH[3]}"
+            GET_TYPE_NAME="${BASH_REMATCH[4]}"
+            
+            # If an error quark exists I don't want to generate something
+            if grep "${GDK_PREFIX}${GSK_PREFIX}${GET_TYPE_NAME}_quark" "./gtk/gtk.odin" > /dev/null; then
+                continue
+            fi
+            
+            PASCAL_NAME=$(echo "$GET_TYPE_NAME" | sed -r 's/(^|_)([a-z])/\U\2/g')
+            
+            CAST_PROC_NAME="$UPPER_NAME"
+            IS_PROC_NAME="IS_$UPPER_NAME"
+
+            if [[ "$UPPER_NAME" == "RGBA" ]]; then
+                CAST_PROC_NAME="RGBA_CAST"
+                PASCAL_NAME="RGBA"
+            elif [[ "$UPPER_NAME" == "GL_API" ]]; then
+                PASCAL_NAME="GLAPI"
+            elif [[ "$UPPER_NAME" == "CCLOSURE_EXPRESSION" ]]; then
+                PASCAL_NAME="CClosureExpression"
+            elif [[ "$UPPER_NAME" == "BUILDER_CSCOPE" ]]; then
+                PASCAL_NAME="BuilderCScope"
+            elif [[ "$UPPER_NAME" == "AT_CONTEXT" ]]; then
+                PASCAL_NAME="ATContext"
+            elif [[ "$UPPER_NAME" == "PARAM_SPEC_EXPRESSION" ]]; then
+                PASCAL_NAME="ParamSpecExpression"
+            elif echo "$PASCAL_NAME" | grep '^Gl[A-Z]' > /dev/null; then
+                PASCAL_NAME=$(printf "$PASCAL_NAME" | sed -r 's#Gl(.*)#GL\1#')
+            elif echo "$PASCAL_NAME" | grep '^Im[A-Z]' > /dev/null; then
+                PASCAL_NAME=$(printf "$PASCAL_NAME" | sed -r 's#Im(.*)#IM\1#')
+            elif echo "$PASCAL_NAME" | grep '^Dnd[A-Z]' > /dev/null; then
+                PASCAL_NAME=$(printf "$PASCAL_NAME" | sed -r 's#Dnd(.*)#DND\1#')
+            fi
+
+            cat >> "$OUTPUT_FILE" << EOF
+    ${CAST_PROC_NAME} :: #force_inline proc "contextless" (
+    	ptr: \$Ptr,
+    ) -> ^${PASCAL_NAME} where intrinsics.type_is_pointer(Ptr) {
+    	return gobj.type_cast(${PASCAL_NAME}, ptr, TYPE_${UPPER_NAME})
+    }
+
+    ${IS_PROC_NAME} :: #force_inline proc "contextless"(
+    	ptr: \$Ptr,
+    ) -> glib.boolean where intrinsics.type_is_pointer(Ptr) {
+    	return gobj.type_is(ptr, TYPE_${UPPER_NAME})
+    }
+
+    EOF
+        fi
+    done < "./gtk/gtk.odin"
+    
+    
+    cat >> "$OUTPUT_FILE" << 'EOF'
+    
+    @(private="file")
+    just_do_absolutely_nothing :: #force_inline proc "contextless" () -> gobj.Type { return TYPE_BUTTON_EVENT() }
+    
+    EOF
+    
+    if command -v 'odinfmt' > /dev/null 2>&1; then
+        odinfmt -w "$OUTPUT_FILE"
+    fi
 
 [unix]
 gtk-wrapper CC='cc':
