@@ -3,13 +3,6 @@ platforms:
   - Linux x86_64
   - Linux arm64
   - Windows x86_64
-wrapper:
-  language: c
-  in_headers: ../shared/glib/glib/glib.h
-  out_header: glib-wrapper.h
-  out_source: glib-wrapper.c
-  load_all_includes: true
-  multi_platform: true
 from:
   language: c
   shared.linux: 'libglib-2.0.so'
@@ -168,8 +161,6 @@ to:
     constants:
       - G_
     enum_type_name: true
-  trim_suffix:
-    functions: _wrapper
   extern:
     sources:
       "../stdinc/time.h": "core:c/libc"
@@ -177,17 +168,9 @@ to:
       "../stdinc/stdarg.h": "core:c/libc"
       "../stdinc/pthread.h": "core:sys/posix"
   add_libs.static.linux.arm64:
-    - ../lib/linux/aarch64/libglib-wrapper.a
     - libffi.so
     - libpcre2-8.so
-  add_libs.shared.linux.arm64:
-    - ../lib/linux/aarch64/libglib-wrapper.a
   add_libs.static.linux.x86_64:
-    - ../lib/linux/x86_64/libglib-wrapper.a
     - libffi.so
     - libpcre2-8.so
-  add_libs.shared.linux.x86_64:
-    - ../lib/linux/x86_64/libglib-wrapper.a
-  add_libs.windows.x86_64:
-    - ../lib/windows/x86_64/glib-wrapper.lib
   static_switch: 'GLIB_STATIC'

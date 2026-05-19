@@ -6149,66 +6149,6 @@ foreign glib_runic {
     @(link_name = "g_cond_timed_wait")
     cond_timed_wait :: proc(cond: ^Cond, mutex: ^Mutex, abs_time: ^TimeVal) -> boolean ---
 
-    @(link_name = "g_bit_nth_lsf_impl_wrapper")
-    bit_nth_lsf_impl :: proc(mask: ulong, nth_bit: int_) -> int_ ---
-
-    @(link_name = "g_bit_nth_msf_impl_wrapper")
-    bit_nth_msf_impl :: proc(mask: ulong, nth_bit: int_) -> int_ ---
-
-    @(link_name = "g_bit_storage_impl_wrapper")
-    bit_storage_impl :: proc(number: ulong) -> uint_ ---
-
-    @(link_name = "g_mutex_locker_new_wrapper")
-    mutex_locker_new :: proc(mutex: ^Mutex) -> ^MutexLocker ---
-
-    @(link_name = "g_mutex_locker_free_wrapper")
-    mutex_locker_free :: proc(locker: ^MutexLocker) ---
-
-    @(link_name = "g_rec_mutex_locker_new_wrapper")
-    rec_mutex_locker_new :: proc(rec_mutex: ^RecMutex) -> ^RecMutexLocker ---
-
-    @(link_name = "g_rec_mutex_locker_free_wrapper")
-    rec_mutex_locker_free :: proc(locker: ^RecMutexLocker) ---
-
-    @(link_name = "g_rw_lock_writer_locker_new_wrapper")
-    rw_lock_writer_locker_new :: proc(rw_lock: ^RWLock) -> ^RWLockWriterLocker ---
-
-    @(link_name = "g_rw_lock_writer_locker_free_wrapper")
-    rw_lock_writer_locker_free :: proc(locker: ^RWLockWriterLocker) ---
-
-    @(link_name = "g_rw_lock_reader_locker_new_wrapper")
-    rw_lock_reader_locker_new :: proc(rw_lock: ^RWLock) -> ^RWLockReaderLocker ---
-
-    @(link_name = "g_rw_lock_reader_locker_free_wrapper")
-    rw_lock_reader_locker_free :: proc(locker: ^RWLockReaderLocker) ---
-
-    @(link_name = "g_steal_pointer_wrapper")
-    steal_pointer :: proc(pp: pointer) -> pointer ---
-
-    @(link_name = "g_main_context_pusher_new_wrapper")
-    main_context_pusher_new :: proc(main_context: ^MainContext) -> ^MainContextPusher ---
-
-    @(link_name = "g_main_context_pusher_free_wrapper")
-    main_context_pusher_free :: proc(pusher: ^MainContextPusher) ---
-
-    @(link_name = "g_steal_handle_id_wrapper")
-    steal_handle_id :: proc(handle_pointer: ^u32) -> u32 ---
-
-    @(link_name = "g_steal_fd_wrapper")
-    steal_fd :: proc(fd_ptr: ^i32) -> i32 ---
-
-    @(link_name = "g_set_str_wrapper")
-    set_str :: proc(str_pointer: ^cstring, new_str: cstring) -> boolean ---
-
-    @(link_name = "g_string_append_c_inline_wrapper")
-    string_append_c_inline :: proc(gstring: ^String, c: char) -> ^String ---
-
-    @(link_name = "g_string_append_len_inline_wrapper")
-    string_append_len_inline :: proc(gstring: ^String, val: cstring, len: ssize) -> ^String ---
-
-    @(link_name = "g_string_truncate_inline_wrapper")
-    string_truncate_inline :: proc(gstring: ^String, len: size) -> ^String ---
-
 }
 
 date_weekday :: date_get_weekday
@@ -6494,9 +6434,6 @@ foreign glib_runic {
     @(link_name = "g_win32_check_windows_version")
     win32_check_windows_version :: proc(major: int_, minor: int_, spver: int_, os_type: Win32OSType) -> boolean ---
 
-    @(link_name = "_g_win32_get_system_data_dirs_wrapper")
-    _g_win32_get_system_data_dirs :: proc() -> ^cstring ---
-
 }
 
 }
@@ -6511,12 +6448,10 @@ when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import glib_runic { "../lib/linux/x86_64/libglib-2.0.a", "../lib/linux/x86_64/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
+    foreign import glib_runic { "../lib/linux/x86_64/libglib-2.0.a", "system:ffi", "system:pcre2-8" }
 } 
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import glib_runic { "system:glib-2.0", "../lib/linux/x86_64/libglib-wrapper.a" }
-} 
+    foreign import glib_runic "system:glib-2.0"
 }
 
 }
@@ -6525,21 +6460,17 @@ when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import glib_runic { "../lib/linux/aarch64/libglib-2.0.a", "../lib/linux/aarch64/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
+    foreign import glib_runic { "../lib/linux/aarch64/libglib-2.0.a", "system:ffi", "system:pcre2-8" }
 } 
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import glib_runic { "system:glib-2.0", "../lib/linux/aarch64/libglib-wrapper.a" }
-} 
+    foreign import glib_runic "system:glib-2.0"
 }
 
 }
 
 when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
 
-when (ODIN_OS == .Windows) && (ODIN_ARCH == .amd64) {
-    foreign import glib_runic { "../lib/windows/x86_64/glib-2.0.lib", "../lib/windows/x86_64/glib-wrapper.lib" }
-} 
+foreign import glib_runic "../lib/windows/x86_64/glib-2.0.lib"
 
 }
 

@@ -8,8 +8,7 @@ bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell adwai
 glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
-wrapper CC='cc':  (glib-wrapper-all CC) (graphene-wrapper CC) (gtk-wrapper CC) (adwaita-wrapper CC)
-glib-wrapper-all CC='cc': (glib-wrapper CC) (gobject-wrapper CC)
+wrapper CC='cc':  (graphene-wrapper CC) (gtk-wrapper CC) (adwaita-wrapper CC)
 build: glib-build cairo-build gtk-build
 
 clean: glib-clean gdk-pixbuf-clean gtk-clean adwaita-clean
@@ -103,17 +102,10 @@ glib:
         -e '/^URI_/s/\\" \\"//g' \
         -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_G\1$##' \
         -e 's#^_G\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
-        -e '/^NSEC_PER_SEC/ {s#`##g; s#(##g; s#)##g; s#0[^0-9]\+#0#}' \
+        -e '/^NSEC_PER_SEC/ {s#`##g; s#(##g; s#)##g; s#0[^0-9]\+#0#}'
 
-    rm glib/glib-wrapper-Linux_arm64.*
-    mv glib/glib-wrapper-Linux_x86_64.h   glib/glib-wrapper-Linux.h
-    mv glib/glib-wrapper-Linux_x86_64.c   glib/glib-wrapper-Linux.c
-    mv glib/glib-wrapper-Windows_x86_64.h glib/glib-wrapper-Windows.h
-    mv glib/glib-wrapper-Windows_x86_64.c glib/glib-wrapper-Windows.c
-    sed glib/glib-wrapper-* -i -e '/^#include/ s/_x86_64//'
-
-    echo '#undef g_steal_pointer' >> glib/glib-wrapper-Linux.h
-    echo '#undef g_steal_pointer' >> glib/glib-wrapper-Windows.h
+    sed 'glib/glib-Linux.odin' -i \
+        -e '0,/glib_runic\s\+"system:glib-2.0"/ s#.*glib_runic\s\+"system:glib-2.0".*##'
 
 WRAPPER_OS := if os() == 'windows' {
   'Windows'
@@ -127,19 +119,6 @@ WRAPPER_ARCH := if arch() == 'aarch64' {
 } else {
   arch()
 }
-
-[unix]
-glib-wrapper CC='cc':
-    @mkdir -p lib/{{ os() }}/{{ arch() }}
-    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/glib-wrapper.o -Ishared/glib/ -Ishared/glib/_build -Ishared/glib/_build/glib glib/glib-wrapper-{{ WRAPPER_OS }}.c
-    ar rs lib/{{ os() }}/{{ arch() }}/libglib-wrapper.a lib/{{ os() }}/{{ arch() }}/glib-wrapper.o
-    @rm lib/{{ os() }}/{{ arch() }}/glib-wrapper.o
-
-[windows]
-glib-wrapper CC='clang':
-    clang -c -O2 '-Ishared/gvsbuild/extract/include/glib-2.0/' '-Ishared/gvsbuild/extract/include/glib-2.0/glib/' '-Ishared/gvsbuild/extract/lib/glib-2.0/include/' -o lib/{{ os() }}/{{ arch() }}/glib-wrapper.obj glib/glib-wrapper-{{ WRAPPER_OS }}.c
-    lib /out:lib\{{ os() }}\{{ arch() }}\glib-wrapper.lib lib\{{ os() }}\{{ arch() }}\glib-wrapper.obj
-    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\glib-wrapper.obj
 
 gobject:
     {{ RUNIC }} glib/gobject/rune.yml
@@ -159,19 +138,6 @@ gobject:
         -e '/^ParamFlags/s/PARAM_//g' \
         -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_G\1$##' \
         -e 's#^_G\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#' \
-
-[unix]
-gobject-wrapper CC='cc':
-    @mkdir -p lib/{{ os() }}/{{ arch() }}
-    {{ CC }} -c -o lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o -Ishared/glib -Ishared/glib/glib -Ishared/glib/_build/glib -Ishared/glib/_build glib/gobject/gobject-wrapper.c
-    ar rs lib/{{ os() }}/{{ arch() }}/libgobject-wrapper.a lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o
-    @rm lib/{{ os() }}/{{ arch() }}/gobject-wrapper.o
-
-[windows]
-gobject-wrapper CC='clang':
-    clang -c -O2 '-Ishared/gvsbuild/extract/include/glib-2.0/' '-Ishared/gvsbuild/extract/include/glib-2.0/glib/' '-Ishared/gvsbuild/extract/lib/glib-2.0/include/' -o lib/{{ os() }}/{{ arch() }}/gobject-wrapper.obj glib/gobject/gobject-wrapper.c
-    lib /out:lib\{{ os() }}\{{ arch() }}\gobject-wrapper.lib lib\{{ os() }}\{{ arch() }}\gobject-wrapper.obj
-    @Remove-Item -Path lib\{{ os() }}\{{ arch() }}\gobject-wrapper.obj
 
 gmodule:
     {{ RUNIC }} glib/gmodule/rune.yml
@@ -460,7 +426,7 @@ download-webkitgtk VERSION='2.46.4':
     rmdir shared/webkitgtk/webkitgtk-{{ VERSION }}/
 
 [unix]
-download-and-extract-gvsbuild GVSBUILD_RELEASE:
+download-and-extract-gvsbuild GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE:
     #! /bin/sh
     set -ex
 
@@ -482,7 +448,7 @@ download-and-extract-gvsbuild GVSBUILD_RELEASE:
     fi
 
 [windows]
-download-and-extract-gvsbuild GVSBUILD_RELEASE:
+download-and-extract-gvsbuild GVSBUILD_RELEASE=WINDOWS_GVSBUILD_RELEASE:
     #! pwsh.exe
     Set-PSDebug -Trace 1
     $ErrorActionPreference = "Stop"

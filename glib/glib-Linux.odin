@@ -197,28 +197,21 @@ foreign glib_runic {
     @(link_name = "g_assertion_message_cmpnum")
     assertion_message_cmpnum :: proc(domain: cstring, file: cstring, line: i32, func: cstring, expr: cstring, arg1: [16]byte, cmp: cstring, arg2: [16]byte, numtype: char) ---
 
-    @(link_name = "g_strdup_inline_wrapper")
-    strdup_inline :: proc(str: cstring) -> cstring ---
-
 }
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import glib_runic { "../lib/linux/x86_64/libglib-2.0.a", "../lib/linux/x86_64/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
+    foreign import glib_runic { "../lib/linux/x86_64/libglib-2.0.a", "system:ffi", "system:pcre2-8" }
 } 
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .amd64) {
-    foreign import glib_runic { "system:glib-2.0", "../lib/linux/x86_64/libglib-wrapper.a" }
-} 
+
 }
 
 when #config(GLIB_STATIC, false) {
     when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import glib_runic { "../lib/linux/aarch64/libglib-2.0.a", "../lib/linux/aarch64/libglib-wrapper.a", "system:ffi", "system:pcre2-8" }
+    foreign import glib_runic { "../lib/linux/aarch64/libglib-2.0.a", "system:ffi", "system:pcre2-8" }
 } 
 } else {
-    when (ODIN_OS == .Linux) && (ODIN_ARCH == .arm64) {
-    foreign import glib_runic { "system:glib-2.0", "../lib/linux/aarch64/libglib-wrapper.a" }
-} 
+    foreign import glib_runic "system:glib-2.0"
 }
 
