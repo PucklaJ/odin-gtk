@@ -1,10 +1,10 @@
 set windows-shell := ['powershell.exe']
 
 [unix]
-setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup graphene-setup gtk-setup adwaita-setup
+setup: glib-setup gdk-pixbuf-setup cairo-setup pango-setup graphene-setup gtk-setup adwaita-setup gtksourceview-setup
 
 [unix]
-bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell adwaita
+bindings: glib-all gdk-pixbuf cairo pango-all graphene gtk gtk-layer-shell adwaita gtksourceview
 
 [unix]
 glib-all: glib gobject gmodule gio girepository
@@ -13,12 +13,12 @@ glib-all: glib gobject gmodule gio girepository
 pango-all: pango pangocairo
 
 [unix]
-build: glib-build cairo-build gtk-build
+build: glib-build cairo-build gtk-build gtksourceview-build
 
 [unix]
-clean: glib-clean gdk-pixbuf-clean gtk-clean adwaita-clean
+clean: glib-clean gdk-pixbuf-clean gtk-clean adwaita-clean gtksourceview-clean
 
-check-all: (check 'glib') (check 'glib/gobject') (check 'glib/gmodule') (check 'glib/gio') (check 'glib/girepository') (check 'gdk-pixbuf') (check 'cairo') (check 'pango') (check 'pango/pangocairo') (check 'graphene') (check 'gtk') (check 'gtk/layer-shell') (check 'adwaita')
+check-all: (check 'glib') (check 'glib/gobject') (check 'glib/gmodule') (check 'glib/gio') (check 'glib/girepository') (check 'gdk-pixbuf') (check 'cairo') (check 'pango') (check 'pango/pangocairo') (check 'graphene') (check 'gtk') (check 'gtk/layer-shell') (check 'adwaita') (check 'gtksourceview')
 
 RUNIC := 'runic'
 WINDOWS_GVSBUILD_RELEASE := '2026.4.1'
@@ -516,6 +516,80 @@ gtk-generate-type-casts:
 [unix]
 gtk-layer-shell:
     {{ RUNIC }} gtk/layer-shell/rune.yml
+
+[unix]
+gtksourceview-setup:
+    cd shared/gtksourceview && meson setup \
+        --reconfigure \
+        -Dintrospection=enabled \
+        -Dvapi=false \
+        _build
+
+    ninja -C shared/gtksourceview/_build \
+        gtksourceview/GtkSource-5.gir
+
+[unix]
+gtksourceview-generate-type-casts:
+    #! /bin/bash
+
+    OUTPUT_FILE="./gtksourceview/type_casts.odin"
+
+    cat > "$OUTPUT_FILE" << 'EOF'
+    package gtksourceview
+
+    import "base:intrinsics"
+    import glib "../glib"
+    import gobj "../glib/gobject"
+
+    EOF
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        if [[ "$line" =~ ^TYPE_([A-Z0-9_]+)[[:space:]]*::[[:space:]]*(.+)_get_type[[:space:]]*$ ]]; then
+            UPPER_NAME="${BASH_REMATCH[1]}"
+            GET_TYPE_NAME="${BASH_REMATCH[2]}"
+
+            PASCAL_NAME=$(echo "$GET_TYPE_NAME" | sed -r 's/(^|_)([a-z])/\U\2/g')
+
+            cat >> "$OUTPUT_FILE" << EOF
+    ${UPPER_NAME} :: #force_inline proc "contextless" (
+        ptr: \$Ptr,
+    ) -> ^${PASCAL_NAME} where intrinsics.type_is_pointer(Ptr) {
+        return gobj.type_cast(${PASCAL_NAME}, ptr, TYPE_${UPPER_NAME})
+    }
+
+    IS_${UPPER_NAME} :: #force_inline proc "contextless"(
+        ptr: \$Ptr,
+    ) -> glib.boolean where intrinsics.type_is_pointer(Ptr) {
+        return gobj.type_is(ptr, TYPE_${UPPER_NAME})
+    }
+
+    EOF
+        fi
+    done < "./gtksourceview/gtksourceview.odin"
+
+    odinfmt -w "$OUTPUT_FILE" 2>/dev/null || true
+
+[unix]
+gtksourceview:
+    just -f "{{ justfile() }}" gtksourceview-generate-type-casts
+    {{ RUNIC }} gtksourceview/rune.yml
+    sed gtksourceview/gtksourceview.odin -i \
+        -e 's/\^glib.char/cstring/g' \
+        -e '/^TYPE_/ {s/`//g; s/(//g; s/)//g; s/gtksource_//g}' \
+        -e 's#^\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*_GtkSource\1$##' \
+        -e 's#^_GtkSource\([a-zA-Z][a-zA-Z_0-9]*\)\s*::\s*\(.*\)$#\1 :: \2#'
+
+[unix]
+gtksourceview-build:
+    meson compile -C shared/gtksourceview/_build -j{{ num_cpus() }}
+
+    @mkdir -p lib/{{ os() }}/{{ arch() }}
+    ln -srf shared/gtksourceview/_build/gtksourceview/libgtksourceview-5.a lib/{{ os() }}/{{ arch() }}/
+
+[unix]
+gtksourceview-clean:
+    rm -rf shared/gtksourceview/_build \
+           lib/{{ os() }}/{{ arch() }}/libgtksourceview-5.a
 
 [unix]
 adwaita-setup:

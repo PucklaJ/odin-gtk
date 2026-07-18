@@ -2,21 +2,22 @@
 
 Odin Bindings to GTK4, libadwaita and associated libraries generated using [runic](https://github.com/Samudevv/runic)
 
-| Library                                                      | Path                | License                                                                                    |
-| ------------------------------------------------------------ | ------------------- | ------------------------------------------------------------------------------------------ |
-| [glib](https://gitlab.gnome.org/GNOME/glib)                  | `glib`              | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt) |
-| [gobject](https://gitlab.gnome.org/GNOME/glib)               | `glib/gobject`      | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt) |
-| [gmodule](https://gitlab.gnome.org/GNOME/glib)               | `glib/gmodule`      | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt) |
-| [gio](https://gitlab.gnome.org/GNOME/glib)                   | `glib/gio`          | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt) |
-| [girepository](https://gitlab.gnome.org/GNOME/glib)          | `glib/girepository` | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt) |
-| [gdk-pixbuf](https://gitlab.gnome.org/GNOME/gdk-pixbuf)      | `gdk-pixbuf`        | [LGPL 2.1](https://gitlab.gnome.org/GNOME/gdk-pixbuf/-/blob/master/COPYING)                |
-| [pango](https://gitlab.gnome.org/GNOME/pango.git)            | `pango`             | [LGPL 2](https://gitlab.gnome.org/GNOME/pango/-/blob/main/COPYING)                         |
-| [pangocairo](https://gitlab.gnome.org/GNOME/pango.git)       | `pango/pangocairo`  | [LGPL 2](https://gitlab.gnome.org/GNOME/pango/-/blob/main/COPYING)                         |
-| [cairo](https://gitlab.freedesktop.org/cairo/cairo.git)      | `cairo`             | [LGPL 2.1](https://gitlab.freedesktop.org/cairo/cairo/-/blob/master/COPYING-LGPL-2.1)      |
-| [graphene](https://github.com/ebassi/graphene)               | `graphene`          | [MIT](https://github.com/ebassi/graphene/blob/master/LICENSES/MIT.txt)                     |
-| [gtk](https://gitlab.gnome.org/GNOME/gtk)                    | `gtk`               | [LGPL 2.1](https://gitlab.gnome.org/GNOME/gtk/-/blob/main/COPYING)                         |
-| [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell) | `gtk/layer-shell`   | [MIT](https://github.com/wmww/gtk4-layer-shell/blob/main/LICENSE)                          |
-| [libadwaita](https://gitlab.gnome.org/GNOME/libadwaita)      | `adwaita`           | [LGPL 2.1](https://gitlab.gnome.org/GNOME/libadwaita/-/blob/main/COPYING)                  |
+| Library                                                       | Path                | License                                                                                     |
+| ------------------------------------------------------------  | ------------------- | ------------------------------------------------------------------------------------------  |
+| [glib](https://gitlab.gnome.org/GNOME/glib)                   | `glib`              | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt)  |
+| [gobject](https://gitlab.gnome.org/GNOME/glib)                | `glib/gobject`      | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt)  |
+| [gmodule](https://gitlab.gnome.org/GNOME/glib)                | `glib/gmodule`      | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt)  |
+| [gio](https://gitlab.gnome.org/GNOME/glib)                    | `glib/gio`          | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt)  |
+| [girepository](https://gitlab.gnome.org/GNOME/glib)           | `glib/girepository` | [LGPL 2.1](https://gitlab.gnome.org/GNOME/glib/-/blob/main/LICENSES/LGPL-2.1-or-later.txt)  |
+| [gdk-pixbuf](https://gitlab.gnome.org/GNOME/gdk-pixbuf)       | `gdk-pixbuf`        | [LGPL 2.1](https://gitlab.gnome.org/GNOME/gdk-pixbuf/-/blob/master/COPYING)                 |
+| [pango](https://gitlab.gnome.org/GNOME/pango.git)             | `pango`             | [LGPL 2](https://gitlab.gnome.org/GNOME/pango/-/blob/main/COPYING)                          |
+| [pangocairo](https://gitlab.gnome.org/GNOME/pango.git)        | `pango/pangocairo`  | [LGPL 2](https://gitlab.gnome.org/GNOME/pango/-/blob/main/COPYING)                          |
+| [cairo](https://gitlab.freedesktop.org/cairo/cairo.git)       | `cairo`             | [LGPL 2.1](https://gitlab.freedesktop.org/cairo/cairo/-/blob/master/COPYING-LGPL-2.1)       |
+| [graphene](https://github.com/ebassi/graphene)                | `graphene`          | [MIT](https://github.com/ebassi/graphene/blob/master/LICENSES/MIT.txt)                      |
+| [gtk](https://gitlab.gnome.org/GNOME/gtk)                     | `gtk`               | [LGPL 2.1](https://gitlab.gnome.org/GNOME/gtk/-/blob/main/COPYING)                          |
+| [gtk4-layer-shell](https://github.com/wmww/gtk4-layer-shell)  | `gtk/layer-shell`   | [MIT](https://github.com/wmww/gtk4-layer-shell/blob/main/LICENSE)                           |
+| [libadwaita](https://gitlab.gnome.org/GNOME/libadwaita)       | `adwaita`           | [LGPL 2.1](https://gitlab.gnome.org/GNOME/libadwaita/-/blob/main/COPYING)                   |
+| [gtksourceview](https://gitlab.gnome.org/GNOME/gtksourceview) | `gtksourceview`     | [GLPL 2.1](https://gitlab.gnome.org/GNOME/gtksourceview/-/blob/master/COPYING)              |
 
 **DANGER: Variadic functions that must be terminated with NULL (nil in odin), like [`adwaita.show_about_dialog`](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1.6/func.show_about_dialog.html), need to be treated with caution or they will segfault. Strings need to be explicitely converted to `cstring`, arrays need to be past as pointers `arr` -> `&arr[0]`. There may even be more things you need to pay attention to, therefore I suggest you to avoid them and use the non variadic options**
 

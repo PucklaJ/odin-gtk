@@ -22,3 +22,6 @@
 [submodule "shared/adwaita"]
 	path = shared/adwaita
 	url = https://gitlab.gnome.org/GNOME/libadwaita.git
+[submodule "shared/gtksourceview"]
+	path = shared/gtksourceview
+	url = https://gitlab.gnome.org/GNOME/gtksourceview.git

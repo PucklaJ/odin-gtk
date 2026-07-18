@@ -1,0 +1,153 @@
+version: 0
+platforms:
+  - Linux x86_64
+  - Linux arm64
+  - Windows x86_64
+
+from:
+  language: c
+
+  shared.linux: 'libgtksourceview-5.so'
+  shared.windows.x86_64: '../lib/windows/x86_64/gtksourceview-5.lib'
+
+  headers: ../shared/gtksourceview/gtksourceview/gtksource.h
+  headers.windows.x86_64: ../shared/gvsbuild/extract/include/gtksourceview-5/gtksourceview/gtksource.h
+
+  includedirs:
+    - ../stdinc/
+    - ../shared/glib/
+    - ../shared/glib/glib/
+    - ../shared/glib/gobject/
+    - ../shared/glib/gio/
+    - ../shared/glib/gmodule/
+    - ../shared/glib/_build/
+    - ../shared/glib/_build/glib/
+    - ../shared/glib/_build/gobject/
+    - ../shared/glib/_build/gio/
+    - ../shared/gtk/
+    - ../shared/gtk/gtk/
+    - ../shared/gtk/gdk/
+    - ../shared/gtk/_build/
+    - ../shared/pango/
+    - ../shared/pango/pango/
+    - ../shared/cairo/
+    - ../shared/gtksourceview/
+    - ../shared/gtksourceview/_build/
+
+  includedirs.windows.x86_64:
+    - ../stdinc/windows/
+    - ../shared/gvsbuild/extract/include/glib-2.0/
+    - ../shared/gvsbuild/extract/include/glib-2.0/glib/
+    - ../shared/gvsbuild/extract/include/glib-2.0/gobject/
+    - ../shared/gvsbuild/extract/include/glib-2.0/gio/
+    - ../shared/gvsbuild/extract/include/glib-2.0/gmodule/
+    - ../shared/gvsbuild/extract/lib/glib-2.0/include/
+    - ../shared/gvsbuild/extract/include/gtk-4.0/
+    - ../shared/gvsbuild/extract/include/pango-1.0/
+    - ../shared/gvsbuild/extract/include/cairo/
+    - ../shared/gvsbuild/extract/include/gtksourceview-5/
+
+  defines:
+    GLIB_COMPILATION: 1
+    GLIB_DISABLE_DEPRECATION_WARNINGS: 1
+
+  load_all_includes: true
+
+  extern:
+    - '../stdinc/*'
+    - '../stdinc/sys/*'
+    - '../stdinc/windows/*'
+
+    - '../shared/glib/glib/*'
+    - '../shared/glib/gobject/*'
+    - '../shared/glib/gio/*'
+    - '../shared/glib/gmodule/*'
+
+    - '../shared/glib/_build/glib/*'
+    - '../shared/glib/_build/gobject/*'
+    - '../shared/glib/_build/gio/*'
+    - '../shared/glib/_build/gmodule/*'
+
+    - '../shared/gtk/gtk/*'
+    - '../shared/gtk/gdk/*'
+    - '../shared/gtk/gsk/*'
+    - '../shared/gtk/_build/gtk/*'
+    - '../shared/gtk/_build/gdk/*'
+    - '../shared/gtk/_build/gsk/*'
+
+    - '../shared/pango/pango/*'
+    - '../shared/cairo/*'
+
+    - '../shared/gvsbuild/extract/include/glib-2.0/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/glib/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/gobject/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/gio/*'
+    - '../shared/gvsbuild/extract/include/glib-2.0/gmodule/*'
+    - '../shared/gvsbuild/extract/lib/glib-2.0/include/*'
+
+    - '../shared/gvsbuild/extract/include/gtk-4.0/*'
+    - '../shared/gvsbuild/extract/include/pango-1.0/*'
+    - '../shared/gvsbuild/extract/include/cairo/*'
+
+  ignore:
+    types:
+      - '*autoptr*'
+
+    constants:
+      - 'GTK_SOURCE_VERSION*'
+      - 'GTK_SOURCE_MAJOR_VERSION'
+      - 'GTK_SOURCE_MINOR_VERSION'
+      - 'GTK_SOURCE_MICRO_VERSION'
+      - 'GTK_SOURCE_AVAILABLE*'
+      - 'GTK_SOURCE_DEPRECATED*'
+      - '_GTK_SOURCE*'
+
+    functions:
+      - '*autoptr*'
+      - '*auto_cleanup*'
+
+to:
+  language: odin
+  package: gtksourceview
+  out: gtksourceview.odin
+
+  trim_prefix:
+    types:
+      - GtkSource
+      - gtk_source
+
+    constants:
+      - GTK_SOURCE_
+
+    functions:
+      - gtk_source_
+
+    variables:
+      - gtk_source_
+
+  extern:
+    sources:
+      '../shared/glib/glib/*': "../glib"
+      '../shared/glib/gobject/*': "gobj ../glib/gobject"
+      '../shared/glib/gio/*': "../glib/gio"
+      '../shared/glib/_build/glib/*': "../glib"
+      '../shared/glib/_build/gobject/*': "gobj ../glib/gobject"
+      '../shared/glib/_build/gio/*': "../glib/gio"
+
+      '../shared/gtk/gtk/*': "gtk ../gtk"
+      '../shared/gtk/gdk/*': "gtk ../gtk"
+      '../shared/gtk/gsk/*': "gtk ../gtk"
+
+      '../shared/pango/pango/*': "pango ../pango"
+      '../shared/cairo/*': "cairo ../cairo"
+
+      '../shared/gvsbuild/extract/include/glib-2.0/glib/*': "../glib"
+      '../shared/gvsbuild/extract/include/glib-2.0/gobject/*': "gobj ../glib/gobject"
+      '../shared/gvsbuild/extract/include/glib-2.0/gio/*': "../glib/gio"
+
+      '../shared/gvsbuild/extract/include/gtk-4.0/*': "gtk ../gtk"
+      '../shared/gvsbuild/extract/include/pango-1.0/*': "pango ../pango"
+      '../shared/gvsbuild/extract/include/cairo/*': "cairo ../cairo"
+
+    trim_prefix: true
+
